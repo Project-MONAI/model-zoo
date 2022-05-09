@@ -22,7 +22,7 @@ of the codebase named `[ticket_id]-[task_name]`.
 Ideally, the new branch should be based on the latest `dev` branch.
 1. Make changes to the branch ([use detailed commit messages if possible](https://chris.beams.io/posts/git-commit/)).
 1. [Create a new pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request) from the task branch to the dev branch, with detailed descriptions of the purpose of this pull request.
-1. For any large files inside the bundle, please use Git LFS commands to push them properly.
+1. For any large files inside the bundle, please use [Git LFS commands](https://github.com/git-lfs/git-lfs/edit/main/README.md#example-usage) to push them properly.
 1. Wait for reviews; if there are reviews, make point-to-point responses, make further code changes if needed.
 1. If there are conflicts between the pull request branch and the dev branch, pull the changes from the dev and resolve the conflicts locally.
 1. Reviewer and contributor may have discussions back and forth until all comments addressed.
