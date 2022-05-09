@@ -29,3 +29,5 @@ Ideally, the new branch should be based on the latest `dev` branch.
 1. If there are conflicts between the pull request branch and the dev branch, pull the changes from the dev and resolve the conflicts locally.
 1. Reviewer and contributor may have discussions back and forth until all comments addressed.
 1. Wait for the pull request to be merged.
+
+[monai model zoo issue list]: https://github.com/yiheng-wang-nv/model-zoo/issues
