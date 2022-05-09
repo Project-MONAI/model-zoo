@@ -40,6 +40,7 @@ htmlcov/
 .tox/
 .coverage
 .coverage.*
+.coverage/
 .cache
 nosetests.xml
 coverage.xml
@@ -65,6 +66,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+_build/
 
 # PyBuilder
 target/
@@ -110,7 +112,6 @@ temp/
 .idea/
 
 *~
-._*
 
 # Remove .pyre temporary config files
 .pyre
@@ -122,29 +123,9 @@ temp/
 *.swp
 .DS_Store
 
-# temporary testing data MedNIST
-tests/testing_data/MedNIST*
-tests/testing_data/*Hippocampus*
-
 # clang format tool
 .clang-format-bin/
 
 # VSCode
 .vscode/
-
-# saved networks
-*.pth
-
-# Ignore torch saves
-*/torch/runs
-logs
-*/runs
-lightning_logs
-
-# ignore automatically created files
-*.ts
-nohup.out
-deepgrow/ignite/_image.nii.gz
 *.zip
-deployment/bentoml/mednist_classifier_bentoml.py
-deployment/ray/mednist_classifier_start.py
