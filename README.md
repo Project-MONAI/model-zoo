@@ -3,7 +3,9 @@
 MONAI Model Zoo hosts a collection of medical imaging models in the [MONAI Bundle](https://docs.monai.io/en/latest/bundle_intro.html) format.
 
 ## Model Storage
-Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)), and blocks pushes that exceed 100MB. Therefore, MONAI Model Zoo uses Git Large File Storage (LFS) to store large files. Please refer to its [official guide](https://github.com/git-lfs/git-lfs#getting-started) and learn more details about how to install it.
+Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)). Therefore, MONAI Model Zoo suggests to use Git Large File Storage (LFS) to store large files for any single file that is larger than 25MB.
+There are multiple ways to install Git LFS. For example, download [a suitable binary package](https://github.com/git-lfs/git-lfs/releases) and run `./install.sh`.
+Please refer to the [official guide](https://github.com/git-lfs/git-lfs#getting-started) for more details about how to install and use it.
 
 ## Contributing
 
