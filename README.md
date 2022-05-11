@@ -51,4 +51,4 @@ Ideally, the new branch should be based on the latest `dev` branch.
 1. Reviewer and contributor may have discussions back and forth until all comments addressed.
 1. Wait for the pull request to be merged.
 
-[monai model zoo issue list]: https://github.com/yiheng-wang-nv/model-zoo/issues
+[monai model zoo issue list]: https://github.com/Project-MONAI/model-zoo/issues
