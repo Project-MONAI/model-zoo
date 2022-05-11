@@ -4,8 +4,29 @@ MONAI Model Zoo hosts a collection of medical imaging models in the [MONAI Bundl
 
 ## Model Storage
 Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)). Therefore, MONAI Model Zoo suggests to use Git Large File Storage (LFS) to store large files for any single file that is larger than **25MB**.
-There are multiple ways to install Git LFS. For example, download [a suitable binary package](https://github.com/git-lfs/git-lfs/releases) and run `./install.sh`.
-Please refer to the [official guide](https://github.com/git-lfs/git-lfs#getting-started) for more details about how to install and use it.
+
+### Example of install Git LFS on Linux AMD64
+There are multiple ways to install Git LFS. For example, you can download [a suitable binary package](https://github.com/git-lfs/git-lfs/releases) and run `./install.sh` inside the downloaded package.
+
+Takes the Linux AMD64 environment for instance, the commands are like the following (until May 11th 2022, the latest release is v3.1.4. The following commands may need to update for later releases):
+```
+wget https://github.com/git-lfs/git-lfs/releases/download/v3.1.4/git-lfs-linux-amd64-v3.1.4.tar.gz
+tar -xvf git-lfs-linux-amd64-v3.1.4.tar.gz
+bash install.sh
+```
+Please refer to the [official installing guide](https://github.com/git-lfs/git-lfs#installing) for more details.
+
+### Example of push large files with Git LFS
+
+Usually, we use `git add` to add files for a commit. For a large file, we need to track it first, then `.gitattributes` will automatically be changed, and also need to be added. The following steps are the same as usual. The total commands are like the following:
+```
+git lfs track "example_large_model.pt"
+git add .gitattributes
+git add example_large_model.pt
+git commit --signoff
+...
+```
+Please refer to the [official example usage](https://github.com/git-lfs/git-lfs#example-usage) for more details.
 
 ## Contributing
 
