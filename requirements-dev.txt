@@ -1,0 +1,17 @@
+# Full requirements for developments
+-r requirements.txt
+flake8>=3.8.1
+flake8-bugbear
+flake8-comprehensions
+flake8-executable
+flake8-pyi
+pylint!=2.13  # https://github.com/PyCQA/pylint/issues/5969
+mccabe
+pep8-naming
+pycodestyle
+pyflakes
+black
+isort
+pytype>=2020.6.1; platform_system != "Windows"
+types-pkg_resources
+mypy>=0.790
