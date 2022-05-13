@@ -38,7 +38,6 @@ doIsortFormat=false
 doIsortFix=false
 doFlake8Format=false
 doPylintFormat=false
-doClangFormat=false
 doPytypeFormat=false
 doMypyFormat=false
 doCleanup=false
@@ -48,7 +47,7 @@ NUM_PARALLEL=1
 PY_EXE=${MONAI_MODEL_ZOO_PY_EXE:-$(which python)}
 
 function print_usage {
-    echo "runtests.sh [--codeformat] [--autofix] [--black] [--isort] [--flake8] [--pylint] [--clangformat] [--pytype] [--mypy]"
+    echo "runtests.sh [--codeformat] [--autofix] [--black] [--isort] [--flake8] [--pylint] [--pytype] [--mypy]"
     echo "            [--dryrun] [-j number] [--clean] [--help] [--version]"
     echo ""
     echo "MONAI Model Zoo testing utilities."
@@ -64,7 +63,6 @@ function print_usage {
     echo "    --isort           : perform \"isort\" import sort checks"
     echo "    --flake8          : perform \"flake8\" code format checks"
     echo "    --pylint          : perform \"pylint\" code format checks"
-    echo "    --clangformat     : format csrc code using \"clang-format\""
     echo ""
     echo "Python type check options:"
     echo "    --pytype          : perform \"pytype\" static type checks"
@@ -73,7 +71,6 @@ function print_usage {
     echo ""
     echo "Misc. options:"
     echo "    --dryrun          : display the commands to the screen without running"
-    echo "    --copyright       : check whether every source code has a copyright header"
     echo "    -f, --codeformat  : shorthand to run all code style and static analysis tests"
     echo "    -c, --clean       : clean temporary files from tests and exit"
     echo "    -h, --help        : show this help message and exit"
@@ -88,15 +85,20 @@ function print_usage {
 
 function check_import {
     echo "Python: ${PY_EXE}"
-    ${cmdPrefix}${PY_EXE} -W error -W ignore::DeprecationWarning -c "import monai.bundle"
+    ${cmdPrefix}${PY_EXE} -W error -W ignore::DeprecationWarning -c "import monai"
 }
 
 function print_monai_version {
     ${cmdPrefix}${PY_EXE} -c 'import monai; monai.config.print_config()'
 }
 
+function install_monai {
+    echo "Pip installing MONAI basic dependencies"
+    ${cmdPrefix}${PY_EXE} -m pip install -r requirements.txt
+}
+
 function install_deps {
-    echo "Pip installing MONAI development dependencies and compile MONAI cpp extensions..."
+    echo "Pip installing MONAI development dependencies"
     ${cmdPrefix}${PY_EXE} -m pip install -r requirements-dev.txt
 }
 
@@ -169,9 +171,6 @@ do
             doIsortFormat=true
             doBlackFormat=true
         ;;
-        --clangformat)
-            doClangFormat=true
-        ;;
         --isort)
             doIsortFormat=true
         ;;
@@ -224,6 +223,10 @@ then
     cmdPrefix="dryrun "
     function dryrun { echo "    " "$@"; }
 else
+    if ! is_pip_installed monai
+    then
+        install_monai
+    fi
     check_import
 fi
 
@@ -232,16 +235,6 @@ then
     echo "${separator}${blue}clean${noColor}"
 
     clean_py
-
-    echo "${green}done!${noColor}"
-    exit
-fi
-
-if [ $doClangFormat = true ]
-then
-    echo "${separator}${blue}clang-formatting${noColor}"
-
-    clang_format
 
     echo "${green}done!${noColor}"
     exit
@@ -346,62 +339,61 @@ then
     set -e # enable exit on failure
 fi
 
-if [ $doPylintFormat = true ]
-then
-    set +e  # disable exit on failure so that diagnostics can be given on failure
-    echo "${separator}${blue}pylint${noColor}"
+# if [ $doPylintFormat = true ]
+# then
+#     set +e  # disable exit on failure so that diagnostics can be given on failure
+#     echo "${separator}${blue}pylint${noColor}"
 
-    # ensure that the necessary packages for code format testing are installed
-    if ! is_pip_installed flake8
-    then
-        install_deps
-    fi
-    ${cmdPrefix}${PY_EXE} -m pylint --version
+#     # ensure that the necessary packages for code format testing are installed
+#     if ! is_pip_installed flake8
+#     then
+#         install_deps
+#     fi
+#     ${cmdPrefix}${PY_EXE} -m pylint --version
 
-    ignore_codes="E1101,E1102,E0601,E1130,E1123,E0102,E1120,E1137,E1136"
-    ${cmdPrefix}${PY_EXE} -m pylint monai tests -E --disable=$ignore_codes -j $NUM_PARALLEL
-    pylint_status=$?
+#     ignore_codes="E1101,E1102,E0601,E1130,E1123,E0102,E1120,E1137,E1136"
+#     ${cmdPrefix}${PY_EXE} -m pylint monai tests -E --disable=$ignore_codes -j $NUM_PARALLEL
+#     pylint_status=$?
 
-    if [ ${pylint_status} -ne 0 ]
-    then
-        print_style_fail_msg
-        exit ${pylint_status}
-    else
-        echo "${green}passed!${noColor}"
-    fi
-    set -e # enable exit on failure
-fi
+#     if [ ${pylint_status} -ne 0 ]
+#     then
+#         print_style_fail_msg
+#         exit ${pylint_status}
+#     else
+#         echo "${green}passed!${noColor}"
+#     fi
+#     set -e # enable exit on failure
+# fi
 
 
-if [ $doPytypeFormat = true ]
-then
-    set +e  # disable exit on failure so that diagnostics can be given on failure
-    echo "${separator}${blue}pytype${noColor}"
-    # ensure that the necessary packages for code format testing are installed
-    if ! is_pip_installed pytype
-    then
-        install_deps
-    fi
-    pytype_ver=$(${cmdPrefix}${PY_EXE} -m pytype --version)
-    if [[ "$OSTYPE" == "darwin"* && "$pytype_ver" == "2021."* ]]; then
-        echo "${red}pytype not working on macOS 2021 (https://github.com/Project-MONAI/MONAI/issues/2391). Please upgrade to 2022*.${noColor}"
-        exit 1
-    else
-        ${cmdPrefix}${PY_EXE} -m pytype --version
+# if [ $doPytypeFormat = true ]
+# then
+#     set +e  # disable exit on failure so that diagnostics can be given on failure
+#     echo "${separator}${blue}pytype${noColor}"
+#     # ensure that the necessary packages for code format testing are installed
+#     if ! is_pip_installed pytype
+#     then
+#         install_deps
+#     fi
+#     pytype_ver=$(${cmdPrefix}${PY_EXE} -m pytype --version)
+#     if [[ "$OSTYPE" == "darwin"* && "$pytype_ver" == "2021."* ]]; then
+#         echo "${red}pytype not working on macOS 2021 (https://github.com/Project-MONAI/MONAI/issues/2391). Please upgrade to 2022*.${noColor}"
+#         exit 1
+#     else
+#         ${cmdPrefix}${PY_EXE} -m pytype --version
+#         ${cmdPrefix}${PY_EXE} -m pytype -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")"
 
-        ${cmdPrefix}${PY_EXE} -m pytype -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")"
-
-        pytype_status=$?
-        if [ ${pytype_status} -ne 0 ]
-        then
-            echo "${red}failed!${noColor}"
-            exit ${pytype_status}
-        else
-            echo "${green}passed!${noColor}"
-        fi
-    fi
-    set -e # enable exit on failure
-fi
+#         pytype_status=$?
+#         if [ ${pytype_status} -ne 0 ]
+#         then
+#             echo "${red}failed!${noColor}"
+#             exit ${pytype_status}
+#         else
+#             echo "${green}passed!${noColor}"
+#         fi
+#     fi
+#     set -e # enable exit on failure
+# fi
 
 
 if [ $doMypyFormat = true ]
@@ -418,9 +410,9 @@ then
 
     if [ $doDryRun = true ]
     then
-        ${cmdPrefix}MYPYPATH="$(pwd)"/monai ${PY_EXE} -m mypy "$(pwd)"
+        ${cmdPrefix}MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)"
     else
-        MYPYPATH="$(pwd)"/monai ${PY_EXE} -m mypy "$(pwd)" # cmdPrefix does not work with MYPYPATH
+        MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)" # cmdPrefix does not work with MYPYPATH
     fi
 
     mypy_status=$?
