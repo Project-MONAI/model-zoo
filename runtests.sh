@@ -396,32 +396,32 @@ fi
 # fi
 
 
-if [ $doMypyFormat = true ]
-then
-    set +e  # disable exit on failure so that diagnostics can be given on failure
-    echo "${separator}${blue}mypy${noColor}"
+# if [ $doMypyFormat = true ]
+# then
+#     set +e  # disable exit on failure so that diagnostics can be given on failure
+#     echo "${separator}${blue}mypy${noColor}"
 
-    # ensure that the necessary packages for code format testing are installed
-    if ! is_pip_installed mypy
-    then
-        install_deps
-    fi
-    ${cmdPrefix}${PY_EXE} -m mypy --version
+#     # ensure that the necessary packages for code format testing are installed
+#     if ! is_pip_installed mypy
+#     then
+#         install_deps
+#     fi
+#     ${cmdPrefix}${PY_EXE} -m mypy --version
 
-    if [ $doDryRun = true ]
-    then
-        ${cmdPrefix}MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)"
-    else
-        MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)" # cmdPrefix does not work with MYPYPATH
-    fi
+#     if [ $doDryRun = true ]
+#     then
+#         ${cmdPrefix}MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)"
+#     else
+#         MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)" # cmdPrefix does not work with MYPYPATH
+#     fi
 
-    mypy_status=$?
-    if [ ${mypy_status} -ne 0 ]
-    then
-        : # mypy output already follows format
-        exit ${mypy_status}
-    else
-        : # mypy output already follows format
-    fi
-    set -e # enable exit on failure
-fi
+#     mypy_status=$?
+#     if [ ${mypy_status} -ne 0 ]
+#     then
+#         : # mypy output already follows format
+#         exit ${mypy_status}
+#     else
+#         : # mypy output already follows format
+#     fi
+#     set -e # enable exit on failure
+# fi
