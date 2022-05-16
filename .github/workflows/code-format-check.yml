@@ -1,7 +1,7 @@
-name: build
+name: code-format-check
 
 on:
-  # quick tests for pull requests and the releasing branches
+  # code format check for pull requests and the dev branch
   push:
     branches:
       - dev
