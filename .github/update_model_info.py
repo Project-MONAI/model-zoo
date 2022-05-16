@@ -16,10 +16,15 @@ import os
 import shutil
 import tempfile
 import zipfile
+
 from monai.utils import look_up_option
 
-
-SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
+SUPPORTED_HASH_TYPES = {
+    "md5": hashlib.md5,
+    "sha1": hashlib.sha1,
+    "sha256": hashlib.sha256,
+    "sha512": hashlib.sha512,
+}
 
 
 def get_sub_folders(root_dir: str):
