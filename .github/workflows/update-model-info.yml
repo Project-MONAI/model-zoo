@@ -1,4 +1,4 @@
-name: record-changed-files
+name: update-model-info
 
 on:
   pull_request:
