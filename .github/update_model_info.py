@@ -16,6 +16,10 @@ import os
 import shutil
 import tempfile
 import zipfile
+from monai.utils import look_up_option
+
+
+SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
 
 
 def get_sub_folders(root_dir: str):
@@ -33,8 +37,9 @@ def save_model_info(model_info_dict, model_info_path: str):
         json.dump(model_info_dict, f)
 
 
-def get_hash_func():
-    return hashlib.md5()
+def get_hash_func(hash_type: str = "sha1"):
+    actual_hash_func = look_up_option(hash_type.lower(), SUPPORTED_HASH_TYPES)
+    return actual_hash_func()
 
 
 def update_model_info(models_path: str, model_info_file: str = "model_info.json"):
@@ -94,9 +99,8 @@ def compress_bundle(source_path: str, dst_path: str):
 
 
 def get_checksum(dst_path: str, hash_func):
-
     with open(dst_path, "rb") as f:
-        for chunk in iter(lambda: f.read(4096), b""):
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
             hash_func.update(chunk)
     return hash_func.hexdigest()
 
