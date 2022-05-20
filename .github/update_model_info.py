@@ -120,7 +120,7 @@ def upload_bundle(
     repo_name: str = "Project-MONAI/model-zoo",
 ):
     if os.getenv("GITHUB_TOKEN"):
-        print("GITHUB_TOKEN achieved.")
+        print(os.environ["GITHUB_TOKEN"])
     upload_command = (
         f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
     )
