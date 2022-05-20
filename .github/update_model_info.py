@@ -113,9 +113,16 @@ def get_checksum(dst_path: str, hash_func):
     return hash_func.hexdigest()
 
 
-def upload_bundle(bundle_zip_file_path: str, bundle_zip_filename: str, release_tag: str = "hosting_storage_v1", repo_name: str = "Project-MONAI/model-zoo"):
+def upload_bundle(
+    bundle_zip_file_path: str,
+    bundle_zip_filename: str,
+    release_tag: str = "hosting_storage_v1",
+    repo_name: str = "Project-MONAI/model-zoo",
+):
 
-    upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
+    upload_command = (
+        f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
+    )
     print("Upload bundle: ", bundle_zip_filename)
     subprocess.call(upload_command, shell=True)
     print("Upload successful.")
