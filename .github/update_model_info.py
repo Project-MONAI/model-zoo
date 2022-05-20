@@ -87,18 +87,17 @@ def push_model_info(model_info_dict, model_info_path: str):
     with open(model_info_path, "w") as f:
         json.dump(model_info_dict, f)
 
-    commit_message = "git commit -m auto update model_info"
-    merged_pr_num = os.environ['PR_NUMBER']
-    branch_name = f"{merged_pr_num}-auto-update-model-info"
-    create_push_branch = "git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
+    commit_message = "git commit -m 'auto update model_info'"
 
-    pr_title = f"{merged_pr_num} Auto Update Model Info"
-    gh_pr_cmd = f"gh pr create --title {pr_title} --base dev"
-    cmd = (
-        f"git add {model_info_path}; {commit_message}; {create_push_branch}; {gh_pr_cmd}"
-    )
-    print(cmd)
-    subprocess.run(cmd, shell=True)
+    merged_pr_num = os.environ["PR_NUMBER"]
+    branch_name = f"{merged_pr_num}-auto-update-model-info"
+    create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
+
+    gh_pr_cmd = f"gh pr create --title '{merged_pr_num} Auto Update Model Info' --base dev"
+
+    full_cmd = f"git add {model_info_path}; {commit_message}; {create_push_cmd}; {gh_pr_cmd}"
+
+    subprocess.run(full_cmd, shell=True)
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
