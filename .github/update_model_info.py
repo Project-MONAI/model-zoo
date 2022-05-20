@@ -32,11 +32,6 @@ def get_json_dict(json_dict_path: str):
     return json_dict
 
 
-def save_model_info(model_info_dict, model_info_path: str):
-    with open(model_info_path, "w") as f:
-        json.dump(model_info_dict, f)
-
-
 def get_hash_func(hash_type: str = "sha1"):
     actual_hash_func = look_up_option(hash_type.lower(), SUPPORTED_HASH_TYPES)
     return actual_hash_func()
@@ -82,9 +77,21 @@ def update_model_info(models_path: str, model_info_file: str = "model_info.json"
                     model_info[task][bundle]["source"] = new_source
                     ischanged = True
 
+    if ischanged is True:
+        push_model_info(model_info, model_info_path)
+
     shutil.rmtree(temp_dir)
 
-    return model_info, ischanged
+
+def push_model_info(model_info_dict, model_info_path: str):
+    with open(model_info_path, "w") as f:
+        json.dump(model_info_dict, f)
+
+    push_cmd = (
+        f"git add {model_info_path}; git commit -m 'Auto updating model_info.json'; git push origin HEAD:dev"
+    )
+
+    subprocess.run(push_cmd, shell=True)
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
@@ -110,8 +117,7 @@ def upload_bundle(
 ):
 
     upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
-    print("Upload bundle: ", bundle_zip_filename)
-    subprocess.call(upload_command, shell=True)
+    # subprocess.run(upload_command, shell=True)
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source

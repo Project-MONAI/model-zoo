@@ -21,3 +21,4 @@ jobs:
         python $(pwd)/.github/update_model_info.py -p $(pwd)/models/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.UPDATE_MODEL_TOKEN }}
