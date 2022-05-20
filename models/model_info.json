@@ -1,1 +1,1 @@
-{"pathology": {}, "segmentation": {}, "classification": {}, "federated_learning": {}, "detection": {}, "annotation": {"deepedit": {"version": "0.1.0", "checksum": "96e6cb65002e9acb4826bad23a277a79101a120a", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/deepedit_v0.1.0.tar"}}, "automl": {}}
+{}
