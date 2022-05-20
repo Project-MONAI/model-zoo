@@ -96,8 +96,8 @@ def push_model_info(model_info_dict, model_info_path: str):
     gh_pr_cmd = f"gh pr create --title '{merged_pr_num} Auto Update Model Info' --base dev"
 
     full_cmd = f"git add {model_info_path}; {commit_message}; {create_push_cmd}; {gh_pr_cmd}"
-    print(full_cmd)
-    # subprocess.run(full_cmd, shell=True)
+
+    subprocess.run(full_cmd, shell=True)
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
@@ -123,7 +123,7 @@ def upload_bundle(
 ):
 
     upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
-    # subprocess.run(upload_command, shell=True)
+    subprocess.run(upload_command, shell=True)
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source
