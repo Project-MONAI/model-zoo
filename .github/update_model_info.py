@@ -119,13 +119,13 @@ def upload_bundle(
     release_tag: str = "hosting_storage_v1",
     repo_name: str = "Project-MONAI/model-zoo",
 ):
-
+    if os.getenv("GITHUB_TOKEN"):
+        print("GITHUB_TOKEN achieved.")
     upload_command = (
         f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
     )
     print("Upload bundle: ", bundle_zip_filename)
     subprocess.call(upload_command, shell=True)
-    print("Upload successful.")
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source
