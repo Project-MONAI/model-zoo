@@ -40,6 +40,7 @@ doFlake8Format=false
 doPytypeFormat=false
 doMypyFormat=false
 doCleanup=false
+doPrecommit=false
 
 NUM_PARALLEL=1
 
@@ -47,7 +48,7 @@ PY_EXE=${MONAI_MODEL_ZOO_PY_EXE:-$(which python)}
 
 function print_usage {
     echo "runtests.sh [--codeformat] [--autofix] [--black] [--isort] [--flake8] [--pytype] [--mypy]"
-    echo "            [--dryrun] [-j number] [--clean] [--help] [--version]"
+    echo "            [--dryrun] [-j number] [--clean] [--precommit] [--help] [--version]"
     echo ""
     echo "MONAI Model Zoo testing utilities."
     echo ""
@@ -61,6 +62,7 @@ function print_usage {
     echo "    --autofix         : format code using \"isort\" and \"black\""
     echo "    --isort           : perform \"isort\" import sort checks"
     echo "    --flake8          : perform \"flake8\" code format checks"
+    echo "    --precommit       : perform source code format check and fix using \"pre-commit\""
     echo ""
     echo "Python type check options:"
     echo "    --pytype          : perform \"pytype\" static type checks"
@@ -163,6 +165,9 @@ do
         ;;
         --flake8)
             doFlake8Format=true
+        ;;
+        --precommit)
+            doPrecommit=true
         ;;
         --pytype)
             doPytypeFormat=true
@@ -317,6 +322,30 @@ then
     then
         print_style_fail_msg
         exit ${flake8_status}
+    else
+        echo "${green}passed!${noColor}"
+    fi
+    set -e # enable exit on failure
+fi
+
+
+if [ $doPrecommit = true ]
+then
+    set +e  # disable exit on failure so that diagnostics can be given on failure
+    echo "${separator}${blue}pre-commit${noColor}"
+
+    # ensure that the necessary packages for code format testing are installed
+    if ! is_pip_installed pre_commit
+    then
+        install_deps
+    fi
+    ${cmdPrefix}${PY_EXE} -m pre_commit run --all-files
+
+    pre_commit_status=$?
+    if [ ${pre_commit_status} -ne 0 ]
+    then
+        print_style_fail_msg
+        exit ${pre_commit_status}
     else
         echo "${green}passed!${noColor}"
     fi
