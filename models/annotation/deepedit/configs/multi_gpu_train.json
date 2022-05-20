@@ -3,7 +3,9 @@
     "network": {
         "_target_": "torch.nn.parallel.DistributedDataParallel",
         "module": "$@network_def.to(@device)",
-        "device_ids": ["@device"]
+        "device_ids": [
+            "@device"
+        ]
     },
     "train#sampler": {
         "_target_": "DistributedSampler",
