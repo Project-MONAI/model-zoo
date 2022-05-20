@@ -98,9 +98,9 @@ def push_model_info(model_info_dict, model_info_path: str):
 
     git_config = f"git config user.email {email}; git config user.name {username}"
     commit_message = "git commit -m 'auto update model_info'"
-    full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}; {pr_cmd}"
+    full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}; {pr_cmd};"
 
-    subprocess.run(full_cmd, shell=True)
+    subprocess.run(full_cmd, shell=True, stdout=subprocess.PIPE)
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
