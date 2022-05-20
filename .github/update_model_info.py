@@ -97,7 +97,7 @@ def push_model_info(model_info_dict, model_info_path: str):
     cmd = (
         f"git add {model_info_path}; {commit_message}; {create_push_branch}; {gh_pr_cmd}"
     )
-
+    print(cmd)
     subprocess.run(cmd, shell=True)
 
 
@@ -124,7 +124,7 @@ def upload_bundle(
 ):
 
     upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
-    # subprocess.run(upload_command, shell=True)
+    subprocess.run(upload_command, shell=True)
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source
