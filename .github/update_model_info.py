@@ -121,7 +121,7 @@ def upload_bundle(
 ):
 
     upload_command = (
-        f"gh --with-token {os.environ["GITHUB_TOKEN"]} release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
+        f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
     )
     print("Upload bundle: ", bundle_zip_filename)
     subprocess.call(upload_command, shell=True)
