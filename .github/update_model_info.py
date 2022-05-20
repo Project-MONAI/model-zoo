@@ -19,12 +19,7 @@ import tempfile
 
 from monai.utils import look_up_option
 
-SUPPORTED_HASH_TYPES = {
-    "md5": hashlib.md5,
-    "sha1": hashlib.sha1,
-    "sha256": hashlib.sha256,
-    "sha512": hashlib.sha512,
-}
+SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
 
 
 def get_sub_folders(root_dir: str):
@@ -71,11 +66,7 @@ def update_model_info(models_path: str, model_info_file: str = "model_info.json"
                 latest_version = metadata["version"]
                 # compress bundle
                 bundle_zip_name = f"{bundle}_v{latest_version}.tar"
-                compress_bundle(
-                    root_path=task_path,
-                    bundle_name=bundle,
-                    bundle_zip_name=bundle_zip_name,
-                )
+                compress_bundle(root_path=task_path, bundle_name=bundle, bundle_zip_name=bundle_zip_name)
                 dst_path = os.path.join(temp_dir, bundle_zip_name)
                 shutil.move(os.path.join(task_path, bundle_zip_name), dst_path)
                 # get actual checksum
@@ -98,12 +89,10 @@ def update_model_info(models_path: str, model_info_file: str = "model_info.json"
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
 
-    deterministic_cmd = "--sort=name --owner=0 --group=0 --mode='go-rwx,u-rw' --numeric-owner --mtime='UTC 2022-06-01' -c"
-    subprocess.call(
-        f"tar {deterministic_cmd} {bundle_name} | gzip -n > {bundle_zip_name}",
-        shell=True,
-        cwd=root_path,
+    deterministic_cmd = (
+        "--sort=name --owner=0 --group=0 --mode='go-rwx,u-rw' --numeric-owner --mtime='UTC 2022-06-01' -c"
     )
+    subprocess.call(f"tar {deterministic_cmd} {bundle_name} | gzip -n > {bundle_zip_name}", shell=True, cwd=root_path)
 
 
 def get_checksum(dst_path: str, hash_func):
@@ -120,9 +109,7 @@ def upload_bundle(
     repo_name: str = "Project-MONAI/model-zoo",
 ):
 
-    upload_command = (
-        f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
-    )
+    upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
     print("Upload bundle: ", bundle_zip_filename)
     subprocess.call(upload_command, shell=True)
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
