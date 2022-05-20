@@ -87,7 +87,6 @@ def push_model_info(model_info_dict, model_info_path: str):
     with open(model_info_path, "w") as f:
         json.dump(model_info_dict, f)
 
-
     merged_pr_num = os.environ["PR_NUMBER"]
     email = os.environ["email"]
     username = os.environ["username"]
