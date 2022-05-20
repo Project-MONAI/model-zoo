@@ -10,8 +10,15 @@
     "dataset_dir": "/workspace/Datasets/MSD_datasets/Task09_Spleen",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/imagesTr/*.nii.gz')))",
     "labels": "$list(sorted(glob.glob(@dataset_dir + '/labelsTr/*.nii.gz')))",
-    "label_names": {"spleen": 1, "background": 0},
-    "spatial_size": [128, 128, 128],
+    "label_names": {
+        "spleen": 1,
+        "background": 0
+    },
+    "spatial_size": [
+        128,
+        128,
+        128
+    ],
     "number_intensity_ch": 1,
     "deepgrow_probability_train": 0.4,
     "deepgrow_probability_val": 1.0,
@@ -21,9 +28,37 @@
         "spatial_dims": 3,
         "in_channels": "$len(@label_names) + @number_intensity_ch",
         "out_channels": "$len(@label_names)",
-        "kernel_size": [3, 3, 3, 3, 3, 3],
-        "strides": [1, 2, 2, 2, 2, [2, 2, 1]],
-        "upsample_kernel_size": [2, 2, 2, 2, [2, 2, 1]],
+        "kernel_size": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        "strides": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            [
+                2,
+                2,
+                1
+            ]
+        ],
+        "upsample_kernel_size": [
+            2,
+            2,
+            2,
+            2,
+            [
+                2,
+                2,
+                1
+            ]
+        ],
         "norm_name": "instance",
         "deep_supervision": false,
         "res_block": true
@@ -37,106 +72,142 @@
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@network.parameters()",
-        "lr": 1e-4
+        "lr": 0.0001
     },
     "lr_scheduler": {
-      "_target_": "torch.optim.lr_scheduler.StepLR",
-      "optimizer": "@optimizer",
-      "step_size": 1000,
-      "gamma": 0.1
+        "_target_": "torch.optim.lr_scheduler.StepLR",
+        "optimizer": "@optimizer",
+        "step_size": 1000,
+        "gamma": 0.1
     },
     "train": {
         "preprocessing_transforms": [
-                {
-                    "_target_": "LoadImaged",
-                    "keys": ["image", "label"],
-                    "reader": "ITKReader"
-                },
-                {
-                    "_target_": "NormalizeLabelsInDatasetd",
-                    "keys": "label",
-                    "label_names": "@label_names"
-                },
-                {
-                    "_target_": "EnsureChannelFirstd",
-                    "keys": ["image", "label"]
-                },
-                {
-                    "_target_": "Orientationd",
-                    "keys": ["image", "label"],
-                    "axcodes": "RAS"
-                },
-                {
-                    "_target_": "ScaleIntensityRanged",
-                    "keys": "image",
-                    "a_min":-175,
-                    "a_max": 250,
-                    "b_min": 0.0,
-                    "b_max": 1.0,
-                    "clip": true
-                }
+            {
+                "_target_": "LoadImaged",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "reader": "ITKReader"
+            },
+            {
+                "_target_": "NormalizeLabelsInDatasetd",
+                "keys": "label",
+                "label_names": "@label_names"
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": [
+                    "image",
+                    "label"
+                ]
+            },
+            {
+                "_target_": "Orientationd",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "axcodes": "RAS"
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": -175,
+                "a_max": 250,
+                "b_min": 0.0,
+                "b_max": 1.0,
+                "clip": true
+            }
         ],
-      "random_transforms": [
-                {
-                    "_target_": "RandFlipd",
-                    "keys": ["image", "label"],
-                    "spatial_axis": [0],
-                    "prob": 0.10
-                },
-                {
-                    "_target_": "RandFlipd",
-                    "keys": ["image", "label"],
-                    "spatial_axis": [1],
-                    "prob": 0.10
-                },
-                {
-                    "_target_": "RandFlipd",
-                    "keys": ["image", "label"],
-                    "spatial_axis": [2],
-                    "prob": 0.10
-                },
-                {
-                    "_target_": "RandRotate90d",
-                    "keys": ["image", "label"],
-                    "prob": 0.10,
-                    "max_k": 3
-                },
-                {
-                    "_target_": "RandShiftIntensityd",
-                    "keys": "image",
-                    "offsets": 0.10,
-                    "prob": 0.50
-                }
-      ],
-      "deepedit_transforms": [
-                {
-                    "_target_": "Resized",
-                    "keys":  ["image", "label"],
-                    "spatial_size": "@spatial_size",
-                    "mode": ["area", "nearest"]
-                },
-                {
-                    "_target_": "FindAllValidSlicesMissingLabelsd",
-                    "keys": "label",
-                    "sids": "sids"
-                },
-                {
-                    "_target_": "AddInitialSeedPointMissingLabelsd",
-                    "keys": "label",
-                    "guidance": "guidance",
-                    "sids": "sids"
-                },
-                {
-                    "_target_": "AddGuidanceSignalDeepEditd",
-                    "keys": "image",
-                    "guidance": "guidance",
-                    "number_intensity_ch": "@number_intensity_ch"
-                },
-                {
-                    "_target_": "ToTensord",
-                    "keys": ["image", "label"]
-                }
-      ],
+        "random_transforms": [
+            {
+                "_target_": "RandFlipd",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "spatial_axis": [
+                    0
+                ],
+                "prob": 0.1
+            },
+            {
+                "_target_": "RandFlipd",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "spatial_axis": [
+                    1
+                ],
+                "prob": 0.1
+            },
+            {
+                "_target_": "RandFlipd",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "spatial_axis": [
+                    2
+                ],
+                "prob": 0.1
+            },
+            {
+                "_target_": "RandRotate90d",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "prob": 0.1,
+                "max_k": 3
+            },
+            {
+                "_target_": "RandShiftIntensityd",
+                "keys": "image",
+                "offsets": 0.1,
+                "prob": 0.5
+            }
+        ],
+        "deepedit_transforms": [
+            {
+                "_target_": "Resized",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "spatial_size": "@spatial_size",
+                "mode": [
+                    "area",
+                    "nearest"
+                ]
+            },
+            {
+                "_target_": "FindAllValidSlicesMissingLabelsd",
+                "keys": "label",
+                "sids": "sids"
+            },
+            {
+                "_target_": "AddInitialSeedPointMissingLabelsd",
+                "keys": "label",
+                "guidance": "guidance",
+                "sids": "sids"
+            },
+            {
+                "_target_": "AddGuidanceSignalDeepEditd",
+                "keys": "image",
+                "guidance": "guidance",
+                "number_intensity_ch": "@number_intensity_ch"
+            },
+            {
+                "_target_": "ToTensord",
+                "keys": [
+                    "image",
+                    "label"
+                ]
+            }
+        ],
         "pre_transforms": {
             "_target_": "Compose",
             "transforms": "$@train#preprocessing_transforms + @train#random_transforms + @train#deepedit_transforms"
@@ -156,7 +227,11 @@
                 },
                 {
                     "_target_": "ToNumpyd",
-                    "keys": ["image", "label", "pred"]
+                    "keys": [
+                        "image",
+                        "label",
+                        "pred"
+                    ]
                 },
                 {
                     "_target_": "FindDiscrepancyRegionsDeepEditd",
@@ -179,7 +254,10 @@
                 },
                 {
                     "_target_": "ToTensord",
-                    "keys": ["image", "label"]
+                    "keys": [
+                        "image",
+                        "label"
+                    ]
                 }
             ]
         },
@@ -210,8 +288,14 @@
                 },
                 {
                     "_target_": "AsDiscreted",
-                    "keys": ["pred", "label"],
-                    "argmax": [true, false],
+                    "keys": [
+                        "pred",
+                        "label"
+                    ],
+                    "argmax": [
+                        true,
+                        false
+                    ],
                     "to_onehot": "$len(@label_names)+1"
                 }
             ]
@@ -247,13 +331,12 @@
             }
         },
         "train_iteration_update": {
-             "_target_": "Interaction",
+            "_target_": "Interaction",
             "deepgrow_probability": "@deepgrow_probability_train",
             "transforms": "@train#click_transforms",
             "click_probability_key": "probability",
             "train": true,
             "label_names": "@label_names"
-
         },
         "trainer": {
             "_target_": "SupervisedTrainer",
@@ -307,7 +390,9 @@
             {
                 "_target_": "CheckpointSaver",
                 "save_dir": "@ckpt_dir",
-                "save_dict": {"model": "@network"},
+                "save_dict": {
+                    "model": "@network"
+                },
                 "save_key_metric": true,
                 "key_metric_filename": "model.pt"
             }
@@ -319,13 +404,12 @@
             }
         },
         "val_iteration_update": {
-             "_target_": "Interaction",
+            "_target_": "Interaction",
             "deepgrow_probability": "@deepgrow_probability_val",
             "transforms": "@train#click_transforms",
             "click_probability_key": "probability",
             "train": false,
             "label_names": "@label_names"
-
         },
         "evaluator": {
             "_target_": "SupervisedEvaluator",
