@@ -1,28 +1,39 @@
 # MONAI Model Zoo
 
 MONAI Model Zoo hosts a collection of medical imaging models in the [MONAI Bundle](https://docs.monai.io/en/latest/bundle_intro.html) format.
+All source code of models (bundles) are tracked in `models/`, and for each distinct version of a bundle, it will be archived as a `.zip` file (named in the form of `bundle_name_version.zip`) and stored in `Releases`.
 
-## Model Storage
+## Model naming
+
+The naming of a bundle is suggested to be consisted with data type, data format and task type. The following are some of the examples:
+
+```
+chest_xray_classification
+spleen_ct_segmentation
+```
+
+
+## Model storage
 
 Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)). Therefore, MONAI Model Zoo limits each single file to be no larger than **25MB**.
 
-### Prepare `large_file.yml` for large files
+### Prepare a config file for large files
 
-If a bunlde has large files, please upload those files into a publicly accessible source, and provide a `.yml` file called `large_file.yml` that contains the corresponding download links. During the pull request, only `large_file.yml` should be included (large files should be excluded). Please put `large_file.yml` within the root directory of the bundle, and it should contain the following information:
+If a bunlde has large files, please upload those files into a publicly accessible source, and provide a config file called `large_file.yml` (or `.yaml`, `.json`) that contains the corresponding download links. During the pull request, only the config file should be included (large files should be excluded). Please put the config file within the root directory of the bundle, and it should contain the following information:
 
-1. relative path of the large file in the bundle.
-2. URL link that can download the file.
-3. (**optional**) expected hash value of the file.
-4. (**optional**) hash type.
+1. `path`, relative path of the large file in the bundle.
+2. `url`, URL link that can download the file.
+3. `hash_val`, (**optional**) expected hash value of the file.
+4. `hash_type`, (**optional**) hash type. Supprted hash type includes "md5", "sha1", "sha256" and "sha512".
 
 The template is as follow:
 ```
 large_files:
-  - path: "large-file-1.pt"
+  - path: "models/large-file-1.pt"
     url: "url-of-large-file-1.pt"
     hash_val: ""
     hash_type: ""
-  - path: "large-file-2.ts"
+  - path: "models/large-file-2.ts"
     url: "url-of-large-file-2.ts"
 ```
 
