@@ -70,15 +70,16 @@ def update_model_info(models_path: str, model_info_file: str = "model_info.json"
                 # check consistency
                 if model_info[task][bundle]["checksum"] != actual_checksum:
                     # upload new zip
-                    new_source = upload_bundle(dst_path, bundle_zip_name)
+                    # new_source = upload_bundle(dst_path, bundle_zip_name)
                     # update model_info
                     model_info[task][bundle]["checksum"] = actual_checksum
                     model_info[task][bundle]["version"] = latest_version
-                    model_info[task][bundle]["source"] = new_source
+                    # model_info[task][bundle]["source"] = new_source
                     ischanged = True
 
     if ischanged is True:
-        push_model_info(model_info, model_info_path)
+        print(model_info)
+        # push_model_info(model_info, model_info_path)
 
     shutil.rmtree(temp_dir)
 
@@ -103,10 +104,12 @@ def push_model_info(model_info_dict, model_info_path: str):
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
 
-    deterministic_cmd = (
-        "--sort=name --owner=0 --group=0 --mode='go-rwx,u-rw' --numeric-owner --mtime='UTC 2022-06-01' -c"
-    )
-    subprocess.call(f"tar {deterministic_cmd} {bundle_name} | gzip -n > {bundle_zip_name}", shell=True, cwd=root_path)
+    # refer to: https://medium.com/@pat_wilson/building-deterministic-zip-files-with-built-in-commands-741275116a19
+    # set the timestamp of all files (with the bundle) to the time of the last change.
+    touch_cmd = f"find {bundle_name} -exec touch -t `git ls-files -z {bundle_name} |"
+    timestamp_cmd = "xargs -0 -n1 -I{} -- git log -1 --date=format:'%Y%m%d%H%M' --format='%ad' {} | sort -r | head -n 1` {} +"
+    zip_cmd = f"zip -rq -D -X -9 -A --compression-method deflate {bundle_zip_name} {bundle_name}"
+    subprocess.call(f"{touch_cmd} {timestamp_cmd}; {zip_cmd}", shell=True, cwd=root_path)
 
 
 def get_checksum(dst_path: str, hash_func):
