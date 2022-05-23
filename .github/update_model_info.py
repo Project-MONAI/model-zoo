@@ -70,11 +70,11 @@ def update_model_info(models_path: str, model_info_file: str = "model_info.json"
                 # check consistency
                 if model_info[task][bundle]["checksum"] != actual_checksum:
                     # upload new zip
-                    # new_source = upload_bundle(dst_path, bundle_zip_name)
+                    new_source = upload_bundle(dst_path, bundle_zip_name)
                     # update model_info
                     model_info[task][bundle]["checksum"] = actual_checksum
                     model_info[task][bundle]["version"] = latest_version
-                    # model_info[task][bundle]["source"] = new_source
+                    model_info[task][bundle]["source"] = new_source
                     ischanged = True
 
     if ischanged is True:
