@@ -5,12 +5,7 @@ All source code of models (bundles) are tracked in `models/`, and for each disti
 
 ## Model naming
 
-The naming of a bundle is suggested to be consisted with data type, data format and task type. The following are some of the examples:
-
-```
-chest_xray_classification
-spleen_ct_segmentation
-```
+The name of a bundle is suggested to contain its characteristics, such as include the task type and data type. For example, `chest_xray_classification` and `spleen_ct_segmentation`.
 
 
 ## Model storage
