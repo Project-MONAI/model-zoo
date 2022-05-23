@@ -3,30 +3,32 @@
 MONAI Model Zoo hosts a collection of medical imaging models in the [MONAI Bundle](https://docs.monai.io/en/latest/bundle_intro.html) format.
 
 ## Model Storage
-Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)). Therefore, MONAI Model Zoo suggests to use Git Large File Storage (LFS) to store large files for any single file that is larger than **25MB**.
 
-### Example of install Git LFS on Linux AMD64
-There are multiple ways to install Git LFS. For example, you can download [a suitable binary package](https://github.com/git-lfs/git-lfs/releases) and run `./install.sh` inside the downloaded package.
+Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)). Therefore, MONAI Model Zoo limits each single file to be no larger than **25MB**.
 
-Takes the Linux AMD64 environment for instance, the commands are like the following (until May 11th 2022, the latest release is v3.1.4. The following commands may need to update for later releases):
-```
-wget https://github.com/git-lfs/git-lfs/releases/download/v3.1.4/git-lfs-linux-amd64-v3.1.4.tar.gz
-tar -xvf git-lfs-linux-amd64-v3.1.4.tar.gz
-bash install.sh
-```
-Please refer to the [official installing guide](https://github.com/git-lfs/git-lfs#installing) for more details.
+### Prepare `large_file.yml` for large files
 
-### Example of push large files with Git LFS
+If a bunlde has large files, please upload those files into a publicly accessible source, and provide a `.yml` file called `large_file.yml` that contains the corresponding download links. During the pull request, only `large_file.yml` should be included (large files should be excluded). Please put `large_file.yml` within the root directory of the bundle, and it should contain the following information:
 
-Usually, we use `git add` to add files for a commit. For a large file, we need to track it first, then `.gitattributes` will automatically be changed, and also need to be added. The following steps are the same as usual. The total commands are like the following:
+1. relative path of the large file in the bundle.
+2. URL link that can download the file.
+3. (**optional**) expected hash value of the file.
+4. (**optional**) hash type.
+
+The template is as follow:
 ```
-git lfs track "example_large_model.pt"
-git add .gitattributes
-git add example_large_model.pt
-git commit --signoff
-...
+large_files:
+  - path: "large-file-1.pt"
+    url: "url-of-large-file-1.pt"
+    hash_val: ""
+    hash_type: ""
+  - path: "large-file-2.ts"
+    url: "url-of-large-file-2.ts"
 ```
-Please refer to the [official example usage](https://github.com/git-lfs/git-lfs#example-usage) for more details.
+
+### Validate and release
+
+As for a pull request, a CI program will try to download all large files if mentioned and do several validations. If the pull request is approved and merged, the full bundle (with all large files if exists) will be archived and send to [Releases](https://github.com/Project-MONAI/model-zoo/releases).
 
 ## Contributing
 
@@ -45,7 +47,7 @@ of the codebase named `[ticket_id]-[task_name]`.
 Ideally, the new branch should be based on the latest `dev` branch.
 1. Make changes to the branch ([use detailed commit messages if possible](https://chris.beams.io/posts/git-commit/)).
 1. [Create a new pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request) from the task branch to the dev branch, with detailed descriptions of the purpose of this pull request.
-1. For any large files inside the bundle, please use [Git LFS commands](https://github.com/git-lfs/git-lfs/edit/main/README.md#example-usage) to track them properly.
+1. For any large files inside the bundle, please exclude them and provide the download links instead. Please follow the instructions mentioned above to prepare the necessary `large_file.yml`.
 1. Wait for reviews; if there are reviews, make point-to-point responses, make further code changes if needed.
 1. If there are conflicts between the pull request branch and the dev branch, pull the changes from the dev and resolve the conflicts locally.
 1. Reviewer and contributor may have discussions back and forth until all comments addressed.
