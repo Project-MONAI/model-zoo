@@ -107,7 +107,9 @@ def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
     # refer to: https://medium.com/@pat_wilson/building-deterministic-zip-files-with-built-in-commands-741275116a19
     # set the timestamp of all files (with the bundle) to the time of the last change.
     touch_cmd = f"find {bundle_name} -exec touch -t `git ls-files -z {bundle_name} |"
-    timestamp_cmd = "xargs -0 -n1 -I{} -- git log -1 --date=format:'%Y%m%d%H%M' --format='%ad' {} | sort -r | head -n 1` {} +"
+    timestamp_cmd = (
+        "xargs -0 -n1 -I{} -- git log -1 --date=format:'%Y%m%d%H%M' --format='%ad' {} | sort -r | head -n 1` {} +"
+    )
     zip_cmd = f"zip -rq -D -X -9 -A --compression-method deflate {bundle_zip_name} {bundle_name}"
     subprocess.call(f"{touch_cmd} {timestamp_cmd}; {zip_cmd}", shell=True, cwd=root_path)
 
