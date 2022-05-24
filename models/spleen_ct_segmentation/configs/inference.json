@@ -7,68 +7,16 @@
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/Task09_Spleen",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
-<<<<<<< HEAD:models/spleen_ct_segmentation/configs/inference.json
-=======
-    "label_names": {
-        "spleen": 1,
-        "background": 0
-    },
-    "spatial_size": [
-        128,
-        128,
-        128
-    ],
-    "number_intensity_ch": 1,
->>>>>>> dev:models/spleen_deepedit_annotation/configs/inference.json
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "UNet",
         "spatial_dims": 3,
-<<<<<<< HEAD:models/spleen_ct_segmentation/configs/inference.json
         "in_channels": 1,
         "out_channels": 2,
         "channels": [16, 32, 64, 128, 256],
         "strides": [2, 2, 2, 2],
         "num_res_units": 2,
         "norm": "batch"
-=======
-        "in_channels": "$len(@label_names) + @number_intensity_ch",
-        "out_channels": "$len(@label_names)",
-        "kernel_size": [
-            3,
-            3,
-            3,
-            3,
-            3,
-            3
-        ],
-        "strides": [
-            1,
-            2,
-            2,
-            2,
-            2,
-            [
-                2,
-                2,
-                1
-            ]
-        ],
-        "upsample_kernel_size": [
-            2,
-            2,
-            2,
-            2,
-            [
-                2,
-                2,
-                1
-            ]
-        ],
-        "norm_name": "instance",
-        "deep_supervision": false,
-        "res_block": true
->>>>>>> dev:models/spleen_deepedit_annotation/configs/inference.json
     },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
@@ -76,12 +24,7 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-<<<<<<< HEAD:models/spleen_ct_segmentation/configs/inference.json
                 "keys": "image"
-=======
-                "keys": "image",
-                "reader": "ITKReader"
->>>>>>> dev:models/spleen_deepedit_annotation/configs/inference.json
             },
             {
                 "_target_": "EnsureChannelFirstd",
@@ -93,7 +36,6 @@
                 "axcodes": "RAS"
             },
             {
-<<<<<<< HEAD:models/spleen_ct_segmentation/configs/inference.json
                 "_target_": "Spacingd",
                 "keys": "image",
                 "pixdim": [1.5, 1.5, 2.0],
@@ -107,27 +49,6 @@
                 "b_min": 0,
                 "b_max": 1,
                 "clip": true
-=======
-                "_target_": "ScaleIntensityRanged",
-                "keys": "image",
-                "a_min": -175,
-                "a_max": 250,
-                "b_min": 0.0,
-                "b_max": 1.0,
-                "clip": true
-            },
-            {
-                "_target_": "Resized",
-                "keys": "image",
-                "spatial_size": "@spatial_size",
-                "mode": "area"
-            },
-            {
-                "_target_": "DiscardAddGuidanced",
-                "keys": "image",
-                "label_names": "@label_names",
-                "number_intensity_ch": "@number_intensity_ch"
->>>>>>> dev:models/spleen_deepedit_annotation/configs/inference.json
             },
             {
                 "_target_": "EnsureTyped",
@@ -187,9 +108,7 @@
         {
             "_target_": "CheckpointLoader",
             "load_path": "$@bundle_root + '/models/model.pt'",
-            "load_dict": {
-                "model": "@network"
-            }
+            "load_dict": {"model": "@network"}
         },
         {
             "_target_": "StatsHandler",

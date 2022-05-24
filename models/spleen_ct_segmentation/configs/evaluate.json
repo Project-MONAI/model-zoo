@@ -1,5 +1,5 @@
 {
-    "validate#postprocessing": {
+    "validate#postprocessing":{
         "_target_": "Compose",
         "transforms": [
             {
@@ -9,33 +9,21 @@
             },
             {
                 "_target_": "Invertd",
-                "keys": [
-                    "pred",
-                    "label"
-                ],
+                "keys": ["pred", "label"],
                 "transform": "@validate#preprocessing",
                 "orig_keys": "image",
                 "meta_key_postfix": "meta_dict",
-                "nearest_interp": [
-                    false,
-                    true
-                ],
+                "nearest_interp": [false, true],
                 "to_tensor": true
             },
             {
-                "_target_": "AsDiscreted",
-                "keys": [
-                    "pred",
-                    "label"
-                ],
-                "argmax": [
-                    true,
-                    false
-                ],
+              "_target_": "AsDiscreted",
+                "keys": ["pred", "label"],
+                "argmax": [true, false],
                 "to_onehot": 2
             },
             {
-                "_target_": "SaveImaged",
+              "_target_": "SaveImaged",
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
@@ -48,9 +36,7 @@
         {
             "_target_": "CheckpointLoader",
             "load_path": "$@ckpt_dir + '/model.pt'",
-            "load_dict": {
-                "model": "@network"
-            }
+            "load_dict": {"model": "@network"}
         },
         {
             "_target_": "StatsHandler",
@@ -59,17 +45,12 @@
         {
             "_target_": "MetricsSaver",
             "save_dir": "@output_dir",
-            "metrics": [
-                "val_mean_dice",
-                "val_acc"
-            ],
-            "metric_details": [
-                "val_mean_dice"
-            ],
+            "metrics": ["val_mean_dice", "val_acc"],
+            "metric_details": ["val_mean_dice"],
             "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
             "summary_ops": "*"
         }
-    ],
+      ],
     "evaluating": [
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$@validate#evaluator.run()"
