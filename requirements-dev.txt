@@ -1,4 +1,5 @@
 # Full requirements for developments
+gdown>=3.6.4
 flake8>=3.8.1
 flake8-bugbear
 flake8-comprehensions
@@ -14,3 +15,4 @@ isort
 pytype>=2020.6.1; platform_system != "Windows"
 types-pkg_resources
 mypy>=0.790
+pre-commit
