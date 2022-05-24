@@ -16,8 +16,19 @@
         "spatial_dims": 3,
         "in_channels": 1,
         "out_channels": 2,
-        "channels": [16, 32, 64, 128, 256],
-        "strides": [2, 2, 2, 2],
+        "channels": [
+            16,
+            32,
+            64,
+            128,
+            256
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            2
+        ],
         "num_res_units": 2,
         "norm": "batch"
     },
@@ -32,28 +43,47 @@
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@network.parameters()",
-        "lr": 1e-4
+        "lr": 0.0001
     },
     "train": {
         "deterministic_transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": ["image", "label"]
+                "keys": [
+                    "image",
+                    "label"
+                ]
             },
             {
                 "_target_": "EnsureChannelFirstd",
-                "keys": ["image", "label"]
+                "keys": [
+                    "image",
+                    "label"
+                ]
             },
             {
                 "_target_": "Orientationd",
-                "keys": ["image", "label"],
+                "keys": [
+                    "image",
+                    "label"
+                ],
                 "axcodes": "RAS"
             },
             {
                 "_target_": "Spacingd",
-                "keys": ["image", "label"],
-                "pixdim": [1.5, 1.5, 2.0],
-                "mode": ["bilinear", "nearest"]
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "pixdim": [
+                    1.5,
+                    1.5,
+                    2.0
+                ],
+                "mode": [
+                    "bilinear",
+                    "nearest"
+                ]
             },
             {
                 "_target_": "ScaleIntensityRanged",
@@ -66,15 +96,25 @@
             },
             {
                 "_target_": "EnsureTyped",
-                "keys": ["image", "label"]
+                "keys": [
+                    "image",
+                    "label"
+                ]
             }
         ],
         "random_transforms": [
             {
                 "_target_": "RandCropByPosNegLabeld",
-                "keys": ["image", "label"],
+                "keys": [
+                    "image",
+                    "label"
+                ],
                 "label_key": "label",
-                "spatial_size": [96, 96, 96],
+                "spatial_size": [
+                    96,
+                    96,
+                    96
+                ],
                 "pos": 1,
                 "neg": 1,
                 "num_samples": 4,
@@ -113,8 +153,14 @@
                 },
                 {
                     "_target_": "AsDiscreted",
-                    "keys": ["pred", "label"],
-                    "argmax": [true, false],
+                    "keys": [
+                        "pred",
+                        "label"
+                    ],
+                    "argmax": [
+                        true,
+                        false
+                    ],
                     "to_onehot": 2
                 }
             ]
@@ -179,7 +225,11 @@
         },
         "inferer": {
             "_target_": "SlidingWindowInferer",
-            "roi_size": [96, 96, 96],
+            "roi_size": [
+                96,
+                96,
+                96
+            ],
             "sw_batch_size": 4,
             "overlap": 0.5
         },
@@ -197,7 +247,9 @@
             {
                 "_target_": "CheckpointSaver",
                 "save_dir": "@ckpt_dir",
-                "save_dict": {"model": "@network"},
+                "save_dict": {
+                    "model": "@network"
+                },
                 "save_key_metric": true,
                 "key_metric_filename": "model.pt"
             }
