@@ -1,4 +1,0 @@
-models/segmentation/spleen_unet/models/model.ts filter=lfs diff=lfs merge=lfs -text
-models/annotation/deepedit/models/model.pt filter=lfs diff=lfs merge=lfs -text
-models/annotation/deepedit/models/model.ts filter=lfs diff=lfs merge=lfs -text
-models/segmentation/spleen_unet/models/model.pt filter=lfs diff=lfs merge=lfs -text
