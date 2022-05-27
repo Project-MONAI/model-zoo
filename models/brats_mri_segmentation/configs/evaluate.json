@@ -23,19 +23,26 @@
             },
             {
                 "_target_": "SplitChanneld",
-                "keys": ["pred", "label"],
-                "output_postfixes": ["tc", "wt", "et"]
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "output_postfixes": [
+                    "tc",
+                    "wt",
+                    "et"
+                ]
             },
             {
                 "_target_": "CopyItemsd",
                 "keys": "pred",
-                "names":  "pred_combined",
+                "names": "pred_combined",
                 "times": 1
             },
             {
                 "_target_": "Lambdad",
                 "keys": "pred_combined",
-                "func":  "$lambda x: torch.where(x[[2]] > 0, 4, torch.where(x[[0]] > 0, 1, torch.where(x[[1]] > 0, 2, 0)))",
+                "func": "$lambda x: torch.where(x[[2]] > 0, 4, torch.where(x[[0]] > 0, 1, torch.where(x[[1]] > 0, 2, 0)))",
                 "times": 1
             },
             {
@@ -61,7 +68,12 @@
         {
             "_target_": "MetricsSaver",
             "save_dir": "@output_dir",
-            "metrics": ["val_mean_dice", "val_mean_dice_tc", "val_mean_dice_wt", "val_mean_dice_et"],
+            "metrics": [
+                "val_mean_dice",
+                "val_mean_dice_tc",
+                "val_mean_dice_wt",
+                "val_mean_dice_et"
+            ],
             "metric_details": [
                 "val_mean_dice"
             ],
