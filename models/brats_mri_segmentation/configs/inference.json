@@ -3,7 +3,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/workspace/monai-code/model-zoo/models/brats_mri_segmentation",
+    "bundle_root": "/workspace/brats_mri_segmentation",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "data_list_file_path": "$@bundle_root + '/configs/seg_brats18_datalist_full.json'",
@@ -30,32 +30,25 @@
         "dropout_prob": 0.2
     },
     "network": "$@network_def.to(@device)",
-    "preprocessing": [
-        {
-            "_target_": "LoadImaged",
-            "keys": [
-                "image",
-                "label"
-            ]
-        },
-        {
-            "_target_": "ConvertToMultiChannelBasedOnBratsClassesd",
-            "keys": "label"
-        },
-        {
-            "_target_": "NormalizeIntensityd",
-            "keys": "image",
-            "nonzero": true,
-            "channel_wise": true
-        },
-        {
-            "_target_": "ToTensord",
-            "keys": [
-                "image",
-                "label"
-            ]
-        }
-    ],
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image"
+            },
+            {
+                "_target_": "NormalizeIntensityd",
+                "keys": "image",
+                "nonzero": true,
+                "channel_wise": true
+            },
+            {
+                "_target_": "ToTensord",
+                "keys": "image"
+            }
+        ]
+    },
     "dataset": {
         "_target_": "Dataset",
         "data": "@test_datalist",

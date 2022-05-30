@@ -14,7 +14,8 @@
                 "orig_keys": "image",
                 "meta_keys": "pred_meta_dict",
                 "nearest_interp": false,
-                "to_tensor": true
+                "to_tensor": true,
+                "device": "@validate#evaluator#device"
             },
             {
                 "_target_": "AsDiscreted",
@@ -42,8 +43,7 @@
             {
                 "_target_": "Lambdad",
                 "keys": "pred_combined",
-                "func": "$lambda x: torch.where(x[[2]] > 0, 4, torch.where(x[[0]] > 0, 1, torch.where(x[[1]] > 0, 2, 0)))",
-                "times": 1
+                "func": "$lambda x: torch.where(x[[2]] > 0, 4, torch.where(x[[0]] > 0, 1, torch.where(x[[1]] > 0, 2, 0)))"
             },
             {
                 "_target_": "SaveImaged",
@@ -64,6 +64,10 @@
             "load_dict": {
                 "model": "@network"
             }
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false
         },
         {
             "_target_": "MetricsSaver",

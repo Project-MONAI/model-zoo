@@ -20,10 +20,10 @@
     "label_classes": "3 channel data, channel 0 for Tumor core, channel 1 for Whole tumor, channel 2 for Enhancing tumor",
     "pred_classes": "3 channels data, same as label_classes",
     "eval_metrics": {
-        "val_mean_dice": 0.8223,
-        "val_mean_dice_tc": 0.8203,
-        "val_mean_dice_wt": 0.9007,
-        "val_mean_dice_et": 0.7519
+        "val_mean_dice": 0.8481,
+        "val_mean_dice_tc": 0.8569,
+        "val_mean_dice_wt": 0.8985,
+        "val_mean_dice_et": 0.7848
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
@@ -35,8 +35,8 @@
                 "type": "image",
                 "format": "magnitude",
                 "modality": "MR",
-                "num_channels": 1,
-                "spatial_shape": "16 * (n + m)",
+                "num_channels": 4,
+                "spatial_shape": ["16*(n+1)","16*(n+1)","16*(n+1)"],
                 "dtype": "float32",
                 "value_range": [
                     0,
@@ -52,8 +52,8 @@
             "pred": {
                 "type": "image",
                 "format": "segmentation",
-                "num_channels": 2,
-                "spatial_shape": "16 * (n + m)",
+                "num_channels": 3,
+                "spatial_shape": ["16*(n+1)","16*(n+1)","16*(n+1)"],
                 "dtype": "float32",
                 "value_range": [
                     0,
