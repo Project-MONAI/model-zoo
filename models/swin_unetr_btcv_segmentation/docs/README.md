@@ -8,7 +8,7 @@ The training data is from the [BTCV dataset](https://www.synapse.org/#!Synapse:s
 
 - Target: Multi-organs
 - Task: Segmentation
-- Modality: CT  
+- Modality: CT
 - Size: 30 3D volumes (24 Training + 6 Testing)
 
 ## Training configuration
