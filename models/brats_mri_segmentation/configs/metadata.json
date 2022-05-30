@@ -36,7 +36,11 @@
                 "format": "magnitude",
                 "modality": "MR",
                 "num_channels": 4,
-                "spatial_shape": ["16*(n+1)","16*(n+1)","16*(n+1)"],
+                "spatial_shape": [
+                    "16*(n+1)",
+                    "16*(n+1)",
+                    "16*(n+1)"
+                ],
                 "dtype": "float32",
                 "value_range": [
                     0,
@@ -53,7 +57,11 @@
                 "type": "image",
                 "format": "segmentation",
                 "num_channels": 3,
-                "spatial_shape": ["16*(n+1)","16*(n+1)","16*(n+1)"],
+                "spatial_shape": [
+                    "16*(n+1)",
+                    "16*(n+1)",
+                    "16*(n+1)"
+                ],
                 "dtype": "float32",
                 "value_range": [
                     0,
