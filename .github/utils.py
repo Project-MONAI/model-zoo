@@ -18,8 +18,10 @@ import subprocess
 import tempfile
 from pathlib import Path
 from typing import List
-
+from monai.apps.utils import download_url
 from monai.utils import look_up_option
+from monai.bundle.config_parser import ConfigParser
+
 
 SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
 
@@ -30,6 +32,17 @@ def get_sub_folders(root_dir: str):
     sub_folder_list = [f.name for f in os.scandir(root_dir) if f.is_dir()]
 
     return sub_folder_list
+
+def get_json_dict(json_dict_path: str):
+    with open(json_dict_path, "r") as f:
+        json_dict = json.load(f)
+
+    return json_dict
+
+def get_hash_func(hash_type: str = "sha1"):
+    actual_hash_func = look_up_option(hash_type.lower(), SUPPORTED_HASH_TYPES)
+
+    return actual_hash_func()
 
 def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
     """
@@ -44,3 +57,14 @@ def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
             bundle_path = os.path.join(root_path, bundle)
             if os.path.commonpath([bundle_path]) == os.path.commonpath([bundle_path, sub_dir]):
                 changed_bundle_list.append(bundle)
+
+    return list(set(changed_bundle_list))
+
+def download_large_files(bundle_path: str, large_file_name: str = "large_file.yml"):
+    parser = ConfigParser()
+    parser.read_config(os.path.join(bundle_path, large_file_name))
+    large_files_list = parser.get()["large_files"]
+    for lf_data in large_files_list:
+        lf_data["filepath"] = os.path.join(bundle_path, lf_data["path"])
+        lf_data.pop("path")
+        download_url(**lf_data)

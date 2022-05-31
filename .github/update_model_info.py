@@ -10,104 +10,94 @@
 # limitations under the License.
 
 import argparse
-import hashlib
-import json
 import os
 import shutil
 import subprocess
 import tempfile
-
-from monai.utils import look_up_option
-
-SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
-
-
-def get_json_dict(json_dict_path: str):
-    with open(json_dict_path, "r") as f:
-        json_dict = json.load(f)
-    return json_dict
-
-
-def get_hash_func(hash_type: str = "sha1"):
-    actual_hash_func = look_up_option(hash_type.lower(), SUPPORTED_HASH_TYPES)
-    return actual_hash_func()
+from utils import (
+    get_sub_folders,
+    get_json_dict,
+    get_hash_func,
+    get_changed_bundle_list,
+    download_large_files,
+)
+from typing import List
+import json
 
 
-def update_model_info(models_path: str, model_info_file: str = "model_info.json"):
+def update_model_info(bundle_list: List, models_path: str = "models", model_info_file: str = "model_info.json"):
     model_info_path = os.path.join(models_path, model_info_file)
     model_info = get_json_dict(model_info_path)
-    hash_func = get_hash_func()
+    hash_func = get_hash_func(hash_type="sha1")
     # make a temp dir to store compressed bundles
     temp_dir = tempfile.mkdtemp()
-    ischanged = False
-    task_list = get_sub_folders(models_path)
-    for task in task_list:
-        if task not in model_info.keys():
-            model_info[task] = {}
-        task_path = os.path.join(models_path, task)
-        task_bundle_list = get_sub_folders(task_path)
-        for bundle in task_bundle_list:
-            if bundle not in model_info[task].keys():
-                model_info[task][bundle] = {"version": "", "checksum": "", "source": ""}
-            bundle_path = os.path.join(task_path, bundle)
-            bundle_metadata_path = os.path.join(bundle_path, "configs/metadata.json")
-            if os.path.exists(bundle_metadata_path):
-                metadata = get_json_dict(bundle_metadata_path)
-                # get version number from metadata
-                latest_version = metadata["version"]
-                # compress bundle
-                bundle_zip_name = f"{bundle}_v{latest_version}.tar"
-                compress_bundle(root_path=task_path, bundle_name=bundle, bundle_zip_name=bundle_zip_name)
-                dst_path = os.path.join(temp_dir, bundle_zip_name)
-                shutil.move(os.path.join(task_path, bundle_zip_name), dst_path)
-                # get actual checksum
-                actual_checksum = get_checksum(dst_path=dst_path, hash_func=hash_func)
+    # temp_dir = "test_tmp"
+    # if not os.path.exists(temp_dir):
+    #     os.makedirs(temp_dir)
 
-                # check consistency
-                if model_info[task][bundle]["checksum"] != actual_checksum:
-                    # upload new zip
-                    new_source = upload_bundle(dst_path, bundle_zip_name)
-                    # update model_info
-                    model_info[task][bundle]["checksum"] = actual_checksum
-                    model_info[task][bundle]["version"] = latest_version
-                    model_info[task][bundle]["source"] = new_source
-                    ischanged = True
+    for bundle_name in bundle_list:
+        if bundle_name not in model_info.keys():
+            model_info[bundle_name] = {"version": "", "checksum": "", "source": ""}
+        # copy the bundle into temp dir for further compress and upload
+        bundle_path = os.path.join(temp_dir, bundle_name)
+        shutil.copytree(os.path.join(models_path, bundle_name), bundle_path)
+        # need to check if metadata.json is existing in the bundle when submit a PR.
+        # get version from metadata
+        bundle_metadata_path = os.path.join(bundle_path, "configs/metadata.json")
+        metadata = get_json_dict(bundle_metadata_path)
+        latest_version = metadata["version"]
 
-    if ischanged is True:
-        print(model_info)
-        # push_model_info(model_info, model_info_path)
+        # download large files if exists
+        for large_file_type in [".yml", ".yaml", ".json"]:
+            large_file_name = "large_file" + large_file_type
+            large_file_path = os.path.join(bundle_path, large_file_name)
+            if os.path.exists(large_file_path):
+                download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
+                # remove the large file config
+                os.remove(large_file_path)
+
+        # compress bundle
+        bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
+        zipfile_path = os.path.join(temp_dir, bundle_zip_name)
+        compress_bundle(root_path=temp_dir, bundle_name=bundle_name, bundle_zip_name=bundle_zip_name)
+        # get checksum
+        checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
+        # upload new zip
+        source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
+        # update model_info
+        model_info[bundle_name]["checksum"] = checksum
+        model_info[bundle_name]["version"] = latest_version
+        model_info[bundle_name]["source"] = source
+
+    print(model_info)
+    save_model_info(model_info, model_info_path)
 
     shutil.rmtree(temp_dir)
 
 
-def push_model_info(model_info_dict, model_info_path: str):
+def save_model_info(model_info_dict, model_info_path: str):
     with open(model_info_path, "w") as f:
         json.dump(model_info_dict, f)
 
-    merged_pr_num = os.environ["PR_NUMBER"]
-    email = os.environ["email"]
-    username = os.environ["username"]
+    # merged_pr_num = os.environ["PR_NUMBER"]
+    # email = os.environ["email"]
+    # username = os.environ["username"]
 
-    branch_name = f"{merged_pr_num}-auto-update-model-info"
-    create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
+    # branch_name = f"{merged_pr_num}-auto-update-model-info"
+    # create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
 
-    git_config = f"git config user.email {email}; git config user.name {username}"
-    commit_message = "git commit -m 'auto update model_info'"
-    full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
+    # git_config = f"git config user.email {email}; git config user.name {username}"
+    # commit_message = "git commit -m 'auto update model_info'"
+    # full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
 
-    subprocess.run(full_cmd, shell=True)
+    # subprocess.run(full_cmd, shell=True)
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
 
-    # refer to: https://medium.com/@pat_wilson/building-deterministic-zip-files-with-built-in-commands-741275116a19
-    # set the timestamp of all files (with the bundle) to the time of the last change.
-    touch_cmd = f"find {bundle_name} -exec touch -t `git ls-files -z {bundle_name} |"
-    timestamp_cmd = (
-        "xargs -0 -n1 -I{} -- git log -1 --date=format:'%Y%m%d%H%M' --format='%ad' {} | sort -r | head -n 1` {} +"
-    )
+    touch_cmd = f"find {bundle_name} -exec touch -t 202205300000 " + "{} +"
     zip_cmd = f"zip -rq -D -X -9 -A --compression-method deflate {bundle_zip_name} {bundle_name}"
-    subprocess.call(f"{touch_cmd} {timestamp_cmd}; {zip_cmd}", shell=True, cwd=root_path)
+    subprocess.call(f"{touch_cmd}; {zip_cmd}", shell=True, cwd=root_path)
 
 
 def get_checksum(dst_path: str, hash_func):
@@ -134,9 +124,11 @@ def upload_bundle(
 def main():
     parser = argparse.ArgumentParser(description="")
 
-    parser.add_argument("-p", "--path", default="models", help="path of models folder.")
+    parser.add_argument("-b", "--bundle", type=str, help="bundle names to be updated.")
     args = parser.parse_args()
-    update_model_info(models_path=args.path)
+    bundle_list = [args.bundle]
+
+    update_model_info(bundle_list=bundle_list)
 
 
 if __name__ == "__main__":
