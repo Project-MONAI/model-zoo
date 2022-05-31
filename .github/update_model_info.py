@@ -12,17 +12,18 @@
 import argparse
 import os
 import shutil
-import subprocess
 import tempfile
-from utils import (
-    get_sub_folders,
-    get_json_dict,
-    get_hash_func,
-    get_changed_bundle_list,
-    download_large_files,
-)
 from typing import List
-import json
+
+from utils import (
+    compress_bundle,
+    download_large_files,
+    get_checksum,
+    get_hash_func,
+    get_json_dict,
+    save_model_info,
+    upload_bundle,
+)
 
 
 def update_model_info(bundle_list: List, models_path: str = "models", model_info_file: str = "model_info.json"):
@@ -73,52 +74,6 @@ def update_model_info(bundle_list: List, models_path: str = "models", model_info
     save_model_info(model_info, model_info_path)
 
     shutil.rmtree(temp_dir)
-
-
-def save_model_info(model_info_dict, model_info_path: str):
-    with open(model_info_path, "w") as f:
-        json.dump(model_info_dict, f)
-
-    # merged_pr_num = os.environ["PR_NUMBER"]
-    # email = os.environ["email"]
-    # username = os.environ["username"]
-
-    # branch_name = f"{merged_pr_num}-auto-update-model-info"
-    # create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
-
-    # git_config = f"git config user.email {email}; git config user.name {username}"
-    # commit_message = "git commit -m 'auto update model_info'"
-    # full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
-
-    # subprocess.run(full_cmd, shell=True)
-
-
-def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
-
-    touch_cmd = f"find {bundle_name} -exec touch -t 202205300000 " + "{} +"
-    zip_cmd = f"zip -rq -D -X -9 -A --compression-method deflate {bundle_zip_name} {bundle_name}"
-    subprocess.call(f"{touch_cmd}; {zip_cmd}", shell=True, cwd=root_path)
-
-
-def get_checksum(dst_path: str, hash_func):
-    with open(dst_path, "rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            hash_func.update(chunk)
-    return hash_func.hexdigest()
-
-
-def upload_bundle(
-    bundle_zip_file_path: str,
-    bundle_zip_filename: str,
-    release_tag: str = "hosting_storage_v1",
-    repo_name: str = "Project-MONAI/model-zoo",
-):
-
-    upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
-    subprocess.run(upload_command, shell=True)
-    source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
-
-    return source
 
 
 def main():

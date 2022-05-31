@@ -1,24 +1,24 @@
-name: check-changed-files
+# name: check-changed-files
 
-on:
-  pull_request:
-    # branches:
-    #   - dev
-    # types: [closed]
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+# on:
+#   pull_request:
+#     # branches:
+#     #   - dev
+#     # types: [closed]
+#   # Allows you to run this workflow manually from the Actions tab
+#   workflow_dispatch:
 
-jobs:
-  check-changed-files:
-    # if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: get changed filenames
-      run: |
-        changes=$(git diff --name-only HEAD^..HEAD -- models)
-        if [ ! -z "$changes" ]; then
-          python $(pwd)/.github/update_model_info.py --f "$changes"
-        fi
+# jobs:
+#   check-changed-files:
+#     # if: github.event.pull_request.merged == true
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#       with:
+#         fetch-depth: 0
+#     - name: get changed filenames
+#       run: |
+#         changes=$(git diff --name-only HEAD^..HEAD -- models)
+#         if [ ! -z "$changes" ]; then
+#           python $(pwd)/.github/update_model_info.py --f "$changes"
+#         fi

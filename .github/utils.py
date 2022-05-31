@@ -13,17 +13,15 @@
 import hashlib
 import json
 import os
-import shutil
 import subprocess
-import tempfile
-from pathlib import Path
 from typing import List
-from monai.apps.utils import download_url
-from monai.utils import look_up_option
-from monai.bundle.config_parser import ConfigParser
 
+from monai.apps.utils import download_url
+from monai.bundle.config_parser import ConfigParser
+from monai.utils import look_up_option
 
 SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
+
 
 def get_sub_folders(root_dir: str):
     """
@@ -33,16 +31,19 @@ def get_sub_folders(root_dir: str):
 
     return sub_folder_list
 
+
 def get_json_dict(json_dict_path: str):
     with open(json_dict_path, "r") as f:
         json_dict = json.load(f)
 
     return json_dict
 
+
 def get_hash_func(hash_type: str = "sha1"):
     actual_hash_func = look_up_option(hash_type.lower(), SUPPORTED_HASH_TYPES)
 
     return actual_hash_func()
+
 
 def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
     """
@@ -60,6 +61,7 @@ def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
 
     return list(set(changed_bundle_list))
 
+
 def download_large_files(bundle_path: str, large_file_name: str = "large_file.yml"):
     parser = ConfigParser()
     parser.read_config(os.path.join(bundle_path, large_file_name))
@@ -68,3 +70,49 @@ def download_large_files(bundle_path: str, large_file_name: str = "large_file.ym
         lf_data["filepath"] = os.path.join(bundle_path, lf_data["path"])
         lf_data.pop("path")
         download_url(**lf_data)
+
+
+def save_model_info(model_info_dict, model_info_path: str):
+    with open(model_info_path, "w") as f:
+        json.dump(model_info_dict, f)
+
+    # merged_pr_num = os.environ["PR_NUMBER"]
+    # email = os.environ["email"]
+    # username = os.environ["username"]
+
+    # branch_name = f"{merged_pr_num}-auto-update-model-info"
+    # create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
+
+    # git_config = f"git config user.email {email}; git config user.name {username}"
+    # commit_message = "git commit -m 'auto update model_info'"
+    # full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
+
+    # subprocess.run(full_cmd, shell=True)
+
+
+def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
+
+    touch_cmd = f"find {bundle_name} -exec touch -t 202205300000 " + "{} +"
+    zip_cmd = f"zip -rq -D -X -9 -A --compression-method deflate {bundle_zip_name} {bundle_name}"
+    subprocess.call(f"{touch_cmd}; {zip_cmd}", shell=True, cwd=root_path)
+
+
+def get_checksum(dst_path: str, hash_func):
+    with open(dst_path, "rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            hash_func.update(chunk)
+    return hash_func.hexdigest()
+
+
+def upload_bundle(
+    bundle_zip_file_path: str,
+    bundle_zip_filename: str,
+    release_tag: str = "hosting_storage_v1",
+    repo_name: str = "Project-MONAI/model-zoo",
+):
+
+    upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
+    subprocess.run(upload_command, shell=True)
+    source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
+
+    return source
