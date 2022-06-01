@@ -1,0 +1,357 @@
+{
+    "imports": [
+        "$import os",
+        "$import ignite"
+    ],
+    "bundle_root": "/Users/bhashemian/workspace/model-zoo/models/pathology_tumor_detection",
+    "lr": 0.001,
+    "num_epochs": 2,
+    "ckpt_dir": "$@bundle_root + 'run/models'",
+    "output_dir": "$@bundle_root + 'run/eval'",
+    "data_dir": "$@bundle_root + '/data'",
+    "train_file": "$os.path.join(@data_dir, 'training.csv')",
+    "validate_file": "$os.path.join(@data_dir, 'validation.csv')",
+    "region_size": [
+        768,
+        768
+    ],
+    "patch_size": [
+        224,
+        224
+    ],
+    "grid_shape": [
+        3,
+        3
+    ],
+    "number_intensity_ch": 3,
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "TorchVisionFCModel",
+        "model_name": "resnet18",
+        "num_classes": 1,
+        "use_conv": true,
+        "pretrained": true
+    },
+    "network": "$@network_def.to(@device)",
+    "loss": {
+        "_target_": "torch.nn.BCEWithLogitsLoss"
+    },
+    "optimizer": {
+        "_target_": "Novograd",
+        "params": "$@network.parameters()",
+        "lr": "@lr"
+    },
+    "lr_scheduler": {
+        "_target_": "torch.optim.lr_scheduler.CosineAnnealingLR",
+        "optimizer": "@optimizer",
+        "T_max": "@num_epochs"
+    },
+    "train": {
+        "pre_transforms": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "Lambdad",
+                    "keys": [
+                        "label"
+                    ],
+                    "func": "$lambda x: x.reshape((1, *@grid_shape))"
+                },
+                {
+                    "_target_": "GridSplitd",
+                    "keys": [
+                        "image",
+                        "label"
+                    ],
+                    "grid": "@grid_shape",
+                    "size": {
+                        "image": "@patch_size",
+                        "label": 1
+                    }
+                },
+                {
+                    "_target_": "ToTensord",
+                    "keys": "image"
+                },
+                {
+                    "_target_": "TorchVisiond",
+                    "keys": "image",
+                    "name": "ColorJitter",
+                    "brightness": 0.25,
+                    "contrast": 0.75,
+                    "saturation": 0.25,
+                    "hue": 0.04
+                },
+                {
+                    "_target_": "ToNumpyd",
+                    "keys": "image"
+                },
+                {
+                    "_target_": "RandFlipd",
+                    "keys": "image",
+                    "prob": 0.5
+                },
+                {
+                    "_target_": "RandRotate90d",
+                    "keys": "image",
+                    "prob": 0.5,
+                    "max_k": 3,
+                    "spatial_axes": [
+                        -2,
+                        -1
+                    ]
+                },
+                {
+                    "_target_": "CastToTyped",
+                    "keys": "image",
+                    "dtype": "float32"
+                },
+                {
+                    "_target_": "RandZoomd",
+                    "keys": "image",
+                    "prob": 0.5,
+                    "min_zoom": 0.9,
+                    "max_zoom": 1.1
+                },
+                {
+                    "_target_": "ScaleIntensityRanged",
+                    "keys": "image",
+                    "a_min": 0.0,
+                    "a_max": 255.0,
+                    "b_min": -1.0,
+                    "b_max": 1.0
+                },
+                {
+                    "_target_": "ToTensord",
+                    "keys": [
+                        "image",
+                        "label"
+                    ]
+                }
+            ]
+        },
+        "data_list": {
+            "_target_": "CSVDataset",
+            "src": "@train_file",
+            "col_groups": {
+                "image": 0,
+                "patch_location": [
+                    2,
+                    1
+                ],
+                "label": "$list(range(3, 12))"
+            },
+            "kwargs_read_csv": {
+                "header": null
+            },
+            "transform": {
+                "_target_": "Lambdad",
+                "keys": "image",
+                "func": "$lambda x: os.path.join(@data_dir, 'training/images', x + '.tif')"
+            }
+        },
+        "dataset": {
+            "_target_": "monai.data.wsi_datasets.PatchWSIDataset",
+            "data": "@train#data_list",
+            "patch_level": 0,
+            "patch_size": "@region_size",
+            "reader": "cucim",
+            "transform": "@train#pre_transforms"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@train#dataset",
+            "batch_size": 2,
+            "pin_memory": true,
+            "num_workers": 0
+        },
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "post_transforms": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "Activationsd",
+                    "keys": "pred",
+                    "sigmoid": true
+                },
+                {
+                    "_target_": "AsDiscreted",
+                    "keys": "pred",
+                    "threshold": 0.5
+                }
+            ]
+        },
+        "handlers": [
+            {
+                "_target_": "ValidationHandler",
+                "validator": "@validate#evaluator",
+                "epoch_level": true,
+                "interval": 1
+            },
+            {
+                "_target_": "StatsHandler",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            },
+            {
+                "_target_": "LrScheduleHandler",
+                "lr_scheduler": "@lr_scheduler",
+                "print_lr": true
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            }
+        ],
+        "key_metric": {
+            "train_acc": {
+                "_target_": "ignite.metrics.Accuracy",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "trainer": {
+            "_target_": "SupervisedTrainer",
+            "device": "@device",
+            "max_epochs": "@num_epochs",
+            "train_data_loader": "@train#dataloader",
+            "network": "@network",
+            "optimizer": "@optimizer",
+            "loss_function": "@loss",
+            "inferer": "@train#inferer",
+            "amp": true,
+            "postprocessing": "@train#post_transforms",
+            "key_train_metric": "@train#key_metric",
+            "train_handlers": "@train#handlers"
+        }
+    },
+    "validate": {
+        "pre_transforms": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "Lambdad",
+                    "keys": "label",
+                    "func": "$lambda x: x.reshape((1, *@grid_shape))"
+                },
+                {
+                    "_target_": "GridSplitd",
+                    "keys": [
+                        "image",
+                        "label"
+                    ],
+                    "grid": "@grid_shape",
+                    "size": {
+                        "image": "@patch_size",
+                        "label": 1
+                    }
+                },
+                {
+                    "_target_": "CastToTyped",
+                    "keys": "image",
+                    "dtype": "float32"
+                },
+                {
+                    "_target_": "ScaleIntensityRanged",
+                    "keys": "image",
+                    "a_min": 0.0,
+                    "a_max": 255.0,
+                    "b_min": -1.0,
+                    "b_max": 1.0
+                },
+                {
+                    "_target_": "ToTensord",
+                    "keys": [
+                        "image",
+                        "label"
+                    ]
+                }
+            ]
+        },
+        "data_list": {
+            "_target_": "CSVDataset",
+            "src": "@validate_file",
+            "col_groups": {
+                "image": 0,
+                "patch_location": [
+                    2,
+                    1
+                ],
+                "label": "$list(range(3, 12))"
+            },
+            "kwargs_read_csv": {
+                "header": null
+            },
+            "transform": {
+                "_target_": "Lambdad",
+                "keys": "image",
+                "func": "$lambda x: os.path.join('../data', 'validation/images', x + '.tif')"
+            }
+        },
+        "dataset": {
+            "_target_": "monai.data.wsi_datasets.PatchWSIDataset",
+            "data": "@validate#data_list",
+            "patch_level": 0,
+            "patch_size": "@region_size",
+            "reader": "cucim",
+            "transform": "@validate#pre_transforms"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@validate#dataset",
+            "batch_size": 2,
+            "pin_memory": true,
+            "shuffle": false,
+            "num_workers": 0
+        },
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "post_transforms": "%train#post_transforms",
+        "handlers": [
+            {
+                "_target_": "StatsHandler",
+                "iteration_log": false
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "iteration_log": false
+            },
+            {
+                "_target_": "CheckpointSaver",
+                "save_dir": "@ckpt_dir",
+                "save_dict": {
+                    "model": "@network"
+                },
+                "save_key_metric": true,
+                "key_metric_filename": "model.pt"
+            }
+        ],
+        "key_metric": {
+            "valid_acc": {
+                "_target_": "ignite.metrics.Accuracy",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "evaluator": {
+            "_target_": "SupervisedEvaluator",
+            "device": "@device",
+            "val_data_loader": "@validate#dataloader",
+            "network": "@network",
+            "inferer": "@validate#inferer",
+            "postprocessing": "@validate#post_transforms",
+            "key_val_metric": "@validate#key_metric",
+            "val_handlers": "@validate#handlers",
+            "amp": true
+        }
+    },
+    "training": [
+        "$monai.utils.set_determinism(seed=123)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@train#trainer.run()"
+    ]
+}
