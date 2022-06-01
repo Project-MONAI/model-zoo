@@ -71,6 +71,10 @@
                 "_target_": "Activationsd",
                 "keys": "pred",
                 "sigmoid": true
+            },
+            {
+                "_target_": "ToNumpyd",
+                "keys": "pred"
             }
         ]
     },
