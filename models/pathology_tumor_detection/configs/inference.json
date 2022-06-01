@@ -3,9 +3,9 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/Users/bhashemian/workspace/model-zoo/models/pathology_tumor_detection",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
-    "data_dir": "$@bundle_root + '/data'",
+    "data_dir": "/extra/datasets/CAMELYON16",
     "datalist": "$list(sorted(glob.glob(@data_dir + '/testing/images/*.tif')))",
     "patch_size": [
         224,
