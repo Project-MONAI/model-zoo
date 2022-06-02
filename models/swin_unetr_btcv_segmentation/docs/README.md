@@ -11,6 +11,14 @@ The training data is from the [BTCV dataset](https://www.synapse.org/#!Synapse:s
 - Modality: CT
 - Size: 30 3D volumes (24 Training + 6 Testing)
 
+The dataset format needs to be redefined using the following commands:
+
+```
+mv RawData/Training/img/ RawData/imagesTr
+mv RawData/Training/label/ RawData/labelsTr
+mv RawData/Testing/img/ RawData/imagesTs
+```
+
 ## Training configuration
 The training was performed with at least 32GB-memory GPUs.
 
@@ -28,7 +36,7 @@ A graph showing the validation mean Dice for 5000 epochs.
 
 This model achieves the following Dice score on the validation data (our own split from the training dataset):
 
-Mean Dice = 0.8312
+Mean Dice = 0.8283
 
 Note that mean dice is computed in the original spacing of the input data.
 ## commands example

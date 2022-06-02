@@ -21,7 +21,7 @@
     "label_classes": "multi-channel data,0:background,1:spleen, 2:Right Kidney, 3:Left Kideny, 4:Gallbladder, 5:Esophagus, 6:Liver, 7:Stomach, 8:Aorta, 9:IVC, 10:Portal and Splenic Veins, 11:Pancreas, 12:Right adrenal gland, 13:Left adrenal gland",
     "pred_classes": "14 channels OneHot data, 0:background,1:spleen, 2:Right Kidney, 3:Left Kideny, 4:Gallbladder, 5:Esophagus, 6:Liver, 7:Stomach, 8:Aorta, 9:IVC, 10:Portal and Splenic Veins, 11:Pancreas, 12:Right adrenal gland, 13:Left adrenal gland",
     "eval_metrics": {
-        "mean_dice": 0.8312
+        "mean_dice": 0.8283
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
