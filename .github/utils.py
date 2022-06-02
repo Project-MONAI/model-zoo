@@ -67,6 +67,11 @@ def download_large_files(bundle_path: str, large_file_name: str = "large_file.ym
     parser.read_config(os.path.join(bundle_path, large_file_name))
     large_files_list = parser.get()["large_files"]
     for lf_data in large_files_list:
+        lf_data["fuzzy"] = True
+        if lf_data["hash_val"] == "":
+            lf_data.pop("hash_val")
+        if lf_data["hash_type"] == "":
+            lf_data.pop("hash_type")
         lf_data["filepath"] = os.path.join(bundle_path, lf_data["path"])
         lf_data.pop("path")
         download_url(**lf_data)
@@ -94,7 +99,7 @@ def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
 
     touch_cmd = f"find {bundle_name} -exec touch -t 202205300000 " + "{} +"
     zip_cmd = f"zip -rq -D -X -9 -A --compression-method deflate {bundle_zip_name} {bundle_name}"
-    subprocess.call(f"{touch_cmd}; {zip_cmd}", shell=True, cwd=root_path)
+    subprocess.check_call(f"{touch_cmd}; {zip_cmd}", shell=True, cwd=root_path)
 
 
 def get_checksum(dst_path: str, hash_func):
@@ -112,7 +117,8 @@ def upload_bundle(
 ):
 
     upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
-    subprocess.run(upload_command, shell=True)
+    call_status = subprocess.run(upload_command, shell=True)
+    call_status.check_returncode()
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source

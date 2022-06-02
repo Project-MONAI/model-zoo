@@ -14,6 +14,7 @@ import os
 import shutil
 import tempfile
 from typing import List
+import warnings
 
 from utils import (
     compress_bundle,
@@ -26,54 +27,95 @@ from utils import (
 )
 
 
-def update_model_info(bundle_list: List, models_path: str = "models", model_info_file: str = "model_info.json"):
-    model_info_path = os.path.join(models_path, model_info_file)
-    model_info = get_json_dict(model_info_path)
-    hash_func = get_hash_func(hash_type="sha1")
-    # make a temp dir to store compressed bundles
-    temp_dir = tempfile.mkdtemp()
+def update_model_info(bundle_name: str, models_path: str = "models", model_info_file: str = "model_info.json"):
+    """
+    For a changed model (bundle), this function is used to do the following steps in order to update it:
+
+    1. check if bundle folder exists.
+    2. create a temporary copy of the bundle.
+    3. download large files (if having the corresponding config file) into the copy.
+    4. compress the copy.
+    5. upload a compressed copy.
+    6. update `model_info_file`.
+
+    Returns:
+        a 2-tuple.
+        If update successful, the form is (True,"").
+        If update failed, the form is (False, "error reason")
+    """
+
+    # step 1
+    bundle_path = os.path.join(models_path, bundle_name)
+    if not os.path.exists(bundle_path):
+        warnings.warn(f"bundle path: {bundle_path} not exists, skip update.")
+        return (False, "bundle path not exist")
+
     # temp_dir = "test_tmp"
     # if not os.path.exists(temp_dir):
     #     os.makedirs(temp_dir)
 
-    for bundle_name in bundle_list:
-        if bundle_name not in model_info.keys():
-            model_info[bundle_name] = {"version": "", "checksum": "", "source": ""}
-        # copy the bundle into temp dir for further compress and upload
-        bundle_path = os.path.join(temp_dir, bundle_name)
-        shutil.copytree(os.path.join(models_path, bundle_name), bundle_path)
-        # need to check if metadata.json is existing in the bundle when submit a PR.
-        # get version from metadata
-        bundle_metadata_path = os.path.join(bundle_path, "configs/metadata.json")
-        metadata = get_json_dict(bundle_metadata_path)
-        latest_version = metadata["version"]
+    # step 2
+    temp_dir = tempfile.mkdtemp()
+    temp_path = os.path.join(temp_dir, bundle_name)
+    shutil.copytree(bundle_path, temp_path)
 
-        # download large files if exists
+    # step 3
+    try:
         for large_file_type in [".yml", ".yaml", ".json"]:
             large_file_name = "large_file" + large_file_type
-            large_file_path = os.path.join(bundle_path, large_file_name)
+            large_file_path = os.path.join(temp_path, large_file_name)
             if os.path.exists(large_file_path):
-                download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
+                download_large_files(bundle_path=temp_path, large_file_name=large_file_name)
                 # remove the large file config
                 os.remove(large_file_path)
+    except Exception as e:
+        print(e)
+        warnings.warn(f"download large files of bundle: {bundle_name} failed, skip update.")
+        shutil.rmtree(temp_dir)
+        return (False, "download large files failed")
 
-        # compress bundle
-        bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
-        zipfile_path = os.path.join(temp_dir, bundle_zip_name)
+    # step 4
+    bundle_metadata_path = os.path.join(temp_path, "configs/metadata.json")
+    metadata = get_json_dict(bundle_metadata_path)
+    latest_version = metadata["version"]
+    bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
+    zipfile_path = os.path.join(temp_dir, bundle_zip_name)
+    try:
         compress_bundle(root_path=temp_dir, bundle_name=bundle_name, bundle_zip_name=bundle_zip_name)
-        # get checksum
-        checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
-        # upload new zip
+    except Exception as e:
+        print(e)
+        warnings.warn(f"compress: {bundle_name} failed, skip update.")
+        shutil.rmtree(temp_dir)
+        return (False, "compress bundle failed")
+
+    hash_func = get_hash_func(hash_type="sha1")
+    checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
+
+    # step 5
+    try:
         source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
-        # update model_info
-        model_info[bundle_name]["checksum"] = checksum
-        model_info[bundle_name]["version"] = latest_version
-        model_info[bundle_name]["source"] = source
+    except Exception as e:
+        print(e)
+        warnings.warn(f"upload bundle: {bundle_name} failed, skip update.")
+        shutil.rmtree(temp_dir)
+        return (False, "upload bundle failed")
+
+    # step 6
+    model_info_path = os.path.join(models_path, model_info_file)
+    model_info = get_json_dict(model_info_path)
+
+    if bundle_name not in model_info.keys():
+        model_info[bundle_name] = {"version": "", "checksum": "", "source": ""}
+
+    model_info[bundle_name]["checksum"] = checksum
+    model_info[bundle_name]["version"] = latest_version
+    model_info[bundle_name]["source"] = source
 
     print(model_info)
     save_model_info(model_info, model_info_path)
 
     shutil.rmtree(temp_dir)
+    return (True, "")
 
 
 def main():
@@ -81,9 +123,9 @@ def main():
 
     parser.add_argument("-b", "--bundle", type=str, help="bundle names to be updated.")
     args = parser.parse_args()
-    bundle_list = [args.bundle]
-
-    update_model_info(bundle_list=bundle_list)
+    bundle = args.bundle
+    if bundle is not None:
+        update_model_info(bundle_name=bundle)
 
 
 if __name__ == "__main__":
