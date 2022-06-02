@@ -4,20 +4,20 @@ A pre-trained model for volumetric (3D) multi-organ segmentation from CT image.
 # Model Overview
 A pre-trained Swin UNETR [1,2] for volumetric (3D) multi-organ segmentation using CT images from Beyond the Cranial Vault (BTCV) Segmentation Challenge dataset [3].
 ## Data
-The training data is from the [BTCV dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/89480/).
+The training data is from the [BTCV dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/89480/) (Please regist in `Synapse` and download the `Abdomen/RawData.zip`).
+The dataset format needs to be redefined using the following commands:
+
+```
+unzip RawData.zip
+mv RawData/Training/img/ RawData/imagesTr
+mv RawData/Training/label/ RawData/labelsTr
+mv RawData/Testing/img/ RawData/imagesTs
+```
 
 - Target: Multi-organs
 - Task: Segmentation
 - Modality: CT
 - Size: 30 3D volumes (24 Training + 6 Testing)
-
-The dataset format needs to be redefined using the following commands:
-
-```
-mv RawData/Training/img/ RawData/imagesTr
-mv RawData/Training/label/ RawData/labelsTr
-mv RawData/Testing/img/ RawData/imagesTs
-```
 
 ## Training configuration
 The training was performed with at least 32GB-memory GPUs.
