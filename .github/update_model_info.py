@@ -13,7 +13,6 @@ import argparse
 import os
 import shutil
 import tempfile
-from typing import List
 import warnings
 
 from utils import (
