@@ -1,28 +1,40 @@
 # Description
-A pre-trained model for volumetric (3D) segmentation of the spleen from CT image.
+A neural architecture search algorithm for volumetric (3D) segmentation of the pancreas and pancreatic tumor from CT image.
 
 # Model Overview
-This model is trained using the runner-up [1] awarded pipeline of the "Medical Segmentation Decathlon Challenge 2018" using the UNet architecture [2] with 32 training images and 9 validation images.
+This model is trained using the state-of-the-art algorithm [1] of the "Medical Segmentation Decathlon Challenge 2018" with 196 training images and 56 validation images.
 
 ## Data
 The training dataset is Task09_Spleen.tar from http://medicaldecathlon.com/.
 
 ## Training configuration
-The training was performed with at least 12GB-memory GPUs.
+The training was performed with at least 16GB-memory GPUs.
 
 Actual Model Input: 96 x 96 x 96
 
 ## Input and output formats
 Input: 1 channel CT image
 
-Output: 2 channels: Label 1: spleen; Label 0: everything else
+Output: 3 channels: Label 2: pancreatic tumor; Label 1: pancreas; Label 0: everything else
 
 ## Scores
 This model achieves the following Dice score on the validation data (our own split from the training dataset):
 
-Mean Dice = 0.96
+Mean Dice = 0.65
 
 ## commands example
+Execute model searching:
+
+```
+python -m scripts.search run --config_file "['configs/search.yaml']"
+```
+
+Execute multi-GPU model searching
+
+```
+torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file "['configs/search.yaml']"
+```
+
 Execute training:
 
 ```
@@ -69,6 +81,4 @@ python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt
 This is an example, not to be used for diagnostic purposes.
 
 # References
-[1] Xia, Yingda, et al. "3D Semi-Supervised Learning with Uncertainty-Aware Multi-View Co-Training." arXiv preprint arXiv:1811.12506 (2018). https://arxiv.org/abs/1811.12506.
-
-[2] Kerfoot E., Clough J., Oksuz I., Lee J., King A.P., Schnabel J.A. (2019) Left-Ventricle Quantification Using Residual U-Net. In: Pop M. et al. (eds) Statistical Atlases and Computational Models of the Heart. Atrial Segmentation and LV Quantification Challenges. STACOM 2018. Lecture Notes in Computer Science, vol 11395. Springer, Cham. https://doi.org/10.1007/978-3-030-12029-0_40
+[1] He, Y., Yang, D., Roth, H., Zhao, C. and Xu, D., 2021. Dints: Differentiable neural network topology search for 3d medical image segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5841-5850).
