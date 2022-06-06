@@ -50,12 +50,18 @@ Output: 3 channels
 
 # Model Performance
 
-The model was trained with 200 cases with our own split, as shown in the datalist json file in config folder.
-The achieved Dice scores on the testing data are:
-- Tumor core (TC): 0.8203
-- Whole tumor (WT): 0.9007
-- Enhancing tumor (ET): 0.7519
-- Average: 0.8223
+The model was trained with 200 cases with our own split.
+Please run `prepare_datalist.py` to produce the data list. The command is like:
+
+```
+python prepare_datalist.py --path your-brats18-dataset-path
+```
+
+The achieved Dice scores on the validation data are:
+- Tumor core (TC): 0.8559
+- Whole tumor (WT): 0.9026
+- Enhancing tumor (ET): 0.7905
+- Average: 0.8518
 
 ## commands example
 

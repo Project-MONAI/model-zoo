@@ -20,10 +20,10 @@
     "label_classes": "3 channel data, channel 0 for Tumor core, channel 1 for Whole tumor, channel 2 for Enhancing tumor",
     "pred_classes": "3 channels data, same as label_classes",
     "eval_metrics": {
-        "val_mean_dice": 0.8481,
-        "val_mean_dice_tc": 0.8569,
-        "val_mean_dice_wt": 0.8985,
-        "val_mean_dice_et": 0.7848
+        "val_mean_dice": 0.8518,
+        "val_mean_dice_tc": 0.8559,
+        "val_mean_dice_wt": 0.9026,
+        "val_mean_dice_et": 0.7905
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

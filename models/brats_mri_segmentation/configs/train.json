@@ -6,7 +6,7 @@
     "bundle_root": "/workspace/brats_mri_segmentation",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "data_list_file_path": "$@bundle_root + '/configs/seg_brats18_datalist_full.json'",
+    "data_list_file_path": "$@bundle_root + '/configs/datalist.json'",
     "data_file_base_dir": "/workspace/data/medical/brats2018challenge",
     "train_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='training', base_dir=@data_file_base_dir)",
     "val_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation', base_dir=@data_file_base_dir)",
