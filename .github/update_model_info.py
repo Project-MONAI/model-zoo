@@ -61,7 +61,7 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
     # step 3
     try:
         for large_file_type in [".yml", ".yaml", ".json"]:
-            large_file_name = "large_file" + large_file_type
+            large_file_name = "large_files" + large_file_type
             large_file_path = os.path.join(temp_path, large_file_name)
             if os.path.exists(large_file_path):
                 download_large_files(bundle_path=temp_path, large_file_name=large_file_name)
