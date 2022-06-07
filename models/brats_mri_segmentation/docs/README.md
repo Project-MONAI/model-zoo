@@ -19,13 +19,18 @@ The training data is from the [Multimodal Brain Tumor Segmentation Challenge (Br
 
 The provided labelled data was partitioned, based on our own split, into training (200 studies), validation (42 studies) and testing (43 studies) datasets.
 
-# Training configuration
+Please run `scripts/prepare_datalist.py` to produce the data list. The command is like:
+
+```
+python scripts/prepare_datalist.py --path your-brats18-dataset-path
+```
+
+## Training configuration
 
 This model utilized a similar approach described in 3D MRI brain tumor segmentation
 using autoencoder regularization, which was a winning method in BraTS2018 [1]. The training was performed with the following:
 
-- Script: train.sh
-- GPU: Atleast 16GB of GPU memory.
+- GPU: At least 16GB of GPU memory.
 - Actual Model Input: 224 x 224 x 144
 - AMP: True
 - Optimizer: Adam
@@ -37,9 +42,9 @@ using autoencoder regularization, which was a winning method in BraTS2018 [1]. T
 Input: 4 channel MRI (4 aligned MRIs T1c, T1, T2, FLAIR at 1x1x1 mm)
 
 1. Normalizing to unit std with zero mean
-1. Randomly cropping to (224, 224, 144)
-1. Randomly spatial flipping
-1. Randomly scaling and shifting intensity of the volume
+2. Randomly cropping to (224, 224, 144)
+3. Randomly spatial flipping
+4. Randomly scaling and shifting intensity of the volume
 
 ## Output
 
@@ -48,14 +53,7 @@ Output: 3 channels
 - Label 1: WT tumor subregion
 - Label 2: ET tumor subregion
 
-# Model Performance
-
-The model was trained with 200 cases with our own split.
-Please run `prepare_datalist.py` to produce the data list. The command is like:
-
-```
-python prepare_datalist.py --path your-brats18-dataset-path
-```
+## Model Performance
 
 The achieved Dice scores on the validation data are:
 - Tumor core (TC): 0.8559

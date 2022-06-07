@@ -52,7 +52,10 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="")
     parser.add_argument(
-        "--path", type=str, default="/workspace/data/medical/brats2018challenge", help="path of brats 2018 dataset."
+        "--path",
+        type=str,
+        default="/workspace/data/medical/brats2018challenge",
+        help="root path of brats 2018 dataset.",
     )
     parser.add_argument(
         "--output", type=str, default="configs/datalist.json", help="relative path of output datalist json file."

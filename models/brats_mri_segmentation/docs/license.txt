@@ -47,9 +47,3 @@ Citations", please be specific and also cite the following:
 [Radiomic Features for the Pre-operative Scans of the TCGA-LGG
 [collection", The Cancer Imaging Archive, 2017. DOI:
 [10.7937/K9/TCIA.2017.GJQ7R0EF
-
-/*********************************************************************/
-iii. NATIONAL CANCER INSTITUTE - Cancer Data Access System PLCO
-/*********************************************************************/
-
-https://biometry.nci.nih.gov/cdas/plco/
