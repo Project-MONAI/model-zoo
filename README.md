@@ -20,7 +20,7 @@ Github limits the size of files allowed in the repository (see [About size limit
 
 ### Prepare a config file for large files
 
-If a bunlde has large files, please upload those files into a publicly accessible source, and provide a config file called `large_file.yml` (or `.yaml`, `.json`) that contains the corresponding download links. During the pull request, only the config file should be included (large files should be excluded). Please put the config file within the root directory of the bundle, and it should contain the following information:
+If a bunlde has large files, please upload those files into a publicly accessible source, and provide a config file called `large_files.yml` (or `.yaml`, `.json`) that contains the corresponding download links. During the pull request, only the config file should be included (large files should be excluded). Please put the config file within the root directory of the bundle, and it should contain the following information:
 
 1. `path`, relative path of the large file in the bundle.
 2. `url`, URL link that can download the file.
@@ -59,7 +59,7 @@ All code changes to the dev branch must be done via [pull requests](https://help
 Ideally, the new branch should be based on the latest `dev` branch.
 1. Make changes to the branch ([use detailed commit messages if possible](https://chris.beams.io/posts/git-commit/)).
 1. [Create a new pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request) from the task branch to the dev branch, with detailed descriptions of the purpose of this pull request.
-1. For any large files inside the bundle, please exclude them and provide the download links instead. Please follow the instructions mentioned above to prepare the necessary `large_file.yml`.
+1. For any large files inside the bundle, please exclude them and provide the download links instead. Please follow the instructions mentioned above to prepare the necessary `large_files.yml`.
 1. Wait for reviews; if there are reviews, make point-to-point responses, make further code changes if needed.
 1. If there are conflicts between the pull request branch and the dev branch, pull the changes from the dev and resolve the conflicts locally.
 1. Reviewer and contributor may have discussions back and forth until all comments addressed.
