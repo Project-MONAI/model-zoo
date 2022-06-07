@@ -27,6 +27,12 @@ def produce_sample_dict(line: str):
 
 
 def produce_datalist(dataset_dir: str):
+    """
+    This function is used to split the dataset.
+    It will produce 200 samples for training, and the other samples are divided equally
+    into val and test sets.
+    """
+
     samples = sorted(glob.glob(os.path.join(dataset_dir, "*", "*"), recursive=True))
     datalist = []
     for line in samples:
@@ -38,10 +44,12 @@ def produce_datalist(dataset_dir: str):
 
 
 def main(args):
-
+    """
+    split the dataset and output the data list into a json file.
+    """
     data_file_base_dir = os.path.join(args.path, "training")
     output_json = args.output
-
+    # produce deterministic data splits
     monai.utils.set_determinism(seed=123)
     datalist = produce_datalist(dataset_dir=data_file_base_dir)
     with open(output_json, "w") as f:
