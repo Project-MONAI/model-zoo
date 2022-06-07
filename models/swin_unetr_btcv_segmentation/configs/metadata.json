@@ -1,0 +1,89 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "complete the model package",
+        "0.0.1": "initialize the model package structure"
+    },
+    "monai_version": "0.9.0rc1+19.g61a0dc35",
+    "pytorch_version": "1.10.0",
+    "numpy_version": "1.21.2",
+    "optional_packages_version": {
+        "nibabel": "3.2.1"
+    },
+    "task": "BTCV multi-organ segmentation",
+    "description": "A pre-trained model for volumetric (3D) multi-organ segmentation from CT image",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "RawData.zip from https://www.synapse.org/#!Synapse:syn3193805/wiki/217752/",
+    "data_type": "nibabel",
+    "image_classes": "single channel data, intensity scaled to [0, 1]",
+    "label_classes": "multi-channel data,0:background,1:spleen, 2:Right Kidney, 3:Left Kideny, 4:Gallbladder, 5:Esophagus, 6:Liver, 7:Stomach, 8:Aorta, 9:IVC, 10:Portal and Splenic Veins, 11:Pancreas, 12:Right adrenal gland, 13:Left adrenal gland",
+    "pred_classes": "14 channels OneHot data, 0:background,1:spleen, 2:Right Kidney, 3:Left Kideny, 4:Gallbladder, 5:Esophagus, 6:Liver, 7:Stomach, 8:Aorta, 9:IVC, 10:Portal and Splenic Veins, 11:Pancreas, 12:Right adrenal gland, 13:Left adrenal gland",
+    "eval_metrics": {
+        "mean_dice": 0.8283
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Hatamizadeh, Ali, et al. 'Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images. arXiv preprint arXiv:2201.01266 (2022). https://arxiv.org/abs/2201.01266.",
+        "Tang, Yucheng, et al. 'Self-supervised pre-training of swin transformers for 3d medical image analysis. arXiv preprint arXiv:2111.14791 (2021). https://arxiv.org/abs/2111.14791."
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "hounsfield",
+                "modality": "CT",
+                "num_channels": 1,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 14,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "background",
+                    "1": "spleen",
+                    "2": "Right Kidney",
+                    "3": "Left Kideny",
+                    "4": "Gallbladder",
+                    "5": "Esophagus",
+                    "6": "Liver",
+                    "7": "Stomach",
+                    "8": "Aorta",
+                    "9": "IVC",
+                    "10": "Portal and Splenic Veins",
+                    "11": "Pancreas",
+                    "12": "Right adrenal gland",
+                    "13": "Left adrenal gland"
+                }
+            }
+        }
+    }
+}
