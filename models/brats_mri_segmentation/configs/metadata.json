@@ -38,9 +38,9 @@
                 "modality": "MR",
                 "num_channels": 4,
                 "spatial_shape": [
-                    "16*(n+1)",
-                    "16*(n+1)",
-                    "16*(n+1)"
+                    "8*n",
+                    "8*n",
+                    "8*n"
                 ],
                 "dtype": "float32",
                 "value_range": [
@@ -59,9 +59,9 @@
                 "format": "segmentation",
                 "num_channels": 3,
                 "spatial_shape": [
-                    "16*(n+1)",
-                    "16*(n+1)",
-                    "16*(n+1)"
+                    "8*n",
+                    "8*n",
+                    "8*n"
                 ],
                 "dtype": "float32",
                 "value_range": [
