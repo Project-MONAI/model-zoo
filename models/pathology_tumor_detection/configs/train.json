@@ -139,7 +139,17 @@
                     2,
                     1
                 ],
-                "label": "$list(range(3, 12))"
+                "label": [
+                    3,
+                    6,
+                    9,
+                    4,
+                    7,
+                    10,
+                    5,
+                    8,
+                    11
+                ]
             },
             "kwargs_read_csv": {
                 "header": null
@@ -280,7 +290,17 @@
                     2,
                     1
                 ],
-                "label": "$list(range(3, 12))"
+                "label": [
+                    3,
+                    6,
+                    9,
+                    4,
+                    7,
+                    10,
+                    5,
+                    8,
+                    11
+                ]
             },
             "kwargs_read_csv": {
                 "header": null
