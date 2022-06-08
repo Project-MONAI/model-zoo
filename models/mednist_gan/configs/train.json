@@ -15,18 +15,48 @@
     "latent_size": 64,
     "discriminator": {
         "_target_": "Discriminator",
-        "in_shape": [1, 64, 64],
-        "channels": [8, 16, 32, 64, 1],
-        "strides": [2, 2, 2, 2, 1],
+        "in_shape": [
+            1,
+            64,
+            64
+        ],
+        "channels": [
+            8,
+            16,
+            32,
+            64,
+            1
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            2,
+            1
+        ],
         "num_res_units": 1,
         "kernel_size": 5
     },
     "generator": {
         "_target_": "Generator",
         "latent_shape": "@latent_size",
-        "start_shape": [64, 8, 8],
-        "channels": [32, 16, 8, 1],
-        "strides": [2, 2, 2, 1]
+        "start_shape": [
+            64,
+            8,
+            8
+        ],
+        "channels": [
+            32,
+            16,
+            8,
+            1
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            1
+        ]
     },
     "dnetwork": "$@discriminator.apply(monai.networks.normal_init).to(@device)",
     "gnetwork": "$@generator.apply(monai.networks.normal_init).to(@device)",
@@ -87,13 +117,19 @@
         "_target_": "torch.optim.Adam",
         "params": "$@dnetwork.parameters()",
         "lr": 0.0002,
-        "betas": [0.5, 0.999]
+        "betas": [
+            0.5,
+            0.999
+        ]
     },
     "goptimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@gnetwork.parameters()",
         "lr": 0.0002,
-        "betas": [0.5, 0.999]
+        "betas": [
+            0.5,
+            0.999
+        ]
     },
     "handlers": [
         {
