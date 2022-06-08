@@ -1,8 +1,46 @@
 
-# Your Model Name
+# MedNIST GAN Hand Model
 
-Describe your model here and how to run it, for example using `inference.json`:
+This model is a generator for creating images like the Hand category in the MedNIST dataset. It was trained as a GAN and accepts random values as inputs to produce an image output. The `train.json` file describes the training process along with the definition of the discriminator network used, and is based on the [MONAI GAN tutorials](https://github.com/Project-MONAI/tutorials/blob/main/modules/mednist_GAN_workflow_dict.ipynb). 
+
+This is a demonstration network meant to just show the training process for this sort of network with MONAI, its outputs are not particularly good and are of the same tiny size as the images in MedNIST. The training process was very short so a network with a longer training time would produce better results. 
+
+### Downloading the Dataset
+
+Download the dataset from [here](https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/MedNIST.tar.gz) and extract the contents to a convenient location. 
+
+The MedNIST dataset was gathered from several sets from [TCIA](https://wiki.cancerimagingarchive.net/display/Public/Data+Usage+Policies+and+Restrictions),
+[the RSNA Bone Age Challenge](http://rsnachallenges.cloudapp.net/competitions/4),
+and [the NIH Chest X-ray dataset](https://cloud.google.com/healthcare/docs/resources/public-datasets/nih-chest).
+
+The dataset is kindly made available by [Dr. Bradley J. Erickson M.D., Ph.D.](https://www.mayo.edu/research/labs/radiology-informatics/overview) (Department of Radiology, Mayo Clinic)
+under the Creative Commons [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
+
+
+If you use the MedNIST dataset, please acknowledge the source.
+
+### Training
+
+Assuming the current directory is the bundle directory, and the dataset was extracted to the directory `./MedNIST`, the following command will train the network for 50 epochs:
 
 ```
-python -m monai.bundle run evaluating             --meta_file /path/to/bundle/configs/metadata.json             --config_file /path/to/bundle/configs/inference.json             --dataset_dir ./input             --bundle_root /path/to/bundle
+PYTHONPATH=./scripts python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf --bundle_root .
 ```
+
+Note that the training code relies on extra scripts in the `scripts` directory which are made accessible by changing the `PYTHONPATH` variable in this invocation. If your `PYTHONPATH` is already used for other things you will have to add `./scripts` to the variable rather than replace it. 
+
+Not also the output from the training will be placed in the `models` directory but will not overwrite the `model.pt` file that may be there already. You will have to manually rename the most recent checkpoint file to `model.pt` to use the inference script mentioned below after checking the results are correct. This saved checkpoint contains a dictionary with the generator weights stored as `model` and omits the discriminator.
+
+Another feature in the training file is the addition of sigmoid activation to the network by modifying it's structure at runtime. This is done with a line in the `training` section calling `add_module` on a layer of the network. This works best for training although the definition of the model now doesn't strictly match what it is in the `generator` section. 
+
+The generator and discriminator networks were both trained with the `Adam` optimizer with a learning rate of 0.0002 and `betas` values `[0.5, 0.999]`. These have been emperically found to be good values for the optimizer and this GAN problem.
+
+### Inference
+
+The included `inference.json` generates a set number of png samples from the network and saves these to the directory `./outputs`. The output directory can be changed by setting the `output_dir` value, and the number of samples changed by setting the `num_samples` value. The following command line assumes it is invoked in the bundle directory:
+
+```
+python -m monai.bundle run inferring --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf --bundle_root .
+```
+
+Note this script uses postprocessing to apply the sigmoid activation the model's outputs and to save the results to image files.

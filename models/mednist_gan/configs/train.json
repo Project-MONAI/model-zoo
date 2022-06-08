@@ -3,6 +3,7 @@
         "$from functools import partial",
         "$import glob",
         "$import numpy as np",
+        "$import torch",
         "$from losses import prepare_batch",
         "$from losses import discriminator_loss",
         "$from losses import generator_loss"
@@ -70,16 +71,6 @@
             }
         ]
     },
-    "postprocessing": {
-        "_target_": "Compose",
-        "transforms": [
-            {
-                "_target_": "Activationsd",
-                "keys": "pred",
-                "sigmoid": true
-            }
-        ]
-    },
     "real_dataset": {
         "_target_": "CacheDataset",
         "data": "$[{'image': i} for i in @datalist]",
@@ -123,19 +114,19 @@
         "train_data_loader": "@real_dataloader",
         "g_network": "@gnetwork",
         "g_optimizer": "@goptimizer",
-        "g_loss_function": "$partial(generator_loss,disc_net=@dnetwork)",
+        "g_loss_function": "$partial(generator_loss, disc_net=@dnetwork)",
         "d_network": "@dnetwork",
         "d_optimizer": "@doptimizer",
-        "d_loss_function": "$partial(discriminator_loss,disc_net=@dnetwork)",
+        "d_loss_function": "$partial(discriminator_loss, disc_net=@dnetwork)",
         "d_prepare_batch": "$prepare_batch",
         "d_train_steps": 5,
         "g_update_latents": true,
         "latent_shape": "@latent_size",
         "key_train_metric": "$None",
-        "train_handlers": "@handlers",
-        "postprocessing": "@postprocessing"
+        "train_handlers": "@handlers"
     },
     "training": [
+        "$@gnetwork.conv.add_module('activation', torch.nn.Sigmoid())",
         "$@trainer.run()"
     ]
 }
