@@ -47,8 +47,7 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
     # step 1
     bundle_path = os.path.join(models_path, bundle_name)
     if not os.path.exists(bundle_path):
-        warnings.warn(f"bundle path: {bundle_path} not exists, skip update.")
-        return (False, "bundle path not exist")
+        return (False, "Bundle path not exist")
 
     # temp_dir = "test_tmp"
     # if not os.path.exists(temp_dir):
@@ -70,7 +69,7 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
                 os.remove(large_file_path)
     except Exception as e:
         shutil.rmtree(temp_dir)
-        return (False, f"download large files error: {e}")
+        return (False, f"Download large files error: {e}")
 
     # step 4
     bundle_metadata_path = os.path.join(temp_path, "configs/metadata.json")
@@ -82,7 +81,7 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
         compress_bundle(root_path=temp_dir, bundle_name=bundle_name, bundle_zip_name=bundle_zip_name)
     except Exception as e:
         shutil.rmtree(temp_dir)
-        return (False, f"compress bundle error: {e}")
+        return (False, f"Compress bundle error: {e}")
 
     hash_func = get_hash_func(hash_type="sha1")
     checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
@@ -92,7 +91,7 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
         source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
     except Exception as e:
         shutil.rmtree(temp_dir)
-        return (False, f"upload bundle error: {e}")
+        return (False, f"Upload bundle error: {e}")
 
     # step 6
     model_info_path = os.path.join(models_path, model_info_file)
@@ -123,7 +122,7 @@ def main():
             if update_state is True:
                 print(f"update bundle: {bundle} successful.")
             else:
-                print(f"update bundle: {bundle} failed, error: {msg}")
+                print(f"update bundle: {bundle} failed. {msg}")
 
 
 if __name__ == "__main__":
