@@ -1,0 +1,92 @@
+{
+    "validate#postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "sigmoid": true
+            },
+            {
+                "_target_": "Invertd",
+                "keys": "pred",
+                "transform": "@validate#preprocessing",
+                "orig_keys": "image",
+                "meta_keys": "pred_meta_dict",
+                "nearest_interp": false,
+                "to_tensor": true,
+                "device": "@validate#evaluator#device"
+            },
+            {
+                "_target_": "AsDiscreted",
+                "keys": "pred",
+                "threshold": 0.5
+            },
+            {
+                "_target_": "SplitChanneld",
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "output_postfixes": [
+                    "tc",
+                    "wt",
+                    "et"
+                ]
+            },
+            {
+                "_target_": "CopyItemsd",
+                "keys": "pred",
+                "names": "pred_combined",
+                "times": 1
+            },
+            {
+                "_target_": "Lambdad",
+                "keys": "pred_combined",
+                "func": "$lambda x: torch.where(x[[2]] > 0, 4, torch.where(x[[0]] > 0, 1, torch.where(x[[1]] > 0, 2, 0)))"
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "pred_combined",
+                "meta_keys": "pred_meta_dict",
+                "output_dir": "@output_dir",
+                "output_postfix": "seg",
+                "output_dtype": "uint8",
+                "resample": false,
+                "squeeze_end_dims": true
+            }
+        ]
+    },
+    "validate#handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@ckpt_dir + '/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false
+        },
+        {
+            "_target_": "MetricsSaver",
+            "save_dir": "@output_dir",
+            "metrics": [
+                "val_mean_dice",
+                "val_mean_dice_tc",
+                "val_mean_dice_wt",
+                "val_mean_dice_et"
+            ],
+            "metric_details": [
+                "val_mean_dice"
+            ],
+            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "summary_ops": "*"
+        }
+    ],
+    "evaluating": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@validate#evaluator.run()"
+    ]
+}
