@@ -13,7 +13,6 @@ import argparse
 import os
 import shutil
 import tempfile
-import warnings
 
 from utils import (
     compress_bundle,
