@@ -1,0 +1,141 @@
+{
+    "imports": [
+        "$from functools import partial",
+        "$import glob",
+        "$import numpy as np",
+        "$from losses import prepare_batch",
+        "$from losses import discriminator_loss",
+        "$from losses import generator_loss"
+    ],
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "ckpt_path": "$@bundle_root + '/models/model.pt'",
+    "dataset_dir": "./MedNIST/Hand",
+    "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.jpeg')))",
+    "latent_size": 64,
+    "discriminator": {
+        "_target_": "Discriminator",
+        "in_shape": [1, 64, 64],
+        "channels": [8, 16, 32, 64, 1],
+        "strides": [2, 2, 2, 2, 1],
+        "num_res_units": 1,
+        "kernel_size": 5
+    },
+    "generator": {
+        "_target_": "Generator",
+        "latent_shape": "@latent_size",
+        "start_shape": [64, 8, 8],
+        "channels": [32, 16, 8, 1],
+        "strides": [2, 2, 2, 1]
+    },
+    "dnetwork": "$@discriminator.apply(monai.networks.normal_init).to(@device)",
+    "gnetwork": "$@generator.apply(monai.networks.normal_init).to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image"
+            },
+            {
+                "_target_": "AddChanneld",
+                "keys": "image"
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image"
+            },
+            {
+                "_target_": "RandRotated",
+                "keys": "image",
+                "range_x": "$np.pi/12",
+                "prob": 0.5,
+                "keep_size": true
+            },
+            {
+                "_target_": "RandFlipd",
+                "keys": "image",
+                "spatial_axis": 0,
+                "prob": 0.5
+            },
+            {
+                "_target_": "RandZoomd",
+                "keys": "image",
+                "min_zoom": 0.9,
+                "max_zoom": 1.1,
+                "prob": 0.5
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "image"
+            }
+        ]
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "sigmoid": true
+            }
+        ]
+    },
+    "real_dataset": {
+        "_target_": "CacheDataset",
+        "data": "$[{'image': i} for i in @datalist]",
+        "transform": "@preprocessing"
+    },
+    "real_dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@real_dataset",
+        "batch_size": 600,
+        "shuffle": true,
+        "num_workers": 12
+    },
+    "doptimizer": {
+        "_target_": "torch.optim.Adam",
+        "params": "$@dnetwork.parameters()",
+        "lr": 0.0002,
+        "betas": [0.5, 0.999]
+    },
+    "goptimizer": {
+        "_target_": "torch.optim.Adam",
+        "params": "$@gnetwork.parameters()",
+        "lr": 0.0002,
+        "betas": [0.5, 0.999]
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointSaver",
+            "save_dir": "$@bundle_root + '/models'",
+            "save_dict": {
+                "model": "@gnetwork"
+            },
+            "save_interval": 0,
+            "save_final": true,
+            "epoch_level": true
+        }
+    ],
+    "trainer": {
+        "_target_": "GanTrainer",
+        "device": "@device",
+        "max_epochs": 50,
+        "train_data_loader": "@real_dataloader",
+        "g_network": "@gnetwork",
+        "g_optimizer": "@goptimizer",
+        "g_loss_function": "$partial(generator_loss,disc_net=@dnetwork)",
+        "d_network": "@dnetwork",
+        "d_optimizer": "@doptimizer",
+        "d_loss_function": "$partial(discriminator_loss,disc_net=@dnetwork)",
+        "d_prepare_batch": "$prepare_batch",
+        "d_train_steps": 5,
+        "g_update_latents": true,
+        "latent_shape": "@latent_size",
+        "key_train_metric": "$None",
+        "train_handlers": "@handlers",
+        "postprocessing": "@postprocessing"
+    },
+    "training": [
+        "$@trainer.run()"
+    ]
+}

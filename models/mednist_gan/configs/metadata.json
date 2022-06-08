@@ -1,0 +1,47 @@
+{
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "Initial version"
+    },
+    "monai_version": "0.9.0",
+    "pytorch_version": "1.10.0",
+    "numpy_version": "1.21.0",
+    "optional_packages_version": {
+        "pytorch-ignite": "0.4.8"
+    },
+    "task": "Generate random hand images from the MedNIST dataset",
+    "description": "This example of a GAN generator produces hand xray images like those in the MedNIST dataset",
+    "authors": "MONAI Team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "intended_use": "This is an example of a GAN with generator discriminator networks using MONAI, suitable for demonstration purposes only.",
+    "data_source": "MedNIST dataset kindly made available by Dr. Bradley J. Erickson M.D., Ph.D. (Department of Radiology, Mayo Clinic)",
+    "data_type": "jpeg",
+    "network_data_format": {
+        "inputs": {
+            "latent": {
+                "type": "tuples",
+                "format": "latent",
+                "num_channels": 0,
+                "spatial_shape": [64],
+                "dtype": "float32",
+                "value_range": [0, 1],
+                "is_patch_data": false,
+                "channel_def": {}
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "magnitude",
+                "num_channels": 1,
+                "spatial_shape": [64, 64],
+                "dtype": "float32",
+                "value_range": [0, 1],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        }
+    }
+}
