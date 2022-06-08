@@ -22,9 +22,14 @@
                 "type": "tuples",
                 "format": "latent",
                 "num_channels": 0,
-                "spatial_shape": [64],
+                "spatial_shape": [
+                    64
+                ],
                 "dtype": "float32",
-                "value_range": [0, 1],
+                "value_range": [
+                    0,
+                    1
+                ],
                 "is_patch_data": false,
                 "channel_def": {}
             }
@@ -34,9 +39,15 @@
                 "type": "image",
                 "format": "magnitude",
                 "num_channels": 1,
-                "spatial_shape": [64, 64],
+                "spatial_shape": [
+                    64,
+                    64
+                ],
                 "dtype": "float32",
-                "value_range": [0, 1],
+                "value_range": [
+                    0,
+                    1
+                ],
                 "is_patch_data": false,
                 "channel_def": {
                     "0": "image"

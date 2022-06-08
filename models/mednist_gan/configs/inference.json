@@ -1,5 +1,8 @@
 {
-    "imports": ["$import glob", "$import torch"],
+    "imports": [
+        "$import glob",
+        "$import torch"
+    ],
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
     "output_dir": "./outputs",
@@ -8,9 +11,23 @@
     "network_def": {
         "_target_": "Generator",
         "latent_shape": "@latent_size",
-        "start_shape": [64, 8, 8],
-        "channels": [32, 16, 8, 1],
-        "strides": [2, 2, 2, 1]
+        "start_shape": [
+            64,
+            8,
+            8
+        ],
+        "channels": [
+            32,
+            16,
+            8,
+            1
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            1
+        ]
     },
     "network": "$@network_def.to(@device)",
     "dataset": {
@@ -66,5 +83,7 @@
         "prepare_batch": "$lambda batchdata, *_,**__: (batchdata.to(@device),None,(),{})",
         "val_handlers": "@handlers"
     },
-    "inferring": ["$@evaluator.run()"]
+    "inferring": [
+        "$@evaluator.run()"
+    ]
 }
