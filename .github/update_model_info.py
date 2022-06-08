@@ -121,7 +121,7 @@ def main():
             if update_state is True:
                 print(f"update bundle: {bundle} successful.")
             else:
-                print(f"update bundle: {bundle} failed. {msg}")
+                raise AssertionError(f"update bundle: {bundle} failed. {msg}")
 
 
 if __name__ == "__main__":
