@@ -44,3 +44,21 @@ python -m monai.bundle run inferring --meta_file configs/metadata.json --config_
 ```
 
 Note this script uses postprocessing to apply the sigmoid activation the model's outputs and to save the results to image files.
+
+
+### Export
+
+The generator can be exported to a Torchscript bundle with the following:
+
+```
+python -m monai.bundle ckpt_export network_def --filepath mednist_gan.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
+```
+
+The model can be loaded without MONAI code after this operation. For example, an image can be generated from a set of random values with:
+
+```python
+import torch
+net = torch.jit.load("mednist_gan.ts")
+latent = torch.rand(1,64)
+img = net(latent)  # (1,1,64,64)
+```
