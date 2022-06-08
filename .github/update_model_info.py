@@ -23,6 +23,7 @@ from utils import (
     get_json_dict,
     save_model_info,
     upload_bundle,
+    get_changed_bundle_list,
 )
 
 
@@ -68,10 +69,8 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
                 # remove the large file config
                 os.remove(large_file_path)
     except Exception as e:
-        print(e)
-        warnings.warn(f"download large files of bundle: {bundle_name} failed, skip update.")
         shutil.rmtree(temp_dir)
-        return (False, "download large files failed")
+        return (False, e)
 
     # step 4
     bundle_metadata_path = os.path.join(temp_path, "configs/metadata.json")
@@ -82,10 +81,8 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
     try:
         compress_bundle(root_path=temp_dir, bundle_name=bundle_name, bundle_zip_name=bundle_zip_name)
     except Exception as e:
-        print(e)
-        warnings.warn(f"compress: {bundle_name} failed, skip update.")
         shutil.rmtree(temp_dir)
-        return (False, "compress bundle failed")
+        return (False, e)
 
     hash_func = get_hash_func(hash_type="sha1")
     checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
@@ -94,10 +91,8 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
     try:
         source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
     except Exception as e:
-        print(e)
-        warnings.warn(f"upload bundle: {bundle_name} failed, skip update.")
         shutil.rmtree(temp_dir)
-        return (False, "upload bundle failed")
+        return (False, e)
 
     # step 6
     model_info_path = os.path.join(models_path, model_info_file)
@@ -110,21 +105,25 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
     model_info[bundle_name]["version"] = latest_version
     model_info[bundle_name]["source"] = source
 
-    print(model_info)
     save_model_info(model_info, model_info_path)
 
     shutil.rmtree(temp_dir)
-    return (True, "")
+    return (True, "update successful")
 
 
 def main():
     parser = argparse.ArgumentParser(description="")
-
-    parser.add_argument("-b", "--bundle", type=str, help="bundle names to be updated.")
+    parser.add_argument("-f", "--f", type=str, help="changed files.")
     args = parser.parse_args()
-    bundle = args.bundle
-    if bundle is not None:
-        update_model_info(bundle_name=bundle)
+    changed_dirs = args.f.splitlines()
+    bundle_list = get_changed_bundle_list(changed_dirs)
+    if len(bundle_list) > 0:
+        for bundle in bundle_list:
+            update_state, msg = update_model_info(bundle_name=bundle)
+            if update_state is True:
+                print(f"update bundle: {bundle} successful.")
+            else:
+                print(f"update bundle: {bundle} failed, error: {msg}")
 
 
 if __name__ == "__main__":
