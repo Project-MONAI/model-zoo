@@ -18,12 +18,12 @@ import warnings
 from utils import (
     compress_bundle,
     download_large_files,
+    get_changed_bundle_list,
     get_checksum,
     get_hash_func,
     get_json_dict,
     save_model_info,
     upload_bundle,
-    get_changed_bundle_list,
 )
 
 

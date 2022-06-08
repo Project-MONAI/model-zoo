@@ -21,8 +21,9 @@ jobs:
       run: |
         python -m pip install -r requirements.txt
         changes=$(git diff --name-only HEAD^..HEAD -- models)
+        changes="models/spleen_ct_segmentation/"
         if [ ! -z "$changes" ]; then
-          python $(pwd)/.github/update_model_info.py --f "models/spleen_ct_segmentation/"
+          python $(pwd)/.github/update_model_info.py --f "$changes"
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
