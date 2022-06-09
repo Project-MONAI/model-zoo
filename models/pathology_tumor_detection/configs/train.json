@@ -3,12 +3,13 @@
         "$import os",
         "$import ignite"
     ],
-    "bundle_root": ".",
     "lr": 0.001,
-    "num_epochs": 2,
-    "ckpt_dir": "$@bundle_root + 'run/models'",
-    "output_dir": "$@bundle_root + 'run/eval'",
-    "data_dir": "/extra/datasets/CAMELYON16",
+    "num_epochs": 4,
+    "bundle_root": "./",
+    "result_root": "/results/",
+    "data_root": "/workspace/data/medical/pathology",
+    "ckpt_dir": "$os.path.join(@result_root, 'run', 'models')",
+    "output_dir": "$os.path.join(@result_root, 'run', 'log')",
     "train_file": "$os.path.join(@bundle_root, 'training.csv')",
     "validate_file": "$os.path.join(@bundle_root, 'validation.csv')",
     "region_size": [
@@ -157,7 +158,7 @@
             "transform": {
                 "_target_": "Lambdad",
                 "keys": "image",
-                "func": "$lambda x: os.path.join(@data_dir, 'training/images', x + '.tif')"
+                "func": "$lambda x: os.path.join(@data_root, 'training/images', x + '.tif')"
             }
         },
         "dataset": {
