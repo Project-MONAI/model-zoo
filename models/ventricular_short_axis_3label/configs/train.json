@@ -1,0 +1,277 @@
+{
+    "imports": [
+        "$from functools import partial",
+        "$import numpy as np",
+        "$import torch",
+        "$from ignite.engine import Events"
+    ],
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "ckpt_path": "$@bundle_root + '/models/model.pt'",
+    "dataset_file": "./allimages3label.npz",
+    "network_def": {
+        "_target_": "UNet",
+        "spatial_dims": 2,
+        "in_channels": 1,
+        "out_channels": 4,
+        "channels": [16, 32, 64, 128, 256],
+        "strides": [2, 2, 2, 2],
+        "num_res_units": 2
+    },
+    "network": "$@network_def.to(@device)",
+    "npz": {
+        "_target_": "NPZDictItemDataset",
+        "npzfile": "$@dataset_file",
+        "keys": {
+            "images": "image",
+            "segs": "label"
+        }
+    },
+    "partitions": "$monai.data.partition_dataset(np.arange(len(@npz)),(8,2), shuffle=True)",
+    "train_sub": "$torch.utils.data.Subset(@npz,@partitions[0])",
+    "eval_sub": "$torch.utils.data.Subset(@npz,@partitions[1])",
+    "im_shape": "$@train_sub[0]['image'].shape",
+    "both_keys": [
+        "image",
+        "label"
+    ],
+    "rand_prob": 0.5,
+    "train_transforms": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "CastToTyped",
+                "keys": "@both_keys",
+                "dtype": "$(np.float32, np.int32)"
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image"
+            },
+            {
+                "_target_": "AddChanneld",
+                "keys": "@both_keys"
+            },
+            {
+                "_target_": "RandAxisFlipd",
+                "keys": "@both_keys",
+                "prob": "@rand_prob"
+            },
+            {
+                "_target_": "RandRotate90d",
+                "keys": "@both_keys",
+                "prob": "@rand_prob"
+            },
+            {
+                "_target_": "RandSmoothDeformd",
+                "keys": "@both_keys",
+                "prob": "@rand_prob",
+                "spatial_size": "@im_shape",
+                "rand_size": [3, 3],
+                "pad": 2,
+                "def_range": 0.1,
+                "field_mode": "$monai.utils.InterpolateMode.BICUBIC",
+                "grid_mode": "$(monai.utils.GridSampleMode.BICUBIC, monai.utils.GridSampleMode.NEAREST)",
+                "align_corners": true
+            },
+            {
+                "_target_": "RandAffined",
+                "keys": "@both_keys",
+                "prob": "@rand_prob",
+                "rotate_range": 0.5,
+                "translate_range": 50,
+                "scale_range": 0.25,
+                "padding_mode": "$monai.utils.GridSamplePadMode.ZEROS",
+                "mode": "$(monai.utils.GridSampleMode.BILINEAR,monai.utils.GridSampleMode.NEAREST)",
+                "as_tensor_output": false
+            },
+            {
+                "_target_": "RandSmoothFieldAdjustContrastd",
+                "keys": "image",
+                "prob": "@rand_prob",
+                "spatial_size": "@im_shape",
+                "rand_size": [8, 8],
+                "gamma": [0.25, 3],
+                "mode": "$monai.utils.InterpolateMode.BICUBIC",
+                "align_corners": true
+            },
+            {
+                "_target_": "RandSmoothFieldAdjustIntensityd",
+                "keys": "image",
+                "prob": "@rand_prob",
+                "spatial_size": "@im_shape",
+                "rand_size": [5, 5],
+                "gamma": [0.1, 1],
+                "mode": "$monai.utils.InterpolateMode.BICUBIC",
+                "align_corners": true
+            },
+            {
+                "_target_": "RandGaussianNoised",
+                "keys": "image",
+                "prob": "@rand_prob",
+                "std": 0.05
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image"
+            },
+            {
+                "_target_": "CastToTyped",
+                "keys": "@both_keys",
+                "dtype": "$(np.float32, np.int32)"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "@both_keys"
+            }
+        ]
+    },
+    "eval_transforms": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "CastToTyped",
+                "keys": "@both_keys",
+                "dtype": "$(np.float32, np.int32)"
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image"
+            },
+            {
+                "_target_": "AddChanneld",
+                "keys": "@both_keys"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "@both_keys"
+            }
+        ]
+    },
+    "train_dataset": {
+        "_target_": "CacheDataset",
+        "data": "@train_sub",
+        "transform": "@train_transforms"
+    },
+    "eval_dataset": {
+        "_target_": "CacheDataset",
+        "data": "@eval_sub",
+        "transform": "@eval_transforms"
+    },
+    "train_no_aug_dataset": {
+        "_target_": "CacheDataset",
+        "data": "@train_sub",
+        "transform": "@eval_transforms"
+    },
+    "num_iters": 400,
+    "batch_size": 200,
+    "num_epochs": 50,
+    "num_substeps": 5,
+    "sampler": {
+        "_target_": "torch.utils.data.WeightedRandomSampler",
+        "weights": "$torch.ones(len(@train_dataset))",
+        "replacement": true,
+        "num_samples": "$@num_iters*@batch_size"
+    },
+    "train_dataloader": {
+        "_target_": "ThreadDataLoader",
+        "dataset": "@train_dataset",
+        "batch_size": "@batch_size",
+        "repeats": "@num_substeps",
+        "num_workers": 8,
+        "sampler": "@sampler"
+    },
+    "eval_dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@eval_dataset",
+        "batch_size": "@batch_size",
+        "num_workers": 4
+    },
+    "lossfn": {
+        "_target_": "DiceLoss",
+        "include_background": false,
+        "to_onehot_y": true,
+        "softmax": true
+    },
+    "optimizer": {
+        "_target_": "torch.optim.Adam",
+        "params": "$@network.parameters()",
+        "lr": 0.001
+    },
+    "post_transform": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "softmax": true
+            },
+            {
+                "_target_": "AsDiscreted",
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "argmax": [true, false],
+                "to_onehot": 4
+            }
+        ]
+    },
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@eval_dataloader",
+        "network": "@network",
+        "postprocessing": "@post_transform",
+        "key_val_metric": {
+            "val_mean_dice": {
+                "_target_": "MeanDice",
+                "include_background": false,
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "val_handlers": [
+            {
+                "_target_": "StatsHandler",
+                "output_transform": "$lambda x: None"
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "ValidationHandler",
+            "validator": "@evaluator",
+            "epoch_level": true,
+            "interval": 1
+        },
+        {
+            "_target_": "CheckpointSaver",
+            "save_dir": "$@bundle_root + '/models'",
+            "save_dict": {
+                "model": "@network"
+            },
+            "save_interval": 1,
+            "save_final": true,
+            "epoch_level": true
+        },
+        {
+            "_target_": "StatsHandler",
+            "tag_name": "train_loss",
+            "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+        }
+    ],
+    "trainer": {
+        "_target_": "SupervisedTrainer",
+        "max_epochs": "@num_epochs",
+        "device": "@device",
+        "train_data_loader": "@train_dataloader",
+        "network": "@network",
+        "loss_function": "@lossfn",
+        "optimizer": "@optimizer",
+        "postprocessing": "@post_transform",
+        "key_train_metric": "$None",
+        "train_handlers": "@handlers"
+    },
+    "training": [
+        "$@trainer.run()"
+    ]
+}
