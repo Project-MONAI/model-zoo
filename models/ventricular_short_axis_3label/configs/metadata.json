@@ -19,7 +19,10 @@
                 "format": "magnitude",
                 "modality": "MR",
                 "num_channels": 1,
-                "spatial_shape": [256, 256],
+                "spatial_shape": [
+                    256,
+                    256
+                ],
                 "dtype": "float32",
                 "value_range": [],
                 "is_patch_data": false,
@@ -33,9 +36,15 @@
                 "type": "image",
                 "format": "segmentation",
                 "num_channels": 4,
-                "spatial_shape": [256, 256],
+                "spatial_shape": [
+                    256,
+                    256
+                ],
                 "dtype": "float32",
-                "value_range": [0, 3],
+                "value_range": [
+                    0,
+                    3
+                ],
                 "is_patch_data": false,
                 "channel_def": {
                     "0": "background",

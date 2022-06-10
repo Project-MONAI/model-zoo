@@ -9,17 +9,17 @@ The network and training scheme are essentially identical to that described in:
 
 ## Data
 
-The dataset used to train this network unfortunately cannot be made public as it contains unreleased image data from King's College London. Existing public datasets such as the[Sunnybrook Cardiac Dataset](http://www.cardiacatlas.org/studies/sunnybrook-cardiac-data/) and [ACDC Challenge](https://www.creatis.insa-lyon.fr/Challenge/acdc/) set can be used to train a similar network. 
+The dataset used to train this network unfortunately cannot be made public as it contains unreleased image data from King's College London. Existing public datasets such as the[Sunnybrook Cardiac Dataset](http://www.cardiacatlas.org/studies/sunnybrook-cardiac-data/) and [ACDC Challenge](https://www.creatis.insa-lyon.fr/Challenge/acdc/) set can be used to train a similar network.
 
 The `train.json` configuration assumes all data is stored in a single npz file with keys "images" and "segs" containing respectively the raw image data and their accompanying segmentations. The given network was training with stored volumes with shapes `(9095, 256, 256)` thus other data of differing spatial dimensions must be cropped to `(256, 256)` or zero-padded to that size. For the training data this was done as a preprocessing step but the original pixel values are otherwise unchanged from their original forms.
 
 ## Training
 
-The network is trained with this data in conjunction with a series of augmentations for regularisation and robustness. Many of the original images are smaller than the expected size of `(256, 256)` and so were zero-padded, the network can thus be expected to be robust against large amounts of empty space in the inputs. Rotation and zooming is also applied to force the network to learn different sizes and orientations of the heart in the field of view. 
+The network is trained with this data in conjunction with a series of augmentations for regularisation and robustness. Many of the original images are smaller than the expected size of `(256, 256)` and so were zero-padded, the network can thus be expected to be robust against large amounts of empty space in the inputs. Rotation and zooming is also applied to force the network to learn different sizes and orientations of the heart in the field of view.
 
 Free-form deformation is applied to vary the shape of the heart and its surrounding tissues which mimics to a degree deformation like what would be observed through the cardiac cycle. This of course does not replicate the heart moving through plane during the cycle or represent other observed changes but does provide enough variation that full-cycle segmentation is generally acceptable.
 
-Smooth fields are used to vary contrast and intensity in localised regions to simulate some of the variation in image quality caused by acquisition artefacts. Guassian noise is also added to simulate poor quality acquisition. These together force the network to learn to deal with a wider variation of image quality and partially to account for the difference between scanner vendors. 
+Smooth fields are used to vary contrast and intensity in localised regions to simulate some of the variation in image quality caused by acquisition artefacts. Guassian noise is also added to simulate poor quality acquisition. These together force the network to learn to deal with a wider variation of image quality and partially to account for the difference between scanner vendors.
 
 Training is invoked with the following command line:
 
@@ -27,7 +27,7 @@ Training is invoked with the following command line:
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf --bundle_root .
 ```
 
-The dataset file is assumed to be `allimages3label.npz` but can be changed by setting the `dataset_file` value to your own file.  
+The dataset file is assumed to be `allimages3label.npz` but can be changed by setting the `dataset_file` value to your own file.
 
 ## Inference
 

@@ -13,8 +13,19 @@
         "spatial_dims": 2,
         "in_channels": 1,
         "out_channels": 4,
-        "channels": [16, 32, 64, 128, 256],
-        "strides": [2, 2, 2, 2],
+        "channels": [
+            16,
+            32,
+            64,
+            128,
+            256
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            2
+        ],
         "num_res_units": 2
     },
     "network": "$@network_def.to(@device)",
@@ -66,7 +77,10 @@
                 "keys": "@both_keys",
                 "prob": "@rand_prob",
                 "spatial_size": "@im_shape",
-                "rand_size": [3, 3],
+                "rand_size": [
+                    3,
+                    3
+                ],
                 "pad": 2,
                 "def_range": 0.1,
                 "field_mode": "$monai.utils.InterpolateMode.BICUBIC",
@@ -89,8 +103,14 @@
                 "keys": "image",
                 "prob": "@rand_prob",
                 "spatial_size": "@im_shape",
-                "rand_size": [8, 8],
-                "gamma": [0.25, 3],
+                "rand_size": [
+                    8,
+                    8
+                ],
+                "gamma": [
+                    0.25,
+                    3
+                ],
                 "mode": "$monai.utils.InterpolateMode.BICUBIC",
                 "align_corners": true
             },
@@ -99,8 +119,14 @@
                 "keys": "image",
                 "prob": "@rand_prob",
                 "spatial_size": "@im_shape",
-                "rand_size": [5, 5],
-                "gamma": [0.1, 1],
+                "rand_size": [
+                    5,
+                    5
+                ],
+                "gamma": [
+                    0.1,
+                    1
+                ],
                 "mode": "$monai.utils.InterpolateMode.BICUBIC",
                 "align_corners": true
             },
@@ -211,7 +237,10 @@
                     "pred",
                     "label"
                 ],
-                "argmax": [true, false],
+                "argmax": [
+                    true,
+                    false
+                ],
                 "to_onehot": 4
             }
         ]
