@@ -1,0 +1,49 @@
+{
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "Initial version"
+    },
+    "monai_version": "0.9.0",
+    "pytorch_version": "1.10.2",
+    "numpy_version": "1.21.2",
+    "optional_packages_version": {},
+    "task": "Segments the left and right ventricle in 2D short axis MR images",
+    "description": "This network segments full cycle short axis images of the ventricles, labelling LV pool separate from myocardium and RV pool",
+    "authors": "Eric Kerfoot",
+    "copyright": "Copyright (c) Eric Kerfoot, KCL",
+    "license": "See license.txt",
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "MR",
+                "num_channels": 1,
+                "spatial_shape": [256, 256],
+                "dtype": "float32",
+                "value_range": [],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 4,
+                "spatial_shape": [256, 256],
+                "dtype": "float32",
+                "value_range": [0, 3],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "background",
+                    "1": "lv_pool",
+                    "2": "myocardium",
+                    "3": "rv_pool"
+                }
+            }
+        }
+    }
+}
