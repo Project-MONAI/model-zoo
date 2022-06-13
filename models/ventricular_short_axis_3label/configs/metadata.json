@@ -7,7 +7,10 @@
     "monai_version": "0.9.0",
     "pytorch_version": "1.10.2",
     "numpy_version": "1.21.2",
-    "optional_packages_version": {},
+    "optional_packages_version": {
+        "nibabel": "3.2.1",
+        "pytorch-ignite": "0.4.8"
+    },
     "task": "Segments the left and right ventricle in 2D short axis MR images",
     "description": "This network segments full cycle short axis images of the ventricles, labelling LV pool separate from myocardium and RV pool",
     "authors": "Eric Kerfoot",
