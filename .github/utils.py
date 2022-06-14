@@ -82,7 +82,7 @@ def save_model_info(model_info_dict, model_info_path: str):
         json.dump(model_info_dict, f)
 
 
-def push_new_model_info_commit(model_info_path: str):
+def push_new_model_info_branch(model_info_path: str):
     merged_pr_num = os.environ["PR_NUMBER"]
     email = os.environ["email"]
     username = os.environ["username"]

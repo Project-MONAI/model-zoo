@@ -21,7 +21,7 @@ from utils import (
     get_checksum,
     get_hash_func,
     get_json_dict,
-    push_new_model_info_commit,
+    push_new_model_info_branch,
     save_model_info,
     upload_bundle,
 )
