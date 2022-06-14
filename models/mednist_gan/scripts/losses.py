@@ -6,10 +6,6 @@ real_label = 1
 fake_label = 0
 
 
-def prepare_batch(batchdata, device=None, non_blocking=False):
-    return batchdata["image"].to(device=device, non_blocking=non_blocking)
-
-
 def discriminator_loss(gen_images, real_images, disc_net):
     real = real_images.new_full((real_images.shape[0], 1), real_label)
     gen = gen_images.new_full((gen_images.shape[0], 1), fake_label)

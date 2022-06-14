@@ -2,9 +2,6 @@
     "imports": [
         "$from functools import partial",
         "$import glob",
-        "$import numpy as np",
-        "$import torch",
-        "$from losses import prepare_batch",
         "$from losses import discriminator_loss",
         "$from losses import generator_loss"
     ],
@@ -65,45 +62,45 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": "reals"
             },
             {
                 "_target_": "AddChanneld",
-                "keys": "image"
+                "keys": "reals"
             },
             {
                 "_target_": "ScaleIntensityd",
-                "keys": "image"
+                "keys": "reals"
             },
             {
                 "_target_": "RandRotated",
-                "keys": "image",
+                "keys": "reals",
                 "range_x": "$np.pi/12",
                 "prob": 0.5,
                 "keep_size": true
             },
             {
                 "_target_": "RandFlipd",
-                "keys": "image",
+                "keys": "reals",
                 "spatial_axis": 0,
                 "prob": 0.5
             },
             {
                 "_target_": "RandZoomd",
-                "keys": "image",
+                "keys": "reals",
                 "min_zoom": 0.9,
                 "max_zoom": 1.1,
                 "prob": 0.5
             },
             {
                 "_target_": "EnsureTyped",
-                "keys": "image"
+                "keys": "reals"
             }
         ]
     },
     "real_dataset": {
         "_target_": "CacheDataset",
-        "data": "$[{'image': i} for i in @datalist]",
+        "data": "$[{'reals': i} for i in @datalist]",
         "transform": "@preprocessing"
     },
     "real_dataloader": {
@@ -154,7 +151,6 @@
         "d_network": "@dnetwork",
         "d_optimizer": "@doptimizer",
         "d_loss_function": "$partial(discriminator_loss, disc_net=@dnetwork)",
-        "d_prepare_batch": "$prepare_batch",
         "d_train_steps": 5,
         "g_update_latents": true,
         "latent_shape": "@latent_size",
