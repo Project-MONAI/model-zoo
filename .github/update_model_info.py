@@ -21,6 +21,7 @@ from utils import (
     get_checksum,
     get_hash_func,
     get_json_dict,
+    push_new_model_info_commit,
     save_model_info,
     upload_bundle,
 )
@@ -104,7 +105,6 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
     model_info[bundle_name]["source"] = source
 
     save_model_info(model_info, model_info_path)
-
     shutil.rmtree(temp_dir)
     return (True, "update successful")
 
@@ -115,13 +115,19 @@ def main():
     args = parser.parse_args()
     changed_dirs = args.f.splitlines()
     bundle_list = get_changed_bundle_list(changed_dirs)
+    models_path = "models"
+    model_info_file = "model_info.json"
     if len(bundle_list) > 0:
         for bundle in bundle_list:
-            update_state, msg = update_model_info(bundle_name=bundle)
+            update_state, msg = update_model_info(
+                bundle_name=bundle, models_path=models_path, model_info_file=model_info_file
+            )
             if update_state is True:
                 print(f"update bundle: {bundle} successful.")
             else:
                 raise AssertionError(f"update bundle: {bundle} failed. {msg}")
+    # push a commit that contains the updated model_info.json
+    push_new_model_info_commit(model_info_path=os.path.join(models_path, model_info_file))
 
 
 if __name__ == "__main__":
