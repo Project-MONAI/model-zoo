@@ -13,20 +13,21 @@
         "pytorch-ignite": "0.4.8"
     },
     "task": "Decathlon spleen segmentation",
-    "description": "This is a pre-trained model for 3D segmentation of the spleen organ from CT images using DeepEdit.",
+    "description": "A pre-trained model for volumetric (3D) segmentation of the spleen from CT image",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "Task09_Spleen.tar from http://medicaldecathlon.com/",
     "data_type": "nibabel",
     "image_classes": "single channel data, intensity scaled to [0, 1]",
-    "label_classes": "single channel data, 1 is spleen, 0 is background",
+    "label_classes": "single channel data, 1 is spleen, 0 is everything else",
     "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.92
+        "mean_dice": 0.96
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
-        "Sakinis, Tomas, et al. 'Interactive segmentation of medical images through fully convolutional neural networks.' arXiv preprint arXiv:1903.08205 (2019)"
+        "Xia, Yingda, et al. '3D Semi-Supervised Learning with Uncertainty-Aware Multi-View Co-Training. arXiv preprint arXiv:1811.12506 (2018). https://arxiv.org/abs/1811.12506.",
+        "Kerfoot E., Clough J., Oksuz I., Lee J., King A.P., Schnabel J.A. (2019) Left-Ventricle Quantification Using Residual U-Net. In: Pop M. et al. (eds) Statistical Atlases and Computational Models of the Heart. Atrial Segmentation and LV Quantification Challenges. STACOM 2018. Lecture Notes in Computer Science, vol 11395. Springer, Cham. https://doi.org/10.1007/978-3-030-12029-0_40"
     ],
     "network_data_format": {
         "inputs": {
@@ -34,18 +35,18 @@
                 "type": "image",
                 "format": "hounsfield",
                 "modality": "CT",
-                "num_channels": 3,
+                "num_channels": 1,
                 "spatial_shape": [
-                    128,
-                    128,
-                    128
+                    96,
+                    96,
+                    96
                 ],
                 "dtype": "float32",
                 "value_range": [
                     0,
                     1
                 ],
-                "is_patch_data": false,
+                "is_patch_data": true,
                 "channel_def": {
                     "0": "image"
                 }
@@ -57,16 +58,16 @@
                 "format": "segmentation",
                 "num_channels": 2,
                 "spatial_shape": [
-                    128,
-                    128,
-                    128
+                    96,
+                    96,
+                    96
                 ],
                 "dtype": "float32",
                 "value_range": [
                     0,
                     1
                 ],
-                "is_patch_data": false,
+                "is_patch_data": true,
                 "channel_def": {
                     "0": "background",
                     "1": "spleen"
