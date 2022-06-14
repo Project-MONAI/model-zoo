@@ -8,7 +8,8 @@
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.0",
     "optional_packages_version": {
-        "pytorch-ignite": "0.4.8"
+        "pytorch-ignite": "0.4.8",
+        "pillow": "8.4.0"
     },
     "task": "Generate random hand images from the MedNIST dataset",
     "description": "This example of a GAN generator produces hand xray images like those in the MedNIST dataset",
