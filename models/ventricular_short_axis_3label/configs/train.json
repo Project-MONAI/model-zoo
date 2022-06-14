@@ -297,7 +297,7 @@
         "loss_function": "@lossfn",
         "optimizer": "@optimizer",
         "postprocessing": "@post_transform",
-        "key_train_metric": "$None",
+        "key_train_metric": null,
         "train_handlers": "@handlers"
     },
     "training": [
