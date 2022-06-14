@@ -94,7 +94,8 @@ def push_new_model_info_commit(model_info_path: str):
     commit_message = "git commit -m 'auto update model_info'"
     full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
 
-    subprocess.run(full_cmd, shell=True)
+    call_status = subprocess.run(full_cmd, shell=True)
+    call_status.check_returncode()
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
