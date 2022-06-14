@@ -127,10 +127,7 @@ def main():
             else:
                 raise AssertionError(f"update bundle: {bundle} failed. {msg}")
     # push a new branch that contains the updated model_info.json
-    try:
-        push_new_model_info_branch(model_info_path=os.path.join(models_path, model_info_file))
-    except Exception as e:
-        raise AssertionError(f"push new branch error: {e}")
+    push_new_model_info_branch(model_info_path=os.path.join(models_path, model_info_file))
 
 
 if __name__ == "__main__":
