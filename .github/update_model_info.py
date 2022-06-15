@@ -27,38 +27,23 @@ from utils import (
 )
 
 
-def update_model_info(bundle_name: str, models_path: str = "models", model_info_file: str = "model_info.json"):
+def update_model_info(bundle_name: str, temp_dir:str, models_path: str = "models", model_info_file: str = "model_info.json"):
     """
     For a changed model (bundle), this function is used to do the following steps in order to update it:
 
-    1. check if bundle folder exists.
-    2. create a temporary copy of the bundle.
-    3. download large files (if having the corresponding config file) into the copy.
-    4. compress the copy.
-    5. upload a compressed copy.
-    6. update `model_info_file`.
+    1. download large files (if having the corresponding config file) into the copy.
+    2. compress the copy.
+    3. upload a compressed copy.
+    4. update `model_info_file`.
 
     Returns:
         a 2-tuple.
         If update successful, the form is (True,"").
         If update failed, the form is (False, "error reason")
     """
-
-    # step 1
-    bundle_path = os.path.join(models_path, bundle_name)
-    if not os.path.exists(bundle_path):
-        return (False, "Bundle path not exist")
-
-    # temp_dir = "test_tmp"
-    # if not os.path.exists(temp_dir):
-    #     os.makedirs(temp_dir)
-
-    # step 2
-    temp_dir = tempfile.mkdtemp()
     temp_path = os.path.join(temp_dir, bundle_name)
-    shutil.copytree(bundle_path, temp_path)
-
-    # step 3
+    shutil.copytree(os.path.join(models_path, bundle_name), temp_path)
+    # step 1
     try:
         for large_file_type in [".yml", ".yaml", ".json"]:
             large_file_name = "large_files" + large_file_type
@@ -68,10 +53,9 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
                 # remove the large file config
                 os.remove(large_file_path)
     except Exception as e:
-        shutil.rmtree(temp_dir)
         return (False, f"Download large files error: {e}")
 
-    # step 4
+    # step 2
     bundle_metadata_path = os.path.join(temp_path, "configs/metadata.json")
     metadata = get_json_dict(bundle_metadata_path)
     latest_version = metadata["version"]
@@ -80,20 +64,18 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
     try:
         compress_bundle(root_path=temp_dir, bundle_name=bundle_name, bundle_zip_name=bundle_zip_name)
     except Exception as e:
-        shutil.rmtree(temp_dir)
         return (False, f"Compress bundle error: {e}")
 
     hash_func = get_hash_func(hash_type="sha1")
     checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
 
-    # step 5
+    # step 3
     try:
         source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
     except Exception as e:
-        shutil.rmtree(temp_dir)
         return (False, f"Upload bundle error: {e}")
 
-    # step 6
+    # step 4
     model_info_path = os.path.join(models_path, model_info_file)
     model_info = get_json_dict(model_info_path)
 
@@ -105,30 +87,46 @@ def update_model_info(bundle_name: str, models_path: str = "models", model_info_
     model_info[bundle_name]["source"] = source
 
     save_model_info(model_info, model_info_path)
-    shutil.rmtree(temp_dir)
     return (True, "update successful")
 
 
-def main():
-    parser = argparse.ArgumentParser(description="")
-    parser.add_argument("-f", "--f", type=str, help="changed files.")
-    args = parser.parse_args()
-    changed_dirs = args.f.splitlines()
+def main(changed_dirs):
+    """
+    main function to process all changed files. It will do the following steps:
+
+    1. according to changed directories, get changed bundles.
+    2. update each bundle.
+    3. according to the update results, push changed model_info_file if needed.
+
+    """
     bundle_list = get_changed_bundle_list(changed_dirs)
     models_path = "models"
     model_info_file = "model_info.json"
     if len(bundle_list) > 0:
         for bundle in bundle_list:
+
+            # create a temporary copy of the bundle for further processing
+            temp_dir = tempfile.mkdtemp()
             update_state, msg = update_model_info(
-                bundle_name=bundle, models_path=models_path, model_info_file=model_info_file
+                bundle_name=bundle, temp_dir=temp_dir, models_path=models_path, model_info_file=model_info_file,
             )
+            shutil.rmtree(temp_dir)
+
             if update_state is True:
+                model_info_changed_flag = True
                 print(f"update bundle: {bundle} successful.")
             else:
                 raise AssertionError(f"update bundle: {bundle} failed. {msg}")
-    # push a new branch that contains the updated model_info.json
-    push_new_model_info_branch(model_info_path=os.path.join(models_path, model_info_file))
+
+        # push a new branch that contains the updated model_info.json
+        push_new_model_info_branch(model_info_path=os.path.join(models_path, model_info_file))
+    else:
+        print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip updating.")
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-f", "--f", type=str, help="changed files.")
+    args = parser.parse_args()
+    changed_dirs = args.f.splitlines()
+    main(changed_dirs)

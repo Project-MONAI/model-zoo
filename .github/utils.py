@@ -48,6 +48,7 @@ def get_hash_func(hash_type: str = "sha1"):
 def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
     """
     This function is used to return all bundle names that have changed files.
+    If a bundle is totally removed, it will be ignored (since it not exists).
 
     """
     bundles = get_sub_folders(root_path)
