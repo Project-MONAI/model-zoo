@@ -1,9 +1,0 @@
-large_files:
-  - path: "models/model.pt"
-    url: "https://drive.google.com/uc?id=1oXrLBqMRJdRVPhjXE2nV4NfkCTDfBrWq"
-    hash_val: "b418a2dc8672ce2fd98dc255036e7a3d"
-    hash_type: "md5"
-  - path: "models/model.ts"
-    url: "https://drive.google.com/uc?id=1QCl210kek5_l2lSIEQQkioHSCijC6chC"
-    hash_val: "7264b8da9b5b76302efc97f207c6869e"
-    hash_type: "md5"

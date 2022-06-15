@@ -26,37 +26,37 @@ Mean Dice = 0.65
 Execute model searching:
 
 ```
-python -m scripts.search run --config_file "['configs/search.yaml']"
+python -m scripts.search run --config_file configs/search.yaml
 ```
 
 Execute multi-GPU model searching
 
 ```
-torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file "['configs/search.yaml']"
+torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file configs/search.yaml
 ```
 
 Execute training:
 
 ```
-python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
+python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.yaml --logging_file configs/logging.conf
 ```
 
 Override the `train` config to execute multi-GPU training:
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" --logging_file configs/logging.conf
 ```
 
 Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
+python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/evaluate.yaml']" --logging_file configs/logging.conf
 ```
 
 Execute inference:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
+python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.yaml --logging_file configs/logging.conf
 ```
 
 Verify the metadata format:
@@ -68,13 +68,13 @@ python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filep
 Verify the data shape of network:
 
 ```
-python -m monai.bundle verify_net_in_out network_def --meta_file configs/metadata.json --config_file configs/inference.json
+python -m monai.bundle verify_net_in_out network_def --meta_file configs/metadata.json --config_file configs/inference.yaml
 ```
 
 Export checkpoint to TorchScript file:
 
 ```
-python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
+python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.yaml
 ```
 
 # Disclaimer
