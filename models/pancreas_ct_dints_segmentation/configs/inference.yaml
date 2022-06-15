@@ -2,17 +2,10 @@
 imports:
 - "$import glob"
 - "$import os"
-input_channels: 1
-output_classes: 3
-arch_ckpt_path: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation/models/search_code_9100.pt"
-arch_ckpt: "$torch.load(@arch_ckpt_path, map_location=torch.device('cuda'))"
 bundle_root: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation"
 output_dir: "$@bundle_root + '/eval'"
 dataset_dir: "/workspace/data/msd/Task07_Pancreas"
-# datalist: "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))"
-data_list_file_path: "$@bundle_root + '/configs/dataset_0.json'"
-datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing',
-  base_dir=@dataset_dir)"
+datalist: "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))"
 device: "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"
 dints_space:
   _target_: monai.networks.nets.TopologyInstance
@@ -60,7 +53,7 @@ preprocessing:
     keys: image
 dataset:
   _target_: Dataset
-  data: "@datalist"
+  data: "$[{'image': i} for i in @datalist]"
   transform: "@preprocessing"
 dataloader:
   _target_: DataLoader
