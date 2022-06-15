@@ -27,7 +27,9 @@ from utils import (
 )
 
 
-def update_model_info(bundle_name: str, temp_dir:str, models_path: str = "models", model_info_file: str = "model_info.json"):
+def update_model_info(
+    bundle_name: str, temp_dir: str, models_path: str = "models", model_info_file: str = "model_info.json"
+):
     """
     For a changed model (bundle), this function is used to do the following steps in order to update it:
 
@@ -108,12 +110,11 @@ def main(changed_dirs):
             # create a temporary copy of the bundle for further processing
             temp_dir = tempfile.mkdtemp()
             update_state, msg = update_model_info(
-                bundle_name=bundle, temp_dir=temp_dir, models_path=models_path, model_info_file=model_info_file,
+                bundle_name=bundle, temp_dir=temp_dir, models_path=models_path, model_info_file=model_info_file
             )
             shutil.rmtree(temp_dir)
 
             if update_state is True:
-                model_info_changed_flag = True
                 print(f"update bundle: {bundle} successful.")
             else:
                 raise AssertionError(f"update bundle: {bundle} failed. {msg}")
