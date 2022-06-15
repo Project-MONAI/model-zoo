@@ -9,7 +9,9 @@
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
-        "nibabel": "3.2.1"
+        "fire": "0.4.0",
+        "nibabel": "3.2.1",
+        "pytorch-ignite": "0.4.9"
     },
     "task": "Neural architecture search on pancreas CT segmentation",
     "description": "Searched architectures for volumetric (3D) segmentation of the pancreas from CT image",
