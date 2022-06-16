@@ -10,118 +10,124 @@
 # limitations under the License.
 
 import argparse
-import hashlib
-import json
 import os
 import shutil
 import tempfile
-import zipfile
 
-from monai.utils import look_up_option
-
-SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
-
-
-def get_sub_folders(root_dir: str):
-    return [f.name for f in os.scandir(root_dir) if f.is_dir()]
-
-
-def get_json_dict(json_dict_path: str):
-    with open(json_dict_path, "r") as f:
-        json_dict = json.load(f)
-    return json_dict
+from utils import (
+    compress_bundle,
+    download_large_files,
+    get_changed_bundle_list,
+    get_checksum,
+    get_hash_func,
+    get_json_dict,
+    push_new_model_info_branch,
+    save_model_info,
+    upload_bundle,
+)
 
 
-def save_model_info(model_info_dict, model_info_path: str):
-    with open(model_info_path, "w") as f:
-        json.dump(model_info_dict, f)
+def update_model_info(
+    bundle_name: str, temp_dir: str, models_path: str = "models", model_info_file: str = "model_info.json"
+):
+    """
+    For a changed model (bundle), this function is used to do the following steps in order to update it:
 
+    1. download large files (if having the corresponding config file) into the copy.
+    2. compress the copy.
+    3. upload a compressed copy.
+    4. update `model_info_file`.
 
-def get_hash_func(hash_type: str = "sha1"):
-    actual_hash_func = look_up_option(hash_type.lower(), SUPPORTED_HASH_TYPES)
-    return actual_hash_func()
+    Returns:
+        a 2-tuple.
+        If update successful, the form is (True,"").
+        If update failed, the form is (False, "error reason")
+    """
+    temp_path = os.path.join(temp_dir, bundle_name)
+    shutil.copytree(os.path.join(models_path, bundle_name), temp_path)
+    # step 1
+    try:
+        for large_file_type in [".yml", ".yaml", ".json"]:
+            large_file_name = "large_files" + large_file_type
+            large_file_path = os.path.join(temp_path, large_file_name)
+            if os.path.exists(large_file_path):
+                download_large_files(bundle_path=temp_path, large_file_name=large_file_name)
+                # remove the large file config
+                os.remove(large_file_path)
+    except Exception as e:
+        return (False, f"Download large files error: {e}")
 
+    # step 2
+    bundle_metadata_path = os.path.join(temp_path, "configs/metadata.json")
+    metadata = get_json_dict(bundle_metadata_path)
+    latest_version = metadata["version"]
+    bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
+    zipfile_path = os.path.join(temp_dir, bundle_zip_name)
+    try:
+        compress_bundle(root_path=temp_dir, bundle_name=bundle_name, bundle_zip_name=bundle_zip_name)
+    except Exception as e:
+        return (False, f"Compress bundle error: {e}")
 
-def update_model_info(models_path: str, model_info_file: str = "model_info.json"):
+    hash_func = get_hash_func(hash_type="sha1")
+    checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
+
+    # step 3
+    try:
+        source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
+    except Exception as e:
+        return (False, f"Upload bundle error: {e}")
+
+    # step 4
     model_info_path = os.path.join(models_path, model_info_file)
     model_info = get_json_dict(model_info_path)
-    hash_func = get_hash_func()
-    # make a temp dir to store compressed bundles
-    temp_dir = tempfile.mkdtemp()
 
-    task_list = get_sub_folders(models_path)
-    for task in task_list:
-        if task not in model_info.keys():
-            model_info[task] = {}
-        task_path = os.path.join(models_path, task)
-        task_bundle_list = get_sub_folders(task_path)
-        for bundle in task_bundle_list:
-            if bundle not in model_info[task].keys():
-                model_info[task][bundle] = {"version": "", "checksum": "", "source": ""}
-            bundle_path = os.path.join(task_path, bundle)
-            # need to add a ci test to ensure that bundles must contain `configs/metadata.json`
-            # with changelog inside it.
-            bundle_metadata_path = os.path.join(bundle_path, "configs/metadata.json")
-            if os.path.exists(bundle_metadata_path):
-                metadata = get_json_dict(bundle_metadata_path)
-                # get version number from metadata
-                latest_version = list(metadata["changelog"].keys())[0]
-                # compress bundle
-                bundle_zip_name = f"{bundle}_v{latest_version}.zip"
-                dst_path = os.path.join(temp_dir, bundle_zip_name)
-                compress_bundle(source_path=bundle_path, dst_path=dst_path)
-                # get actual checksum
-                actual_checksum = get_checksum(dst_path=dst_path, hash_func=hash_func)
+    if bundle_name not in model_info.keys():
+        model_info[bundle_name] = {"version": "", "checksum": "", "source": ""}
 
-                # check consistency
-                if model_info[task][bundle]["version"] != latest_version:
-                    model_info[task][bundle]["version"] = latest_version
-                    changed_flag = True
-                if model_info[task][bundle]["checksum"] != actual_checksum:
-                    model_info[task][bundle]["checksum"] = actual_checksum
-                    changed_flag = True
-                # if version or checksum is changed, upload the new bundle
-                if changed_flag is True:
-                    new_source = upload_bundle(dst_path)
-                    model_info[task][bundle]["source"] = new_source
+    model_info[bundle_name]["checksum"] = checksum
+    model_info[bundle_name]["version"] = latest_version
+    model_info[bundle_name]["source"] = source
 
-    shutil.rmtree(temp_dir)
-    print(model_info)
+    save_model_info(model_info, model_info_path)
+    return (True, "update successful")
 
 
-def compress_bundle(source_path: str, dst_path: str):
-
-    ziph = zipfile.ZipFile(dst_path, "w", zipfile.ZIP_DEFLATED)
-    for root_dir, _, filenames in os.walk(source_path):
-        ziph.write(root_dir)
-        for file in filenames:
-            ziph.write(os.path.join(root_dir, file))
-
-
-def get_checksum(dst_path: str, hash_func):
-    with open(dst_path, "rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            hash_func.update(chunk)
-    return hash_func.hexdigest()
-
-
-def upload_bundle(bundle_zip_file_path: str):
+def main(changed_dirs):
     """
-    to be implemented:
-    1) upload to ngc/github release
-    2) return new link
+    main function to process all changed files. It will do the following steps:
+
+    1. according to changed directories, get changed bundles.
+    2. update each bundle.
+    3. according to the update results, push changed model_info_file if needed.
+
     """
-    source = ""
-    return source
+    bundle_list = get_changed_bundle_list(changed_dirs)
+    models_path = "models"
+    model_info_file = "model_info.json"
+    if len(bundle_list) > 0:
+        for bundle in bundle_list:
 
+            # create a temporary copy of the bundle for further processing
+            temp_dir = tempfile.mkdtemp()
+            update_state, msg = update_model_info(
+                bundle_name=bundle, temp_dir=temp_dir, models_path=models_path, model_info_file=model_info_file
+            )
+            shutil.rmtree(temp_dir)
 
-def main():
-    parser = argparse.ArgumentParser(description="")
+            if update_state is True:
+                print(f"update bundle: {bundle} successful.")
+            else:
+                raise AssertionError(f"update bundle: {bundle} failed. {msg}")
 
-    parser.add_argument("-p", "--path", default="models", help="path of models folder.")
-    args = parser.parse_args()
-    update_model_info(models_path=args.path)
+        # push a new branch that contains the updated model_info.json
+        push_new_model_info_branch(model_info_path=os.path.join(models_path, model_info_file))
+    else:
+        print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip updating.")
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-f", "--f", type=str, help="changed files.")
+    args = parser.parse_args()
+    changed_dirs = args.f.splitlines()
+    main(changed_dirs)
