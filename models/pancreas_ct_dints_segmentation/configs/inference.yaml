@@ -4,7 +4,7 @@ imports:
 - "$import os"
 input_channels: 1
 output_classes: 3
-arch_ckpt_path: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation/models/search_code_9100.pt"
+arch_ckpt_path: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation/models/search_code_18590.pt"
 arch_ckpt: "$torch.load(@arch_ckpt_path, map_location=torch.device('cuda'))"
 bundle_root: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation"
 output_dir: "$@bundle_root + '/eval'"

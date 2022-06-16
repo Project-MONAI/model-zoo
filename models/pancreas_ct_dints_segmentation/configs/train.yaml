@@ -7,7 +7,7 @@ imports:
 - "$from scipy import ndimage"
 input_channels: 1
 output_classes: 3
-arch_ckpt_path: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation/arch_code_cvpr.pth"
+arch_ckpt_path: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation/models/search_code_18590.pt"
 arch_ckpt: "$torch.load(@arch_ckpt_path, map_location=torch.device('cuda'))"
 bundle_root: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation"
 ckpt_dir: "$@bundle_root + '/models'"
