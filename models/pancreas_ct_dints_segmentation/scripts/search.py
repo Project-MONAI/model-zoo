@@ -26,7 +26,7 @@ import torch.nn.functional as F
 import yaml
 from monai import transforms
 from monai.bundle import ConfigParser
-from monai.data import ThreadDataLoader, decollate_batch, partition_dataset
+from monai.data import ThreadDataLoader, partition_dataset
 from monai.inferers import sliding_window_inference
 from monai.metrics import compute_meandice
 from monai.utils import set_determinism
@@ -52,7 +52,6 @@ def run(config_file: Union[str, Sequence[str]]):
     num_epochs = parser["num_epochs"]  # around 20k iterations
     num_epochs_per_validation = parser["num_epochs_per_validation"]
     num_epochs_warmup = parser["num_epochs_warmup"]
-    num_patches_per_image = parser["num_patches_per_image"]
     num_sw_batch_size = parser["num_sw_batch_size"]
     output_classes = parser["output_classes"]
     overlap_ratio = parser["overlap_ratio"]
