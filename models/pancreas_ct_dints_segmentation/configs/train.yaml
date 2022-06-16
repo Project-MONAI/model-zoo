@@ -7,14 +7,17 @@ imports:
 - "$from scipy import ndimage"
 input_channels: 1
 output_classes: 3
-arch_ckpt_path: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation/models/search_code_18590.pt"
+arch_ckpt_path: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation/models/search_code_9100.pt"
 arch_ckpt: "$torch.load(@arch_ckpt_path, map_location=torch.device('cuda'))"
 bundle_root: "/workspace/MONAI/model-zoo/models/pancreas_ct_dints_segmentation"
 ckpt_dir: "$@bundle_root + '/models'"
 output_dir: "$@bundle_root + '/eval'"
 dataset_dir: "/workspace/data/msd/Task07_Pancreas"
-images: "$list(sorted(glob.glob(@dataset_dir + '/imagesTr/*.nii.gz')))"
-labels: "$list(sorted(glob.glob(@dataset_dir + '/labelsTr/*.nii.gz')))"
+data_list_file_path: "$@bundle_root + '/configs/dataset_0.json'"
+train_datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='training',
+  base_dir=@dataset_dir)"
+val_datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation',
+  base_dir=@dataset_dir)"
 device: "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"
 dints_space:
   _target_: monai.networks.nets.TopologyInstance
@@ -41,18 +44,18 @@ loss:
   softmax: true
   squared_pred: true
   batch: true
-  smooth_nr: 0.00001
-  smooth_dr: 0.00001
+  smooth_nr: 1.0e-05
+  smooth_dr: 1.0e-05
 optimizer:
   _target_: torch.optim.SGD
   params: "$@network.parameters()"
   momentum: 0.9
-  weight_decay: 0.00004
-  lr: 0.2
+  weight_decay: 4.0e-05
+  lr: 0.025
 lr_scheduler:
   _target_: torch.optim.lr_scheduler.StepLR
   optimizer: "@optimizer"
-  step_size: 584
+  step_size: 80
   gamma: 0.5
 image_key: image
 label_key: label
@@ -170,7 +173,7 @@ train:
     - nearest
     align_corners:
     - true
-    - null
+    -
     prob: 0.16
   - _target_: RandGaussianSmoothd
     keys: "@image_key"
@@ -230,9 +233,9 @@ train:
     transforms: "$@train#deterministic_transforms + @train#random_transforms"
   dataset:
     _target_: CacheDataset
-    data: "$[{'image': i, 'label': l} for i, l in zip(@images[:-56], @labels[:-56])]"
+    data: "@train_datalist"
     transform: "@train#preprocessing"
-    cache_rate: 1
+    cache_rate: 0.125
     num_workers: 4
   dataloader:
     _target_: DataLoader
@@ -255,12 +258,15 @@ train:
       argmax:
       - true
       - false
-      to_onehot: 2
+      to_onehot: "@output_classes"
   handlers:
+  - _target_: LrScheduleHandler
+    lr_scheduler: "@lr_scheduler"
+    print_lr: true
   - _target_: ValidationHandler
     validator: "@validate#evaluator"
     epoch_level: true
-    interval: 5
+    interval: 10
   - _target_: StatsHandler
     tag_name: train_loss
     output_transform: "$monai.handlers.from_engine(['loss'], first=True)"
@@ -274,7 +280,7 @@ train:
       output_transform: "$monai.handlers.from_engine(['pred', 'label'])"
   trainer:
     _target_: SupervisedTrainer
-    max_epochs: 2920
+    max_epochs: 400
     device: "@device"
     train_data_loader: "@train#dataloader"
     network: "@network"
@@ -291,9 +297,9 @@ validate:
     transforms: "%train#deterministic_transforms"
   dataset:
     _target_: CacheDataset
-    data: "$[{'image': i, 'label': l} for i, l in zip(@images[-56:], @labels[-56:])]"
+    data: "@val_datalist"
     transform: "@validate#preprocessing"
-    cache_rate: 1
+    cache_rate: 0.125
   dataloader:
     _target_: DataLoader
     dataset: "@validate#dataset"
