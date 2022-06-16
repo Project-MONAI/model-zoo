@@ -2,10 +2,10 @@
 A neural architecture search algorithm for volumetric (3D) segmentation of the pancreas and pancreatic tumor from CT image.
 
 # Model Overview
-This model is trained using the state-of-the-art algorithm [1] of the "Medical Segmentation Decathlon Challenge 2018" with 196 training images and 56 validation images.
+This model is trained using the state-of-the-art algorithm [1] of the "Medical Segmentation Decathlon Challenge 2018" with 196 training images, 56 validation images, and 28 testing images.
 
 ## Data
-The training dataset is Task09_Spleen.tar from http://medicaldecathlon.com/.
+The training dataset is Task09_Spleen.tar from http://medicaldecathlon.com/. And the data list/split can be created with the script `scripts/prepare_datalist.py`.
 
 ## Training configuration
 The training was performed with at least 16GB-memory GPUs.
