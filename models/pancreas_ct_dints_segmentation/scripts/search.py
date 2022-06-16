@@ -18,6 +18,7 @@ import random
 import sys
 import time
 import torch.distributed as dist
+import torch.nn.functional as F
 import yaml
 
 from datetime import datetime
