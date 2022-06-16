@@ -29,7 +29,7 @@ network_def:
   in_channels: "@input_channels"
   num_classes: "@output_classes"
   use_downsample: true
-  node_a: "$@arch_ckpt['node_a']"
+  node_a: "$torch.from_numpy(@arch_ckpt['node_a'])"
 network: "$@network_def.to(@device)"
 preprocessing:
   _target_: Compose
