@@ -29,7 +29,7 @@ Execute model searching:
 python -m scripts.search run --config_file configs/search.yaml
 ```
 
-Execute multi-GPU model searching
+Execute multi-GPU model searching (recommended):
 
 ```
 torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file configs/search.yaml
