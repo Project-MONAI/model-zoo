@@ -9,7 +9,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import glob
 import json
 import logging
 import os
@@ -46,7 +45,6 @@ def run(config_file: Union[str, Sequence[str]]):
     data_file_base_dir = parser["data_file_base_dir"]
     data_list_file_path = parser["data_list_file_path"]
     determ = parser["determ"]
-    input_channels = parser["input_channels"]
     learning_rate = parser["learning_rate"]
     learning_rate_arch = parser["learning_rate_arch"]
     learning_rate_milestones = np.array(parser["learning_rate_milestones"])
