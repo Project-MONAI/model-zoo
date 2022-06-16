@@ -55,7 +55,6 @@ def run(config_file: Union[str, Sequence[str]]):
     num_sw_batch_size = parser["num_sw_batch_size"]
     output_classes = parser["output_classes"]
     overlap_ratio = parser["overlap_ratio"]
-    patch_size = parser["patch_size"]
     patch_size_valid = parser["patch_size_valid"]
     ram_cost_factor = parser["ram_cost_factor"]
     print("[info] GPU RAM cost factor:", ram_cost_factor)
@@ -132,7 +131,7 @@ def run(config_file: Union[str, Sequence[str]]):
     if torch.cuda.device_count() > 1:
         device = torch.device(f"cuda:{dist.get_rank()}")
     else:
-        device = torch.device(f"cuda:0")
+        device = torch.device("cuda:0")
     torch.cuda.set_device(device)
 
     if torch.cuda.device_count() > 1:
@@ -196,9 +195,7 @@ def run(config_file: Union[str, Sequence[str]]):
     val_interval = num_epochs_per_validation
     best_metric = -1
     best_metric_epoch = -1
-    epoch_loss_values = list()
     idx_iter = 0
-    metric_values = list()
 
     if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
         writer = SummaryWriter(log_dir=os.path.join(arch_ckpt_path, "Events"))
@@ -367,13 +364,15 @@ def run(config_file: Union[str, Sequence[str]]):
         if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
             loss_torch_epoch = loss_torch[0] / loss_torch[1]
             print(
-                f"epoch {epoch + 1} average loss: {loss_torch_epoch:.4f}, best mean dice: {best_metric:.4f} at epoch {best_metric_epoch}"
+                f"epoch {epoch + 1} average loss: {loss_torch_epoch:.4f}, "
+                f"best mean dice: {best_metric:.4f} at epoch {best_metric_epoch}"
             )
 
             if epoch >= num_epochs_warmup:
                 loss_torch_arch_epoch = loss_torch_arch[0] / loss_torch_arch[1]
                 print(
-                    f"epoch {epoch + 1} average arch loss: {loss_torch_arch_epoch:.4f}, best mean dice: {best_metric:.4f} at epoch {best_metric_epoch}"
+                    f"epoch {epoch + 1} average arch loss: {loss_torch_arch_epoch:.4f}, "
+                    f"best mean dice: {best_metric:.4f} at epoch {best_metric_epoch}"
                 )
 
         if (epoch + 1) % val_interval == 0 or (epoch + 1) == num_epochs:
