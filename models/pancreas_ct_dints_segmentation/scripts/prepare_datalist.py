@@ -33,7 +33,6 @@ def main(args):
     """
     split the dataset and output the data list into a json file.
     """
-    # data_file_base_dir = os.path.join(args.path, "training")
     data_file_base_dir = args.path
     output_json = args.output
     # produce deterministic data splits
@@ -53,7 +52,10 @@ if __name__ == "__main__":
         help="root path of MSD Task07_Pancreas dataset.",
     )
     parser.add_argument(
-        "--output", type=str, default="dataset_0.json", help="relative path of output datalist json file."
+        "--output",
+        type=str,
+        default="dataset_0.json",
+        help="relative path of output datalist json file.",
     )
     args = parser.parse_args()
 
