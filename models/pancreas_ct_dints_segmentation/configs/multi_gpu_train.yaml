@@ -6,7 +6,7 @@ network:
   find_unused_parameters: true
   device_ids:
   - "@device"
-optimizer#lr: "$0.025*dist.get_world_size()"
+optimizer#lr: "$0.0125*dist.get_world_size()"
 lr_scheduler#step_size: "$80*dist.get_world_size()"
 train#handlers:
   - _target_: LrScheduleHandler
