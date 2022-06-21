@@ -55,7 +55,7 @@ Please refer to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_
 All code changes to the dev branch must be done via [pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/proposing-changes-to-your-work-with-pull-requests).
 1. Please create a new ticket from [the issue list][monai model zoo issue list].
 1. [create a new branch in your fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork)
-(**So far, as the internal used private repository, please create a new branch during this repository directly**) of the codebase named `[ticket_id]-[task_name]`.
+of the codebase named `[ticket_id]-[task_name]`.
 Ideally, the new branch should be based on the latest `dev` branch.
 1. Make changes to the branch ([use detailed commit messages if possible](https://chris.beams.io/posts/git-commit/)).
 1. [Create a new pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request) from the task branch to the dev branch, with detailed descriptions of the purpose of this pull request.
@@ -64,5 +64,10 @@ Ideally, the new branch should be based on the latest `dev` branch.
 1. If there are conflicts between the pull request branch and the dev branch, pull the changes from the dev and resolve the conflicts locally.
 1. Reviewer and contributor may have discussions back and forth until all comments addressed.
 1. Wait for the pull request to be merged.
+
+### Remove a bundle
+
+If an existing bundle needs to be removed, please follow the steps mentioned above to do the delete manipulations during the created new branch in your fork, and then create a new pull request.
+However, bundles that are already stored in the release will not be changed if the corresponding source code is removed.
 
 [monai model zoo issue list]: https://github.com/Project-MONAI/model-zoo/issues
