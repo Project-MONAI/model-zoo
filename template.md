@@ -75,7 +75,7 @@ Example:
 ## **Citation Info** (Optional)
 *If people need to cite your model, how should they cite it?*
 
-Example: 
+Example:
 
 ```
 @article{radford2019language,
