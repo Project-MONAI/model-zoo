@@ -43,8 +43,23 @@ large_files:
     url: "url-of-large-file-2.ts"
 ```
 
+## Verifying the bundle
+
+After preparing your bundle, we recommend that both the metadata format and the data shape of network are verified, by running the following command locally:
+
+```python
+python -m pip install -U -r requirements.txt
+
+# Verify the metadata format
+python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filepath eval/schema.json
+
+# Verify the data shape of network
+python -m monai.bundle verify_net_in_out network_def --meta_file configs/metadata.json --config_file configs/inference.json
+```
+
 ## Checking the coding style
-After preparing your bundle, if there are any `.py` files, coding style is checked and enforced by flake8, black, isort, pytype and mypy.
+
+After Verifying your bundle, if there are any `.py` files, coding style is checked and enforced by flake8, black, isort, pytype and mypy.
 Before submitting a pull request, we recommend that all checks should pass, by running the following command locally:
 
 ```bash
