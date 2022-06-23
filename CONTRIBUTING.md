@@ -5,7 +5,14 @@ Welcome to MONAI Model Zoo! We're excited you're here and want to contribute. Th
 ## Preparing a bundle
 
 Please refer to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html#monai-bundle-specification) to prepare your bundle.
-In addition, a [template](https://github.com/Project-MONAI/model-zoo/blob/dev/template.md) on how to prepare a readme file is provided.
+
+### Readme Format
+
+A [template](https://github.com/Project-MONAI/model-zoo/blob/dev/docs/readme_template.md) on how to prepare a readme file is provided.
+
+### License Format
+
+MONAI Model Zoo follows [Apache License](https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE). Please include it, as well as other licenses if needed into your `license.txt`.
 
 ### Model naming
 
