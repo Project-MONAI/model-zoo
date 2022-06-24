@@ -63,8 +63,9 @@ def verify_export_torchscript(bundle_path: str):
 
     basic_cmd = "python -m monai.bundle ckpt_export network_def"
     ckpt_cmd = "--filepath models/verify_model.ts --ckpt_file models/model.pt"
-    config_cmd = "--meta_file configs/metadata.json --config_file configs/inference.json --bundle_root ."
+    config_cmd = "--meta_file configs/metadata.json --config_file configs/inference.json"
     verify_cmd = f"{basic_cmd} {ckpt_cmd} {config_cmd}"
+    print(os.listdir("."))
 
     subprocess.check_call(f"{verify_cmd}", shell=True, cwd=bundle_path)
 
