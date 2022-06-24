@@ -92,7 +92,7 @@ def main(changed_dirs):
             # verify data shape of network
             verify_data_shape(bundle_path)
             # verify export torchscript
-            if os.path.exists(os.path.join(bundle_path, "models/model.ts")):
+            if os.path.isfile(os.path.join(bundle_path, "models/model.ts") and os.path.join(bundle_path, "models/model.pt")):
                 verify_export_torchscript(bundle_path)
             else:
                 print(f"bundle: {bundle} does not support torchscript, skip verifying.")
