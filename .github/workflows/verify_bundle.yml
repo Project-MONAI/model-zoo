@@ -11,9 +11,8 @@ jobs:
     - name: verify bundle
       run: |
         python -m pip install -r requirements.txt
-        branch_name=${{ github.head_ref }}
-        git fetch origin dev $branch_name
-        changes=$(git diff --name-only $branch_name dev -- models)
+        git fetch origin dev ${{ github.head_ref }}
+        changes=$(git diff --name-only ${{ github.head_ref }} dev -- models)
         if [ ! -z "$changes" ]; then
           python $(pwd)/ci/verify_bundle.py --f "$changes"
         fi
