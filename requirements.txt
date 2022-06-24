@@ -1,2 +1,3 @@
 monai[gdown]>=0.9.0
 fire
+pytorch-ignite==0.4.8
