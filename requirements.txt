@@ -1,1 +1,2 @@
 monai[gdown]>=0.9.0
+fire
