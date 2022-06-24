@@ -13,6 +13,7 @@ import argparse
 import os
 import subprocess
 
+import torch
 from utils import download_large_files, get_changed_bundle_list
 
 
@@ -91,11 +92,14 @@ def main(changed_dirs):
             verify_metadata_format(bundle_path)
             # verify data shape of network
             verify_data_shape(bundle_path)
-            # verify export torchscript
-            if os.path.isfile(os.path.join(bundle_path, "models/model.ts") and os.path.join(bundle_path, "models/model.pt")):
-                verify_export_torchscript(bundle_path)
-            else:
-                print(f"bundle: {bundle} does not support torchscript, skip verifying.")
+            # verify export torchscript, only use when the device has gpu
+            if torch.cuda.is_available() is True:
+                if os.path.isfile(
+                    os.path.join(bundle_path, "models/model.ts") and os.path.join(bundle_path, "models/model.pt")
+                ):
+                    verify_export_torchscript(bundle_path)
+                else:
+                    print(f"bundle: {bundle} does not support torchscript, skip verifying.")
 
     else:
         print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip verifying.")
