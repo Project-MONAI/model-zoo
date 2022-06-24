@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: verify bundle
       run: |
         python -m pip install -r requirements.txt
         branch_name=${{ github.head_ref }}
-        echo "branch_name: $branch_name"
         changes=$(git diff --name-only $branch_name..dev -- models)
         if [ ! -z "$changes" ]; then
           python $(pwd)/ci/verify_bundle.py --f "$changes"
