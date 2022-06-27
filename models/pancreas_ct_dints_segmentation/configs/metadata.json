@@ -23,7 +23,7 @@
     "label_classes": "single channel data, 1 is pancreas, 2 is pancreatic tumor, 0 is everything else",
     "pred_classes": "3 channels OneHot data, channel 1 is pancreas, channel 2 is pancreatic tumor, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.65
+        "mean_dice": 0.72
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

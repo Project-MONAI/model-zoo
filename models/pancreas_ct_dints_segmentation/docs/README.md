@@ -20,9 +20,15 @@ Output: 3 channels: Label 2: pancreatic tumor; Label 1: pancreas; Label 0: every
 ## Scores
 This model achieves the following Dice score on the validation data (our own split from the training dataset):
 
-Mean Dice = 0.61
+Mean Dice = 0.72
 
 ## commands example
+Create data split (.json file):
+
+```
+python scripts/prepare_datalist.py --path /path-to-Task07_Pancreas/ --output configs/dataset_0.json
+```
+
 Execute model searching:
 
 ```
