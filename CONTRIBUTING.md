@@ -12,7 +12,7 @@ A [template](https://github.com/Project-MONAI/model-zoo/blob/dev/docs/readme_tem
 
 ### License Format
 
-MONAI Model Zoo follows [Apache License](https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE). Please include it, as well as other licenses if needed into your `license.txt`.
+The MONAI Model Zoo repository follows [Apache License](https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE), thus each bundle should also follow it. In addition, please also include the license of the dataset that the bundle uses into `docs/license.txt` within the bundle directory. Here is an example of [the brats_mri_segmentation bundle](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/docs/license.txt).
 
 ### Model naming
 
