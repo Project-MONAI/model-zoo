@@ -24,7 +24,7 @@ BUILD_TYPE=all
 if [[ $# -eq 1 ]]; then
     BUILD_TYPE=$1
 
-elif [[ $# -gt 2 ]]; then
+elif [[ $# -gt 1 ]]; then
     echo "ERROR: too many parameters are provided"
     exit 1
 fi
@@ -57,11 +57,11 @@ case $BUILD_TYPE in
 
     all)
         echo "Run all tests..."
-        verify_bundle head_ref
+        verify_bundle
         ;;
 
     verify_bundle)
-        verify_bundle head_ref
+        verify_bundle
         ;;
 
     *)
