@@ -24,7 +24,7 @@ BUILD_TYPE=all
 if [[ $# -eq 1 ]]; then
     BUILD_TYPE=$1
 
-elif [[ $# -gt 1 ]]; then
+elif [[ $# -gt 2 ]]; then
     echo "ERROR: too many parameters are provided"
     exit 1
 fi
@@ -43,8 +43,13 @@ remove_pipenv() {
 
 verify_bundle() {
     echo 'Run verify bundle...'
-    init_pipenv requirements.txt # requirements file name
-    # input executing commands here
+    init_pipenv requirements.txt
+    head_ref=$(git rev-parse HEAD)
+    git fetch origin dev $head_ref
+    changes=$(git diff --name-only origin/$head_ref origin/dev -- models)
+        if [ ! -z "$changes" ]; then
+          python $(pwd)/ci/verify_bundle.py --f "$changes"
+        fi
     remove_pipenv
 }
 
@@ -52,10 +57,11 @@ case $BUILD_TYPE in
 
     all)
         echo "Run all tests..."
+        verify_bundle head_ref
         ;;
 
     verify_bundle)
-        verify_bundle
+        verify_bundle head_ref
         ;;
 
     *)
