@@ -46,7 +46,7 @@ verify_bundle() {
     init_pipenv requirements.txt
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
-    changes=$(git diff --name-only origin/$head_ref origin/dev -- models)
+    changes=$(git diff --name-only $head_ref origin/dev -- models)
         if [ ! -z "$changes" ]; then
           python $(pwd)/ci/verify_bundle.py --f "$changes"
         fi
