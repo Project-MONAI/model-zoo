@@ -16,3 +16,9 @@ pytype>=2020.6.1; platform_system != "Windows"
 types-pkg_resources
 mypy>=0.790
 pre-commit
+fire
+pytorch-ignite==0.4.9
+einops
+nibabel
+pyyaml
+jsonschema
