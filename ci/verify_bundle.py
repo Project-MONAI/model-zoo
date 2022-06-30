@@ -11,9 +11,9 @@
 
 import argparse
 import os
-import subprocess
 
 import torch
+from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from utils import download_large_files, get_changed_bundle_list
 
 
@@ -40,34 +40,38 @@ def verify_metadata_format(bundle_path: str):
     This function is used to verify the metadata format.
 
     """
-    verify_cmd = "python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filepath eval/schema.json"
+    verify_metadata(
+        meta_file=os.path.join(bundle_path, "configs/metadata.json"),
+        filepath=os.path.join(bundle_path, "eval/schema.json"),
+    )
 
-    subprocess.check_call(f"{verify_cmd}", shell=True, cwd=bundle_path)
 
-
-def verify_data_shape(bundle_path: str):
+def verify_data_shape(inference_file: str, bundle_path: str):
     """
     This function is used to verify the data shape of network.
 
     """
-    basic_cmd = "python -m monai.bundle verify_net_in_out network_def"
-    verify_cmd = f"{basic_cmd} --meta_file configs/metadata.json --config_file configs/inference.json --bundle_root ."
+    verify_net_in_out(
+        net_id="network_def",
+        meta_file=os.path.join(bundle_path, "configs/metadata.json"),
+        config_file=os.path.join(bundle_path, f"configs/{inference_file}"),
+        bundle_root=bundle_path,
+    )
 
-    subprocess.check_call(f"{verify_cmd}", shell=True, cwd=bundle_path)
 
-
-def verify_export_torchscript(bundle_path: str):
+def verify_export_torchscript(inference_file: str, bundle_path: str):
     """
     This function is used to verify if the checkpoint is able to torchscript.
 
     """
-
-    basic_cmd = "python -m monai.bundle ckpt_export network_def"
-    ckpt_cmd = "--filepath models/verify_model.ts --ckpt_file models/model.pt"
-    config_cmd = "--meta_file configs/metadata.json --config_file configs/inference.json --bundle_root ."
-    verify_cmd = f"{basic_cmd} {ckpt_cmd} {config_cmd}"
-
-    subprocess.check_call(f"{verify_cmd}", shell=True, cwd=bundle_path)
+    ckpt_export(
+        net_id="network_def",
+        filepath=os.path.join(bundle_path, "models/verify_model.ts"),
+        ckpt_file=os.path.join(bundle_path, "models/model.pt"),
+        meta_file=os.path.join(bundle_path, "configs/metadata.json"),
+        config_file=os.path.join(bundle_path, f"configs/{inference_file}"),
+        bundle_root=bundle_path,
+    )
 
 
 def main(changed_dirs):
@@ -91,13 +95,21 @@ def main(changed_dirs):
             # verify metadata format and data
             verify_metadata_format(bundle_path)
             # verify data shape of network
-            verify_data_shape(bundle_path)
+            config_file_list = os.listdir(os.path.join(bundle_path, "configs"))
+            inference_file = None
+            for f in config_file_list:
+                if "inference" in f:
+                    inference_file = f
+                    break
+            if inference_file is None:
+                raise ValueError("inference config file is missing.")
+            verify_data_shape(inference_file, bundle_path)
             # verify export torchscript, only use when the device has gpu
             if torch.cuda.is_available() is True:
                 if os.path.isfile(
                     os.path.join(bundle_path, "models/model.ts") and os.path.join(bundle_path, "models/model.pt")
                 ):
-                    verify_export_torchscript(bundle_path)
+                    verify_export_torchscript(inference_file, bundle_path)
                 else:
                     print(f"bundle: {bundle} does not support torchscript, skip verifying.")
 
