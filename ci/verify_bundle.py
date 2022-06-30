@@ -106,9 +106,7 @@ def main(changed_dirs):
             verify_data_shape(inference_file, bundle_path)
             # verify export torchscript, only use when the device has gpu
             if torch.cuda.is_available() is True:
-                if os.path.isfile(
-                    os.path.join(bundle_path, "models/model.ts") and os.path.join(bundle_path, "models/model.pt")
-                ):
+                if os.path.isfile(os.path.join(bundle_path, "models/model.pt")) and os.path.isfile(os.path.join(bundle_path, "models/model.ts")):
                     verify_export_torchscript(inference_file, bundle_path)
                 else:
                     print(f"bundle: {bundle} does not support torchscript, skip verifying.")
