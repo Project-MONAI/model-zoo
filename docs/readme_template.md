@@ -5,7 +5,7 @@
 
 Example:
 
-Michael Zephyr, Dagaung Xu, Wenqi Li, NVIDIA
+Firstname1 LastName1, Firstname2 Lastname2, Affiliation1
 
 ### **Tags**
 *What tags describe the model and task performed? Use a comma seperated list*
