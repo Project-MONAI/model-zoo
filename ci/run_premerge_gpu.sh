@@ -43,7 +43,7 @@ remove_pipenv() {
 
 verify_bundle() {
     echo 'Run verify bundle...'
-    init_pipenv requirements.txt
+    init_pipenv requirements-dev.txt
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     changes=$(git diff --name-only $head_ref origin/dev -- models)

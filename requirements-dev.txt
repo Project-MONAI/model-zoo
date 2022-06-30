@@ -6,7 +6,7 @@ flake8-comprehensions
 flake8-executable
 flake8-pyi
 pylint!=2.13  # https://github.com/PyCQA/pylint/issues/5969
-mccabe
+mccabe<0.7.0  # flake8 4.0.1 has requirement mccabe<0.7.0,>=0.6.0
 pep8-naming
 pycodestyle
 pyflakes
@@ -16,3 +16,7 @@ pytype>=2020.6.1; platform_system != "Windows"
 types-pkg_resources
 mypy>=0.790
 pre-commit
+fire
+pytorch-ignite==0.4.8
+pyyaml
+jsonschema
