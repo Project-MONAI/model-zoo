@@ -54,15 +54,25 @@ large_files:
 
 After preparing your bundle, we recommend that both the metadata format and the data shape of network are verified, by running the following command locally:
 
-```python
-python -m pip install -U -r requirements.txt
-
+```bash
 # Verify the metadata format
 python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filepath eval/schema.json
 
 # Verify the data shape of network
+# Please modify the suffix of the config file if `.json` is not used
 python -m monai.bundle verify_net_in_out network_def --meta_file configs/metadata.json --config_file configs/inference.json
 ```
+
+## Export checkpoint to TorchScript file
+
+For a bundle that support TorchScript, the following command is used to export your checkpoint into TorchScript file:
+
+```bash
+# Please modify the suffix of the config file if `.json` is not used
+python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
+```
+
+If your bundle does not support TorchScript, please mention it in `docs/README.md`.
 
 ## Checking the coding style
 

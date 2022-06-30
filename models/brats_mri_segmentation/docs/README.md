@@ -87,24 +87,6 @@ Execute inference:
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
-Verify the metadata format:
-
-```
-python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filepath eval/schema.json
-```
-
-Verify the data shape of network:
-
-```
-python -m monai.bundle verify_net_in_out network_def --meta_file configs/metadata.json --config_file configs/inference.json
-```
-
-Export checkpoint to TorchScript file:
-
-```
-python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
-```
-
 # Disclaimer
 
 This is an example, not to be used for diagnostic purposes.
