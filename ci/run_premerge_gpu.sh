@@ -48,7 +48,7 @@ verify_bundle() {
     git fetch origin dev $head_ref
     changes=$(git diff --name-only $head_ref origin/dev -- models)
         if [ ! -z "$changes" ]; then
-          python $(pwd)/ci/verify_bundle.py --f "$changes"
+          pipenv run python $(pwd)/ci/verify_bundle.py --f "$changes"
         fi
     remove_pipenv
 }
