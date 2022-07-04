@@ -14,7 +14,41 @@ import os
 
 import torch
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
-from utils import download_large_files, get_changed_bundle_list
+from utils import download_large_files, get_changed_bundle_list, get_json_dict
+
+
+def verify_version_changes(models_path: str, bundle_name: str):
+    """
+    This function is used to verify if "version" and "changelog" are correct in a bundle's
+    metadata file. In addition, if changing an existing bundle, a new version number should be
+    provided.
+
+    """
+
+    bundle_path = os.path.join(models_path, bundle_name)
+
+    meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
+    metadata = get_json_dict(meta_file_path)
+    if "version" not in metadata:
+        raise ValueError(f"'version' is missing in configs/metadata.json of bundle: {bundle_name}.")
+    if "changelog" not in metadata:
+        raise ValueError(f"'changelog' is missing in configs/metadata.json of bundle: {bundle_name}.")
+
+    # version number should be in changelog
+    latest_version = metadata["version"]
+    if latest_version not in metadata["changelog"].keys():
+        raise ValueError(
+            f"version number: {latest_version} is missing in 'changelog' in configs/metadata.json of bundle: {bundle_name}."
+        )
+
+    # If changing an existing bundle, a new version number should be provided
+    model_info_path = os.path.join(models_path, "model_info.json")
+    model_info = get_json_dict(model_info_path)
+    bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
+    if bundle_zip_name in model_info.keys():
+        raise ValueError(
+            f"version number: {latest_version} is already used of bundle: {bundle_name}. Please change it."
+        )
 
 
 def verify_download_large_files(bundle_path: str):
@@ -89,7 +123,8 @@ def main(changed_dirs):
     if len(bundle_list) > 0:
         for bundle in bundle_list:
             bundle_path = os.path.join(models_path, bundle)
-
+            # verify version, changelog
+            verify_version_changes(models_path, bundle)
             # verify download
             verify_download_large_files(bundle_path)
             # verify metadata format and data
