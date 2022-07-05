@@ -74,8 +74,7 @@ Check if the input and output data shape and data type of network defined in the
 python -m monai.bundle verify_net_in_out --net_id network_def --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
-`net_id` is the ID name of the network component, `config_file` is the filepath (within the bundle)
-of the config file to get network definition. The default values are `network_def` for `net_id` and `configs/inference.json` for `config_file`, if different values are used, please include your customized values into `custom_net_config_dict` in `ci/bundle_custom_data.py`. This requirement also works on the torchscript test that will be mentioned bellow.
+`net_id` is the ID name of the network component, `config_file` is the filepath (within the bundle) of the config file to get network definition. The default values are `network_def` for `net_id` and `configs/inference.json` for `config_file`, if different values are used, please include your customized values into `custom_net_config_dict` in `ci/bundle_custom_data.py`. This requirement also works on the torchscript test that will be mentioned bellow.
 
 If this test is not suitable for your bundle, please add your bundle name into `exclude_verify_shape_list` in `ci/bundle_custom_data.py`.
 

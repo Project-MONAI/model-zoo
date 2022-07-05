@@ -16,14 +16,6 @@ exclude_verify_shape_list = []
 # please add the bundle name into the following list if it does not support torchscript.
 exclude_verify_torchscript_list = ["swin_unetr_btcv_segmentation"]
 
-"""
-To verify the input and output data shape and data type of network defined in the metadata,
-"net_id" and "config_file" are two arguments that need to input.
-"net_id" is the ID name of the network component, "config_file" is the filepath (within the bundle)
-of the config file to get network definition.
-The default values are "network_def" for "net_id" and "configs/inference.json" for "config_file",
-if different values are used, please add the bundle (as a key) and a dict in the form of
-{"net_id": "", "config_file": ""} (as a value) into the follow dict.
-
-"""
+# please add the bundle (as a key) and a dict in the form of {"net_id": "", "config_file": ""} (as a value)
+# into the following dict.
 custom_net_config_dict = {"pancreas_ct_dints_segmentation": {"config_file": "configs/inference.yaml"}}
