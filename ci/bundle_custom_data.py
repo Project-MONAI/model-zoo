@@ -10,10 +10,8 @@
 # limitations under the License.
 
 
-# please add the bundle name into the following list if it does not need to verify data input and output shape.
 exclude_verify_shape_list = []
 
-# please add the bundle name into the following list if it does not support torchscript.
 exclude_verify_torchscript_list = ["swin_unetr_btcv_segmentation"]
 
 # please add the bundle (as a key) and a dict in the form of {"net_id": "", "config_file": ""} (as a value)
