@@ -145,11 +145,6 @@ def main(changed_dirs):
     1. according to changed directories, get changed bundles.
     2. verify each bundle.
 
-    The verifications include necessary tests and optional tests.
-    Necessary tests contain the functions: `verify_version_changes` and `verify_metadata_format`.
-    Optional tests contain the functions: `verify_download_large_files`, `verify_data_shape` and
-    `verify_export_torchscript`.
-
     """
     bundle_list = get_changed_bundle_list(changed_dirs)
     models_path = "models"
