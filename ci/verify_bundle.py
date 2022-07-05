@@ -121,6 +121,9 @@ def verify_export_torchscript(bundle_path: str, net_id: str, config_file: str):
 
 
 def get_net_id_config_name(bundle_name: str):
+    """
+    Return values of arguments net_id and config_file.
+    """
     net_id = "network_def"
     config_file = "configs/inference.json"
     if bundle_name not in custom_net_config_dict.keys():
