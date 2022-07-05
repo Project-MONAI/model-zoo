@@ -10,13 +10,11 @@
 # limitations under the License.
 
 
-from typing import Dict, List
-
 # please add the bundle name into the following list if it does not need to verify data input and output shape.
-exclude_verify_shape_list: List = []
+exclude_verify_shape_list = []
 
 # please add the bundle name into the following list if it does not support torchscript.
-exclude_verify_torchscript_list: List = ["swin_unetr_btcv_segmentation"]
+exclude_verify_torchscript_list = ["swin_unetr_btcv_segmentation"]
 
 """
 To verify the input and output data shape and data type of network defined in the metadata,
@@ -28,4 +26,4 @@ if different values are used, please add the bundle (as a key) and a dict in the
 {"net_id": "", "config_file": ""} (as a value) into the follow dict.
 
 """
-custom_net_config_dict: Dict = {"pancreas_ct_dints_segmentation": {"config_file": "configs/inference.yaml"}}
+custom_net_config_dict = {"pancreas_ct_dints_segmentation": {"config_file": "configs/inference.yaml"}}
