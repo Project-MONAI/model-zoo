@@ -67,7 +67,8 @@ python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filep
 
 ### Optional verifications
 
-1. Check if the input and output data shape and data type of network defined in the metadata are correct. You can also run the following command locally to verify your bundle before submitting a pull request.
+#### Verify data shape and data type
+Check if the input and output data shape and data type of network defined in the metadata are correct. You can also run the following command locally to verify your bundle before submitting a pull request.
 
 ```bash
 python -m monai.bundle verify_net_in_out --net_id network_def --meta_file configs/metadata.json --config_file configs/inference.json
@@ -78,7 +79,8 @@ of the config file to get network definition. The default values are `network_de
 
 If this test is not suitable for your bundle, please add your bundle name into `exclude_verify_shape_list` in `ci/bundle_custom_data.py`.
 
-1. Check the functionality of exporting the checkpoint to TorchScript file. You can also run the following command locally to verify your bundle before submitting a pull request.
+#### Verify torchscript
+Check the functionality of exporting the checkpoint to TorchScript file. You can also run the following command locally to verify your bundle before submitting a pull request.
 
 ```bash
 python -m monai.bundle ckpt_export --net_id network_def --filepath models/verify_model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
