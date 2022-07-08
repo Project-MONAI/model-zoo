@@ -20,8 +20,8 @@ from utils import download_large_files, get_changed_bundle_list, get_json_dict
 def verify_bundle_directory(models_path: str, bundle_name: str):
     """
     According to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html),
-    "configs/metadata.json" and "models/model.pt" are required within the bundle root directory.
-    This function is used to verify these files. For bundles that contain the download links for large
+    "configs/metadata.json" is required within the bundle root directory.
+    This function is used to verify this file. For bundles that contain the download links for large
     files, the links should be saved in "large_files.yml" (or .json, .yaml).
     All large files (if exist) will be downloaded before verification.
 
@@ -42,10 +42,6 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
     metadata_path = os.path.join(bundle_path, "configs/metadata.json")
     if not os.path.exists(metadata_path):
         raise ValueError(f"metadata path: {metadata_path} is not existing.")
-
-    model_path = os.path.join(bundle_path, "models/model.pt")
-    if not os.path.exists(model_path):
-        raise ValueError(f"model path: {model_path} is not existing.")
 
 
 def verify_version_changes(models_path: str, bundle_name: str):
