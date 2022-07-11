@@ -81,12 +81,11 @@ def update_model_info(
     model_info_path = os.path.join(models_path, model_info_file)
     model_info = get_json_dict(model_info_path)
 
-    if bundle_name not in model_info.keys():
-        model_info[bundle_name] = {"version": "", "checksum": "", "source": ""}
+    if bundle_zip_name not in model_info.keys():
+        model_info[bundle_zip_name] = {"checksum": "", "source": ""}
 
-    model_info[bundle_name]["checksum"] = checksum
-    model_info[bundle_name]["version"] = latest_version
-    model_info[bundle_name]["source"] = source
+    model_info[bundle_zip_name]["checksum"] = checksum
+    model_info[bundle_zip_name]["source"] = source
 
     save_model_info(model_info, model_info_path)
     return (True, "update successful")
