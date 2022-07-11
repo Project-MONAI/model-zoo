@@ -42,41 +42,54 @@ The template is as follow, and you can also click [here](https://github.com/Proj
 
 ```
 large_files:
-  - path: "models/large-file-1.pt"
-    url: "url-of-large-file-1.pt"
+  - path: "models/model.pt"
+    url: "url-of-model.pt"
     hash_val: ""
     hash_type: ""
-  - path: "models/large-file-2.ts"
-    url: "url-of-large-file-2.ts"
+  - path: "models/model.ts"
+    url: "url-of-model.ts"
 ```
 
 ## Verifying the bundle
 
-After preparing your bundle, we recommend that both the metadata format and the data shape of network are verified, by running the following command locally:
+We prepared several premerge CI tests to verify your bundle.
+
+### Necessary verifications
+
+1. Check if `configs/metadata.json` is existing in your bundle.
+1. If an existing bundle has been modified, check if `version` and `changelog` are updated.
+1. Check if metadata format is correct. You can also run the following command locally to verify your bundle before submitting a pull request:
 
 ```bash
-# Verify the metadata format
 python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filepath eval/schema.json
-
-# Verify the data shape of network
-# Please modify the suffix of the config file if `.json` is not used
-python -m monai.bundle verify_net_in_out network_def --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
-## Export checkpoint to TorchScript file
+### Optional verifications
 
-For a bundle that support TorchScript, the following command is used to export your checkpoint into TorchScript file:
+#### Verify data shape and data type
+Check if the input and output data shape and data type of network defined in the metadata are correct. You can also run the following command locally to verify your bundle before submitting a pull request.
 
 ```bash
-# Please modify the suffix of the config file if `.json` is not used
-python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
+python -m monai.bundle verify_net_in_out --net_id network_def --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
-If your bundle does not support TorchScript, please mention it in `docs/README.md`.
+`net_id` is the ID name of the network component, `config_file` is the filepath (within the bundle) of the config file to get the network definition. The default values in the CI tests are `network_def` for `net_id` and `configs/inference.json` for `config_file`, if different values are used, please include them into `custom_net_config_dict` in `ci/bundle_custom_data.py`. This requirement also works for the torchscript test that will be mentioned bellow.
+
+If this test is not suitable for your bundle, please add your bundle name into `exclude_verify_shape_list` in `ci/bundle_custom_data.py`.
+
+#### Verify torchscript
+Check the functionality of exporting the checkpoint to TorchScript file. You can also run the following command locally to verify your bundle before submitting a pull request.
+
+```bash
+python -m monai.bundle ckpt_export --net_id network_def --filepath models/verify_model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
+```
+
+If your bundle does not support TorchScript, please mention it in `docs/README.md`, and add your bundle name into `exclude_verify_torchscript_list` in `ci/bundle_custom_data.py`.
+
 
 ## Checking the coding style
 
-After Verifying your bundle, if there are any `.py` files, coding style is checked and enforced by flake8, black, isort, pytype and mypy.
+After verifying your bundle, if there are any `.py` files, coding style is checked and enforced by flake8, black, isort, pytype and mypy.
 Before submitting a pull request, we recommend that all checks should pass, by running the following command locally:
 
 ```bash
