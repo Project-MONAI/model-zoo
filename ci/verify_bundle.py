@@ -12,27 +12,69 @@
 import argparse
 import os
 
-import torch
+from bundle_custom_data import custom_net_config_dict, exclude_verify_shape_list, exclude_verify_torchscript_list
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
-from utils import download_large_files, get_changed_bundle_list
+from utils import download_large_files, get_changed_bundle_list, get_json_dict
 
 
-def verify_download_large_files(bundle_path: str):
+def verify_bundle_directory(models_path: str, bundle_name: str):
     """
-    This function is used to verify the `large_files` file (if exists) of the input bundle path.
-    Wrong download link or checksum will raise an error.
-    A successful verification will also keep the downloaded large files for other verifications.
+    According to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html),
+    "configs/metadata.json" is required within the bundle root directory.
+    This function is used to verify this file. For bundles that contain the download links for large
+    files, the links should be saved in "large_files.yml" (or .json, .yaml).
+    All large files (if exist) will be downloaded before verification.
 
     """
-    # verify download
-    try:
-        for large_file_type in [".yml", ".yaml", ".json"]:
-            large_file_name = "large_files" + large_file_type
-            large_file_path = os.path.join(bundle_path, large_file_name)
-            if os.path.exists(large_file_path):
-                download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
-    except Exception as e:
-        raise ValueError(f"Download large files in {bundle_path} error") from e
+
+    bundle_path = os.path.join(models_path, bundle_name)
+    large_file_name = None
+    for name in os.listdir(bundle_path):
+        if name in ["large_files.yml", "large_files.yaml", "large_files.json"]:
+            large_file_name = name
+
+    if large_file_name is not None:
+        try:
+            download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
+        except Exception as e:
+            raise ValueError(f"Download large files in {bundle_path} error.") from e
+
+    metadata_path = os.path.join(bundle_path, "configs/metadata.json")
+    if not os.path.exists(metadata_path):
+        raise ValueError(f"metadata path: {metadata_path} is not existing.")
+
+
+def verify_version_changes(models_path: str, bundle_name: str):
+    """
+    This function is used to verify if "version" and "changelog" are correct in "configs/metadata.json".
+    In addition, if changing an existing bundle, a new version number should be provided.
+
+    """
+
+    bundle_path = os.path.join(models_path, bundle_name)
+
+    meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
+    metadata = get_json_dict(meta_file_path)
+    if "version" not in metadata:
+        raise ValueError(f"'version' is missing in configs/metadata.json of bundle: {bundle_name}.")
+    if "changelog" not in metadata:
+        raise ValueError(f"'changelog' is missing in configs/metadata.json of bundle: {bundle_name}.")
+
+    # version number should be in changelog
+    latest_version = metadata["version"]
+    if latest_version not in metadata["changelog"].keys():
+        raise ValueError(
+            f"version number: {latest_version} is missing in 'changelog' in configs/metadata.json of bundle: {bundle_name}."
+        )
+
+    # If changing an existing bundle, a new version number should be provided
+    model_info_path = os.path.join(models_path, "model_info.json")
+    model_info = get_json_dict(model_info_path)
+    bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
+    if bundle_zip_name in model_info.keys():
+        raise ValueError(
+            f"version number: {latest_version} is already used of bundle: {bundle_name}. Please change it."
+        )
 
 
 def verify_metadata_format(bundle_path: str):
@@ -46,32 +88,42 @@ def verify_metadata_format(bundle_path: str):
     )
 
 
-def verify_data_shape(inference_file: str, bundle_path: str):
+def verify_data_shape(bundle_path: str, net_id: str, config_file: str):
     """
     This function is used to verify the data shape of network.
 
     """
     verify_net_in_out(
-        net_id="network_def",
+        net_id=net_id,
         meta_file=os.path.join(bundle_path, "configs/metadata.json"),
-        config_file=os.path.join(bundle_path, f"configs/{inference_file}"),
+        config_file=os.path.join(bundle_path, config_file),
         bundle_root=bundle_path,
     )
 
 
-def verify_export_torchscript(inference_file: str, bundle_path: str):
+def verify_export_torchscript(bundle_path: str, net_id: str, config_file: str):
     """
     This function is used to verify if the checkpoint is able to torchscript.
 
     """
     ckpt_export(
-        net_id="network_def",
+        net_id=net_id,
         filepath=os.path.join(bundle_path, "models/verify_model.ts"),
         ckpt_file=os.path.join(bundle_path, "models/model.pt"),
         meta_file=os.path.join(bundle_path, "configs/metadata.json"),
-        config_file=os.path.join(bundle_path, f"configs/{inference_file}"),
+        config_file=os.path.join(bundle_path, config_file),
         bundle_root=bundle_path,
     )
+
+
+def get_net_id_config_name(bundle_name: str):
+    """
+    Return values of arguments net_id and config_file.
+    """
+
+    name_dict = custom_net_config_dict.get(bundle_name, {})
+
+    return name_dict.get("net_id", "network_def"), name_dict.get("config_file", "configs/inference.json")
 
 
 def main(changed_dirs):
@@ -79,8 +131,7 @@ def main(changed_dirs):
     main function to process all changed files. It will do the following steps:
 
     1. according to changed directories, get changed bundles.
-    2. verify each bundle on download large files, metadata format, data shape of network
-        and torchscript export (if supports).
+    2. verify each bundle.
 
     """
     bundle_list = get_changed_bundle_list(changed_dirs)
@@ -88,31 +139,31 @@ def main(changed_dirs):
 
     if len(bundle_list) > 0:
         for bundle in bundle_list:
-            bundle_path = os.path.join(models_path, bundle)
-
-            # verify download
-            verify_download_large_files(bundle_path)
+            print(f"start verifying {bundle}:")
+            # verify bundle directory
+            verify_bundle_directory(models_path, bundle)
+            print("directory is verified correctly.")
+            # verify version, changelog
+            verify_version_changes(models_path, bundle)
+            print("version and changelog are verified correctly.")
             # verify metadata format and data
+            bundle_path = os.path.join(models_path, bundle)
             verify_metadata_format(bundle_path)
-            # verify data shape of network
-            config_file_list = os.listdir(os.path.join(bundle_path, "configs"))
-            inference_file = None
-            for f in config_file_list:
-                if "inference" in f:
-                    inference_file = f
-                    break
-            if inference_file is None:
-                raise ValueError("inference config file is missing.")
-            verify_data_shape(inference_file, bundle_path)
-            # verify export torchscript, only use when the device has gpu
-            if torch.cuda.is_available() is True:
-                if os.path.isfile(os.path.join(bundle_path, "models/model.pt")) and os.path.isfile(
-                    os.path.join(bundle_path, "models/model.ts")
-                ):
-                    verify_export_torchscript(inference_file, bundle_path)
-                else:
-                    print(f"bundle: {bundle} does not support torchscript, skip verifying.")
+            print("metadata format is verified correctly.")
 
+            # The following are optional tests
+            net_id, config_file = get_net_id_config_name(bundle)
+
+            if bundle in exclude_verify_shape_list:
+                print(f"skip verifying the data shape of bundle: {bundle}.")
+            else:
+                verify_data_shape(bundle_path, net_id, config_file)
+                print("data shape is verified correctly.")
+            if bundle in exclude_verify_torchscript_list:
+                print(f"bundle: {bundle} does not support torchscript, skip verifying.")
+            else:
+                verify_export_torchscript(bundle_path, net_id, config_file)
+                print("Exporting TorchScript is verified correctly.")
     else:
         print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip verifying.")
 
