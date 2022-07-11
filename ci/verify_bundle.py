@@ -120,18 +120,10 @@ def get_net_id_config_name(bundle_name: str):
     """
     Return values of arguments net_id and config_file.
     """
-    net_id = "network_def"
-    config_file = "configs/inference.json"
-    if bundle_name not in custom_net_config_dict.keys():
-        return net_id, config_file
 
-    name_dict = custom_net_config_dict[bundle_name]
-    if "net_id" in name_dict.keys():
-        net_id = name_dict["net_id"]
-    if "config_file" in name_dict.keys():
-        config_file = name_dict["config_file"]
+    name_dict = custom_net_config_dict.get(bundle_name, {})
 
-    return net_id, config_file
+    return name_dict.get("net_id", "network_def"), name_dict.get("config_file", "configs/inference.json")
 
 
 def main(changed_dirs):
@@ -147,13 +139,17 @@ def main(changed_dirs):
 
     if len(bundle_list) > 0:
         for bundle in bundle_list:
+            print(f"start verifying {bundle}:")
             # verify bundle directory
             verify_bundle_directory(models_path, bundle)
+            print("directory is verified correctly.")
             # verify version, changelog
             verify_version_changes(models_path, bundle)
+            print("version and changelog are verified correctly.")
             # verify metadata format and data
             bundle_path = os.path.join(models_path, bundle)
             verify_metadata_format(bundle_path)
+            print("metadata format is verified correctly.")
 
             # The following are optional tests
             net_id, config_file = get_net_id_config_name(bundle)
@@ -162,10 +158,12 @@ def main(changed_dirs):
                 print(f"skip verifying the data shape of bundle: {bundle}.")
             else:
                 verify_data_shape(bundle_path, net_id, config_file)
+                print("data shape is verified correctly.")
             if bundle in exclude_verify_torchscript_list:
                 print(f"bundle: {bundle} does not support torchscript, skip verifying.")
             else:
                 verify_export_torchscript(bundle_path, net_id, config_file)
+                print("Exporting TorchScript is verified correctly.")
     else:
         print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip verifying.")
 
