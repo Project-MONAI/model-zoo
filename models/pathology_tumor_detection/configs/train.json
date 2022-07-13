@@ -6,10 +6,9 @@
     "lr": 0.001,
     "num_epochs": 4,
     "bundle_root": "./",
-    "result_root": "/results/",
     "data_root": "/workspace/data/medical/pathology",
-    "ckpt_dir": "$os.path.join(@result_root, 'run', 'models')",
-    "output_dir": "$os.path.join(@result_root, 'run', 'log')",
+    "ckpt_dir": "$os.path.join(@bundle_root, 'run', 'models')",
+    "output_dir": "$os.path.join(@bundle_root, 'run', 'log')",
     "train_file": "$os.path.join(@bundle_root, 'training.csv')",
     "validate_file": "$os.path.join(@bundle_root, 'validation.csv')",
     "region_size": [

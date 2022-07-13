@@ -4,9 +4,9 @@
         "$import os"
     ],
     "bundle_root": ".",
-    "output_dir": "$@bundle_root + '/eval'",
-    "data_dir": "/extra/datasets/CAMELYON16",
-    "datalist": "$list(sorted(glob.glob(@data_dir + '/testing/images/*.tif')))",
+    "output_dir": "$os.path.join(@bundle_root, 'run', 'eval')",
+    "data_dir": "/workspace/data/medical/pathology",
+    "train_file": "$os.path.join(@bundle_root, 'testing.csv')",
     "patch_size": [
         224,
         224
@@ -42,6 +42,21 @@
                 "keys": "image"
             }
         ]
+    },
+    "data_list": {
+        "_target_": "CSVDataset",
+        "src": "@train_file",
+        "col_groups": {
+            "image": 0
+        },
+        "kwargs_read_csv": {
+            "header": null
+        },
+        "transform": {
+            "_target_": "Lambdad",
+            "keys": "image",
+            "func": "$lambda x: os.path.join(@data_root, 'testing/images', x + '.tif')"
+        }
     },
     "dataset": {
         "_target_": "MaskedPatchWSIDataset",
