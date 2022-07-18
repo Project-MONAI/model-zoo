@@ -7,10 +7,11 @@
     "num_epochs": 4,
     "bundle_root": "./",
     "data_root": "/workspace/data/medical/pathology",
+    "dataset_root": "../bundle",
     "ckpt_dir": "$os.path.join(@bundle_root, 'run', 'models')",
     "output_dir": "$os.path.join(@bundle_root, 'run', 'log')",
-    "train_file": "$os.path.join(@bundle_root, 'training.csv')",
-    "validate_file": "$os.path.join(@bundle_root, 'validation.csv')",
+    "train_file": "$os.path.join(@dataset_root, 'training.csv')",
+    "validate_file": "$os.path.join(@dataset_root, 'validation.csv')",
     "region_size": [
         768,
         768
@@ -308,7 +309,7 @@
             "transform": {
                 "_target_": "Lambdad",
                 "keys": "image",
-                "func": "$lambda x: os.path.join('../data', 'validation/images', x + '.tif')"
+                "func": "$lambda x: os.path.join(@data_root, 'training/images', x + '.tif')"
             }
         },
         "dataset": {
