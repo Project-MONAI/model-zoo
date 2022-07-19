@@ -1,16 +1,4 @@
 {
-    "spleen_deepedit_annotation_v0.1.0.zip": {
-        "checksum": "3ff10564f5ff359f2190f7055641c66b53a9489b",
-        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.1.0.zip"
-    },
-    "pancreas_ct_dints_segmentation_v0.1.0.zip": {
-        "checksum": "ab22f3ef8cc7bf4e95394644c4563cb89766687f",
-        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.1.0.zip"
-    },
-    "brats_mri_segmentation_v0.1.0.zip": {
-        "checksum": "878735f655cd3e498c65bacee2522160b250dcce",
-        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.1.0.zip"
-    },
     "spleen_ct_segmentation_v0.1.0.zip": {
         "checksum": "18bae0a62d90fb06b33c1c7702867a4d4d7b98f0",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.1.0.zip"
@@ -18,9 +6,5 @@
     "swin_unetr_btcv_segmentation_v0.1.0.zip": {
         "checksum": "56d4089c4039b8f145c234f0d2ef31748f5ad8ba",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.1.0.zip"
-    },
-    "ventricular_short_axis_3label_v0.1.0.zip": {
-        "checksum": "adbbd30e8efbc8c4253f73c965bd30f129f2589b",
-        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/ventricular_short_axis_3label_v0.1.0.zip"
     }
 }
