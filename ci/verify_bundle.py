@@ -136,6 +136,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
         config_file=os.path.join(bundle_path, config_file),
         bundle_root=bundle_path,
     )
+    print("export weights into TorchScript module successfully.")
 
     ts_model_path = os.path.join(bundle_path, "models/model.ts")
     if os.path.exists(ts_model_path):
@@ -189,7 +190,7 @@ def main(changed_dirs):
                 print(f"bundle: {bundle} does not support torchscript, skip verifying.")
             else:
                 verify_torchscript(bundle_path, net_id, config_file)
-                print("TorchScript modules are verified correctly.")
+                print("TorchScript module is verified correctly.")
     else:
         print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip verifying.")
 
