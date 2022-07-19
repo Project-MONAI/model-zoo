@@ -72,8 +72,8 @@ def verify_version_changes(models_path: str, bundle_name: str):
     # If changing an existing bundle, a new version number should be provided
     model_info_path = os.path.join(models_path, "model_info.json")
     model_info = get_json_dict(model_info_path)
-    bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
-    if bundle_zip_name in model_info.keys():
+    bundle_name_with_version = f"{bundle_name}_v{latest_version}"
+    if bundle_name_with_version in model_info.keys():
         raise ValueError(
             f"version number: {latest_version} is already used of bundle: {bundle_name}. Please change it."
         )

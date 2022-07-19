@@ -62,6 +62,7 @@ def update_model_info(
     metadata = get_json_dict(bundle_metadata_path)
     latest_version = metadata["version"]
     bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
+    bundle_name_with_version = f"{bundle_name}_v{latest_version}"
     zipfile_path = os.path.join(temp_dir, bundle_zip_name)
     try:
         compress_bundle(root_path=temp_dir, bundle_name=bundle_name, bundle_zip_name=bundle_zip_name)
@@ -81,11 +82,11 @@ def update_model_info(
     model_info_path = os.path.join(models_path, model_info_file)
     model_info = get_json_dict(model_info_path)
 
-    if bundle_zip_name not in model_info.keys():
-        model_info[bundle_zip_name] = {"checksum": "", "source": ""}
+    if bundle_name_with_version not in model_info.keys():
+        model_info[bundle_name_with_version] = {"checksum": "", "source": ""}
 
-    model_info[bundle_zip_name]["checksum"] = checksum
-    model_info[bundle_zip_name]["source"] = source
+    model_info[bundle_name_with_version]["checksum"] = checksum
+    model_info[bundle_name_with_version]["source"] = source
 
     save_model_info(model_info, model_info_path)
     return (True, "update successful")
