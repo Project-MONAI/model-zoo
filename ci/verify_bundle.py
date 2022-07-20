@@ -11,9 +11,11 @@
 
 import argparse
 import os
+import subprocess
 
 from bundle_custom_data import custom_net_config_dict, exclude_verify_shape_list, exclude_verify_torchscript_list
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
+from monai.data.torchscript_utils import load_net_with_metadata
 from utils import download_large_files, get_changed_bundle_list, get_json_dict
 
 
@@ -70,8 +72,8 @@ def verify_version_changes(models_path: str, bundle_name: str):
     # If changing an existing bundle, a new version number should be provided
     model_info_path = os.path.join(models_path, "model_info.json")
     model_info = get_json_dict(model_info_path)
-    bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
-    if bundle_zip_name in model_info.keys():
+    bundle_name_with_version = f"{bundle_name}_v{latest_version}"
+    if bundle_name_with_version in model_info.keys():
         raise ValueError(
             f"version number: {latest_version} is already used of bundle: {bundle_name}. Please change it."
         )
@@ -101,11 +103,31 @@ def verify_data_shape(bundle_path: str, net_id: str, config_file: str):
     )
 
 
-def verify_export_torchscript(bundle_path: str, net_id: str, config_file: str):
+def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     """
-    This function is used to verify if the checkpoint is able to torchscript.
+    This function is used to verify if the checkpoint is able to torchscript, and
+    if "models/model.ts" is provided, it will be checked if is able to be loaded
+    successfully.
+    Since torchscript is not forward compatible, suitable pytorch version should
+    be installed. If "pytorch_version" is included in metadata, this function will
+    install it first.
 
     """
+    meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
+    metadata = get_json_dict(meta_file_path)
+    # so far we only try to install customized monai and torch version
+    if "monai_version" in metadata.keys():
+        monai_version = metadata["monai_version"]
+        install_cmd = f"pip install monai=={monai_version}"
+        call_status = subprocess.run(install_cmd, shell=True)
+        call_status.check_returncode()
+
+    if "pytorch_version" in metadata.keys():
+        torch_version = metadata["pytorch_version"]
+        install_cmd = f"pip install torch=={torch_version}"
+        call_status = subprocess.run(install_cmd, shell=True)
+        call_status.check_returncode()
+
     ckpt_export(
         net_id=net_id,
         filepath=os.path.join(bundle_path, "models/verify_model.ts"),
@@ -114,6 +136,11 @@ def verify_export_torchscript(bundle_path: str, net_id: str, config_file: str):
         config_file=os.path.join(bundle_path, config_file),
         bundle_root=bundle_path,
     )
+    print("export weights into TorchScript module successfully.")
+
+    ts_model_path = os.path.join(bundle_path, "models/model.ts")
+    if os.path.exists(ts_model_path):
+        _ = load_net_with_metadata(ts_model_path)
 
 
 def get_net_id_config_name(bundle_name: str):
@@ -162,8 +189,8 @@ def main(changed_dirs):
             if bundle in exclude_verify_torchscript_list:
                 print(f"bundle: {bundle} does not support torchscript, skip verifying.")
             else:
-                verify_export_torchscript(bundle_path, net_id, config_file)
-                print("Exporting TorchScript is verified correctly.")
+                verify_torchscript(bundle_path, net_id, config_file)
+                print("TorchScript module is verified correctly.")
     else:
         print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip verifying.")
 
