@@ -117,7 +117,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     metadata = get_json_dict(meta_file_path)
     # so far we only try to install customized monai and torch version
 
-    cmd = f"pipenv graph"
+    cmd = "pipenv graph"
     call_status = subprocess.run(cmd, shell=True)
     call_status.check_returncode()
 
@@ -133,7 +133,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
         call_status = subprocess.run(install_cmd, shell=True)
         call_status.check_returncode()
 
-    cmd = f"pipenv graph"
+    cmd = "pipenv graph"
     call_status = subprocess.run(cmd, shell=True)
     call_status.check_returncode()
 
