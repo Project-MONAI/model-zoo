@@ -18,5 +18,9 @@
     "swin_unetr_btcv_segmentation_v0.1.0": {
         "checksum": "65eaf535f04e80c8d82c597449a60ef8c1622692",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.1.0.zip"
+    },
+    "ventricular_short_axis_3label_v0.1.0": {
+        "checksum": "8cd1adb99e00fde9adb99f8abadcc8448c1cdf9b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/ventricular_short_axis_3label_v0.1.0.zip"
     }
 }
