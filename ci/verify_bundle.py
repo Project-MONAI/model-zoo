@@ -118,13 +118,13 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     # so far we only try to install customized monai and torch version
     if "monai_version" in metadata.keys():
         monai_version = metadata["monai_version"]
-        install_cmd = f"pip install monai=={monai_version}"
+        install_cmd = f"pipenv install monai=={monai_version}"
         call_status = subprocess.run(install_cmd, shell=True)
         call_status.check_returncode()
 
     if "pytorch_version" in metadata.keys():
         torch_version = metadata["pytorch_version"]
-        install_cmd = f"pip install torch=={torch_version} torchvision torchtext"
+        install_cmd = f"pipenv install torch=={torch_version}"
         call_status = subprocess.run(install_cmd, shell=True)
         call_status.check_returncode()
 
