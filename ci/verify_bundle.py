@@ -141,6 +141,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     ts_model_path = os.path.join(bundle_path, "models/model.ts")
     if os.path.exists(ts_model_path):
         _ = torch.jit.load(ts_model_path)
+        print("Provided TorchScript module is verified correctly.")
 
 
 def get_net_id_config_name(bundle_name: str):
@@ -190,7 +191,6 @@ def main(changed_dirs):
                 print(f"bundle: {bundle} does not support torchscript, skip verifying.")
             else:
                 verify_torchscript(bundle_path, net_id, config_file)
-                print("TorchScript module is verified correctly.")
     else:
         print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip verifying.")
 
