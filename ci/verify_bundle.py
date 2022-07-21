@@ -11,12 +11,11 @@
 
 import argparse
 import os
-import subprocess
 
 import torch
 from bundle_custom_data import custom_net_config_dict, exclude_verify_shape_list, exclude_verify_torchscript_list
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
-from utils import download_large_files, get_changed_bundle_list, get_json_dict
+from utils import download_large_files, get_json_dict
 
 
 def verify_bundle_directory(models_path: str, bundle_name: str):
@@ -108,35 +107,8 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     This function is used to verify if the checkpoint is able to torchscript, and
     if "models/model.ts" is provided, it will be checked if is able to be loaded
     successfully.
-    Since torchscript is not forward compatible, suitable pytorch version should
-    be installed. If "pytorch_version" is included in metadata, this function will
-    install it first.
 
     """
-    meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
-    metadata = get_json_dict(meta_file_path)
-    # so far we only try to install customized monai and torch version
-
-    cmd = "pipenv graph"
-    call_status = subprocess.run(cmd, shell=True)
-    call_status.check_returncode()
-
-    if "monai_version" in metadata.keys():
-        monai_version = metadata["monai_version"]
-        install_cmd = f"pipenv install monai=={monai_version}"
-        call_status = subprocess.run(install_cmd, shell=True)
-        call_status.check_returncode()
-
-    if "pytorch_version" in metadata.keys():
-        torch_version = metadata["pytorch_version"]
-        install_cmd = f"pipenv install torch=={torch_version}"
-        call_status = subprocess.run(install_cmd, shell=True)
-        call_status.check_returncode()
-
-    cmd = "pipenv graph"
-    call_status = subprocess.run(cmd, shell=True)
-    call_status.check_returncode()
-
     ckpt_export(
         net_id=net_id,
         filepath=os.path.join(bundle_path, "models/verify_model.ts"),
@@ -163,50 +135,38 @@ def get_net_id_config_name(bundle_name: str):
     return name_dict.get("net_id", "network_def"), name_dict.get("config_file", "configs/inference.json")
 
 
-def main(changed_dirs):
-    """
-    main function to process all changed files. It will do the following steps:
+def verify(bundle):
 
-    1. according to changed directories, get changed bundles.
-    2. verify each bundle.
-
-    """
-    bundle_list = get_changed_bundle_list(changed_dirs)
     models_path = "models"
+    print(f"start verifying {bundle}:")
+    # verify bundle directory
+    verify_bundle_directory(models_path, bundle)
+    print("directory is verified correctly.")
+    # verify version, changelog
+    verify_version_changes(models_path, bundle)
+    print("version and changelog are verified correctly.")
+    # verify metadata format and data
+    bundle_path = os.path.join(models_path, bundle)
+    verify_metadata_format(bundle_path)
+    print("metadata format is verified correctly.")
 
-    if len(bundle_list) > 0:
-        for bundle in bundle_list:
-            print(f"start verifying {bundle}:")
-            # verify bundle directory
-            verify_bundle_directory(models_path, bundle)
-            print("directory is verified correctly.")
-            # verify version, changelog
-            verify_version_changes(models_path, bundle)
-            print("version and changelog are verified correctly.")
-            # verify metadata format and data
-            bundle_path = os.path.join(models_path, bundle)
-            verify_metadata_format(bundle_path)
-            print("metadata format is verified correctly.")
+    # The following are optional tests
+    net_id, config_file = get_net_id_config_name(bundle)
 
-            # The following are optional tests
-            net_id, config_file = get_net_id_config_name(bundle)
-
-            if bundle in exclude_verify_shape_list:
-                print(f"skip verifying the data shape of bundle: {bundle}.")
-            else:
-                verify_data_shape(bundle_path, net_id, config_file)
-                print("data shape is verified correctly.")
-            if bundle in exclude_verify_torchscript_list:
-                print(f"bundle: {bundle} does not support torchscript, skip verifying.")
-            else:
-                verify_torchscript(bundle_path, net_id, config_file)
+    if bundle in exclude_verify_shape_list:
+        print(f"skip verifying the data shape of bundle: {bundle}.")
     else:
-        print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip verifying.")
+        verify_data_shape(bundle_path, net_id, config_file)
+        print("data shape is verified correctly.")
+    if bundle in exclude_verify_torchscript_list:
+        print(f"bundle: {bundle} does not support torchscript, skip verifying.")
+    else:
+        verify_torchscript(bundle_path, net_id, config_file)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
-    parser.add_argument("-f", "--f", type=str, help="changed files.")
+    parser.add_argument("-b", "--b", type=str, help="bundle name.")
     args = parser.parse_args()
-    changed_dirs = args.f.splitlines()
-    main(changed_dirs)
+    bundle = args.b
+    verify(bundle)
