@@ -13,9 +13,9 @@ import argparse
 import os
 import subprocess
 
+import torch
 from bundle_custom_data import custom_net_config_dict, exclude_verify_shape_list, exclude_verify_torchscript_list
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
-from monai.data.torchscript_utils import load_net_with_metadata
 from utils import download_large_files, get_changed_bundle_list, get_json_dict
 
 
@@ -124,7 +124,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
 
     if "pytorch_version" in metadata.keys():
         torch_version = metadata["pytorch_version"]
-        install_cmd = f"pip install torch=={torch_version}"
+        install_cmd = f"pip install torch=={torch_version} torchvision torchtext"
         call_status = subprocess.run(install_cmd, shell=True)
         call_status.check_returncode()
 
@@ -140,7 +140,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
 
     ts_model_path = os.path.join(bundle_path, "models/model.ts")
     if os.path.exists(ts_model_path):
-        _ = load_net_with_metadata(ts_model_path)
+        _ = torch.jit.load(ts_model_path)
 
 
 def get_net_id_config_name(bundle_name: str):
