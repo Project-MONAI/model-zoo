@@ -116,6 +116,11 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
     metadata = get_json_dict(meta_file_path)
     # so far we only try to install customized monai and torch version
+
+    cmd = f"pipenv graph"
+    call_status = subprocess.run(cmd, shell=True)
+    call_status.check_returncode()
+
     if "monai_version" in metadata.keys():
         monai_version = metadata["monai_version"]
         install_cmd = f"pipenv install monai=={monai_version}"
@@ -127,6 +132,10 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
         install_cmd = f"pipenv install torch=={torch_version}"
         call_status = subprocess.run(install_cmd, shell=True)
         call_status.check_returncode()
+
+    cmd = f"pipenv graph"
+    call_status = subprocess.run(cmd, shell=True)
+    call_status.check_returncode()
 
     ckpt_export(
         net_id=net_id,
