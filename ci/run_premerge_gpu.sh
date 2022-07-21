@@ -52,19 +52,19 @@ verify_bundle() {
     if [ ! -z "$changes" ]
     then
         # get all changed bundles
-        bundle_list=$(python ci/get_changed_bundle.py --f "$changes")
+        bundle_list=$(pipenv run python $(pwd)/ci/get_changed_bundle.py --f "$changes")
         if [ ! -z "$bundle_list" ]
         then
             for bundle in $bundle_list;
             do
                 # get required libraries according to the bundle's metadata file
-                requirements=$(python ci/get_bundle_requirements.py --b "$bundle")
+                requirements=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
                 if [ ! -z "$requirements" ]; then
                     echo "install required libraries for bundle: $bundle"
-                    pip install -r "$requirements"
+                    pipenv install -r "$requirements"
                 fi
                 # verify bundle
-                python ci/verify_bundle.py --b "$bundle"
+                pipenv run python $(pwd)/ci/verify_bundle.py --b "$bundle"
             done
         else
             echo "this pull request does not change any bundles, skip verify."
