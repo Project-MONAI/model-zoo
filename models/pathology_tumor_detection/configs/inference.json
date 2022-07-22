@@ -5,8 +5,8 @@
     ],
     "bundle_root": ".",
     "output_dir": "$os.path.join(@bundle_root, 'run', 'eval')",
-    "data_dir": "/workspace/data/medical/pathology",
-    "train_file": "$os.path.join(@bundle_root, 'testing.csv')",
+    "data_root": "/workspace/data/medical/pathology",
+    "testing_file": "$os.path.join(@bundle_root, 'testing.csv')",
     "patch_size": [
         224,
         224
@@ -45,11 +45,11 @@
     },
     "data_list": {
         "_target_": "CSVDataset",
-        "src": "@train_file",
-        "col_groups": {
-            "image": 0
-        },
+        "src": "@testing_file",
         "kwargs_read_csv": {
+            "names": [
+                "image"
+            ],
             "header": null
         },
         "transform": {
@@ -60,7 +60,7 @@
     },
     "dataset": {
         "_target_": "MaskedPatchWSIDataset",
-        "data": "$[{'image': i} for i in @datalist]",
+        "data": "@data_list",
         "mask_level": 7,
         "patch_size": "@patch_size",
         "transform": "@pre_transforms"
@@ -68,9 +68,9 @@
     "dataloader": {
         "_target_": "DataLoader",
         "dataset": "@dataset",
-        "batch_size": 1,
+        "batch_size": 400,
         "shuffle": false,
-        "num_workers": 1
+        "num_workers": 8
     },
     "inferer": {
         "_target_": "SimpleInferer"
@@ -95,8 +95,17 @@
     },
     "handlers": [
         {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
             "_target_": "StatsHandler",
-            "iteration_log": false
+            "tag_name": "progress",
+            "iteration_print_logger": "$lambda engine: print(f'image: \"{engine.state.batch[\"metadata\"][\"name\"][0]}\", iter: {engine.state.iteration}/{engine.state.epoch_length}') if engine.state.iteration % 100 == 0 else None",
+            "output_transform": "$lambda x: None"
         },
         {
             "_target_": "monai.handlers.ProbMapProducer",
