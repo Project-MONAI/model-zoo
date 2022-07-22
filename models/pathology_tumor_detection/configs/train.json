@@ -5,13 +5,12 @@
     ],
     "lr": 0.001,
     "num_epochs": 4,
-    "bundle_root": "./",
-    "data_root": "/workspace/data/medical/pathology",
-    "dataset_root": "../bundle",
+    "bundle_root": ".",
     "ckpt_dir": "$os.path.join(@bundle_root, 'run', 'models')",
     "output_dir": "$os.path.join(@bundle_root, 'run', 'log')",
-    "train_file": "$os.path.join(@dataset_root, 'training.csv')",
-    "validate_file": "$os.path.join(@dataset_root, 'validation.csv')",
+    "data_root": "/workspace/data/medical/pathology",
+    "training_file": "$os.path.join(@bundle_root, 'training.csv')",
+    "validation_file": "$os.path.join(@bundle_root, 'validation.csv')",
     "region_size": [
         768,
         768
@@ -133,7 +132,7 @@
         },
         "data_list": {
             "_target_": "CSVDataset",
-            "src": "@train_file",
+            "src": "@training_file",
             "col_groups": {
                 "image": 0,
                 "patch_location": [
@@ -284,7 +283,7 @@
         },
         "data_list": {
             "_target_": "CSVDataset",
-            "src": "@validate_file",
+            "src": "@validation_file",
             "col_groups": {
                 "image": 0,
                 "patch_location": [
