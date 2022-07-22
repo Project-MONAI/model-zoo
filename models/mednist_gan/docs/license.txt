@@ -1,0 +1,24 @@
+Copyright 2022 MONAI Consortium
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Third Party Licenses
+-----------------------------------------------------------------------
+
+/*********************************************************************/
+i. MedNIST Dataset
+The dataset is kindly made available by Dr. Bradley J. Erickson M.D., Ph.D. (https://www.mayo.edu/research/labs/radiology-informatics/overview), Department of Radiology, Mayo Clinic under the Creative Commons [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
+
+The MedNIST dataset was gathered from several sets from:
+ * TCIA (https://wiki.cancerimagingarchive.net/display/Public/Data+Usage+Policies+and+Restrictions)
+ * the RSNA Bone Age Challenge (http://rsnachallenges.cloudapp.net/competitions/4),
+ * the NIH Chest X-ray dataset (https://cloud.google.com/healthcare/docs/resources/public-datasets/nih-chest).
+
+If you use the MedNIST dataset, please acknowledge the source. For the license and usage conditions of the source datasets, please see their respective sites.
