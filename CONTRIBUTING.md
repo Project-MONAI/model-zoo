@@ -4,7 +4,9 @@ Welcome to MONAI Model Zoo! We're excited you're here and want to contribute. Th
 
 ## Preparing a bundle
 
-Please refer to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html#monai-bundle-specification) to prepare your bundle.
+Please refer to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html) and the description of bundle [config syntax](https://docs.monai.io/en/latest/config_syntax.html) to prepare your bundle.
+
+The [get started](https://github.com/Project-MONAI/tutorials/blob/main/modules/bundle/get_started.ipynb) notebook is a step-by-step tutorial to help developers easily get started to develop a bundle. And [bundle examples](https://github.com/Project-MONAI/tutorials/tree/main/modules/bundle) show the typical bundle for 3D segmentation, how to use customized components in a bundle, and how to parse bundle in your own program as "hybrid" mode, etc.
 
 ### Readme Format
 
