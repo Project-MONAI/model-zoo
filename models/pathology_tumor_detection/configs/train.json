@@ -171,7 +171,7 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
-            "batch_size": 64,
+            "batch_size": 128,
             "pin_memory": true,
             "num_workers": 8
         },
@@ -322,7 +322,7 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@validate#dataset",
-            "batch_size": 64,
+            "batch_size": 128,
             "pin_memory": true,
             "shuffle": false,
             "num_workers": 8
