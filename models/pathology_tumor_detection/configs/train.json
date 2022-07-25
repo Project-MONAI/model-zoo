@@ -171,9 +171,9 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
-            "batch_size": 2,
+            "batch_size": 64,
             "pin_memory": true,
-            "num_workers": 0
+            "num_workers": 8
         },
         "inferer": {
             "_target_": "SimpleInferer"
@@ -322,10 +322,10 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@validate#dataset",
-            "batch_size": 2,
+            "batch_size": 64,
             "pin_memory": true,
             "shuffle": false,
-            "num_workers": 0
+            "num_workers": 8
         },
         "inferer": {
             "_target_": "SimpleInferer"

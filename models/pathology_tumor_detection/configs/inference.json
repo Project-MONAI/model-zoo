@@ -4,7 +4,7 @@
         "$import os"
     ],
     "bundle_root": ".",
-    "output_dir": "$os.path.join(@bundle_root, 'run', 'eval')",
+    "output_dir": "$os.path.join(@bundle_root, 'eval')",
     "data_root": "/workspace/data/medical/pathology",
     "testing_file": "$os.path.join(@bundle_root, 'testing.csv')",
     "patch_size": [
