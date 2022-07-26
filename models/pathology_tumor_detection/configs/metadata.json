@@ -4,7 +4,7 @@
     "changelog": {
         "0.1.0": "initialize release of the bundle"
     },
-    "monai_version": "0.9.0",
+    "monai_version": "0.9.1",
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
