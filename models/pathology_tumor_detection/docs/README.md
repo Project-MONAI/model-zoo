@@ -17,7 +17,7 @@ Annotation information are adopted from [NCRF/jsons](https://github.com/baidu-re
 
 - Target: Tumor
 - Task: Detection
-- Modality: Histopathology  
+- Modality: Histopathology
 - Size: 270 WSIs for training/validation, 48 WSIs for testing
 
 ### Data Preparation
