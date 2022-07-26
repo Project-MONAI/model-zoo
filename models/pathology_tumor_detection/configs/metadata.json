@@ -2,7 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "version": "0.1.0",
     "changelog": {
-        "0.0.1": "initialize the model package structure"
+        "0.1.0": "initialize release of the bundle"
     },
     "monai_version": "0.9.0",
     "pytorch_version": "1.10.0",
@@ -10,8 +10,8 @@
     "optional_packages_version": {
         "cucim": "22.04"
     },
-    "task": "Pathology tumor detection",
-    "description": "This is a pre-trained model for tumor detection on Camelyon 16 dataset.",
+    "task": "Pathology metastasis detection",
+    "description": "A pre-trained model for metastasis detection on Camelyon 16 dataset.",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "Camelyon dataset",
