@@ -47,7 +47,7 @@
         "T_max": "@num_epochs"
     },
     "train": {
-        "pre_transforms": {
+        "preprocessing": {
             "_target_": "Compose",
             "transforms": [
                 {
@@ -130,7 +130,7 @@
                 }
             ]
         },
-        "data_list": {
+        "datalist": {
             "_target_": "CSVDataset",
             "src": "@training_file",
             "col_groups": {
@@ -162,11 +162,11 @@
         },
         "dataset": {
             "_target_": "monai.data.wsi_datasets.PatchWSIDataset",
-            "data": "@train#data_list",
+            "data": "@train#datalist",
             "patch_level": 0,
             "patch_size": "@region_size",
             "reader": "cucim",
-            "transform": "@train#pre_transforms"
+            "transform": "@train#preprocessing"
         },
         "dataloader": {
             "_target_": "DataLoader",
@@ -178,7 +178,7 @@
         "inferer": {
             "_target_": "SimpleInferer"
         },
-        "post_transforms": {
+        "postprocessing": {
             "_target_": "Compose",
             "transforms": [
                 {
@@ -233,13 +233,13 @@
             "loss_function": "@loss",
             "inferer": "@train#inferer",
             "amp": true,
-            "postprocessing": "@train#post_transforms",
+            "postprocessing": "@train#postprocessing",
             "key_train_metric": "@train#key_metric",
             "train_handlers": "@train#handlers"
         }
     },
     "validate": {
-        "pre_transforms": {
+        "preprocessing": {
             "_target_": "Compose",
             "transforms": [
                 {
@@ -281,7 +281,7 @@
                 }
             ]
         },
-        "data_list": {
+        "datalist": {
             "_target_": "CSVDataset",
             "src": "@validation_file",
             "col_groups": {
@@ -313,11 +313,11 @@
         },
         "dataset": {
             "_target_": "monai.data.wsi_datasets.PatchWSIDataset",
-            "data": "@validate#data_list",
+            "data": "@validate#datalist",
             "patch_level": 0,
             "patch_size": "@region_size",
             "reader": "cucim",
-            "transform": "@validate#pre_transforms"
+            "transform": "@validate#preprocessing"
         },
         "dataloader": {
             "_target_": "DataLoader",
@@ -330,7 +330,7 @@
         "inferer": {
             "_target_": "SimpleInferer"
         },
-        "post_transforms": "%train#post_transforms",
+        "postprocessing": "%train#postprocessing",
         "handlers": [
             {
                 "_target_": "StatsHandler",
@@ -363,7 +363,7 @@
             "val_data_loader": "@validate#dataloader",
             "network": "@network",
             "inferer": "@validate#inferer",
-            "postprocessing": "@validate#post_transforms",
+            "postprocessing": "@validate#postprocessing",
             "key_val_metric": "@validate#key_metric",
             "val_handlers": "@validate#handlers",
             "amp": true
