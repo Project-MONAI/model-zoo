@@ -6,7 +6,7 @@
         "0.1.0": "complete the model package"
     },
     "monai_version": "0.9.1",
-    "pytorch_version": "1.13.0a0+340c412",
+    "pytorch_version": "1.13.0",
     "numpy_version": "1.22.4",
     "optional_packages_version": {
         "nibabel": "4.0.1",
