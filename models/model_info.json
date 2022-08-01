@@ -22,5 +22,9 @@
     "ventricular_short_axis_3label_v0.1.0": {
         "checksum": "8cd1adb99e00fde9adb99f8abadcc8448c1cdf9b",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/ventricular_short_axis_3label_v0.1.0.zip"
+    },
+    "mednist_gan_v0.1.0": {
+        "checksum": "6344489fd720fa77f0c74fd414bbbdae7905dc9d",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_gan_v0.1.0.zip"
     }
 }
