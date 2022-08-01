@@ -50,8 +50,22 @@
         },
         "outputs": {
             "pred": {
-                "type": "probabilities",
-                "dtype": "float32"
+                "type": "probability",
+                "format": "classification",
+                "num_channels": 1,
+                "spatial_shape": [
+                    1,
+                    1
+                ],
+                "dtype": "float32",
+                "is_patch_data": true,
+                "value_range": [
+                    0,
+                    1
+                ],
+                "channel_def": {
+                    "0": "metastasis"
+                }
             }
         }
     }
