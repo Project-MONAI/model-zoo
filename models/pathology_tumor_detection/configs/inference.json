@@ -61,7 +61,7 @@
     "dataset": {
         "_target_": "MaskedPatchWSIDataset",
         "data": "@datalist",
-        "mask_level": 7,
+        "mask_level": 6,
         "patch_size": "@patch_size",
         "transform": "@preprocessing"
     },
