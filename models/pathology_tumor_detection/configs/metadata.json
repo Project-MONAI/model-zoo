@@ -8,7 +8,8 @@
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
-        "cucim": "22.04"
+        "cucim": "22.04",
+        "torchvision": "0.13"
     },
     "task": "Pathology metastasis detection",
     "description": "A pre-trained model for metastasis detection on Camelyon 16 dataset.",
