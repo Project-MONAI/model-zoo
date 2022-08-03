@@ -12,16 +12,6 @@ A pre-trained UNEST base model [1] for volumetric (3D) renal structures segmenta
 The training data is from the [ImageVU RenalSeg dataset] from Vanderbilt University and Vanderbilt University Medical Center.
 (The training data is not public available yet).
 
-
-The dataset format needs to be redefined using the following commands:
-
-```
-unzip RawData.zip
-mv RawData/Training/img/ RawData/imagesTr
-mv RawData/Training/label/ RawData/labelsTr
-mv RawData/Testing/img/ RawData/imagesTs
-```
-
 - Target: Renal Cortex | Medulla | Pelvis Collecting System
 - Task: Segmentation
 - Modality: CT (Artrial | Venous phase)
