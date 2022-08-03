@@ -127,9 +127,18 @@
                 "prob": 1.0
             }
         ],
+        "final_transforms": [
+            {
+                "_target_": "ToTensord",
+                "keys": [
+                    "image",
+                    "label"
+                ]
+            }
+        ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@train#preprocessing_transforms + @train#random_transforms"
+            "transforms": "$@train#preprocessing_transforms + @train#random_transforms + @train#final_transforms"
         },
         "dataset": {
             "_target_": "Dataset",
@@ -210,7 +219,7 @@
     "validate": {
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@train#preprocessing_transforms"
+            "transforms": "$@train#preprocessing_transforms + @train#final_transforms"
         },
         "dataset": {
             "_target_": "Dataset",
