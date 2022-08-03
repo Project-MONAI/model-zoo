@@ -7,9 +7,10 @@
     "monai_version": "0.9.1",
     "pytorch_version": "1.12.0",
     "numpy_version": "1.21.2",
-    "torchvision": "0.13.0",
-    "cucim": "22.04",
-    "optional_packages_version": {},
+    "optional_packages_version": {
+        "torchvision": "0.13.0",
+        "cucim": "22.04"
+    },
     "task": "Pathology metastasis detection",
     "description": "A pre-trained model for metastasis detection on Camelyon 16 dataset.",
     "authors": "MONAI team",
