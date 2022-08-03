@@ -7,8 +7,8 @@ Official code consulted as reference: https://github.com/xvjiarui/GCNet
 
 Hacked together by / Copyright 2021 Ross Wightman
 """
-from torch import nn as nn
 import torch.nn.functional as F
+from torch import nn as nn
 
 from .create_act import create_act_layer, get_act_layer
 from .helpers import make_divisible

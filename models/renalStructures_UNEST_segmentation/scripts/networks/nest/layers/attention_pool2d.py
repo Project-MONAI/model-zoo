@@ -8,7 +8,7 @@ https://github.com/openai/CLIP/blob/3b473b0e682c091a9e53623eebc1ca1657385717/cli
 Hacked together by / Copyright 2021 Ross Wightman
 """
 import math
-from typing import List, Union, Tuple
+from typing import List, Tuple, Union
 
 import torch
 import torch.nn as nn

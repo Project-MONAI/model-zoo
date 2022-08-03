@@ -3,9 +3,9 @@
 Hacked together by / Copyright 2020 Ross Wightman
 """
 
-from .mixed_conv3d import MixedConv3d
 from .cond_conv2d import CondConv2d
 from .conv3d_same import create_conv3d_pad
+from .mixed_conv3d import MixedConv3d
 
 
 def create_conv3d(in_channels, out_channels, kernel_size, **kwargs):

@@ -3,8 +3,8 @@
 Hacked together by / Copyright 2020 Ross Wightman
 """
 import logging
-import os
 import math
+import os
 from collections import OrderedDict
 from copy import deepcopy
 from typing import Any, Callable, Optional, Tuple
@@ -13,11 +13,10 @@ import torch
 import torch.nn as nn
 from torch.hub import load_state_dict_from_url
 
-from .features import FeatureListNet, FeatureDictNet, FeatureHookNet
+from .features import FeatureDictNet, FeatureHookNet, FeatureListNet
 from .fx_features import FeatureGraphNet
-from .hub import has_hf_hub, download_cached_file, load_state_dict_from_hf
+from .hub import download_cached_file, has_hf_hub, load_state_dict_from_hf
 from .layers import Conv3dSame, Linear
-
 
 _logger = logging.getLogger(__name__)
 

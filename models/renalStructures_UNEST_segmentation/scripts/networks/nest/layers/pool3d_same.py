@@ -2,13 +2,14 @@
 
 Hacked together by / Copyright 2020 Ross Wightman
 """
+from typing import List, Optional, Tuple
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import List, Tuple, Optional
 
 from .helpers import to_2tuple
-from .padding import pad_same, get_padding_value
+from .padding import get_padding_value, pad_same
 
 
 def avg_pool3d_same(x, kernel_size: List[int], stride: List[int], padding: List[int] = (0, 0, 0),

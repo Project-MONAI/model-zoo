@@ -34,9 +34,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 import math
-from torch import nn
-import torch.nn.functional as F
 
+import torch.nn.functional as F
+from torch import nn
 
 from .create_act import create_act_layer
 from .helpers import make_divisible

@@ -13,8 +13,8 @@ Hacked together by / Copyright 2021 Ross Wightman
 """
 import math
 
-from torch import nn as nn
 import torch.nn.functional as F
+from torch import nn as nn
 
 from .create_act import create_act_layer, get_act_layer
 from .create_conv2d import create_conv2d

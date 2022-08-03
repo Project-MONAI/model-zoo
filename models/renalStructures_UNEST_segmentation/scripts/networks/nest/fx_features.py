@@ -2,6 +2,7 @@
 Using https://pytorch.org/vision/stable/feature_extraction.html
 """
 from typing import Callable
+
 from torch import nn
 
 from .features import _get_feature_info
@@ -13,9 +14,9 @@ except ImportError:
     has_fx_feature_extraction = False
 
 # Layers we went to treat as leaf modules
-from .layers import Conv3dSame, ScaledStdConv2dSame, BatchNormAct2d, BlurPool2d, CondConv3d, StdConv2dSame, DropPath
+from .layers import BatchNormAct2d, BlurPool2d, CondConv3d, Conv3dSame, DropPath, ScaledStdConv2dSame, StdConv2dSame
 from .layers.non_local_attn import BilinearAttnTransform
-from .layers.pool3d_same import MaxPool3dSame, AvgPool3dSame
+from .layers.pool3d_same import AvgPool3dSame, MaxPool3dSame
 
 # NOTE: By default, any modules from timm.models.layers that we want to treat as leaf modules go here
 # BUT modules from timm.models should use the registration mechanism below

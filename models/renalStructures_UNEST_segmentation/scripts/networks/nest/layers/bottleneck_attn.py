@@ -20,9 +20,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .helpers import to_2tuple, make_divisible
-from .weight_init import trunc_normal_
+from .helpers import make_divisible, to_2tuple
 from .trace_utils import _assert
+from .weight_init import trunc_normal_
 
 
 def rel_logits_1d(q, rel_k, permute_mask: List[int]):

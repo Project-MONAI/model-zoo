@@ -6,10 +6,11 @@ BlurPool layer inspired by
 Hacked together by Chris Ha and Ross Wightman
 """
 
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
+
 from .padding import get_padding
 
 

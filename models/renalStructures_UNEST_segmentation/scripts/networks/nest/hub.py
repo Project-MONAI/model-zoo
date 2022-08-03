@@ -7,12 +7,14 @@ from typing import Union
 
 import torch
 from torch.hub import HASH_REGEX, download_url_to_file, urlparse
+
 try:
     from torch.hub import get_dir
 except ImportError:
     from torch.hub import _get_torch_home as get_dir
 
 from timm import __version__
+
 try:
     from huggingface_hub import HfApi, HfFolder, Repository, cached_download, hf_hub_url
     cached_download = partial(cached_download, library_name="timm", library_version=__version__)

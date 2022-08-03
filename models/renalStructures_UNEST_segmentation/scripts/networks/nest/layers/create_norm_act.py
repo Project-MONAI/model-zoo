@@ -6,15 +6,15 @@ combined modules like IABN or EvoNorms.
 
 Hacked together by / Copyright 2020 Ross Wightman
 """
-import types
 import functools
+import types
 
 import torch
 import torch.nn as nn
 
 from .evo_norm import EvoNormBatch2d, EvoNormSample2d
-from .norm_act import BatchNormAct2d, GroupNormAct
 from .inplace_abn import InplaceAbn
+from .norm_act import BatchNormAct2d, GroupNormAct
 
 _NORM_ACT_TYPES = {BatchNormAct2d, GroupNormAct, EvoNormBatch2d, EvoNormSample2d, InplaceAbn}
 _NORM_ACT_REQUIRES_ARG = {BatchNormAct2d, GroupNormAct, InplaceAbn}  # requires act_layer arg to define act type
