@@ -2,7 +2,7 @@
 A pre-trained model for inferencing volumetric (3D) kidney substructures segmentation from contrast-enhanced CT images (Arterial/Portal Venous Phase).
 A tutorial and release of model for kidney cortex, medulla and collecting system segmentation. 
 
-Authors: Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Xin Yu (xin.yu@vanderbilt.edu) | Yucheng Tang (yucheng.tang@vnvidia.com) | 
+Authors: Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Xin Yu (xin.yu@vanderbilt.edu) | Yucheng Tang (yucheng.tang@nvidia.com) | 
 
 
 # Model Overview
@@ -61,9 +61,15 @@ Mean Valdiation Dice = 0.8523
 Note that mean dice is computed in the original spacing of the input data.
 
 ## commands example
-Download trained checkpoint model:
+Download trained checkpoint model to ./model/model.pt:
 
 
+Add scripts component:  To run the workflow with customized components, PYTHONPATH should be revised to include the path to the customized component:
+
+```
+export PYTHONPATH=$PYTHONPATH:"'<path to the bundle root dir>/scripts'"
+
+```
 
 
 Execute inference:
@@ -82,6 +88,6 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 This is an example, not to be used for diagnostic purposes.
 
 # References
-[1] Yu, Xin, Yucheng Tang et al. "Characterizing Renal Structures with 3D Block Aggregate Transformers." arXiv preprint arXiv:2203.02430 (2022). https://arxiv.org/pdf/2203.02430.pdf
+[1] Yu, Xin, Yinchi Zhou, Yucheng Tang et al. "Characterizing Renal Structures with 3D Block Aggregate Transformers." arXiv preprint arXiv:2203.02430 (2022). https://arxiv.org/pdf/2203.02430.pdf
 
 
