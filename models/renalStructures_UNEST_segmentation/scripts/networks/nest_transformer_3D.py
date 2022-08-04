@@ -22,7 +22,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from .nest.layers import DropPath, Mlp, _assert, create_conv3d, create_pool3d, to_ntuple, trunc_normal_
+from .nest import DropPath, Mlp, _assert, create_conv3d, create_pool3d, to_ntuple, trunc_normal_
 from .patchEmbed3D import PatchEmbed3D
 
 _logger = logging.getLogger(__name__)
