@@ -26,9 +26,5 @@
     "mednist_gan_v0.1.0": {
         "checksum": "6344489fd720fa77f0c74fd414bbbdae7905dc9d",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_gan_v0.1.0.zip"
-    },
-    "brats_mri_segmentation_v0.1.1": {
-        "checksum": "fd165c24057c9ae00eef4d78065503cd4f0cff90",
-        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.1.1.zip"
     }
 }
