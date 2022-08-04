@@ -22,45 +22,10 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from .nest.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from .nest.layers import DropPath, Mlp, _assert, create_conv3d, create_pool3d, to_ntuple, trunc_normal_
 from .patchEmbed3D import PatchEmbed3D
 
 _logger = logging.getLogger(__name__)
-
-
-def _cfg(url="", **kwargs):
-    return {
-        "url": url,
-        "num_classes": 1000,
-        "input_size": (3, 224, 224),
-        "pool_size": [14, 14],
-        "crop_pct": 0.875,
-        "interpolation": "bicubic",
-        "fixed_input_size": True,
-        "mean": IMAGENET_DEFAULT_MEAN,
-        "std": IMAGENET_DEFAULT_STD,
-        "first_conv": "patch_embed.proj",
-        "classifier": "head",
-        **kwargs,
-    }
-
-
-default_cfgs = {
-    # (weights from official Google JAX impl)
-    "nest_base": _cfg(),
-    "nest_small": _cfg(),
-    "nest_tiny": _cfg(),
-    "jx_nest_base": _cfg(
-        url="https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-vt3p-weights/jx_nest_base-8bc41011.pth"
-    ),
-    "jx_nest_small": _cfg(
-        url="https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-vt3p-weights/jx_nest_small-422eaded.pth"
-    ),
-    "jx_nest_tiny": _cfg(
-        url="https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-vt3p-weights/jx_nest_tiny-e3428fb9.pth"
-    ),
-}
 
 
 class Attention(nn.Module):
