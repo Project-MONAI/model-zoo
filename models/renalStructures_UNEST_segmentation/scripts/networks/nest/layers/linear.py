@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """ Linear layer (alternate definition)
 """
 import torch
@@ -11,6 +13,7 @@ class Linear(nn.Linear):
     Wraps torch.nn.Linear to support AMP + torchscript usage by manually casting
     weight & bias to input.dtype to work around an issue w/ torch.addmm in this use case.
     """
+
     def forward(self, input: torch.Tensor) -> torch.Tensor:
         if torch.jit.is_scripting():
             bias = self.bias.to(dtype=input.dtype) if self.bias is not None else None

@@ -1,1 +1,11 @@
-from .constants import *
+#!/usr/bin/env python3
+
+from .constants import (
+    DEFAULT_CROP_PCT,
+    IMAGENET_DEFAULT_MEAN,
+    IMAGENET_DEFAULT_STD,
+    IMAGENET_DPN_MEAN,
+    IMAGENET_DPN_STD,
+    IMAGENET_INCEPTION_MEAN,
+    IMAGENET_INCEPTION_STD,
+)

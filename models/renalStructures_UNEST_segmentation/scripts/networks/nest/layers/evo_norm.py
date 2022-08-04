@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """EvoNormB0 (Batched) and EvoNormS0 (Sample) in PyTorch
 
 An attempt at getting decent performing EvoNorms running in PyTorch.
@@ -24,7 +26,7 @@ class EvoNormBatch2d(nn.Module):
         self.weight = nn.Parameter(torch.ones(num_features), requires_grad=True)
         self.bias = nn.Parameter(torch.zeros(num_features), requires_grad=True)
         self.v = nn.Parameter(torch.ones(num_features), requires_grad=True) if apply_act else None
-        self.register_buffer('running_var', torch.ones(num_features))
+        self.register_buffer("running_var", torch.ones(num_features))
         self.reset_parameters()
 
     def reset_parameters(self):
@@ -34,7 +36,7 @@ class EvoNormBatch2d(nn.Module):
             nn.init.ones_(self.v)
 
     def forward(self, x):
-        _assert(x.dim() == 4, 'expected 4D input')
+        _assert(x.dim() == 4, "expected 4D input")
         x_type = x.dtype
         if self.v is not None:
             running_var = self.running_var.view(1, -1, 1, 1)
@@ -70,12 +72,12 @@ class EvoNormSample2d(nn.Module):
             nn.init.ones_(self.v)
 
     def forward(self, x):
-        _assert(x.dim() == 4, 'expected 4D input')
-        B, C, H, W = x.shape
-        _assert(C % self.groups == 0, '')
+        _assert(x.dim() == 4, "expected 4D input")
+        b, c, h, w = x.shape
+        _assert(c % self.groups == 0, "")
         if self.v is not None:
             n = x * (x * self.v.view(1, -1, 1, 1)).sigmoid()
-            x = x.reshape(B, self.groups, -1)
-            x = n.reshape(B, self.groups, -1) / (x.var(dim=-1, unbiased=False, keepdim=True) + self.eps).sqrt()
-            x = x.reshape(B, C, H, W)
+            x = x.reshape(b, self.groups, -1)
+            x = n.reshape(b, self.groups, -1) / (x.var(dim=-1, unbiased=False, keepdim=True) + self.eps).sqrt()
+            x = x.reshape(b, c, h, w)
         return x * self.weight.view(1, -1, 1, 1) + self.bias.view(1, -1, 1, 1)

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 BlurPool layer inspired by
  - Kornia's Max_BlurPool2d
@@ -27,6 +29,7 @@ class BlurPool2d(nn.Module):
     Returns:
         torch.Tensor: the transformed tensor.
     """
+
     def __init__(self, channels, filt_size=3, stride=2) -> None:
         super(BlurPool2d, self).__init__()
         assert filt_size > 1
@@ -36,8 +39,8 @@ class BlurPool2d(nn.Module):
         self.padding = [get_padding(filt_size, stride, dilation=1)] * 4
         coeffs = torch.tensor((np.poly1d((0.5, 0.5)) ** (self.filt_size - 1)).coeffs.astype(np.float32))
         blur_filter = (coeffs[:, None] * coeffs[None, :])[None, None, :, :].repeat(self.channels, 1, 1, 1)
-        self.register_buffer('filt', blur_filter, persistent=False)
+        self.register_buffer("filt", blur_filter, persistent=False)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = F.pad(x, self.padding, 'reflect')
+        x = F.pad(x, self.padding, "reflect")
         return F.conv2d(x, self.filt, stride=self.stride, groups=x.shape[1])

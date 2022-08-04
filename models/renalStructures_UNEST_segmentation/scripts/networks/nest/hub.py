@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import json
 import logging
 import os
@@ -17,6 +19,7 @@ from timm import __version__
 
 try:
     from huggingface_hub import HfApi, HfFolder, Repository, cached_download, hf_hub_url
+
     cached_download = partial(cached_download, library_name="timm", library_version=__version__)
     _has_hf_hub = True
 except ImportError:
@@ -26,17 +29,17 @@ except ImportError:
 _logger = logging.getLogger(__name__)
 
 
-def get_cache_dir(child_dir=''):
+def get_cache_dir(child_dir=""):
     """
     Returns the location of the directory where models are cached (and creates it if necessary).
     """
     # Issue warning to move data if old env is set
-    if os.getenv('TORCH_MODEL_ZOO'):
-        _logger.warning('TORCH_MODEL_ZOO is deprecated, please use env TORCH_HOME instead')
+    if os.getenv("TORCH_MODEL_ZOO"):
+        _logger.warning("TORCH_MODEL_ZOO is deprecated, please use env TORCH_HOME instead")
 
     hub_dir = get_dir()
     child_dir = () if not child_dir else (child_dir,)
-    model_dir = os.path.join(hub_dir, 'checkpoints', *child_dir)
+    model_dir = os.path.join(hub_dir, "checkpoints", *child_dir)
     os.makedirs(model_dir, exist_ok=True)
     return model_dir
 
@@ -59,13 +62,14 @@ def has_hf_hub(necessary=False):
     if not _has_hf_hub and necessary:
         # if no HF Hub module installed and it is necessary to continue, raise error
         raise RuntimeError(
-            'Hugging Face hub model specified but package not installed. Run `pip install huggingface_hub`.')
+            "Hugging Face hub model specified but package not installed. Run `pip install huggingface_hub`."
+        )
     return _has_hf_hub
 
 
 def hf_split(hf_id):
-    rev_split = hf_id.split('@')
-    assert 0 < len(rev_split) <= 2, 'hf_hub id should only contain one @ character to identify revision.'
+    rev_split = hf_id.split("@")
+    assert 0 < len(rev_split) <= 2, "hf_hub id should only contain one @ character to identify revision."
     hf_model_id = rev_split[0]
     hf_revision = rev_split[-1] if len(rev_split) > 1 else None
     return hf_model_id, hf_revision
@@ -80,22 +84,22 @@ def load_cfg_from_json(json_file: Union[str, os.PathLike]):
 def _download_from_hf(model_id: str, filename: str):
     hf_model_id, hf_revision = hf_split(model_id)
     url = hf_hub_url(hf_model_id, filename, revision=hf_revision)
-    return cached_download(url, cache_dir=get_cache_dir('hf'))
+    return cached_download(url, cache_dir=get_cache_dir("hf"))
 
 
 def load_model_config_from_hf(model_id: str):
     assert has_hf_hub(True)
-    cached_file = _download_from_hf(model_id, 'config.json')
+    cached_file = _download_from_hf(model_id, "config.json")
     default_cfg = load_cfg_from_json(cached_file)
-    default_cfg['hf_hub'] = model_id  # insert hf_hub id for pretrained weight load during model creation
-    model_name = default_cfg.get('architecture')
+    default_cfg["hf_hub"] = model_id  # insert hf_hub id for pretrained weight load during model creation
+    model_name = default_cfg.get("architecture")
     return default_cfg, model_name
 
 
 def load_state_dict_from_hf(model_id: str):
     assert has_hf_hub(True)
-    cached_file = _download_from_hf(model_id, 'pytorch_model.bin')
-    state_dict = torch.load(cached_file, map_location='cpu')
+    cached_file = _download_from_hf(model_id, "pytorch_model.bin")
+    state_dict = torch.load(cached_file, map_location="cpu")
     return state_dict
 
 
@@ -105,17 +109,17 @@ def save_for_hf(model, save_directory, model_config=None):
     save_directory = Path(save_directory)
     save_directory.mkdir(exist_ok=True, parents=True)
 
-    weights_path = save_directory / 'pytorch_model.bin'
+    weights_path = save_directory / "pytorch_model.bin"
     torch.save(model.state_dict(), weights_path)
 
-    config_path = save_directory / 'config.json'
+    config_path = save_directory / "config.json"
     hf_config = model.default_cfg
-    hf_config['num_classes'] = model_config.pop('num_classes', model.num_classes)
-    hf_config['num_features'] = model_config.pop('num_features', model.num_features)
-    hf_config['labels'] = model_config.pop('labels', [f"LABEL_{i}" for i in range(hf_config['num_classes'])])
+    hf_config["num_classes"] = model_config.pop("num_classes", model.num_classes)
+    hf_config["num_features"] = model_config.pop("num_features", model.num_features)
+    hf_config["labels"] = model_config.pop("labels", [f"LABEL_{i}" for i in range(hf_config["num_classes"])])
     hf_config.update(model_config)
 
-    with config_path.open('w') as f:
+    with config_path.open("w") as f:
         json.dump(hf_config, f, indent=2)
 
 
@@ -123,7 +127,7 @@ def push_to_hf_hub(
     model,
     local_dir,
     repo_namespace_or_url=None,
-    commit_message='Add model',
+    commit_message="Add model",
     use_auth_token=True,
     git_email=None,
     git_user=None,
@@ -131,7 +135,7 @@ def push_to_hf_hub(
     model_config=None,
 ):
     if repo_namespace_or_url:
-        repo_owner, repo_name = repo_namespace_or_url.rstrip('/').split('/')[-2:]
+        repo_owner, repo_name = repo_namespace_or_url.rstrip("/").split("/")[-2:]
     else:
         if isinstance(use_auth_token, str):
             token = use_auth_token
@@ -145,10 +149,10 @@ def push_to_hf_hub(
                 "token as the `use_auth_token` argument."
             )
 
-        repo_owner = HfApi().whoami(token)['name']
+        repo_owner = HfApi().whoami(token)["name"]
         repo_name = Path(local_dir).name
 
-    repo_url = f'https://huggingface.co/{repo_owner}/{repo_name}'
+    repo_url = f"https://huggingface.co/{repo_owner}/{repo_name}"
 
     repo = Repository(
         local_dir,
@@ -160,13 +164,13 @@ def push_to_hf_hub(
     )
 
     # Prepare a default model card that includes the necessary tags to enable inference.
-    readme_text = f'---\ntags:\n- image-classification\n- timm\nlibrary_tag: timm\n---\n# Model card for {repo_name}'
+    readme_text = f"---\ntags:\n- image-classification\n- timm\nlibrary_tag: timm\n---\n# Model card for {repo_name}"
     with repo.commit(commit_message):
         # Save model weights and config.
         save_for_hf(model, repo.local_dir, model_config=model_config)
 
         # Save a model card if it doesn't exist.
-        readme_path = Path(repo.local_dir) / 'README.md'
+        readme_path = Path(repo.local_dir) / "README.md"
         if not readme_path.exists():
             readme_path.write_text(readme_text)
 

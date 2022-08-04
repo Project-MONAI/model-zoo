@@ -1,20 +1,66 @@
+#!/usr/bin/env python3
+
 """ Activation Factory
 Hacked together by / Copyright 2020 Ross Wightman
 """
 from typing import Callable, Type, Union
 
-from .activations import *
-from .activations_jit import *
-from .activations_me import *
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+from .activations import (
+    GELU,
+    HardMish,
+    HardSigmoid,
+    HardSwish,
+    Mish,
+    PReLU,
+    Sigmoid,
+    Swish,
+    Tanh,
+    gelu,
+    hard_mish,
+    hard_sigmoid,
+    hard_swish,
+    mish,
+    sigmoid,
+    swish,
+    tanh,
+)
+from .activations_jit import (
+    HardMishJit,
+    HardSigmoidJit,
+    HardSwishJit,
+    MishJit,
+    SwishJit,
+    hard_mish_jit,
+    hard_sigmoid_jit,
+    hard_swish_jit,
+    mish_jit,
+    swish_jit,
+)
+from .activations_me import (
+    HardMishMe,
+    HardSigmoidMe,
+    HardSwishMe,
+    MishMe,
+    SwishMe,
+    hard_mish_me,
+    hard_sigmoid_me,
+    hard_swish_me,
+    mish_me,
+    swish_me,
+)
 from .config import is_exportable, is_no_jit, is_scriptable
 
 # PyTorch has an optimized, native 'silu' (aka 'swish') operator as of PyTorch 1.7.
 # Also hardsigmoid, hardswish, and soon mish. This code will use native version if present.
 # Eventually, the custom SiLU, Mish, Hard*, layers will be removed and only native variants will be used.
-_has_silu = 'silu' in dir(torch.nn.functional)
-_has_hardswish = 'hardswish' in dir(torch.nn.functional)
-_has_hardsigmoid = 'hardsigmoid' in dir(torch.nn.functional)
-_has_mish = 'mish' in dir(torch.nn.functional)
+_has_silu = "silu" in dir(torch.nn.functional)
+_has_hardswish = "hardswish" in dir(torch.nn.functional)
+_has_hardsigmoid = "hardsigmoid" in dir(torch.nn.functional)
+_has_mish = "mish" in dir(torch.nn.functional)
 
 
 _ACT_FN_DEFAULT = dict(
@@ -41,7 +87,7 @@ _ACT_FN_JIT = dict(
     mish=F.mish if _has_mish else mish_jit,
     hard_sigmoid=F.hardsigmoid if _has_hardsigmoid else hard_sigmoid_jit,
     hard_swish=F.hardswish if _has_hardswish else hard_swish_jit,
-    hard_mish=hard_mish_jit
+    hard_mish=hard_mish_jit,
 )
 
 _ACT_FN_ME = dict(
@@ -55,8 +101,8 @@ _ACT_FN_ME = dict(
 
 _ACT_FNS = (_ACT_FN_ME, _ACT_FN_JIT, _ACT_FN_DEFAULT)
 for a in _ACT_FNS:
-    a.setdefault('hardsigmoid', a.get('hard_sigmoid'))
-    a.setdefault('hardswish', a.get('hard_swish'))
+    a.setdefault("hardsigmoid", a.get("hard_sigmoid"))
+    a.setdefault("hardswish", a.get("hard_swish"))
 
 
 _ACT_LAYER_DEFAULT = dict(
@@ -84,7 +130,7 @@ _ACT_LAYER_JIT = dict(
     mish=nn.Mish if _has_mish else MishJit,
     hard_sigmoid=nn.Hardsigmoid if _has_hardsigmoid else HardSigmoidJit,
     hard_swish=nn.Hardswish if _has_hardswish else HardSwishJit,
-    hard_mish=HardMishJit
+    hard_mish=HardMishJit,
 )
 
 _ACT_LAYER_ME = dict(
@@ -98,12 +144,12 @@ _ACT_LAYER_ME = dict(
 
 _ACT_LAYERS = (_ACT_LAYER_ME, _ACT_LAYER_JIT, _ACT_LAYER_DEFAULT)
 for a in _ACT_LAYERS:
-    a.setdefault('hardsigmoid', a.get('hard_sigmoid'))
-    a.setdefault('hardswish', a.get('hard_swish'))
+    a.setdefault("hardsigmoid", a.get("hard_sigmoid"))
+    a.setdefault("hardswish", a.get("hard_swish"))
 
 
-def get_act_fn(name: Union[Callable, str] = 'relu'):
-    """ Activation Function Factory
+def get_act_fn(name: Union[Callable, str] = "relu"):
+    """Activation Function Factory
     Fetching activation fns by name with this function allows export or torch script friendly
     functions to be returned dynamically based on current config.
     """
@@ -116,7 +162,7 @@ def get_act_fn(name: Union[Callable, str] = 'relu'):
         # custom autograd, then fallback
         if name in _ACT_FN_ME:
             return _ACT_FN_ME[name]
-    if is_exportable() and name in ('silu', 'swish'):
+    if is_exportable() and name in ("silu", "swish"):
         # FIXME PyTorch SiLU doesn't ONNX export, this is a temp hack
         return swish
     if not (is_no_jit() or is_exportable()):
@@ -125,8 +171,8 @@ def get_act_fn(name: Union[Callable, str] = 'relu'):
     return _ACT_FN_DEFAULT[name]
 
 
-def get_act_layer(name: Union[Type[nn.Module], str] = 'relu'):
-    """ Activation Layer Factory
+def get_act_layer(name: Union[Type[nn.Module], str] = "relu"):
+    """Activation Layer Factory
     Fetching activation layers by name with this function allows export or torch script friendly
     functions to be returned dynamically based on current config.
     """
@@ -137,7 +183,7 @@ def get_act_layer(name: Union[Type[nn.Module], str] = 'relu'):
     if not (is_no_jit() or is_exportable() or is_scriptable()):
         if name in _ACT_LAYER_ME:
             return _ACT_LAYER_ME[name]
-    if is_exportable() and name in ('silu', 'swish'):
+    if is_exportable() and name in ("silu", "swish"):
         # FIXME PyTorch SiLU doesn't ONNX export, this is a temp hack
         return Swish
     if not (is_no_jit() or is_exportable()):

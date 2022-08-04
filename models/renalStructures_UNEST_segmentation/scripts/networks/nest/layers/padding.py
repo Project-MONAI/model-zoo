@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """ Padding Helpers
 
 Hacked together by / Copyright 2020 Ross Wightman
@@ -27,9 +29,17 @@ def is_static_pad(kernel_size: int, stride: int = 1, dilation: int = 1, **_):
 # Dynamically pad input x with 'SAME' padding for conv with specified args
 def pad_same(x, k: List[int], s: List[int], d: List[int] = (1, 1, 1), value: float = 0):
     id, ih, iw = x.size()[-3:]
-    pad_d, pad_h, pad_w = get_same_padding(id, k[0], s[0], d[0]), get_same_padding(ih, k[1], s[1], d[1]), get_same_padding(iw, k[2], s[2], d[2])
+    pad_d, pad_h, pad_w = (
+        get_same_padding(id, k[0], s[0], d[0]),
+        get_same_padding(ih, k[1], s[1], d[1]),
+        get_same_padding(iw, k[2], s[2], d[2]),
+    )
     if pad_d > 0 or pad_h > 0 or pad_w > 0:
-        x = F.pad(x, [pad_d // 2, pad_d - pad_d // 2, pad_w // 2, pad_w - pad_w // 2, pad_h // 2, pad_h - pad_h // 2], value=value)
+        x = F.pad(
+            x,
+            [pad_d // 2, pad_d - pad_d // 2, pad_w // 2, pad_w - pad_w // 2, pad_h // 2, pad_h - pad_h // 2],
+            value=value,
+        )
     return x
 
 
@@ -38,7 +48,7 @@ def get_padding_value(padding, kernel_size, **kwargs) -> Tuple[Tuple, bool]:
     if isinstance(padding, str):
         # for any string padding, the padding will be calculated for you, one of three ways
         padding = padding.lower()
-        if padding == 'same':
+        if padding == "same":
             # TF compatible 'SAME' padding, has a performance and GPU memory allocation impact
             if is_static_pad(kernel_size, **kwargs):
                 # static case, no extra overhead
@@ -47,7 +57,7 @@ def get_padding_value(padding, kernel_size, **kwargs) -> Tuple[Tuple, bool]:
                 # dynamic 'SAME' padding, has runtime/GPU memory overhead
                 padding = 0
                 dynamic = True
-        elif padding == 'valid':
+        elif padding == "valid":
             # 'VALID' padding, same as padding=0
             padding = 0
         else:

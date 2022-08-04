@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Copyright 2020 - 2021 MONAI Consortium
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,7 +13,7 @@
 
 
 import math
-from typing import Tuple, Union
+from typing import Sequence, Tuple, Union
 
 import torch
 import torch.nn as nn
@@ -133,7 +135,7 @@ class PatchEmbeddingBlock(nn.Module):
 
 
 class PatchEmbed3D(nn.Module):
-    """ Video to Patch Embedding.
+    """Video to Patch Embedding.
 
     Args:
         patch_size (int): Patch token size. Default: (2,4,4).
@@ -142,7 +144,14 @@ class PatchEmbed3D(nn.Module):
         norm_layer (nn.Module, optional): Normalization layer. Default: None
     """
 
-    def __init__(self, img_size=[96, 96, 96], patch_size=(4, 4, 4), in_chans=1, embed_dim=96, norm_layer=None):
+    def __init__(
+        self,
+        img_size: Sequence[int] = (96, 96, 96),
+        patch_size=(4, 4, 4),
+        in_chans: int = 1,
+        embed_dim: int = 96,
+        norm_layer=None,
+    ):
         super().__init__()
         self.patch_size = patch_size
 
@@ -162,20 +171,20 @@ class PatchEmbed3D(nn.Module):
     def forward(self, x):
         """Forward function."""
         # padding
-        _, _, D, H, W = x.size()
-        if W % self.patch_size[2] != 0:
-            x = F.pad(x, (0, self.patch_size[2] - W % self.patch_size[2]))
-        if H % self.patch_size[1] != 0:
-            x = F.pad(x, (0, 0, 0, self.patch_size[1] - H % self.patch_size[1]))
-        if D % self.patch_size[0] != 0:
-            x = F.pad(x, (0, 0, 0, 0, 0, self.patch_size[0] - D % self.patch_size[0]))
+        _, _, d, h, w = x.size()
+        if w % self.patch_size[2] != 0:
+            x = F.pad(x, (0, self.patch_size[2] - w % self.patch_size[2]))
+        if h % self.patch_size[1] != 0:
+            x = F.pad(x, (0, 0, 0, self.patch_size[1] - h % self.patch_size[1]))
+        if d % self.patch_size[0] != 0:
+            x = F.pad(x, (0, 0, 0, 0, 0, self.patch_size[0] - d % self.patch_size[0]))
 
         x = self.proj(x)  # B C D Wh Ww
         if self.norm is not None:
-            D, Wh, Ww = x.size(2), x.size(3), x.size(4)
+            d, wh, ww = x.size(2), x.size(3), x.size(4)
             x = x.flatten(2).transpose(1, 2)
             x = self.norm(x)
-            x = x.transpose(1, 2).view(-1, self.embed_dim, D, Wh, Ww)
+            x = x.transpose(1, 2).view(-1, self.embed_dim, d, wh, ww)
             # pdb.set_trace()
 
         return x

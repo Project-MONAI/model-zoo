@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """ PyTorch FX Based Feature Extraction Helpers
 Using https://pytorch.org/vision/stable/feature_extraction.html
 """
@@ -9,6 +11,7 @@ from .features import _get_feature_info
 
 try:
     from torchvision.models.feature_extraction import create_feature_extractor
+
     has_fx_feature_extraction = True
 except ImportError:
     has_fx_feature_extraction = False
@@ -25,13 +28,18 @@ _leaf_modules = {
     BilinearAttnTransform,  # reason: flow control t <= 1
     BlurPool2d,  # reason: TypeError: F.conv2d received Proxy in groups=x.shape[1]
     # Reason: get_same_padding has a max which raises a control flow error
-    Conv3dSame, MaxPool3dSame,  ScaledStdConv2dSame, StdConv2dSame, AvgPool3dSame,
+    Conv3dSame,
+    MaxPool3dSame,
+    ScaledStdConv2dSame,
+    StdConv2dSame,
+    AvgPool3dSame,
     CondConv3d,  # reason: TypeError: F.conv2d received Proxy in groups=self.groups * B (because B = x.shape[0])
     DropPath,  # reason: TypeError: rand recieved Proxy in `size` argument
 }
 
 try:
     from .layers import InplaceAbn
+
     _leaf_modules.add(InplaceAbn)
 except ImportError:
     pass
@@ -60,15 +68,20 @@ def register_notrace_function(func: Callable):
 class FeatureGraphNet(nn.Module):
     def __init__(self, model, out_indices, out_map=None):
         super().__init__()
-        assert has_fx_feature_extraction, 'Please update to PyTorch 1.10+, torchvision 0.11+ for FX feature extraction'
+        assert has_fx_feature_extraction, "Please update to PyTorch 1.10+, torchvision 0.11+ for FX feature extraction"
         self.feature_info = _get_feature_info(model, out_indices)
         if out_map is not None:
             assert len(out_map) == len(out_indices)
-        return_nodes = {info['module']: out_map[i] if out_map is not None else info['module']
-                        for i, info in enumerate(self.feature_info) if i in out_indices}
+        return_nodes = {
+            info["module"]: out_map[i] if out_map is not None else info["module"]
+            for i, info in enumerate(self.feature_info)
+            if i in out_indices
+        }
         self.graph_module = create_feature_extractor(
-            model, return_nodes,
-            tracer_kwargs={'leaf_modules': list(_leaf_modules), 'autowrap_functions': list(_autowrap_functions)})
+            model,
+            return_nodes,
+            tracer_kwargs={"leaf_modules": list(_leaf_modules), "autowrap_functions": list(_autowrap_functions)},
+        )
 
     def forward(self, x):
         return list(self.graph_module(x).values())

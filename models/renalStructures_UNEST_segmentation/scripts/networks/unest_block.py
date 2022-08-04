@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python3
 
 from typing import Sequence, Tuple, Union
 
@@ -8,8 +8,7 @@ from monai.networks.blocks.dynunet_block import UnetBasicBlock, UnetResBlock, ge
 
 
 class UNesTBlock(nn.Module):
-    """
-    """
+    """ """
 
     def __init__(
         self,
@@ -77,8 +76,7 @@ class UNesTBlock(nn.Module):
 
 
 class UNestUpBlock(nn.Module):
-    """
-    """
+    """ """
 
     def __init__(
         self,

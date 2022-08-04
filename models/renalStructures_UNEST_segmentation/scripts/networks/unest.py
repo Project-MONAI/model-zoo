@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 The 3D NEST transformer based segmentation model
 
@@ -7,7 +9,7 @@ MASI Lab, Vanderbilty University
 Authors: Xin Yu, Yinchi Zhou, Yucheng Tang, Bennett Landman
 
 
-The NEST code is partly from 
+The NEST code is partly from
 
 Nested Hierarchical Transformer: Towards Accurate, Data-Efficient and
 Interpretable Visual Understanding
@@ -17,11 +19,8 @@ https://arxiv.org/pdf/2105.12723.pdf
 """
 
 
-
 # limitations under the License.
-
-import pdb
-from typing import Tuple, Union
+from typing import Sequence, Tuple, Union
 
 import torch
 import torch.nn as nn
@@ -35,10 +34,6 @@ from scripts.networks.unest_block import UNesTBlock, UNesTConvBlock, UNestUpBloc
 # from monai.networks.blocks.unetr_block import UnetstrBasicBlock, UnetrPrUpBlock, UnetResBlock
 
 
-
-
-
-
 class UNesT(nn.Module):
     """
     UNesT model implementation
@@ -48,12 +43,12 @@ class UNesT(nn.Module):
         self,
         in_channels: int,
         out_channels: int,
-        img_size: Tuple[int, int, int] = [96, 96, 96],
+        img_size: Sequence[int] = (96, 96, 96),
         feature_size: int = 16,
         patch_size: int = 2,
-        depths: Tuple[int, int, int, int] = [2, 2, 2, 2],
-        num_heads: Tuple[int, int, int, int] = [3, 6, 12, 24],
-        window_size: Tuple[int, int, int] = [7, 7, 7],
+        depths: Sequence[int] = (2, 2, 2, 2),
+        num_heads: Sequence[int] = (3, 6, 12, 24),
+        window_size: Sequence[int] = (7, 7, 7),
         norm_name: Union[Tuple, str] = "instance",
         conv_block: bool = False,
         res_block: bool = True,
@@ -85,24 +80,24 @@ class UNesT(nn.Module):
         self.embed_dim = [128, 256, 512]
 
         self.nestViT = NestTransformer3D(
-            img_size=96, 
-            in_chans=1, 
-            patch_size=4, 
-            num_levels=3, 
-            embed_dims=(128, 256, 512),                 
-            num_heads=(4, 8, 16), 
-            depths=(2, 2, 8), 
-            num_classes=1000, 
-            mlp_ratio=4., 
-            qkv_bias=True,                
-            drop_rate=0., 
-            attn_drop_rate=0., 
-            drop_path_rate=0.5, 
-            norm_layer=None, 
+            img_size=96,
+            in_chans=1,
+            patch_size=4,
+            num_levels=3,
+            embed_dims=(128, 256, 512),
+            num_heads=(4, 8, 16),
+            depths=(2, 2, 8),
+            num_classes=1000,
+            mlp_ratio=4.0,
+            qkv_bias=True,
+            drop_rate=0.0,
+            attn_drop_rate=0.0,
+            drop_path_rate=0.5,
+            norm_layer=None,
             act_layer=None,
-            pad_type='', 
-            weight_init='', 
-            global_pool='avg',
+            pad_type="",
+            weight_init="",
+            global_pool="avg",
         )
 
         self.encoder1 = UNesTConvBlock(
@@ -127,7 +122,6 @@ class UNesT(nn.Module):
             res_block=False,
         )
 
-
         self.encoder3 = UNesTConvBlock(
             spatial_dims=3,
             in_channels=self.embed_dim[0],
@@ -149,7 +143,7 @@ class UNesT(nn.Module):
         )
         self.decoder5 = UNesTBlock(
             spatial_dims=3,
-            in_channels=2*self.embed_dim[2],
+            in_channels=2 * self.embed_dim[2],
             out_channels=feature_size * 32,
             stride=1,
             kernel_size=3,
@@ -199,11 +193,10 @@ class UNesT(nn.Module):
             res_block=res_block,
         )
 
-
         self.encoder10 = Convolution(
             dimensions=3,
-            in_channels=32*feature_size,
-            out_channels=64*feature_size,
+            in_channels=32 * feature_size,
+            out_channels=64 * feature_size,
             strides=2,
             adn_ordering="ADN",
             dropout=0.0,
@@ -218,57 +211,64 @@ class UNesT(nn.Module):
 
     def load_from(self, weights):
         with torch.no_grad():
-            res_weight = weights
             # copy weights from patch embedding
-            for i in weights['state_dict']:
+            for i in weights["state_dict"]:
                 print(i)
-            self.vit.patch_embedding.position_embeddings.copy_(weights['state_dict']['module.transformer.patch_embedding.position_embeddings_3d'])
-            self.vit.patch_embedding.cls_token.copy_(weights['state_dict']['module.transformer.patch_embedding.cls_token'])
-            self.vit.patch_embedding.patch_embeddings[1].weight.copy_(weights['state_dict']['module.transformer.patch_embedding.patch_embeddings_3d.1.weight'])
-            self.vit.patch_embedding.patch_embeddings[1].bias.copy_(weights['state_dict']['module.transformer.patch_embedding.patch_embeddings_3d.1.bias'])
+            self.vit.patch_embedding.position_embeddings.copy_(
+                weights["state_dict"]["module.transformer.patch_embedding.position_embeddings_3d"]
+            )
+            self.vit.patch_embedding.cls_token.copy_(
+                weights["state_dict"]["module.transformer.patch_embedding.cls_token"]
+            )
+            self.vit.patch_embedding.patch_embeddings[1].weight.copy_(
+                weights["state_dict"]["module.transformer.patch_embedding.patch_embeddings_3d.1.weight"]
+            )
+            self.vit.patch_embedding.patch_embeddings[1].bias.copy_(
+                weights["state_dict"]["module.transformer.patch_embedding.patch_embeddings_3d.1.bias"]
+            )
 
             # copy weights from  encoding blocks (default: num of blocks: 12)
             for bname, block in self.vit.blocks.named_children():
                 print(block)
                 block.loadFrom(weights, n_block=bname)
             # last norm layer of transformer
-            self.vit.norm.weight.copy_(weights['state_dict']['module.transformer.norm.weight'])
-            self.vit.norm.bias.copy_(weights['state_dict']['module.transformer.norm.bias'])
-            
+            self.vit.norm.weight.copy_(weights["state_dict"]["module.transformer.norm.weight"])
+            self.vit.norm.bias.copy_(weights["state_dict"]["module.transformer.norm.bias"])
+
     def forward(self, x_in):
         x, hidden_states_out = self.nestViT(x_in)
 
-        enc0 = self.encoder1(x_in) # 2, 32, 96, 96, 96
+        enc0 = self.encoder1(x_in)  # 2, 32, 96, 96, 96
 
-        x1 = hidden_states_out[0] # 2, 128, 24, 24, 24
+        x1 = hidden_states_out[0]  # 2, 128, 24, 24, 24
 
-        enc1 = self.encoder2(x1) # 2, 64, 48, 48, 48
+        enc1 = self.encoder2(x1)  # 2, 64, 48, 48, 48
 
-        x2 = hidden_states_out[1] # 2, 128, 24, 24, 24
+        x2 = hidden_states_out[1]  # 2, 128, 24, 24, 24
 
-        enc2 = self.encoder3(x2) # 2, 128, 24, 24, 24
+        enc2 = self.encoder3(x2)  # 2, 128, 24, 24, 24
 
-        x3 = hidden_states_out[2] # 2, 256, 12, 12, 12
+        x3 = hidden_states_out[2]  # 2, 256, 12, 12, 12
 
-        enc3 = self.encoder4(x3) # 2, 256, 12, 12, 12
+        enc3 = self.encoder4(x3)  # 2, 256, 12, 12, 12
 
         x4 = hidden_states_out[3]
 
-        enc4 = x4 # 2, 512, 6, 6, 6
+        enc4 = x4  # 2, 512, 6, 6, 6
 
-        dec4 = x # 2, 512, 6, 6, 6
+        dec4 = x  # 2, 512, 6, 6, 6
 
-        dec4 = self.encoder10(dec4) # 2, 1024, 3, 3, 3
+        dec4 = self.encoder10(dec4)  # 2, 1024, 3, 3, 3
 
-        dec3 = self.decoder5(dec4, enc4) # 2, 512, 6, 6, 6
+        dec3 = self.decoder5(dec4, enc4)  # 2, 512, 6, 6, 6
 
-        dec2 = self.decoder4(dec3, enc3) # 2, 256, 12, 12, 12
+        dec2 = self.decoder4(dec3, enc3)  # 2, 256, 12, 12, 12
 
-        dec1 = self.decoder3(dec2, enc2) # 2, 128, 24, 24, 24
+        dec1 = self.decoder3(dec2, enc2)  # 2, 128, 24, 24, 24
 
-        dec0 = self.decoder2(dec1, enc1) # 2, 64, 48, 48, 48
+        dec0 = self.decoder2(dec1, enc1)  # 2, 64, 48, 48, 48
 
-        out = self.decoder1(dec0, enc0) # 2, 32, 96, 96, 96
+        out = self.decoder1(dec0, enc0)  # 2, 32, 96, 96, 96
 
         logits = self.out(out)
         return logits
