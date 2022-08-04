@@ -16,26 +16,14 @@ import collections.abc
 import logging
 import math
 from functools import partial
-from typing import Sequence
+from typing import Callable, Sequence
 
 import torch
 import torch.nn.functional as F
 from torch import nn
 
 from .nest.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
-from .nest.fx_features import register_notrace_function
-from .nest.helpers import build_model_with_cfg, named_apply
-from .nest.layers import (
-    DropPath,
-    Mlp,
-    _assert,
-    create_classifier,
-    create_conv3d,
-    create_pool3d,
-    to_ntuple,
-    trunc_normal_,
-)
-from .nest.registry import register_model
+from .nest.layers import DropPath, Mlp, _assert, create_conv3d, create_pool3d, to_ntuple, trunc_normal_
 from .patchEmbed3D import PatchEmbed3D
 
 _logger = logging.getLogger(__name__)
@@ -105,7 +93,6 @@ class Attention(nn.Module):
         attn = attn.softmax(dim=-1)
         attn = self.attn_drop(attn)
 
-        # (B, H, T, N, C'), permute -> (B, T, N, C', H)
         x = (attn @ v).permute(0, 2, 3, 4, 1).reshape(b, t, n, c)
         x = self.proj(x)
         x = self.proj_drop(x)
@@ -184,21 +171,14 @@ def blockify(x, block_size: int):
     grid_width = w // block_size
     x = x.reshape(b, grid_depth, block_size, grid_height, block_size, grid_width, block_size, c)
 
-    # print('In blokify 1 x: {}'.format(x.permute(0, 1, 3, 5, 2, 4, 6, 7).shape))
-
-    # print('In blokify 2 x: {}'.format(x.transpose(2, 3).transpose(4, 5).transpose(3, 4).shape))
-
-    # print(x.permute(0, 1, 3, 5, 2, 4, 6, 7) == x.transpose(2, 3).transpose(4, 5).transpose(3, 4))
-
     x = x.permute(0, 1, 3, 5, 2, 4, 6, 7).reshape(
         b, grid_depth * grid_height * grid_width, -1, c
     )  # shape [2, 512, 27, 128]
-    # print('In blokify x: {}'.format(x.shape))
 
     return x  # (B, T, N, C)
 
 
-@register_notrace_function  # reason: int receives Proxy
+# @register_notrace_function  # reason: int receives Proxy
 def deblockify(x, block_size: int):
     """blocks to image
     Args:
@@ -207,7 +187,6 @@ def deblockify(x, block_size: int):
     """
     b, t, _, c = x.shape
     grid_size = round(math.pow(t, 1 / 3))
-    # grid_size = int(math.sqrt(T)) # should be cubic root
     depth = height = width = grid_size * block_size
     x = x.reshape(b, grid_size, grid_size, grid_size, block_size, block_size, block_size, c)
 
@@ -270,16 +249,13 @@ class NestLevel(nn.Module):
         """
         expects x as (B, C, D, H, W)
         """
-        # print('In NestLevel input: {}'.format(x.shape))
         x = self.pool(x)
         x = x.permute(0, 2, 3, 4, 1)  # (B, H', W', C), switch to channels last for transformer
 
         x = blockify(x, self.block_size)  # (B, T, N, C')
         x = x + self.pos_embed
-        # print('In NestLevel after posbed: {}'.format(x.shape))
 
         x = self.transformer_encoder(x)  # (B, ,T, N, C')
-        # print('In NestLevel after transformer: {}'.format(x.shape))
 
         x = deblockify(x, self.block_size)  # (B, D', H', W', C') [2, 24, 24, 24, 128]
         # Channel-first for block aggregation, and generally to replicate convnet feature map at each stage
@@ -412,17 +388,11 @@ class NestTransformer3D(nn.Module):
             self.feature_info += [dict(num_chs=dim, reduction=curr_stride, module=f"levels.{i}")]
             prev_dim = dim
             curr_stride *= 2
-        # self.level1 = nn.Sequential(levels[0])
-        # self.level2 = nn.Sequential(levels[1])
-        # self.level3 = nn.Sequential(levels[2])
+
         self.levels = nn.ModuleList([levels[i] for i in range(num_levels)])
-        # self.levels = nn.Sequential(*levels)
 
         # Final normalization layer
         self.norm = norm_layer(embed_dims[-1])
-
-        # Classifier
-        # self.global_pool, self.head = create_classifier(self.num_features, self.num_classes, pool_type=global_pool)
 
         self.init_weights(weight_init)
 
@@ -440,10 +410,6 @@ class NestTransformer3D(nn.Module):
     def get_classifier(self):
         return self.head
 
-    def reset_classifier(self, num_classes, global_pool="avg"):
-        self.num_classes = num_classes
-        self.global_pool, self.head = create_classifier(self.num_features, self.num_classes, pool_type=global_pool)
-
     def forward_features(self, x):
         """x shape (B, C, D, H, W)"""
         x = self.patch_embed(x)
@@ -453,7 +419,6 @@ class NestTransformer3D(nn.Module):
         for _, level in enumerate(self.levels):
             x = level(x)
             hidden_states_out.append(x)
-            # print('transformer level {}, shape: {}'.format(idx, x.shape))
         # Layer norm done over channel dim only (to NDHWC and back)
         x = self.norm(x.permute(0, 2, 3, 4, 1)).permute(0, 4, 1, 2, 3)
         return x, hidden_states_out
@@ -461,13 +426,21 @@ class NestTransformer3D(nn.Module):
     def forward(self, x):
         """x shape (B, C, D, H, W)"""
         x = self.forward_features(x)
-        # x = self.global_pool(x)
-        # print('after forward_features: {}'.format(x.shape))
 
         if self.drop_rate > 0.0:
             x = F.dropout(x, p=self.drop_rate, training=self.training)
-        # return self.head(x)
         return x
+
+
+def named_apply(fn: Callable, module: nn.Module, name="", depth_first=True, include_root=False) -> nn.Module:
+    if not depth_first and include_root:
+        fn(module=module, name=name)
+    for child_name, child_module in module.named_children():
+        child_name = ".".join((name, child_name)) if name else child_name
+        named_apply(fn=fn, module=child_module, name=child_name, depth_first=depth_first, include_root=True)
+    if depth_first and include_root:
+        fn(module=module, name=name)
+    return module
 
 
 def _init_nest_weights(module: nn.Module, name: str = "", head_bias: float = 0.0):
@@ -515,69 +488,3 @@ def checkpoint_filter_fn(state_dict, model):
         if state_dict[k].shape != getattr(model, k).shape:
             state_dict[k] = resize_pos_embed(state_dict[k], getattr(model, k))
     return state_dict
-
-
-def _create_nest(variant, pretrained=False, default_cfg=None, **kwargs):
-    default_cfg = default_cfg or default_cfgs[variant]
-    model = build_model_with_cfg(
-        None,
-        variant,
-        pretrained,
-        default_cfg=default_cfg,
-        feature_cfg=dict(out_indices=(0, 1, 2), flatten_sequential=True),
-        pretrained_filter_fn=checkpoint_filter_fn,
-        **kwargs,
-    )
-
-    return model
-
-
-@register_model
-def nest_base(pretrained=False, **kwargs):
-    """Nest-B @ 224x224"""
-    model_kwargs = dict(embed_dims=(128, 256, 512), num_heads=(4, 8, 16), depths=(2, 2, 20), **kwargs)
-    model = _create_nest("nest_base", pretrained=pretrained, **model_kwargs)
-    return model
-
-
-@register_model
-def nest_small(pretrained=False, **kwargs):
-    """Nest-S @ 224x224"""
-    model_kwargs = dict(embed_dims=(96, 192, 384), num_heads=(3, 6, 12), depths=(2, 2, 20), **kwargs)
-    model = _create_nest("nest_small", pretrained=pretrained, **model_kwargs)
-    return model
-
-
-@register_model
-def nest_tiny(pretrained=False, **kwargs):
-    """Nest-T @ 224x224"""
-    model_kwargs = dict(embed_dims=(96, 192, 384), num_heads=(3, 6, 12), depths=(2, 2, 8), **kwargs)
-    model = _create_nest("nest_tiny", pretrained=pretrained, **model_kwargs)
-    return model
-
-
-@register_model
-def jx_nest_base(pretrained=False, **kwargs):
-    """Nest-B @ 224x224, Pretrained weights converted from official Jax impl."""
-    kwargs["pad_type"] = "same"
-    model_kwargs = dict(embed_dims=(128, 256, 512), num_heads=(4, 8, 16), depths=(2, 2, 20), **kwargs)
-    model = _create_nest("jx_nest_base", pretrained=pretrained, **model_kwargs)
-    return model
-
-
-@register_model
-def jx_nest_small(pretrained=False, **kwargs):
-    """Nest-S @ 224x224, Pretrained weights converted from official Jax impl."""
-    kwargs["pad_type"] = "same"
-    model_kwargs = dict(embed_dims=(96, 192, 384), num_heads=(3, 6, 12), depths=(2, 2, 20), **kwargs)
-    model = _create_nest("jx_nest_small", pretrained=pretrained, **model_kwargs)
-    return model
-
-
-@register_model
-def jx_nest_tiny(pretrained=False, **kwargs):
-    """Nest-T @ 224x224, Pretrained weights converted from official Jax impl."""
-    kwargs["pad_type"] = "same"
-    model_kwargs = dict(embed_dims=(96, 192, 384), num_heads=(3, 6, 12), depths=(2, 2, 8), **kwargs)
-    model = _create_nest("jx_nest_tiny", pretrained=pretrained, **model_kwargs)
-    return model
