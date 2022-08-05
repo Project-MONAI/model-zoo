@@ -11,7 +11,9 @@
     "optional_packages_version": {
         "nibabel": "3.2.1",
         "pytorch-ignite": "0.4.8",
-        "einops": "0.4.1"
+        "einops": "0.4.1",
+        "fire": "0.4.0",
+        "timm": "0.6.7"
     },
     "task": "Renal segmentation",
     "description": "A transformer-based model for renal segmentation from CT image",

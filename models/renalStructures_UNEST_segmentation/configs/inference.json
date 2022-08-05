@@ -1,12 +1,11 @@
 {
     "imports": [
         "$import glob",
-        "$import os",
-        "$from scripts import UNesT"
+        "$import os"
     ],
-    "bundle_root": ".",
+    "bundle_root": "/models/renalStructures_UNEST_segmentation",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "./dataset/spleen",
+    "dataset_dir": "$@bundle_root + './dataset/spleen'",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
