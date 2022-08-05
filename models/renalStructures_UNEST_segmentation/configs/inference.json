@@ -1,7 +1,8 @@
 {
     "imports": [
         "$import glob",
-        "$import os"
+        "$import os",
+        "$from scripts import UNesT"
     ],
     "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
