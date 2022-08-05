@@ -1,0 +1,74 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "initialize release of the bundle"
+    },
+    "monai_version": "0.9.1",
+    "pytorch_version": "1.12.0",
+    "numpy_version": "1.21.2",
+    "optional_packages_version": {
+        "cucim": "22.04",
+        "pandas": "1.3.5",
+        "torchvision": "0.13.0"
+    },
+    "task": "Pathology metastasis detection",
+    "description": "A pre-trained model for metastasis detection on Camelyon 16 dataset.",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "Camelyon dataset",
+    "data_type": "tiff",
+    "image_classes": "RGB image with intensity between 0 and 255",
+    "label_classes": "binary labels for each patch",
+    "pred_classes": "scalar probability",
+    "eval_metrics": {
+        "accuracy": 0,
+        "froc": 0
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        ""
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "num_channels": 3,
+                "spatial_shape": [
+                    224,
+                    224
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    255
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "probability",
+                "format": "classification",
+                "num_channels": 1,
+                "spatial_shape": [
+                    1,
+                    1
+                ],
+                "dtype": "float32",
+                "is_patch_data": true,
+                "value_range": [
+                    0,
+                    1
+                ],
+                "channel_def": {
+                    "0": "metastasis"
+                }
+            }
+        }
+    }
+}
