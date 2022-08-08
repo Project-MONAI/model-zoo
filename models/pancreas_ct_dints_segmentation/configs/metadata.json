@@ -9,24 +9,25 @@
     "pytorch_version": "1.12.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
+        "fire": "0.4.0",
         "nibabel": "3.2.1",
-        "pytorch-ignite": "0.4.8"
+        "pytorch-ignite": "0.4.9"
     },
-    "task": "Decathlon spleen segmentation",
-    "description": "This is a pre-trained model for 3D segmentation of the spleen organ from CT images using DeepEdit.",
+    "task": "Neural architecture search on pancreas CT segmentation",
+    "description": "Searched architectures for volumetric (3D) segmentation of the pancreas from CT image",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
-    "data_source": "Task09_Spleen.tar from http://medicaldecathlon.com/",
+    "data_source": "Task07_Pancreas.tar from http://medicaldecathlon.com/",
     "data_type": "nibabel",
     "image_classes": "single channel data, intensity scaled to [0, 1]",
-    "label_classes": "single channel data, 1 is spleen, 0 is background",
-    "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
+    "label_classes": "single channel data, 1 is pancreas, 2 is pancreatic tumor, 0 is everything else",
+    "pred_classes": "3 channels OneHot data, channel 1 is pancreas, channel 2 is pancreatic tumor, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.92
+        "mean_dice": 0.72
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
-        "Sakinis, Tomas, et al. 'Interactive segmentation of medical images through fully convolutional neural networks.' arXiv preprint arXiv:1903.08205 (2019)"
+        "He, Y., Yang, D., Roth, H., Zhao, C. and Xu, D., 2021. Dints: Differentiable neural network topology search for 3d medical image segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5841-5850)."
     ],
     "network_data_format": {
         "inputs": {
@@ -34,18 +35,18 @@
                 "type": "image",
                 "format": "hounsfield",
                 "modality": "CT",
-                "num_channels": 3,
+                "num_channels": 1,
                 "spatial_shape": [
-                    128,
-                    128,
-                    128
+                    96,
+                    96,
+                    96
                 ],
                 "dtype": "float32",
                 "value_range": [
                     0,
                     1
                 ],
-                "is_patch_data": false,
+                "is_patch_data": true,
                 "channel_def": {
                     "0": "image"
                 }
@@ -55,21 +56,23 @@
             "pred": {
                 "type": "image",
                 "format": "segmentation",
-                "num_channels": 2,
+                "num_channels": 3,
                 "spatial_shape": [
-                    128,
-                    128,
-                    128
+                    96,
+                    96,
+                    96
                 ],
                 "dtype": "float32",
                 "value_range": [
                     0,
-                    1
+                    1,
+                    2
                 ],
-                "is_patch_data": false,
+                "is_patch_data": true,
                 "channel_def": {
                     "0": "background",
-                    "1": "spleen"
+                    "1": "pancreas",
+                    "2": "pancreatic tumor"
                 }
             }
         }
