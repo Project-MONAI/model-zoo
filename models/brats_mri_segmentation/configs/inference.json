@@ -42,10 +42,6 @@
                 "keys": "image",
                 "nonzero": true,
                 "channel_wise": true
-            },
-            {
-                "_target_": "ToTensord",
-                "keys": "image"
             }
         ]
     },
