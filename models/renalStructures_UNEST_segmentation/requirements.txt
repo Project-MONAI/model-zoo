@@ -1,5 +1,0 @@
-nibabel
-timm
-ignite
-fire
-pytorch.ignite
