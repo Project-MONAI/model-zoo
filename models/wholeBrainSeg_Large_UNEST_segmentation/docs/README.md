@@ -4,6 +4,8 @@ A tutorial and release of model for whole brain segmentation.
 
 Authors: 
 Xin Yu (xin.yu@vanderbilt.edu) (Primary)
+
+
 Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Yucheng Tang (yuchengt@nvidia.com) 
 
 
@@ -18,7 +20,7 @@ The training data is from the Vanderbilt University and Vanderbilt University Me
 
 The data and segmentation demonstration is as follow:
 
-![](./renal.png) <br>
+
 
 ## Method and Network
 
