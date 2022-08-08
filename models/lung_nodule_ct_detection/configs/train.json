@@ -1,0 +1,382 @@
+{
+    "imports": [
+        "$import glob",
+        "$import os"
+    ],
+    "bundle_root": "./",
+    "ckpt_dir": "$@bundle_root + '/models'",
+    "output_dir": "$@bundle_root + '/eval'",
+    "data_list_file_path": "$@bundle_root + '/annotation/dataset_fold0_debug.json'",
+    "data_file_base_dir": "/home/canz/Projects/datasets/LUNA16/93176/Images_resample",
+    "train_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='training', base_dir=@data_file_base_dir)",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "epochs": 300,
+    "num_interval_per_valid": 1,
+    "learning_rate": 0.01,
+    "amp": true,
+    "batch_size": 3,
+    "patch_size": [192,192,80],
+    "val_patch_size": [512,512,208],
+    "anchor_generator": {
+        "_target_": "monai.apps.detection.utils.anchor_utils.AnchorGeneratorWithAnchorShape",
+        "feature_map_scales": [1, 2, 4],
+        "base_anchor_shapes": [[6,8,4],[8,6,5],[10,10,6]]
+    },
+    "backbone": "$monai.networks.nets.resnet.resnet50(spatial_dims=3,n_input_channels=1,conv1_t_stride=[2,2,1],conv1_t_size=[7,7,7])",
+    "feature_extractor": "$monai.apps.detection.networks.retinanet_network.resnet_fpn_feature_extractor(@backbone,3,False,[1,2],None)",
+    "network_def": {
+        "_target_": "RetinaNet",
+        "spatial_dims": 3,
+        "num_classes": 1,
+        "num_anchors": 3,
+        "feature_extractor": "@feature_extractor",
+        "size_divisible": [16, 16, 8]
+    },
+    "network": "$@network_def.to(@device)",
+    "detector":{
+        "_target_": "RetinaNetDetector",
+        "network": "@network",
+        "anchor_generator": "@anchor_generator",
+        "debug": false
+    },
+    "detector_ops": [
+        "$@detector.set_atss_matcher(num_candidates=4, center_in_gt=False)",
+        "$@detector.set_hard_negative_sampler(batch_size_per_image=64,positive_fraction=0.3,pool_size=20,min_neg=16)",
+        "$@detector.set_target_keys(box_key='box', label_key='label')",
+        "$@detector.set_box_selector_parameters(score_thresh=0.02,topk_candidates_per_level=1000,nms_thresh=0.22,detections_per_img=300)",
+        "$@detector.set_sliding_window_inferer(roi_size=@val_patch_size,overlap=0.25,sw_batch_size=1,mode='constant',device='cpu')"
+    ],
+    "optimizer": {
+        "_target_": "torch.optim.SGD",
+        "params": "$@detector.network.parameters()",
+        "lr": "@learning_rate",
+        "momentum": 0.9,
+        "weight_decay": 3e-5,
+        "nesterov": true
+    },
+    "after_scheduler": {
+        "_target_": "torch.optim.lr_scheduler.StepLR",
+        "optimizer": "@optimizer",
+        "step_size": 150,
+        "gamma": 0.1
+    },
+    "lr_scheduler": {
+        "_target_": "scripts.warmup_scheduler.GradualWarmupScheduler",
+        "optimizer": "@optimizer",
+        "multiplier": 1,
+        "total_epoch": 10,
+        "after_scheduler": "@after_scheduler"
+    },
+    "train": {
+        "preprocessing_transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image",
+                "meta_key_postfix": "meta_dict"
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": "image",
+                "meta_key_postfix": "meta_dict"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": ["image","box"]
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "label",
+                "dtype": "$torch.long"
+            },
+            {
+                "_target_": "Orientationd",
+                "keys": "image",
+                "axcodes": "RAS"
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": -1024.0,
+                "a_max": 300.0,
+                "b_min": 0.0,
+                "b_max": 1.0,
+                "clip": true
+            },
+            {
+                "_target_": "ConvertBoxToStandardModed",
+                "box_keys": "box",
+                "mode": "cccwhd"
+            },
+            {
+                "_target_": "AffineBoxToImageCoordinated",
+                "box_keys": "box",
+                "box_ref_image_keys": "image",
+                "image_meta_key_postfix": "meta_dict",
+                "affine_lps_to_ras": true
+            }
+        ],
+        "random_transforms": [
+            {
+                "_target_": "RandCropBoxByPosNegLabeld",
+                "image_keys": "image",
+                "box_keys": "box",
+                "label_keys": "label",
+                "spatial_size": "@patch_size",
+                "whole_box": true,
+                "num_samples": "@batch_size",
+                "pos":1,
+                "neg":1
+            },
+            {
+                "_target_": "RandZoomBoxd",
+                "image_keys": "image",
+                "box_keys": "box",
+                "label_keys": "label",
+                "box_ref_image_keys": "image",
+                "prob": 0.2,
+                "min_zoom": 0.7,
+                "max_zoom": 1.4,
+                "padding_mode":"constant",
+                "keep_size":true
+            },
+            {
+                "_target_": "ClipBoxToImaged",
+                "box_keys": "box",
+                "label_keys": "label",
+                "box_ref_image_keys": "image",
+                "remove_empty":true
+            },
+            {
+                "_target_": "RandFlipBoxd",
+                "image_keys": "image",
+                "box_keys": "box",
+                "box_ref_image_keys": "image",
+                "prob": 0.5,
+                "spatial_axis": 0
+            },
+            {
+                "_target_": "RandFlipBoxd",
+                "image_keys": "image",
+                "box_keys": "box",
+                "box_ref_image_keys": "image",
+                "prob": 0.5,
+                "spatial_axis": 1
+            },
+            {
+                "_target_": "RandFlipBoxd",
+                "image_keys": "image",
+                "box_keys": "box",
+                "box_ref_image_keys": "image",
+                "prob": 0.5,
+                "spatial_axis": 2
+            },
+            {
+                "_target_": "RandRotateBox90d",
+                "image_keys": "image",
+                "box_keys": "box",
+                "box_ref_image_keys": "image",
+                "prob": 0.75,
+                "max_k": 3,
+                "spatial_axes": [0,1]
+            },
+            {
+                "_target_": "BoxToMaskd",
+                "box_keys": "box",
+                "label_keys": "label",
+                "box_mask_keys": "box_mask",
+                "box_ref_image_keys": "image",
+                "min_fg_label": 0,
+                "ellipse_mask":true
+            },
+            {
+                "_target_": "RandRotated",
+                "keys": ["image","box_mask"],
+                "mode": ["nearest", "nearest"],
+                "prob": 0.2,
+                "range_x": 0.5236,
+                "range_y": 0.5236,
+                "range_z": 0.5236,
+                "keep_size": true,
+                "padding_mode": "zeros"
+            },
+            {
+                "_target_": "MaskToBoxd",
+                "box_keys": ["box"],
+                "label_keys": ["label"],
+                "box_mask_keys": ["box_mask"],
+                "min_fg_label": 0
+            },
+            {
+                "_target_": "DeleteItemsd",
+                "keys": "box_mask"
+            },
+            {
+                "_target_": "RandGaussianNoised",
+                "keys": "image",
+                "prob": 0.1,
+                "mean": 0.0,
+                "std": 0.1
+            },
+            {
+                "_target_": "RandGaussianSmoothd",
+                "keys": "image",
+                "prob": 0.1,
+                "sigma_x": [0.5, 1.0],
+                "sigma_y": [0.5, 1.0],
+                "sigma_z": [0.5, 1.0]
+            },
+            {
+                "_target_": "RandScaleIntensityd",
+                "keys": "image",
+                "factors": 0.25,
+                "prob": 0.15
+            },
+            {
+                "_target_": "RandShiftIntensityd",
+                "keys": "image",
+                "offsets": 0.1,
+                "prob": 0.15
+            },
+            {
+                "_target_": "RandAdjustContrastd",
+                "keys": "image",
+                "prob": 0.3,
+                "gamma": [0.7,1.5]
+            }            
+        ],
+        "final_transforms": [
+            {
+                "_target_": "EnsureTyped",
+                "keys": ["image","box"]
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "label",
+                "dtype": "$torch.long"
+            },
+            {
+                "_target_": "ToTensord",
+                "keys": [
+                    "image",
+                    "box",
+                    "label"
+                ]
+            }
+        ],
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": "$@train#preprocessing_transforms + @train#random_transforms + @train#final_transforms"
+        },
+        "dataset": {
+            "_target_": "Dataset",
+            "data": "$@train_datalist[: int(0.95 * len(@train_datalist))]",
+            "transform": "@train#preprocessing"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@train#dataset",
+            "batch_size": 1,
+            "shuffle": true,
+            "num_workers": 4,
+            "collate_fn": "$monai.data.utils.no_collation"
+        },
+        "handlers": [
+            {
+                "_target_": "LrScheduleHandler",
+                "lr_scheduler": "@lr_scheduler",
+                "print_lr": true
+            },
+            {
+                "_target_": "ValidationHandler",
+                "validator": "@validate#evaluator",
+                "epoch_level": true,
+                "interval": "@num_interval_per_valid"
+            },
+            {
+                "_target_": "StatsHandler",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            }
+        ],
+        "trainer": {
+            "_target_": "scripts.trainer.DetectionTrainer",
+            "_requires_": "@detector_ops",
+            "max_epochs": "@epochs",
+            "device": "@device",
+            "train_data_loader": "@train#dataloader",
+            "detector": "@detector",
+            "optimizer": "@optimizer",
+            "train_handlers": "@train#handlers",
+            "amp": "@amp"
+        }
+    },
+    "validate": {
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": "$@train#preprocessing_transforms + @train#final_transforms"
+        },
+        "dataset": {
+            "_target_": "Dataset",
+            "data": "$@train_datalist[int(0.95 * len(@train_datalist)): ]",
+            "transform": "@validate#preprocessing"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@validate#dataset",
+            "batch_size": 1,
+            "shuffle": false,
+            "num_workers": 2,
+            "collate_fn": "$monai.data.utils.no_collation"
+        },
+        "handlers": [
+            {
+                "_target_": "StatsHandler",
+                "iteration_log": false
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "iteration_log": false
+            },
+            {
+                "_target_": "CheckpointSaver",
+                "save_dir": "@ckpt_dir",
+                "save_dict": {
+                    "model": "@network"
+                },
+                "save_key_metric": true,
+                "key_metric_filename": "model.pt"
+            }
+        ],
+        "key_metric": {
+            "val_coco": {
+                "_target_": "scripts.cocometric.cocometric_ignite",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])",
+                "target_box_key": "box",
+                "target_label_key": "label"
+            }
+        },
+        "evaluator": {
+            "_target_": "scripts.evaluator.DetectionEvaluator",
+            "_requires_": "@detector_ops",
+            "device": "@device",
+            "val_data_loader": "@validate#dataloader",
+            "detector": "@detector",
+            "key_val_metric": "@validate#key_metric",
+            "val_handlers": "@validate#handlers",
+            "amp": "@amp"
+        }
+    },
+    "training": [
+        "os.environ['CUDA_LAUNCH_BLOCKING']=1",
+        "$monai.utils.set_determinism(seed=123)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@train#trainer.run()"
+    ]
+}

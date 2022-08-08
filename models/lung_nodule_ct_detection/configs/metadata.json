@@ -1,0 +1,79 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "complete the model package"
+    },
+    "monai_version": "0.9.0",
+    "pytorch_version": "1.10.0",
+    "numpy_version": "1.21.2",
+    "optional_packages_version": {
+        "nibabel": "3.2.1",
+        "pytorch-ignite": "0.4.8"
+    },
+    "task": "Multimodal Brain Tumor segmentation",
+    "description": "A pre-trained model for volumetric (3D) segmentation of brain tumor subregions from multimodal MRIs based on BraTS 2018 data",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "https://www.med.upenn.edu/sbia/brats2018/data.html",
+    "data_type": "nibabel",
+    "image_classes": "4 channel data, T1c, T1, T2, FLAIR at 1x1x1 mm",
+    "label_classes": "3 channel data, channel 0 for Tumor core, channel 1 for Whole tumor, channel 2 for Enhancing tumor",
+    "pred_classes": "3 channels data, same as label_classes",
+    "eval_metrics": {
+        "val_mean_dice": 0.8518,
+        "val_mean_dice_tc": 0.8559,
+        "val_mean_dice_wt": 0.9026,
+        "val_mean_dice_et": 0.7905
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Myronenko, Andriy. '3D MRI brain tumor segmentation using autoencoder regularization.' International MICCAI Brainlesion Workshop. Springer, Cham, 2018. https://arxiv.org/abs/1810.11654"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "MR",
+                "num_channels": 4,
+                "spatial_shape": [
+                    "8*n",
+                    "8*n",
+                    "8*n"
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 3,
+                "spatial_shape": [
+                    "8*n",
+                    "8*n",
+                    "8*n"
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "background",
+                    "1": "spleen"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "validate#handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@ckpt_dir + '/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false
+        },
+        {
+            "_target_": "MetricsSaver",
+            "save_dir": "@output_dir",
+            "metrics": [
+                "val_coco"
+            ],
+            "metric_details": [
+                "val_coco"
+            ],
+            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "summary_ops": "*"
+        }
+    ],
+    "evaluating": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@validate#evaluator.run()"
+    ]
+}
