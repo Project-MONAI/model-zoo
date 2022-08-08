@@ -1,0 +1,82 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "complete the model package",
+        "0.0.1": "initialize the model package structure"
+    },
+    "monai_version": "0.9.0",
+    "pytorch_version": "1.10.0",
+    "numpy_version": "1.21.2",
+    "optional_packages_version": {
+        "nibabel": "3.2.1",
+        "pytorch-ignite": "0.4.8",
+        "einops": "0.4.1",
+        "fire": "0.4.0",
+        "timm": "0.6.7"
+    },
+    "task": "Renal segmentation",
+    "description": "A transformer-based model for renal segmentation from CT image",
+    "authors": "Vanderbilt University + MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "RawData.zip",
+    "data_type": "nibabel",
+    "image_classes": "single channel data, intensity scaled to [0, 1]",
+    "label_classes": "1: Kideny Cortex, 2:Medulla, 3:Pelvicalyceal system",
+    "pred_classes": "1: Kideny Cortex, 2:Medulla, 3:Pelvicalyceal system",
+    "eval_metrics": {
+        "mean_dice": 0.85
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Tang, Yucheng, et al. 'Self-supervised pre-training of swin transformers for 3d medical image analysis. arXiv preprint arXiv:2111.14791 (2021). https://arxiv.org/abs/2111.14791."
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "hounsfield",
+                "modality": "CT",
+                "num_channels": 1,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 4,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "background",
+                    "1": "kidney cortex",
+                    "2": "medulla",
+                    "3": "pelvicalyceal system"
+                }
+            }
+        }
+    }
+}
