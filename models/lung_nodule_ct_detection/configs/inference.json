@@ -11,11 +11,35 @@
     "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='validation', base_dir=@data_file_base_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "amp": true,
-    "val_patch_size": [512,512,208],
+    "val_patch_size": [
+        512,
+        512,
+        208
+    ],
     "anchor_generator": {
         "_target_": "monai.apps.detection.utils.anchor_utils.AnchorGeneratorWithAnchorShape",
-        "feature_map_scales": [1, 2, 4],
-        "base_anchor_shapes": [[6,8,4],[8,6,5],[10,10,6]]
+        "feature_map_scales": [
+            1,
+            2,
+            4
+        ],
+        "base_anchor_shapes": [
+            [
+                6,
+                8,
+                4
+            ],
+            [
+                8,
+                6,
+                5
+            ],
+            [
+                10,
+                10,
+                6
+            ]
+        ]
     },
     "backbone": "$monai.networks.nets.resnet.resnet50(spatial_dims=3,n_input_channels=1,conv1_t_stride=[2,2,1],conv1_t_size=[7,7,7])",
     "feature_extractor": "$monai.apps.detection.networks.retinanet_network.resnet_fpn_feature_extractor(@backbone,3,False,[1,2],None)",
@@ -25,10 +49,14 @@
         "num_classes": 1,
         "num_anchors": 3,
         "feature_extractor": "@feature_extractor",
-        "size_divisible": [16, 16, 8]
+        "size_divisible": [
+            16,
+            16,
+            8
+        ]
     },
     "network": "$@network_def.to(@device)",
-    "detector":{
+    "detector": {
         "_target_": "RetinaNetDetector",
         "network": "@network",
         "anchor_generator": "@anchor_generator",
@@ -44,13 +72,16 @@
         "transforms": [
             {
                 "_target_": "DeleteItemsd",
-                "keys": ["box","label"]
+                "keys": [
+                    "box",
+                    "label"
+                ]
             },
             {
                 "_target_": "LoadImaged",
                 "keys": "image",
                 "meta_key_postfix": "meta_dict"
-            },            
+            },
             {
                 "_target_": "EnsureChannelFirstd",
                 "keys": "image",
@@ -124,7 +155,9 @@
             },
             {
                 "_target_": "DeleteItemsd",
-                "keys": ["image"]
+                "keys": [
+                    "image"
+                ]
             }
         ]
     },

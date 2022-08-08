@@ -1,0 +1,130 @@
+{
+    "imports": [
+        "$import glob",
+        "$import os"
+    ],
+    "bundle_root": ".",
+    "output_dir": "$os.path.join(@bundle_root, 'eval')",
+    "dataset_dir": "/workspace/data/medical/pathology",
+    "testing_file": "$os.path.join(@bundle_root, 'testing.csv')",
+    "patch_size": [
+        224,
+        224
+    ],
+    "number_intensity_ch": 3,
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "TorchVisionFCModel",
+        "model_name": "resnet18",
+        "num_classes": 1,
+        "use_conv": true,
+        "pretrained": true
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "CastToTyped",
+                "keys": "image",
+                "dtype": "float32"
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": 0.0,
+                "a_max": 255.0,
+                "b_min": -1.0,
+                "b_max": 1.0
+            },
+            {
+                "_target_": "ToTensord",
+                "keys": "image"
+            }
+        ]
+    },
+    "datalist": {
+        "_target_": "CSVDataset",
+        "src": "@testing_file",
+        "kwargs_read_csv": {
+            "names": [
+                "image"
+            ],
+            "header": null
+        },
+        "transform": {
+            "_target_": "Lambdad",
+            "keys": "image",
+            "func": "$lambda x: os.path.join(@dataset_dir, 'testing/images', x + '.tif')"
+        }
+    },
+    "dataset": {
+        "_target_": "MaskedPatchWSIDataset",
+        "data": "@datalist",
+        "mask_level": 6,
+        "patch_size": "@patch_size",
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": 400,
+        "shuffle": false,
+        "num_workers": 8
+    },
+    "inferer": {
+        "_target_": "SimpleInferer"
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "EnsureTyped",
+                "keys": "pred"
+            },
+            {
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "sigmoid": true
+            },
+            {
+                "_target_": "ToNumpyd",
+                "keys": "pred"
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "StatsHandler",
+            "tag_name": "progress",
+            "iteration_print_logger": "$lambda engine: print(f'image: \"{engine.state.batch[\"metadata\"][\"name\"][0]}\", iter: {engine.state.iteration}/{engine.state.epoch_length}') if engine.state.iteration % 100 == 0 else None",
+            "output_transform": "$lambda x: None"
+        },
+        {
+            "_target_": "monai.handlers.ProbMapProducer",
+            "output_dir": "@output_dir"
+        }
+    ],
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "network": "@network",
+        "inferer": "@inferer",
+        "postprocessing": "@postprocessing",
+        "val_handlers": "@handlers",
+        "amp": true,
+        "decollate": false
+    },
+    "evaluating": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@evaluator.run()"
+    ]
+}

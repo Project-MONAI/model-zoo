@@ -15,12 +15,40 @@
     "learning_rate": 0.01,
     "amp": true,
     "batch_size": 3,
-    "patch_size": [192,192,80],
-    "val_patch_size": [512,512,208],
+    "patch_size": [
+        192,
+        192,
+        80
+    ],
+    "val_patch_size": [
+        512,
+        512,
+        208
+    ],
     "anchor_generator": {
         "_target_": "monai.apps.detection.utils.anchor_utils.AnchorGeneratorWithAnchorShape",
-        "feature_map_scales": [1, 2, 4],
-        "base_anchor_shapes": [[6,8,4],[8,6,5],[10,10,6]]
+        "feature_map_scales": [
+            1,
+            2,
+            4
+        ],
+        "base_anchor_shapes": [
+            [
+                6,
+                8,
+                4
+            ],
+            [
+                8,
+                6,
+                5
+            ],
+            [
+                10,
+                10,
+                6
+            ]
+        ]
     },
     "backbone": "$monai.networks.nets.resnet.resnet50(spatial_dims=3,n_input_channels=1,conv1_t_stride=[2,2,1],conv1_t_size=[7,7,7])",
     "feature_extractor": "$monai.apps.detection.networks.retinanet_network.resnet_fpn_feature_extractor(@backbone,3,False,[1,2],None)",
@@ -30,10 +58,14 @@
         "num_classes": 1,
         "num_anchors": 3,
         "feature_extractor": "@feature_extractor",
-        "size_divisible": [16, 16, 8]
+        "size_divisible": [
+            16,
+            16,
+            8
+        ]
     },
     "network": "$@network_def.to(@device)",
-    "detector":{
+    "detector": {
         "_target_": "RetinaNetDetector",
         "network": "@network",
         "anchor_generator": "@anchor_generator",
@@ -51,7 +83,7 @@
         "params": "$@detector.network.parameters()",
         "lr": "@learning_rate",
         "momentum": 0.9,
-        "weight_decay": 3e-5,
+        "weight_decay": 3e-05,
         "nesterov": true
     },
     "after_scheduler": {
@@ -81,7 +113,10 @@
             },
             {
                 "_target_": "EnsureTyped",
-                "keys": ["image","box"]
+                "keys": [
+                    "image",
+                    "box"
+                ]
             },
             {
                 "_target_": "EnsureTyped",
@@ -124,8 +159,8 @@
                 "spatial_size": "@patch_size",
                 "whole_box": true,
                 "num_samples": "@batch_size",
-                "pos":1,
-                "neg":1
+                "pos": 1,
+                "neg": 1
             },
             {
                 "_target_": "RandZoomBoxd",
@@ -136,15 +171,15 @@
                 "prob": 0.2,
                 "min_zoom": 0.7,
                 "max_zoom": 1.4,
-                "padding_mode":"constant",
-                "keep_size":true
+                "padding_mode": "constant",
+                "keep_size": true
             },
             {
                 "_target_": "ClipBoxToImaged",
                 "box_keys": "box",
                 "label_keys": "label",
                 "box_ref_image_keys": "image",
-                "remove_empty":true
+                "remove_empty": true
             },
             {
                 "_target_": "RandFlipBoxd",
@@ -177,7 +212,10 @@
                 "box_ref_image_keys": "image",
                 "prob": 0.75,
                 "max_k": 3,
-                "spatial_axes": [0,1]
+                "spatial_axes": [
+                    0,
+                    1
+                ]
             },
             {
                 "_target_": "BoxToMaskd",
@@ -186,12 +224,18 @@
                 "box_mask_keys": "box_mask",
                 "box_ref_image_keys": "image",
                 "min_fg_label": 0,
-                "ellipse_mask":true
+                "ellipse_mask": true
             },
             {
                 "_target_": "RandRotated",
-                "keys": ["image","box_mask"],
-                "mode": ["nearest", "nearest"],
+                "keys": [
+                    "image",
+                    "box_mask"
+                ],
+                "mode": [
+                    "nearest",
+                    "nearest"
+                ],
                 "prob": 0.2,
                 "range_x": 0.5236,
                 "range_y": 0.5236,
@@ -201,9 +245,15 @@
             },
             {
                 "_target_": "MaskToBoxd",
-                "box_keys": ["box"],
-                "label_keys": ["label"],
-                "box_mask_keys": ["box_mask"],
+                "box_keys": [
+                    "box"
+                ],
+                "label_keys": [
+                    "label"
+                ],
+                "box_mask_keys": [
+                    "box_mask"
+                ],
                 "min_fg_label": 0
             },
             {
@@ -221,9 +271,18 @@
                 "_target_": "RandGaussianSmoothd",
                 "keys": "image",
                 "prob": 0.1,
-                "sigma_x": [0.5, 1.0],
-                "sigma_y": [0.5, 1.0],
-                "sigma_z": [0.5, 1.0]
+                "sigma_x": [
+                    0.5,
+                    1.0
+                ],
+                "sigma_y": [
+                    0.5,
+                    1.0
+                ],
+                "sigma_z": [
+                    0.5,
+                    1.0
+                ]
             },
             {
                 "_target_": "RandScaleIntensityd",
@@ -241,13 +300,19 @@
                 "_target_": "RandAdjustContrastd",
                 "keys": "image",
                 "prob": 0.3,
-                "gamma": [0.7,1.5]
-            }            
+                "gamma": [
+                    0.7,
+                    1.5
+                ]
+            }
         ],
         "final_transforms": [
             {
                 "_target_": "EnsureTyped",
-                "keys": ["image","box"]
+                "keys": [
+                    "image",
+                    "box"
+                ]
             },
             {
                 "_target_": "EnsureTyped",

@@ -1,0 +1,13 @@
+large_files:
+  - path: "models/model.pt"
+    url: "https://drive.google.com/uc?id=1ETezrTQyh5PdkBc8kKKdwWwJvTqFFz_f"
+    hash_val: "0ffb4506fbfa4b3709a28a7f71122ec8"
+    hash_type: "md5"
+  - path: "models/model.ts"
+    url: "https://drive.google.com/uc?id=1BMFFwiKLwTYevAZq7V5keNm8Zws4vHq4"
+    hash_val: "9f8fb52a3092911a0b65aa0763248771"
+    hash_type: "md5"
+  - path: "docs/SC-N-2-3-0.npy"
+    url: "https://drive.google.com/uc?id=158RMzaGtgMgY1hCneDXmqCx7u046RbZE"
+    hash_val: "f834b8b9b662e5b7b0492f4a0f382591"
+    hash_type: "md5"

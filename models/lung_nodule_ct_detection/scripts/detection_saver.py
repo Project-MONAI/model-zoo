@@ -85,7 +85,6 @@ class DetectionSaver(ClassificationSaver):
             save_rank=save_rank,
             saver=None,
         )
-
         self.pred_box_key = pred_box_key
         self.pred_label_key = pred_label_key
         self.pred_label_score_key = pred_label_score_key
