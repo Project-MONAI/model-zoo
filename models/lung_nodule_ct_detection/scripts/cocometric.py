@@ -1,5 +1,4 @@
-from typing import Callable, Sequence, Union, Dict, List
-
+from typing import Callable, Dict, Sequence, Union
 
 import torch
 from ignite.metrics.metric import Metric, reinit__is_reduced, sync_all_reduce
@@ -11,9 +10,13 @@ from .utils import detach_to_numpy
 
 
 class cocometric_ignite(Metric):
-    def __init__(self, output_transform: Callable = lambda x: x, 
-        target_box_key="box", target_label_key="label",
-        device: Union[str, torch.device] = torch.device("cpu")):
+    def __init__(
+        self,
+        output_transform: Callable = lambda x: x,
+        target_box_key="box",
+        target_label_key="label",
+        device: Union[str, torch.device] = torch.device("cpu"),
+    ):
         self.target_box_key = target_box_key
         self.target_label_key = target_label_key
         self.pred_score_key = target_label_key + "_scores"
@@ -41,14 +44,10 @@ class cocometric_ignite(Metric):
             iou_fn=box_utils.box_iou,
             iou_thresholds=self.coco_metric.iou_thresholds,
             pred_boxes=[val_data_i[self.target_box_key] for val_data_i in self.val_outputs_all],
-            pred_classes=[
-                val_data_i[self.target_label_key] for val_data_i in self.val_outputs_all
-            ],
+            pred_classes=[val_data_i[self.target_label_key] for val_data_i in self.val_outputs_all],
             pred_scores=[val_data_i[self.pred_score_key] for val_data_i in self.val_outputs_all],
             gt_boxes=[val_data_i[self.target_box_key] for val_data_i in self.val_targets_all],
-            gt_classes=[
-                val_data_i[self.target_label_key] for val_data_i in self.val_targets_all
-            ],
+            gt_classes=[val_data_i[self.target_label_key] for val_data_i in self.val_targets_all],
         )
         val_epoch_metric_dict = self.coco_metric(results_metric)[0]
         val_epoch_metric = val_epoch_metric_dict.values()

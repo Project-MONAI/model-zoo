@@ -1,6 +1,8 @@
-from typing import Callable, Sequence, Union, Dict, List
-import torch
+from typing import Dict, List, Union
+
 import numpy as np
+import torch
+
 
 def detach_to_numpy(data: Union[List, Dict, torch.Tensor]) -> Union[List, Dict, torch.Tensor]:
     """
@@ -21,4 +23,4 @@ def detach_to_numpy(data: Union[List, Dict, torch.Tensor]) -> Union[List, Dict, 
         return data
 
     else:
-    	raise ValueError("data should be tensor, numpy array, dict, or list.")
+        raise ValueError("data should be tensor, numpy array, dict, or list.")

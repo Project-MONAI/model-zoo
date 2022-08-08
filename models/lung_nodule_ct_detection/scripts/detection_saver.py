@@ -9,21 +9,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import logging
-import warnings
-from typing import TYPE_CHECKING, Callable, List, Optional
-import os
 import json
-
-import torch
+import os
+import warnings
+from typing import TYPE_CHECKING, Callable, Optional
 
 from monai.config import IgniteInfo
-from monai.data import CSVSaver, decollate_batch
-from monai.utils import ImageMetaKey as Key
+from monai.handlers.classification_saver import ClassificationSaver
 from monai.utils import evenly_divisible_all_gather, min_version, optional_import, string_list_all_gather
 
 from .utils import detach_to_numpy
-from monai.handlers.classification_saver import ClassificationSaver
 
 idist, _ = optional_import("ignite", IgniteInfo.OPT_IMPORT_VERSION, min_version, "distributed")
 Events, _ = optional_import("ignite.engine", IgniteInfo.OPT_IMPORT_VERSION, min_version, "Events")
@@ -53,7 +48,6 @@ class DetectionSaver(ClassificationSaver):
         pred_box_key: str = "box",
         pred_label_key: str = "label",
         pred_label_score_key: str = "label_scores",
-
     ) -> None:
         """
         Args:
@@ -80,12 +74,20 @@ class DetectionSaver(ClassificationSaver):
                 default to 0.
 
         """
-        super().__init__(output_dir=output_dir, filename=filename, delimiter=delimiter, overwrite=overwrite, 
-            batch_transform=batch_transform, output_transform=output_transform, 
-            name=name, save_rank=save_rank, saver=None)
+        super().__init__(
+            output_dir=output_dir,
+            filename=filename,
+            delimiter=delimiter,
+            overwrite=overwrite,
+            batch_transform=batch_transform,
+            output_transform=output_transform,
+            name=name,
+            save_rank=save_rank,
+            saver=None,
+        )
 
-        self.pred_box_key = pred_box_key 
-        self.pred_label_key = pred_label_key 
+        self.pred_box_key = pred_box_key
+        self.pred_label_key = pred_label_key
         self.pred_label_score_key = pred_label_score_key
 
     def _finalize(self, _engine: Engine) -> None:
@@ -99,7 +101,6 @@ class DetectionSaver(ClassificationSaver):
         if self.save_rank >= ws:
             raise ValueError("target save rank is greater than the distributed group size.")
 
-        
         # self._outputs is supposed to be a list of dict
         # self._outputs[i] should be have at least three keys: pred_box_key, pred_label_key, pred_label_score_key
         # self._filenames is supposed to be a list of str
@@ -114,13 +115,15 @@ class DetectionSaver(ClassificationSaver):
 
         # save to json file only in the expected rank
         if idist.get_rank() == self.save_rank:
-            results = [{
-                self.pred_box_key: detach_to_numpy(o[self.pred_box_key]).tolist(),
-                self.pred_label_key: detach_to_numpy(o[self.pred_label_key]).tolist(),
-                self.pred_label_score_key: detach_to_numpy(o[self.pred_label_score_key]).tolist(),
-                'image':f} 
+            results = [
+                {
+                    self.pred_box_key: detach_to_numpy(o[self.pred_box_key]).tolist(),
+                    self.pred_label_key: detach_to_numpy(o[self.pred_label_key]).tolist(),
+                    self.pred_label_score_key: detach_to_numpy(o[self.pred_label_score_key]).tolist(),
+                    "image": f,
+                }
                 for o, f in zip(outputs, filenames)
             ]
 
-            with open(os.path.join(self.output_dir,self.filename), "w") as outfile:
+            with open(os.path.join(self.output_dir, self.filename), "w") as outfile:
                 json.dump(results, outfile, indent=4)

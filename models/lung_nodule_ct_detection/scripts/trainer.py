@@ -11,26 +11,18 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence, Union, Tuple, Optional, Dict, List
+from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
 import torch
-from torch.optim.optimizer import Optimizer
-from torch.utils.data import DataLoader
-
 from monai.config import IgniteInfo
-from monai.engines.utils import (
-    GanKeys,
-    IterationEvents,
-    default_make_latent,
-    default_metric_cmp_fn,
-    default_prepare_batch,
-)
-from monai.engines.workflow import Workflow
-from monai.inferers import Inferer, SimpleInferer
+from monai.engines.trainer import Trainer
+from monai.engines.utils import IterationEvents, default_metric_cmp_fn
+from monai.inferers import Inferer
 from monai.transforms import Transform
 from monai.utils import min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
-from monai.engines.trainer import Trainer
+from torch.optim.optimizer import Optimizer
+from torch.utils.data import DataLoader
 
 if TYPE_CHECKING:
     from ignite.engine import Engine, EventEnum
@@ -57,8 +49,11 @@ def detection_prepare_batch(
     Returns:
         image, label(optional).
     """
-    inputs = [batch_data_ii["image"].to(device=device, non_blocking=non_blocking, **kwargs) 
-        for batch_data_i in batchdata for batch_data_ii in batch_data_i]    
+    inputs = [
+        batch_data_ii["image"].to(device=device, non_blocking=non_blocking, **kwargs)
+        for batch_data_i in batchdata
+        for batch_data_ii in batch_data_i
+    ]
 
     # if not isinstance(batchdata, dict):
     #     raise AssertionError("default prepare_batch expects dictionary input data.")
@@ -71,10 +66,7 @@ def detection_prepare_batch(
             for batch_data_i in batchdata
             for batch_data_ii in batch_data_i
         ]
-        return (
-            inputs,
-            targets
-        )
+        return (inputs, targets)
     return inputs, None
 
 

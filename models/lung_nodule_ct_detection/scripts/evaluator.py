@@ -11,31 +11,20 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence, Union, Tuple, Optional, Dict, List
+from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
 import numpy as np
 import torch
-from torch.optim.optimizer import Optimizer
-from torch.utils.data import DataLoader
-
 from monai.config import IgniteInfo
-from monai.engines.utils import (
-    GanKeys,
-    IterationEvents,
-    default_make_latent,
-    default_metric_cmp_fn,
-    default_prepare_batch,
-)
+from monai.engines.evaluator import Evaluator
+from monai.engines.utils import IterationEvents, default_metric_cmp_fn
+from monai.inferers import Inferer
 from monai.networks.utils import eval_mode, train_mode
-from monai.engines.workflow import Workflow
-from monai.inferers import Inferer, SimpleInferer
 from monai.transforms import Transform
 from monai.utils import ForwardMode, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
-from monai.engines.evaluator import Evaluator
 from monai.utils.module import look_up_option
-from monai.transforms import Decollated
-
+from torch.utils.data import DataLoader
 
 if TYPE_CHECKING:
     from ignite.engine import Engine, EventEnum
@@ -62,8 +51,9 @@ def detection_prepare_val_batch(
     Returns:
         image, label(optional).
     """
-    inputs = [batch_data_i["image"].to(device=device, non_blocking=non_blocking, **kwargs) 
-        for batch_data_i in batchdata]  
+    inputs = [
+        batch_data_i["image"].to(device=device, non_blocking=non_blocking, **kwargs) for batch_data_i in batchdata
+    ]
 
     # if not isinstance(batchdata, dict):
     #     raise AssertionError("default prepare_batch expects dictionary input data.")
@@ -76,11 +66,9 @@ def detection_prepare_val_batch(
             )
             for batch_data_i in batchdata
         ]
-        return (
-            inputs,
-            targets
-        )
+        return (inputs, targets)
     return inputs, None
+
 
 class DetectionEvaluator(Evaluator):
     """
@@ -231,13 +219,7 @@ class DetectionEvaluator(Evaluator):
 
         with engine.mode(engine.detector):
 
-            use_inferer = not all(
-                [
-                    val_data_i[0, ...].numel()
-                    < sliding_window_size
-                    for val_data_i in inputs
-                ]
-            )
+            use_inferer = not all([val_data_i[0, ...].numel() < sliding_window_size for val_data_i in inputs])
 
             if engine.amp:
                 with torch.cuda.amp.autocast(**engine.amp_kwargs):
