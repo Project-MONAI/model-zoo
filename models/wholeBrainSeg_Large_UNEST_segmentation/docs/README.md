@@ -2,7 +2,9 @@
 A pre-trained model for inferencing whole brain segmentation with 133 structures.
 A tutorial and release of model for whole brain segmentation. 
 
-Authors: Xin Yu (xin.yu@vanderbilt.edu) | Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Yucheng Tang (yuchengt@nvidia.com) | 
+Authors: 
+Xin Yu (xin.yu@vanderbilt.edu) (Primary)
+Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Yucheng Tang (yuchengt@nvidia.com) 
 
 
 # Model Overview
