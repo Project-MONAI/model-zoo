@@ -62,8 +62,8 @@ def detection_prepare_val_batch(
     Returns:
         image, label(optional).
     """
-    inputs = [batch_data_i["image"].to(device=device, non_blocking=non_blocking, **kwargs) 
-        for batch_data_i in batchdata]  
+    inputs = [batch_data_i["image"].to(device=device, non_blocking=non_blocking, **kwargs)
+        for batch_data_i in batchdata]
 
     # if not isinstance(batchdata, dict):
     #     raise AssertionError("default prepare_batch expects dictionary input data.")

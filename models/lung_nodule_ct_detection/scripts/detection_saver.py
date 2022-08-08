@@ -80,12 +80,12 @@ class DetectionSaver(ClassificationSaver):
                 default to 0.
 
         """
-        super().__init__(output_dir=output_dir, filename=filename, delimiter=delimiter, overwrite=overwrite, 
-            batch_transform=batch_transform, output_transform=output_transform, 
+        super().__init__(output_dir=output_dir, filename=filename, delimiter=delimiter, overwrite=overwrite,
+            batch_transform=batch_transform, output_transform=output_transform,
             name=name, save_rank=save_rank, saver=None)
 
-        self.pred_box_key = pred_box_key 
-        self.pred_label_key = pred_label_key 
+        self.pred_box_key = pred_box_key
+        self.pred_label_key = pred_label_key
         self.pred_label_score_key = pred_label_score_key
 
     def _finalize(self, _engine: Engine) -> None:
@@ -99,7 +99,7 @@ class DetectionSaver(ClassificationSaver):
         if self.save_rank >= ws:
             raise ValueError("target save rank is greater than the distributed group size.")
 
-        
+
         # self._outputs is supposed to be a list of dict
         # self._outputs[i] should be have at least three keys: pred_box_key, pred_label_key, pred_label_score_key
         # self._filenames is supposed to be a list of str
@@ -118,7 +118,7 @@ class DetectionSaver(ClassificationSaver):
                 self.pred_box_key: detach_to_numpy(o[self.pred_box_key]).tolist(),
                 self.pred_label_key: detach_to_numpy(o[self.pred_label_key]).tolist(),
                 self.pred_label_score_key: detach_to_numpy(o[self.pred_label_score_key]).tolist(),
-                'image':f} 
+                'image':f}
                 for o, f in zip(outputs, filenames)
             ]
 

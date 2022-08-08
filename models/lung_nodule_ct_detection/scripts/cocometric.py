@@ -11,7 +11,7 @@ from .utils import detach_to_numpy
 
 
 class cocometric_ignite(Metric):
-    def __init__(self, output_transform: Callable = lambda x: x, 
+    def __init__(self, output_transform: Callable = lambda x: x,
         target_box_key="box", target_label_key="label",
         device: Union[str, torch.device] = torch.device("cpu")):
         self.target_box_key = target_box_key
