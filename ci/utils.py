@@ -96,7 +96,7 @@ def push_new_model_info_branch(model_info_path: str):
     full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
 
     call_status = subprocess.run(full_cmd, shell=True)
-    call_status.check_returncode()github fetch depth 0
+    call_status.check_returncode()
 
     return branch_name
 
