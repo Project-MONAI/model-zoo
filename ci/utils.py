@@ -96,14 +96,14 @@ def push_new_model_info_branch(model_info_path: str):
     full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
 
     call_status = subprocess.run(full_cmd, shell=True)
-    call_status.check_returncode()
+    call_status.check_returncode()github fetch depth 0
 
     return branch_name
 
 
 def create_pull_request(branch_name: str):
     title = "auto update model info"
-    create_command = f"gh pr create --title {title} --body {title} --base yiheng-wang-nv/model-zoo:dev --head {branch_name}"
+    create_command = f"gh pr create --title {title} --body {title} --base dev --head {branch_name} --fill"
     call_status = subprocess.run(upload_command, shell=True)
     call_status.check_returncode()  
 
