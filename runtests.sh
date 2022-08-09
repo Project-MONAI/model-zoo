@@ -38,7 +38,6 @@ doIsortFormat=false
 doIsortFix=false
 doFlake8Format=false
 doPytypeFormat=false
-doMypyFormat=false
 doCleanup=false
 doPrecommit=false
 
@@ -47,7 +46,7 @@ NUM_PARALLEL=1
 PY_EXE=${MONAI_MODEL_ZOO_PY_EXE:-$(which python)}
 
 function print_usage {
-    echo "runtests.sh [--codeformat] [--autofix] [--black] [--isort] [--flake8] [--pytype] [--mypy]"
+    echo "runtests.sh [--codeformat] [--autofix] [--black] [--isort] [--flake8] [--pytype]"
     echo "            [--dryrun] [-j number] [--clean] [--precommit] [--help] [--version]"
     echo ""
     echo "MONAI Model Zoo testing utilities."
@@ -66,7 +65,6 @@ function print_usage {
     echo ""
     echo "Python type check options:"
     echo "    --pytype          : perform \"pytype\" static type checks"
-    echo "    --mypy            : perform \"mypy\" static type checks"
     echo "    -j, --jobs        : number of parallel jobs to run \"pytype\" (default $NUM_PARALLEL)"
     echo ""
     echo "Misc. options:"
@@ -107,7 +105,6 @@ function clean_py {
     TO_CLEAN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
     echo "Removing temporary files in ${TO_CLEAN}"
 
-    find ${TO_CLEAN} -depth -maxdepth 1 -type d -name ".mypy_cache" -exec rm -r "{}" +
     find ${TO_CLEAN} -depth -maxdepth 1 -type d -name ".pytype" -exec rm -r "{}" +
     find ${TO_CLEAN} -depth -maxdepth 1 -type d -name "__pycache__" -exec rm -r "{}" +
 }
@@ -145,7 +142,6 @@ do
             doIsortFormat=true
             doFlake8Format=true
             doPytypeFormat=true
-            doMypyFormat=true
         ;;
         --black)
             doBlackFormat=true
@@ -167,9 +163,6 @@ do
         ;;
         --pytype)
             doPytypeFormat=true
-        ;;
-        --mypy)
-            doMypyFormat=true
         ;;
         -j|--jobs)
             NUM_PARALLEL=$2
@@ -374,37 +367,6 @@ then
         else
             echo "${green}passed!${noColor}"
         fi
-    fi
-    set -e # enable exit on failure
-fi
-
-
-if [ $doMypyFormat = true ]
-then
-    set +e  # disable exit on failure so that diagnostics can be given on failure
-    echo "${separator}${blue}mypy${noColor}"
-
-    # ensure that the necessary packages for code format testing are installed
-    if ! is_pip_installed mypy
-    then
-        install_deps
-    fi
-    ${cmdPrefix}${PY_EXE} -m mypy --version
-
-    if [ $doDryRun = true ]
-    then
-        ${cmdPrefix}MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)"
-    else
-        MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)" # cmdPrefix does not work with MYPYPATH
-    fi
-
-    mypy_status=$?
-    if [ ${mypy_status} -ne 0 ]
-    then
-        : # mypy output already follows format
-        exit ${mypy_status}
-    else
-        : # mypy output already follows format
     fi
     set -e # enable exit on failure
 fi
