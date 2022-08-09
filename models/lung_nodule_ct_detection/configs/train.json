@@ -421,7 +421,7 @@
         ],
         "key_metric": {
             "val_coco": {
-                "_target_": "scripts.cocometric.cocometric_ignite",
+                "_target_": "scripts.cocometric.IgniteCocoMetric",
                 "output_transform": "$monai.handlers.from_engine(['pred', 'label'])",
                 "target_box_key": "box",
                 "target_label_key": "label"
