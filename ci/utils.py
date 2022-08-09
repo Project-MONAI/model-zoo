@@ -98,6 +98,15 @@ def push_new_model_info_branch(model_info_path: str):
     call_status = subprocess.run(full_cmd, shell=True)
     call_status.check_returncode()
 
+    return branch_name
+
+
+def create_pull_request(branch_name: str):
+    title = "auto update model info"
+    create_command = f"gh pr create --title {title} --body {title} --base dev --head {branch_name}"
+    call_status = subprocess.run(upload_command, shell=True)
+    call_status.check_returncode()  
+
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
 
@@ -117,7 +126,7 @@ def upload_bundle(
     bundle_zip_file_path: str,
     bundle_zip_filename: str,
     release_tag: str = "hosting_storage_v1",
-    repo_name: str = "Project-MONAI/model-zoo",
+    repo_name: str = "yiheng-wang-nv/model-zoo",
 ):
 
     upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
