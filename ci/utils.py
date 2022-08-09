@@ -84,11 +84,13 @@ def save_model_info(model_info_dict, model_info_path: str):
 
 
 def push_new_model_info_branch(model_info_path: str):
-    merged_pr_num = os.environ["PR_NUMBER"]
-    email = os.environ["email"]
-    username = os.environ["username"]
+    # merged_pr_num = os.environ["PR_NUMBER"]
+    # email = os.environ["email"]
+    # username = os.environ["username"]
+    email = "vennw@nvidia.com"
+    username = "yiheng-wang-nv"
 
-    branch_name = f"{merged_pr_num}-auto-update-model-info"
+    branch_name = "auto-update-model-info"
     create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
 
     git_config = f"git config user.email {email}; git config user.name {username}"
@@ -96,6 +98,14 @@ def push_new_model_info_branch(model_info_path: str):
     full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
 
     call_status = subprocess.run(full_cmd, shell=True)
+    call_status.check_returncode()
+
+    return branch_name
+
+
+def create_pull_request(branch_name: str):
+    create_command = f"gh pr create --fill --title 'auto update model_info' --base dev --head {branch_name}"
+    call_status = subprocess.run(create_command, shell=True)
     call_status.check_returncode()
 
 
