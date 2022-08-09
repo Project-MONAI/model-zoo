@@ -9,7 +9,7 @@ from monai.data import box_utils
 from .utils import detach_to_numpy
 
 
-class cocometric_ignite(Metric):
+class IgniteCocoMetric(Metric):
     def __init__(
         self,
         output_transform: Callable = lambda x: x,
@@ -21,7 +21,7 @@ class cocometric_ignite(Metric):
         self.target_label_key = target_label_key
         self.pred_score_key = target_label_key + "_scores"
         self.coco_metric = COCOMetric(classes=["nodule"], iou_list=[0.1], max_detection=[100])
-        super(cocometric_ignite, self).__init__(output_transform=output_transform, device=device)
+        super(IgniteCocoMetric, self).__init__(output_transform=output_transform, device=device)
 
     @reinit__is_reduced
     def reset(self) -> None:
