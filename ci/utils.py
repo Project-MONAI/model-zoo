@@ -105,7 +105,7 @@ def create_pull_request(branch_name: str):
     title = "auto update model info"
     create_command = f"gh pr create --fill --title {title} --body {title} --base dev --head {branch_name}"
     call_status = subprocess.run(upload_command, shell=True)
-    call_status.check_returncode()  
+    call_status.check_returncode()
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
