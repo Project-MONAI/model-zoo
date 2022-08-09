@@ -88,10 +88,6 @@ function check_import {
     ${cmdPrefix}${PY_EXE} -W error -W ignore::DeprecationWarning -c "import monai"
 }
 
-function has_py_files() {
-    [ $(find models -type f -name "*.py") ]
-}
-
 function print_monai_version {
     ${cmdPrefix}${PY_EXE} -c 'import monai; monai.config.print_config()'
 }
@@ -355,70 +351,60 @@ fi
 
 if [ $doPytypeFormat = true ]
 then
-    if ! has_py_files
+    set +e  # disable exit on failure so that diagnostics can be given on failure
+    echo "${separator}${blue}pytype${noColor}"
+    # ensure that the necessary packages for code format testing are installed
+    if ! is_pip_installed pytype
     then
-        echo "There are no .py files in models/, skip pytype check."
-    else
-        set +e  # disable exit on failure so that diagnostics can be given on failure
-        echo "${separator}${blue}pytype${noColor}"
-        # ensure that the necessary packages for code format testing are installed
-        if ! is_pip_installed pytype
-        then
-            install_deps
-        fi
-        pytype_ver=$(${cmdPrefix}${PY_EXE} -m pytype --version)
-        if [[ "$OSTYPE" == "darwin"* && "$pytype_ver" == "2021."* ]]; then
-            echo "${red}pytype not working on macOS 2021 (https://github.com/Project-MONAI/MONAI/issues/2391). Please upgrade to 2022*.${noColor}"
-            exit 1
-        else
-            ${cmdPrefix}${PY_EXE} -m pytype --version
-            ${cmdPrefix}${PY_EXE} -m pytype models -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")"
-
-            pytype_status=$?
-            if [ ${pytype_status} -ne 0 ]
-            then
-                echo "${red}failed!${noColor}"
-                exit ${pytype_status}
-            else
-                echo "${green}passed!${noColor}"
-            fi
-        fi
-        set -e # enable exit on failure
+        install_deps
     fi
+    pytype_ver=$(${cmdPrefix}${PY_EXE} -m pytype --version)
+    if [[ "$OSTYPE" == "darwin"* && "$pytype_ver" == "2021."* ]]; then
+        echo "${red}pytype not working on macOS 2021 (https://github.com/Project-MONAI/MONAI/issues/2391). Please upgrade to 2022*.${noColor}"
+        exit 1
+    else
+        ${cmdPrefix}${PY_EXE} -m pytype --version
+        ${cmdPrefix}${PY_EXE} -m pytype models -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")"
+
+        pytype_status=$?
+        if [ ${pytype_status} -ne 0 ]
+        then
+            echo "${red}failed!${noColor}"
+            exit ${pytype_status}
+        else
+            echo "${green}passed!${noColor}"
+        fi
+    fi
+    set -e # enable exit on failure
 fi
 
 
 if [ $doMypyFormat = true ]
 then
-    if ! has_py_files
+    set +e  # disable exit on failure so that diagnostics can be given on failure
+    echo "${separator}${blue}mypy${noColor}"
+
+    # ensure that the necessary packages for code format testing are installed
+    if ! is_pip_installed mypy
     then
-        echo "There are no .py files in models/, skip mypy check."
-    else
-        set +e  # disable exit on failure so that diagnostics can be given on failure
-        echo "${separator}${blue}mypy${noColor}"
-
-        # ensure that the necessary packages for code format testing are installed
-        if ! is_pip_installed mypy
-        then
-            install_deps
-        fi
-        ${cmdPrefix}${PY_EXE} -m mypy --version
-
-        if [ $doDryRun = true ]
-        then
-            ${cmdPrefix}MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)"
-        else
-            MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)" # cmdPrefix does not work with MYPYPATH
-        fi
-
-        mypy_status=$?
-        if [ ${mypy_status} -ne 0 ]
-        then
-            : # mypy output already follows format
-            exit ${mypy_status}
-        else
-            : # mypy output already follows format
-        fi
-        set -e # enable exit on failure
+        install_deps
     fi
+    ${cmdPrefix}${PY_EXE} -m mypy --version
+
+    if [ $doDryRun = true ]
+    then
+        ${cmdPrefix}MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)"
+    else
+        MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)" # cmdPrefix does not work with MYPYPATH
+    fi
+
+    mypy_status=$?
+    if [ ${mypy_status} -ne 0 ]
+    then
+        : # mypy output already follows format
+        exit ${mypy_status}
+    else
+        : # mypy output already follows format
+    fi
+    set -e # enable exit on failure
 fi
