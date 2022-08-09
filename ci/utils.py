@@ -84,13 +84,11 @@ def save_model_info(model_info_dict, model_info_path: str):
 
 
 def push_new_model_info_branch(model_info_path: str):
-    # merged_pr_num = os.environ["PR_NUMBER"]
-    # email = os.environ["email"]
-    # username = os.environ["username"]
-    email = "vennw@nvidia.com"
-    username = "yiheng-wang-nv"
+    merged_pr_num = os.environ["PR_NUMBER"]
+    email = os.environ["email"]
+    username = os.environ["username"]
 
-    branch_name = "auto-update-model-info"
+    branch_name = f"{merged_pr_num}-auto-update-model-info"
     create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
 
     git_config = f"git config user.email {email}; git config user.name {username}"
@@ -127,7 +125,7 @@ def upload_bundle(
     bundle_zip_file_path: str,
     bundle_zip_filename: str,
     release_tag: str = "hosting_storage_v1",
-    repo_name: str = "yiheng-wang-nv/model-zoo",
+    repo_name: str = "Project-MONAI/model-zoo",
 ):
 
     upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
