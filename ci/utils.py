@@ -127,7 +127,7 @@ def upload_bundle(
     bundle_zip_file_path: str,
     bundle_zip_filename: str,
     release_tag: str = "hosting_storage_v1",
-    repo_name: str = "Project-MONAI/model-zoo",
+    repo_name: str = "yiheng-wang-nv/model-zoo",
 ):
 
     upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
