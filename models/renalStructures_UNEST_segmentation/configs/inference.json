@@ -112,7 +112,7 @@
             "_target_": "CheckpointLoader",
             "load_path": "$@bundle_root + '/models/model.pt'",
             "load_dict": {
-                "state_dict": "@network"
+                "model": "@network"
             },
             "strict": "True"
         },

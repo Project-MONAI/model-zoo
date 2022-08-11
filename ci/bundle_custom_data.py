@@ -18,7 +18,7 @@ exclude_verify_shape_list = ["mednist_gan"]
 # This list is used for our CI tests to determine whether a bundle needs to be tested with
 # the `verify_export_torchscript` function in `verify_bundle.py`.
 # If a bundle does not support TorchScript, please add the bundle name into the list.
-exclude_verify_torchscript_list = ["swin_unetr_btcv_segmentation", "renalStructures_UNEST_segmentation"]
+exclude_verify_torchscript_list = ["swin_unetr_btcv_segmentation", "renalStructures_UNEST_segmentation", "wholeBrainSeg_Large_UNEST_segmentation"]
 
 # This dict is used for our CI tests to override the values of the arguments "net_id" and "config_file"
 # for the `verify_data_shape` and `verify_export_torchscript` functions.

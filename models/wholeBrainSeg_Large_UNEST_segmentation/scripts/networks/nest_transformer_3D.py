@@ -37,7 +37,7 @@
 A PyTorch implement of Aggregating Nested Transformers as described in:
 'Aggregating Nested Transformers'
     - https://arxiv.org/abs/2105.12723
-The official Jax code is released and available at https://github.com/google-research/nested-transformer. 
+The official Jax code is released and available at https://github.com/google-research/nested-transformer.
 The weights have been converted with convert/convert_nest_flax.py
 Acknowledgments:
 * The paper authors for sharing their research, code, and model weights

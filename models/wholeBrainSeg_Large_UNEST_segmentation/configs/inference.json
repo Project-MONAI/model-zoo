@@ -3,15 +3,19 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/models/wholeBrain_large_UNEST_segmentation",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "$@bundle_root + './dataset/spleen'",
+    "dataset_dir": "$@bundle_root + '/dataset/images'",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
-        "_target_": "scripts.networks.unest.UNesT",
+        "_target_": "scripts.networks.unest_base_patch_4.UNesT",
         "in_channels": 1,
-        "out_channels": 4
+        "out_channels": 133,
+        "patch_size": 4,
+        "depths": [2, 2, 8],
+        "embed_dim": [128, 256, 512],
+        "num_heads": [4, 8, 16]
     },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
@@ -22,13 +26,14 @@
                 "keys": "image"
             },
             {
-                "_target_": "AddChanneld",
+                "_target_": "EnsureChannelFirstd",
                 "keys": "image"
             },
             {
-                "_target_": "Orientationd",
+                "_target_": "NormalizeIntensityd",
                 "keys": "image",
-                "axcodes": "RAS"
+                "nonzero": "True",
+                "channel_wise": "True"
             },
             {
                 "_target_": "EnsureTyped",
@@ -56,7 +61,7 @@
             96
         ],
         "sw_batch_size": 4,
-        "overlap": 0.5
+        "overlap": 0.7
     },
     "postprocessing": {
         "_target_": "Compose",
@@ -93,7 +98,7 @@
             "_target_": "CheckpointLoader",
             "load_path": "$@bundle_root + '/models/model.pt'",
             "load_dict": {
-                "state_dict": "@network"
+                "model": "@network"
             },
             "strict": "True"
         },
