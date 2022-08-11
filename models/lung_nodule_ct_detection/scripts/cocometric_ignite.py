@@ -13,8 +13,9 @@ class IgniteCocoMetric(Metric):
     def __init__(
         self,
         coco_metric_monai: Union[None, COCOMetric] = None,
-        target_box_key="box",
-        target_label_key="label",
+        box_key="box",
+        label_key="label",
+        pred_score_key="label_scores",
         output_transform: Callable = lambda x: x,
         device: Union[str, torch.device, None] = None,
         reduce_scalar: bool = True,
@@ -23,9 +24,11 @@ class IgniteCocoMetric(Metric):
         Computes coco detection metric in Ignite.
 
         Args:
-            coco_metric_monai: the coco metric in monai
-            target_box_key: box key in the ground truth target dict.
-            target_label_key: classification label key in the ground truth target dict.
+            coco_metric_monai: the coco metric in monai. 
+                If not given, will asume COCOMetric(classes=[0], iou_list=[0.1], max_detection=[100])
+            box_key: box key in the ground truth target dict and prediction dict.
+            label_key: classification label key in the ground truth target dict and prediction dict.
+            pred_score_key: classification score key in the prediction dict.
             output_transform: A callable that is used to transform the Engine’s
                 process_function’s output into the form expected by the metric.
             device: specifies which device updates are accumulated on.
@@ -60,9 +63,9 @@ class IgniteCocoMetric(Metric):
                 1.0...
         .. versionadded:: 0.4.3
         """
-        self.target_box_key = target_box_key
-        self.target_label_key = target_label_key
-        self.pred_score_key = target_label_key + "_scores"
+        self.box_key = box_key
+        self.label_key = label_key
+        self.pred_score_key = pred_score_key
         if coco_metric_monai is None:
             self.coco_metric = COCOMetric(classes=[0], iou_list=[0.1], max_detection=[100])
         else:
@@ -93,11 +96,11 @@ class IgniteCocoMetric(Metric):
         results_metric = matching_batch(
             iou_fn=box_utils.box_iou,
             iou_thresholds=self.coco_metric.iou_thresholds,
-            pred_boxes=[val_data_i[self.target_box_key] for val_data_i in self.val_outputs_all],
-            pred_classes=[val_data_i[self.target_label_key] for val_data_i in self.val_outputs_all],
+            pred_boxes=[val_data_i[self.box_key] for val_data_i in self.val_outputs_all],
+            pred_classes=[val_data_i[self.label_key] for val_data_i in self.val_outputs_all],
             pred_scores=[val_data_i[self.pred_score_key] for val_data_i in self.val_outputs_all],
-            gt_boxes=[val_data_i[self.target_box_key] for val_data_i in self.val_targets_all],
-            gt_classes=[val_data_i[self.target_label_key] for val_data_i in self.val_targets_all],
+            gt_boxes=[val_data_i[self.box_key] for val_data_i in self.val_targets_all],
+            gt_classes=[val_data_i[self.label_key] for val_data_i in self.val_targets_all],
         )
         val_epoch_metric_dict = self.coco_metric(results_metric)[0]
 

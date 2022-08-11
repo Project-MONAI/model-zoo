@@ -23,7 +23,8 @@ class GradualWarmupScheduler(_LRScheduler):
 
     Args:
         optimizer (Optimizer): Wrapped optimizer.
-        multiplier: target learning rate = base lr * multiplier if multiplier > 1.0. if multiplier = 1.0, lr starts from 0 and ends up with the base_lr.
+        multiplier: target learning rate = base lr * multiplier if multiplier > 1.0. 
+            if multiplier = 1.0, lr starts from 0 and ends up with the base_lr.
         total_epoch: target learning rate is reached at total_epoch, gradually
         after_scheduler: after target_epoch, use this scheduler(eg. ReduceLROnPlateau)
     """
@@ -54,7 +55,7 @@ class GradualWarmupScheduler(_LRScheduler):
                 for base_lr in self.base_lrs
             ]
 
-    def step_ReduceLROnPlateau(self, metrics, epoch=None):
+    def step_reduce_lr_on_plateau(self, metrics, epoch=None):
         if epoch is None:
             epoch = self.last_epoch + 1
         self.last_epoch = (
@@ -84,4 +85,4 @@ class GradualWarmupScheduler(_LRScheduler):
             else:
                 return super(GradualWarmupScheduler, self).step(epoch)
         else:
-            self.step_ReduceLROnPlateau(metrics, epoch)
+            self.step_reduce_lr_on_plateau(metrics, epoch)
