@@ -1,4 +1,10 @@
 {
+    "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='validation', base_dir=@data_file_base_dir)",
+    "validate#dataset": {
+        "_target_": "Dataset",
+        "data": "$@test_datalist",
+        "transform": "@validate#preprocessing"
+    },
     "validate#handlers": [
         {
             "_target_": "CheckpointLoader",

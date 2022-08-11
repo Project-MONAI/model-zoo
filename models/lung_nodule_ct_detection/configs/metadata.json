@@ -55,7 +55,7 @@
             "pred": {
                 "type": "object",
                 "format": "dict",
-                "dtype": "float16",
+                "dtype": "float16"
             }
         }
     }
