@@ -24,7 +24,7 @@ class IgniteCocoMetric(Metric):
         Computes coco detection metric in Ignite.
 
         Args:
-            coco_metric_monai: the coco metric in monai. 
+            coco_metric_monai: the coco metric in monai.
                 If not given, will asume COCOMetric(classes=[0], iou_list=[0.1], max_detection=[100])
             box_key: box key in the ground truth target dict and prediction dict.
             label_key: classification label key in the ground truth target dict and prediction dict.
