@@ -22,7 +22,7 @@ The raw CT images in LUNA16 have various of voxel sizes. The first step is to re
 In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm. The code can be found in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection
 
 ## Training configuration
-The training was performed with at least 12GB-memory GPUs. 
+The training was performed with at least 12GB-memory GPUs.
 
 Actual Model Input: 192 x 192 x 80
 
