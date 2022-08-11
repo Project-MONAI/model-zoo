@@ -176,6 +176,7 @@
         {
             "_target_": "scripts.detection_saver.DetectionSaver",
             "output_dir": "@output_dir",
+            "falename": "result_luna16_fold0.json",
             "batch_transform": "$lambda x: [xx['image_meta_dict'] for xx in x]",
             "output_transform": "$lambda x: [@output_transform({**xx['pred'],'image':xx['image']}) for xx in x]",
             "pred_box_key": "box",

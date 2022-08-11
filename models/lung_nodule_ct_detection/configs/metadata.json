@@ -11,38 +11,36 @@
         "nibabel": "3.2.1",
         "pytorch-ignite": "0.4.8"
     },
-    "task": "Multimodal Brain Tumor segmentation",
-    "description": "A pre-trained model for volumetric (3D) segmentation of brain tumor subregions from multimodal MRIs based on BraTS 2018 data",
+    "task": "CT lung nodule detection",
+    "description": "A pre-trained model for volumetric (3D) detection of the lung lesion from CT image on LUNA16 dataset",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
-    "data_source": "https://www.med.upenn.edu/sbia/brats2018/data.html",
+    "data_source": "https://luna16.grand-challenge.org/Home/",
     "data_type": "nibabel",
-    "image_classes": "4 channel data, T1c, T1, T2, FLAIR at 1x1x1 mm",
-    "label_classes": "3 channel data, channel 0 for Tumor core, channel 1 for Whole tumor, channel 2 for Enhancing tumor",
-    "pred_classes": "3 channels data, same as label_classes",
+    "image_classes": "1 channel data, CT at 0.703125 x 0.703125 x 1.25 mm",
+    "label_classes": "dict data, containing Nx6 box and Nx1 classification labels.",
+    "pred_classes": "dict data, containing Nx6 box, Nx1 classification labels, Nx1 classification scores.",
     "eval_metrics": {
-        "val_mean_dice": 0.8518,
-        "val_mean_dice_tc": 0.8559,
-        "val_mean_dice_wt": 0.9026,
-        "val_mean_dice_et": 0.7905
+        "val_coco": 0,
+        "froc": 0
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
-        "Myronenko, Andriy. '3D MRI brain tumor segmentation using autoencoder regularization.' International MICCAI Brainlesion Workshop. Springer, Cham, 2018. https://arxiv.org/abs/1810.11654"
+        "Lin, Tsung-Yi, et al. 'Focal loss for dense object detection. ICCV 2017"
     ],
     "network_data_format": {
         "inputs": {
             "image": {
                 "type": "image",
                 "format": "magnitude",
-                "modality": "MR",
-                "num_channels": 4,
+                "modality": "CT",
+                "num_channels": 1,
                 "spatial_shape": [
-                    "8*n",
-                    "8*n",
+                    "16*n",
+                    "16*n",
                     "8*n"
                 ],
-                "dtype": "float32",
+                "dtype": "float16",
                 "value_range": [
                     0,
                     1
@@ -55,24 +53,9 @@
         },
         "outputs": {
             "pred": {
-                "type": "image",
-                "format": "segmentation",
-                "num_channels": 3,
-                "spatial_shape": [
-                    "8*n",
-                    "8*n",
-                    "8*n"
-                ],
-                "dtype": "float32",
-                "value_range": [
-                    0,
-                    1
-                ],
-                "is_patch_data": true,
-                "channel_def": {
-                    "0": "background",
-                    "1": "spleen"
-                }
+                "type": "object",
+                "format": "dict",
+                "dtype": "float16",
             }
         }
     }

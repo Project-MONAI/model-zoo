@@ -22,7 +22,7 @@ The raw CT images in LUNA16 have various of voxel sizes. The first step is to re
 In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm. The code can be found in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection
 
 ## Training configuration
-The training was performed with at least 12GB-memory GPUs.
+The training was performed with at least 12GB-memory GPUs. 
 
 Actual Model Input: 192 x 192 x 80
 
@@ -30,9 +30,11 @@ Actual Model Input: 192 x 192 x 80
 Input: list of 1 channel 3D CT patches
 
 Output: dictionary of classification and box regression loss in training mode;
- list of dictionary of predicted box, label, and label score in evaluation mode.
+list of dictionary of predicted box, classification label, and classification score in evaluation mode.
 
 ## Scores
+The script to compute FROC sensitivity value on inference results can be found in https://github.com/Project-MONAI/tutorials/tree/main/detection
+
 This model achieves the following FROC sensitivity value on the validation data (our own split from the training dataset):
 
 | Methods             | 1/8   | 1/4   | 1/2   | 1     | 2     | 4     | 8     |
@@ -68,28 +70,11 @@ Execute inference:
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
-Verify the metadata format:
-
-```
-python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filepath eval/schema.json
-```
-
-Verify the data shape of network:
-
-```
-python -m monai.bundle verify_net_in_out network_def --meta_file configs/metadata.json --config_file configs/inference.json
-```
-
-Export checkpoint to TorchScript file:
-
-```
-python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
-```
 
 # Disclaimer
 This is an example, not to be used for diagnostic purposes.
 
 # References
-[1] Xia, Yingda, et al. "3D Semi-Supervised Learning with Uncertainty-Aware Multi-View Co-Training." arXiv preprint arXiv:1811.12506 (2018). https://arxiv.org/abs/1811.12506.
+[1] Lin, Tsung-Yi, et al. "Focal loss for dense object detection." ICCV 2017. https://arxiv.org/abs/1708.02002)
 
-[2] Kerfoot E., Clough J., Oksuz I., Lee J., King A.P., Schnabel J.A. (2019) Left-Ventricle Quantification Using Residual U-Net. In: Pop M. et al. (eds) Statistical Atlases and Computational Models of the Heart. Atrial Segmentation and LV Quantification Challenges. STACOM 2018. Lecture Notes in Computer Science, vol 11395. Springer, Cham. https://doi.org/10.1007/978-3-030-12029-0_40
+[2] Baumgartner and Jaeger et al. "nnDetection: A self-configuring method for medical object detection." MICCAI 2021. https://arxiv.org/pdf/2106.00817.pdf
