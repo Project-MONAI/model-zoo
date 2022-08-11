@@ -55,9 +55,6 @@ def detection_prepare_val_batch(
         batch_data_i["image"].to(device=device, non_blocking=non_blocking, **kwargs) for batch_data_i in batchdata
     ]
 
-    # if not isinstance(batchdata, dict):
-    #     raise AssertionError("default prepare_batch expects dictionary input data.")
-
     if isinstance(batchdata[0].get(Keys.LABEL), torch.Tensor):
         targets = [
             dict(
@@ -77,8 +74,6 @@ class DetectionEvaluator(Evaluator):
         device: an object representing the device on which to run.
         val_data_loader: Ignite engine use data_loader to run, must be Iterable or torch.DataLoader.
         detector: detector to train in the trainer, should be regular PyTorch `torch.nn.Module`.
-        optimizer: the optimizer associated to the detector, should be regular PyTorch optimizer from `torch.optim`
-            or its subclass.
         epoch_length: number of iterations for one epoch, default to `len(val_data_loader)`.
         non_blocking: if True and this copy is between CPU and GPU, the copy may occur asynchronously
             with respect to the host. For other cases, this argument has no effect.
@@ -99,9 +94,11 @@ class DetectionEvaluator(Evaluator):
         metric_cmp_fn: function to compare current key metric with previous best key metric value,
             it must accept 2 args (current_metric, previous_best) and return a bool result: if `True`, will update
             `best_metric` and `best_metric_epoch` with current metric and epoch, default to `greater than`.
-        train_handlers: every handler is a set of Ignite Event-Handlers, must have `attach` function, like:
+        val_handlers: every handler is a set of Ignite Event-Handlers, must have `attach` function, like:
             CheckpointHandler, StatsHandler, etc.
-        amp: whether to enable auto-mixed-precision training, default is False.
+        amp: whether to enable auto-mixed-precision evaluation, default is False.
+        mode: model forward mode during evaluation, should be 'eval' or 'train',
+            which maps to `model.eval()` or `model.train()`, default to 'eval'.
         event_names: additional custom ignite events that will register to the engine.
             new events can be a list of str or `ignite.engine.events.EventEnum`.
         event_to_attr: a dictionary to map an event to a state attribute, then add to `engine.state`.
@@ -110,8 +107,6 @@ class DetectionEvaluator(Evaluator):
         decollate: whether to decollate the batch-first data to a list of data after model computation,
             recommend `decollate=True` when `postprocessing` uses components from `monai.transforms`.
             default to `True`.
-        optim_set_to_none: when calling `optimizer.zero_grad()`, instead of setting to zero, set the grads to None.
-            more details: https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html.
         to_kwargs: dict of other args for `prepare_batch` API when converting the input data, except for
             `device`, `non_blocking`.
         amp_kwargs: dict of the args for `torch.cuda.amp.autocast()` API, for more details:

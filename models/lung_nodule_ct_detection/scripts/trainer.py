@@ -55,8 +55,6 @@ def detection_prepare_batch(
         for batch_data_ii in batch_data_i
     ]
 
-    # if not isinstance(batchdata, dict):
-    #     raise AssertionError("default prepare_batch expects dictionary input data.")
     if isinstance(batchdata[0][0].get(Keys.LABEL), torch.Tensor):
         targets = [
             dict(
@@ -174,9 +172,9 @@ class DetectionTrainer(Trainer):
         Callback function for the Supervised Training processing logic of 1 iteration in Ignite Engine.
         Return below items in a dictionary:
             - IMAGE: image Tensor data for model input, already moved to device.
-            - BOX: box Tensor data corresponding to the image, already moved to device.
-            - LABEL: label Tensor data corresponding to the image, already moved to device.
-            - LOSS: loss value computed by loss function.
+            - BOX: box regression loss corresponding to the image, already moved to device.
+            - LABEL: classification loss corresponding to the image, already moved to device.
+            - LOSS: weighted sum of loss values computed by loss function.
         Args:
             engine: `DetectionTrainer` to execute operation for an iteration.
             batchdata: input data for this iteration, usually can be dictionary or tuple of Tensor data.
@@ -197,11 +195,18 @@ class DetectionTrainer(Trainer):
         # put iteration outputs into engine.state
         engine.state.output = {Keys.IMAGE: inputs, Keys.LABEL: targets}
 
-        def _compute_pred_loss():
+        def _compute_pred_loss(w_cls: float = 1.0, w_box_reg: float = 1.0):
+            """
+            Args:
+                w_cls: weight of classification loss
+                w_box_reg: weight of box regression loss
+            """
             outputs = engine.detector(inputs, targets)
             engine.state.output[engine.detector.cls_key] = outputs[engine.detector.cls_key]
             engine.state.output[engine.detector.box_reg_key] = outputs[engine.detector.box_reg_key]
-            engine.state.output[Keys.LOSS] = outputs[engine.detector.cls_key] + outputs[engine.detector.box_reg_key]
+            engine.state.output[Keys.LOSS] = (
+                w_cls * outputs[engine.detector.cls_key] + w_box_reg * outputs[engine.detector.box_reg_key]
+            )
             engine.fire_event(IterationEvents.LOSS_COMPLETED)
 
         engine.detector.train()
