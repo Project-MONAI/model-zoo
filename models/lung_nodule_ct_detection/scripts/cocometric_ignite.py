@@ -16,7 +16,7 @@ class IgniteCocoMetric(Metric):
         target_box_key="box",
         target_label_key="label",
         output_transform: Callable = lambda x: x,
-        device: Union[str, torch.device] = torch.device("cpu"),
+        device: Union[str, torch.device, None] = None,
         reduce_scalar: bool = True,
     ):
         r"""
@@ -63,11 +63,14 @@ class IgniteCocoMetric(Metric):
         self.target_box_key = target_box_key
         self.target_label_key = target_label_key
         self.pred_score_key = target_label_key + "_scores"
-        if coco_metric_monai == None:
+        if coco_metric_monai is None:
             self.coco_metric = COCOMetric(classes=[0], iou_list=[0.1], max_detection=[100])
         else:
             self.coco_metric = coco_metric_monai
         self.reduce_scalar = reduce_scalar
+
+        if device is None:
+            device = torch.device("cpu")
         super(IgniteCocoMetric, self).__init__(output_transform=output_transform, device=device)
 
     @reinit__is_reduced
