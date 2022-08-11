@@ -11,6 +11,7 @@
 
 import argparse
 import os
+import sys
 
 import torch
 from bundle_custom_data import custom_net_config_dict, exclude_verify_shape_list, exclude_verify_torchscript_list
@@ -139,6 +140,8 @@ def verify(bundle):
 
     models_path = "models"
     print(f"start verifying {bundle}:")
+    # add bundle path to ensure custom code can be used
+    sys.path = [os.path.join(models_path, bundle)] + sys.path
     # verify bundle directory
     verify_bundle_directory(models_path, bundle)
     print("directory is verified correctly.")
