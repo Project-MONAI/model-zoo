@@ -1,9 +1,5 @@
 # Description
 A pre-trained model for inferencing volumetric (3D) kidney substructures segmentation from contrast-enhanced CT images (Arterial/Portal Venous Phase).
-<<<<<<< HEAD
-A tutorial and release of model for kidney cortex, medulla and collecting system segmentation.
-
-=======
 
 A tutorial and release of model for kidney cortex, medulla and collecting system segmentation.
 

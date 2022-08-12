@@ -14,11 +14,14 @@ Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Yucheng Tang (yuchengt@nvidia.com)
 -------------------------------------------------------------------------------------
 </p>
 
-<!-- ![](./demo.png) <br> -->
+
+![](./demo.png) <br>
 <p align="center">
+Fig.1 - The demonstration of T1w MRI images registered in MNI space and the whole brain segmentation labels with 133 classes</p>
+<!-- <p align="center">
 <img src="./demo.png" width="800" height="456">
 <figcaption align = "center"><b>Fig.1 - The demonstration of T1w MRI images registered in MNI space and the whole brain segmentation labels with 133 classes</b></figcaption>
-</p>
+</p> -->
 
 
 # Model Overview
@@ -33,10 +36,14 @@ that learn locality behaviors for small structures or small dataset. This design
 the original global self-attention mechanism and achieves information communication
 across patches by stacking transformer encoders hierarchically.
 
+![](./unest.png) <br>
 <p align="center">
+Fig.2 - The network architecture of UNEST Base model
+</p>
+<!-- <p align="center">
 <img src="./unest.png" width="700" height="227">
 <figcaption align = "center"><b align = "center">Fig.2 - The network architecture of UNEST Base model</b></figcaption>
-</p>
+</p> -->
 
 ## Data
 The training data is from the Vanderbilt University and Vanderbilt University Medical Center with public released OASIS and CANDI datsets.
@@ -61,9 +68,6 @@ Actual Model Input: 96 x 96 x 96
 Input: 1 channel T1w MRI image in MNI305 Space.
 
 
-## Performance
-
-
 ## commands example
 Download trained checkpoint model to ./model/model.pt:
 
@@ -84,11 +88,14 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 
 
 ## More examples output
-
+![](./unest.png) <br>
 <p align="center">
+Fig.3 - The output prediction comparison with variant and ground truth
+</p>
+<!-- <p align="center">
 <img src="./wholebrain.png" width="1000" height="203">
 <figcaption align = "center"><b>Fig.3 - The output prediction comparison with variant and ground truth</b></figcaption>
-</p>
+</p> -->
 
 
 ## Complete ROI of the whole brain segmentation 
@@ -132,8 +139,8 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 |  132 :  Left-TTG---transverse-temporal-gyrus  |
 
 
-## Bundle Integration in MONAILable 
-The inference pipleine can be easily used by the MONAIlabel server and 3D Slicer for fast labeling T1w MRI images in MNI space.
+## Bundle Integration in MONAI Lable 
+The inference pipleine can be easily used by the MONAI Label server and 3D Slicer for fast labeling T1w MRI images in MNI space.
 
 ![](./3DSlicer_use.png) <br>
 
