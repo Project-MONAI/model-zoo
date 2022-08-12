@@ -130,7 +130,7 @@
 	"validate": {
 		"preprocessing": {
 			"_target_": "Compose",
-			"transforms": "train#deterministic_tranforms"
+			"transforms": "train#preprocessing"
 		},
 		"dataset": {
 			"_target_": "CacheDataset",
