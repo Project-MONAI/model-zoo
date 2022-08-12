@@ -1,6 +1,5 @@
 # Description
 Detailed whole brain segmentation is an essential quantitative technique in medical image analysis, which provides a non-invasive way of measuring brain regions from a clinical acquired structural magnetic resonance imaging (MRI).
-
 We provide the pre-trained model for inferencing whole brain segmentation with 133 structures.
 
 A tutorial and release of model for whole brain segmentation using the 3D transformer-based segmentation model UNEST.
@@ -14,14 +13,10 @@ Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Yucheng Tang (yuchengt@nvidia.com)
 -------------------------------------------------------------------------------------
 </p>
 
-
 ![](./demo.png) <br>
 <p align="center">
 Fig.1 - The demonstration of T1w MRI images registered in MNI space and the whole brain segmentation labels with 133 classes</p>
-<!-- <p align="center">
-<img src="./demo.png" width="800" height="456">
-<figcaption align = "center"><b>Fig.1 - The demonstration of T1w MRI images registered in MNI space and the whole brain segmentation labels with 133 classes</b></figcaption>
-</p> -->
+
 
 
 # Model Overview
@@ -40,10 +35,7 @@ across patches by stacking transformer encoders hierarchically.
 <p align="center">
 Fig.2 - The network architecture of UNEST Base model
 </p>
-<!-- <p align="center">
-<img src="./unest.png" width="700" height="227">
-<figcaption align = "center"><b align = "center">Fig.2 - The network architecture of UNEST Base model</b></figcaption>
-</p> -->
+
 
 ## Data
 The training data is from the Vanderbilt University and Vanderbilt University Medical Center with public released OASIS and CANDI datsets.
@@ -92,10 +84,6 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 <p align="center">
 Fig.3 - The output prediction comparison with variant and ground truth
 </p>
-<!-- <p align="center">
-<img src="./wholebrain.png" width="1000" height="203">
-<figcaption align = "center"><b>Fig.3 - The output prediction comparison with variant and ground truth</b></figcaption>
-</p> -->
 
 
 ## Complete ROI of the whole brain segmentation 
