@@ -88,7 +88,7 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 
 
 ## More examples output
-![](./unest.png) <br>
+![](./wholebrain.png) <br>
 <p align="center">
 Fig.3 - The output prediction comparison with variant and ground truth
 </p>
