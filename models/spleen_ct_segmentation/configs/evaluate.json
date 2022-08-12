@@ -33,6 +33,15 @@
                     false
                 ],
                 "to_onehot": 2
+            },
+            {
+                "_target_": "SaveImaged",
+                "_disabled_": true,
+                "keys": "pred",
+                "meta_keys": "pred_meta_dict",
+                "output_dir": "@output_dir",
+                "resample": false,
+                "squeeze_end_dims": true
             }
         ]
     },
