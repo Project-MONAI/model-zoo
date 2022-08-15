@@ -101,8 +101,8 @@ def push_new_model_info_branch(model_info_path: str):
     return branch_name
 
 
-def create_pull_request(branch_name: str):
-    create_command = f"gh pr create --fill --title 'auto update model_info' --base dev --head {branch_name}"
+def create_pull_request(branch_name: str, pr_title: str = "'auto_update_model_info'"):
+    create_command = f"gh pr create --fill --title {pr_title} --base dev --head {branch_name}"
     call_status = subprocess.run(create_command, shell=True)
     call_status.check_returncode()
 
