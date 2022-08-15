@@ -16,6 +16,7 @@ import tempfile
 
 from utils import (
     compress_bundle,
+    create_pull_request,
     download_large_files,
     get_changed_bundle_list,
     get_checksum,
@@ -120,7 +121,8 @@ def main(changed_dirs):
                 raise AssertionError(f"update bundle: {bundle} failed. {msg}")
 
         # push a new branch that contains the updated model_info.json
-        push_new_model_info_branch(model_info_path=os.path.join(models_path, model_info_file))
+        branch_name = push_new_model_info_branch(model_info_path=os.path.join(models_path, model_info_file))
+        create_pull_request(branch_name)
     else:
         print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip updating.")
 
