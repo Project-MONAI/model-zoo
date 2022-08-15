@@ -1,1 +1,42 @@
-{"spleen_ct_segmentation_v0.1.0": {"checksum": "18bae0a62d90fb06b33c1c7702867a4d4d7b98f0", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.1.0.zip"}, "pancreas_ct_dints_segmentation_v0.1.0": {"checksum": "003926cdb603a97945012eec6aeeb65020942a65", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.1.0.zip"}, "brats_mri_segmentation_v0.1.0": {"checksum": "5da956c7425bf02f31e3a2cdf28693431fa76212", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.1.0.zip"}, "spleen_deepedit_annotation_v0.1.0": {"checksum": "74c61a6dec808891acb9ec1df4e8305008409c97", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.1.0.zip"}, "swin_unetr_btcv_segmentation_v0.1.0": {"checksum": "65eaf535f04e80c8d82c597449a60ef8c1622692", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.1.0.zip"}, "ventricular_short_axis_3label_v0.1.0": {"checksum": "8cd1adb99e00fde9adb99f8abadcc8448c1cdf9b", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/ventricular_short_axis_3label_v0.1.0.zip"}, "mednist_gan_v0.1.0": {"checksum": "6344489fd720fa77f0c74fd414bbbdae7905dc9d", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_gan_v0.1.0.zip"}, "pathology_tumor_detection_v0.1.0": {"checksum": "6bc312db416bb6f4073e9d314eb4cc82974e6594", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.1.0.zip"}, "renalStructures_UNEST_segmentation_v0.1.0": {"checksum": "30b448e11e51c9912160e5f21f61d56857a97a55", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/renalStructures_UNEST_segmentation_v0.1.0.zip"}, "brats_mri_segmentation_v0.1.1": {"checksum": "fd165c24057c9ae00eef4d78065503cd4f0cff90", "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.1.1.zip"}}
+{
+    "spleen_ct_segmentation_v0.1.0": {
+        "checksum": "18bae0a62d90fb06b33c1c7702867a4d4d7b98f0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.1.0.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.1.0": {
+        "checksum": "003926cdb603a97945012eec6aeeb65020942a65",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.1.0.zip"
+    },
+    "brats_mri_segmentation_v0.1.0": {
+        "checksum": "5da956c7425bf02f31e3a2cdf28693431fa76212",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.1.0.zip"
+    },
+    "spleen_deepedit_annotation_v0.1.0": {
+        "checksum": "74c61a6dec808891acb9ec1df4e8305008409c97",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.1.0.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.1.0": {
+        "checksum": "65eaf535f04e80c8d82c597449a60ef8c1622692",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.1.0.zip"
+    },
+    "ventricular_short_axis_3label_v0.1.0": {
+        "checksum": "8cd1adb99e00fde9adb99f8abadcc8448c1cdf9b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/ventricular_short_axis_3label_v0.1.0.zip"
+    },
+    "mednist_gan_v0.1.0": {
+        "checksum": "6344489fd720fa77f0c74fd414bbbdae7905dc9d",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_gan_v0.1.0.zip"
+    },
+    "pathology_tumor_detection_v0.1.0": {
+        "checksum": "6bc312db416bb6f4073e9d314eb4cc82974e6594",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.1.0.zip"
+    },
+    "renalStructures_UNEST_segmentation_v0.1.0": {
+        "checksum": "30b448e11e51c9912160e5f21f61d56857a97a55",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/renalStructures_UNEST_segmentation_v0.1.0.zip"
+    },
+    "brats_mri_segmentation_v0.1.1": {
+        "checksum": "fd165c24057c9ae00eef4d78065503cd4f0cff90",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.1.1.zip"
+    }
+}
