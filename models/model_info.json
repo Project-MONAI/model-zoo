@@ -30,5 +30,13 @@
     "pathology_tumor_detection_v0.1.0": {
         "checksum": "6bc312db416bb6f4073e9d314eb4cc82974e6594",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.1.0.zip"
+    },
+    "renalStructures_UNEST_segmentation_v0.1.0": {
+        "checksum": "30b448e11e51c9912160e5f21f61d56857a97a55",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/renalStructures_UNEST_segmentation_v0.1.0.zip"
+    },
+    "brats_mri_segmentation_v0.1.1": {
+        "checksum": "fd165c24057c9ae00eef4d78065503cd4f0cff90",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.1.1.zip"
     }
 }
