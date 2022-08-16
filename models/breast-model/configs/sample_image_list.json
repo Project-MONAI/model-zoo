@@ -1,38 +1,80 @@
 {
-	"Train": [
-		{
-		 "image": "sampleImage1.jpg",
-		 "label":[1, 0, 0, 0]
-		 }, 
-		 {
-		 "image": "sampleImage2.jpg",
-		 "label":[0, 0, 1, 0]
-		 },
-		 {
-		 "image": "sampleImage3.jpg",
-		 "label":[0, 1, 0, 0]
-		 }, 
-		 {
-		 "image": "sampleImage4.jpg",
-		 "label":[0, 0, 0, 1]
-		 }],
-	"Validation": [
-		 {
-		 "image": "sampleImage5.jpg",
-		 "label":[1, 0, 0, 0]
-		 }, 
-		 {
-		 "image": "sampleImage6.jpg",
-		 "label":[1, 0, 0, 0]
-		 }], 
-	"Test": [
-		 {
-		 "image": "sampleImage7.jpg",
-		 "label":[1, 0, 0, 0]
-		 }, 
-		 {
-		 "image": "sampleImage8.jpg",
-		 "label":[0, 0, 0, 1]
-		 }]
+    "Train": [
+        {
+            "image": "sampleImage1.jpg",
+            "label": [
+                1,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "image": "sampleImage2.jpg",
+            "label": [
+                0,
+                0,
+                1,
+                0
+            ]
+        },
+        {
+            "image": "sampleImage3.jpg",
+            "label": [
+                0,
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "image": "sampleImage4.jpg",
+            "label": [
+                0,
+                0,
+                0,
+                1
+            ]
+        }
+    ],
+    "Validation": [
+        {
+            "image": "sampleImage5.jpg",
+            "label": [
+                1,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "image": "sampleImage6.jpg",
+            "label": [
+                1,
+                0,
+                0,
+                0
+            ]
+        }
+    ],
+    "Test": [
+        {
+            "image": "sampleImage7.jpg",
+            "label": [
+                1,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "image": "sampleImage8.jpg",
+            "label": [
+                0,
+                0,
+                0,
+                1
+            ]
+        }
+    ]
 }
-

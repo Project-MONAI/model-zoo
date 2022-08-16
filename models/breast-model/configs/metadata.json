@@ -7,7 +7,9 @@
     "monai_version": "0.9.0",
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.2",
-    "optional_packages_version": {"pydicom": "3.2.1"},
+    "optional_packages_version": {
+        "pydicom": "3.2.1"
+    },
     "task": "Breast Density Classification",
     "description": "A pre-trained model for volumetric (3D) segmentation of the spleen from CT image",
     "authors": "Center for Augmented Intelligence in Imaging, Mayo Clinic Florida",
@@ -24,30 +26,47 @@
     "references": [
         "Gupta, Vikash, et al. A multi-reconstruction study of breast density estimation using Deep Learning. arXiv preprint arXiv:2202.08238 (2022)."
     ],
-    "network_data_format":{
+    "network_data_format": {
         "inputs": {
             "image": {
                 "type": "image",
                 "format": "magnitude",
                 "modality": "Mammogram",
                 "num_channels": 3,
-                "spatial_shape": [229, 229],
+                "spatial_shape": [
+                    229,
+                    229
+                ],
                 "dtype": "float32",
-                "value_range": [0, 1],
+                "value_range": [
+                    0,
+                    1
+                ],
                 "is_patch_data": false,
-                "channel_def": {"0": "image"}
+                "channel_def": {
+                    "0": "image"
+                }
             }
         },
-        "outputs":{
+        "outputs": {
             "pred": {
                 "type": "image",
                 "format": "labels",
                 "num_channels": 1,
-                "spatial_shape": [160, 160, 160],
+                "spatial_shape": [
+                    160,
+                    160,
+                    160
+                ],
                 "dtype": "float32",
                 "value_range": [],
                 "is_patch_data": false,
-                "channel_def": {"0": "A", "1": "B", "2": "C", "3": "D"}
+                "channel_def": {
+                    "0": "A",
+                    "1": "B",
+                    "2": "C",
+                    "3": "D"
+                }
             }
         }
     }

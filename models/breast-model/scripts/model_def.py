@@ -1,11 +1,11 @@
-from torchvision import models 
+from torchvision import models
 import torch.nn as nn
-import torch 
+import torch
 
 
 class ModelDefinition():
 	def __init__(
-		self, 
+		self,
 		num_class =4,
 		pretrained_flag= 0,
 		dropout_ratio= 0.5,
@@ -19,8 +19,4 @@ class ModelDefinition():
 	def forward(self, x: torch.Tensor) -> torch.Tensor:
 		x = self.features(x)
 		x = self.class_layers(x)
-		return x 
-
-	
-
-
+		return x

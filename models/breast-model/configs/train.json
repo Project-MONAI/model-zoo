@@ -158,7 +158,12 @@
         "iteration_log": false
       } ]
 
-  }
+  },
+      "training": [
+        "$monai.utils.set_determinism(seed=123)",
+        "setattr(torch.backends.cudnn, 'benchmark', True)",
+        "@trainer.run()"
+    ]
 
 
 }
