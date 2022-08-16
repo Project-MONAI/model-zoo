@@ -49,8 +49,29 @@ Among 50 T1w MRI scans from Open Access Series on Imaging Studies (OASIS) (Marcu
 ```diff
 + All the brain MRI images for training are registered to Affine registration from the target image to the MNI305 template using NiftyReg.
 + The data should be in the MNI305 space before inference.
+
+
+Registration to MNI Space: Sample suggestion. E.g., use ANTS or other tools for registering T1 MRI image to MNI305 Space.
+
+
+```
+pip install antspyx
+```
+Sample ANTS registration 
 ```
 
+import ants
+import sys
+import os
+
+fixed_image = ants.image_read('<fixed_image_path>')
+moving_image = ants.image_read('<moving_image_path>')
+transform = ants.registration(fixed_image,moving_image,'Affine')
+
+reg3t = ants.apply_transforms(fixed_image,moving_image,transform['fwdtransforms'][0])
+ants.image_write(reg3t,output_image_path)
+
+```
 ## Training configuration
 The training and inference was performed with at least one 24GB-memory GPU.
 
