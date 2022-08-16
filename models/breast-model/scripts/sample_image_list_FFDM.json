@@ -1,0 +1,728 @@
+{
+ "Train": [
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7669/BI_BREAST_SCREENING_BILATERAL-2019-09-30/R_CC/1.2.840.113713.17.1538.70209828137937770296245965655838800548.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7669/BI_BREAST_SCREENING_BILATERAL-2019-09-30/L_CC/1.2.840.113713.17.1538.36034881803077763466203689436603663808.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7669/BI_BREAST_SCREENING_BILATERAL-2019-09-30/R_MLO/1.2.840.113713.17.1538.104755526841228136709049136455750169995.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7669/BI_BREAST_SCREENING_BILATERAL-2019-09-30/L_MLO/1.2.840.113713.17.1538.43626163865530732734056249815547579459.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7799/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-23/R_CC/1.2.840.113713.17.1538.214036522762750908999887567570704969223.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7799/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-23/R_XCCM/1.2.840.113713.17.1538.241511919689833515945244200669254653037.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7799/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-23/L_CC/1.2.840.113713.17.1538.20435861555199117867861266706675144480.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7799/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-23/R_MLO/1.2.840.113713.17.1538.268039917462802720136174701577622296841.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7799/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-23/L_MLO/1.2.840.113713.17.1538.45663561069191666163768829464319659299.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9874/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-17/R_CC/1.2.840.113713.17.1538.334100734100933312531232146545249669804.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9874/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-17/L_CC/1.2.840.113713.17.1538.103868188929859186695877068534861707662.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10086/BI_BREAST_SCREENING_BILATERAL-2019-10-04/R_CC/1.2.840.113713.17.1538.34977103888027870515057899284368600784.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10086/BI_BREAST_SCREENING_BILATERAL-2019-10-04/L_CC/1.2.840.113713.17.1538.75387692292367472014372102793449540830.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10086/BI_BREAST_SCREENING_BILATERAL-2019-10-04/R_MLO/1.2.840.113713.17.1538.100290244895466646305378995367082025407.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10086/BI_BREAST_SCREENING_BILATERAL-2019-10-04/R_MLO/1.2.840.113713.17.1538.140495661566686810782026002477395321779.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10086/BI_BREAST_SCREENING_BILATERAL-2019-10-04/L_MLO/1.2.840.113713.17.1538.306268517806545208634125173556944730076.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/4225/BI_BREAST_SCREENING_BILATERAL-2019-07-22/R_CC/1.2.840.113713.17.1538.135365853702054525713533243168240582380.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/4225/BI_BREAST_SCREENING_BILATERAL-2019-07-22/L_CC/1.2.840.113713.17.1538.325172137415873999462224907087317299243.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/4225/BI_BREAST_SCREENING_BILATERAL-2019-07-22/R_MLO/1.2.840.113713.17.1538.287177501584878705171412726404787774779.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/4225/BI_BREAST_SCREENING_BILATERAL-2019-07-22/L_MLO/1.2.840.113713.17.1538.317512721632062964167607592736867660592.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7667/BI_BREAST_SCREENING_BILATERAL-2019-10-16/R_CC/1.2.840.113713.17.1538.145714681985999661542667066508719607844.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7667/BI_BREAST_SCREENING_BILATERAL-2019-10-16/R_CC/1.2.840.113713.17.1538.193996926767737876456299776089527187007.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7667/BI_BREAST_SCREENING_BILATERAL-2019-10-16/L_CC/1.2.840.113713.17.1538.318802729589548417159096473888461973793.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7667/BI_BREAST_SCREENING_BILATERAL-2019-10-16/L_CC/1.2.840.113713.17.1538.58917231470728892344746010004738791368.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7667/BI_BREAST_SCREENING_BILATERAL-2019-10-16/R_MLO/1.2.840.113713.17.1538.259160323867092727119205020426022503352.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7667/BI_BREAST_SCREENING_BILATERAL-2019-10-16/R_MLO/1.2.840.113713.17.1538.313830249454750467840860627444409757518.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7667/BI_BREAST_SCREENING_BILATERAL-2019-10-16/L_MLO/1.2.840.113713.17.1538.234584387281150623079149482805266466687.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/7667/BI_BREAST_SCREENING_BILATERAL-2019-10-16/L_MLO/1.2.840.113713.17.1538.207436402367654983679675210030390132451.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/17111/BI_BREAST_SCREENING_BILATERAL-2019-09-25/R_CC/1.2.840.113713.17.1538.108308158266936451841431336823470422247.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/17111/BI_BREAST_SCREENING_BILATERAL-2019-09-25/L_CC/1.2.840.113713.17.1538.24191151869326586812939668892845405721.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/17111/BI_BREAST_SCREENING_BILATERAL-2019-09-25/R_MLO/1.2.840.113713.17.1538.327084280739051837355495862710503069623.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/17111/BI_BREAST_SCREENING_BILATERAL-2019-09-25/L_MLO/1.2.840.113713.17.1538.144672883573341202254184006216926089094.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/17111/BI_BREAST_SCREENING_BILATERAL-2019-09-25/L_MLO/1.2.840.113713.17.1538.40136949049344891519196819087264197071.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9351/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-30/L_CC_Intelligent_2D/1.2.840.113713.17.1538.139864073324207535736337329300328285583.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9351/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-30/L_MLO_Intelligent_2D/1.2.840.113713.17.1538.73835638893003646185716023670897349140.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9351/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-30/R_MLO_Intelligent_2D/1.2.840.113713.17.1538.73406714336317783002313476140543996716.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9351/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-10-30/R_CC_Intelligent_2D/1.2.840.113713.17.1538.111638126409342910589167203277101268890.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5835/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-08-30/L_CC_Intelligent_2D/1.2.840.113713.17.1538.32778418095000504832414570004532626878.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5835/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-08-30/L_MLO_Intelligent_2D/1.2.840.113713.17.1538.175910048796323127111170708001924158419.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5835/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-08-30/R_MLO_Intelligent_2D/1.2.840.113713.17.1538.92181416637403440050673826130276314321.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  }
+ ],
+ "Validation": [
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10153/BI_BREAST_SCREENING_BILATERAL-2019-10-01/R_CC/1.2.840.113713.17.1538.257714336839196371350116481890091628782.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10153/BI_BREAST_SCREENING_BILATERAL-2019-10-01/L_CC/1.2.840.113713.17.1538.272611333169910140831366648622432069519.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10153/BI_BREAST_SCREENING_BILATERAL-2019-10-01/R_MLO/1.2.840.113713.17.1538.108569130165505712856989770991648448353.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/10153/BI_BREAST_SCREENING_BILATERAL-2019-10-01/L_MLO/1.2.840.113713.17.1538.158830956966331899034876098438819355495.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5169/BI_BREAST_SCREENING_BILATERAL-2019-08-06/R_CC/1.2.840.113713.17.1538.2946870784842759266235961798800076227.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5169/BI_BREAST_SCREENING_BILATERAL-2019-08-06/L_CC/1.2.840.113713.17.1538.35547171097332473332778524621174842084.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5169/BI_BREAST_SCREENING_BILATERAL-2019-08-06/R_MLO/1.2.840.113713.17.1538.323472596320207463228635710483962870144.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5169/BI_BREAST_SCREENING_BILATERAL-2019-08-06/R_MLO/1.2.840.113713.17.1538.139026087775763987711694300883161771120.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5169/BI_BREAST_SCREENING_BILATERAL-2019-08-06/L_MLO/1.2.840.113713.17.1538.68019728405807318036433585177634584852.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/181/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-07-01/R_CC/1.2.840.113713.17.1538.69873920279227529822616970249470872919.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/181/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-07-01/L_CC/1.2.840.113713.17.1538.258015402891602771860603757797433992625.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/181/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-07-01/R_MLO/1.2.840.113713.17.1538.224441956125232728603734517597625768936.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/181/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-07-01/R_MLO/1.2.840.113713.17.1538.58601173783557898022853213821951060598.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/181/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-07-01/L_MLO/1.2.840.113713.17.1538.172221579942309825217234208995314668750.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/181/BI_BREAST_SCREENING_BILATERAL_WITH_TOMOSYNTHESIS-2019-07-01/L_MLO/1.2.840.113713.17.1538.260210533767260872426924375004656770013.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5440/BI_BREAST_SCREENING_BILATERAL-2019-08-13/R_CC/1.2.840.113713.17.1538.113163056208765704039253700652617713790.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5440/BI_BREAST_SCREENING_BILATERAL-2019-08-13/L_CC/1.2.840.113713.17.1538.254930943323086285134449622774585611772.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5440/BI_BREAST_SCREENING_BILATERAL-2019-08-13/R_MLO/1.2.840.113713.17.1538.280491051547737150695285282781459356454.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/5440/BI_BREAST_SCREENING_BILATERAL-2019-08-13/L_MLO/1.2.840.113713.17.1538.236041752415874246139992416990095320217.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/1244/BI_BREAST_SCREENING_BILATERAL-2019-07-15/R_CC/1.2.840.113713.17.1538.182633946764420763218390052992761808947.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  }
+ ],
+ "Test": [
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9931/BI_BREAST_SCREENING_BILATERAL-2019-09-13/R_CC/1.2.840.113713.17.1538.256105320519539757535960872164759573414.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9931/BI_BREAST_SCREENING_BILATERAL-2019-09-13/R_CC/1.2.840.113713.17.1538.312785408422452953555169103369930301227.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9931/BI_BREAST_SCREENING_BILATERAL-2019-09-13/L_CC/1.2.840.113713.17.1538.59293684630090997358172704509856542533.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9931/BI_BREAST_SCREENING_BILATERAL-2019-09-13/L_CC/1.2.840.113713.17.1538.86734907881296112769062117491576214382.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9931/BI_BREAST_SCREENING_BILATERAL-2019-09-13/R_MLO/1.2.840.113713.17.1538.267081874749345899300073851688672719035.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9931/BI_BREAST_SCREENING_BILATERAL-2019-09-13/L_MLO/1.2.840.113713.17.1538.14662660876536520684816309578249304849.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9663/BI_BREAST_SCREENING_BILATERAL-2019-10-09/R_CC/1.2.840.113713.17.1538.239242901576757509213578459181311715417.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9663/BI_BREAST_SCREENING_BILATERAL-2019-10-09/L_CC/1.2.840.113713.17.1538.321447544582045843271496470496069384401.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9663/BI_BREAST_SCREENING_BILATERAL-2019-10-09/R_MLO/1.2.840.113713.17.1538.48376860420941925041381847771004367897.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9663/BI_BREAST_SCREENING_BILATERAL-2019-10-09/L_MLO/1.2.840.113713.17.1538.65676576486221966127818059074299647813.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/R_CC/1.2.840.113713.17.1538.10764880499579088832721195978379306715.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/R_CC/1.2.840.113713.17.1538.12442159534127052104961819300229824277.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/L_CC/1.2.840.113713.17.1538.298060706829821789823199918984720473195.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/L_CC/1.2.840.113713.17.1538.169208294352060722409859375804354217273.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/R_MLO/1.2.840.113713.17.1538.283447235192329490973313489144405672229.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/R_MLO/1.2.840.113713.17.1538.205556645861570269095345935882753134568.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/R_MLO/1.2.840.113713.17.1538.339969649565750767176271353336838315724.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/R_MLO/1.2.840.113713.17.1538.245484950083432611030181079720510891453.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/L_MLO/1.2.840.113713.17.1538.314608059698424553287926393017514286347.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "image": "/raid/Data/MayoClinicData/BreastDensity/JPGs/A/9990/BI_BREAST_SCREENING_BILATERAL-2019-09-04/L_MLO/1.2.840.113713.17.1538.231270766603917015020715952424707213966.jpg",
+   "label": [
+    1,
+    0,
+    0,
+    0
+   ]
+  }
+ ]
+}
