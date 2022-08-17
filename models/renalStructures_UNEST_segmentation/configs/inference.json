@@ -3,31 +3,15 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/workspace/brats_mri_segmentation",
-    "ckpt_dir": "$@bundle_root + '/models'",
+    "bundle_root": "/models/renalStructures_UNEST_segmentation",
     "output_dir": "$@bundle_root + '/eval'",
-    "data_list_file_path": "$@bundle_root + '/configs/datalist.json'",
-    "data_file_base_dir": "/workspace/data/medical/brats2018challenge",
-    "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing', base_dir=@data_file_base_dir)",
+    "dataset_dir": "$@bundle_root + './dataset/spleen'",
+    "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "amp": true,
     "network_def": {
-        "_target_": "SegResNet",
-        "blocks_down": [
-            1,
-            2,
-            2,
-            4
-        ],
-        "blocks_up": [
-            1,
-            1,
-            1
-        ],
-        "init_filters": 16,
-        "in_channels": 4,
-        "out_channels": 3,
-        "dropout_prob": 0.2
+        "_target_": "scripts.networks.unest.UNesT",
+        "in_channels": 1,
+        "out_channels": 4
     },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
@@ -38,33 +22,59 @@
                 "keys": "image"
             },
             {
-                "_target_": "NormalizeIntensityd",
+                "_target_": "AddChanneld",
+                "keys": "image"
+            },
+            {
+                "_target_": "Orientationd",
                 "keys": "image",
-                "nonzero": true,
-                "channel_wise": true
+                "axcodes": "RAS"
+            },
+            {
+                "_target_": "Spacingd",
+                "keys": "image",
+                "pixdim": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "mode": "bilinear"
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": -175,
+                "a_max": 250,
+                "b_min": 0.0,
+                "b_max": 1.0,
+                "clip": true
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "image"
             }
         ]
     },
     "dataset": {
         "_target_": "Dataset",
-        "data": "@test_datalist",
+        "data": "$[{'image': i} for i in @datalist]",
         "transform": "@preprocessing"
     },
     "dataloader": {
         "_target_": "DataLoader",
         "dataset": "@dataset",
         "batch_size": 1,
-        "shuffle": true,
+        "shuffle": false,
         "num_workers": 4
     },
     "inferer": {
         "_target_": "SlidingWindowInferer",
         "roi_size": [
-            240,
-            240,
-            160
+            96,
+            96,
+            96
         ],
-        "sw_batch_size": 1,
+        "sw_batch_size": 4,
         "overlap": 0.5
     },
     "postprocessing": {
@@ -73,21 +83,21 @@
             {
                 "_target_": "Activationsd",
                 "keys": "pred",
-                "sigmoid": true
+                "softmax": true
             },
             {
                 "_target_": "Invertd",
                 "keys": "pred",
                 "transform": "@preprocessing",
                 "orig_keys": "image",
-                "meta_keys": "pred_meta_dict",
+                "meta_key_postfix": "meta_dict",
                 "nearest_interp": false,
                 "to_tensor": true
             },
             {
                 "_target_": "AsDiscreted",
                 "keys": "pred",
-                "threshold": 0.5
+                "argmax": true
             },
             {
                 "_target_": "SaveImaged",
@@ -102,8 +112,9 @@
             "_target_": "CheckpointLoader",
             "load_path": "$@bundle_root + '/models/model.pt'",
             "load_dict": {
-                "model": "@network"
-            }
+                "state_dict": "@network"
+            },
+            "strict": "True"
         },
         {
             "_target_": "StatsHandler",
@@ -118,7 +129,7 @@
         "inferer": "@inferer",
         "postprocessing": "@postprocessing",
         "val_handlers": "@handlers",
-        "amp": true
+        "amp": false
     },
     "evaluating": [
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
