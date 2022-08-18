@@ -39,12 +39,12 @@ Fig.2 - The network architecture of UNEST Base model
 
 ## Data
 The training data is from the Vanderbilt University and Vanderbilt University Medical Center with public released OASIS and CANDI datsets.
-Training and testing data are MRI T1-weighted (T1w) 3D volumes coming from 3 different sites. There are a total of 133 classes in the whole brain segmentation task. 
+Training and testing data are MRI T1-weighted (T1w) 3D volumes coming from 3 different sites. There are a total of 133 classes in the whole brain segmentation task.
 Among 50 T1w MRI scans from Open Access Series on Imaging Studies (OASIS) (Marcus et al., 2007) dataset, 45 scans are used for training and the other 5 for validation.
- The testing cohort contains Colin27 T1w scan (Aubert-Broche et al., 2006) and 13 T1w MRI scans from the Child and Adolescent Neuro Development Initiative (CANDI) 
+ The testing cohort contains Colin27 T1w scan (Aubert-Broche et al., 2006) and 13 T1w MRI scans from the Child and Adolescent Neuro Development Initiative (CANDI)
  (Kennedy et al., 2012). All data are registered to the MNI space using the MNI305 (Evans et al., 1993) template and preprocessed follow the method in (Huo et al., 2019). Input images are randomly cropped to the size of 96 × 96 × 96.
 
-### Important 
+### Important
 
 ```diff
 + All the brain MRI images for training are registered to Affine registration from the target image to the MNI305 template using NiftyReg.
@@ -57,7 +57,7 @@ Registration to MNI Space: Sample suggestion. E.g., use ANTS or other tools for 
 ```
 pip install antspyx
 ```
-Sample ANTS registration 
+Sample ANTS registration
 ```
 
 import ants
@@ -88,7 +88,7 @@ Download trained checkpoint model to ./model/model.pt:
 Add scripts component:  To run the workflow with customized components, PYTHONPATH should be revised to include the path to the customized component:
 
 ```
-export PYTHONPATH=$PYTHONPATH: '<path to the bundle root dir>/scripts' 
+export PYTHONPATH=$PYTHONPATH: '<path to the bundle root dir>/scripts'
 
 ```
 
@@ -107,7 +107,7 @@ Fig.3 - The output prediction comparison with variant and ground truth
 </p>
 
 
-## Complete ROI of the whole brain segmentation 
+## Complete ROI of the whole brain segmentation
 133 brain structures are segmented.
 
 | #1 | #2 | #3 | #4 |
@@ -148,7 +148,7 @@ Fig.3 - The output prediction comparison with variant and ground truth
 |  132 :  Left-TTG---transverse-temporal-gyrus  |
 
 
-## Bundle Integration in MONAI Lable 
+## Bundle Integration in MONAI Lable
 The inference pipleine can be easily used by the MONAI Label server and 3D Slicer for fast labeling T1w MRI images in MNI space.
 
 ![](./3DSlicer_use.png) <br>
