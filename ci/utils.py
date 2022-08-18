@@ -98,6 +98,14 @@ def push_new_model_info_branch(model_info_path: str):
     call_status = subprocess.run(full_cmd, shell=True)
     call_status.check_returncode()
 
+    return branch_name
+
+
+def create_pull_request(branch_name: str, pr_title: str = "'auto_update_model_info'"):
+    create_command = f"gh pr create --fill --title {pr_title} --base dev --head {branch_name}"
+    call_status = subprocess.run(create_command, shell=True)
+    call_status.check_returncode()
+
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
 

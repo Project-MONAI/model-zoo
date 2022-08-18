@@ -38,7 +38,6 @@ doIsortFormat=false
 doIsortFix=false
 doFlake8Format=false
 doPytypeFormat=false
-doMypyFormat=false
 doCleanup=false
 doPrecommit=false
 
@@ -47,7 +46,7 @@ NUM_PARALLEL=1
 PY_EXE=${MONAI_MODEL_ZOO_PY_EXE:-$(which python)}
 
 function print_usage {
-    echo "runtests.sh [--codeformat] [--autofix] [--black] [--isort] [--flake8] [--pytype] [--mypy]"
+    echo "runtests.sh [--codeformat] [--autofix] [--black] [--isort] [--flake8] [--pytype]"
     echo "            [--dryrun] [-j number] [--clean] [--precommit] [--help] [--version]"
     echo ""
     echo "MONAI Model Zoo testing utilities."
@@ -66,7 +65,6 @@ function print_usage {
     echo ""
     echo "Python type check options:"
     echo "    --pytype          : perform \"pytype\" static type checks"
-    echo "    --mypy            : perform \"mypy\" static type checks"
     echo "    -j, --jobs        : number of parallel jobs to run \"pytype\" (default $NUM_PARALLEL)"
     echo ""
     echo "Misc. options:"
@@ -88,10 +86,6 @@ function check_import {
     ${cmdPrefix}${PY_EXE} -W error -W ignore::DeprecationWarning -c "import monai"
 }
 
-function has_py_files() {
-    [ $(find models -type f -name "*.py") ]
-}
-
 function print_monai_version {
     ${cmdPrefix}${PY_EXE} -c 'import monai; monai.config.print_config()'
 }
@@ -111,7 +105,6 @@ function clean_py {
     TO_CLEAN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
     echo "Removing temporary files in ${TO_CLEAN}"
 
-    find ${TO_CLEAN} -depth -maxdepth 1 -type d -name ".mypy_cache" -exec rm -r "{}" +
     find ${TO_CLEAN} -depth -maxdepth 1 -type d -name ".pytype" -exec rm -r "{}" +
     find ${TO_CLEAN} -depth -maxdepth 1 -type d -name "__pycache__" -exec rm -r "{}" +
 }
@@ -149,7 +142,6 @@ do
             doIsortFormat=true
             doFlake8Format=true
             doPytypeFormat=true
-            doMypyFormat=true
         ;;
         --black)
             doBlackFormat=true
@@ -171,9 +163,6 @@ do
         ;;
         --pytype)
             doPytypeFormat=true
-        ;;
-        --mypy)
-            doMypyFormat=true
         ;;
         -j|--jobs)
             NUM_PARALLEL=$2
@@ -355,70 +344,29 @@ fi
 
 if [ $doPytypeFormat = true ]
 then
-    if ! has_py_files
+    set +e  # disable exit on failure so that diagnostics can be given on failure
+    echo "${separator}${blue}pytype${noColor}"
+    # ensure that the necessary packages for code format testing are installed
+    if ! is_pip_installed pytype
     then
-        echo "There are no .py files in models/, skip pytype check."
-    else
-        set +e  # disable exit on failure so that diagnostics can be given on failure
-        echo "${separator}${blue}pytype${noColor}"
-        # ensure that the necessary packages for code format testing are installed
-        if ! is_pip_installed pytype
-        then
-            install_deps
-        fi
-        pytype_ver=$(${cmdPrefix}${PY_EXE} -m pytype --version)
-        if [[ "$OSTYPE" == "darwin"* && "$pytype_ver" == "2021."* ]]; then
-            echo "${red}pytype not working on macOS 2021 (https://github.com/Project-MONAI/MONAI/issues/2391). Please upgrade to 2022*.${noColor}"
-            exit 1
-        else
-            ${cmdPrefix}${PY_EXE} -m pytype --version
-            ${cmdPrefix}${PY_EXE} -m pytype models -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")"
-
-            pytype_status=$?
-            if [ ${pytype_status} -ne 0 ]
-            then
-                echo "${red}failed!${noColor}"
-                exit ${pytype_status}
-            else
-                echo "${green}passed!${noColor}"
-            fi
-        fi
-        set -e # enable exit on failure
+        install_deps
     fi
-fi
-
-
-if [ $doMypyFormat = true ]
-then
-    if ! has_py_files
-    then
-        echo "There are no .py files in models/, skip mypy check."
+    pytype_ver=$(${cmdPrefix}${PY_EXE} -m pytype --version)
+    if [[ "$OSTYPE" == "darwin"* && "$pytype_ver" == "2021."* ]]; then
+        echo "${red}pytype not working on macOS 2021 (https://github.com/Project-MONAI/MONAI/issues/2391). Please upgrade to 2022*.${noColor}"
+        exit 1
     else
-        set +e  # disable exit on failure so that diagnostics can be given on failure
-        echo "${separator}${blue}mypy${noColor}"
+        ${cmdPrefix}${PY_EXE} -m pytype --version
+        ${cmdPrefix}${PY_EXE} -m pytype models -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")"
 
-        # ensure that the necessary packages for code format testing are installed
-        if ! is_pip_installed mypy
+        pytype_status=$?
+        if [ ${pytype_status} -ne 0 ]
         then
-            install_deps
-        fi
-        ${cmdPrefix}${PY_EXE} -m mypy --version
-
-        if [ $doDryRun = true ]
-        then
-            ${cmdPrefix}MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)"
+            echo "${red}failed!${noColor}"
+            exit ${pytype_status}
         else
-            MYPYPATH="$(pwd)" ${PY_EXE} -m mypy "$(pwd)" # cmdPrefix does not work with MYPYPATH
+            echo "${green}passed!${noColor}"
         fi
-
-        mypy_status=$?
-        if [ ${mypy_status} -ne 0 ]
-        then
-            : # mypy output already follows format
-            exit ${mypy_status}
-        else
-            : # mypy output already follows format
-        fi
-        set -e # enable exit on failure
     fi
+    set -e # enable exit on failure
 fi
