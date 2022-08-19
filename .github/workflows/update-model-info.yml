@@ -23,6 +23,5 @@ jobs:
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_NUMBER: ${{ github.event.number }}
         username: ${{ secrets.UPDATE_MODEL_USERNAME }}
         email: ${{ secrets.UPDATE_MODEL_EMAIL }}
