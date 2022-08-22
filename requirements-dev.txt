@@ -21,3 +21,4 @@ einops
 nibabel
 pyyaml
 jsonschema
+requests
