@@ -74,9 +74,6 @@ def download_large_files(bundle_path: str, large_file_name: str = "large_file.ym
         if lf_data["hash_type"] == "":
             lf_data.pop("hash_type")
         lf_data["filepath"] = os.path.join(bundle_path, lf_data["path"])
-        # prevent ssl issue:
-        # https://github.com/Project-MONAI/model-zoo/issues/98
-        lf_data["verify"] = False
         lf_data.pop("path")
         download_url(**lf_data)
 
