@@ -45,7 +45,7 @@ remove_pipenv() {
 verify_bundle() {
     echo 'Run verify bundle...'
     init_pipenv requirements-dev.txt
-    pipenv install -U requests[security]
+    pipenv install requests[security]
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
