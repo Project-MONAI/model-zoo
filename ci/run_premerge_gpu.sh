@@ -46,6 +46,9 @@ verify_bundle() {
     echo 'Run verify bundle...'
     init_pipenv requirements-dev.txt
     head_ref=$(git rev-parse HEAD)
+    apt install ca-certificates
+    update-ca-certificates --fresh
+    export SSL_CERT_DIR=/etc/ssl/certs
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
     changes=$(git diff --name-only $head_ref origin/dev -- models)

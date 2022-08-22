@@ -36,6 +36,7 @@
             },
             {
                 "_target_": "SaveImaged",
+                "_disabled_": true,
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
