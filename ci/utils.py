@@ -13,6 +13,7 @@
 import hashlib
 import json
 import os
+import ssl
 import subprocess
 from typing import List
 
@@ -75,6 +76,7 @@ def download_large_files(bundle_path: str, large_file_name: str = "large_file.ym
             lf_data.pop("hash_type")
         lf_data["filepath"] = os.path.join(bundle_path, lf_data["path"])
         lf_data.pop("path")
+        ssl._create_default_https_context = ssl._create_unverified_context
         download_url(**lf_data)
 
 
