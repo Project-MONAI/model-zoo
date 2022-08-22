@@ -22,3 +22,4 @@ nibabel
 pyyaml
 jsonschema
 requests
+gdown>=4.4.0
