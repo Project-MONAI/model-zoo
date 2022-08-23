@@ -46,5 +46,9 @@
     "wholeBrainSeg_Large_UNEST_segmentation_v0.1.0": {
         "checksum": "3f56917a5a039c64c811d154a570fda9bc49be37",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBrainSeg_Large_UNEST_segmentation_v0.1.0.zip"
+    },
+    "spleen_ct_segmentation_v0.1.1": {
+        "checksum": "e4c7d5065ce81797a68188b7f9b0f2d9feaec410",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.1.1.zip"
     }
 }
