@@ -12,27 +12,27 @@ Segmentation, MR, Prostate
 This model was trained with the UNet architecture [1] and is used for 3D volumetric segmentation of the anatomical prostate zones on T2w MRI images. The segmentation of the anatomical regions is formulated as a voxel-wise classification. Each voxel is classified as either central gland (1), peripheral zone (2), or background (0). The model is optimized using a gradient descent method that minimizes the focal soft-dice loss between the predicted mask and the actual segmentation.
 
 ## **Data**
-The model was trained in the prostate158 training data, which is available at https://doi.org/10.5281/zenodo.6481141. Only T2w images were used for this task. 
+The model was trained in the prostate158 training data, which is available at https://doi.org/10.5281/zenodo.6481141. Only T2w images were used for this task.
 
 
 ### **Preprocessing**
-MRI images in the prostate158 dataset were preprocessed, including center cropping and resampling. When applying the model to new data, this preprocessing should be repeated. 
+MRI images in the prostate158 dataset were preprocessed, including center cropping and resampling. When applying the model to new data, this preprocessing should be repeated.
 
 #### **Center cropping**
-T2w images were acquired with a voxel spacing of 0.47 x 0.47 x 3 mm and an axial FOV size of 180 x 180 mm. However, the prostate rarely exceeds an axial diameter of 100 mm, and for zonal segmentation, the tissue surrounding the prostate is not of interest and only increases the image size and thus the computational cost. Center-cropping can reduce the image size without sacrificing information. 
+T2w images were acquired with a voxel spacing of 0.47 x 0.47 x 3 mm and an axial FOV size of 180 x 180 mm. However, the prostate rarely exceeds an axial diameter of 100 mm, and for zonal segmentation, the tissue surrounding the prostate is not of interest and only increases the image size and thus the computational cost. Center-cropping can reduce the image size without sacrificing information.
 
-The script `center_crop.py` allows to reproduce center-cropping as performed in the prostate158 paper. 
+The script `center_crop.py` allows to reproduce center-cropping as performed in the prostate158 paper.
 
 ```bash
 python scripts/center_crop.py --file_name path/to/t2_image --out_name cropped_t2
 ```
 
 #### **Resampling**
-DWI and ADC sequences in prostate158 were resampled to the orientation and voxel spacing of the T2w sequence. As the zonal segmentation uses T2w images, no additional resampling is nessecary. However, the training script will perform additonal resampling automatically. 
+DWI and ADC sequences in prostate158 were resampled to the orientation and voxel spacing of the T2w sequence. As the zonal segmentation uses T2w images, no additional resampling is nessecary. However, the training script will perform additonal resampling automatically.
 
 
 ## **Performance**
-The model achives the following performance on the prostate158 test dataset: 
+The model achives the following performance on the prostate158 test dataset:
 
 <table border=1 frame=void rules=rows>
     <thead>
@@ -79,7 +79,7 @@ The model achives the following performance on the prostate158 test dataset:
     </tbody>
 </table>
 
-For more details, please see the original [publication](https://doi.org/10.1016/j.compbiomed.2022.105817) or official [GitHub repository](https://github.com/kbressem/prostate158) 
+For more details, please see the original [publication](https://doi.org/10.1016/j.compbiomed.2022.105817) or official [GitHub repository](https://github.com/kbressem/prostate158)
 
 
 ## **System Configuration**
@@ -106,7 +106,6 @@ keywords = {Prostate cancer, Deep learning, Machine learning, Artificial intelli
 }
 ```
 
-## **References** 
+## **References**
 
 [1] Sakinis, Tomas, et al. "Interactive segmentation of medical images through fully convolutional neural networks." arXiv preprint arXiv:1903.08205 (2019).
-
