@@ -78,7 +78,7 @@
     },
     "dataset": {
         "_target_": "Dataset",
-        "data": "$[{'image': i} for i in @datalist[0:1]]",
+        "data": "$[{'image': i} for i in @datalist]",
         "transform": "@preprocessing"
     },
     "dataloader": {
