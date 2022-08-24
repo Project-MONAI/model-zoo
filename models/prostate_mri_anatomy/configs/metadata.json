@@ -4,13 +4,14 @@
     "changelog": {
         "0.1.0": "complete the model package"
     },
-    "monai_version": "0.9.0",
+    "monai_version": "0.9.1",
     "pytorch_version": "1.11.0",
     "numpy_version": "1.22.3",
     "optional_packages_version": {
         "nibabel": "3.2.2",
         "itk": "5.2.1",
-        "pytorch-ignite": "0.4.8"
+        "pytorch-ignite": "0.4.9",
+        "pandas": "1.4.2"
     },
     "task": "Segmentation of peripheral zone and central gland in prostate MRI",
     "description": "A pre-trained model for volumetric (3D) segmentation of the prostate from MRI images",
