@@ -1,0 +1,78 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "complete the model package"
+    },
+    "monai_version": "0.9.0",
+    "pytorch_version": "1.11.0",
+    "numpy_version": "1.22.3",
+    "optional_packages_version": {
+        "nibabel": "3.2.2",
+        "itk": "5.2.1",
+        "pytorch-ignite": "0.4.8"
+    },
+    "task": "Segmentation of peripheral zone and central gland in prostate MRI",
+    "description": "A pre-trained model for volumetric (3D) segmentation of the prostate from MRI images",
+    "authors": "Keno Bressem",
+    "copyright": "Copyright (c) Keno Bressem",
+    "data_source": "Prostate158 from 10.5281/zenodo.6481141",
+    "data_type": "nifti",
+    "image_classes": "single channel data, intensity scaled to [0, 1]",
+    "label_classes": "singe channel data, 1 central gland, 2 periheral zone, 0 is everything else",
+    "pred_classes": "3 channels OneHot data, channel 1 central gland, channel 2 is peripheral zone, channel 0 is background",
+    "eval_metrics": {
+        "mean_dice": {
+            "central gland": 0.88,
+            "peripheral zone": 0.75
+        }
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Adams, L. C., Makowski, M. R., Engel, G., Rattunde, M., Busch, F., Asbach, P., ... & Bressem, K. K. (2022). Prostate158-An expert-annotated 3T MRI dataset and algorithm for prostate cancer detection. Computers in Biology and Medicine, 148, 105817."
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "MR",
+                "num_channels": 1,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "labels",
+                "num_channels": 3,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "background",
+                    "1": "central gland",
+                    "2": "peripheral zone"
+                }
+            }
+        }
+    }
+}
