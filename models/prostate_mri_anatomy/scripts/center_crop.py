@@ -1,7 +1,7 @@
 import argparse
 from typing import Union
 
-import SimpleITK as sitk
+import SimpleITK as sitk  # noqa N813
 
 parser = argparse.ArgumentParser(description="Center crop a 3d volume")
 parser.add_argument("--file_name", type=str, required=True, help="Path to the input file to center crop.")
@@ -33,18 +33,17 @@ def crop(image: sitk.Image, margin: Union[int, float], interpolator=sitk.sitkLin
                 lists of int/float or nestes lists are supported.
     """
     if isinstance(margin, (list, tuple)):
-        assert len(margin) == 3, f"expected margin to be of length 3"
+        assert len(margin) == 3, "expected margin to be of length 3"
     else:
-        assert isinstance(margin, (int, float)), f"expected margin to be a float value"
+        assert isinstance(margin, (int, float)), "expected margin to be a float value"
         margin = [margin, margin, margin]
 
     margin = [m if isinstance(m, (tuple, list)) else [m, m] for m in margin]
     old_size = image.GetSize()
-    old_origin = image.GetOrigin()
 
     # calculate new origin and new image size
     if all([isinstance(m, float) for m in _flatten(margin)]):
-        assert all([m >= 0 and m < 0.5 for m in _flatten(margin)]), f"margins must be between 0 and 0.5"
+        assert all([m >= 0 and m < 0.5 for m in _flatten(margin)]), "margins must be between 0 and 0.5"
         to_crop = [[int(sz * _m) for _m in m] for sz, m in zip(old_size, margin)]
     elif all([isinstance(m, int) for m in _flatten(margin)]):
         to_crop = margin
@@ -68,5 +67,5 @@ def crop(image: sitk.Image, margin: Union[int, float], interpolator=sitk.sitkLin
 
 if __name__ == "__main__":
     image = sitk.ReadImage(args.file_name)
-    cropped = crop(image, [args.margin, args.margin, 0.])
+    cropped = crop(image, [args.margin, args.margin, 0.0])
     sitk.WriteImage(cropped, args.out_name)
