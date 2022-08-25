@@ -6,3 +6,9 @@ All source code of models (bundles) are tracked in `models/`, and for each disti
 ## Contributing
 
 To make a contribution in MONAI Model Zoo, see the [contributing guidelines](https://github.com/Project-MONAI/model-zoo/blob/dev/CONTRIBUTING.md).
+
+## Links
+- The models are currently hosted at https://github.com/Project-MONAI/model-zoo/releases/tag/hosting_storage_v1
+- MONAI Bundle API tutorials: https://github.com/Project-MONAI/tutorials/tree/main/bundle
+- MONAI Bundle demo: https://github.com/Project-MONAI/tutorials/tree/main/model_zoo
+- MONAI model zoo browser: (coming soon!)
