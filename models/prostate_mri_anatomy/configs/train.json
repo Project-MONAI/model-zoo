@@ -4,12 +4,14 @@
         "$import os",
         "$import ignite"
     ],
-    "bundle_root": "/home/bressekk/Documents/model-zoo/models/prostate_mri_anatomy",
+    "bundle_root": "/wokspace/model-zoo/models/prostate_mri_anatomy",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/home/bressekk/Desktop/prostate158/prostate158_train/",
+    "dataset_dir": "/workspace/data/prostate158/prostate158_train/",
     "images": "$list(@dataset_dir + pd.read_csv(@dataset_dir + 'train.csv').t2)",
     "labels": "$list(@dataset_dir + pd.read_csv(@dataset_dir + 'train.csv').t2_anatomy_reader1)",
+    "val_images": "$list(@dataset_dir + pd.read_csv(@dataset_dir + 'valid.csv').t2)",
+    "val_labels": "$list(@dataset_dir + pd.read_csv(@dataset_dir + 'valid.csv').t2_anatomy_reader1)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "UNet",
@@ -44,7 +46,7 @@
         "include_background": false
     },
     "optimizer": {
-        "_target_": "monai.optimizers.Novograd",
+        "_target_": "Novograd",
         "params": "$@network.parameters()",
         "lr": 0.001,
         "amsgrad": true,
@@ -203,7 +205,7 @@
         },
         "dataset": {
             "_target_": "PersistentDataset",
-            "data": "$[{'image': i, 'label': l} for i, l in zip(@images[:-9], @labels[:-9])]",
+            "data": "$[{'image': i, 'label': l} for i, l in zip(@images, @labels)]",
             "transform": "@train#preprocessing",
             "cache_dir": "$@bundle_root + '/cache'"
         },
@@ -286,10 +288,10 @@
             "transforms": "%train#deterministic_transforms"
         },
         "dataset": {
-            "_target_": "CacheDataset",
-            "data": "$[{'image': i, 'label': l} for i, l in zip(@images[-9:], @labels[-9:])]",
+            "_target_": "PersistentDataset",
+            "data": "$[{'image': i, 'label': l} for i, l in zip(@val_images, @val_labels)]",
             "transform": "@validate#preprocessing",
-            "cache_rate": 1.0
+            "cache_dir": "$@bundle_root + '/cache'"
         },
         "dataloader": {
             "_target_": "DataLoader",
