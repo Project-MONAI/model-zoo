@@ -3,9 +3,9 @@
         "$import pandas as pd",
         "$import os"
     ],
-    "bundle_root": "/home/bressekk/Documents/model-zoo/models/prostate_mri_anatomy",
+    "bundle_root": "/workspace/data/prostate_mri_anatomy",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/home/bressekk/Desktop/prostate158/prostate158_train/",
+    "dataset_dir": "/workspace/data/prostate158/prostate158_train/",
     "datalist": "$list(@dataset_dir + pd.read_csv(@dataset_dir + 'valid.csv').t2)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
@@ -126,7 +126,7 @@
     "handlers": [
         {
             "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/anatomy.pt'",
+            "load_path": "$@bundle_root + '/models/model.pt'",
             "load_dict": {
                 "model": "@network"
             }
