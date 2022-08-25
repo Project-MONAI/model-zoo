@@ -8,6 +8,10 @@ Please refer to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_
 
 The [get started](https://github.com/Project-MONAI/tutorials/blob/main/modules/bundle/get_started.ipynb) notebook is a step-by-step tutorial to help developers easily get started to develop a bundle. And [bundle examples](https://github.com/Project-MONAI/tutorials/tree/main/modules/bundle) show the typical bundle for 3D segmentation, how to use customized components in a bundle, and how to parse bundle in your own program as "hybrid" mode, etc.
 
+As for the path related varibles within config files (such as "bundle_root"), we suggest to use path that do not include personal information (such as `"/home/your_name/"`).The following is an example of path using:
+
+`"bundle_root": "/workspace/data/<bundle name>"`.
+
 ### Readme Format
 
 A [template](https://github.com/Project-MONAI/model-zoo/blob/dev/docs/readme_template.md) on how to prepare a readme file is provided.
