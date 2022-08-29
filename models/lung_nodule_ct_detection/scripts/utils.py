@@ -9,7 +9,7 @@ def detach_to_numpy(data: Union[List, Dict, torch.Tensor]) -> Union[List, Dict, 
     Recursively detach elements in data
     """
     if isinstance(data, torch.Tensor):
-        return data.cpu().detach().numpy() # pytype: disable=attribute-error
+        return data.cpu().detach().numpy()  # pytype: disable=attribute-error
 
     elif isinstance(data, np.ndarray):
         return data
