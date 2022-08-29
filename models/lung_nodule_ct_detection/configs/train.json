@@ -11,7 +11,7 @@
     "train_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='training', base_dir=@data_file_base_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "epochs": 300,
-    "num_interval_per_valid": 1,
+    "num_interval_per_valid": 10,
     "learning_rate": 0.01,
     "amp": true,
     "batch_size": 3,
@@ -360,13 +360,13 @@
             {
                 "_target_": "StatsHandler",
                 "tag_name": "train_loss",
-                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+                "output_transform": "$lambda x: monai.handlers.from_engine(['loss'], first=True)(x)[0]"
             },
             {
                 "_target_": "TensorBoardStatsHandler",
                 "log_dir": "@output_dir",
                 "tag_name": "train_loss",
-                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+                "output_transform": "$lambda x: monai.handlers.from_engine(['loss'], first=True)(x)[0]"
             }
         ],
         "trainer": {

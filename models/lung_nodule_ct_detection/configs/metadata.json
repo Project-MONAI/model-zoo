@@ -55,7 +55,13 @@
             "pred": {
                 "type": "object",
                 "format": "dict",
-                "dtype": "float16"
+                "dtype": "float16",
+                "num_channels": null,
+                "spatial_shape": null,
+                "value_range": [
+                    -10000,
+                    10000
+                ]
             }
         }
     }
