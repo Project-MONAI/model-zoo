@@ -33,7 +33,7 @@ pathology_metastasis_detection
 
 ### Model storage
 
-Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github). Therefore, MONAI Model Zoo limits each single file to be no larger than **25MB**.
+Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)). Therefore, MONAI Model Zoo limits each single file to be no larger than **25MB**.
 
 ### Prepare a config file for large files
 
@@ -117,7 +117,7 @@ All code changes to the dev branch must be done via [pull requests](https://help
 1. [create a new branch in your fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork)
 of the codebase named `[ticket_id]-[task_name]`.
 Ideally, the new branch should be based on the latest `dev` branch.
-1. Make changes to the branch ([use detailed commit messages if possible](https://chris.beams.io/posts/git-commit/).
+1. Make changes to the branch ([use detailed commit messages if possible](https://chris.beams.io/posts/git-commit/)).
 1. [Create a new pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request) from the task branch to the dev branch, with detailed descriptions of the purpose of this pull request.
 1. For any large files inside the bundle, please exclude them and provide the download links instead. Please follow the instructions mentioned above to prepare the necessary `large_files.yml`.
 1. Wait for reviews; if there are reviews, make point-to-point responses, make further code changes if needed.
