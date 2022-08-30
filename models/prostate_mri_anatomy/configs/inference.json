@@ -1,0 +1,153 @@
+{
+    "imports": [
+        "$import pandas as pd",
+        "$import os"
+    ],
+    "bundle_root": "/workspace/data/prostate_mri_anatomy",
+    "output_dir": "$@bundle_root + '/eval'",
+    "dataset_dir": "/workspace/data/prostate158/prostate158_train/",
+    "datalist": "$list(@dataset_dir + pd.read_csv(@dataset_dir + 'valid.csv').t2)",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "UNet",
+        "spatial_dims": 3,
+        "in_channels": 1,
+        "out_channels": 3,
+        "channels": [
+            16,
+            32,
+            64,
+            128,
+            256,
+            512
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            2,
+            2
+        ],
+        "num_res_units": 4,
+        "norm": "batch",
+        "act": "prelu",
+        "dropout": 0.15
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image"
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": "image"
+            },
+            {
+                "_target_": "Orientationd",
+                "keys": "image",
+                "axcodes": "RAS"
+            },
+            {
+                "_target_": "Spacingd",
+                "keys": "image",
+                "pixdim": [
+                    0.5,
+                    0.5,
+                    0.5
+                ],
+                "mode": "bilinear"
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image",
+                "minv": 0,
+                "maxv": 1
+            },
+            {
+                "_target_": "NormalizeIntensityd",
+                "keys": "image"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "image"
+            }
+        ]
+    },
+    "dataset": {
+        "_target_": "Dataset",
+        "data": "$[{'image': i} for i in @datalist]",
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": 1,
+        "shuffle": false,
+        "num_workers": 4
+    },
+    "inferer": {
+        "_target_": "SlidingWindowInferer",
+        "roi_size": [
+            96,
+            96,
+            96
+        ],
+        "sw_batch_size": 4,
+        "overlap": 0.5
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "AsDiscreted",
+                "keys": "pred",
+                "argmax": true
+            },
+            {
+                "_target_": "KeepLargestConnectedComponentd",
+                "keys": "pred",
+                "applied_labels": [
+                    1,
+                    2
+                ]
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "pred",
+                "resample": false,
+                "meta_keys": "pred_meta_dict",
+                "output_dir": "@output_dir"
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false
+        }
+    ],
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "network": "@network",
+        "inferer": "@inferer",
+        "postprocessing": "@postprocessing",
+        "val_handlers": "@handlers",
+        "amp": true
+    },
+    "evaluating": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@evaluator.run()"
+    ]
+}
