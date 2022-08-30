@@ -56,8 +56,12 @@
                 "type": "object",
                 "format": "dict",
                 "dtype": "float16",
-                "num_channels": null,
-                "spatial_shape": null,
+                "num_channels": 1,
+                "spatial_shape": [
+                    "n",
+                    "n",
+                    "n"
+                ],
                 "value_range": [
                     -10000,
                     10000
