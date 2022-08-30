@@ -69,9 +69,9 @@ def download_large_files(bundle_path: str, large_file_name: str = "large_file.ym
     large_files_list = parser.get()["large_files"]
     for lf_data in large_files_list:
         lf_data["fuzzy"] = True
-        if lf_data.get("hash_val", "") == "":
+        if "hash_val" in lf_data and lf_data.get("hash_val", "") == "":
             lf_data.pop("hash_val")
-        if lf_data.get("hash_type", "") == "":
+        if "hash_type" in lf_data and lf_data.get("hash_type", "") == "":
             lf_data.pop("hash_type")
         lf_data["filepath"] = os.path.join(bundle_path, lf_data["path"])
         lf_data.pop("path")
