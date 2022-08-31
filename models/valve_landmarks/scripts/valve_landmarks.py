@@ -1,23 +1,21 @@
 # Copyright (c) 2022 Eric Kerfoot under MIT license, see license.txt
 
 import os
-from typing import Callable, Union, Any, Dict, Tuple, Sequence
-
-import torch
-import torch.nn as nn
-
-import numpy as np
+from typing import Any, Callable, Dict, Sequence, Tuple, Union
 
 import monai
 import monai.transforms as mt
-from monai.networks.nets import Regressor
-from monai.networks.blocks import Convolution, ConvDenseBlock
-from monai.networks.layers import Flatten, Reshape
-from monai.utils import ImageMetaKey as Key
-from monai.utils import CommonKeys, convert_to_numpy, convert_to_tensor
-from monai.networks.utils import meshgrid_ij
+import numpy as np
+import torch
+import torch.nn as nn
 from monai.data.meta_obj import get_track_meta
-
+from monai.networks.blocks import ConvDenseBlock, Convolution
+from monai.networks.layers import Flatten, Reshape
+from monai.networks.nets import Regressor
+from monai.networks.utils import meshgrid_ij
+from monai.utils import CommonKeys
+from monai.utils import ImageMetaKey as Key
+from monai.utils import convert_to_numpy, convert_to_tensor
 
 # relates the label in training images to index of landmark point
 LM_INDICES = {
@@ -269,6 +267,7 @@ class RandFourierDropoutd(mt.RandomizableTransform, mt.MapTransform):
 
 class RandImageLMDeformd(mt.RandSmoothDeform):
     """Apply smooth random deformation to the image and landmark locations."""
+
     def __call__(self, d):
         d = dict(d)
         old_label = d[CommonKeys.LABEL]
@@ -295,6 +294,7 @@ class RandImageLMDeformd(mt.RandSmoothDeform):
 
 class RandLMShiftd(mt.RandomizableTransform, mt.MapTransform):
     """Randomly shift the image and landmark image in either direction in integer amounts."""
+
     def __init__(self, keys, spatial_size, max_shift=0, prob=0.1):
         mt.RandomizableTransform.__init__(self, prob=prob)
         mt.MapTransform.__init__(self, keys=keys)
