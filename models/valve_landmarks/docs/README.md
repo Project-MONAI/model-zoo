@@ -41,15 +41,16 @@ The dataset used for training unfortunately cannot be made public, however the t
 
 The following command will train with the default NPZ filename `./valvelandmarks.npz`:
 
-```
-PYTHONPATH=./scripts python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --bundle_root . --dataset_file /path/to/data --output_dir /path/to/outputs
+```sh
+PYTHONPATH=./scripts python -m monai.bundle run training --meta_file configs/metadata.json \
+    --config_file configs/train.json --bundle_root . --dataset_file /path/to/data --output_dir /path/to/outputs
 ```
 
 ## Inference
 
 The included `inference.json` script will run inference on a directory containing Nifti files whose images have shape `(256, 256, 1, N)` for `N` timesteps. For each image the output in the `output_dir` directory will be a npy file containing a result array of shape `(N, 2, 10)` storing the 10 coordinates for each `N` timesteps. Invoking this script can be done as follows, assuming the current directory is the bundle directory:
 
-```
+```sh
 PYTHONPATH=./scripts python -m monai.bundle run evaluating --meta_file configs/metadata.json \
     --config_file configs/inference.json --bundle_root . --dataset_dir /path/to/data --output_dir /path/to/outputs
 ```
@@ -61,4 +62,4 @@ It is important to set the `PYTHONPATH` variable since code in the provided scri
 
 The work for this model and its application is described in:
 
-    Kerfoot, E, King, CE, Ismail, T, Nordsletten, D & Miller, R 2021, Estimation of Cardiac Valve Annuli Motion with Deep Learning. in E Puyol Anton, M Pop, M Sermesant, V Campello, A Lalande, K Lekadir, A Suinesiaputra, O Camara & A Young (eds), Statistical Atlases and Computational Models of the Heart. MandMs and EMIDEC Challenges - 11th International Workshop, STACOM 2020, Held in Conjunction with MICCAI 2020, Revised Selected Papers. Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics), vol. 12592 LNCS, Springer Science and Business Media Deutschland GmbH, pp. 146-155, 11th International Workshop on Statistical Atlases and Computational Models of the Heart, STACOM 2020 held in Conjunction with MICCAI 2020, Lima, Peru, 4/10/2020. https://doi.org/10.1007/978-3-030-68107-4_15
+`Kerfoot, E, King, CE, Ismail, T, Nordsletten, D & Miller, R 2021, Estimation of Cardiac Valve Annuli Motion with Deep Learning. in E Puyol Anton, M Pop, M Sermesant, V Campello, A Lalande, K Lekadir, A Suinesiaputra, O Camara & A Young (eds), Statistical Atlases and Computational Models of the Heart. MandMs and EMIDEC Challenges - 11th International Workshop, STACOM 2020, Held in Conjunction with MICCAI 2020, Revised Selected Papers. Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics), vol. 12592 LNCS, Springer Science and Business Media Deutschland GmbH, pp. 146-155, 11th International Workshop on Statistical Atlases and Computational Models of the Heart, STACOM 2020 held in Conjunction with MICCAI 2020, Lima, Peru, 4/10/2020. https://doi.org/10.1007/978-3-030-68107-4_15`
