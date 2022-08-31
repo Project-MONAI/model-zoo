@@ -1,0 +1,102 @@
+{
+    "imports": [
+        "$import os",
+        "$import glob",
+        "$import valve_landmarks"
+    ],
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "ckpt_path": "$@bundle_root + '/models/model.pt'",
+    "dataset_dir": "/workspace/data",
+    "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.nii*')))",
+    "output_dir": "./output",
+    "network_def": {
+        "_target_": "valve_landmarks.PointRegressor",
+        "in_shape": [1, 256, 256],
+        "out_shape": [2, 10],
+        "channels": [8, 16, 32, 64, 128],
+        "strides": [2, 2, 2, 2, 2]
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImage",
+                "image_only": "true"
+            },
+            {
+                "_target_": "EnsureType",
+                "data_type": "numpy",
+                "dtype": "$np.float32"
+            },
+            {
+                "_target_": "EnsureType",
+                "device": "@device"
+            },
+            {
+                "_target_": "Transpose",
+                "indices": [2,0,1,3]
+            },
+            {
+                "_target_": "ScaleIntensity"
+            }
+        ]
+    },
+    "dataset": {
+        "_target_": "Dataset",
+        "data": "@datalist",
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": 1,
+        "shuffle": false,
+        "num_workers": 0
+    },
+    "inferer": {
+        "_target_": "valve_landmarks.LandmarkInferer",
+        "spatial_dim": 2,
+        "stack_dim": 1
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "SqueezeDimd",
+                "keys":"pred",
+                "dim": 0
+            },
+            {
+                "_target_": "valve_landmarks.NpySaverd",
+                "keys": "pred",
+                "output_dir": "@output_dir",
+                "data_root_dir": "@dataset_dir"
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "_disabled_": "$not os.path.exists(@ckpt_path)",
+            "load_path": "@ckpt_path",
+            "load_dict": {
+                "net": "@network"
+            }
+        }
+    ],
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "network": "@network",
+        "inferer": "@inferer",
+        "postprocessing": "@postprocessing",
+        "val_handlers": "@handlers",
+        "decollate": false,
+        "prepare_batch":"$lambda batch, dev,nb: (batch.to(dev),())"
+    },
+    "evaluating": [
+        "$@evaluator.run()"
+    ]
+}
