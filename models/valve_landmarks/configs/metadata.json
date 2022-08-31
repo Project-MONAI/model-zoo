@@ -18,7 +18,7 @@
     "intended_use": "This is suitable for research purposes only",
     "image_classes": "Single channel data, intensity scaled to [0, 1]",
     "data_source": "Non-public dataset comprised of hand-annotated full cycle long axis MR images",
-    "coordinate_values":{
+    "coordinate_values": {
         "0": 10,
         "1": 15,
         "2": 20,
@@ -30,7 +30,7 @@
         "8": 200,
         "9": 250
     },
-    "coordinate_meanings":{
+    "coordinate_meanings": {
         "0": "mitral anterior 2CH",
         "1": "mitral posterior 2CH",
         "2": "mitral septal 3CH",
@@ -74,7 +74,7 @@
                 "value_range": [],
                 "is_patch_data": false,
                 "channel_def": {
-                    "0": "Y Dimension", 
+                    "0": "Y Dimension",
                     "1": "X Dimension"
                 }
             }

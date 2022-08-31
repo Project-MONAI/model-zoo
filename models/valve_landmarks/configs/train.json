@@ -12,13 +12,36 @@
     "output_dir": "$datetime.datetime.now().strftime('./results/output_%y%m%d_%H%M%S')",
     "network_def": {
         "_target_": "valve_landmarks.PointRegressor",
-        "in_shape": [1, 256, 256],
-        "out_shape": [2, 10],
-        "channels": [8, 16, 32, 64, 128],
-        "strides": [2, 2, 2, 2, 2]
+        "in_shape": [
+            1,
+            256,
+            256
+        ],
+        "out_shape": [
+            2,
+            10
+        ],
+        "channels": [
+            8,
+            16,
+            32,
+            64,
+            128
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            2,
+            2
+        ]
     },
     "network": "$@network_def.to(@device)",
-    "im_shape": [1, 256, 256],
+    "im_shape": [
+        1,
+        256,
+        256
+    ],
     "both_keys": [
         "image",
         "label"
@@ -85,8 +108,14 @@
             {
                 "_target_": "valve_landmarks.RandImageLMDeformd",
                 "prob": "@rand_prob",
-                "spatial_size":[256, 256],
-                "rand_size": [7, 7],
+                "spatial_size": [
+                    256,
+                    256
+                ],
+                "rand_size": [
+                    7,
+                    7
+                ],
                 "pad": 2,
                 "field_mode": "$monai.utils.InterpolateMode.BICUBIC",
                 "align_corners": true,
@@ -96,7 +125,10 @@
                 "_target_": "valve_landmarks.RandLMShiftd",
                 "keys": "@both_keys",
                 "prob": "@rand_prob",
-                "spatial_size":[256, 256],
+                "spatial_size": [
+                    256,
+                    256
+                ],
                 "max_shift": 8
             },
             {

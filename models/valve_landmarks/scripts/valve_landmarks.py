@@ -280,7 +280,7 @@ class RandImageLMDeformd(mt.RandSmoothDeform):
             field = self.sfield()
             labels = np.argwhere(d[CommonKeys.LABEL][0].cpu().numpy() > 0)
 
-            # moving the landmarks this way prevents losing some to 
+            # moving the landmarks this way prevents losing some to
             # interpolation errors if deformation were applied the landmark image
             for y, x in labels:
                 dy = int(field[0, y, x] * new_label.shape[1] / 2)
