@@ -1,21 +1,23 @@
 # Copyright (c) 2022 Eric Kerfoot under MIT license, see license.txt
 
 import os
-from typing import Any, Callable, Dict, Sequence, Tuple, Union
+from typing import Any, Callable, Sequence
+
+import torch
+import torch.nn as nn
+
+import numpy as np
 
 import monai
 import monai.transforms as mt
-import numpy as np
-import torch
-import torch.nn as nn
-from monai.data.meta_obj import get_track_meta
-from monai.networks.blocks import ConvDenseBlock, Convolution
-from monai.networks.layers import Flatten, Reshape
 from monai.networks.nets import Regressor
-from monai.networks.utils import meshgrid_ij
-from monai.utils import CommonKeys
+from monai.networks.blocks import Convolution, ConvDenseBlock
+from monai.networks.layers import Flatten, Reshape
 from monai.utils import ImageMetaKey as Key
-from monai.utils import convert_to_numpy, convert_to_tensor
+from monai.utils import CommonKeys, convert_to_numpy, convert_to_tensor
+from monai.networks.utils import meshgrid_ij
+from monai.data.meta_obj import get_track_meta
+
 
 # relates the label in training images to index of landmark point
 LM_INDICES = {
@@ -113,7 +115,7 @@ class PointRegressor(Regressor):
     def _get_final_layer(self, in_shape):
         point_paths = []
 
-        for p in range(self.out_shape[1]):
+        for _ in range(self.out_shape[1]):
             conv = Convolution(
                 spatial_dims=self.dimensions,
                 in_channels=in_shape[0],
@@ -267,7 +269,6 @@ class RandFourierDropoutd(mt.RandomizableTransform, mt.MapTransform):
 
 class RandImageLMDeformd(mt.RandSmoothDeform):
     """Apply smooth random deformation to the image and landmark locations."""
-
     def __call__(self, d):
         d = dict(d)
         old_label = d[CommonKeys.LABEL]
@@ -279,7 +280,7 @@ class RandImageLMDeformd(mt.RandSmoothDeform):
             field = self.sfield()
             labels = np.argwhere(d[CommonKeys.LABEL][0].cpu().numpy() > 0)
 
-            # moving the landmarks this way prevents losing some to
+            # moving the landmarks this way prevents losing some to 
             # interpolation errors if deformation were applied the landmark image
             for y, x in labels:
                 dy = int(field[0, y, x] * new_label.shape[1] / 2)
@@ -294,7 +295,6 @@ class RandImageLMDeformd(mt.RandSmoothDeform):
 
 class RandLMShiftd(mt.RandomizableTransform, mt.MapTransform):
     """Randomly shift the image and landmark image in either direction in integer amounts."""
-
     def __init__(self, keys, spatial_size, max_shift=0, prob=0.1):
         mt.RandomizableTransform.__init__(self, prob=prob)
         mt.MapTransform.__init__(self, keys=keys)
@@ -314,7 +314,6 @@ class RandLMShiftd(mt.RandomizableTransform, mt.MapTransform):
 
     def __call__(self, d, randomize: bool = True):
         d = dict(d)
-        im = d[CommonKeys.IMAGE]
 
         if randomize:
             self.randomize(None)
