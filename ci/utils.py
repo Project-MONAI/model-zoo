@@ -69,9 +69,9 @@ def download_large_files(bundle_path: str, large_file_name: str = "large_file.ym
     large_files_list = parser.get()["large_files"]
     for lf_data in large_files_list:
         lf_data["fuzzy"] = True
-        if lf_data["hash_val"] == "":
+        if "hash_val" in lf_data and lf_data.get("hash_val", "") == "":
             lf_data.pop("hash_val")
-        if lf_data["hash_type"] == "":
+        if "hash_type" in lf_data and lf_data.get("hash_type", "") == "":
             lf_data.pop("hash_type")
         lf_data["filepath"] = os.path.join(bundle_path, lf_data["path"])
         lf_data.pop("path")
@@ -84,11 +84,10 @@ def save_model_info(model_info_dict, model_info_path: str):
 
 
 def push_new_model_info_branch(model_info_path: str):
-    merged_pr_num = os.environ["PR_NUMBER"]
     email = os.environ["email"]
     username = os.environ["username"]
 
-    branch_name = f"{merged_pr_num}-auto-update-model-info"
+    branch_name = "auto-update-model-info"
     create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
 
     git_config = f"git config user.email {email}; git config user.name {username}"
@@ -101,7 +100,7 @@ def push_new_model_info_branch(model_info_path: str):
     return branch_name
 
 
-def create_pull_request(branch_name: str, pr_title: str = "'auto_update_model_info'"):
+def create_pull_request(branch_name: str, pr_title: str = "'auto update model_info'"):
     create_command = f"gh pr create --fill --title {pr_title} --base dev --head {branch_name}"
     call_status = subprocess.run(create_command, shell=True)
     call_status.check_returncode()

@@ -38,5 +38,21 @@
     "brats_mri_segmentation_v0.1.1": {
         "checksum": "fd165c24057c9ae00eef4d78065503cd4f0cff90",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.1.1.zip"
+    },
+    "renalStructures_UNEST_segmentation_v0.1.1": {
+        "checksum": "b71553deacaaeb8890d50ca0e1f0f8b57d8e5cdf",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/renalStructures_UNEST_segmentation_v0.1.1.zip"
+    },
+    "wholeBrainSeg_Large_UNEST_segmentation_v0.1.0": {
+        "checksum": "3f56917a5a039c64c811d154a570fda9bc49be37",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBrainSeg_Large_UNEST_segmentation_v0.1.0.zip"
+    },
+    "spleen_ct_segmentation_v0.1.1": {
+        "checksum": "e4c7d5065ce81797a68188b7f9b0f2d9feaec410",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.1.1.zip"
+    },
+    "prostate_mri_anatomy_v0.1.0": {
+        "checksum": "e7b4126dde8804dae7e08c5d3a5335b5fe8d1689",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/prostate_mri_anatomy_v0.1.0.zip"
     }
 }
