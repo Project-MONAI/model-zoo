@@ -45,11 +45,6 @@
             },
             {
                 "_target_": "EnsureType",
-                "data_type": "numpy",
-                "dtype": "$np.float32"
-            },
-            {
-                "_target_": "EnsureType",
                 "device": "@device"
             },
             {
