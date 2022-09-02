@@ -64,6 +64,10 @@ Execute inference:
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
+Note that in inference.json, te transform "AffineBoxToWorldCoordinated" in "postprocessing" has "affine_lps_to_ras": true.
+This depends on the input image coordinates. It is possible that your inference dataset should set "affine_lps_to_ras": false.
+Please set it as `true` only when the original images were read by itkreader with affine_lps_to_ras=True.
+
 
 # Disclaimer
 This is an example, not to be used for diagnostic purposes.
