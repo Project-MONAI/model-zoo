@@ -95,7 +95,11 @@
             {
                 "_target_": "Spacingd",
                 "keys": "image",
-                "pixdim": [0.703125, 0.703125, 1.25]
+                "pixdim": [
+                    0.703125,
+                    0.703125,
+                    1.25
+                ]
             },
             {
                 "_target_": "ScaleIntensityRanged",
