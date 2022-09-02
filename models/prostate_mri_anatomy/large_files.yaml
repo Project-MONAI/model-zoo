@@ -1,3 +1,5 @@
 large_files:
   - path: "models/model.pt"
-    url: "https://zenodo.org/record/6397057/files/anatomy.pt?download=1"
+    url: "https://zenodo.org/record/7040585/files/anatomy.pt?download=1"
+  - path: "models/model.ts"
+    url: "https://zenodo.org/record/7040585/files/anatomy.ts?download=1"

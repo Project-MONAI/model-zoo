@@ -54,5 +54,9 @@
     "prostate_mri_anatomy_v0.1.0": {
         "checksum": "e7b4126dde8804dae7e08c5d3a5335b5fe8d1689",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/prostate_mri_anatomy_v0.1.0.zip"
+    },
+    "prostate_mri_anatomy_v0.1.1": {
+        "checksum": "d172a1d49a42a93cc01211639c4b8bedcb4611ec",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/prostate_mri_anatomy_v0.1.1.zip"
     }
 }
