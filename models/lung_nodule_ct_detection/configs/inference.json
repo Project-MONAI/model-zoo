@@ -93,6 +93,11 @@
                 "axcodes": "RAS"
             },
             {
+                "_target_": "Spacingd",
+                "keys": "image",
+                "pixdim": [0.703125, 0.703125, 1.25]
+            },
+            {
                 "_target_": "ScaleIntensityRanged",
                 "keys": "image",
                 "a_min": -1024.0,
@@ -130,7 +135,7 @@
         "sw_batch_size": 1,
         "overlap": 0.5
     },
-    "output_transform": {
+    "postprocessing": {
         "_target_": "Compose",
         "transforms": [
             {
@@ -178,7 +183,7 @@
             "output_dir": "@output_dir",
             "filename": "result_luna16_fold0.json",
             "batch_transform": "$lambda x: [xx['image_meta_dict'] for xx in x]",
-            "output_transform": "$lambda x: [@output_transform({**xx['pred'],'image':xx['image']}) for xx in x]",
+            "output_transform": "$lambda x: [@postprocessing({**xx['pred'],'image':xx['image']}) for xx in x]",
             "pred_box_key": "box",
             "pred_label_key": "label",
             "pred_score_key": "label_scores"
