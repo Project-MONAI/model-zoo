@@ -2,7 +2,7 @@
     "imports": [
         "$import os",
         "$import glob",
-        "$import valve_landmarks"
+        "$from scripts import valve_landmarks"
     ],
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
