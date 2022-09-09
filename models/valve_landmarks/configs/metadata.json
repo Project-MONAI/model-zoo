@@ -65,7 +65,7 @@
             "pred": {
                 "type": "tuples",
                 "format": "points",
-                "num_channels": 0,
+                "num_channels": 2,
                 "spatial_shape": [
                     2,
                     10
