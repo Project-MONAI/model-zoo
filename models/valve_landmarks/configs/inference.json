@@ -2,7 +2,7 @@
     "imports": [
         "$import os",
         "$import glob",
-        "$from scripts import valve_landmarks"
+        "$import scripts"
     ],
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
@@ -10,7 +10,7 @@
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.nii*')))",
     "output_dir": "./output",
     "network_def": {
-        "_target_": "valve_landmarks.PointRegressor",
+        "_target_": "scripts.valve_landmarks.PointRegressor",
         "in_shape": [
             1,
             256,
@@ -74,7 +74,7 @@
         "num_workers": 0
     },
     "inferer": {
-        "_target_": "valve_landmarks.LandmarkInferer",
+        "_target_": "scripts.valve_landmarks.LandmarkInferer",
         "spatial_dim": 2,
         "stack_dim": 1
     },
@@ -87,7 +87,7 @@
                 "dim": 0
             },
             {
-                "_target_": "valve_landmarks.NpySaverd",
+                "_target_": "scripts.valve_landmarks.NpySaverd",
                 "keys": "pred",
                 "output_dir": "@output_dir",
                 "data_root_dir": "@dataset_dir"

@@ -4,14 +4,14 @@
         "$import numpy as np",
         "$import torch",
         "$import ignite",
-        "$from scripts import valve_landmarks"
+        "$import scripts"
     ],
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
     "dataset_file": "./valvelandmarks.npz",
     "output_dir": "$datetime.datetime.now().strftime('./results/output_%y%m%d_%H%M%S')",
     "network_def": {
-        "_target_": "valve_landmarks.PointRegressor",
+        "_target_": "scripts.valve_landmarks.PointRegressor",
         "in_shape": [
             1,
             256,
@@ -101,12 +101,12 @@
                 "std": 0.05
             },
             {
-                "_target_": "valve_landmarks.RandFourierDropoutd",
+                "_target_": "scripts.valve_landmarks.RandFourierDropoutd",
                 "keys": "image",
                 "prob": "@rand_prob"
             },
             {
-                "_target_": "valve_landmarks.RandImageLMDeformd",
+                "_target_": "scripts.valve_landmarks.RandImageLMDeformd",
                 "prob": "@rand_prob",
                 "spatial_size": [
                     256,
@@ -122,7 +122,7 @@
                 "def_range": 0.05
             },
             {
-                "_target_": "valve_landmarks.RandLMShiftd",
+                "_target_": "scripts.valve_landmarks.RandLMShiftd",
                 "keys": "@both_keys",
                 "prob": "@rand_prob",
                 "spatial_size": [
@@ -134,7 +134,7 @@
             {
                 "_target_": "Lambdad",
                 "keys": "label",
-                "func": "$valve_landmarks.convert_lm_image_t"
+                "func": "$scripts.valve_landmarks.convert_lm_image_t"
             }
         ]
     },
@@ -162,7 +162,7 @@
             {
                 "_target_": "Lambdad",
                 "keys": "label",
-                "func": "$valve_landmarks.convert_lm_image_t"
+                "func": "$scripts.valve_landmarks.convert_lm_image_t"
             }
         ]
     },
@@ -224,7 +224,7 @@
         "key_val_metric": {
             "val_mean_dist": {
                 "_target_": "ignite.metrics.MeanPairwiseDistance",
-                "output_transform": "$valve_landmarks._output_lm_trans"
+                "output_transform": "$scripts.valve_landmarks._output_lm_trans"
             }
         },
         "metric_cmp_fn": "$lambda current, prev: prev < 0 or current < prev",
