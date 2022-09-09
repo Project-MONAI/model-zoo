@@ -1,7 +1,7 @@
 large_files:
   - path: "models/model.pt"
     url: "https://github.com/KCL-BMEIS/bundle-data/raw/main/valve_landmarks/model.pt"
-    hash_val: "f1ed2fcdf5bf57d6312d1cb12b5d3f9d"
+    hash_val: "232556ebb8e3c20790c7e83d603edb2c"
     hash_type: "md5"
   - path: "docs/AMRGAtlas_0031.nii.gz"
     url: "https://github.com/KCL-BMEIS/bundle-data/raw/main/valve_landmarks/AMRGAtlas_0031.nii.gz"
