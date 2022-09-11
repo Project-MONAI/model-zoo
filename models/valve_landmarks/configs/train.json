@@ -1,0 +1,270 @@
+{
+    "imports": [
+        "$import datetime",
+        "$import numpy as np",
+        "$import torch",
+        "$import ignite",
+        "$import scripts"
+    ],
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "ckpt_path": "$@bundle_root + '/models/model.pt'",
+    "dataset_file": "./valvelandmarks.npz",
+    "output_dir": "$datetime.datetime.now().strftime('./results/output_%y%m%d_%H%M%S')",
+    "network_def": {
+        "_target_": "scripts.valve_landmarks.PointRegressor",
+        "in_shape": [
+            1,
+            256,
+            256
+        ],
+        "out_shape": [
+            2,
+            10
+        ],
+        "channels": [
+            8,
+            16,
+            32,
+            64,
+            128
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            2,
+            2
+        ]
+    },
+    "network": "$@network_def.to(@device)",
+    "im_shape": [
+        1,
+        256,
+        256
+    ],
+    "both_keys": [
+        "image",
+        "label"
+    ],
+    "rand_prob": 0.5,
+    "train_transforms": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "EnsureTyped",
+                "keys": "@both_keys",
+                "data_type": "numpy",
+                "dtype": "$(np.float32, np.int32)"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "@both_keys"
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image"
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": "@both_keys"
+            },
+            {
+                "_target_": "RandAxisFlipd",
+                "keys": "@both_keys",
+                "prob": "@rand_prob"
+            },
+            {
+                "_target_": "RandRotate90d",
+                "keys": "@both_keys",
+                "prob": "@rand_prob"
+            },
+            {
+                "_target_": "RandSmoothFieldAdjustIntensityd",
+                "keys": "image",
+                "prob": "@rand_prob",
+                "spatial_size": "@im_shape",
+                "rand_size": [
+                    5,
+                    5
+                ],
+                "gamma": [
+                    0.1,
+                    1
+                ],
+                "mode": "$monai.utils.InterpolateMode.BICUBIC",
+                "align_corners": true
+            },
+            {
+                "_target_": "RandGaussianNoised",
+                "keys": "image",
+                "prob": "@rand_prob",
+                "std": 0.05
+            },
+            {
+                "_target_": "scripts.valve_landmarks.RandFourierDropoutd",
+                "keys": "image",
+                "prob": "@rand_prob"
+            },
+            {
+                "_target_": "scripts.valve_landmarks.RandImageLMDeformd",
+                "prob": "@rand_prob",
+                "spatial_size": [
+                    256,
+                    256
+                ],
+                "rand_size": [
+                    7,
+                    7
+                ],
+                "pad": 2,
+                "field_mode": "$monai.utils.InterpolateMode.BICUBIC",
+                "align_corners": true,
+                "def_range": 0.05
+            },
+            {
+                "_target_": "scripts.valve_landmarks.RandLMShiftd",
+                "keys": "@both_keys",
+                "prob": "@rand_prob",
+                "spatial_size": [
+                    256,
+                    256
+                ],
+                "max_shift": 8
+            },
+            {
+                "_target_": "Lambdad",
+                "keys": "label",
+                "func": "$scripts.valve_landmarks.convert_lm_image_t"
+            }
+        ]
+    },
+    "eval_transforms": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "EnsureTyped",
+                "keys": "@both_keys",
+                "data_type": "numpy",
+                "dtype": "$(np.float32, np.int32)"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "@both_keys"
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image"
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": "@both_keys"
+            },
+            {
+                "_target_": "Lambdad",
+                "keys": "label",
+                "func": "$scripts.valve_landmarks.convert_lm_image_t"
+            }
+        ]
+    },
+    "train_dataset": {
+        "_target_": "NPZDictItemDataset",
+        "npzfile": "$@dataset_file",
+        "keys": {
+            "trainImgs": "image",
+            "trainLMImgs": "label"
+        },
+        "transform": "@train_transforms"
+    },
+    "eval_dataset": {
+        "_target_": "NPZDictItemDataset",
+        "npzfile": "$@dataset_file",
+        "keys": {
+            "testImgs": "image",
+            "testLMImgs": "label"
+        },
+        "transform": "@eval_transforms"
+    },
+    "num_iters": 400,
+    "batch_size": 600,
+    "num_epochs": 100,
+    "num_substeps": 3,
+    "sampler": {
+        "_target_": "torch.utils.data.WeightedRandomSampler",
+        "weights": "$torch.ones(len(@train_dataset))",
+        "replacement": true,
+        "num_samples": "$@num_iters*@batch_size"
+    },
+    "train_dataloader": {
+        "_target_": "ThreadDataLoader",
+        "dataset": "@train_dataset",
+        "batch_size": "@batch_size",
+        "repeats": "@num_substeps",
+        "num_workers": 8,
+        "sampler": "@sampler"
+    },
+    "eval_dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@eval_dataset",
+        "batch_size": "@batch_size",
+        "num_workers": 8
+    },
+    "lossfn": {
+        "_target_": "torch.nn.L1Loss"
+    },
+    "optimizer": {
+        "_target_": "torch.optim.Adam",
+        "params": "$@network.parameters()",
+        "lr": 0.0001
+    },
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@eval_dataloader",
+        "network": "@network",
+        "key_val_metric": {
+            "val_mean_dist": {
+                "_target_": "ignite.metrics.MeanPairwiseDistance",
+                "output_transform": "$scripts.valve_landmarks._output_lm_trans"
+            }
+        },
+        "metric_cmp_fn": "$lambda current, prev: prev < 0 or current < prev",
+        "val_handlers": [
+            {
+                "_target_": "StatsHandler",
+                "output_transform": "$lambda x: None"
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "ValidationHandler",
+            "validator": "@evaluator",
+            "epoch_level": true,
+            "interval": 1
+        },
+        {
+            "_target_": "CheckpointSaver",
+            "save_dir": "@output_dir",
+            "save_dict": {
+                "net": "@network"
+            },
+            "save_interval": 1,
+            "save_final": true,
+            "epoch_level": true
+        }
+    ],
+    "trainer": {
+        "_target_": "SupervisedTrainer",
+        "max_epochs": "@num_epochs",
+        "device": "@device",
+        "train_data_loader": "@train_dataloader",
+        "network": "@network",
+        "loss_function": "@lossfn",
+        "optimizer": "@optimizer",
+        "key_train_metric": null,
+        "train_handlers": "@handlers"
+    },
+    "training": [
+        "$@trainer.run()"
+    ]
+}
