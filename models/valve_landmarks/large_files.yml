@@ -1,0 +1,13 @@
+large_files:
+  - path: "models/model.pt"
+    url: "https://github.com/KCL-BMEIS/bundle-data/raw/main/valve_landmarks/model.pt"
+    hash_val: "232556ebb8e3c20790c7e83d603edb2c"
+    hash_type: "md5"
+  - path: "docs/AMRGAtlas_0031.nii.gz"
+    url: "https://github.com/KCL-BMEIS/bundle-data/raw/main/valve_landmarks/AMRGAtlas_0031.nii.gz"
+    hash_val: "07acb0e23af37bb78b477c96b1f80971"
+    hash_type: "md5"
+  - path: "docs/AMRGAtlas_0031_key-pred.npy"
+    url: "https://github.com/KCL-BMEIS/bundle-data/raw/main/valve_landmarks/AMRGAtlas_0031_key-pred.npy"
+    hash_val: "c5ce17595f08f5c3bec5d2ab0b6a0d30"
+    hash_type: "md5"

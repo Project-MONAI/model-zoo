@@ -1,0 +1,83 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220729.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "Initial version"
+    },
+    "monai_version": "1.0.0rc1",
+    "pytorch_version": "1.10.2",
+    "numpy_version": "1.21.2",
+    "optional_packages_version": {},
+    "task": "Given long axis MR images of the heart, identify valve insertion points through the full cardiac cycle",
+    "description": "This network is used to find where valves attach to heart to help construct 3D FEM models for computation. The output is an array of 10 2D coordinates.",
+    "authors": "Eric Kerfoot",
+    "copyright": "Copyright (c) Eric Kerfoot",
+    "references": [
+        "Kerfoot, E, King, CE, Ismail, T, Nordsletten, D & Miller, R 2021, Estimation of Cardiac Valve Annuli Motion with Deep Learning. https://doi.org/10.1007/978-3-030-68107-4_15"
+    ],
+    "intended_use": "This is suitable for research purposes only",
+    "image_classes": "Single channel data, intensity scaled to [0, 1]",
+    "data_source": "Non-public dataset comprised of hand-annotated full cycle long axis MR images",
+    "coordinate_values": {
+        "0": 10,
+        "1": 15,
+        "2": 20,
+        "3": 25,
+        "4": 30,
+        "5": 35,
+        "6": 100,
+        "7": 150,
+        "8": 200,
+        "9": 250
+    },
+    "coordinate_meanings": {
+        "0": "mitral anterior 2CH",
+        "1": "mitral posterior 2CH",
+        "2": "mitral septal 3CH",
+        "3": "mitral free wall 3CH",
+        "4": "mitral septal 4CH",
+        "5": "mitral free wall 4CH",
+        "6": "aortic septal",
+        "7": "aortic free wall",
+        "8": "tricuspid septal",
+        "9": "tricuspid free wall"
+    },
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "MR",
+                "num_channels": 1,
+                "spatial_shape": [
+                    256,
+                    256
+                ],
+                "dtype": "float32",
+                "value_range": [],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "tuples",
+                "format": "points",
+                "num_channels": 2,
+                "spatial_shape": [
+                    2,
+                    10
+                ],
+                "dtype": "float32",
+                "value_range": [],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "Y Dimension",
+                    "1": "X Dimension"
+                }
+            }
+        }
+    }
+}
