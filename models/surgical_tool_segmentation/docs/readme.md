@@ -1,5 +1,5 @@
 # Description
-A pre-trained model for the holoscan tool tracking task.
+A pre-trained model for the surgical tool segmentation task.
 
 # Model Overview
 This model is trained using the flexible unet structure. The backbone is efficient-b0 [1]. The decoder uses UNet architecture [2]. The training dataset uses the 3217 samples from first batch images and 

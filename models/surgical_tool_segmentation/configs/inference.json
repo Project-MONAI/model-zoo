@@ -3,7 +3,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/workspace/bundle/holoscan_tool_tracking",
+    "bundle_root": "/workspace/bundle/surgical_tool_segmentation",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/dataset_4300",
     "datalist": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'test', '*[!seg].jpg'))))",
@@ -88,7 +88,9 @@
             },
             {
                 "_target_": "Lambdad",
-                "keys": ["pred"],
+                "keys": [
+                    "pred"
+                ],
                 "func": "$lambda x : x[1:]"
             },
             {

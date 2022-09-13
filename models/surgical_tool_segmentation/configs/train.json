@@ -5,7 +5,7 @@
         "$import torch",
         "$import numpy as np"
     ],
-    "bundle_root": "/workspace/bundle/holoscan_tool_tracking",
+    "bundle_root": "/workspace/bundle/surgical_tool_segmentation",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/dataset_4300",

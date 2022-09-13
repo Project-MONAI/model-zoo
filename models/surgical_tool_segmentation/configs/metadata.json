@@ -12,8 +12,8 @@
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
     },
-    "task": "Holoscan tool tracking",
-    "description": "A pre-trained binary segmentation model for holoscan tool tracking",
+    "task": "surgical tool segmentation",
+    "description": "A pre-trained binary segmentation model for surgical tool segmentation",
     "authors": "NVIDIA DLMED team",
     "copyright": "Copyright (c) 2021-2022, NVIDIA CORPORATION",
     "data_source": "private dataset",
