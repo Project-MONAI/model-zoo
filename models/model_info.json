@@ -62,5 +62,9 @@
     "valve_landmarks_v0.1.0": {
         "checksum": "e7f686e03d15175c0444b773eff461d691183926",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.1.0.zip"
+    },
+    "lung_nodule_ct_detection_v0.1.0": {
+        "checksum": "81c74aeb8ea9e2392de90087ab3b3edbb50ef5c1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.1.0.zip"
     }
 }
