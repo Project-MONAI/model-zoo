@@ -44,6 +44,7 @@ remove_pipenv() {
 
 verify_bundle() {
     echo 'Run verify bundle...'
+    init_pipenv requirements-dev.txt
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
@@ -56,7 +57,7 @@ verify_bundle() {
         then
             for bundle in $bundle_list;
             do
-                init_pipenv requirements-dev.txt
+                pipenv install -r requirements-dev.txt
                 # get required libraries according to the bundle's metadata file
                 requirements=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
                 if [ ! -z "$requirements" ]; then
@@ -65,7 +66,7 @@ verify_bundle() {
                 fi
                 # verify bundle
                 pipenv run python $(pwd)/ci/verify_bundle.py --b "$bundle"
-                remove_pipenv
+                pipenv --rm
             done
         else
             echo "this pull request does not change any bundles, skip verify."
@@ -73,6 +74,8 @@ verify_bundle() {
     else
         echo "this pull request does not change any files in 'models', skip verify."
     fi
+
+    remove_pipenv
 }
 
 case $BUILD_TYPE in
