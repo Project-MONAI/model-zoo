@@ -16,7 +16,9 @@
             },
             {
                 "_target_": "Lambdad",
-                "keys": ["pred"],
+                "keys": [
+                    "pred"
+                ],
                 "func": "$lambda x : x[1:]"
             },
             {

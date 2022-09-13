@@ -2,9 +2,9 @@
 A pre-trained model for the surgical tool segmentation task.
 
 # Model Overview
-This model is trained using the flexible unet structure. The backbone is efficient-b0 [1]. The decoder uses UNet architecture [2]. The training dataset uses the 3217 samples from first batch images and 
+This model is trained using the flexible unet structure. The backbone is efficient-b0 [1]. The decoder uses UNet architecture [2]. The training dataset uses the 3217 samples from first batch images and
 3500 samples from second batch images. The test dataset contains 664 samples from first batch of images.
-The [pytorch model](https://drive.google.com/file/d/1HJMLsswcUz2pf0LPKSGEWUQzi_PewufA/view?usp=sharing), [torchscript model](https://drive.google.com/file/d/11XlGZfd6S4jug8fCJ709lv8hLeUNIW_r/view?usp=sharing) and [onnx_model](https://drive.google.com/file/d/165ZB1-PLi17yL8KOhIkDNoSsdcsfvlAB/view?usp=sharing) are shared in google drive. 
+The [pytorch model](https://drive.google.com/file/d/1HJMLsswcUz2pf0LPKSGEWUQzi_PewufA/view?usp=sharing), [torchscript model](https://drive.google.com/file/d/11XlGZfd6S4jug8fCJ709lv8hLeUNIW_r/view?usp=sharing) and [onnx_model](https://drive.google.com/file/d/165ZB1-PLi17yL8KOhIkDNoSsdcsfvlAB/view?usp=sharing) are shared in google drive.
 
 ## Data
 The whole dataset is a private dataset from Activ-Surgical.
@@ -55,7 +55,7 @@ Export checkpoint to onnx file, which has been tested on pytorch 1.12.0:
 python scripts/export_to_onnx.py --model models/model.pt --outpath models/model.onnx
 ```
 
-Export TorchScript file to a torchscript module targeting a TensorRT engine with float16 precision. 
+Export TorchScript file to a torchscript module targeting a TensorRT engine with float16 precision.
 
 ```
 torchtrtc -p f16 models/model.ts models/model_trt.ts "[(1,3,736,480);(4,3,736,480);(8,3,736,480)]"
