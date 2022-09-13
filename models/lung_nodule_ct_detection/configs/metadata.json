@@ -1,0 +1,72 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "complete the model package"
+    },
+    "monai_version": "0.9.1",
+    "pytorch_version": "1.12.0",
+    "numpy_version": "1.22.4",
+    "optional_packages_version": {
+        "nibabel": "4.0.1",
+        "pytorch-ignite": "0.4.9"
+    },
+    "task": "CT lung nodule detection",
+    "description": "A pre-trained model for volumetric (3D) detection of the lung lesion from CT image on LUNA16 dataset",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "https://luna16.grand-challenge.org/Home/",
+    "data_type": "nibabel",
+    "image_classes": "1 channel data, CT at 0.703125 x 0.703125 x 1.25 mm",
+    "label_classes": "dict data, containing Nx6 box and Nx1 classification labels.",
+    "pred_classes": "dict data, containing Nx6 box, Nx1 classification labels, Nx1 classification scores.",
+    "eval_metrics": {
+        "val_coco": 0,
+        "froc": 0
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Lin, Tsung-Yi, et al. 'Focal loss for dense object detection. ICCV 2017"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "CT",
+                "num_channels": 1,
+                "spatial_shape": [
+                    "16*n",
+                    "16*n",
+                    "8*n"
+                ],
+                "dtype": "float16",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "object",
+                "format": "dict",
+                "dtype": "float16",
+                "num_channels": 1,
+                "spatial_shape": [
+                    "n",
+                    "n",
+                    "n"
+                ],
+                "value_range": [
+                    -10000,
+                    10000
+                ]
+            }
+        }
+    }
+}
