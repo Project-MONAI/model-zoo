@@ -13,7 +13,7 @@
 # This list is used for our CI tests to determine whether a bundle needs to be tested with
 # the `verify_data_shape` function in `verify_bundle.py`.
 # If a bundle does not need to be tested, please add the bundle name into the list.
-exclude_verify_shape_list = ["mednist_gan"]
+exclude_verify_shape_list = ["mednist_gan", "lung_nodule_ct_detection"]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested with
 # the `verify_export_torchscript` function in `verify_bundle.py`.
