@@ -135,7 +135,7 @@
             "src": "@training_file",
             "col_groups": {
                 "image": 0,
-                "patch_location": [
+                "location": [
                     2,
                     1
                 ],
@@ -286,7 +286,7 @@
             "src": "@validation_file",
             "col_groups": {
                 "image": 0,
-                "patch_location": [
+                "location": [
                     2,
                     1
                 ],
