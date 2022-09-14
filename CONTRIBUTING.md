@@ -56,6 +56,24 @@ large_files:
     url: "url-of-model.ts"
 ```
 
+### Necessary Files and Keys
+
+In order to be compatible with other apps such as MONAI FL, MONAI deploy and MONAI Label, except the MONAI Bundle Specification, a bundle in MONAI Model Zoo should contain the following necessary files:
+
+1. `configs/metadata.json`
+1. `models/model.pt` (or a download link in the config file for large files)
+1. `configs/inference.json` (or `.yaml`, `.json`)
+
+In inference config file, please include the following keys: `bundle_root`, `device`, `network_def`, `network`, `inferer`.
+
+In train config file (if exists), please follow the following requirements in order to maintain consistent naming format:
+
+1. Please include keys `bundle_root` and `device`.
+1. If having `train`, components `train#trainer`, `train#trainer#max_epochs`, `train#dataset`, `train#dataset#data` are required.
+1. If having `validate`, components `validate#evaluator`, `validate#dataset`, `validate#dataset#data`should be defined.
+1. In `train` and/or `validate`, please define `preprocessing`, `postprocessing`, `inferer` and `key_metric` if they are used.
+1. If `ValidationHandler` is used, please define the key `val_interval` and use it for the argument `interval`.
+
 ## Verifying the bundle
 
 We prepared several premerge CI tests to verify your bundle.
@@ -63,7 +81,7 @@ We prepared several premerge CI tests to verify your bundle.
 ### Necessary verifications
 
 1. Check if necessary files are existing in your bundle.
-1. Check if keys naming are consistent as our requirements.
+1. Check if keys naming are consistent with our requirements.
 1. If an existing bundle has been modified, check if `version` and `changelog` are updated.
 1. Check if metadata format is correct. You can also run the following command locally to verify your bundle before submitting a pull request:
 

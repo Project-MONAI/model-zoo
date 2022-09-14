@@ -58,7 +58,7 @@ def _check_main_section_optional_key(
     # if `arg_name` is in `sub_section`, its value must be `necessary_key`
     if arg_name in config[main_section][sub_section]:
         if necessary_key not in config[main_section]:
-            actual_key = config[main_section][sub_section][arg_name].split("#")[-1]
+            actual_key = str(config[main_section][sub_section][arg_name]).split("#")[-1]
             raise ValueError(f"'{main_section}' should have '{necessary_key}', got '{actual_key}'.")
 
 
@@ -136,8 +136,13 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
                 arg_name="postprocessing", necessary_key="postprocessing", config=train_config, sub_section="trainer"
             )
             _check_main_section_optional_key(
+                arg_name="transform", necessary_key="preprocessing", config=train_config, sub_section="dataset"
+            )
+            _check_main_section_optional_key(
                 arg_name="key_train_metric", necessary_key="key_metric", config=train_config, sub_section="trainer"
             )
+            # special requirements: if "ValidationHandler" in "handlers", key "val_interval" should be defined.
+            _check_validation_handler(var_name="val_interval", config=train_config["train"])
         if "validate" in train_config:
             _check_main_section_necessary_key(necessary_key="evaluator", config=train_config, main_section="validate")
             _check_main_section_necessary_key(necessary_key="dataset", config=train_config, main_section="validate")
@@ -152,17 +157,26 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
                 sub_section="evaluator",
             )
             _check_main_section_optional_key(
+                arg_name="transform",
+                necessary_key="preprocessing",
+                config=train_config,
+                main_section="validate",
+                sub_section="dataset",
+            )
+            _check_main_section_optional_key(
+                arg_name="inferer",
+                necessary_key="inferer",
+                config=train_config,
+                main_section="validate",
+                sub_section="evaluator",
+            )
+            _check_main_section_optional_key(
                 arg_name="key_val_metric",
                 necessary_key="key_metric",
                 config=train_config,
                 main_section="validate",
                 sub_section="evaluator",
             )
-        # special requirements: if "ValidationHandler" in "handlers", key "val_interval" should be defined.
-        if "train" in train_config:
-            _check_validation_handler(var_name="val_interval", config=train_config["train"])
-        if "handlers" in train_config:
-            _check_validation_handler(var_name="val_interval", config=train_config)
 
 
 def verify_version_changes(models_path: str, bundle_name: str):
