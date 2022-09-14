@@ -5,7 +5,7 @@ We provide the pre-trained model for inferencing whole brain segmentation with 1
 A tutorial and release of model for whole brain segmentation using the 3D transformer-based segmentation model UNEST.
 
 Authors:
-Xin Yu (xin.yu@vanderbilt.edu) (Primary)
+Xin Yu (xin.yu@vanderbilt.edu)
 
 Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Yucheng Tang (yuchengt@nvidia.com)
 
@@ -46,19 +46,18 @@ Among 50 T1w MRI scans from Open Access Series on Imaging Studies (OASIS) (Marcu
 
 ### Important
 
-```diff
-+ All the brain MRI images for training are registered to Affine registration from the target image to the MNI305 template using NiftyReg.
-+ The data should be in the MNI305 space before inference.
+The brain MRI images for training are registered to Affine registration from the target image to the MNI305 template using NiftyReg.
+The data should be in the MNI305 space before inference.
 
+If your images are already in MNI space, skip the registration step.
 
+You could use any resitration tool to register image to MNI space. Here is an example using ants.
 Registration to MNI Space: Sample suggestion. E.g., use ANTS or other tools for registering T1 MRI image to MNI305 Space.
-
 
 ```
 pip install antspyx
-```
-Sample ANTS registration
-```
+
+#Sample ANTS registration
 
 import ants
 import sys
@@ -70,8 +69,8 @@ transform = ants.registration(fixed_image,moving_image,'Affine')
 
 reg3t = ants.apply_transforms(fixed_image,moving_image,transform['fwdtransforms'][0])
 ants.image_write(reg3t,output_image_path)
-
 ```
+
 ## Training configuration
 The training and inference was performed with at least one 24GB-memory GPU.
 
@@ -89,7 +88,6 @@ Add scripts component:  To run the workflow with customized components, PYTHONPA
 
 ```
 export PYTHONPATH=$PYTHONPATH: '<path to the bundle root dir>/scripts'
-
 ```
 
 
