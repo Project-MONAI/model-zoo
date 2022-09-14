@@ -20,7 +20,7 @@ The resulted json files can be downloaded from https://github.com/Project-MONAI/
 In these files, the values of "box" are the ground truth boxes in world coordinate.
 
 The raw CT images in LUNA16 have various of voxel sizes. The first step is to resample them to the same voxel size.
-In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm. The code can be found in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection
+In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm. The code of resampling can be found in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection
 
 ## Training configuration
 The training was performed with at least 12GB-memory GPUs.
