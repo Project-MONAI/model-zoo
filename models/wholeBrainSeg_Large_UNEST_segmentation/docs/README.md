@@ -55,11 +55,9 @@ Registration to MNI Space: Sample suggestion. E.g., use ANTS or other tools for 
 
 ```
 pip install antspyx
-```
 
-Sample ANTS registration
+#Sample ANTS registration
 
-```
 import ants
 import sys
 import os
@@ -89,7 +87,6 @@ Add scripts component:  To run the workflow with customized components, PYTHONPA
 
 ```
 export PYTHONPATH=$PYTHONPATH: '<path to the bundle root dir>/scripts'
-
 ```
 
 
