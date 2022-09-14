@@ -62,7 +62,8 @@ We prepared several premerge CI tests to verify your bundle.
 
 ### Necessary verifications
 
-1. Check if `configs/metadata.json` is existing in your bundle.
+1. Check if necessary files are existing in your bundle.
+1. Check if keys naming are consistent as our requirements.
 1. If an existing bundle has been modified, check if `version` and `changelog` are updated.
 1. Check if metadata format is correct. You can also run the following command locally to verify your bundle before submitting a pull request:
 

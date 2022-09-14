@@ -164,6 +164,7 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
         if "handlers" in train_config:
             _check_validation_handler(var_name="val_interval", config=train_config)
 
+
 def verify_version_changes(models_path: str, bundle_name: str):
     """
     This function is used to verify if "version" and "changelog" are correct in "configs/metadata.json".
