@@ -16,34 +16,125 @@ import sys
 import torch
 from bundle_custom_data import custom_net_config_dict, exclude_verify_shape_list, exclude_verify_torchscript_list
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
+from monai.bundle.config_parser import ConfigParser
 from utils import download_large_files, get_json_dict
 
+
+# files that must be included in a bundle
+necessary_files_list = ["models/model.pt", "configs/metadata.json"]
+# keys that must be included in inference config
+infer_keys_list = ["bundle_root", "device", "network_def", "network", "inferer"]
+# keys that must be included in train config
+train_keys_list = ["bundle_root", "device"]
+
+def _find_bundle_file(root_dir: str, file: str, suffix = ("json", "yaml", "yml")):
+    # find bundle file with possible suffix
+    file_name = None
+    for name in suffix:
+        full_name = f"{file}.{name}"
+        if full_name in os.listdir(root_dir):
+            file_name = full_name
+
+    return file_name
+
+
+def _check_main_section_necessary_key(necessary_key: str, config: dict, main_section: str = "train"):
+    # `necessary_key` must be in `main_section`
+    if necessary_key not in config[main_section]:
+        raise ValueError(f"'{necessary_key}' is not existing in '{main_section}'.")
+
+
+def _check_sub_section_necessary_key(necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"):
+    # `necessary_key` must be in `sub_section`
+    if necessary_key not in config[main_section][sub_section]:
+        raise ValueError(f"'{necessary_key}' is not existing in '{main_section}#{sub_section}'.")
+
+
+def _check_main_section_optional_key(arg_name: str, necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"):
+    # if `arg_name` is in `sub_section`, its value must be `necessary_key`
+    if arg_name in config[main_section][sub_section]:
+        if necessary_key not in config[main_section]:
+            actual_key = config[main_section][sub_section][arg_name].split("#")[-1]
+            raise ValueError(f"'{main_section}' should have '{necessary_key}', got '{actual_key}'.")
+
+
+def _check_validation_handler(var_name: str, config: dict, main_section: str = "train"):
+    if "handlers" in config[main_section]:
+        for handler in config[main_section]["handlers"]:
+            if handler["_target_"] == "ValidationHandler":
+                interval_name = str(handler["interval"]).split("@")[-1]
+                if not interval_name == var_name:
+                    raise ValueError(f"variable '{var_name}' should be defined for 'ValidationHandler', got '{interval_name}'.")
 
 def verify_bundle_directory(models_path: str, bundle_name: str):
     """
     According to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html),
-    "configs/metadata.json" is required within the bundle root directory.
-    This function is used to verify this file. For bundles that contain the download links for large
+    as well as the requirements of model zoo, some files are necessary with the bundle. For example:
+    "models/model.pt", "configs/metadata.json".
+    This function is used to verify these files. For bundles that contain the download links for large
     files, the links should be saved in "large_files.yml" (or .json, .yaml).
     All large files (if exist) will be downloaded before verification.
 
     """
 
     bundle_path = os.path.join(models_path, bundle_name)
-    large_file_name = None
-    for name in os.listdir(bundle_path):
-        if name in ["large_files.yml", "large_files.yaml", "large_files.json"]:
-            large_file_name = name
 
+    # download large files (if exist) first
+    large_file_name = _find_bundle_file(bundle_path, "large_files")
     if large_file_name is not None:
         try:
             download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
         except Exception as e:
             raise ValueError(f"Download large files in {bundle_path} error.") from e
 
-    metadata_path = os.path.join(bundle_path, "configs/metadata.json")
-    if not os.path.exists(metadata_path):
-        raise ValueError(f"metadata path: {metadata_path} is not existing.")
+    # verify necessary files are included
+    for file in necessary_files_list:
+        if not os.path.exists(os.path.join(bundle_path, file)):
+            raise ValueError(f"necessary file {file} is not existing.")
+
+    # verify inference config file is included
+    inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
+    if inference_file_name is None:
+        raise ValueError("inference config file is not existing.")
+
+
+def verify_bundle_keys(models_path: str, bundle_name: str):
+    """
+    This function is used to verify if necessary keys are included in config files.
+
+    """
+    bundle_path = os.path.join(models_path, bundle_name)
+
+    # verify inference config (necessary)
+    inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
+    infer_config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", inference_file_name))
+    for key in infer_keys_list:
+        if key not in infer_config:
+            raise ValueError(f"necessary key: {key} is not existing in {inference_file_name}.")
+
+    # verify train config (optional)
+    train_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "train")
+    if train_file_name is not None:
+        train_config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", train_file_name))
+        for key in train_keys_list:
+            if key not in train_config:
+                raise ValueError(f"necessary key: {key} is not existing in {train_file_name}.")
+
+        if "train" in train_config:
+            _check_main_section_necessary_key(necessary_key="trainer", config=train_config)
+            _check_main_section_necessary_key(necessary_key="dataset", config=train_config)
+            _check_sub_section_necessary_key(necessary_key="max_epochs", config=train_config, sub_section="trainer")
+            _check_sub_section_necessary_key(necessary_key="data", config=train_config, sub_section="dataset")
+            _check_main_section_optional_key(arg_name="postprocessing", necessary_key="postprocessing", config=train_config, sub_section="trainer")
+            _check_main_section_optional_key(arg_name="key_train_metric", necessary_key="key_metric", config=train_config, sub_section="trainer")
+            # special requirements: if "ValidationHandler" in "train#handlers", key "val_interval" should be defined.
+            _check_validation_handler(var_name="val_interval", config=train_config)
+        if "validate" in train_config:
+            _check_main_section_necessary_key(necessary_key="evaluator", config=train_config, main_section="validate")
+            _check_main_section_necessary_key(necessary_key="dataset", config=train_config, main_section="validate")
+            _check_sub_section_necessary_key(necessary_key="data", config=train_config, main_section="validate", sub_section="dataset")
+            _check_main_section_optional_key(arg_name="postprocessing", necessary_key="postprocessing", config=train_config, main_section="validate", sub_section="evaluator")
+            _check_main_section_optional_key(arg_name="key_val_metric", necessary_key="key_metric", config=train_config, main_section="validate", sub_section="evaluator")
 
 
 def verify_version_changes(models_path: str, bundle_name: str):
@@ -145,6 +236,9 @@ def verify(bundle):
     # verify bundle directory
     verify_bundle_directory(models_path, bundle)
     print("directory is verified correctly.")
+    # verify bundle keys
+    verify_bundle_keys(models_path, bundle)
+    print("keys are verified correctly.")
     # verify version, changelog
     verify_version_changes(models_path, bundle)
     print("version and changelog are verified correctly.")

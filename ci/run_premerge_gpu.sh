@@ -38,7 +38,6 @@ init_pipenv() {
 
 remove_pipenv() {
     echo "removing pip environment"
-    pipenv --rm
     rm Pipfile Pipfile.lock
 }
 
