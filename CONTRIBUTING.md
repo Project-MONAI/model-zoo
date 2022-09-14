@@ -69,8 +69,8 @@ In inference config file, please include the following keys: `bundle_root`, `dev
 In train config file (if exists), please follow the following requirements in order to maintain consistent naming format:
 
 1. Please include keys `bundle_root` and `device`.
-1. If having `train`, components `train#trainer`, `train#trainer#max_epochs`, `train#dataset`, `train#dataset#data` are required.
-1. If having `validate`, components `validate#evaluator`, `validate#dataset`, `validate#dataset#data`should be defined.
+1. If having `train`, components `train#trainer`, `train#trainer#max_epochs`, `train#dataset`, `train#dataset#data` should be defined.
+1. If having `validate`, components `validate#evaluator`, `validate#dataset`, `validate#dataset#data` should be defined.
 1. In `train` and/or `validate`, please define `preprocessing`, `postprocessing`, `inferer` and `key_metric` if they are used.
 1. If `ValidationHandler` is used, please define the key `val_interval` and use it for the argument `interval`.
 
