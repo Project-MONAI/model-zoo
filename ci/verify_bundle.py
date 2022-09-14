@@ -19,7 +19,6 @@ from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
 from utils import download_large_files, get_json_dict
 
-
 # files that must be included in a bundle
 necessary_files_list = ["models/model.pt", "configs/metadata.json"]
 # keys that must be included in inference config
@@ -27,7 +26,8 @@ infer_keys_list = ["bundle_root", "device", "network_def", "network", "inferer"]
 # keys that must be included in train config
 train_keys_list = ["bundle_root", "device"]
 
-def _find_bundle_file(root_dir: str, file: str, suffix = ("json", "yaml", "yml")):
+
+def _find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
     # find bundle file with possible suffix
     file_name = None
     for name in suffix:
@@ -44,13 +44,17 @@ def _check_main_section_necessary_key(necessary_key: str, config: dict, main_sec
         raise ValueError(f"'{necessary_key}' is not existing in '{main_section}'.")
 
 
-def _check_sub_section_necessary_key(necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"):
+def _check_sub_section_necessary_key(
+    necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"
+):
     # `necessary_key` must be in `sub_section`
     if necessary_key not in config[main_section][sub_section]:
         raise ValueError(f"'{necessary_key}' is not existing in '{main_section}#{sub_section}'.")
 
 
-def _check_main_section_optional_key(arg_name: str, necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"):
+def _check_main_section_optional_key(
+    arg_name: str, necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"
+):
     # if `arg_name` is in `sub_section`, its value must be `necessary_key`
     if arg_name in config[main_section][sub_section]:
         if necessary_key not in config[main_section]:
@@ -64,7 +68,10 @@ def _check_validation_handler(var_name: str, config: dict, main_section: str = "
             if handler["_target_"] == "ValidationHandler":
                 interval_name = str(handler["interval"]).split("@")[-1]
                 if not interval_name == var_name:
-                    raise ValueError(f"variable '{var_name}' should be defined for 'ValidationHandler', got '{interval_name}'.")
+                    raise ValueError(
+                        f"variable '{var_name}' should be defined for 'ValidationHandler', got '{interval_name}'."
+                    )
+
 
 def verify_bundle_directory(models_path: str, bundle_name: str):
     """
@@ -125,16 +132,34 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
             _check_main_section_necessary_key(necessary_key="dataset", config=train_config)
             _check_sub_section_necessary_key(necessary_key="max_epochs", config=train_config, sub_section="trainer")
             _check_sub_section_necessary_key(necessary_key="data", config=train_config, sub_section="dataset")
-            _check_main_section_optional_key(arg_name="postprocessing", necessary_key="postprocessing", config=train_config, sub_section="trainer")
-            _check_main_section_optional_key(arg_name="key_train_metric", necessary_key="key_metric", config=train_config, sub_section="trainer")
+            _check_main_section_optional_key(
+                arg_name="postprocessing", necessary_key="postprocessing", config=train_config, sub_section="trainer"
+            )
+            _check_main_section_optional_key(
+                arg_name="key_train_metric", necessary_key="key_metric", config=train_config, sub_section="trainer"
+            )
             # special requirements: if "ValidationHandler" in "train#handlers", key "val_interval" should be defined.
             _check_validation_handler(var_name="val_interval", config=train_config)
         if "validate" in train_config:
             _check_main_section_necessary_key(necessary_key="evaluator", config=train_config, main_section="validate")
             _check_main_section_necessary_key(necessary_key="dataset", config=train_config, main_section="validate")
-            _check_sub_section_necessary_key(necessary_key="data", config=train_config, main_section="validate", sub_section="dataset")
-            _check_main_section_optional_key(arg_name="postprocessing", necessary_key="postprocessing", config=train_config, main_section="validate", sub_section="evaluator")
-            _check_main_section_optional_key(arg_name="key_val_metric", necessary_key="key_metric", config=train_config, main_section="validate", sub_section="evaluator")
+            _check_sub_section_necessary_key(
+                necessary_key="data", config=train_config, main_section="validate", sub_section="dataset"
+            )
+            _check_main_section_optional_key(
+                arg_name="postprocessing",
+                necessary_key="postprocessing",
+                config=train_config,
+                main_section="validate",
+                sub_section="evaluator",
+            )
+            _check_main_section_optional_key(
+                arg_name="key_val_metric",
+                necessary_key="key_metric",
+                config=train_config,
+                main_section="validate",
+                sub_section="evaluator",
+            )
 
 
 def verify_version_changes(models_path: str, bundle_name: str):
