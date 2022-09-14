@@ -5,7 +5,7 @@ We provide the pre-trained model for inferencing whole brain segmentation with 1
 A tutorial and release of model for whole brain segmentation using the 3D transformer-based segmentation model UNEST.
 
 Authors:
-Xin Yu (xin.yu@vanderbilt.edu) (Primary)
+Xin Yu (xin.yu@vanderbilt.edu)
 
 Yinchi Zhou (yinchi.zhou@vanderbilt.edu) | Yucheng Tang (yuchengt@nvidia.com)
 
@@ -57,9 +57,10 @@ Registration to MNI Space: Sample suggestion. E.g., use ANTS or other tools for 
 ```
 pip install antspyx
 ```
-Sample ANTS registration
-```
 
+Sample ANTS registration
+
+```
 import ants
 import sys
 import os
@@ -70,8 +71,8 @@ transform = ants.registration(fixed_image,moving_image,'Affine')
 
 reg3t = ants.apply_transforms(fixed_image,moving_image,transform['fwdtransforms'][0])
 ants.image_write(reg3t,output_image_path)
-
 ```
+
 ## Training configuration
 The training and inference was performed with at least one 24GB-memory GPU.
 
