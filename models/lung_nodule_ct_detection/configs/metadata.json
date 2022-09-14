@@ -10,7 +10,8 @@
     "numpy_version": "1.22.4",
     "optional_packages_version": {
         "nibabel": "4.0.1",
-        "pytorch-ignite": "0.4.9"
+        "pytorch-ignite": "0.4.9",
+        "torchvision": "0.12.0"
     },
     "task": "CT lung nodule detection",
     "description": "A pre-trained model for volumetric (3D) detection of the lung lesion from CT image on LUNA16 dataset",
