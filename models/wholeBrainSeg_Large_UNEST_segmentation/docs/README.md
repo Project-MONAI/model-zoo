@@ -49,7 +49,7 @@ Among 50 T1w MRI scans from Open Access Series on Imaging Studies (OASIS) (Marcu
 The brain MRI images for training are registered to Affine registration from the target image to the MNI305 template using NiftyReg.
 The data should be in the MNI305 space before inference.
 
-If your images are already in MNI space, skip the registration step. 
+If your images are already in MNI space, skip the registration step.
 
 You could use any resitration tool to register image to MNI space. Here is an example using ants.
 Registration to MNI Space: Sample suggestion. E.g., use ANTS or other tools for registering T1 MRI image to MNI305 Space.
