@@ -46,9 +46,8 @@ Among 50 T1w MRI scans from Open Access Series on Imaging Studies (OASIS) (Marcu
 
 ### Important
 
-
-+ All the brain MRI images for training are registered to Affine registration from the target image to the MNI305 template using NiftyReg.
-+ The data should be in the MNI305 space before inference.
+The brain MRI images for training are registered to Affine registration from the target image to the MNI305 template using NiftyReg.
+The data should be in the MNI305 space before inference.
 
 
 
