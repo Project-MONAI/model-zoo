@@ -2,7 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "version": "0.1.1",
     "changelog": {
-        "0.1.1": "Fix data type issue in searching/training configurations",
+        "0.1.1": "fix data type issue in searching/training configurations",
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
