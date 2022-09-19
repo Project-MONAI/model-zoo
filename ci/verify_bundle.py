@@ -14,13 +14,19 @@ import os
 import sys
 
 import torch
-from bundle_custom_data import custom_net_config_dict, exclude_verify_shape_list, exclude_verify_torchscript_list
+from bundle_custom_data import (
+    exclude_verify_preferred_files_list,
+    exclude_verify_shape_list,
+    exclude_verify_torchscript_list,
+)
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
 from utils import download_large_files, get_json_dict
 
 # files that must be included in a bundle
-necessary_files_list = ["models/model.pt", "configs/metadata.json"]
+necessary_files_list = ["configs/metadata.json"]
+# files that are preferred to be included in a bundle
+preferred_files_list = ["models/model.pt", "configs/inference.json"]
 # keys that must be included in inference config
 infer_keys_list = ["bundle_root", "device", "network_def", "network", "inferer"]
 # keys that must be included in train config
@@ -99,10 +105,17 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
         if not os.path.exists(os.path.join(bundle_path, file)):
             raise ValueError(f"necessary file {file} is not existing.")
 
-    # verify inference config file is included
-    inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
-    if inference_file_name is None:
-        raise ValueError("inference config file is not existing.")
+    # verify preferred files are included
+    if bundle_name not in exclude_verify_preferred_files_list:
+        for file in preferred_files_list:
+            if not os.path.exists(os.path.join(bundle_path, file)):
+                raise ValueError(f"necessary file {file} is not existing.")
+
+            if file == "configs/inference.json":
+                # inference config file may have different suffix
+                inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
+                if inference_file_name is None:
+                    raise ValueError("inference config file is not existing.")
 
 
 def verify_bundle_keys(models_path: str, bundle_name: str):
@@ -112,14 +125,15 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
     """
     bundle_path = os.path.join(models_path, bundle_name)
 
-    # verify inference config (necessary)
+    # verify inference config (if exists)
     inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
-    infer_config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", inference_file_name))
-    for key in infer_keys_list:
-        if key not in infer_config:
-            raise ValueError(f"necessary key: '{key}' is not existing in {inference_file_name}.")
+    if inference_file_name is not None:
+        infer_config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", inference_file_name))
+        for key in infer_keys_list:
+            if key not in infer_config:
+                raise ValueError(f"necessary key: '{key}' is not existing in {inference_file_name}.")
 
-    # verify train config (optional)
+    # verify train config (if exists)
     train_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "train")
     if train_file_name is not None:
         train_config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", train_file_name))
@@ -259,16 +273,6 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
         print("Provided TorchScript module is verified correctly.")
 
 
-def get_net_id_config_name(bundle_name: str):
-    """
-    Return values of arguments net_id and config_file.
-    """
-
-    name_dict = custom_net_config_dict.get(bundle_name, {})
-
-    return name_dict.get("net_id", "network_def"), name_dict.get("config_file", "configs/inference.json")
-
-
 def verify(bundle):
 
     models_path = "models"
@@ -290,7 +294,8 @@ def verify(bundle):
     print("metadata format is verified correctly.")
 
     # The following are optional tests
-    net_id, config_file = get_net_id_config_name(bundle)
+    net_id, inference_file_name = "network_def", _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
+    config_file = os.path.join("configs", inference_file_name)
 
     if bundle in exclude_verify_shape_list:
         print(f"skip verifying the data shape of bundle: {bundle}.")

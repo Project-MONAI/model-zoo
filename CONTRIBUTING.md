@@ -56,15 +56,18 @@ large_files:
     url: "url-of-model.ts"
 ```
 
-### Necessary Files and Keys
+### Preferred Files and Keys
 
-In order to be compatible with other apps such as MONAI FL, MONAI deploy and MONAI Label, except the MONAI Bundle Specification, a bundle in MONAI Model Zoo should contain the following necessary files:
+In order to be compatible with other apps such as MONAI FL, MONAI deploy and MONAI Label, except the MONAI Bundle Specification, a bundle in MONAI Model Zoo should contain the necessary file `configs/metadata.json` and the following preferred files:
 
-1. `configs/metadata.json`
 1. `models/model.pt` (or a download link in the config file for large files)
 1. `configs/inference.json` (or `.yaml`, `.json`)
 
-In inference config file, please include the following keys: `bundle_root`, `device`, `network_def`, `network`, `inferer`.
+If your bundle does not have any of the preferred files, please add the bundle name into `exclude_verify_preferred_files_list` in `ci/bundle_custom_data.py`.
+
+Except the requirements of files, there are also some requirements of keys within config files:
+
+In inference config file (if exists), please include the following keys: `bundle_root`, `device`, `network_def`, `network`, `inferer`.
 
 In train config file (if exists), please follow the following requirements in order to maintain consistent naming format:
 
@@ -98,7 +101,7 @@ Check if the input and output data shape and data type of network defined in the
 python -m monai.bundle verify_net_in_out --net_id network_def --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
-`net_id` is the ID name of the network component, `config_file` is the filepath (within the bundle) of the config file to get the network definition. The default values in the CI tests are `network_def` for `net_id` and `configs/inference.json` for `config_file`, if different values are used, please include them into `custom_net_config_dict` in `ci/bundle_custom_data.py`. This requirement also works for the torchscript test that will be mentioned bellow.
+`net_id` is the ID name of the network component, `config_file` is the filepath (within the bundle) of the config file to get the network definition. Please modify the default values if needed.
 
 If this test is not suitable for your bundle, please add your bundle name into `exclude_verify_shape_list` in `ci/bundle_custom_data.py`.
 
