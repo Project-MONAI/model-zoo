@@ -74,5 +74,17 @@
     "lung_nodule_ct_detection_v0.1.1": {
         "checksum": "d115b7f0d2e3b46a3ff58ce17d06231dfab29fae",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.1.1.zip"
+    },
+    "renalStructures_UNEST_segmentation_v0.1.2": {
+        "checksum": "5f1e9ec8de6a5b866d7c1f4a90aae41a4b4c64b3",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/renalStructures_UNEST_segmentation_v0.1.2.zip"
+    },
+    "wholeBrainSeg_Large_UNEST_segmentation_v0.1.1": {
+        "checksum": "74d12949600260fe4b610beeb3a018be1b6f79b1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBrainSeg_Large_UNEST_segmentation_v0.1.1.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.1.1": {
+        "checksum": "5f544da93810db19478bee0f9c2377d551bb527c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.1.1.zip"
     }
 }
