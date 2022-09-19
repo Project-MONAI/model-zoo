@@ -10,7 +10,8 @@ A few sentences describing the changes proposed in this pull request.
 <!--- Put an `x` in all the boxes that apply, and remove the not applicable items -->
 - [x] Codeformat tests passed locally by running `./runtests.sh --codeformat`.
 - [ ] In-line docstrings updated.
-- [ ] Update `version` and `changelog` in `metadata.json`.
+- [ ] Update `version` and `changelog` in `metadata.json` if changing an existing bundle.
+- [ ] Please ensure the naming rules in config files meet our requirements (please refer to: `CONTRIBUTING.md`).
 - [ ] Ensure versions of packages such as `monai`, `pytorch` and `numpy` are correct in `metadata.json`.
 - [ ] Descriptions should be consistent with the content, such as `eval_metrics` of the provided weights and TorchScript modules.
 - [ ] Files larger than 25MB are excluded and replaced by providing download links in `large_file.yml`.

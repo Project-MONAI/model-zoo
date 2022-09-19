@@ -10,6 +10,7 @@
     "dataset_dir": "/dataset/dataset0",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/imagesTr/*.nii.gz')))",
     "labels": "$list(sorted(glob.glob(@dataset_dir + '/labelsTr/*.nii.gz')))",
+    "val_interval": 5,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "SwinUNETR",
@@ -206,7 +207,7 @@
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
-                "interval": 5
+                "interval": "@val_interval"
             },
             {
                 "_target_": "StatsHandler",
