@@ -58,24 +58,25 @@ large_files:
 
 ### Preferred Files and Keys
 
-In order to be compatible with other apps such as MONAI FL, MONAI deploy and MONAI Label, except the MONAI Bundle Specification, a bundle in MONAI Model Zoo should contain the necessary file `configs/metadata.json` and the following preferred files:
+In order to be compatible with other apps such as MONAI FL, MONAI deploy and MONAI Label, except the format requirements from MONAI Bundle Specification, a bundle in MONAI Model Zoo should also contain the necessary file `configs/metadata.json` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/metadata.json)) and the following preferred files:
 
-1. `models/model.pt` (or a download link in the config file for large files)
-1. `configs/inference.json` (or `.yaml`, `.json`)
+1. `models/model.pt` (or a download link in the config file for large files, [click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/large_files.yml))
+1. `configs/inference.json` (or `.yaml`, `.json`, [click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json))
 
 If your bundle does not have any of the preferred files, please add the bundle name into `exclude_verify_preferred_files_list` in `ci/bundle_custom_data.py`.
 
 Except the requirements of files, there are also some requirements of keys within config files:
 
-In inference config file (if exists), please include the following keys: `bundle_root`, `device`, `network_def`, `network`, `inferer`.
+In inference config file (if exists), please include the following keys: `bundle_root` (root directory of your bundle), `device` (required device), `network_def` (definition of the network component), `network`, `inferer` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json)).
 
-In train config file (if exists), please follow the following requirements in order to maintain consistent naming format:
+In train config file (if exists), please follow the following requirements in order to maintain consistent naming format ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/train.json)):
 
 1. Please include keys `bundle_root` and `device`.
 1. If having `train`, components `train#trainer`, `train#trainer#max_epochs`, `train#dataset`, `train#dataset#data` should be defined.
 1. If having `validate`, components `validate#evaluator`, `validate#dataset`, `validate#dataset#data` should be defined.
 1. In `train` and/or `validate`, please define `preprocessing`, `postprocessing`, `inferer` and `key_metric` if they are used.
 1. If `ValidationHandler` is used, please define the key `val_interval` and use it for the argument `interval`.
+
 
 ## Verifying the bundle
 
