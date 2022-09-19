@@ -5,6 +5,7 @@
     ],
     "lr": 0.001,
     "num_epochs": 4,
+    "val_interval": 1,
     "bundle_root": ".",
     "ckpt_dir": "$os.path.join(@bundle_root, 'models')",
     "output_dir": "$os.path.join(@bundle_root, 'log')",
@@ -198,7 +199,7 @@
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
-                "interval": 1
+                "interval": "@val_interval"
             },
             {
                 "_target_": "StatsHandler",

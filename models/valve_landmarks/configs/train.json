@@ -6,6 +6,8 @@
         "$import ignite",
         "$import scripts"
     ],
+    "bundle_root": ".",
+    "val_interval": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
     "dataset_file": "./valvelandmarks.npz",
@@ -240,7 +242,7 @@
             "_target_": "ValidationHandler",
             "validator": "@evaluator",
             "epoch_level": true,
-            "interval": 1
+            "interval": "@val_interval"
         },
         {
             "_target_": "CheckpointSaver",
