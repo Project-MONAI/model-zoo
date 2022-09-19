@@ -108,14 +108,13 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
     # verify preferred files are included
     if bundle_name not in exclude_verify_preferred_files_list:
         for file in preferred_files_list:
-            if not os.path.exists(os.path.join(bundle_path, file)):
-                raise ValueError(f"necessary file {file} is not existing.")
-
             if file == "configs/inference.json":
                 # inference config file may have different suffix
                 inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
                 if inference_file_name is None:
                     raise ValueError("inference config file is not existing.")
+            if not os.path.exists(os.path.join(bundle_path, file)):
+                raise ValueError(f"necessary file {file} is not existing.")
 
 
 def verify_bundle_keys(models_path: str, bundle_name: str):
