@@ -3,6 +3,8 @@
 MONAI Model Zoo hosts a collection of medical imaging models in the [MONAI Bundle](https://docs.monai.io/en/latest/bundle_intro.html) format.
 All source code of models (bundles) are tracked in `models/`, and for each distinct version of a bundle, it will be archived as a `.zip` file (named in the form of `bundle_name_version.zip`) and stored in `Releases`.
 
+## Getting Started
+
 To download and get started with the models, please see [the model browser](https://monai.io/model-zoo.html) and [the example use cases](https://github.com/Project-MONAI/tutorials/tree/main/model_zoo).
 
 ## Contributing
