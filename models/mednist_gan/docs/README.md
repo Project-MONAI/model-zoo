@@ -24,7 +24,7 @@ If you use the MedNIST dataset, please acknowledge the source.
 Assuming the current directory is the bundle directory, and the dataset was extracted to the directory `./MedNIST`, the following command will train the network for 50 epochs:
 
 ```
-PYTHONPATH=./scripts python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf --bundle_root .
+python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf --bundle_root .
 ```
 
 Note that the training code relies on extra scripts in the `scripts` directory which are made accessible by changing the `PYTHONPATH` variable in this invocation. If your `PYTHONPATH` is already used for other things you will have to add `./scripts` to the variable rather than replace it.
@@ -59,6 +59,6 @@ The model can be loaded without MONAI code after this operation. For example, an
 ```python
 import torch
 net = torch.jit.load("mednist_gan.ts")
-latent = torch.rand(1,64)
+latent = torch.rand(1, 64)
 img = net(latent)  # (1,1,64,64)
 ```
