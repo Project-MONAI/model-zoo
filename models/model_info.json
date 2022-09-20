@@ -86,5 +86,49 @@
     "pancreas_ct_dints_segmentation_v0.1.1": {
         "checksum": "5f544da93810db19478bee0f9c2377d551bb527c",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.1.1.zip"
+    },
+    "brats_mri_segmentation_v0.2.0": {
+        "checksum": "076d880181f6dbb50afa363d4e16ee28f364894c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.2.0.zip"
+    },
+    "valve_landmarks_v0.2.0": {
+        "checksum": "73f3f28df02ae6f8b5c20d01abbd7298c588eb1b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.2.0.zip"
+    },
+    "mednist_gan_v0.2.0": {
+        "checksum": "1bb2b45ff8e00f4d9b44a55e0d573546f39e51e6",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_gan_v0.2.0.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.2.0": {
+        "checksum": "391ebd03ed7dcfc3269c6af45364f66487028a84",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.2.0.zip"
+    },
+    "lung_nodule_ct_detection_v0.2.0": {
+        "checksum": "a6ddd49bacdc2d3c8c7f9acfe0fdbdfd6d36bfbc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.2.0.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.2.0": {
+        "checksum": "20aa248c1648fe81d3a701cb67cacea184997ce4",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.2.0.zip"
+    },
+    "ventricular_short_axis_3label_v0.2.0": {
+        "checksum": "f4f7b2540bb849253a8ca0205e07823617a5c45a",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/ventricular_short_axis_3label_v0.2.0.zip"
+    },
+    "pathology_tumor_detection_v0.2.0": {
+        "checksum": "df6103ab075071a63ec885c28f970adf92a35bd2",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.2.0.zip"
+    },
+    "spleen_deepedit_annotation_v0.2.0": {
+        "checksum": "fcb72dae84c679a376b6e6910cd27c7566a0fc0d",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.2.0.zip"
+    },
+    "spleen_ct_segmentation_v0.2.0": {
+        "checksum": "ee47f4171b3e500dcc451bf5566f5d273df160a5",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.2.0.zip"
+    },
+    "prostate_mri_anatomy_v0.2.0": {
+        "checksum": "7bcd0c45f914b0f2d297d35c00944e854af5186b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/prostate_mri_anatomy_v0.2.0.zip"
     }
 }
