@@ -53,6 +53,11 @@
                 "sigmoid": true
             },
             {
+                "_target_": "ToTensord",
+                "keys": "pred",
+                "track_meta": false
+            },
+            {
                 "_target_": "SaveImaged",
                 "keys": "pred",
                 "output_dir": "@output_dir",
