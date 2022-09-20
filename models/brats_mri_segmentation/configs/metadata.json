@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "changelog": {
+        "0.2.1": "fix network_data_format error",
         "0.2.0": "unify naming",
         "0.1.1": "update for MetaTensor",
         "0.1.0": "complete the model package"
@@ -45,13 +46,13 @@
                     "8*n"
                 ],
                 "dtype": "float32",
-                "value_range": [
-                    0,
-                    1
-                ],
+                "value_range": [],
                 "is_patch_data": true,
                 "channel_def": {
-                    "0": "image"
+                    "0": "T1c",
+                    "1": "T1",
+                    "2": "T2",
+                    "3": "FLAIR"
                 }
             }
         },
@@ -72,8 +73,9 @@
                 ],
                 "is_patch_data": true,
                 "channel_def": {
-                    "0": "background",
-                    "1": "spleen"
+                    "0": "Tumor core",
+                    "1": "Whole tumor",
+                    "2": "Enhancing tumor"
                 }
             }
         }
