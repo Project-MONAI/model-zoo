@@ -1,8 +1,9 @@
 {
     "imports": [
-        "$import functools",
+        "$from functools import partial",
         "$import glob",
-        "$import scripts.losses"
+        "$from losses import discriminator_loss",
+        "$from losses import generator_loss"
     ],
     "bundle_root": ".",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -65,7 +66,7 @@
                 "keys": "reals"
             },
             {
-                "_target_": "EnsureChannelFirstd",
+                "_target_": "AddChanneld",
                 "keys": "reals"
             },
             {
@@ -147,10 +148,10 @@
         "train_data_loader": "@real_dataloader",
         "g_network": "@gnetwork",
         "g_optimizer": "@goptimizer",
-        "g_loss_function": "$functools.partial(scripts.losses.generator_loss, disc_net=@dnetwork)",
+        "g_loss_function": "$partial(generator_loss, disc_net=@dnetwork)",
         "d_network": "@dnetwork",
         "d_optimizer": "@doptimizer",
-        "d_loss_function": "$functools.partial(scripts.losses.discriminator_loss, disc_net=@dnetwork)",
+        "d_loss_function": "$partial(discriminator_loss, disc_net=@dnetwork)",
         "d_train_steps": 5,
         "g_update_latents": true,
         "latent_shape": "@latent_size",
