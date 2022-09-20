@@ -39,11 +39,11 @@ The dataset used for training unfortunately cannot be made public, however the t
 * 200: Tricuspid septal
 * 250: Tricuspid free wall
 
-The following command will train with the default NPZ filename `./valvelandmarks.npz`:
+The following command will train with the default NPZ filename `./valvelandmarks.npz`, assuming the current directory is the bundle directory:
 
 ```sh
-PYTHONPATH=./scripts python -m monai.bundle run training --meta_file configs/metadata.json \
-    --config_file configs/train.json --bundle_root . --dataset_file /path/to/data --output_dir /path/to/outputs
+python -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/common.json']" \
+    --bundle_root . --dataset_file ./valvelandmarks.npz --output_dir /path/to/outputs
 ```
 
 ## Inference
@@ -51,8 +51,8 @@ PYTHONPATH=./scripts python -m monai.bundle run training --meta_file configs/met
 The included `inference.json` script will run inference on a directory containing Nifti files whose images have shape `(256, 256, 1, N)` for `N` timesteps. For each image the output in the `output_dir` directory will be a npy file containing a result array of shape `(N, 2, 10)` storing the 10 coordinates for each `N` timesteps. Invoking this script can be done as follows, assuming the current directory is the bundle directory:
 
 ```sh
-PYTHONPATH=./scripts python -m monai.bundle run evaluating --meta_file configs/metadata.json \
-    --config_file configs/inference.json --bundle_root . --dataset_dir /path/to/data --output_dir /path/to/outputs
+python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/inference.json', 'configs/common.json']" \
+    --bundle_root . --dataset_dir /path/to/data --output_dir /path/to/outputs
 ```
 
 It is important to set the `PYTHONPATH` variable since code in the provided scripts directory is necessary for inference. The provided test Nifti file can be placed in a directory which is then used as the `dataset_dir` value. This image was derived from [the AMRG Cardiac Atlas dataset](http://www.cardiacatlas.org/studies/amrg-cardiac-atlas) (AMRG Cardiac Atlas, Auckland MRI Research Group, Auckland, New Zealand). The results from this inference can be visualised by changing path values in [view_results.ipynb](./view_results.ipynb).

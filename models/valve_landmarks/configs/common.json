@@ -1,0 +1,40 @@
+{
+    "imports": [
+        "$import os",
+        "$import glob",
+        "$import datetime",
+        "$import numpy",
+        "$import torch",
+        "$import ignite",
+        "$import scripts"
+    ],
+    "bundle_root": ".",
+    "ckpt_path": "$@bundle_root + '/models/model.pt'",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "scripts.valve_landmarks.PointRegressor",
+        "in_shape": [
+            1,
+            256,
+            256
+        ],
+        "out_shape": [
+            2,
+            10
+        ],
+        "channels": [
+            8,
+            16,
+            32,
+            64,
+            128
+        ],
+        "strides": [
+            2,
+            2,
+            2,
+            2,
+            2
+        ]
+    }
+}
