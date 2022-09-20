@@ -130,5 +130,9 @@
     "prostate_mri_anatomy_v0.2.0": {
         "checksum": "7bcd0c45f914b0f2d297d35c00944e854af5186b",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/prostate_mri_anatomy_v0.2.0.zip"
+    },
+    "brats_mri_segmentation_v0.2.1": {
+        "checksum": "5daceb47ceee59eb6119a37f9e3c715c677574bc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.2.1.zip"
     }
 }
