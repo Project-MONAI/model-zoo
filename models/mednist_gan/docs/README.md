@@ -27,8 +27,6 @@ Assuming the current directory is the bundle directory, and the dataset was extr
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf --bundle_root .
 ```
 
-Note that the training code relies on extra scripts in the `scripts` directory which are made accessible by changing the `PYTHONPATH` variable in this invocation. If your `PYTHONPATH` is already used for other things you will have to add `./scripts` to the variable rather than replace it.
-
 Not also the output from the training will be placed in the `models` directory but will not overwrite the `model.pt` file that may be there already. You will have to manually rename the most recent checkpoint file to `model.pt` to use the inference script mentioned below after checking the results are correct. This saved checkpoint contains a dictionary with the generator weights stored as `model` and omits the discriminator.
 
 Another feature in the training file is the addition of sigmoid activation to the network by modifying it's structure at runtime. This is done with a line in the `training` section calling `add_module` on a layer of the network. This works best for training although the definition of the model now doesn't strictly match what it is in the `generator` section.
