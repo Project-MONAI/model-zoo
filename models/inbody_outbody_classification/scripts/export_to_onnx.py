@@ -79,14 +79,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # the original model for converting.
     parser.add_argument(
-        "--model", type=str, default=r"/workspace/bundle/DeID/models/model.pt", help="Input an existing model weight"
+        "--model",
+        type=str,
+        default=r"/workspace/bundle/inbody_outbody_bundle/models/model.pt",
+        help="Input an existing model weight",
     )
 
     # path to save the onnx model.
     parser.add_argument(
         "--outpath",
         type=str,
-        default=r"/workspace/bundle/DeID/models/model.onnx",
+        default=r"/workspace/bundle/inbody_outbody_bundle/models/model.onnx",
         help="A path to save the onnx model.",
     )
 

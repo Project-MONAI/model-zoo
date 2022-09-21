@@ -4,10 +4,10 @@
         "$import json",
         "$import ignite"
     ],
-    "bundle_root": "/workspace/bundle/DeID",
+    "bundle_root": "/workspace/bundle/inbody_outbody_bundle",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/data/DeID_json",
+    "dataset_dir": "/workspace/data/inbody_outbody",
     "train_json": "$@dataset_dir+'/train.json'",
     "val_json": "$@dataset_dir+'/val.json'",
     "train_fp": "$open(@train_json,'r', encoding='utf8')",
