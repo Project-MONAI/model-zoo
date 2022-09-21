@@ -13,6 +13,7 @@
     "labels": "$[x.replace('.jpg', '_seg.jpg') for x in @images]",
     "val_images": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'valid', '*[!seg].jpg'))))",
     "val_labels": "$[x.replace('.jpg', '_seg.jpg') for x in @val_images]",
+    "val_interval": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "FlexibleUNet",
@@ -137,7 +138,7 @@
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
-                "interval": 1
+                "interval": "@val_interval"
             },
             {
                 "_target_": "StatsHandler",
