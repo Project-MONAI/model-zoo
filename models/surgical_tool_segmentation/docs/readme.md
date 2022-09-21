@@ -2,11 +2,13 @@
 A pre-trained model for the surgical tool segmentation task.
 
 # Model Overview
-This model is trained using a flexible unet structure with an efficient-b0 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from Activ-Surgical.
+This model is trained using a flexible unet structure with an efficient-b0 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from Activ-Surgical. 
 The [pytorch model](https://drive.google.com/file/d/14r6WmzaZrgaWLGu0O9vSAzdeIGVFQ3cs/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1i-e5xXHtmvmqitwUP8Q3JqvnmN3mlrEm/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file.
 
 ## Data
 The whole dataset is a private dataset from Activ-Surgical.
+
+Since datasets are private, existing public datasets like [EndoVis 2017](https://endovissub2017-roboticinstrumentsegmentation.grand-challenge.org/Data/) can be used to train a similar model.
 
 ## Training configuration
 The training was performed with an at least 12GB-memory GPU.
