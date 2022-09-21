@@ -59,6 +59,7 @@ lr_scheduler:
   gamma: 0.5
 image_key: image
 label_key: label
+val_interval: 10
 train:
   deterministic_transforms:
   - _target_: LoadImaged
@@ -113,7 +114,7 @@ train:
   - _target_: Lambdad
     keys: label4crop
     func: "$lambda x, s=@output_classes: np.concatenate(tuple([ndimage.binary_dilation((x==_k).astype(x.dtype),
-      iterations=48).astype(x.dtype) for _k in range(s)]), axis=0)"
+      iterations=48).astype(float) for _k in range(s)]), axis=0)"
     overwrite: true
   - _target_: EnsureTyped
     keys:
@@ -266,7 +267,7 @@ train:
   - _target_: ValidationHandler
     validator: "@validate#evaluator"
     epoch_level: true
-    interval: 10
+    interval: "@val_interval"
   - _target_: StatsHandler
     tag_name: train_loss
     output_transform: "$monai.handlers.from_engine(['loss'], first=True)"

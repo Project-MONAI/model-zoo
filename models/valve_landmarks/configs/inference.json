@@ -4,6 +4,7 @@
         "$import glob",
         "$import scripts"
     ],
+    "bundle_root": ".",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
     "dataset_dir": "/workspace/data",

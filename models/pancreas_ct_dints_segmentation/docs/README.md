@@ -50,7 +50,7 @@ python -m monai.bundle run training --meta_file configs/metadata.json --config_f
 Override the `train` config to execute multi-GPU training:
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" --logging_file configs/logging.conf
+torchrun --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" --logging_file configs/logging.conf
 ```
 
 Override the `train` config to execute evaluation with the trained model:

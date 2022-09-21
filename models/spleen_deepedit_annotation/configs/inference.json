@@ -60,7 +60,7 @@
         "res_block": true
     },
     "network": "$@network_def.to(@device)",
-    "pre_transforms": {
+    "preprocessing": {
         "_target_": "Compose",
         "transforms": [
             {
@@ -107,7 +107,7 @@
     "dataset": {
         "_target_": "Dataset",
         "data": "$[{'image': i} for i in @datalist]",
-        "transform": "@pre_transforms"
+        "transform": "@preprocessing"
     },
     "dataloader": {
         "_target_": "DataLoader",
@@ -119,7 +119,7 @@
     "inferer": {
         "_target_": "SimpleInferer"
     },
-    "post_transforms": {
+    "postprocessing": {
         "_target_": "Compose",
         "transforms": [
             {
@@ -134,7 +134,7 @@
             {
                 "_target_": "Invertd",
                 "keys": "pred",
-                "transform": "@pre_transforms",
+                "transform": "@preprocessing",
                 "orig_keys": "image",
                 "meta_key_postfix": "meta_dict",
                 "nearest_interp": false,
@@ -172,7 +172,7 @@
         "val_data_loader": "@dataloader",
         "network": "@network",
         "inferer": "@inferer",
-        "postprocessing": "@post_transforms",
+        "postprocessing": "@postprocessing",
         "val_handlers": "@handlers",
         "amp": true
     },

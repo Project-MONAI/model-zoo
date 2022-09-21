@@ -2,6 +2,7 @@
     "imports": [
         "$import glob"
     ],
+    "bundle_root": ".",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
     "output_dir": "./outputs",
@@ -50,6 +51,11 @@
                 "_target_": "Activationsd",
                 "keys": "pred",
                 "sigmoid": true
+            },
+            {
+                "_target_": "ToTensord",
+                "keys": "pred",
+                "track_meta": false
             },
             {
                 "_target_": "SaveImaged",
