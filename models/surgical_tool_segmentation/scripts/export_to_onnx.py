@@ -1,25 +1,17 @@
-from audioop import mul
-import os
-import torch
 import argparse
-from monai.networks.nets import FlexibleUNet
+import os
+
+import numpy as np
 import onnx
 import onnxruntime
-import numpy as np
-
+import torch
+from monai.networks.nets import FlexibleUNet
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def load_model_and_export(
-    modelname,
-    outname,
-    out_channels,
-    height,
-    width,
-    multigpu=False,
-    in_channels=3,
-    backbone="efficientnet-b0",
+    modelname, outname, out_channels, height, width, multigpu=False, in_channels=3, backbone="efficientnet-b0"
 ):
     """
     Loading a model by name.
@@ -50,9 +42,7 @@ def load_model_and_export(
     if multigpu:
         model = torch.nn.DataParallel(model)
     model = model.cuda()
-    model.load_state_dict(
-        torch.load(modelname, map_location=device)
-    )  # if the model is trained on multi gpu
+    model.load_state_dict(torch.load(modelname, map_location=device))  # if the model is trained on multi gpu
     model = model.eval()
 
     np.random.seed(0)
@@ -84,11 +74,7 @@ def load_model_and_export(
     ort_session = onnxruntime.InferenceSession(outname)
 
     def to_numpy(tensor):
-        return (
-            tensor.detach().cpu().numpy()
-            if tensor.requires_grad
-            else tensor.cpu().numpy()
-        )
+        return tensor.detach().cpu().numpy() if tensor.requires_grad else tensor.cpu().numpy()
 
     # compute ONNX Runtime output prediction
     ort_inputs = {ort_session.get_inputs()[0].name: to_numpy(x)}
@@ -103,47 +89,23 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     # segmentation model for inference.
     parser.add_argument(
-        "--model",
-        type=str,
-        default=r"/workspace/models/model.pt",
-        help="Input an existing model weight",
+        "--model", type=str, default=r"/workspace/models/model.pt", help="Input an existing model weight"
     )
 
     # path to save videos.
     parser.add_argument(
-        "--outpath",
-        type=str,
-        default=r"/workspace/models/model.onnx",
-        help="A path to save the onnx model.",
+        "--outpath", type=str, default=r"/workspace/models/model.onnx", help="A path to save the onnx model."
     )
 
-    parser.add_argument(
-        "--width",
-        type=int,
-        default=736,
-        help="Width for exporting onnx model.",
-    )
+    parser.add_argument("--width", type=int, default=736, help="Width for exporting onnx model.")
+
+    parser.add_argument("--height", type=int, default=480, help="Height for exporting onnx model.")
 
     parser.add_argument(
-        "--height",
-        type=int,
-        default=480,
-        help="Height for exporting onnx model.",
+        "--out_channels", type=int, default=2, help="Number of expected out_channels in model for exporting to onnx."
     )
 
-    parser.add_argument(
-        "--out_channels",
-        type=int,
-        default=2,
-        help="Number of expected out_channels in model for exporting to onnx.",
-    )
-
-    parser.add_argument(
-        "--multigpu",
-        type=bool,
-        default=False,
-        help="If loading model trained with multi gpu.",
-    )
+    parser.add_argument("--multigpu", type=bool, default=False, help="If loading model trained with multi gpu.")
 
     args = parser.parse_args()
     modelname = args.model
@@ -157,6 +119,4 @@ if __name__ == "__main__":
         raise Exception(
             "The specified outpath already exists! Change the outpath to avoid overwriting your saved model. "
         )
-    model = load_model_and_export(
-        modelname, outname, out_channels, height, width, multigpu
-    )
+    model = load_model_and_export(modelname, outname, out_channels, height, width, multigpu)
