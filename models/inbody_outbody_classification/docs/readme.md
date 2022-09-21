@@ -2,8 +2,8 @@
 A pre-trained model for the inbody-outbody classification task.
 
 # Model Overview
-This model is trained using the SEResNet50 structure, whose details can be found in [1]. All datasets are from private samples of Activ-Surgical. Samples in training and validation dataset are from the same 4 videos, while test samples are from different two videos. 
-The [pytorch model](https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIkoyNa-x/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1fOoJ4n5DWKHrt9QXTZ2sXwr9C-YvVGCM/view?usp=sharing) are shared in google drive. 
+This model is trained using the SEResNet50 structure, whose details can be found in [1]. All datasets are from private samples of Activ-Surgical. Samples in training and validation dataset are from the same 4 videos, while test samples are from different two videos.
+The [pytorch model](https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIkoyNa-x/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1fOoJ4n5DWKHrt9QXTZ2sXwr9C-YvVGCM/view?usp=sharing) are shared in google drive.
 
 ## Data
 The whole datasets are from Activ-Surgical. The input label json should be a list made up by dicts which includes "image" and "label" keys. An example format is shown below.
@@ -106,7 +106,7 @@ trtexec --onnx=models/model.onnx --saveEngine=models/model.trt --fp16 \
     --maxShapes=INPUT__0:32x3x256x256 \
     --shapes=INPUT__0:8x3x256x256
 ```
-This command need TensorRT with correct CUDA installed in the environment. For the detail of installing TensorRT, please refer to [this link](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html). 
+This command need TensorRT with correct CUDA installed in the environment. For the detail of installing TensorRT, please refer to [this link](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html).
 
 # References
 [1] J. Hu, L. Shen and G. Sun, Squeeze-and-Excitation Networks, 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2018, pp. 7132-7141. https://arxiv.org/pdf/1709.01507.pdf
