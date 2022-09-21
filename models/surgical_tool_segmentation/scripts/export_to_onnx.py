@@ -87,12 +87,12 @@ def load_model_and_export(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    # segmentation model for inference.
+    # the original model for converting.
     parser.add_argument(
         "--model", type=str, default=r"/workspace/models/model.pt", help="Input an existing model weight"
     )
 
-    # path to save videos.
+    # path to save the onnx model.
     parser.add_argument(
         "--outpath", type=str, default=r"/workspace/models/model.onnx", help="A path to save the onnx model."
     )
