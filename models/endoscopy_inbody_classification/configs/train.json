@@ -4,10 +4,10 @@
         "$import json",
         "$import ignite"
     ],
-    "bundle_root": "/workspace/bundle/inbody_outbody_bundle",
+    "bundle_root": "/workspace/bundle/endoscopy_inbody_classification",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/data/inbody_outbody",
+    "dataset_dir": "/workspace/data/endoscopy_inbody_classification",
     "train_json": "$@dataset_dir+'/train.json'",
     "val_json": "$@dataset_dir+'/val.json'",
     "train_fp": "$open(@train_json,'r', encoding='utf8')",

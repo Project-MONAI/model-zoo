@@ -1,5 +1,5 @@
 # Description
-A pre-trained model for the inbody-outbody classification task.
+A pre-trained model for the endoscopy inbody classification task.
 
 # Model Overview
 This model is trained using the SEResNet50 structure, whose details can be found in [1]. All datasets are from private samples of Activ-Surgical. Samples in training and validation dataset are from the same 4 videos, while test samples are from different two videos.

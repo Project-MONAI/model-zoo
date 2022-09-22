@@ -12,8 +12,8 @@
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
     },
-    "task": "Inbody-outbody classification",
-    "description": "A pre-trained binary classification model for inbody-outbody classification task",
+    "task": "Endoscopy inbody classification classification",
+    "description": "A pre-trained binary classification model for endoscopy inbody classification task",
     "authors": "NVIDIA DLMED team",
     "copyright": "Copyright (c) 2021-2022, NVIDIA CORPORATION",
     "data_source": "private dataset",
