@@ -9,9 +9,9 @@ To download and get started with the models, please see [the model browser](http
 
 ## License
 
-Bundles released on the MONAI Model Zoo require a license for the software itself comprising the configuration files and model weights. You are required to adhere to the license conditions included with each bundle, as well as any license conditions stated for data bundles may include or use (please check `docs/license.txt` within the bundle directory). 
+Bundles released on the MONAI Model Zoo require a license for the software itself comprising the configuration files and model weights. You are required to adhere to the license conditions included with each bundle, as well as any license conditions stated for data bundles may include or use (please check `docs/license.txt` within the bundle directory).
 
-The MONAI Model Zoo repository itself follows [Apache License](https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE), thus you need to follow this license if using its software, and we recommend this license for bundles. 
+The MONAI Model Zoo repository itself follows [Apache License](https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE), thus you need to follow this license if using its software, and we recommend this license for bundles.
 
 The MONAI Model Zoo does not make any statement of the suitability of any model for a particular task, especially not for therapeutic or diagnostic use.
 
