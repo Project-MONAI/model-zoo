@@ -9,7 +9,7 @@ To download and get started with the models, please see [the model browser](http
 
 ## License
 
-The MONAI Model Zoo repository follows [Apache License](https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE), thus you need to follow this license if using any models (include using pre-trained weights, training scripts and so on). To use the dataset (if existing) that is mentioned in a model, you may also need to follow the corresponding requirements.
+The MONAI Model Zoo repository follows [Apache License](https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE), thus you need to follow this license if using any models (include using pre-trained weights, training scripts and so on). To use the dataset (if existing) that is mentioned in a model, you may also need to follow the corresponding requirements (please check `docs/license.txt` within the bundle directory).
 
 ## Contributing
 
