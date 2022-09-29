@@ -78,3 +78,6 @@ polygraphy surgeon sanitize --fold-constants models/model.onnx -o models/new_mod
 [1] Tan, M. and Le, Q. V. Efficientnet: Rethinking model scaling for convolutional neural networks. ICML, 2019a. https://arxiv.org/pdf/1905.11946.pdf
 
 [2] O. Ronneberger, P. Fischer, and T. Brox. U-net: Convolutional networks for biomedical image segmentation. In International Conference on Medical image computing and computer-assisted intervention, pages 234–241. Springer, 2015. https://arxiv.org/pdf/1505.04597.pdf
+
+# License
+This model is released under Apache 2.0 terms. The license file is included with the model.
