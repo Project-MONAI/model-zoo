@@ -6,7 +6,7 @@ This model is trained using a flexible unet structure with an efficient-b0 [1] a
 The [pytorch model](https://drive.google.com/file/d/14r6WmzaZrgaWLGu0O9vSAzdeIGVFQ3cs/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1i-e5xXHtmvmqitwUP8Q3JqvnmN3mlrEm/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file.
 
 ## Data
-The whole dataset is a private dataset from Activ-Surgical.
+Datasets used in this work were provided by Activ Surgical.
 
 Since datasets are private, existing public datasets like [EndoVis 2017](https://endovissub2017-roboticinstrumentsegmentation.grand-challenge.org/Data/) can be used to train a similar model.
 
