@@ -1,1 +1,1 @@
-monai[gdown]>=0.9.0
+monai>=0.9.0
