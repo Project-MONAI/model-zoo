@@ -112,3 +112,6 @@ This command need TensorRT with correct CUDA installed in the environment. For t
 
 # References
 [1] J. Hu, L. Shen and G. Sun, Squeeze-and-Excitation Networks, 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2018, pp. 7132-7141. https://arxiv.org/pdf/1709.01507.pdf
+
+# License
+This model is released under Apache 2.0 terms. The license file is included with the model.
