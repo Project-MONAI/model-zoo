@@ -160,3 +160,6 @@ This is an example, not to be used for diagnostic purposes.
 [2] Zizhao Zhang et al.  Nested Hierarchical Transformer: Towards Accurate, Data-Efficient and Interpretable Visual Understanding.  AAAI Conference on Artificial Intelligence (AAAI) 2022
 
 [3] Huo, Yuankai, et al.  3D whole brain segmentation using spatially localized atlas network tiles.  NeuroImage 194 (2019): 105-119.
+
+# License
+This model is released under Apache 2.0 terms. The license file is included with the model.

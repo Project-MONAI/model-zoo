@@ -48,3 +48,6 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 
 # References
 [1] Sakinis, Tomas, et al. "Interactive segmentation of medical images through fully convolutional neural networks." arXiv preprint arXiv:1903.08205 (2019).
+
+# License
+This model is released under Apache 2.0 terms. The license file is included with the model.

@@ -94,3 +94,6 @@ This is an example, not to be used for diagnostic purposes.
 # References
 
 [1] Myronenko, Andriy. "3D MRI brain tumor segmentation using autoencoder regularization." International MICCAI Brainlesion Workshop. Springer, Cham, 2018. https://arxiv.org/abs/1810.11654.
+
+# License
+This model is released under Apache 2.0 terms. The license file is included with the model.

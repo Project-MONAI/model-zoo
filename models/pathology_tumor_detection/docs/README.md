@@ -103,3 +103,6 @@ The model needs to be used with NVIDIA hardware and software. For hardware, the 
 # References
 
 [1] He, Kaiming, et al, "Deep Residual Learning for Image Recognition." In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 770-778. 2016. <https://arxiv.org/pdf/1512.03385.pdf>
+
+# License
+This model is released under Apache 2.0 terms. The license file is included with the model.
