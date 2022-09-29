@@ -1,15 +1,21 @@
 {
     "imports": [
         "$import datetime",
-        "$import numpy as np",
+        "$import numpy",
         "$import torch",
         "$import ignite",
         "$import scripts"
     ],
     "bundle_root": ".",
-    "val_interval": 1,
-    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "val_interval": 1,
+    "num_iters": 400,
+    "batch_size": 600,
+    "num_epochs": 100,
+    "num_substeps": 3,
+    "learning_rate": 0.0001,
+    "num_workers": 8,
     "dataset_file": "./valvelandmarks.npz",
     "output_dir": "$datetime.datetime.now().strftime('./results/output_%y%m%d_%H%M%S')",
     "network_def": {
@@ -56,7 +62,7 @@
                 "_target_": "EnsureTyped",
                 "keys": "@both_keys",
                 "data_type": "numpy",
-                "dtype": "$(np.float32, np.int32)"
+                "dtype": "$(numpy.float32, numpy.int32)"
             },
             {
                 "_target_": "EnsureTyped",
@@ -147,7 +153,7 @@
                 "_target_": "EnsureTyped",
                 "keys": "@both_keys",
                 "data_type": "numpy",
-                "dtype": "$(np.float32, np.int32)"
+                "dtype": "$(numpy.float32, numpy.int32)"
             },
             {
                 "_target_": "EnsureTyped",
@@ -186,10 +192,6 @@
         },
         "transform": "@eval_transforms"
     },
-    "num_iters": 400,
-    "batch_size": 600,
-    "num_epochs": 100,
-    "num_substeps": 3,
     "sampler": {
         "_target_": "torch.utils.data.WeightedRandomSampler",
         "weights": "$torch.ones(len(@train_dataset))",
@@ -201,14 +203,14 @@
         "dataset": "@train_dataset",
         "batch_size": "@batch_size",
         "repeats": "@num_substeps",
-        "num_workers": 8,
+        "num_workers": "@num_workers",
         "sampler": "@sampler"
     },
     "eval_dataloader": {
         "_target_": "DataLoader",
         "dataset": "@eval_dataset",
         "batch_size": "@batch_size",
-        "num_workers": 8
+        "num_workers": "@num_workers"
     },
     "lossfn": {
         "_target_": "torch.nn.L1Loss"
@@ -216,7 +218,7 @@
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@network.parameters()",
-        "lr": 0.0001
+        "lr": "@learning_rate"
     },
     "evaluator": {
         "_target_": "SupervisedEvaluator",

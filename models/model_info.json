@@ -138,5 +138,9 @@
     "mednist_gan_v0.3.0": {
         "checksum": "ffbde31cec6fd2beb2c34ae95f28a09564af979c",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_gan_v0.3.0.zip"
+    },
+    "valve_landmarks_v0.3.0": {
+        "checksum": "fe883da44b2aeb6f51e16fe5340da6caed16e206",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.3.0.zip"
     }
 }
