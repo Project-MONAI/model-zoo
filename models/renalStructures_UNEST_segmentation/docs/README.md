@@ -1,5 +1,5 @@
 # Description
-A pre-trained model for training and inferencing volumetric (3D) kidney substructures segmentation from contrast-enhanced CT images (Arterial/Portal Venous Phase). Training pipeline is provide to support model fine-tuning with bundle and MONAI Label active learning.
+A pre-trained model for training and inferencing volumetric (3D) kidney substructures segmentation from contrast-enhanced CT images (Arterial/Portal Venous Phase). Training pipeline is provided to support model fine-tuning with bundle and MONAI Label active learning.
 
 A tutorial and release of model for kidney cortex, medulla and collecting system segmentation.
 
