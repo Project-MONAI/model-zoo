@@ -6,7 +6,7 @@ This model is trained using the SEResNet50 structure, whose details can be found
 The [pytorch model](https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIkoyNa-x/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1fOoJ4n5DWKHrt9QXTZ2sXwr9C-YvVGCM/view?usp=sharing) are shared in google drive.
 
 ## Data
-Datasets used in this work were provided by Activ Surgical. 
+Datasets used in this work were provided by Activ Surgical.
 
 The input label json should be a list made up by dicts which includes "image" and "label" keys. An example format is shown below.
 
