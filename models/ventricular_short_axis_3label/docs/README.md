@@ -36,3 +36,6 @@ An example notebook [visualise.ipynb](./visualise.ipynb) demonstrates using the 
 ```sh
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf --dataset_dir dataset --output_dir ./output/ --bundle_root .
 ```
+
+# License
+This model is released under the MIT License. The license file is included with the model.

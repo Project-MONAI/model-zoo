@@ -60,3 +60,6 @@ net = torch.jit.load("mednist_gan.ts")
 latent = torch.rand(1, 64)
 img = net(latent)  # (1,1,64,64)
 ```
+
+# License
+This model is released under Apache 2.0 terms. The license file is included with the model.
