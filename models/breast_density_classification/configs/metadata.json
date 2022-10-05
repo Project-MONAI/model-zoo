@@ -1,0 +1,64 @@
+{
+    "version": "0.1.0",
+    "monai_version": "1.0.0rc1",
+    "pytorch_version": "1.10.0",
+    "numpy_version": "1.21.2",
+    "optional_packages_version": {
+        "pydicom": "3.2.1"
+    },
+    "task": "Breast Density Classification",
+    "description": "A pre-trained model for classifying breast images (mammograms)  ",
+    "authors": "Center for Augmented Intelligence in Imaging, Mayo Clinic Florida",
+    "copyright": "Copyright (c) Mayo Clinic",
+    "data_source": "Mayo Clinic ",
+    "data_type": "Jpeg",
+    "image_classes": "three channel data, intensity scaled to [0, 1]. A single grayscale is copied to 3 channels",
+    "label_classes": "four classes marked as [0, 1, 0, 0]",
+    "pred_classes": "One hot data",
+    "eval_metrics": {
+        "accuracy": 0.96
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Gupta, Vikash, et al. A multi-reconstruction study of breast density estimation using Deep Learning. arXiv preprint arXiv:2202.08238 (2022)."
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "Mammogram",
+                "num_channels": 3,
+                "spatial_shape": [
+                    229,
+                    229
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "labels",
+                "dtype": "float32",
+                "value_range": [0, 1],
+								"num_channels": 4,
+                "channel_def": {
+                    "0": "A",
+                    "1": "B",
+                    "2": "C",
+                    "3": "D"
+                }
+            }
+        }
+    }
+}
+

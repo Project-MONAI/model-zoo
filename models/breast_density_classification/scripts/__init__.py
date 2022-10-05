@@ -1,0 +1,1 @@
+from scripts.createList import CreateImageLabelList
