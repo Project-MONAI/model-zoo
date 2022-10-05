@@ -12,6 +12,13 @@ The output is an array with probabilities for each of the four class.
 # Sample Data
 In the folder `sample_data` few example input images are stored for each category of images. These images are stored in jpeg format for sharing purpose. 
 
+# Input and Output Formats
+The input image should have the size [299, 299, 3]. For a dicom image which are single channel. The channel can be repeated 3 times.
+The output is an array with probabilities for each of the four class.
+
+# Sample Data
+In the folder `sample_data` few example input images are stored for each category of images. These images are stored in jpeg format for sharing purpose.
+
 # Commands Example
 Create a json file with names of all the input files. Execute the following command
 ```
@@ -23,7 +30,7 @@ export PATH=${PATH}:<absolute path to your script folder>
 ```
 
 # Execute Inference 
-The inference can be executed as follows 
+The inference can be executed as follows
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json configs/logging.conf
 ```

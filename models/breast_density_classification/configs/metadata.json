@@ -49,8 +49,11 @@
                 "type": "image",
                 "format": "labels",
                 "dtype": "float32",
-                "value_range": [0, 1],
-								"num_channels": 4,
+                "value_range": [
+                    0,
+                    1
+                ],
+                "num_channels": 4,
                 "channel_def": {
                     "0": "A",
                     "1": "B",
@@ -61,4 +64,3 @@
         }
     }
 }
-
