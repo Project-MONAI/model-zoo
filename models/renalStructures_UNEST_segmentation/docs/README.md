@@ -84,7 +84,6 @@ This is an example, not to be used for diagnostic purposes.
 [2] Zizhao Zhang et al. "Nested Hierarchical Transformer: Towards Accurate, Data-Efficient and Interpretable Visual Understanding." AAAI Conference on Artificial Intelligence (AAAI) 2022
 
 # License
-
 Copyright (c) MONAI Consortium
 
 Licensed under the Apache License, Version 2.0 (the "License");

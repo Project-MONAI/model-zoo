@@ -62,7 +62,6 @@ img = net(latent)  # (1,1,64,64)
 ```
 
 # License
-
 Copyright (c) MONAI Consortium
 
 Licensed under the Apache License, Version 2.0 (the "License");

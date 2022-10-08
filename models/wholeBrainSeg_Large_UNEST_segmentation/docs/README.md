@@ -162,7 +162,6 @@ This is an example, not to be used for diagnostic purposes.
 [3] Huo, Yuankai, et al.  3D whole brain segmentation using spatially localized atlas network tiles.  NeuroImage 194 (2019): 105-119.
 
 # License
-
 Copyright (c) MONAI Consortium
 
 Licensed under the Apache License, Version 2.0 (the "License");

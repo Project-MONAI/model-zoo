@@ -79,7 +79,6 @@ This is an example, not to be used for diagnostic purposes.
 [3] Landman B, et al. "MICCAI multi-atlas labeling beyond the cranial vault–workshop and challenge." In Proc. of the MICCAI Multi-Atlas Labeling Beyond Cranial Vault—Workshop Challenge 2015 Oct (Vol. 5, p. 12).
 
 # License
-
 Copyright (c) MONAI Consortium
 
 Licensed under the Apache License, Version 2.0 (the "License");
