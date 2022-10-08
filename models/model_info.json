@@ -142,5 +142,13 @@
     "valve_landmarks_v0.3.0": {
         "checksum": "fe883da44b2aeb6f51e16fe5340da6caed16e206",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.3.0.zip"
+    },
+    "wholeBrainSeg_Large_UNEST_segmentation_v0.1.2": {
+        "checksum": "94773c8fe9304fdad81e9c00da6df3049775e044",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBrainSeg_Large_UNEST_segmentation_v0.1.2.zip"
+    },
+    "renalStructures_UNEST_segmentation_v0.1.3": {
+        "checksum": "f27007d5b5ea24a1fbef2c5a300de8d86cf4fa89",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/renalStructures_UNEST_segmentation_v0.1.3.zip"
     }
 }
