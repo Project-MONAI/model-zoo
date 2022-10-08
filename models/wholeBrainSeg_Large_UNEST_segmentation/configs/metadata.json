@@ -3,10 +3,11 @@
     "version": "0.2.0",
     "changelog": {
         "0.2.0": "update license files",
+        "0.1.2": "Add training support for whole brain segmentation, users can use active learning in the MONAI Label",
         "0.1.1": "Fix dimension according to MONAI 1.0 and fix readme file",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "0.9.1",
+    "monai_version": "1.0.0",
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {

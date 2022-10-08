@@ -1,6 +1,7 @@
 # Description
 Detailed whole brain segmentation is an essential quantitative technique in medical image analysis, which provides a non-invasive way of measuring brain regions from a clinical acquired structural magnetic resonance imaging (MRI).
-We provide the pre-trained model for inferencing whole brain segmentation with 133 structures.
+We provide the pre-trained model for training and inferencing whole brain segmentation with 133 structures.
+Training pipeline is provided to support active learning in MONAI Label and training with bundle.
 
 A tutorial and release of model for whole brain segmentation using the 3D transformer-based segmentation model UNEST.
 
@@ -20,7 +21,7 @@ Fig.1 - The demonstration of T1w MRI images registered in MNI space and the whol
 
 
 # Model Overview
-A pre-trained larger UNEST base model [1] for volumetric (3D) whole brain segmentation with T1w MR images.
+A pre-trained UNEST base model [1] for volumetric (3D) whole brain segmentation with T1w MR images.
 To leverage information across embedded sequences, ”shifted window” transformers
 are proposed for dense predictions and modeling multi-scale features. However, these
 attempts that aim to complicate the self-attention range often yield high computation
@@ -90,6 +91,11 @@ Add scripts component:  To run the workflow with customized components, PYTHONPA
 export PYTHONPATH=$PYTHONPATH: '<path to the bundle root dir>/scripts'
 ```
 
+Execute Training:
+
+```
+python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
+```
 
 Execute inference:
 
@@ -104,6 +110,12 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 Fig.3 - The output prediction comparison with variant and ground truth
 </p>
 
+## Training/Validation Benchmarking
+A graph showing the training accuracy for fine-tuning 600 epochs.
+
+![](./training.png) <br>
+
+With 10 fine-tuned labels, the training process converges fast.
 
 ## Complete ROI of the whole brain segmentation
 133 brain structures are segmented.
@@ -147,7 +159,7 @@ Fig.3 - The output prediction comparison with variant and ground truth
 
 
 ## Bundle Integration in MONAI Lable
-The inference pipleine can be easily used by the MONAI Label server and 3D Slicer for fast labeling T1w MRI images in MNI space.
+The inference and training pipleine can be easily used by the MONAI Label server and 3D Slicer for fast labeling T1w MRI images in MNI space.
 
 ![](./3DSlicer_use.png) <br>
 

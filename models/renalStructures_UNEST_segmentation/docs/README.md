@@ -1,5 +1,5 @@
 # Description
-A pre-trained model for inferencing volumetric (3D) kidney substructures segmentation from contrast-enhanced CT images (Arterial/Portal Venous Phase).
+A pre-trained model for training and inferencing volumetric (3D) kidney substructures segmentation from contrast-enhanced CT images (Arterial/Portal Venous Phase). Training pipeline is provided to support model fine-tuning with bundle and MONAI Label active learning.
 
 A tutorial and release of model for kidney cortex, medulla and collecting system segmentation.
 
@@ -61,7 +61,11 @@ Add scripts component:  To run the workflow with customized components, PYTHONPA
 export PYTHONPATH=$PYTHONPATH:"'<path to the bundle root dir>/scripts'"
 
 ```
+Execute Training:
 
+```
+python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
+```
 
 Execute inference:
 
