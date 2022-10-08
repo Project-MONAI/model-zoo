@@ -12,13 +12,16 @@
 
 import argparse
 
-from utils import get_changed_bundle_list
+from utils import get_changed_bundle_list, prepare_schema
 
 
 def main(changed_dirs):
 
     bundle_names = ""
-    bundle_list = get_changed_bundle_list(changed_dirs)
+    root_path = "models"
+    bundle_list = get_changed_bundle_list(changed_dirs, root_path=root_path)
+    prepare_schema(bundle_list, root_path=root_path)
+
     for bundle in bundle_list:
         bundle_names += f"{bundle} "
     print(bundle_names)
