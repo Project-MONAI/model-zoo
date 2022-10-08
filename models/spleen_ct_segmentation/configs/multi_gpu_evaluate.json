@@ -14,7 +14,7 @@
         "shuffle": false
     },
     "validate#dataloader#sampler": "@validate#sampler",
-    "validate#handlers#1#_disabled_": "$True if dist.get_rank() > 0 else False",
+    "validate#handlers#1#_disabled_": "$dist.get_rank() > 0",
     "evaluating": [
         "$import torch.distributed as dist",
         "$dist.init_process_group(backend='nccl')",
