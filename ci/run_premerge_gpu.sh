@@ -55,6 +55,7 @@ verify_bundle() {
         bundle_list=$(pipenv run python $(pwd)/ci/get_changed_bundle.py --f "$changes")
         if [ ! -z "$bundle_list" ]
         then
+            pipenv run python $(pwd)/ci/prepare_schema.py --l "$bundle_list"
             for bundle in $bundle_list;
             do
                 init_pipenv requirements-dev.txt
