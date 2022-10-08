@@ -66,7 +66,7 @@ def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
 
 def prepare_schema(bundle_list: List[str], root_path: str = "models"):
     """
-    This function is sued to prepare schema for changed bundles.
+    This function is used to prepare schema for changed bundles.
     Due to Github's limitation (see: https://github.com/Project-MONAI/model-zoo/issues/111),
     to avoid repeated downloading, all distinct schemas will be downloaded first, and copy
     to changed bundle directories.
@@ -75,18 +75,19 @@ def prepare_schema(bundle_list: List[str], root_path: str = "models"):
     schema_dict = {}
     for bundle_name in bundle_list:
         bundle_path = os.path.join(root_path, bundle_name)
-        meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
-        metadata = get_json_dict(meta_file_path)
-        schema_url = metadata["schema"]
-        schema_name = schema_url.split("/")[-1]
+        if os.path.exists(bundle_path):
+            meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
+            metadata = get_json_dict(meta_file_path)
+            schema_url = metadata["schema"]
+            schema_name = schema_url.split("/")[-1]
 
-        if schema_url not in schema_dict.keys():
-            schema_path = os.path.join(root_path, schema_name)
-            download_url(url=schema_url, filepath=schema_path)
-            schema_dict[schema_url] = schema_path
-        os.makedirs(os.path.join(bundle_path, "eval"), exist_ok=True)
-        shutil.copyfile(schema_dict[schema_url], os.path.join(bundle_path, "eval/schema.json"))
-        print(f"schema of bundle: {bundle_name} is prepared.")
+            if schema_url not in schema_dict.keys():
+                schema_path = os.path.join(root_path, schema_name)
+                download_url(url=schema_url, filepath=schema_path)
+                schema_dict[schema_url] = schema_path
+            os.makedirs(os.path.join(bundle_path, "eval"), exist_ok=True)
+            shutil.copyfile(schema_dict[schema_url], os.path.join(bundle_path, "eval/schema.json"))
+            print("prepared schema for: ", bundle_name)
 
 
 def download_large_files(bundle_path: str, large_file_name: str = "large_file.yml"):
