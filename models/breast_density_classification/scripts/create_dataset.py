@@ -1,10 +1,11 @@
+import argparse
 import json
 import os
 import sys
 
 
-def main():
-    base_dir = "/home/gupta/Documents/MONAI-DEPLOY/model-zoo/models/breast_density_classification/sample_data"
+def main(base_dir: str, output_file: str):
+
     list_classes = ["A", "B", "C", "D"]
 
     output_list = []
@@ -24,7 +25,6 @@ def main():
             _out = {"image": os.path.join(data_dir, _file), "label": _label}
             output_list.append(_out)
 
-    output_file = sys.argv[1]
     data_dict = {"Test": output_list}
 
     fid = open(output_file, "w")
@@ -32,4 +32,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="")
+
+    parser.add_argument("-base_dir", "--base_dir", default="sample_data", help="dir of dataset")
+    parser.add_argument(
+        "-output_file", "--output_file", default="configs/sample_image_data.json", help="output file name"
+    )
+    parser_args, _ = parser.parse_known_args(sys.argv)
+    main(base_dir=parser_args.base_dir, output_file=parser_args.output_file)

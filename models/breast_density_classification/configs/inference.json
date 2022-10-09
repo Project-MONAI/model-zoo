@@ -7,7 +7,7 @@
     "model_dir": "./models",
     "data": {
         "_target_": "scripts.createList.CreateImageLabelList",
-        "filename": "/home/gupta/Documents/MONAI-DEPLOY/model-zoo/models/breast_density_classification/configs/sample_image_list.json"
+        "filename": "/workspace/model-zoo/models/breast_density_classification/configs/sample_image_data.json"
     },
     "test_imagelist": "$@data.create_dataset('Test')[0]",
     "test_labellist": "$@data.create_dataset('Test')[1]",

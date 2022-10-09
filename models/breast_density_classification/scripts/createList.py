@@ -1,5 +1,4 @@
 import json
-import os
 
 
 class CreateImageLabelList:
@@ -18,7 +17,7 @@ class CreateImageLabelList:
         return image_list, label_list
 
 
-def CreateSampleImageList(json_filename):
+def create_sample_imagelist(json_filename):
     fid = open(json_filename, "r")
     file_dict = json.load(fid)
     train_data = file_dict["Train"][0:40]
@@ -34,7 +33,7 @@ def CreateSampleImageList(json_filename):
 def main():
     json_filelist = "/raid/Data/MayoClinicData/BreastDensity/patient_img_label_FFDM.json"
     CreateImageLabelList(json_filelist)
-    CreateSampleImageList(json_filelist)
+    create_sample_imagelist(json_filelist)
 
 
 if __name__ == "__main__":

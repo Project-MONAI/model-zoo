@@ -1,6 +1,5 @@
 import os
 
-import torch
 from monai.bundle.config_parser import ConfigParser
 
 os.environ["CUDA_DEVICE_IRDER"] = "PCI_BUS_ID"
