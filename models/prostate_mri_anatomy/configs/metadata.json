@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "changelog": {
+        "0.3.0": "update license files",
         "0.2.0": "unify naming",
         "0.1.1": "add torchscript model",
         "0.1.0": "complete the model package"

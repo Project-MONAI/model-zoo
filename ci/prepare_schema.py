@@ -12,23 +12,19 @@
 
 import argparse
 
-from utils import get_changed_bundle_list
+from utils import prepare_schema
 
 
-def main(changed_dirs):
+def main(bundle_list):
 
-    bundle_names = ""
     root_path = "models"
-    bundle_list = get_changed_bundle_list(changed_dirs, root_path=root_path)
-
-    for bundle in bundle_list:
-        bundle_names += f"{bundle} "
-    print(bundle_names)
+    prepare_schema(bundle_list, root_path=root_path)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
-    parser.add_argument("-f", "--f", type=str, help="changed files.")
+    parser.add_argument("-l", "--l", type=str, help="bundle list.")
     args = parser.parse_args()
-    changed_dirs = args.f.splitlines()
-    main(changed_dirs)
+    bundle_list = args.l.split(" ")
+    bundle_list = [f for f in bundle_list if f != ""]
+    main(bundle_list)
