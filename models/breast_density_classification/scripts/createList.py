@@ -15,4 +15,3 @@ class CreateImageLabelList:
             image_list.append(_["image"])
             label_list.append(_["label"])
         return image_list, label_list
-
