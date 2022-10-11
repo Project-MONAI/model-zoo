@@ -1,10 +1,10 @@
 {
     "version": "0.1.0",
-    "monai_version": "1.0.0rc1",
+    "monai_version": "1.0.0",
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
-        "pydicom": "3.2.1"
+        "torchvision": "0.11.0"
     },
     "task": "Breast Density Classification",
     "description": "A pre-trained model for classifying breast images (mammograms)  ",

@@ -20,14 +20,14 @@ The output is an array with probabilities for each of the four class.
 # Commands Example
 Create a json file with names of all the input files. Execute the following command
 ```
-python scripts/create_dataset.py -base_dir <absolute path of data dir> --output_file ../configs/sample_image_data.json
+python scripts/create_dataset.py -base_dir <path to the bundle root dir>/sample_data -output_file configs/sample_image_data.json
 ```
 Change the `filename` for the field `data` with the absolute path for `sample_image_data.json`
 
 
 # Add scripts folder to your python path as follows
 ```
-export PATH=${PATH}:<absolute path to your script folder>
+export PYTHONPATH=$PYTHONPATH:<path to the bundle root dir>/scripts
 ```
 
 # Execute Inference

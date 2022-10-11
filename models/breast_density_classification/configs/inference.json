@@ -5,9 +5,10 @@
         "$import torchvision"
     ],
     "model_dir": "./models",
+    "output_dir": "./output",
     "data": {
         "_target_": "scripts.createList.CreateImageLabelList",
-        "filename": "/workspace/model-zoo/models/breast_density_classification/configs/sample_image_data.json"
+        "filename": "./configs/sample_image_data.json"
     },
     "test_imagelist": "$@data.create_dataset('Test')[0]",
     "test_labellist": "$@data.create_dataset('Test')[1]",
@@ -22,7 +23,7 @@
         "_target_": "DataLoader",
         "dataset": "@dataset",
         "batch_size": 4,
-        "shuffle": true,
+        "shuffle": false,
         "num_workers": 4
     },
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -91,7 +92,14 @@
         },
         {
             "_target_": "StatsHandler",
-            "iteration_log": true
+            "iteration_log": false,
+            "output_transform": "$lambda x: None"
+        },
+        {
+            "_target_": "ClassificationSaver",
+            "output_dir": "@output_dir",
+            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "output_transform": "$monai.handlers.from_engine(['pred'])"
         }
     ],
     "evaluator": {
