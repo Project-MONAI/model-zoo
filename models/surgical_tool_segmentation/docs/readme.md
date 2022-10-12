@@ -3,16 +3,16 @@ A pre-trained model for the surgical tool segmentation task.
 
 # Model Overview
 This model is trained using a flexible unet structure with an efficient-b0 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from [Activ Surgical](https://www.activsurgical.com/).
-The [pytorch model](https://drive.google.com/file/d/14r6WmzaZrgaWLGu0O9vSAzdeIGVFQ3cs/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1i-e5xXHtmvmqitwUP8Q3JqvnmN3mlrEm/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file.
+The [pytorch model](https://drive.google.com/file/d/14r6WmzaZrgaWLGu0O9vSAzdeIGVFQ3cs/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1i-e5xXHtmvmqitwUP8Q3JqvnmN3mlrEm/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file. Modify the "bundle_root" parameter specified in configs/train.json and configs/inference.json to reflect where models are downloaded. Expected directory path to place downloaded models is "models/" under "bundle_root".
 
 ## Data
 Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/).
 
 Since datasets are private, existing public datasets like [EndoVis 2017](https://endovissub2017-roboticinstrumentsegmentation.grand-challenge.org/Data/) can be used to train a similar model.
 
-When using EndoVis or any other dataset, it should be divided into "train", "valid" and "test" folders. Samples in each folder would better be images and converted to jpg format. Otherwise, "images", "labels", "val_images" and "val_labels" parameters in "configs/train.json" should be modified to fit given dataset. After that, "dataset_dir" parameter in "configs/train.json" should be specified to root folder which contains previous "train", "valid" and "test" folders.
+When using EndoVis or any other dataset, it should be divided into "train", "valid" and "test" folders. Samples in each folder would better be images and converted to jpg format. Otherwise, "images", "labels", "val_images" and "val_labels" parameters in "configs/train.json" and "datalist" in "configs/inference.json" should be modified to fit given dataset. After that, "dataset_dir" parameter in "configs/train.json" and "configs/inference.json" should be changed to root folder which contains previous "train", "valid" and "test" folders.
 
-Please notice that loading data operation in this bundle is adaptive. If images and labels are not in the same format, it may lead to a mismatching problem. For example, if images are in jpg format and labels are in npy format, PIL and Numpy readers will be used separately to load images and labels. Since these two readers have their own way to parse file's shape, loaded labels will be transpose of the correct ones.
+Please notice that loading data operation in this bundle is adaptive. If images and labels are not in the same format, it may lead to a mismatching problem. For example, if images are in jpg format and labels are in npy format, PIL and Numpy readers will be used separately to load images and labels. Since these two readers have their own way to parse file's shape, loaded labels will be transpose of the correct ones and incur a missmatching problem.
 
 ## Training configuration
 The training was performed with an at least 12GB-memory GPU.
@@ -70,13 +70,14 @@ The last parameter is the dynamic input shape in which each parameter means "[(M
 Export TensorRT float16 model from the onnx model:
 
 ```
-trtexec --onnx=models/model.onnx --saveEngine=models/model.trt --fp16 --minShapes=INPUT__0:1x3x736x480 --optShapes=INPUT__0:4x3x736x480 --maxShapes=INPUT__0:8x3x736x480 --shapes=INPUT__0:4x3x736x480
-```
-This command need TensorRT with correct CUDA installed in the environment. For the detail of installing TensorRT, please refer to [this link](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html). In addition, there are padding operations in this FlexibleUNet structure that not support by TensorRT. Therefore, when tried to convert the onnx model to a TensorRT engine, an extra step shown below is needed to execute. The "new_model.onnx" should be the "model.onnx" used to do converting.
-
-```
 polygraphy surgeon sanitize --fold-constants models/model.onnx -o models/new_model.onnx
 ```
+
+```
+trtexec --onnx=models/new_model.onnx --saveEngine=models/model.trt --fp16 --minShapes=INPUT__0:1x3x736x480 --optShapes=INPUT__0:4x3x736x480 --maxShapes=INPUT__0:8x3x736x480 --shapes=INPUT__0:4x3x736x480
+```
+This command need TensorRT with correct CUDA installed in the environment. For the detail of installing TensorRT, please refer to [this link](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html). In addition, there are padding operations in this FlexibleUNet structure that not support by TensorRT. Therefore, when tried to convert the onnx model to a TensorRT engine, an extra polygraphy command is needed to execute.
+
 
 # References
 [1] Tan, M. and Le, Q. V. Efficientnet: Rethinking model scaling for convolutional neural networks. ICML, 2019a. https://arxiv.org/pdf/1905.11946.pdf
