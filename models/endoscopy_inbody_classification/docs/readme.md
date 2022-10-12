@@ -15,20 +15,20 @@ The input label json should be a list made up by dicts which includes "image" an
     {
         "image":"/path/to/image/image_name0.jpg",
         "label": 0
-    }
+    },
     {
         "image":"/path/to/image/image_name1.jpg",
         "label": 0
-    }
+    },
     {
         "image":"/path/to/image/image_name2.jpg",
         "label": 1
-    }
+    },
     ....
     {
         "image":"/path/to/image/image_namek.jpg",
         "label": 0
-    }
+    },
 ]
 ```
 
