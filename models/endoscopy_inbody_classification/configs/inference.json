@@ -27,10 +27,6 @@
                 "keys": "image"
             },
             {
-                "_target_": "ToTensord",
-                "keys": "label"
-            },
-            {
                 "_target_": "AsChannelFirstd",
                 "keys": "image"
             },
