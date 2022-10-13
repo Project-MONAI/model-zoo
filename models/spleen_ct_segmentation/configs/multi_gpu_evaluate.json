@@ -20,6 +20,8 @@
         "$dist.init_process_group(backend='nccl')",
         "$torch.cuda.set_device(@device)",
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$import logging",
+        "$@validate#evaluator.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)",
         "$@validate#evaluator.run()",
         "$dist.destroy_process_group()"
     ]
