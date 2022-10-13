@@ -1,5 +1,5 @@
 # Description
-A pre-trained model for the surgical tool segmentation task.
+A pre-trained model for the endoscopic tool segmentation task.
 
 # Model Overview
 This model is trained using a flexible unet structure with an efficient-b0 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from [Activ Surgical](https://www.activsurgical.com/).

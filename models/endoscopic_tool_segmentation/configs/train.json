@@ -5,10 +5,10 @@
         "$import torch",
         "$import numpy as np"
     ],
-    "bundle_root": "/workspace/bundle/surgical_tool_segmentation",
+    "bundle_root": "/workspace/bundle/endoscopic_tool_segmentation",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/data/dataset_4300",
+    "dataset_dir": "/workspace/data/endoscopic_tool_dataset",
     "images": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'train', '*[!seg].jpg'))))",
     "labels": "$[x.replace('.jpg', '_seg.jpg') for x in @images]",
     "val_images": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'valid', '*[!seg].jpg'))))",

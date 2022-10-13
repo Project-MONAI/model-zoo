@@ -13,8 +13,8 @@
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
     },
-    "task": "surgical tool segmentation",
-    "description": "A pre-trained binary segmentation model for surgical tool segmentation",
+    "task": "endoscopic tool segmentation",
+    "description": "A pre-trained binary segmentation model for endoscopic tool segmentation",
     "authors": "NVIDIA DLMED team",
     "copyright": "Copyright (c) 2021-2022, NVIDIA CORPORATION",
     "data_source": "private dataset",
