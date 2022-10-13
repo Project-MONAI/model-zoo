@@ -13,8 +13,8 @@
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
     },
-    "task": "Endoscopy inbody classification classification",
-    "description": "A pre-trained binary classification model for endoscopy inbody classification task",
+    "task": "Endoscopic inbody classification classification",
+    "description": "A pre-trained binary classification model for endoscopic inbody classification task",
     "authors": "NVIDIA DLMED team",
     "copyright": "Copyright (c) 2021-2022, NVIDIA CORPORATION",
     "data_source": "private dataset",
