@@ -210,5 +210,9 @@
     "endoscopic_tool_segmentation_v0.2.0": {
         "checksum": "c76dfc4dbb3f5cd4af6f8d755eca84d5965d4307",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.2.0.zip"
+    },
+    "endoscopic_inbody_classification_v0.2.0": {
+        "checksum": "cbcfb38057c5ef8df316e3512ddc09c97132601b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.2.0.zip"
     }
 }
