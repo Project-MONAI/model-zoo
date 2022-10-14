@@ -1,0 +1,9 @@
+large_files:
+  - path: "models/model.pt"
+    url: "https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIkoyNa-x/view?usp=sharing"
+    hash_val: "4f24cc6922a85f1c6c4e9b53a6a3c392"
+    hash_type: "md5"
+  - path: "models/model.ts"
+    url: "https://drive.google.com/file/d/1fOoJ4n5DWKHrt9QXTZ2sXwr9C-YvVGCM/view?usp=sharing"
+    hash_val: "c2995ff581c3481e7e24cd7b6964bbd8"
+    hash_type: "md5"
