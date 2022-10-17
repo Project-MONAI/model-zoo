@@ -1,4 +1,8 @@
 {
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "changelog": {
+        "0.1.0": "complete the model package"
+    },
     "version": "0.1.0",
     "monai_version": "1.0.0",
     "torch_version": "1.12.1",
@@ -54,6 +58,11 @@
                     1
                 ],
                 "num_channels": 4,
+                "spatial_shape": [
+                    1,
+                    4
+                ],
+                "is_patch_data": false,
                 "channel_def": {
                     "0": "A",
                     "1": "B",

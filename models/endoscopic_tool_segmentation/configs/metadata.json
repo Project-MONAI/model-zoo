@@ -1,0 +1,78 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.2.0",
+    "changelog": {
+        "0.2.0": "update license files",
+        "0.1.0": "complete the first version model package",
+        "0.0.1": "initialize the model package structure"
+    },
+    "monai_version": "1.0.0",
+    "pytorch_version": "1.12.0",
+    "numpy_version": "1.22.4",
+    "optional_packages_version": {
+        "nibabel": "4.0.1",
+        "pytorch-ignite": "0.4.9"
+    },
+    "task": "endoscopic tool segmentation",
+    "description": "A pre-trained binary segmentation model for endoscopic tool segmentation",
+    "authors": "NVIDIA DLMED team",
+    "copyright": "Copyright (c) 2021-2022, NVIDIA CORPORATION",
+    "data_source": "private dataset",
+    "data_type": "RGB",
+    "image_classes": "three channel data, intensity [0-255]",
+    "label_classes": "single channel data, 1/255 is tool, 0 is background",
+    "pred_classes": "2 channels OneHot data, channel 1 is tool, channel 0 is background",
+    "eval_metrics": {
+        "mean_iou": 0.87
+    },
+    "references": [
+        "Tan, M. and Le, Q. V. Efficientnet: Rethinking model scaling for convolutional neural networks. ICML, 2019a. https://arxiv.org/pdf/1905.11946.pdf",
+        "O. Ronneberger, P. Fischer, and T. Brox. U-net: Convolutional networks for biomedical image segmentation. In International Conference on Medical image computing and computer-assisted intervention, pages 234\u2013241. Springer, 2015. https://arxiv.org/pdf/1505.04597.pdf"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "magnitude",
+                "format": "RGB",
+                "modality": "regular",
+                "num_channels": 3,
+                "spatial_shape": [
+                    736,
+                    480
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "R",
+                    "1": "G",
+                    "2": "B"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 2,
+                "spatial_shape": [
+                    736,
+                    480
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "background",
+                    "1": "tools"
+                }
+            }
+        }
+    }
+}

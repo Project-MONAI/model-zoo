@@ -1,0 +1,113 @@
+{
+    "imports": [
+        "$import json",
+        "$import os",
+        "$import torch"
+    ],
+    "bundle_root": "/workspace/bundle/endoscopic_inbody_classification",
+    "output_dir": "$@bundle_root + '/eval'",
+    "dataset_dir": "/workspace/data/endoscopic_inbody_classification",
+    "test_json": "$@dataset_dir+'/test.json'",
+    "test_fp": "$open(@test_json,'r', encoding='utf8')",
+    "test_dict": "$json.load(@test_fp)",
+    "test_close": "$@test_fp.close()",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "SEResNet50",
+        "spatial_dims": 2,
+        "in_channels": 3,
+        "num_classes": 2
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image"
+            },
+            {
+                "_target_": "AsChannelFirstd",
+                "keys": "image"
+            },
+            {
+                "_target_": "Resized",
+                "keys": "image",
+                "spatial_size": [
+                    256,
+                    256
+                ],
+                "mode": "bilinear"
+            },
+            {
+                "_target_": "CastToTyped",
+                "dtype": "$torch.float32",
+                "keys": "image"
+            },
+            {
+                "_target_": "NormalizeIntensityd",
+                "nonzero": true,
+                "channel_wise": true,
+                "keys": "image"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "image"
+            }
+        ]
+    },
+    "dataset": {
+        "_target_": "Dataset",
+        "data": "@test_dict",
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": 1,
+        "shuffle": false,
+        "num_workers": 4
+    },
+    "inferer": {
+        "_target_": "SimpleInferer"
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "AsDiscreted",
+                "argmax": true,
+                "to_onehot": 2,
+                "keys": [
+                    "pred"
+                ]
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": true
+        }
+    ],
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "network": "@network",
+        "inferer": "@inferer",
+        "postprocessing": "@postprocessing",
+        "val_handlers": "@handlers"
+    },
+    "evaluating": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@evaluator.run()"
+    ]
+}

@@ -1,0 +1,259 @@
+{
+    "imports": [
+        "$import torch",
+        "$import json",
+        "$import ignite"
+    ],
+    "bundle_root": "/workspace/bundle/endoscopic_inbody_classification",
+    "ckpt_dir": "$@bundle_root + '/models'",
+    "output_dir": "$@bundle_root + '/eval'",
+    "dataset_dir": "/workspace/data/endoscopic_inbody_classification",
+    "train_json": "$@dataset_dir+'/train.json'",
+    "val_json": "$@dataset_dir+'/val.json'",
+    "train_fp": "$open(@train_json,'r', encoding='utf8')",
+    "train_dict": "$json.load(@train_fp)",
+    "train_close": "$@train_fp.close()",
+    "val_fp": "$open(@val_json,'r', encoding='utf8')",
+    "val_dict": "$json.load(@val_fp)",
+    "val_interval": 1,
+    "val_close": "$@val_fp.close()",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "SEResNet50",
+        "spatial_dims": 2,
+        "in_channels": 3,
+        "num_classes": 2
+    },
+    "network": "$@network_def.to(@device)",
+    "loss": {
+        "_target_": "torch.nn.CrossEntropyLoss",
+        "reduction": "sum"
+    },
+    "optimizer": {
+        "_target_": "torch.optim.Adam",
+        "params": "$@network.parameters()",
+        "lr": 0.001
+    },
+    "train": {
+        "deterministic_transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image"
+            },
+            {
+                "_target_": "ToTensord",
+                "keys": "label"
+            },
+            {
+                "_target_": "AsChannelFirstd",
+                "keys": "image"
+            },
+            {
+                "_target_": "Resized",
+                "keys": "image",
+                "spatial_size": [
+                    256,
+                    256
+                ],
+                "mode": "bilinear"
+            },
+            {
+                "_target_": "CastToTyped",
+                "dtype": "$torch.float32",
+                "keys": "image"
+            },
+            {
+                "_target_": "NormalizeIntensityd",
+                "nonzero": true,
+                "channel_wise": true,
+                "keys": "image"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "image"
+            }
+        ],
+        "random_transforms": [
+            {
+                "_target_": "RandRotated",
+                "range_x": 0.3,
+                "prob": 0.2,
+                "mode": "bilinear",
+                "keys": "image"
+            },
+            {
+                "_target_": "RandScaleIntensityd",
+                "factors": 0.3,
+                "prob": 0.5,
+                "keys": "image"
+            },
+            {
+                "_target_": "RandShiftIntensityd",
+                "offsets": 0.1,
+                "prob": 0.5,
+                "keys": "image"
+            },
+            {
+                "_target_": "RandGaussianNoised",
+                "std": 0.01,
+                "prob": 0.15,
+                "keys": "image"
+            },
+            {
+                "_target_": "RandFlipd",
+                "spatial_axis": 0,
+                "prob": 0.5,
+                "keys": "image"
+            },
+            {
+                "_target_": "RandFlipd",
+                "spatial_axis": 1,
+                "prob": 0.5,
+                "keys": "image"
+            }
+        ],
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": "$@train#deterministic_transforms + @train#random_transforms"
+        },
+        "dataset": {
+            "_target_": "Dataset",
+            "data": "@train_dict",
+            "transform": "@train#preprocessing"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@train#dataset",
+            "batch_size": 64,
+            "shuffle": true,
+            "num_workers": 4
+        },
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "handlers": [
+            {
+                "_target_": "ValidationHandler",
+                "validator": "@validate#evaluator",
+                "epoch_level": true,
+                "interval": "@val_interval"
+            },
+            {
+                "_target_": "StatsHandler",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            }
+        ],
+        "key_metric": {
+            "train_accu": {
+                "_target_": "ignite.metrics.Accuracy",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "postprocessing": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "AsDiscreted",
+                    "argmax": [
+                        true,
+                        false
+                    ],
+                    "to_onehot": [
+                        2,
+                        2
+                    ],
+                    "keys": [
+                        "pred",
+                        "label"
+                    ]
+                }
+            ]
+        },
+        "trainer": {
+            "_target_": "SupervisedTrainer",
+            "max_epochs": 25,
+            "device": "@device",
+            "train_data_loader": "@train#dataloader",
+            "network": "@network",
+            "loss_function": "@loss",
+            "optimizer": "@optimizer",
+            "inferer": "@train#inferer",
+            "postprocessing": "@train#postprocessing",
+            "key_train_metric": "@train#key_metric",
+            "train_handlers": "@train#handlers"
+        }
+    },
+    "validate": {
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": "%train#deterministic_transforms"
+        },
+        "dataset": {
+            "_target_": "Dataset",
+            "data": "@val_dict",
+            "transform": "@validate#preprocessing"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@validate#dataset",
+            "batch_size": 64,
+            "shuffle": false,
+            "num_workers": 4
+        },
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "postprocessing": {
+            "_target_": "Compose",
+            "transforms": "%train#postprocessing"
+        },
+        "handlers": [
+            {
+                "_target_": "StatsHandler",
+                "iteration_log": false
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "iteration_log": false
+            },
+            {
+                "_target_": "CheckpointSaver",
+                "save_dir": "@ckpt_dir",
+                "save_dict": {
+                    "model": "@network"
+                },
+                "save_key_metric": true,
+                "key_metric_filename": "model.pt"
+            }
+        ],
+        "key_metric": {
+            "val_accu": {
+                "_target_": "ignite.metrics.Accuracy",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "evaluator": {
+            "_target_": "SupervisedEvaluator",
+            "device": "@device",
+            "val_data_loader": "@validate#dataloader",
+            "network": "@network",
+            "inferer": "@validate#inferer",
+            "postprocessing": "@validate#postprocessing",
+            "key_val_metric": "@validate#key_metric",
+            "val_handlers": "@validate#handlers"
+        }
+    },
+    "training": [
+        "$monai.utils.set_determinism(seed=0)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@train#trainer.run()"
+    ]
+}

@@ -4,8 +4,9 @@
         "$import os",
         "$import torchvision"
     ],
-    "model_dir": "./models",
-    "output_dir": "./output",
+    "bundle_root": ".",
+    "model_dir": "$@bundle_root + '/models'",
+    "output_dir": "$@bundle_root + '/output'",
     "data": {
         "_target_": "scripts.createList.CreateImageLabelList",
         "filename": "./configs/sample_image_data.json"
