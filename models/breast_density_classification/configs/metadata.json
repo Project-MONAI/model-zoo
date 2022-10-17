@@ -1,10 +1,10 @@
 {
     "version": "0.1.0",
     "monai_version": "1.0.0",
-    "pytorch_version": "1.10.0",
+    "torch_version": "1.12.1",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
-        "torchvision": "0.11.0"
+        "torchvision": "0.13.1"
     },
     "task": "Breast Density Classification",
     "description": "A pre-trained model for classifying breast images (mammograms)  ",
@@ -13,7 +13,7 @@
     "data_source": "Mayo Clinic ",
     "data_type": "Jpeg",
     "image_classes": "three channel data, intensity scaled to [0, 1]. A single grayscale is copied to 3 channels",
-    "label_classes": "four classes marked as [0, 1, 0, 0]",
+    "label_classes": "four classes marked as [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0] and [0, 0, 0, 1] for the classes A, B, C and D respectively.",
     "pred_classes": "One hot data",
     "eval_metrics": {
         "accuracy": 0.96

@@ -37,7 +37,7 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 ```
 
 # Execute training
-It is a work in progress and will be shared soon.
+It is a work in progress and will be shared in the next version soon.
 
 # Contributors
 This model is made available from Center for Augmented Intelligence in Imaging, Mayo Clinic Florida. For questions email Vikash Gupta (gupta.vikash@mayo.edu).
