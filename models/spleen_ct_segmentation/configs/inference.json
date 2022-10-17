@@ -39,7 +39,7 @@
                 "_target_": "LoadImaged",
                 "keys": "image",
                 "_disabled_": "@disable_loader",
-                "_desc_": "the default image loader, if disabled, the preprocessing accepts data volume directly."
+                "_desc_": "the default image loader, if disabled, please preaper data volume and override dataset#data."
             },
             {
                 "_target_": "EnsureChannelFirstd",
