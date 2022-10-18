@@ -61,6 +61,7 @@ Execute inference on resampled images (resampled following Section 3.1 of https:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
+
 Execute inference on raw images:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference_raw.json --logging_file configs/logging.conf
