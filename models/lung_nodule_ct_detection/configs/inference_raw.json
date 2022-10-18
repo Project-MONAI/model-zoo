@@ -80,7 +80,9 @@
             {
                 "_target_": "LoadImaged",
                 "keys": "image",
-                "meta_key_postfix": "meta_dict"
+                "meta_key_postfix": "meta_dict",
+                "reader": "itkreader",
+                "affine_lps_to_ras": true
             },
             {
                 "_target_": "EnsureChannelFirstd",
@@ -91,6 +93,15 @@
                 "_target_": "Orientationd",
                 "keys": "image",
                 "axcodes": "RAS"
+            },
+            {
+                "_target_": "Spacingd",
+                "keys": "image",
+                "pixdim": [
+                    0.703125,
+                    0.703125,
+                    1.25
+                ]
             },
             {
                 "_target_": "ScaleIntensityRanged",
