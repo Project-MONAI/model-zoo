@@ -48,32 +48,27 @@ This model achieves the following FROC sensitivity value on the validation data 
 
 ## commands example
 Execute training:
-
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
 Override the `train` config to execute evaluation with the trained model:
-
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
 Execute inference on resampled images (resampled following Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection):
-
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 Execute inference on raw images:
-
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference_raw.json --logging_file configs/logging.conf
 ```
 
-Note that in inference.json, the transform "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`.
+Note that in inference.json and inference_raw.json, the transform "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`. Also in inference_raw.json, the transform "LoadImaged" in "preprocessing" has `"affine_lps_to_ras": true`.
 This depends on the input images. LUNA16 needs `"affine_lps_to_ras": true`. 
-It is possible that your inference dataset should set "affine_lps_to_ras": false.
-Please set it as `true` only when the original images were read by itkreader with affine_lps_to_ras=True.
+It is possible that your inference dataset should set `"affine_lps_to_ras": false`.
 
 
 # Disclaimer
