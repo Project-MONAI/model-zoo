@@ -62,9 +62,9 @@ Execute inference on resampled images (resampled following Section 3.1 of https:
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
-Execute inference on raw images:
+Override the `inference` config to execute inference on raw images:
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference_raw.json --logging_file configs/logging.conf
+python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/inference.json','configs/inference_raw.json']"--logging_file configs/logging.conf
 ```
 
 Note that in inference.json and inference_raw.json, the transform "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`. Also in inference_raw.json, the transform "LoadImaged" in "preprocessing" has `"affine_lps_to_ras": true`.
