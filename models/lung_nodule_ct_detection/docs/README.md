@@ -25,7 +25,7 @@ In these files, the values of "box" are the ground truth boxes in world coordina
 
 ### 1.3 Data resampling
 The raw CT images in LUNA16 have various of voxel sizes. The first step is to resample them to the same voxel size.
-In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm. 
+In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm.
 
 Please following the instruction in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection to do the resampling.
 
