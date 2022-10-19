@@ -68,7 +68,7 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 ```
 
 Note that in inference.json and inference_raw.json, the transform "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`. Also in inference_raw.json, the transform "LoadImaged" in "preprocessing" has `"affine_lps_to_ras": true`.
-This depends on the input images. LUNA16 needs `"affine_lps_to_ras": true`. 
+This depends on the input images. LUNA16 needs `"affine_lps_to_ras": true`.
 It is possible that your inference dataset should set `"affine_lps_to_ras": false`.
 
 
