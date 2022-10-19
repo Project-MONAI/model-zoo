@@ -1,4 +1,6 @@
 {
+    "data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/original/dataset_fold0.json'",
+    "data_file_base_dir": "/home/canz/Projects/datasets/LUNA16/93176/Images",
     "preprocessing": {
         "_target_": "Compose",
         "transforms": [

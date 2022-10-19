@@ -9,18 +9,25 @@ LUNA16 is a public dataset of CT lung nodule detection. Using raw CT scans, the 
 Disclaimer: We are not the host of the data. Please make sure to read the requirements and usage policies of the data and give credit to the authors of the dataset!
 
 ## Data
+### Data description
 The dataset we are experimenting in this example is LUNA16 (https://luna16.grand-challenge.org/Home/), which is based on [LIDC/IDRI database](https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI) [3,4,5].
 
 LUNA16 is a public dataset of CT lung nodule detection. Using raw CT scans, the goal is to identify locations of possible nodules, and to assign a probability for being a nodule to each location.
 
 Disclaimer: We are not the host of the data. Please make sure to read the requirements and usage policies of the data and give credit to the authors of the dataset! We acknowledge the National Cancer Institute and the Foundation for the National Institutes of Health, and their critical role in the creation of the free publicly available LIDC/IDRI Database used in this study.
 
+### 10-fold data splitting
 We follow the official 10-fold data splitting from LUNA16 challenge and generate data split json files using the script from [nnDetection](https://github.com/MIC-DKFZ/nnDetection/blob/main/projects/Task016_Luna/scripts/prepare.py).
-The resulted json files can be downloaded from https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/LUNA16_datasplit-20220615T233840Z-001.zip.
+
+Please download the resulted json files from https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/LUNA16_datasplit-20220615T233840Z-001.zip.
+
 In these files, the values of "box" are the ground truth boxes in world coordinate.
 
+### Data resampling
 The raw CT images in LUNA16 have various of voxel sizes. The first step is to resample them to the same voxel size.
-In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm. The code of resampling can be found in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection
+In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm. 
+
+Please following the instruction in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection to do the resampling.
 
 ## Training configuration
 The training was performed with at least 12GB-memory GPUs.
