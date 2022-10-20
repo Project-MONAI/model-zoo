@@ -64,15 +64,11 @@ Override the `train` config to execute evaluation with the trained model:
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
-Execute inference on resampled images (resampled following Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection):
+Execute inference on resampled LUNA16 images (resampled following Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection) by setting `"whether_raw_luna16": false` in `inference.json`:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
-
-Override the `inference` config to execute inference on raw images:
-```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/inference.json','configs/inference_raw.json']" --logging_file configs/logging.conf
-```
+With the same command, we can execute inference on raw LUNA16 images by setting `"whether_raw_luna16": true` in `inference.json`. Remember to also change `"data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/original/dataset_fold0.json'"` and `"data_file_base_dir"`.
 
 Note that in inference.json and inference_raw.json, the transform "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`. Also in inference_raw.json, the transform "LoadImaged" in "preprocessing" has `"affine_lps_to_ras": true`.
 This depends on the input images. LUNA16 needs `"affine_lps_to_ras": true`.
