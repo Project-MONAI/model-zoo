@@ -5,13 +5,6 @@
         "_target_": "Compose",
         "transforms": [
             {
-                "_target_": "DeleteItemsd",
-                "keys": [
-                    "box",
-                    "label"
-                ]
-            },
-            {
                 "_target_": "LoadImaged",
                 "keys": "image",
                 "meta_key_postfix": "meta_dict",
