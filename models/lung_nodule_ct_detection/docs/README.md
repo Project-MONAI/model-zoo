@@ -8,32 +8,39 @@ LUNA16 is a public dataset of CT lung nodule detection. Using raw CT scans, the 
 
 Disclaimer: We are not the host of the data. Please make sure to read the requirements and usage policies of the data and give credit to the authors of the dataset!
 
-## Data
+## 1. Data
+### 1.1 Data description
 The dataset we are experimenting in this example is LUNA16 (https://luna16.grand-challenge.org/Home/), which is based on [LIDC/IDRI database](https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI) [3,4,5].
 
 LUNA16 is a public dataset of CT lung nodule detection. Using raw CT scans, the goal is to identify locations of possible nodules, and to assign a probability for being a nodule to each location.
 
 Disclaimer: We are not the host of the data. Please make sure to read the requirements and usage policies of the data and give credit to the authors of the dataset! We acknowledge the National Cancer Institute and the Foundation for the National Institutes of Health, and their critical role in the creation of the free publicly available LIDC/IDRI Database used in this study.
 
+### 1.2 10-fold data splitting
 We follow the official 10-fold data splitting from LUNA16 challenge and generate data split json files using the script from [nnDetection](https://github.com/MIC-DKFZ/nnDetection/blob/main/projects/Task016_Luna/scripts/prepare.py).
-The resulted json files can be downloaded from https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/LUNA16_datasplit-20220615T233840Z-001.zip.
+
+Please download the resulted json files from https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/LUNA16_datasplit-20220615T233840Z-001.zip.
+
 In these files, the values of "box" are the ground truth boxes in world coordinate.
 
+### 1.3 Data resampling
 The raw CT images in LUNA16 have various of voxel sizes. The first step is to resample them to the same voxel size.
-In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm. The code of resampling can be found in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection
+In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm.
 
-## Training configuration
+Please following the instruction in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection to do the resampling.
+
+## 2. Training configuration
 The training was performed with at least 12GB-memory GPUs.
 
 Actual Model Input: 192 x 192 x 80
 
-## Input and output formats
+## 3. Input and output formats
 Input: list of 1 channel 3D CT patches
 
 Output: dictionary of classification and box regression loss in training mode;
 list of dictionary of predicted box, classification label, and classification score in evaluation mode.
 
-## Scores
+## 4. Results and Scores
 The script to compute FROC sensitivity value on inference results can be found in https://github.com/Project-MONAI/tutorials/tree/main/detection
 
 This model achieves the following FROC sensitivity value on the validation data (our own split from the training dataset):
@@ -46,28 +53,26 @@ This model achieves the following FROC sensitivity value on the validation data 
 
 **Table 1**. The FROC sensitivity values at the predefined false positive per scan thresholds of the LUNA16 challenge.
 
-## commands example
+## 5. Commands example
 Execute training:
-
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
 Override the `train` config to execute evaluation with the trained model:
-
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
-Execute inference:
-
+Execute inference on resampled LUNA16 images (resampled following Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection) by setting `"whether_raw_luna16": false` in `inference.json`:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
+With the same command, we can execute inference on raw LUNA16 images by setting `"whether_raw_luna16": true` in `inference.json`. Remember to also set `"data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/original/dataset_fold0.json'"` and change `"data_file_base_dir"`.
 
-Note that in inference.json, the transform "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`.
-This depends on the input images. It is possible that your inference dataset should set "affine_lps_to_ras": false.
-Please set it as `true` only when the original images were read by itkreader with affine_lps_to_ras=True.
+Note that in inference.json, the transform "LoadImaged" in "preprocessing" and "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`.
+This depends on the input images. LUNA16 needs `"affine_lps_to_ras": true`.
+It is possible that your inference dataset should set `"affine_lps_to_ras": false`.
 
 
 # Disclaimer
