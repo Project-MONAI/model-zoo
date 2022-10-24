@@ -214,5 +214,9 @@
     "endoscopic_inbody_classification_v0.2.0": {
         "checksum": "cbcfb38057c5ef8df316e3512ddc09c97132601b",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.2.0.zip"
+    },
+    "lung_nodule_ct_detection_v0.4.0": {
+        "checksum": "9b00e72f794d757a2605992d769fbf4d055b5d7f",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.0.zip"
     }
 }
