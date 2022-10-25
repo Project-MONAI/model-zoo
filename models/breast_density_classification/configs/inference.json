@@ -32,11 +32,11 @@
         "_target_": "TorchVisionFCModel",
         "model_name": "inception_v3",
         "num_classes": 4,
-				"pool": null,
+        "pool": null,
         "use_conv": false,
-				"bias": true,
-				"pretrained": true
-					}, 
+        "bias": true,
+        "pretrained": true
+    },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
         "_target_": "Compose",
@@ -48,7 +48,7 @@
             {
                 "_target_": "EnsureChannelFirstd",
                 "keys": "image",
-								"channel_dim": 2
+                "channel_dim": 2
             },
             {
                 "_target_": "ScaleIntensityd",
