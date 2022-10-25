@@ -31,12 +31,12 @@
     "network_def": {
         "_target_": "TorchVisionFCModel",
         "model_name": "inception_v3",
-        "aux_logits": false,
         "num_classes": 4,
-        "in_channels": 2048,
+				"pool": null,
         "use_conv": false,
-        "pool": ""
-    },
+				"bias": true,
+				"pretrained": true
+					}, 
     "network": "$@network_def.to(@device)",
     "preprocessing": {
         "_target_": "Compose",
@@ -47,7 +47,8 @@
             },
             {
                 "_target_": "EnsureChannelFirstd",
-                "keys": "image"
+                "keys": "image",
+								"channel_dim": 2
             },
             {
                 "_target_": "ScaleIntensityd",
@@ -75,18 +76,13 @@
                 "_target_": "Activationsd",
                 "keys": "pred",
                 "sigmoid": true
-            },
-            {
-                "_target_": "AsDiscreted",
-                "keys": "pred",
-                "threshold": 0.5
             }
         ]
     },
     "handlers": [
         {
             "_target_": "CheckpointLoader",
-            "load_path": "$@model_dir + '/model.pt'",
+            "load_path": "$@model_dir + '/model.pth'",
             "load_dict": {
                 "model": "@network"
             }

@@ -7,8 +7,7 @@ This model is trained using transfer learning on InceptionV3. The model weights 
 The bundle does not support torchscript.
 
 # Input and Output Formats
-The input image should have the size [299, 299, 3]. For a dicom image which are single channel. The channel can be repeated 3 times.
-The output is an array with probabilities for each of the four class.
+The input image should have the size [3, 299, 299]. The output is an array with probabilities for each of the four class.
 
 # Sample Data
 In the folder `sample_data` few example input images are stored for each category of images. These images are stored in jpeg format for sharing purpose.
