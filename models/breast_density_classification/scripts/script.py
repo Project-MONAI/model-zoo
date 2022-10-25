@@ -1,5 +1,5 @@
 import os
-
+import torch
 from monai.bundle.config_parser import ConfigParser
 
 os.environ["CUDA_DEVICE_IRDER"] = "PCI_BUS_ID"
@@ -11,8 +11,11 @@ data = parser.get_parsed_content("data")
 device = parser.get_parsed_content("device")
 network = parser.get_parsed_content("network_def")
 
-# inference = parser.get_parsed_content("evaluator")
-# inference.run()
+inference = parser.get_parsed_content("evaluator")
+inference.run()
+
+print(type(network))
+
 
 datalist = parser.get_parsed_content("test_imagelist")
 print(datalist)

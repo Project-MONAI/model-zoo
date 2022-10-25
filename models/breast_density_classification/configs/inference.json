@@ -36,7 +36,7 @@
         "use_conv": false,
         "bias": true,
         "pretrained": true
-        }, 
+       },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
         "_target_": "Compose",
