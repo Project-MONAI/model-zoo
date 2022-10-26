@@ -82,7 +82,7 @@
     "handlers": [
         {
             "_target_": "CheckpointLoader",
-            "load_path": "$@model_dir + '/model.pth'",
+            "load_path": "$@model_dir + '/model.pt'",
             "load_dict": {
                 "model": "@network"
             }
