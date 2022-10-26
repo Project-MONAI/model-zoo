@@ -1,0 +1,116 @@
+{
+    "import": [
+        "$import glob",
+        "$import os",
+        "$import torchvision"
+    ],
+    "bundle_root": ".",
+    "model_dir": "$@bundle_root + '/models'",
+    "output_dir": "$@bundle_root + '/output'",
+    "data": {
+        "_target_": "scripts.createList.CreateImageLabelList",
+        "filename": "./configs/sample_image_data.json"
+    },
+    "test_imagelist": "$@data.create_dataset('Test')[0]",
+    "test_labellist": "$@data.create_dataset('Test')[1]",
+    "dataset": {
+        "_target_": "CacheDataset",
+        "data": "$[{'image': i, 'label': l} for i, l in zip(@test_imagelist, @test_labellist)]",
+        "transform": "@preprocessing",
+        "cache_rate": 1,
+        "num_workers": 4
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": 4,
+        "shuffle": false,
+        "num_workers": 4
+    },
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "TorchVisionFCModel",
+        "model_name": "inception_v3",
+        "num_classes": 4,
+        "pool": null,
+        "use_conv": false,
+        "bias": true,
+        "pretrained": true
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image"
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": "image",
+                "channel_dim": 2
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image",
+                "minv": 0.0,
+                "maxv": 1.0
+            },
+            {
+                "_target_": "Resized",
+                "keys": "image",
+                "spatial_size": [
+                    299,
+                    299
+                ]
+            }
+        ]
+    },
+    "inferer": {
+        "_target_": "SimpleInferer"
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "sigmoid": true
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@model_dir + '/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false,
+            "output_transform": "$lambda x: None"
+        },
+        {
+            "_target_": "ClassificationSaver",
+            "output_dir": "@output_dir",
+            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "output_transform": "$monai.handlers.from_engine(['pred'])"
+        }
+    ],
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "network": "@network",
+        "inferer": "@inferer",
+        "postprocessing": "@postprocessing",
+        "val_handlers": "@handlers",
+        "amp": true
+    },
+    "evaluating": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@evaluator.run()"
+    ]
+}

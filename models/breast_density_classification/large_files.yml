@@ -1,0 +1,5 @@
+large_files:
+  - path: "models/model.pt"
+    url: "https://drive.google.com/file/d/1rmIW3Cnv_Ss6raAIfB5WDXywJFmU_BKa/view?usp=sharing"
+    hash_val: "4a474db59cc1cc85411cb4bdcbc3efd7"
+    hash_type: "md5"
