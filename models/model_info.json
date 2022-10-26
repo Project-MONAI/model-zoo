@@ -218,5 +218,9 @@
     "lung_nodule_ct_detection_v0.4.0": {
         "checksum": "9b00e72f794d757a2605992d769fbf4d055b5d7f",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.0.zip"
+    },
+    "breast_density_classification_v0.1.0": {
+        "checksum": "06fb376577c8e7d8419874c81c16b1ed787824cb",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/breast_density_classification_v0.1.0.zip"
     }
 }
