@@ -1,9 +1,10 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "changelog": {
+        "0.1.1": "update license files",
         "0.1.0": "complete the model package"
     },
-    "version": "0.1.0",
+    "version": "0.1.1",
     "monai_version": "1.0.0",
     "pytorch_version": "1.12.1",
     "numpy_version": "1.21.2",

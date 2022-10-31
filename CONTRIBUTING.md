@@ -58,7 +58,7 @@ large_files:
 
 ### Preferred Files and Keys
 
-In order to be compatible with other apps such as MONAI FL, MONAI deploy and MONAI Label, except the format requirements from MONAI Bundle Specification, a bundle in MONAI Model Zoo should also contain the necessary file `configs/metadata.json` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/metadata.json)) and the following preferred files:
+In order to be compatible with other apps such as MONAI FL, MONAI deploy and MONAI Label, except the format requirements from MONAI Bundle Specification, a bundle in MONAI Model Zoo should also contain the necessary files `LICENSE`, `configs/metadata.json` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/metadata.json)), and the following preferred files:
 
 1. `models/model.pt` (or a download link in the config file for large files, [click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/large_files.yml))
 1. `configs/inference.json` (or `.yaml`, `.json`, [click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json))
