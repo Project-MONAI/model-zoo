@@ -24,7 +24,7 @@ from monai.bundle.config_parser import ConfigParser
 from utils import download_large_files, get_json_dict
 
 # files that must be included in a bundle
-necessary_files_list = ["configs/metadata.json"]
+necessary_files_list = ["configs/metadata.json", "LICENSE"]
 # files that are preferred to be included in a bundle
 preferred_files_list = ["models/model.pt", "configs/inference.json"]
 # keys that must be included in inference config
