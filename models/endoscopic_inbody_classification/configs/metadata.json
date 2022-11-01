@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "changelog": {
+        "0.2.1": "enhance readme on commands example",
         "0.2.0": "update license files",
         "0.1.0": "complete the first version model package",
         "0.0.1": "initialize the model package structure"
