@@ -270,5 +270,29 @@
     "spleen_deepedit_annotation_v0.3.1": {
         "checksum": "0ab4eb7d92b10e9b0f013338f69b2b5af08aa42f",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.3.1.zip"
+    },
+    "endoscopic_inbody_classification_v0.2.1": {
+        "checksum": "76b561fbffe1ae863ce5ca089abb1afad77d92d0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.2.1.zip"
+    },
+    "brats_mri_segmentation_v0.3.2": {
+        "checksum": "84354ed0457cf7dcf0972c1480b4cfbbff27cf29",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.2.zip"
+    },
+    "pathology_tumor_detection_v0.3.2": {
+        "checksum": "a8d526c12b8a1ea067f54f4375000586fa6a6832",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.3.2.zip"
+    },
+    "spleen_deepedit_annotation_v0.3.2": {
+        "checksum": "891cdbd1f13d229533feeabdf7d748891b692b80",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.3.2.zip"
+    },
+    "spleen_ct_segmentation_v0.3.4": {
+        "checksum": "0552dc73dba4d28daae972dadec1353313143f71",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.3.4.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.3.2": {
+        "checksum": "5a8c35ab88cbe0532beac99ee3d6486049571be4",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.2.zip"
     }
 }
