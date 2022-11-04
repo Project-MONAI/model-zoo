@@ -10,7 +10,7 @@ The model is trained to segment 3 nested subregions of primary brain tumors (gli
 
 ## Data
 
-The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/sbia/brats2018/data.html).
+The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/cbica/sbia/brats2018/tasks.html).
 
 - Target: 3 tumor subregions
 - Task: Segmentation
