@@ -23,7 +23,7 @@
                 "threshold": 0.5
             },
             {
-                "_target_": "SplitChanneld",
+                "_target_": "SplitDimd",
                 "keys": [
                     "pred",
                     "label"
