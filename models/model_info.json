@@ -302,5 +302,9 @@
     "spleen_ct_segmentation_v0.3.5": {
         "checksum": "48012bc3eee2e70f0286aa15976bd5f69edc2376",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.3.5.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.3.3": {
+        "checksum": "c7fbd64b7b3fab13a6ee91e86534d46cff6b0479",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.3.zip"
     }
 }
