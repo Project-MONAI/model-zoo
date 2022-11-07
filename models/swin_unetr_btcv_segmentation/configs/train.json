@@ -106,7 +106,7 @@
                 ],
                 "pos": 1,
                 "neg": 1,
-                "num_samples": 4,
+                "num_samples": 2,
                 "image_key": "image",
                 "image_threshold": 0
             },
@@ -267,8 +267,8 @@
                 96,
                 96
             ],
-            "sw_batch_size": 4,
-            "overlap": 0.5
+            "sw_batch_size": 2,
+            "overlap": 0.25
         },
         "postprocessing": "%train#postprocessing",
         "handlers": [
