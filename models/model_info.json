@@ -294,5 +294,13 @@
     "swin_unetr_btcv_segmentation_v0.3.2": {
         "checksum": "5a8c35ab88cbe0532beac99ee3d6486049571be4",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.2.zip"
+    },
+    "brats_mri_segmentation_v0.3.3": {
+        "checksum": "d560a23a42775f162ff31f98aedc840f57232fe2",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.3.zip"
+    },
+    "spleen_ct_segmentation_v0.3.5": {
+        "checksum": "48012bc3eee2e70f0286aa15976bd5f69edc2376",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.3.5.zip"
     }
 }
