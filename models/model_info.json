@@ -306,5 +306,29 @@
     "swin_unetr_btcv_segmentation_v0.3.3": {
         "checksum": "c7fbd64b7b3fab13a6ee91e86534d46cff6b0479",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.3.zip"
+    },
+    "endoscopic_inbody_classification_v0.2.2": {
+        "checksum": "a30ef23969c66e8f1cb42a4784e1974412335610",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.2.2.zip"
+    },
+    "spleen_deepedit_annotation_v0.3.3": {
+        "checksum": "0a67806fe3ca59cc567976abbac4186f231985d3",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.3.3.zip"
+    },
+    "endoscopic_tool_segmentation_v0.2.1": {
+        "checksum": "a7d84556bdf8d03a80fb09bed60fd8eb9585a4de",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.2.1.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.3.2": {
+        "checksum": "a81ac4a950e36589e992309ef89b5498a5395730",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.3.2.zip"
+    },
+    "pathology_tumor_detection_v0.3.3": {
+        "checksum": "0e9a9fbc173aba425b02d18d3e8cd9ae1b2638a2",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.3.3.zip"
+    },
+    "lung_nodule_ct_detection_v0.4.2": {
+        "checksum": "400bfeb60b7a245c90d868d69fe8d0c3fda0c2a4",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.2.zip"
     }
 }
