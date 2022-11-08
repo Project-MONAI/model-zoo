@@ -6,7 +6,7 @@ This model is trained using the SEResNet50 structure, whose details can be found
 The [pytorch model](https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIkoyNa-x/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1fOoJ4n5DWKHrt9QXTZ2sXwr9C-YvVGCM/view?usp=sharing) are shared in google drive. Modify the "bundle_root" parameter specified in configs/train.json and configs/inference.json to reflect where models are downloaded. Expected directory path to place downloaded models is "models/" under "bundle_root".
 
 ## Data
-Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/). Here is a [link](https://drive.google.com/uc?id=1rQQfHcZFs74OG0uJsL4vg7YqMWXV-s4k) of 20 samples (10 in-body and 10 out-body) to show what this dataset looks like. Modify the "dataset_dir" parameter specified in configs/train.json and configs/inference.json to reflect where the data is.
+Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/). Here is a [link](https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/inbody_outbody_samples.zip) of 20 samples (10 in-body and 10 out-body) to show what this dataset looks like. Modify the "dataset_dir" parameter specified in configs/train.json and configs/inference.json to reflect where the data is.
 
 The input label json should be a list made up by dicts which includes "image" and "label" keys. An example format is shown below.
 
