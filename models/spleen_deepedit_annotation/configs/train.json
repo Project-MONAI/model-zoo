@@ -349,7 +349,7 @@
             "loss_function": "@loss",
             "inferer": "@train#inferer",
             "amp": true,
-            "postprocessing": "@train#post_transforms",
+            "postprocessing": "@train#postprocessing",
             "key_train_metric": "@train#key_metric",
             "train_handlers": "@train#handlers",
             "iteration_update": "@train#train_iteration_update"
