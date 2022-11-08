@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "changelog": {
+        "0.4.2": "update to use monai 1.0.1",
         "0.4.1": "fix license Copyright error",
         "0.4.0": "add support for raw images",
         "0.3.0": "update license files",
@@ -9,13 +10,13 @@
         "0.1.1": "add reference for LIDC dataset",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "0.9.1",
-    "pytorch_version": "1.12.0",
+    "monai_version": "1.0.1",
+    "pytorch_version": "1.13.0",
     "numpy_version": "1.22.4",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9",
-        "torchvision": "0.13.0"
+        "torchvision": "0.14.0"
     },
     "task": "CT lung nodule detection",
     "description": "A pre-trained model for volumetric (3D) detection of the lung lesion from CT image on LUNA16 dataset",
