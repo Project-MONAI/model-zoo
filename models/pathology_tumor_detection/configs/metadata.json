@@ -1,6 +1,6 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.3",
+    "version": "0.4.0",
     "changelog": {
         "0.4.0": "add lesion FROC calculation and wsi_reader",
         "0.3.3": "update to use monai 1.0.1",
