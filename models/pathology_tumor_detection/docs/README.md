@@ -22,9 +22,9 @@ Annotation information are adopted from [NCRF/jsons](https://github.com/baidu-re
 
 ### Data Preparation
 
-This MMAR expects the training/validation data (whole slide images) reside in `$DATA_ROOT/training/images`. By default `$DATA_ROOT` is pointing to `/workspace/data/medical/pathology/` You can easily modify `$DATA_ROOT` to point to a different directory in `config/environment.json`.
+This bundle expects the training/validation data (whole slide images) reside in a `{data_root}/training/images`. By default `data_root` is pointing to `/workspace/data/medical/pathology/` You can modify `data_root` in the bundle config files to point to a different directory.
 
-To reduce the computation burden during the inference, patches are extracted only where there is tissue and ignoring the background according to a tissue mask. You should run `prepare_inference_data.sh` prior to the inference to generate foreground masks, where the input is the whole slide test images and the output is the foreground masks. Please also create a directory for prediction output, aligning with the one specified with `$MMAR_EVAL_OUTPUT_PATH` in `config/environment.json` (e.g. `/eval`)
+To reduce the computation burden during the inference, patches are extracted only where there is tissue and ignoring the background according to a tissue mask. Please also create a directory for prediction output. By default `output_dir` is set to `eval` folder under the bundle root.
 
 Please refer to "Annotation" section of [Camelyon challenge](https://camelyon17.grand-challenge.org/Data/) to prepare ground truth images, which are needed for FROC computation. By default, this data set is expected to be at `/workspace/data/medical/pathology/ground_truths`. But it can be modified in `evaluate_froc.sh`.
 
@@ -32,13 +32,14 @@ Please refer to "Annotation" section of [Camelyon challenge](https://camelyon17.
 
 The training was performed with the following:
 
-- Script: train.sh
+- Config file: train.config
 - GPU: at least 16 GB of GPU memory.
 - Actual Model Input: 224 x 224 x 3
 - AMP: True
 - Optimizer: Novograd
 - Learning Rate: 1e-3
 - Loss: BCEWithLogitsLoss
+- Whole slide image reader: cuCIM (if running on Windows or Mac, please install `OpenSlide` on your system and change `wsi_reader` to "OpenSlide")
 
 ## Input
 
@@ -112,6 +113,7 @@ The model needs to be used with NVIDIA hardware and software. For hardware, the 
 [1] He, Kaiming, et al, "Deep Residual Learning for Image Recognition." In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 770-778. 2016. <https://arxiv.org/pdf/1512.03385.pdf>
 
 # License
+
 Copyright (c) MONAI Consortium
 
 Licensed under the Apache License, Version 2.0 (the "License");
