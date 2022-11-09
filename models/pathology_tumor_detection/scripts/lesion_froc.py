@@ -4,12 +4,12 @@ import os
 from monai.apps.pathology import LesionFROC
 
 
-def full_path(dir, file):
+def full_path(dir: str, file: str):
     return os.path.normpath(os.path.join(dir, file))
 
 
 def load_data(ground_truth_dir: str, eval_dir: str, level: int, spacing: float):
-    # load the json file
+    # Get the list of probability map result files
     prob_files = os.listdir(eval_dir)
 
     # read the dataset and create an eval_dataset based on that.
@@ -35,7 +35,6 @@ def evaluate_froc(data, reader):
 
 
 if __name__ == "__main__":
-
     # Parse command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument("-s", "--spacing", type=float, default=0.243, dest="spacing")
