@@ -7,6 +7,7 @@
     "output_dir": "$os.path.join(@bundle_root, 'eval')",
     "dataset_dir": "/workspace/data/medical/pathology",
     "testing_file": "$os.path.join(@bundle_root, 'testing.csv')",
+    "wsi_reader": "cuCIM",
     "patch_size": [
         224,
         224
@@ -63,7 +64,8 @@
         "data": "@datalist",
         "mask_level": 6,
         "patch_size": "@patch_size",
-        "transform": "@preprocessing"
+        "transform": "@preprocessing",
+        "reader": "@wsi_reader"
     },
     "dataloader": {
         "_target_": "DataLoader",

@@ -12,6 +12,7 @@
     "training_file": "$os.path.join(@bundle_root, 'training.csv')",
     "validation_file": "$os.path.join(@bundle_root, 'validation.csv')",
     "data_root": "/workspace/data/medical/pathology",
+    "wsi_reader": "cuCIM",
     "region_size": [
         768,
         768
@@ -166,7 +167,7 @@
             "data": "@train#datalist",
             "patch_level": 0,
             "patch_size": "@region_size",
-            "reader": "cucim",
+            "reader": "@wsi_reader",
             "transform": "@train#preprocessing"
         },
         "dataloader": {
@@ -317,7 +318,7 @@
             "data": "@validate#datalist",
             "patch_level": 0,
             "patch_size": "@region_size",
-            "reader": "cucim",
+            "reader": "@wsi_reader",
             "transform": "@validate#preprocessing"
         },
         "dataloader": {
