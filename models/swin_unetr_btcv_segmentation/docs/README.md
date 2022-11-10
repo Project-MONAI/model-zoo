@@ -32,7 +32,7 @@ Output: 14 channels: 0:Background, 1:Spleen, 2:Right Kidney, 3:Left Kideny, 4:Ga
 ## Performance
 A graph showing the validation mean Dice for 5000 epochs.
 
-![](./val_dice.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_segmentation_val.png) <br>
 
 This model achieves the following Dice score on the validation data (our own split from the training dataset):
 
