@@ -25,7 +25,28 @@ Output: 2 channels: Label 1: spleen; Label 0: everything else - This depends on 
 
 The achieved Dice score on the validation set is:
 
-Spleen: 0.959
+Spleen: 0.971
+
+Command to execute:
+
+```
+python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
+```
+
+### Train Dice
+
+![Train Dice](./train_dice_deepedit.png)
+
+
+### Train loss
+
+
+![Train loss](./train_loss_deepedit.png)
+
+
+### Validation Dice
+
+![Validation Dice](./val_dice_deepedit.png)
 
 
 ## commands example
