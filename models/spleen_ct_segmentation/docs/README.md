@@ -4,13 +4,31 @@ A pre-trained model for volumetric (3D) segmentation of the spleen from CT image
 # Model Overview
 This model is trained using the runner-up [1] awarded pipeline of the "Medical Segmentation Decathlon Challenge 2018" using the UNet architecture [2] with 32 training images and 9 validation images.
 
+![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_workflow.png) 
+
 ## Data
 The training dataset is Task09_Spleen.tar from http://medicaldecathlon.com/.
 
 ## Training configuration
-The training was performed with at least 12GB-memory GPUs.
+The segmentation of spleen region is formulated as the voxel-wise binary classification. Each voxel is predicted as either foreground (spleen) or background. And the model is optimized with gradient descent method minimizing Dice + cross entropy loss between the predicted mask and ground truth segmentation. 
 
-Actual Model Input: 96 x 96 x 96
+The training was performed with the following:
+
+- GPU: at least 12GB of GPU memory
+- Actual Model Input: 96 x 96 x 96
+- AMP: True
+- Optimizer: Adam
+- Learning Rate: 1e-4
+- Loss: DiceCELoss
+
+Pre-processing transforms:
+
+1. Convert data to channel-first
+2. Resample to resolution 1.5 x 1.5 x 2 mm
+3. Scale intensity
+4. Cropping foreground surrounding regions
+5. Cropping random fixed sized regions of size [96,96,96] with the center being a foreground or background voxel at ratio 1 : 1
+6. Randomly shifting intensity of the volume
 
 ## Input and output formats
 Input: 1 channel CT image
@@ -21,6 +39,17 @@ Output: 2 channels: Label 1: spleen; Label 0: everything else
 This model achieves the following Dice score on the validation data (our own split from the training dataset):
 
 Mean Dice = 0.96
+
+## Training Performance
+A graph showing the training loss over 1260 epochs (10080 iterations).
+
+![](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_train_2.png) <br>
+
+## Validation Performance
+A graph showing the validation mean Dice over 1260 epochs.
+
+![](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_val_2.png) <br>
+
 
 ## commands example
 Execute training:
