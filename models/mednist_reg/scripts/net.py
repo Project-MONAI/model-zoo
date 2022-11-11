@@ -26,12 +26,9 @@ class RegResNet(nn.Module):
         features=400,  # feature dimension of `mod`
     ):
         super().__init__()
-        self.features = (resnet18(n_input_channels=2, spatial_dims=spatial_dims) if mod is None else mod)
+        self.features = resnet18(n_input_channels=2, spatial_dims=spatial_dims) if mod is None else mod
         self.affine_head = AffineHead(
-            spatial_dims=spatial_dims,
-            image_size=image_size,
-            decode_size=[1] * spatial_dims,
-            in_channels=features,
+            spatial_dims=spatial_dims, image_size=image_size, decode_size=[1] * spatial_dims, in_channels=features
         )
         self.warp = Warp(mode=mode, padding_mode=padding_mode)
         self.image_size = image_size
