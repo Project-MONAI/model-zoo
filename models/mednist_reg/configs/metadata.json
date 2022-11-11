@@ -7,7 +7,7 @@
     "pytorch_version": "1.13.0a0+d0d6b1f",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
-      "pytorch-ignite": "0.4.8"
+        "pytorch-ignite": "0.4.8"
     },
     "task": "Spatial transformer for hand image registration from the MedNIST dataset",
     "description": "This is an example of a ResNet and spatial transformer for hand xray image registration",
