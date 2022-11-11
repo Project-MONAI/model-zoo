@@ -338,5 +338,9 @@
     "pathology_tumor_detection_v0.4.0": {
         "checksum": "a012c46ae941c60cb2a27d81eac6dc7002be0a4b",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.0.zip"
+    },
+    "spleen_ct_segmentation_v0.3.6": {
+        "checksum": "6915cc63b8e185fc3155a6e350363022d681958d",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.3.6.zip"
     }
 }
