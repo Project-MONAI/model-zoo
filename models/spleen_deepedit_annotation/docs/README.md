@@ -25,7 +25,7 @@ Output: 2 channels: Label 1: spleen; Label 0: everything else - This depends on 
 
 The achieved Dice score on the validation set is:
 
-Spleen: 0.971
+Spleen dice > 0.90 (depending on the number of simulated clicks
 
 Command to execute:
 
@@ -35,16 +35,21 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 
 ### Train Dice
 
+A graph showing the train dice over 90 epochs.
+
 ![Train Dice](./train_dice_deepedit.png)
 
 
 ### Train loss
 
+A graph showing the training loss over 90 epochs.
 
 ![Train loss](./train_loss_deepedit.png)
 
 
 ### Validation Dice
+
+A graph showing the validation dice over 90 epochs.
 
 ![Validation Dice](./val_dice_deepedit.png)
 
