@@ -25,7 +25,7 @@ Output: 2 channels: Label 1: spleen; Label 0: everything else - This depends on 
 
 The achieved Dice score on the validation set is:
 
-Spleen dice > 0.90 (depending on the number of simulated clicks
+Spleen dice > 0.90 (depending on the number of simulated clicks)
 
 Command to execute:
 
