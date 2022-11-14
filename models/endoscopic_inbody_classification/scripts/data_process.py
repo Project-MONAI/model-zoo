@@ -25,7 +25,7 @@ def generate_labels(data_path, output_path):
     """
 
     data_list = [os.path.join(root, x) for root, _, filenames in os.walk(data_path) for x in filenames if "jpg" in x]
-    label_list = list(map(lambda x: int("outbody" in os.path.basename(os.path.dirname(x))), data_list))
+    label_list = [int("outbody" in os.path.basename(os.path.dirname(x))) for x in data_list]
     data_label_json = [{"image": x, "label": y} for x, y in zip(data_list, label_list)]
     inbody_list = list(filter(lambda x: x["label"] == 0, data_label_json))
     outbody_list = list(filter(lambda x: not (x["label"] == 0), data_label_json))
