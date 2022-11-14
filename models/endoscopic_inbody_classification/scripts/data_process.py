@@ -1,7 +1,6 @@
 import argparse
-import os
-
 import json
+import os
 
 train_rate = 0.6
 val_rate = 0.2
