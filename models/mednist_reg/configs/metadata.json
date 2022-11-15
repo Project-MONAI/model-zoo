@@ -4,7 +4,7 @@
         "0.0.1": "Initial version"
     },
     "monai_version": "1.1.0",
-    "pytorch_version": "1.13.0a0+d0d6b1f",
+    "pytorch_version": "1.13.0",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
         "pytorch-ignite": "0.4.8"
