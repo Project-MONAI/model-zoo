@@ -33,25 +33,26 @@ Command to execute:
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
+
 ### Train Dice
 
 A graph showing the train dice over 90 epochs.
 
-![Train Dice](./train_dice_deepedit.png)
+![Train Dice](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_dice.png)
 
 
 ### Train loss
 
 A graph showing the training loss over 90 epochs.
 
-![Train loss](./train_loss_deepedit.png)
+![Train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_loss.png)
 
 
 ### Validation Dice
 
 A graph showing the validation dice over 90 epochs.
 
-![Validation Dice](./val_dice_deepedit.png)
+![Validation Dice](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_val_dice.png)
 
 
 ## commands example
