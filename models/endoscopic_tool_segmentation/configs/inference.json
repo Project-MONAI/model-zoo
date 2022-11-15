@@ -6,7 +6,7 @@
     "bundle_root": "/workspace/bundle/endoscopic_tool_segmentation",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/endoscopic_tool_dataset",
-    "datalist": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'test', '*[!seg].jpg'))))",
+    "datalist": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'test', '*', '*[!seg].jpg'))))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "FlexibleUNet",

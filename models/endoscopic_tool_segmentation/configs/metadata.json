@@ -1,14 +1,15 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "changelog": {
+        "0.3.0": "update dataset processing",
         "0.2.1": "update to use monai 1.0.1",
         "0.2.0": "update license files",
         "0.1.0": "complete the first version model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.0.0",
-    "pytorch_version": "1.12.0",
+    "monai_version": "1.0.1",
+    "pytorch_version": "1.13.0",
     "numpy_version": "1.22.4",
     "optional_packages_version": {
         "nibabel": "4.0.1",
