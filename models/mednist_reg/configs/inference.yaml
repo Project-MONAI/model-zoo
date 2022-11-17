@@ -86,6 +86,7 @@ network_def:
   spatial_dims: 2
   mode: "bilinear"
   padding_mode: "border"
+network: "$@network_def.to(@device)"
 
 # create the primary evaluator
 handlers:
