@@ -96,13 +96,15 @@ handlers:
   - _target_: StatsHandler
     iteration_log: false
 
+inferer: {_target_: SimpleInferer}
+
 evaluator:
   _target_: SupervisedEvaluator
   device: "@device"
   val_data_loader: "@data_loader"
   network: "@network_def"
   epoch_length: $len(@datalist) // @data_loader#batch_size
-  inferer: "$monai.inferers.SimpleInferer()"
+  inferer: "@inferer"
   val_handlers: "@handlers"
   postprocessing:
     _target_: Compose
