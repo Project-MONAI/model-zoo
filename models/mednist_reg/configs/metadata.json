@@ -22,7 +22,8 @@
                 "format": "magnitude",
                 "num_channels": 2,
                 "spatial_shape": [
-                    64, 64
+                    64,
+                    64
                 ],
                 "dtype": "float32",
                 "value_range": [
@@ -30,7 +31,10 @@
                     1
                 ],
                 "is_patch_data": false,
-                "channel_def": {"0":  "moving image", "1":  "fixed image"}
+                "channel_def": {
+                    "0": "moving image",
+                    "1": "fixed image"
+                }
             }
         },
         "outputs": {
