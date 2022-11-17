@@ -38,6 +38,12 @@ python -m monai.bundle run training --config_file configs/train.yaml [...omittin
 
 ## Inference
 
+The following figure shows an intra-subject (`--cross_subjects false`) model inference results (Fixed, moving and predicted images from left to right)
+
+![fixed](./examples/008502_fixed_6.png)
+![moving](./examples/008502_moving_6.png)
+![predicted](./examples/008502_pred_6.png)
+
 ```bash
 python -m monai.bundle run eval \
   --config_file configs/inference.yaml \

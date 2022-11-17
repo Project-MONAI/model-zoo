@@ -12,5 +12,46 @@
     "task": "Spatial transformer for hand image registration from the MedNIST dataset",
     "description": "This is an example of a ResNet and spatial transformer for hand xray image registration",
     "authors": "MONAI team",
-    "copyright": "Copyright (c) MONAI Consortium"
+    "copyright": "Copyright (c) MONAI Consortium",
+    "intended_use": "This is an example of image registration using MONAI, suitable for demonstration purposes only.",
+    "data_type": "jpeg",
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "num_channels": 2,
+                "spatial_shape": [
+                    64, 64
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {"0":  "moving image", "1":  "fixed image"}
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "magnitude",
+                "num_channels": 1,
+                "spatial_shape": [
+                    64,
+                    64
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        }
+    }
 }
