@@ -36,9 +36,9 @@ jobs:
         python -m pip install --upgrade pip wheel
         python -m pip install -r requirements-dev.txt
         python -m pip install cffi && python -m pip install pipenv
-    - name: type check
+    - name: check
       run: |
         # clean up temporary files
         $(pwd)/runtests.sh --clean
-        sh $(pwd)/ci/run_premerge_cpu.sh
+        bash $(pwd)/ci/run_premerge_cpu.sh
       shell: bash
