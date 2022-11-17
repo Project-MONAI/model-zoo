@@ -5,6 +5,8 @@ A pre-trained model for the endoscopic inbody classification task.
 This model is trained using the SEResNet50 structure, whose details can be found in [1]. All datasets are from private samples of [Activ Surgical](https://www.activsurgical.com/). Samples in training and validation dataset are from the same 4 videos, while test samples are from different two videos.
 The [pytorch model](https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIkoyNa-x/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1fOoJ4n5DWKHrt9QXTZ2sXwr9C-YvVGCM/view?usp=sharing) are shared in google drive. Modify the `bundle_root` parameter specified in `configs/train.json` and `configs/inference.json` to reflect where models are downloaded. Expected directory path to place downloaded models is `models/` under `bundle_root`.
 
+![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_workflow.png)
+
 ## Data
 Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/). Here is a [link](https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/inbody_outbody_samples.zip) of 20 samples (10 in-body and 10 out-body) to show what this dataset looks like. After downloading this dataset, python script in `scripts` folder naming `data_process` can be used to get label json files by running the command below and replacing datapath and outpath parameters.
 ```
@@ -51,6 +53,16 @@ Output: probability vector whose length equals to 2: Label 0: in body; Label 1: 
 This model achieves the following accuracy score on the test dataset:
 
 Accuracy = 0.98
+
+## Training Performance
+A graph showing the training loss over 25 epochs.
+
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_train_loss.png) <br>
+
+## Validation Performance
+A graph showing the validation accuracy over 25 epochs.
+
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_val_accuracy.png) <br>
 
 ## commands example
 Execute training:
