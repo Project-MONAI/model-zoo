@@ -66,7 +66,7 @@ verify_bundle() {
                     pipenv install -r "$requirements"
                 fi
                 # verify bundle
-                pipenv run python $(pwd)/ci/verify_bundle.py --b "$bundle"
+                pipenv run python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
                 remove_pipenv
             done
         else
