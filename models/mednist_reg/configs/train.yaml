@@ -161,6 +161,7 @@ val:
       val_mse:
         _target_: MeanSquaredError
         output_transform: "$monai.handlers.from_engine(['pred', 'label'])"
+    additional_metrics: {"mutual info loss": "@loss_metric#metric_handler"}
     val_handlers:
       - _target_: StatsHandler
         iteration_log: false
@@ -180,6 +181,19 @@ handlers:
     validator: "@val#evaluator"
     epoch_level: true
     interval: "@val_interval"
+
+loss_metric:
+  mutual_info:
+    _target_: GlobalMutualInformationLoss
+  metric_handler:
+    _target_: IgniteMetric
+    output_transform: "$monai.handlers.from_engine(['pred', 'label'])"
+    metric_fn:
+      _target_: LossMetric
+      loss_fn: "@loss_metric#mutual_info"
+      get_not_nans: true
+
+
 
 ckpt_loader:
   - _target_: CheckpointLoader
