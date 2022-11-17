@@ -12,9 +12,9 @@
         "_target_": "FlexibleUNet",
         "in_channels": 3,
         "out_channels": 2,
-        "backbone": "efficientnet-b0",
+        "backbone": "efficientnet-b2",
         "spatial_dims": 2,
-        "pretrained": true,
+        "pretrained": false,
         "is_pad": false
     },
     "network": "$@network_def.to(@device)",
@@ -23,12 +23,6 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": [
-                    "image"
-                ]
-            },
-            {
-                "_target_": "ToTensord",
                 "keys": [
                     "image"
                 ]
@@ -78,6 +72,15 @@
     "postprocessing": {
         "_target_": "Compose",
         "transforms": [
+            {
+                "_target_": "Invertd",
+                "keys": "pred",
+                "transform": "@preprocessing",
+                "orig_keys": "image",
+                "meta_key_postfix": "meta_dict",
+                "nearest_interp": false,
+                "to_tensor": true
+            },
             {
                 "_target_": "AsDiscreted",
                 "argmax": true,

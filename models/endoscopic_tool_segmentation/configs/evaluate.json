@@ -3,6 +3,21 @@
         "_target_": "Compose",
         "transforms": [
             {
+                "_target_": "Invertd",
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "transform": "@validate#preprocessing",
+                "orig_keys": "image",
+                "meta_key_postfix": "meta_dict",
+                "nearest_interp": [
+                    false,
+                    true
+                ],
+                "to_tensor": true
+            },
+            {
                 "_target_": "AsDiscreted",
                 "keys": [
                     "pred",
@@ -15,19 +30,13 @@
                 "to_onehot": 2
             },
             {
-                "_target_": "Lambdad",
-                "keys": [
-                    "pred"
-                ],
-                "func": "$lambda x : x[1:]"
-            },
-            {
                 "_target_": "SaveImaged",
+                "_disabled_": true,
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
                 "output_ext": ".png",
-                "scale": 255,
+                "resample": false,
                 "squeeze_end_dims": true
             }
         ]
