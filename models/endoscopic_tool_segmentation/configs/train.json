@@ -11,7 +11,7 @@
     "dataset_dir": "/workspace/data/endoscopic_tool_dataset",
     "images": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'train', '*', '*[!seg].jpg'))))",
     "labels": "$[x.replace('.jpg', '_seg.jpg') for x in @images]",
-    "val_images": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'valid', '*' '*[!seg].jpg'))))",
+    "val_images": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'val', '*', '*[!seg].jpg'))))",
     "val_labels": "$[x.replace('.jpg', '_seg.jpg') for x in @val_images]",
     "val_interval": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -19,8 +19,9 @@
         "_target_": "FlexibleUNet",
         "in_channels": 3,
         "out_channels": 2,
-        "backbone": "efficientnet-b0",
+        "backbone": "efficientnet-b2",
         "spatial_dims": 2,
+        "dropout": 0.5,
         "pretrained": true,
         "is_pad": false
     },
@@ -29,24 +30,24 @@
         "_target_": "DiceLoss",
         "include_background": false,
         "to_onehot_y": true,
-        "softmax": true
+        "softmax": true,
+        "jaccard": true
     },
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@network.parameters()",
         "lr": 0.0001
     },
+    "lr_scheduler": {
+        "_target_": "torch.optim.lr_scheduler.CosineAnnealingWarmRestarts",
+        "optimizer": "@optimizer",
+        "T_0": 100,
+        "T_mult": 1
+    },
     "train": {
         "deterministic_transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": [
-                    "image",
-                    "label"
-                ]
-            },
-            {
-                "_target_": "ToTensord",
                 "keys": [
                     "image",
                     "label"
@@ -150,6 +151,11 @@
                 "log_dir": "@output_dir",
                 "tag_name": "train_loss",
                 "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            },
+            {
+                "_target_": "LrScheduleHandler",
+                "lr_scheduler": "@lr_scheduler",
+                "print_lr": true
             }
         ],
         "key_metric": {
@@ -182,7 +188,7 @@
         },
         "trainer": {
             "_target_": "SupervisedTrainer",
-            "max_epochs": 60,
+            "max_epochs": 100,
             "device": "@device",
             "train_data_loader": "@train#dataloader",
             "network": "@network",
