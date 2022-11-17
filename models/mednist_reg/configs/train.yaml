@@ -9,7 +9,7 @@ device: "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"
 ckpt_dir: "$@bundle_root + '/models'"  # folder to save new checkpoints
 ckpt: ""  # path to load an existing checkpoint
 val_interval: 1  # every epoch
-max_epochs: 300
+max_epochs: 200
 val_epochs: "$@max_epochs // @val_interval"
 cross_subjects: false
 
