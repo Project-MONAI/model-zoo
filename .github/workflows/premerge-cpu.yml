@@ -40,5 +40,5 @@ jobs:
       run: |
         # clean up temporary files
         $(pwd)/runtests.sh --clean
-        bash $(pwd)/ci/run_premerge_cpu.sh
+        bash $(pwd)/ci/run_premerge_cpu.sh changed
       shell: bash
