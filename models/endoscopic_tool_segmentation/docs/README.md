@@ -2,8 +2,10 @@
 A pre-trained model for the endoscopic tool segmentation task.
 
 # Model Overview
-This model is trained using a flexible unet structure with an efficient-b0 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from [Activ Surgical](https://www.activsurgical.com/).
+This model is trained using a flexible unet structure with an efficient-b2 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from [Activ Surgical](https://www.activsurgical.com/).
 The [pytorch model](https://drive.google.com/file/d/14r6WmzaZrgaWLGu0O9vSAzdeIGVFQ3cs/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1i-e5xXHtmvmqitwUP8Q3JqvnmN3mlrEm/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file. Modify the "bundle_root" parameter specified in configs/train.json and configs/inference.json to reflect where models are downloaded. Expected directory path to place downloaded models is "models/" under "bundle_root".
+
+![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_workflow.png)
 
 ## Data
 Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/).
@@ -28,6 +30,16 @@ Output: 2 channels: Label 1: tools; Label 0: everything else
 This model achieves the following IoU score on the test dataset (our own split from the first batch data):
 
 Mean IoU = 0.87
+
+## Training Performance
+A graph showing the training loss over 100 epochs.
+
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_train_loss.png) <br>
+
+## Validation Performance
+A graph showing the validation mean IoU over 100 epochs.
+
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_val_iou.png) <br>
 
 ## commands example
 Execute training:
