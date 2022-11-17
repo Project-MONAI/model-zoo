@@ -80,7 +80,7 @@ display:
   - $plt.show()
 
 # network definition
-net:
+network_def:
   _target_: scripts.net.RegResNet
   image_size: [64, 64]
   spatial_dims: 2
@@ -91,7 +91,7 @@ net:
 handlers:
   - _target_: CheckpointLoader
     load_path: "@ckpt"
-    load_dict: {model: "@net"}
+    load_dict: {model: "@network_def"}
   - _target_: StatsHandler
     iteration_log: false
 
@@ -99,7 +99,7 @@ evaluator:
   _target_: SupervisedEvaluator
   device: "@device"
   val_data_loader: "@data_loader"
-  network: "@net"
+  network: "@network_def"
   epoch_length: $len(@datalist) // @data_loader#batch_size
   inferer: "$monai.inferers.SimpleInferer()"
   val_handlers: "@handlers"
