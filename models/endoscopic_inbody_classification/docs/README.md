@@ -102,23 +102,6 @@ python -m monai.bundle ckpt_export network_def \
     --config_file configs/inference.json
 ```
 
-Export checkpoint to onnx file, which has been tested on pytorch 1.12.0:
-
-```
-python scripts/export_to_onnx.py --model models/model.pt --outpath models/model.onnx
-```
-
-Export TensorRT float16 model from the onnx model:
-
-```
-trtexec --onnx=models/model.onnx --saveEngine=models/model.trt --fp16 \
-    --minShapes=INPUT__0:1x3x256x256 \
-    --optShapes=INPUT__0:16x3x256x256 \
-    --maxShapes=INPUT__0:32x3x256x256 \
-    --shapes=INPUT__0:8x3x256x256
-```
-This command need TensorRT with correct CUDA installed in the environment. For the detail of installing TensorRT, please refer to [this link](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html).
-
 # References
 [1] J. Hu, L. Shen and G. Sun, Squeeze-and-Excitation Networks, 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2018, pp. 7132-7141. https://arxiv.org/pdf/1709.01507.pdf
 
