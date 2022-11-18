@@ -8,6 +8,8 @@ The model is trained to segment 3 nested subregions of primary brain tumors (gli
 - The TC describes the bulk of the tumor, which is what is typically resected. The TC entails the ET, as well as the necrotic (fluid-filled) and the non-enhancing (solid) parts of the tumor.
 -  The WT describes the complete extent of the disease, as it entails the TC and the peritumoral edema (ED), which is typically depicted by hyper-intense signal in FLAIR.
 
+![](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_brain_mri_segmentation_workflow.png)
+
 ## Data
 
 The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/cbica/sbia/brats2018/tasks.html).
@@ -89,6 +91,15 @@ Execute inference:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
+
+# Training
+A graph showing the training loss and the mean dice over 300 epochs.
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_train.png)
+
+# Validation
+A graph showing the validation mean dice over 300 epochs.
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_val.png)
+
 
 # Disclaimer
 
