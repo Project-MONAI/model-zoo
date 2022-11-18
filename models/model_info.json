@@ -374,5 +374,9 @@
     "brats_mri_segmentation_v0.3.4": {
         "checksum": "480bd42c524d2466dc4a8c8b6f0c8bb09e88fd90",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.4.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.3.6": {
+        "checksum": "d0e015d007c48c523be4804768bb4331bd3b8efc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.6.zip"
     }
 }
