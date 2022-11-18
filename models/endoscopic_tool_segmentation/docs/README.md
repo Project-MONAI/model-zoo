@@ -1,9 +1,7 @@
-# Description
-A pre-trained model for the endoscopic tool segmentation task.
-
 # Model Overview
-This model is trained using a flexible unet structure with an efficient-b2 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from [Activ Surgical](https://www.activsurgical.com/).
-The [pytorch model](https://drive.google.com/file/d/14r6WmzaZrgaWLGu0O9vSAzdeIGVFQ3cs/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1i-e5xXHtmvmqitwUP8Q3JqvnmN3mlrEm/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file. Modify the "bundle_root" parameter specified in configs/train.json and configs/inference.json to reflect where models are downloaded. Expected directory path to place downloaded models is "models/" under "bundle_root".
+A pre-trained model for the endoscopic tool segmentation task and is trained using a flexible unet structure with an efficient-b2 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from [Activ Surgical](https://www.activsurgical.com/).
+
+The [PyTorch model](https://drive.google.com/file/d/14r6WmzaZrgaWLGu0O9vSAzdeIGVFQ3cs/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1i-e5xXHtmvmqitwUP8Q3JqvnmN3mlrEm/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file. Modify the "bundle_root" parameter specified in configs/train.json and configs/inference.json to reflect where models are downloaded. Expected directory path to place downloaded models is "models/" under "bundle_root".
 
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_workflow.png)
 
@@ -12,55 +10,60 @@ Datasets used in this work were provided by [Activ Surgical](https://www.activsu
 
 Since datasets are private, existing public datasets like [EndoVis 2017](https://endovissub2017-roboticinstrumentsegmentation.grand-challenge.org/Data/) can be used to train a similar model.
 
+### Preprocessing
+
 When using EndoVis or any other dataset, it should be divided into "train", "valid" and "test" folders. Samples in each folder would better be images and converted to jpg format. Otherwise, "images", "labels", "val_images" and "val_labels" parameters in "configs/train.json" and "datalist" in "configs/inference.json" should be modified to fit given dataset. After that, "dataset_dir" parameter in "configs/train.json" and "configs/inference.json" should be changed to root folder which contains previous "train", "valid" and "test" folders.
 
 Please notice that loading data operation in this bundle is adaptive. If images and labels are not in the same format, it may lead to a mismatching problem. For example, if images are in jpg format and labels are in npy format, PIL and Numpy readers will be used separately to load images and labels. Since these two readers have their own way to parse file's shape, loaded labels will be transpose of the correct ones and incur a missmatching problem.
 
 ## Training configuration
-The training was performed with an at least 12GB-memory GPU.
+The training as performed with the following:
+- GPU: At least 12GB of GPU memory
+- Actual Model Input: 736 x 480 x 3
+- Optimizer: Adam
+- Learning Rate: 1e-4
 
-Actual Model Input: 736 x 480 x 3
+### Input
+A three channel video frame
 
-## Input and output formats
-Input: 3 channel video frames
+### Output
+Two channels: 
+- Label 1: tools
+- Label 0: everything else
 
-Output: 2 channels: Label 1: tools; Label 0: everything else
+## Performance
+IoU was used for evaluating the performance of the model. This model achieves a mean IoU score of 0.87.
 
-## Scores
-This model achieves the following IoU score on the test dataset (our own split from the first batch data):
+#### Training Loss
+![A graph showing the training loss over 100 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_train_loss.png)
 
-Mean IoU = 0.87
+#### Validation IoU
+![A graph showing the validation mean IoU over 100 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_val_iou.png)
 
-## Training Performance
-A graph showing the training loss over 100 epochs.
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_train_loss.png) <br>
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-## Validation Performance
-A graph showing the validation mean IoU over 100 epochs.
-
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_val_iou.png) <br>
-
-## commands example
-Execute training:
+#### Execute training:
 
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
-Override the `train` config to execute evaluation with the trained model:
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
-Execute inference:
+#### Execute inference:
 
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
-Export checkpoint to TorchScript file:
+#### Export checkpoint to TorchScript file:
 
 ```
 python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json

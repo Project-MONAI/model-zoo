@@ -1,15 +1,17 @@
-# Description
-A pre-trained model for volumetric (3D) multi-organ segmentation from CT image.
-
 # Model Overview
 A pre-trained Swin UNETR [1,2] for volumetric (3D) multi-organ segmentation using CT images from Beyond the Cranial Vault (BTCV) Segmentation Challenge dataset [3].
 
-The architecture of Swin UNETR is shown as below:
-
-![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_workflow_v1.png)
+![model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_workflow_v1.png)
 
 ## Data
-The training data is from the [BTCV dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/89480/) (Please regist in `Synapse` and download the `Abdomen/RawData.zip`).
+The training data is from the [BTCV dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/89480/) (Register through `Synapse` and download the `Abdomen/RawData.zip`).
+
+- Target: Multi-organs
+- Task: Segmentation
+- Modality: CT
+- Size: 30 3D volumes (24 Training + 6 Testing)
+
+### Preprocessing
 The dataset format needs to be redefined using the following commands:
 
 ```
@@ -19,71 +21,80 @@ mv RawData/Training/label/ RawData/labelsTr
 mv RawData/Testing/img/ RawData/imagesTs
 ```
 
-- Target: Multi-organs
-- Task: Segmentation
-- Modality: CT
-- Size: 30 3D volumes (24 Training + 6 Testing)
-
 ## Training configuration
-The training was performed with at least 32GB-memory GPUs.
+The training as performed with the following:
+- GPU: At least 32GB of GPU memory
+- Actual Model Input: 96 x 96 x 96
+- AMP: True
+- Optimizer: Adam
+- Learning Rate: 2e-4
 
-Actual Model Input: 96 x 96 x 96
 
-## Input and output formats
-Input: 1 channel CT image
+### Input
+1 channel
+- CT image
 
-Output: 14 channels: 0:Background, 1:Spleen, 2:Right Kidney, 3:Left Kidney, 4:Gallbladder, 5:Esophagus, 6:Liver, 7:Stomach, 8:Aorta, 9:IVC, 10:Portal and Splenic Veins, 11:Pancreas, 12:Right adrenal gland, 13:Left adrenal gland
+### Output
+14 channels: 
+- 0: Background
+- 1: Spleen
+- 2: Right Kidney
+- 3: Left Kideny
+- 4: Gallbladder
+- 5: Esophagus
+- 6: Liver
+- 7: Stomach
+- 8: Aorta
+- 9: IVC
+- 10: Portal and Splenic Veins
+- 11: Pancreas
+- 12: Right adrenal gland
+- 13: Left adrenal gland
 
 ## Performance
+Dice score was used for evaluating the performance of the model. This model achieves a mean dice score of 0.8269
 
-The figure shows the training loss curve for 10K iterations.
+#### Training Loss
+![The figure shows the training loss curve for 10K iterations.](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_trainloss_v1.png)
 
+#### Validation Dice
 
-<p align = "center"><img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_trainloss_v1.png" alt="drawing" width="700"/></p>
+![A graph showing the validation mean Dice for 5000 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_validation_meandice_v1.png)
 
-A graph showing the validation mean Dice for 5000 epochs.
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-<p align = "center"><img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_validation_meandice_v1.png" alt="drawing" width="700"/></p>
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-This model achieves the following Dice score on the validation data (our own split from the training dataset):
-
-Mean Dice = 0.8269
-
-Note that mean dice is computed in the original spacing of the input data.
-## commands example
-Execute training:
+#### Execute training:
 
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
-Override the `train` config to execute multi-GPU training:
+#### Override the `train` config to execute multi-GPU training:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf
 ```
 
-Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
-Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
+Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-Override the `train` config to execute evaluation with the trained model:
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
-Execute inference:
+#### Execute inference:
 
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
-Export checkpoint to TorchScript file:
+#### Export checkpoint to TorchScript file:
 
 TorchScript conversion is currently not supported.
-
-# Disclaimer
-This is an example, not to be used for diagnostic purposes.
 
 # References
 [1] Hatamizadeh, Ali, et al. "Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images." arXiv preprint arXiv:2201.01266 (2022). https://arxiv.org/abs/2201.01266.
