@@ -6,7 +6,7 @@ A pre-trained Swin UNETR [1,2] for volumetric (3D) multi-organ segmentation usin
 
 The architecture of Swin UNETR is shown as below:
 
-![image](https://lh3.googleusercontent.com/pw/AM-JKLVx_J2DKYA7DCo3F_gGbK2e1sI_yzjYwQt-EWCirNGKsUv1hi7qLMofkY0r5xVXJNzhr8qenBkUJJYXtj49xsWJgOgbkBpcN7rz9axkeN3tgJbWldtZhYcBgYOlklzUS34eMCL-gRkxyFydJQ_Y1HAx=w1322-h518-no?authuser=2)
+![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_workflow_v1.png)
 
 ## Data
 The training data is from the [BTCV dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/89480/) (Please regist in `Synapse` and download the `Abdomen/RawData.zip`).
@@ -39,11 +39,11 @@ Output: 14 channels: 0:Background, 1:Spleen, 2:Right Kidney, 3:Left Kidney, 4:Ga
 The figure shows the training loss curve for 10K iterations. 
 
 
-<p align = "center"><img src="./imgs/monai_swin_unetr_btcv_segmentation_trainloss_v1.png" alt="drawing" width="700"/></p>
+<p align = "center"><img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_trainloss_v1.png" alt="drawing" width="700"/></p>
 
 A graph showing the validation mean Dice for 5000 epochs.
 
-<p align = "center"><img src="./imgs/monai_swin_unetr_btcv_segmentation_validation_meandice_v1.png" alt="drawing" width="700"/></p>
+<p align = "center"><img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_validation_meandice_v1.png" alt="drawing" width="700"/></p>
 
 This model achieves the following Dice score on the validation data (our own split from the training dataset):
 
