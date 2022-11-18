@@ -21,6 +21,40 @@ Input: 3 channels CT image - one channel representing clicks for each segment (i
 
 Output: 2 channels: Label 1: spleen; Label 0: everything else - This depends on the dictionary "label_names" defined in train.json and inference.json ("label_names": {"spleen": 1, "background": 0},)
 
+## Model Performance
+
+The achieved Dice score on the validation set is:
+
+Spleen dice > 0.90 (depending on the number of simulated clicks)
+
+Command to execute:
+
+```
+python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
+```
+
+
+### Train Dice
+
+A graph showing the train dice over 90 epochs.
+
+![Train Dice](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_dice.png)
+
+
+### Train loss
+
+A graph showing the training loss over 90 epochs.
+
+![Train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_loss.png)
+
+
+### Validation Dice
+
+A graph showing the validation dice over 90 epochs.
+
+![Validation Dice](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_val_dice.png)
+
+
 ## commands example
 Execute training:
 
@@ -50,7 +84,11 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 ```
 
 # References
-[1] Sakinis, Tomas, et al. "Interactive segmentation of medical images through fully convolutional neural networks." arXiv preprint arXiv:1903.08205 (2019).
+[1] Diaz-Pinto, Andres, et al. DeepEdit: Deep Editable Learning for Interactive Segmentation of 3D Medical Images. MICCAI Workshop on Data Augmentation, Labelling, and Imperfections. MICCAI 2022.
+
+[2] Diaz-Pinto, Andres, et al. "MONAI Label: A framework for AI-assisted Interactive Labeling of 3D Medical Images." arXiv preprint arXiv:2203.12362 (2022).
+
+[3] Sakinis, Tomas, et al. "Interactive segmentation of medical images through fully convolutional neural networks." arXiv preprint arXiv:1903.08205 (2019).
 
 # License
 Copyright (c) MONAI Consortium

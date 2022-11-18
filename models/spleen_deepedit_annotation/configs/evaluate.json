@@ -1,21 +1,12 @@
 {
+    "validate#dataset#cache_rate": 0,
     "validate#postprocessing": {
         "_target_": "Compose",
         "transforms": [
             {
-                "_target_": "Invertd",
-                "keys": [
-                    "pred",
-                    "label"
-                ],
-                "transform": "@validate#preprocessing",
-                "orig_keys": "image",
-                "meta_key_postfix": "meta_dict",
-                "nearest_interp": [
-                    false,
-                    true
-                ],
-                "to_tensor": true
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "softmax": true
             },
             {
                 "_target_": "AsDiscreted",
@@ -27,7 +18,7 @@
                     true,
                     false
                 ],
-                "to_onehot": 2
+                "to_onehot": "$len(@label_names)+1"
             },
             {
                 "_target_": "SaveImaged",
@@ -35,7 +26,6 @@
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
-                "output_ext": ".png",
                 "resample": false,
                 "squeeze_end_dims": true
             }
@@ -57,11 +47,10 @@
             "_target_": "MetricsSaver",
             "save_dir": "@output_dir",
             "metrics": [
-                "val_iou",
-                "val_mean_dice"
+                "val_mean_dice",
+                "val_acc"
             ],
             "metric_details": [
-                "val_iou",
                 "val_mean_dice"
             ],
             "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
