@@ -97,7 +97,7 @@ A graph showing the training loss and the mean dice over 300 epochs.
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_train.png)
 
 # Validation
-A graph showing the validation mean dice over 300 epochs. 
+A graph showing the validation mean dice over 300 epochs.
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_val.png)
 
 
