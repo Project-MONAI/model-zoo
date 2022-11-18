@@ -2,7 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "version": "0.4.1",
     "changelog": {
-        "0.4.1": "Fix inference print logger",
+        "0.4.1": "Fix inference print logger and froc",
         "0.4.0": "add lesion FROC calculation and wsi_reader",
         "0.3.3": "update to use monai 1.0.1",
         "0.3.2": "enhance readme on commands example",
