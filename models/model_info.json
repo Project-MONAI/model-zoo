@@ -370,5 +370,9 @@
     "pancreas_ct_dints_segmentation_v0.3.3": {
         "checksum": "842a3c67a8d5a9868675ada6ead798f31b698279",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.3.3.zip"
+    },
+    "brats_mri_segmentation_v0.3.4": {
+        "checksum": "480bd42c524d2466dc4a8c8b6f0c8bb09e88fd90",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.4.zip"
     }
 }
