@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "changelog": {
+        "0.3.5": "update prepare datalist function",
         "0.3.4": "update output format of inference",
         "0.3.3": "update to use monai 1.0.1",
         "0.3.2": "enhance readme on commands example",
