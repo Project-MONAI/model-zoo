@@ -67,7 +67,7 @@ If your bundle does not have any of the preferred files, please add the bundle n
 
 Except the requirements of files, there are also some requirements of keys within config files:
 
-In inference config file (if exists), please include the following keys: `bundle_root` (root directory of your bundle), `device` (required device), `network_def` (definition of the network component), `network`, `inferer` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json)).
+In inference config file (if exists), please include the following keys: `bundle_root` (root directory of your bundle), `device` (required device), `network_def` (definition of the network components), `inferer` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json)).
 
 In train config file (if exists), please follow the following requirements in order to maintain consistent naming format ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/train.json)):
 
