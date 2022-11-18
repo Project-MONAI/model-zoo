@@ -66,9 +66,11 @@ This model achieves the following Dice score on the validation data (our own spl
 Mean Dice = 0.62
 
 Training loss over 3200 epochs.
+
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_train_4-2.png)
 
 Validation mean dice score over 3200 epochs.
+
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_validation_4-2.png)
 
 ### Searched Architecture Visualization
