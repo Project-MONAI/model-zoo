@@ -106,7 +106,7 @@
         {
             "_target_": "StatsHandler",
             "tag_name": "progress",
-            "iteration_print_logger": "$lambda engine: print(f'image: \"{engine.state.batch[\"metadata\"][\"name\"][0]}\", iter: {engine.state.iteration}/{engine.state.epoch_length}') if engine.state.iteration % 100 == 0 else None",
+            "iteration_print_logger": "$lambda engine: print(f'image: \"{engine.state.batch[\"image\"].meta[\"name\"][0]}\", iter: {engine.state.iteration}/{engine.state.epoch_length}') if engine.state.iteration % 100 == 0 else None",
             "output_transform": "$lambda x: None"
         },
         {
