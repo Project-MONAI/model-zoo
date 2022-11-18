@@ -1,5 +1,5 @@
 # Model Overview
-A pre-trained model for volumetric (3D) segmentation of the spleen from CT images. 
+A pre-trained model for volumetric (3D) segmentation of the spleen from CT images.
 
 This model is trained using the runner-up [1] awarded pipeline of the "Medical Segmentation Decathlon Challenge 2018" using the UNet architecture [2] with 32 training images and 9 validation images.
 
@@ -9,7 +9,7 @@ This model is trained using the runner-up [1] awarded pipeline of the "Medical S
 The training dataset is the Spleen Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
 - Target: Spleen
-- Modality: CT 
+- Modality: CT
 - Size: 61 3D volumes (41 Training + 20 Testing)
 - Source: Memorial Sloan Kettering Cancer Center
 - Challenge: Large-ranging foreground size
@@ -35,7 +35,7 @@ Two channels
 - Label 1: spleen
 - Label 0: everything else
 
-## Performance 
+## Performance
 Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.96.
 
 #### Training Loss

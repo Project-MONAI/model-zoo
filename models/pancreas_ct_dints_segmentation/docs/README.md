@@ -10,9 +10,9 @@ The training dataset is the Panceas Task from the Medical Segmentation Decathalo
 - Modality: Portal venous phase CT
 - Size: 420 3D volumes (282 Training +139 Testing)
 - Source: Memorial Sloan Kettering Cancer Center
-- Challenge: Label unbalance with large (background), medium (pancreas) and small (tumour) structures. 
+- Challenge: Label unbalance with large (background), medium (pancreas) and small (tumour) structures.
 
-### Preprocessing 
+### Preprocessing
 The data list/split can be created with the script `scripts/prepare_datalist.py`.
 
 ```

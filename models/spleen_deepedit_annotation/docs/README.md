@@ -1,5 +1,5 @@
 # Model Overview
-A pre-trained model for 3D segmentation of the spleen organ from CT images using DeepEdit. 
+A pre-trained model for 3D segmentation of the spleen organ from CT images using DeepEdit.
 
 DeepEdit is an algorithm that combines the power of two models in one single architecture. It allows the user to perform inference as a standard segmentation method (i.e., UNet) and interactively segment part of an image using clicks [2]. DeepEdit aims to facilitate the user experience and, at the same time, develop new active learning techniques.
 
@@ -9,7 +9,7 @@ The model was trained on 32 images and validated on 9 images.
 The training dataset is the Spleen Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
 - Target: Spleen
-- Modality: CT 
+- Modality: CT
 - Size: 61 3D volumes (41 Training + 20 Testing)
 - Source: Memorial Sloan Kettering Cancer Center
 - Challenge: Large-ranging foreground size
@@ -32,7 +32,7 @@ Three channels
 ### Output
 Two channels
 - Label 1: spleen
-- Label 0: everything else 
+- Label 0: everything else
 
 ## Performance
 

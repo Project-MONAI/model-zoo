@@ -27,7 +27,7 @@ The training as performed with the following:
 A three channel video frame
 
 ### Output
-Two channels: 
+Two channels:
 - Label 1: tools
 - Label 0: everything else
 

@@ -35,7 +35,7 @@ The training as performed with the following:
 - CT image
 
 ### Output
-14 channels: 
+14 channels:
 - 0: Background
 - 1: Spleen
 - 2: Right Kidney

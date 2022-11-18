@@ -6,7 +6,7 @@ The [PyTorch model](https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIko
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_workflow.png)
 
 ## Data
-The datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/). 
+The datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/).
 
 We've provided a [link](https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/inbody_outbody_samples.zip) of 20 samples (10 in-body and 10 out-body) to show what this dataset looks like.
 
