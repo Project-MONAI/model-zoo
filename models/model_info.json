@@ -354,5 +354,13 @@
     "spleen_deepedit_annotation_v0.3.4": {
         "checksum": "e9b293b6a6ba7edc7353af6eb11da46c50a9d711",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.3.4.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.1": {
+        "checksum": "c979eea2d3c862ab78c2338ddda7002f3ff87458",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.1.zip"
+    },
+    "endoscopic_tool_segmentation_v0.3.1": {
+        "checksum": "a0c2943fd0f9c910754fede29f504b774c0afa9f",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.3.1.zip"
     }
 }
