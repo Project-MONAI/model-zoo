@@ -63,7 +63,8 @@ Inference is performed on WSI in a sliding window manner with specified stride. 
 # Model Performance
 
 FROC score is used for evaluating the performance of the model. After inference is done, `evaluate_froc.sh` needs to be run to evaluate FROC score based on predicted probability map (output of inference) and the ground truth tumor masks.
-This model achieve the ~0.92 accuracy on validation patches, and FROC of ~0.72 on the 48 Camelyon testing data that have ground truth annotations available.
+This model achieve the ~0.91 accuracy on validation patches, and FROC of 0.685 on the 48 Camelyon testing data that have ground truth annotations available.
+![model performance](<https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics.png>)
 
 # Commands example
 
@@ -82,16 +83,16 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training
 Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
 Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
 
-Override the `train` config to execute evaluation with the trained model:
-
-```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
-```
-
 Execute inference:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
+CUDA_LAUNCH_BLOCKING=1 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
+```
+
+Evaluate FROC metric:
+
+```
+cd scripts && source evaluate_froc.sh
 ```
 
 Export checkpoint to TorchScript file:
