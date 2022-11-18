@@ -82,16 +82,10 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training
 Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
 Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
 
-Override the `train` config to execute evaluation with the trained model:
-
-```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
-```
-
 Execute inference:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
+CUDA_LAUNCH_BLOCKING=1 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
 Export checkpoint to TorchScript file:
