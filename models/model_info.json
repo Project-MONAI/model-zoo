@@ -334,5 +334,37 @@
     "swin_unetr_btcv_segmentation_v0.3.4": {
         "checksum": "646d9ade59bd783d40f048282ff460144a1a122e",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.4.zip"
+    },
+    "pathology_tumor_detection_v0.4.0": {
+        "checksum": "a012c46ae941c60cb2a27d81eac6dc7002be0a4b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.0.zip"
+    },
+    "spleen_ct_segmentation_v0.3.6": {
+        "checksum": "6915cc63b8e185fc3155a6e350363022d681958d",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.3.6.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.0": {
+        "checksum": "ead940d30ae2dd74dfdeb2dc199ccae60ba2efe7",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.0.zip"
+    },
+    "endoscopic_tool_segmentation_v0.3.0": {
+        "checksum": "fc08e8bbb7faf5061e94c95269960a7972491a95",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.3.0.zip"
+    },
+    "spleen_deepedit_annotation_v0.3.4": {
+        "checksum": "e9b293b6a6ba7edc7353af6eb11da46c50a9d711",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.3.4.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.1": {
+        "checksum": "c979eea2d3c862ab78c2338ddda7002f3ff87458",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.1.zip"
+    },
+    "endoscopic_tool_segmentation_v0.3.1": {
+        "checksum": "a0c2943fd0f9c910754fede29f504b774c0afa9f",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.3.1.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.3.5": {
+        "checksum": "2f2ccf1a307fe81f323256dcb7c8e37d791e6887",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.5.zip"
     }
 }
