@@ -64,7 +64,7 @@ Inference is performed on WSI in a sliding window manner with specified stride. 
 
 FROC score is used for evaluating the performance of the model. After inference is done, `evaluate_froc.sh` needs to be run to evaluate FROC score based on predicted probability map (output of inference) and the ground truth tumor masks.
 This model achieve the ~0.91 accuracy on validation patches, and FROC of 0.685 on the 48 Camelyon testing data that have ground truth annotations available.
-![model performance](<https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics.png>)
+![model performance](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics.png)
 
 # Commands example
 
