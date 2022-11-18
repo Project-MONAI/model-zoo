@@ -382,5 +382,9 @@
     "pathology_tumor_detection_v0.4.1": {
         "checksum": "c54242800b9781ea661a814d376b198cfb843dd1",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.1.zip"
+    },
+    "brats_mri_segmentation_v0.3.5": {
+        "checksum": "149de24b5cae089b5f7679a82eb8273f1bf73f9c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.5.zip"
     }
 }
