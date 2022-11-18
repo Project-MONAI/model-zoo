@@ -366,5 +366,9 @@
     "swin_unetr_btcv_segmentation_v0.3.5": {
         "checksum": "2f2ccf1a307fe81f323256dcb7c8e37d791e6887",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.5.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.3.3": {
+        "checksum": "842a3c67a8d5a9868675ada6ead798f31b698279",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.3.3.zip"
     }
 }
