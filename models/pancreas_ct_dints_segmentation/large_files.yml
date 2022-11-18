@@ -7,7 +7,7 @@ large_files:
     url: "https://drive.google.com/uc?export=download&id=1okM3vItihWWwwH_uti9UZbZFkft5A-OO"
     hash_val: "c7fb16ccb2d4c86194b9b933be7a9d5f"
     hash_type: "md5"
-- path: "models/model.ps"
+  - path: "models/model.ps"
     url: "https://drive.google.com/uc?export=download&id=1Swa1L8OV4P3IDlJAf--8WC08fZDPzBBo"
     hash_val: "ecafa816fe364e0af86169f618a47980"
     hash_type: "md5"
