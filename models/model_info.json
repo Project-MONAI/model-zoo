@@ -378,5 +378,9 @@
     "swin_unetr_btcv_segmentation_v0.3.6": {
         "checksum": "d0e015d007c48c523be4804768bb4331bd3b8efc",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.6.zip"
+    },
+    "pathology_tumor_detection_v0.4.1": {
+        "checksum": "c54242800b9781ea661a814d376b198cfb843dd1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.1.zip"
     }
 }
