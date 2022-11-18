@@ -36,7 +36,7 @@ Output: 14 channels: 0:Background, 1:Spleen, 2:Right Kidney, 3:Left Kidney, 4:Ga
 
 ## Performance
 
-The figure shows the training loss curve for 10K iterations. 
+The figure shows the training loss curve for 10K iterations.
 
 
 <p align = "center"><img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_trainloss_v1.png" alt="drawing" width="700"/></p>
