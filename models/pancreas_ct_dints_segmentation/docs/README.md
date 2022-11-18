@@ -65,16 +65,15 @@ This model achieves the following Dice score on the validation data (our own spl
 
 Mean Dice = 0.62
 
-Training loss over 3200 epochs.
+Training loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)
 
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_train_4-2.png)
 
-Validation mean dice score over 3200 epochs.
+Validation mean dice score over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)
 
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_validation_4-2.png)
 
 ### Searched Architecture Visualization
-
 Users can install Graphviz for visualization of searched architectures (needed in custom/decode_plot.py). The edges between nodes indicate global structure, and numbers next to edges represent different operations in the cell searching space. An example of searched architecture is shown as follows:
 
 ## Commands Example
