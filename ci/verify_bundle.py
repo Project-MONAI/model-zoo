@@ -273,7 +273,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
         print("Provided TorchScript module is verified correctly.")
 
 
-def verify(bundle):
+def verify(bundle, mode="full"):
 
     models_path = "models"
     print(f"start verifying {bundle}:")
@@ -292,6 +292,8 @@ def verify(bundle):
     bundle_path = os.path.join(models_path, bundle)
     verify_metadata_format(bundle_path)
     print("metadata format is verified correctly.")
+    if mode == "min":
+        return
 
     # The following are optional tests
     net_id, inference_file_name = "network_def", _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
@@ -311,6 +313,8 @@ def verify(bundle):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-b", "--b", type=str, help="bundle name.")
+    parser.add_argument("-m", "--mode", type=str, default="full", help="verify bundle mode (full/min).")
     args = parser.parse_args()
     bundle = args.b
-    verify(bundle)
+    mode = args.mode
+    verify(bundle, mode)
