@@ -120,6 +120,12 @@ Execute inference:
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.yaml --logging_file configs/logging.conf
 ```
 
+Export checkpoint for TorchScript
+
+```
+python -m monai.bundle ckpt_export network_def --filepath models_train/model.ts --ckpt_file models_train/model.pt --meta_file configs/metadata.json --config_file configs/inference.yaml
+```
+
 # Disclaimer
 This is an example, not to be used for diagnostic purposes.
 
