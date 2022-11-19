@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "changelog": {
+        "0.4.3": "update val patch size to avoid warning in monai 1.0.1",
         "0.4.2": "update to use monai 1.0.1",
         "0.4.1": "fix license Copyright error",
         "0.4.0": "add support for raw images",
