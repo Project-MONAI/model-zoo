@@ -442,5 +442,9 @@
     "endoscopic_tool_segmentation_v0.3.2": {
         "checksum": "4a896fd169633c6436475fff8d0061d0ab3d4ba4",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.3.2.zip"
+    },
+    "lung_nodule_ct_detection_v0.4.3": {
+        "checksum": "4f31fdd27a24cb15ed2c4acc2cf1c746b84723c5",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.3.zip"
     }
 }
