@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "changelog": {
+        "0.4.4": "restructure readme to match updated template",
         "0.4.3": "fix wrong figure url",
         "0.4.2": "update metadata with new metrics",
         "0.4.1": "Fix inference print logger and froc",
