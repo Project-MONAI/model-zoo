@@ -1,14 +1,18 @@
-# Description
-A pre-trained model for the endoscopic inbody classification task.
-
 # Model Overview
-This model is trained using the SEResNet50 structure, whose details can be found in [1]. All datasets are from private samples of [Activ Surgical](https://www.activsurgical.com/). Samples in training and validation dataset are from the same 4 videos, while test samples are from different two videos.
-The [pytorch model](https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIkoyNa-x/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1fOoJ4n5DWKHrt9QXTZ2sXwr9C-YvVGCM/view?usp=sharing) are shared in google drive. Modify the `bundle_root` parameter specified in `configs/train.json` and `configs/inference.json` to reflect where models are downloaded. Expected directory path to place downloaded models is `models/` under `bundle_root`.
+A pre-trained model for the endoscopic inbody classification task and trained using the SEResNet50 structure, whose details can be found in [1]. All datasets are from private samples of [Activ Surgical](https://www.activsurgical.com/). Samples in training and validation dataset are from the same 4 videos, while test samples are from different two videos.
+
+The [PyTorch model](https://drive.google.com/file/d/14CS-s1uv2q6WedYQGeFbZeEWIkoyNa-x/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1fOoJ4n5DWKHrt9QXTZ2sXwr9C-YvVGCM/view?usp=sharing) are shared in google drive. Modify the `bundle_root` parameter specified in `configs/train.json` and `configs/inference.json` to reflect where models are downloaded. Expected directory path to place downloaded models is `models/` under `bundle_root`.
 
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_workflow.png)
 
 ## Data
-Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/). Here is a [link](https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/inbody_outbody_samples.zip) of 20 samples (10 in-body and 10 out-body) to show what this dataset looks like. After downloading this dataset, python script in `scripts` folder naming `data_process` can be used to get label json files by running the command below and replacing datapath and outpath parameters.
+The datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/).
+
+We've provided a [link](https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/inbody_outbody_samples.zip) of 20 samples (10 in-body and 10 out-body) to show what this dataset looks like.
+
+### Preprocessing
+After downloading this dataset, python script in `scripts` folder naming `data_process` can be used to get label json files by running the command below and replacing datapath and outpath parameters.
+
 ```
 python scripts/data_process.py --datapath /path/to/data/root --outpath /path/to/label/folder
 ```
@@ -40,32 +44,35 @@ The input label json should be a list made up by dicts which includes `image` an
 ```
 
 ## Training configuration
-The training was performed with an at least 12GB-memory GPU.
+The training as performed with the following:
+- GPU: At least 12GB of GPU memory
+- Actual Model Input: 256 x 256 x 3
+- Optimizer: Adam
+- Learning Rate: 1e-3
 
-Actual Model Input: 256 x 256 x 3
+### Input
+A three channel video frame
 
-## Input and output formats
-Input: 3 channel video frames
+### Output
+Two Channels
+- Label 0: in body
+- Label 1: out body
 
-Output: probability vector whose length equals to 2: Label 0: in body; Label 1: out body
+## Performance
+Accuracy was used for evaluating the performance of the model. This model achieves an accuracy score of 0.98
 
-## Scores
-This model achieves the following accuracy score on the test dataset:
+#### Training Loss
+![A graph showing the training loss over 25 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_train_loss.png)
 
-Accuracy = 0.98
+#### Validation Accuracy
+![A graph showing the validation accuracy over 25 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_val_accuracy.png)
 
-## Training Performance
-A graph showing the training loss over 25 epochs.
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_train_loss.png) <br>
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-## Validation Performance
-A graph showing the validation accuracy over 25 epochs.
-
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_val_accuracy.png) <br>
-
-## commands example
-Execute training:
+#### Execute training:
 
 ```
 python -m monai.bundle run training \
@@ -74,7 +81,7 @@ python -m monai.bundle run training \
     --logging_file configs/logging.conf
 ```
 
-Override the `train` config to execute multi-GPU training:
+#### Override the `train` config to execute multi-GPU training:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training \
@@ -83,10 +90,9 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training
     --logging_file configs/logging.conf
 ```
 
-Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
-Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
+Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-Override the `train` config to execute evaluation with the trained model:
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
 python -m monai.bundle run evaluating \
@@ -95,7 +101,7 @@ python -m monai.bundle run evaluating \
     --logging_file configs/logging.conf
 ```
 
-Execute inference:
+#### Execute inference:
 
 ```
 python -m monai.bundle run evaluating \
@@ -104,7 +110,7 @@ python -m monai.bundle run evaluating \
     --logging_file configs/logging.conf
 ```
 
-Export checkpoint to TorchScript file:
+#### Export checkpoint to TorchScript file:
 
 ```
 python -m monai.bundle ckpt_export network_def \
