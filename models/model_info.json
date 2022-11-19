@@ -410,5 +410,37 @@
     "brats_mri_segmentation_v0.3.6": {
         "checksum": "23ec5ff03211f974ed757430ef06b72801e2bffd",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.6.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.3.5": {
+        "checksum": "992028f4dda21035a1bed264a8abbc5cea704020",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.3.5.zip"
+    },
+    "spleen_ct_segmentation_v0.3.7": {
+        "checksum": "1bec4fbc4d445088383f181c28a86212632eaeb3",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.3.7.zip"
+    },
+    "pathology_tumor_detection_v0.4.4": {
+        "checksum": "4ef3af75925f9a90fde83ef053ef5764edc62a39",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.4.zip"
+    },
+    "brats_mri_segmentation_v0.3.7": {
+        "checksum": "9b0d6f5944dbc895051978f296589a8f789891ab",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.7.zip"
+    },
+    "spleen_deepedit_annotation_v0.3.6": {
+        "checksum": "3c997db8fca7c22ac6662b872fb3756ae7191d0f",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.3.6.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.2": {
+        "checksum": "bb53207264f0c5054782a91d9b5b9f1740a4d40c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.2.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.3.8": {
+        "checksum": "f872c2bf4a1770edd10ad69c5bd540bd1f31f5db",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.8.zip"
+    },
+    "endoscopic_tool_segmentation_v0.3.2": {
+        "checksum": "4a896fd169633c6436475fff8d0061d0ab3d4ba4",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.3.2.zip"
     }
 }
