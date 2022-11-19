@@ -2,8 +2,6 @@
 
 A pre-trained model for automated detection of metastases in whole-slide histopathology images.
 
-## Workflow
-
 The model is trained based on ResNet18 [1] with the last fully connected layer replaced by a 1x1 convolution layer.
 ![Diagram showing the flow from model input, through the model architecture, and to model output](http://developer.download.nvidia.com/assets/Clara/Images/clara_pt_pathology_metastasis_detection_workflow.png)
 
@@ -20,7 +18,7 @@ Annotation information are adopted from [NCRF/jsons](https://github.com/baidu-re
 - Modality: Histopathology
 - Size: 270 WSIs for training/validation, 48 WSIs for testing
 
-### Data Preparation
+### Preprocessing
 
 This bundle expects the training/validation data (whole slide images) reside in a `{data_root}/training/images`. By default `data_root` is pointing to `/workspace/data/medical/pathology/` You can modify `data_root` in the bundle config files to point to a different directory.
 
@@ -28,7 +26,7 @@ To reduce the computation burden during the inference, patches are extracted onl
 
 Please refer to "Annotation" section of [Camelyon challenge](https://camelyon17.grand-challenge.org/Data/) to prepare ground truth images, which are needed for FROC computation. By default, this data set is expected to be at `/workspace/data/medical/pathology/ground_truths`. But it can be modified in `evaluate_froc.sh`.
 
-# Training configuration
+## Training configuration
 
 The training was performed with the following:
 
@@ -41,61 +39,57 @@ The training was performed with the following:
 - Loss: BCEWithLogitsLoss
 - Whole slide image reader: cuCIM (if running on Windows or Mac, please install `OpenSlide` on your system and change `wsi_reader` to "OpenSlide")
 
-## Input
+### Input
 
-Input: Input for the training pipeline is a json file (dataset.json) which includes path to each WSI, the location and the label information for each training patch.
+The training pipeline is a json file (dataset.json) which includes path to each WSI, the location and the label information for each training patch.
 
-1. Extract 224 x 224 x 3 patch from WSI according to the location information from json
-2. Randomly applying color jittering
-3. Randomly applying spatial flipping
-4. Randomly applying spatial rotation
-5. Randomly applying spatial zooming
-6. Randomly applying intensity scaling
+### Output
 
-## Output
+A probability number of the input patch being tumor or normal.
 
-Output of the network is a probability number of the input patch being tumor or normal.
-
-## Inference on a WSI
+### Inference on a WSI
 
 Inference is performed on WSI in a sliding window manner with specified stride. A foreground mask is needed to specify the region where the inference will be performed on, given that background region which contains no tissue at all can occupy a significant portion of a WSI. Output of the inference pipeline is a probability map of size 1/stride of original WSI size.
 
-# Model Performance
+## Performance
 
 FROC score is used for evaluating the performance of the model. After inference is done, `evaluate_froc.sh` needs to be run to evaluate FROC score based on predicted probability map (output of inference) and the ground truth tumor masks.
 This model achieve the ~0.91 accuracy on validation patches, and FROC of 0.685 on the 48 Camelyon testing data that have ground truth annotations available.
-![model performance](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics.png)
 
-# Commands example
+![A Graph showing Train Acc, Train Loss, and Validation Acc](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics.png)
 
-Execute training:
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
+
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute training:
 
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
-Override the `train` config to execute multi-GPU training:
+#### Override the `train` config to execute multi-GPU training:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf
 ```
 
-Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
-Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
+Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-Execute inference:
+#### Execute inference:
 
 ```
 CUDA_LAUNCH_BLOCKING=1 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
-Evaluate FROC metric:
+#### Evaluate FROC metric:
 
 ```
 cd scripts && source evaluate_froc.sh
 ```
 
-Export checkpoint to TorchScript file:
+#### Export checkpoint to TorchScript file:
 
 TorchScript conversion is currently not supported.
 
