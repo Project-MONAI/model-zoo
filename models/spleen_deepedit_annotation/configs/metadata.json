@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.4",
+    "version": "0.3.6",
     "changelog": {
+        "0.3.6": "restructure readme to match updated template",
+        "0.3.5": "update metric in metadata",
         "0.3.4": "add validate.json file and dice score in readme",
         "0.3.3": "update to use monai 1.0.1",
         "0.3.2": "enhance readme on commands example",
@@ -29,7 +31,7 @@
     "label_classes": "single channel data, 1 is spleen, 0 is background",
     "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.92
+        "mean_dice": 0.9
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

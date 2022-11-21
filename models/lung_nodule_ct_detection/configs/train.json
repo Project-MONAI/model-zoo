@@ -23,7 +23,7 @@
     "val_patch_size": [
         512,
         512,
-        208
+        192
     ],
     "anchor_generator": {
         "_target_": "monai.apps.detection.utils.anchor_utils.AnchorGeneratorWithAnchorShape",

@@ -4,7 +4,7 @@ LEVEL=6
 SPACING=0.243
 READER=openslide
 EVAL_DIR=../eval
-GROUND_TRUTH_DIR=/workspace/data/medical/pathology/ground_truths
+GROUND_TRUTH_DIR=/workspace/data/medical/pathology/testing/ground_truths
 
 echo "=> Level= ${LEVEL}"
 echo "=> Spacing = ${SPACING}"

@@ -1,7 +1,11 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.0",
+    "version": "0.4.4",
     "changelog": {
+        "0.4.4": "restructure readme to match updated template",
+        "0.4.3": "fix wrong figure url",
+        "0.4.2": "update metadata with new metrics",
+        "0.4.1": "Fix inference print logger and froc",
         "0.4.0": "add lesion FROC calculation and wsi_reader",
         "0.3.3": "update to use monai 1.0.1",
         "0.3.2": "enhance readme on commands example",
@@ -29,8 +33,8 @@
     "label_classes": "binary labels for each patch",
     "pred_classes": "scalar probability",
     "eval_metrics": {
-        "accuracy": 0,
-        "froc": 0
+        "accuracy": 0.91,
+        "froc": 0.685
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

@@ -17,7 +17,7 @@ def load_data(ground_truth_dir: str, eval_dir: str, level: int, spacing: float):
     for prob_name in prob_files:
         if prob_name.endswith(".npy"):
             sample = {
-                "tumor_mask": full_path(ground_truth_dir, prob_name.replace("npy", "tif")),
+                "tumor_mask": full_path(ground_truth_dir, prob_name[:-4]),
                 "prob_map": full_path(eval_dir, prob_name),
                 "level": level,
                 "pixel_spacing": spacing,

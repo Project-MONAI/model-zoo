@@ -1,15 +1,14 @@
 # Model Overview
 A pre-trained model for volumetric (3D) segmentation of brain tumor subregions from multimodal MRIs based on BraTS 2018 data. The whole pipeline is modified from [clara_pt_brain_mri_segmentation](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/med/models/clara_pt_brain_mri_segmentation).
 
-## Workflow
-
 The model is trained to segment 3 nested subregions of primary brain tumors (gliomas): the "enhancing tumor" (ET), the "tumor core" (TC), the "whole tumor" (WT) based on 4 aligned input MRI scans (T1c, T1, T2, FLAIR).
 - The ET is described by areas that show hyper intensity in T1c when compared to T1, but also when compared to "healthy" white matter in T1c.
 - The TC describes the bulk of the tumor, which is what is typically resected. The TC entails the ET, as well as the necrotic (fluid-filled) and the non-enhancing (solid) parts of the tumor.
 -  The WT describes the complete extent of the disease, as it entails the TC and the peritumoral edema (ED), which is typically depicted by hyper-intense signal in FLAIR.
 
-## Data
+![Model workflow](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_brain_mri_segmentation_workflow.png)
 
+## Data
 The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/cbica/sbia/brats2018/tasks.html).
 
 - Target: 3 tumor subregions
@@ -19,16 +18,15 @@ The training data is from the [Multimodal Brain Tumor Segmentation Challenge (Br
 
 The provided labelled data was partitioned, based on our own split, into training (200 studies), validation (42 studies) and testing (43 studies) datasets.
 
-Please run `scripts/prepare_datalist.py` to produce the data list. The command is like:
+### Preprocessing
+The data list/split can be created with the script `scripts/prepare_datalist.py`.
 
 ```
 python scripts/prepare_datalist.py --path your-brats18-dataset-path
 ```
 
 ## Training configuration
-
-This model utilized a similar approach described in 3D MRI brain tumor segmentation
-using autoencoder regularization, which was a winning method in BraTS2018 [1]. The training was performed with the following:
+This model utilized a similar approach described in 3D MRI brain tumor segmentation using autoencoder regularization, which was a winning method in BraTS2018 [1]. The training was performed with the following:
 
 - GPU: At least 16GB of GPU memory.
 - Actual Model Input: 224 x 224 x 144
@@ -38,64 +36,60 @@ using autoencoder regularization, which was a winning method in BraTS2018 [1]. T
 - Loss: DiceLoss
 
 ## Input
-
-Input: 4 channel MRI (4 aligned MRIs T1c, T1, T2, FLAIR at 1x1x1 mm)
-
-1. Normalizing to unit std with zero mean
-2. Randomly cropping to (224, 224, 144)
-3. Randomly spatial flipping
-4. Randomly scaling and shifting intensity of the volume
+4 channel aligned MRIs at 1 x 1 x 1 mm
+- T1c
+- T1
+- T2
+- FLAIR
 
 ## Output
-
-Output: 3 channels
+3 channels
 - Label 0: TC tumor subregion
 - Label 1: WT tumor subregion
 - Label 2: ET tumor subregion
 
-## Model Performance
-
-The achieved Dice scores on the validation data are:
+## Performance
+Dice score was used for evaluating the performance of the model. This model achieved Dice scores on the validation data of:
 - Tumor core (TC): 0.8559
 - Whole tumor (WT): 0.9026
 - Enhancing tumor (ET): 0.7905
 - Average: 0.8518
 
-## commands example
+#### Training Loss and Dice
+![A graph showing the training loss and the mean dice over 300 epochs](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_train.png)
 
-Execute training:
+#### Validation Dice
 
+![A graph showing the validation mean dice over 300 epochs](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_val.png)
+
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
+
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute training:
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
-Override the `train` config to execute multi-GPU training:
-
+#### Override the `train` config to execute multi-GPU training:
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf
 ```
 
-Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
-Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
+Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-Override the `train` config to execute evaluation with the trained model:
-
+#### Override the `train` config to execute evaluation with the trained model:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
-Execute inference:
-
+#### Execute inference:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
-# Disclaimer
-
-This is an example, not to be used for diagnostic purposes.
-
 # References
-
 [1] Myronenko, Andriy. "3D MRI brain tumor segmentation using autoencoder regularization." International MICCAI Brainlesion Workshop. Springer, Cham, 2018. https://arxiv.org/abs/1810.11654.
 
 # License
