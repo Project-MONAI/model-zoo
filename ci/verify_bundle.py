@@ -28,7 +28,7 @@ necessary_files_list = ["configs/metadata.json", "LICENSE"]
 # files that are preferred to be included in a bundle
 preferred_files_list = ["models/model.pt", "configs/inference.json"]
 # keys that must be included in inference config
-infer_keys_list = ["bundle_root", "device", "network_def", "network", "inferer"]
+infer_keys_list = ["bundle_root", "device", "network_def", "inferer"]
 # keys that must be included in train config
 train_keys_list = ["bundle_root", "device"]
 
