@@ -52,6 +52,26 @@ python -m monai.bundle run eval \
   --device "cuda:1"
 ```
 
+## Fine-tuning for cross-subject alignments
+
+The following commands starts a finetuning workflow based on the checkpoint `"models/model_key_metric=-0.0065.pt"`
+for `5` epochs using the global mutual information loss.
+
+```bash
+python -m monai.bundle run training \
+  --config_file configs/train.yaml \
+  --cross_subjects true \
+  --ckpt "models/model_key_metric=-0.0065.pt" \
+  --lr 0.000001 \
+  --trainer#loss_function "@mutual_info_loss" \
+  --max_epochs 5
+```
+The following figure shows an inter-subject (`--cross_subjects true`) model inference results (Fixed, moving and predicted images from left to right)
+
+![fixed](./examples/008501_fixed_7.png)
+![moving](./examples/008504_moving_7.png)
+![predicted](./examples/008504_pred_7.png)
+
 
 # License
 Copyright (c) MONAI Consortium

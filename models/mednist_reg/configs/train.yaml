@@ -183,20 +183,28 @@ handlers:
     interval: "@val_interval"
 
 loss_metric:
-  mutual_info:
-    _target_: GlobalMutualInformationLoss
   metric_handler:
     _target_: IgniteMetric
     output_transform: "$monai.handlers.from_engine(['pred', 'label'])"
     metric_fn:
       _target_: LossMetric
-      loss_fn: "@loss_metric#mutual_info"
+      loss_fn: "@mutual_info_loss"
       get_not_nans: true
 
 ckpt_loader:
   - _target_: CheckpointLoader
     load_path: "@ckpt"
     load_dict: {model: "@net"}
+
+lncc_loss:
+  _target_: LocalNormalizedCrossCorrelationLoss
+  spatial_dims: 2
+  kernel_size: 5
+  kernel_type: rectangular
+  reduction: mean
+
+mutual_info_loss:
+  _target_: GlobalMutualInformationLoss
 
 # create the primary trainer
 trainer:
@@ -206,12 +214,7 @@ trainer:
   network: "@net"
   max_epochs: "@max_epochs"
   epoch_length: $len(@datalist) // @data_loader#batch_size
-  loss_function:
-    _target_: LocalNormalizedCrossCorrelationLoss
-    spatial_dims: 2
-    kernel_size: 5
-    kernel_type: rectangular
-    reduction: mean
+  loss_function: "@lncc_loss"
   optimizer: "@optimizer"
   train_handlers: "$@handlers + @ckpt_loader if @ckpt else @handlers"
 
