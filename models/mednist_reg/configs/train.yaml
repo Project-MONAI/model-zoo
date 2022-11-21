@@ -92,7 +92,7 @@ data_loader:
 first_pair: $monai.utils.misc.first(@data_loader)
 display:
   - $monai.utils.set_determinism(seed=123)
-  - $print(@first_pair.keys())
+  - $print(@first_pair.keys(), @first_pair['image'].meta['filename_or_obj'])
   - "$print(@trainer#loss_function(@first_pair['image'][:, 0:1], @first_pair['image'][:, 1:2]))"  # print loss
   - $plt.subplot(1,2,1)
   - $plt.imshow(@first_pair['image'][0, 0], cmap="gray")

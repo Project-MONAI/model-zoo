@@ -73,6 +73,19 @@ The following figure shows an inter-subject (`--cross_subjects true`) model infe
 ![predicted](./examples/008504_pred_7.png)
 
 
+## Visualize the first pair of images for debugging (requires `matplotlib`)
+
+```bash
+python -m monai.bundle run display --config_file configs/train.yaml
+```
+
+```bash
+python -m monai.bundle run display --config_file configs/train.yaml --cross_subjects true
+```
+
+
+
+
 # License
 Copyright (c) MONAI Consortium
 
