@@ -54,6 +54,8 @@ In training mode: dictionary of classification and box regression loss in traini
 In evaluation mode: list of dictionary of predicted box, classification label, and classification score in evaluation mode.
 
 ## 3. Performance
+Coco metric with IoU threshold=0.1 is used for evaluating the performance of the model. This model achieves a mean of mAP and mAR in Coco metric of 0.927.
+
 <p align="center">
   <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png" alt="detection train loss")
 </p>
@@ -61,22 +63,6 @@ In evaluation mode: list of dictionary of predicted box, classification label, a
 <p align="center">
   <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png" alt="detection val accuracy")
 </p>
-
-With a single DGX1V 16G GPU, it took around 80 hours to train 300 epochs for each data fold. The pre-trained model was trained on fold 0.
-
-The output of inference for each data fold is a result json file. The script to combine 10 result json files to one csv file can be found in https://github.com/Project-MONAI/tutorials/blob/main/detection/luna16_post_combine_cross_fold_results.py.
-The script to compute FROC sensitivity value on 10-fold inference results can be downloaded from [LUNA16](https://luna16.grand-challenge.org/Evaluation/) in https://www.dropbox.com/s/wue67fg9bk5xdxt/evaluationScript.zip?dl=0. An example useage is in https://github.com/Project-MONAI/tutorials/blob/main/detection/run_luna16_offical_eval.sh.
-
-This model achieves the following FROC sensitivity value on the 10-fold validation data:
-
-| Methods             | 1/8   | 1/4   | 1/2   | 1     | 2     | 4     | 8     |
-| :---:               | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [Liu et al. (2019)](https://arxiv.org/pdf/1906.03467.pdf)   | **0.848** | 0.876 | 0.905 | 0.933 | 0.943 | 0.957 | 0.970 |
-| [nnDetection (2021)](https://arxiv.org/pdf/2106.00817.pdf)  | 0.812 | **0.885** | 0.927 | 0.950 | 0.969 | 0.979 | 0.985 |
-| MONAI detection     | 0.835 | **0.885** | **0.931** | **0.957** | **0.974** | **0.983** | **0.988** |
-
-**Table 1**. The FROC sensitivity values at the predefined false positive per scan thresholds of the LUNA16 challenge.
-
 
 ## 4. Commands example
 Execute training:
