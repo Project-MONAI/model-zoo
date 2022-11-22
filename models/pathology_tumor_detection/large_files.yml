@@ -1,7 +1,7 @@
 large_files:
   - path: "models/model.pt"
-    url: "https://drive.google.com/uc?id=1EbwJIJfio0SxtywySXTzunAPDKkROhYe"
-    hash_val: "a1a73a2ec07b25d9c04022f88aa236a9"
+    url: "https://drive.google.com/uc?id=1no7-9ATi6lZkLpqBHEZfjJhR2_UO38i3"
+    hash_val: "22906ff86daf6364be2087169fbd187d"
     hash_type: "md5"
   - path: "training.csv"
     url: "https://drive.google.com/uc?id=1httIjgji6U6rMIb0P8pE0F-hXFAuvQEf"
