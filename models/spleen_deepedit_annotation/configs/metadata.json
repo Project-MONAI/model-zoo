@@ -1,16 +1,25 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.1.0",
+    "version": "0.3.6",
     "changelog": {
+        "0.3.6": "restructure readme to match updated template",
+        "0.3.5": "update metric in metadata",
+        "0.3.4": "add validate.json file and dice score in readme",
+        "0.3.3": "update to use monai 1.0.1",
+        "0.3.2": "enhance readme on commands example",
+        "0.3.1": "fix license Copyright error",
+        "0.3.0": "update license files",
+        "0.2.0": "unify naming",
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "0.9.0",
-    "pytorch_version": "1.12.0",
+    "monai_version": "1.0.1",
+    "pytorch_version": "1.13.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
-        "nibabel": "3.2.1",
-        "pytorch-ignite": "0.4.8"
+        "nibabel": "4.0.1",
+        "pytorch-ignite": "0.4.9",
+        "scikit-image": "0.19.3"
     },
     "task": "Decathlon spleen segmentation",
     "description": "This is a pre-trained model for 3D segmentation of the spleen organ from CT images using DeepEdit.",
@@ -22,7 +31,7 @@
     "label_classes": "single channel data, 1 is spleen, 0 is background",
     "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.92
+        "mean_dice": 0.9
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

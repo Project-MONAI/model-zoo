@@ -23,7 +23,8 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": "image",
+                "reader": "ITKReader"
             },
             {
                 "_target_": "EnsureChannelFirstd",

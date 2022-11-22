@@ -47,7 +47,7 @@ def main(args):
     """
     split the dataset and output the data list into a json file.
     """
-    data_file_base_dir = os.path.join(args.path, "training")
+    data_file_base_dir = os.path.join(os.path.abspath(args.path), "training")
     output_json = args.output
     # produce deterministic data splits
     monai.utils.set_determinism(seed=123)

@@ -1,10 +1,14 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20220718.json",
-    "version": "0.1.0",
+    "version": "0.4.1",
     "changelog": {
+        "0.4.1": "fix license Copyright error",
+        "0.4.0": "update license files",
+        "0.3.0": "Update for 1.0",
+        "0.2.0": "Unify naming",
         "0.1.0": "Initial version"
     },
-    "monai_version": "0.9.0",
+    "monai_version": "1.0.0",
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.0",
     "optional_packages_version": {

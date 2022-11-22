@@ -5,12 +5,14 @@
     ],
     "lr": 0.001,
     "num_epochs": 4,
+    "val_interval": 1,
     "bundle_root": ".",
     "ckpt_dir": "$os.path.join(@bundle_root, 'models')",
     "output_dir": "$os.path.join(@bundle_root, 'log')",
     "training_file": "$os.path.join(@bundle_root, 'training.csv')",
     "validation_file": "$os.path.join(@bundle_root, 'validation.csv')",
     "data_root": "/workspace/data/medical/pathology",
+    "wsi_reader": "cuCIM",
     "region_size": [
         768,
         768
@@ -135,7 +137,7 @@
             "src": "@training_file",
             "col_groups": {
                 "image": 0,
-                "patch_location": [
+                "location": [
                     2,
                     1
                 ],
@@ -165,7 +167,7 @@
             "data": "@train#datalist",
             "patch_level": 0,
             "patch_size": "@region_size",
-            "reader": "cucim",
+            "reader": "@wsi_reader",
             "transform": "@train#preprocessing"
         },
         "dataloader": {
@@ -198,7 +200,7 @@
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
-                "interval": 1
+                "interval": "@val_interval"
             },
             {
                 "_target_": "StatsHandler",
@@ -286,7 +288,7 @@
             "src": "@validation_file",
             "col_groups": {
                 "image": 0,
-                "patch_location": [
+                "location": [
                     2,
                     1
                 ],
@@ -316,7 +318,7 @@
             "data": "@validate#datalist",
             "patch_level": 0,
             "patch_size": "@region_size",
-            "reader": "cucim",
+            "reader": "@wsi_reader",
             "transform": "@validate#preprocessing"
         },
         "dataloader": {

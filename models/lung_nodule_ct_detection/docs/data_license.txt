@@ -1,0 +1,11 @@
+Third Party Licenses
+-----------------------------------------------------------------------
+
+/*********************************************************************/
+i. LUng Nodule Analysis 2016
+   https://luna16.grand-challenge.org/Home/
+   https://creativecommons.org/licenses/by/4.0/
+
+ii.  Lung Image Database Consortium image collection (LIDC-IDRI)
+   https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI
+   https://creativecommons.org/licenses/by/3.0/

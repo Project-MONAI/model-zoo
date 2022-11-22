@@ -22,6 +22,7 @@
     "number_intensity_ch": 1,
     "deepgrow_probability_train": 0.4,
     "deepgrow_probability_val": 1.0,
+    "val_interval": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "DynUNet",
@@ -208,7 +209,7 @@
                 ]
             }
         ],
-        "pre_transforms": {
+        "preprocessing": {
             "_target_": "Compose",
             "transforms": "$@train#preprocessing_transforms + @train#random_transforms + @train#deepedit_transforms"
         },
@@ -264,7 +265,7 @@
         "dataset": {
             "_target_": "CacheDataset",
             "data": "$[{'image': i, 'label': l} for i, l in zip(@images[:-9], @labels[:-9])]",
-            "transform": "@train#pre_transforms",
+            "transform": "@train#preprocessing",
             "cache_rate": 1.0,
             "num_workers": 4
         },
@@ -278,7 +279,7 @@
         "inferer": {
             "_target_": "SimpleInferer"
         },
-        "post_transforms": {
+        "postprocessing": {
             "_target_": "Compose",
             "transforms": [
                 {
@@ -310,7 +311,7 @@
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
-                "interval": 1
+                "interval": "@val_interval"
             },
             {
                 "_target_": "StatsHandler",
@@ -348,21 +349,21 @@
             "loss_function": "@loss",
             "inferer": "@train#inferer",
             "amp": true,
-            "postprocessing": "@train#post_transforms",
+            "postprocessing": "@train#postprocessing",
             "key_train_metric": "@train#key_metric",
             "train_handlers": "@train#handlers",
             "iteration_update": "@train#train_iteration_update"
         }
     },
     "validate": {
-        "pre_transforms": {
+        "preprocessing": {
             "_target_": "Compose",
             "transforms": "$@train#preprocessing_transforms + @train#deepedit_transforms"
         },
         "dataset": {
             "_target_": "CacheDataset",
             "data": "$[{'image': i, 'label': l} for i, l in zip(@images[-9:], @labels[-9:])]",
-            "transform": "@validate#pre_transforms",
+            "transform": "@validate#preprocessing",
             "cache_rate": 1.0,
             "num_workers": 4
         },
@@ -376,7 +377,7 @@
         "inferer": {
             "_target_": "SimpleInferer"
         },
-        "post_transforms": "%train#post_transforms",
+        "postprocessing": "%train#postprocessing",
         "handlers": [
             {
                 "_target_": "StatsHandler",
@@ -417,7 +418,7 @@
             "val_data_loader": "@validate#dataloader",
             "network": "@network",
             "inferer": "@validate#inferer",
-            "postprocessing": "@validate#post_transforms",
+            "postprocessing": "@validate#postprocessing",
             "key_val_metric": "@validate#key_metric",
             "val_handlers": "@validate#handlers",
             "iteration_update": "@validate#val_iteration_update",

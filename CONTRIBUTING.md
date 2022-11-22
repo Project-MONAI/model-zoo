@@ -18,7 +18,7 @@ A [template](https://github.com/Project-MONAI/model-zoo/blob/dev/docs/readme_tem
 
 ### License Format
 
-The MONAI Model Zoo repository follows [Apache License](https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE), thus each bundle should also follow it. In addition, please also include the license of the dataset that the bundle uses into `docs/license.txt` within the bundle directory. Here is an example of [the brats_mri_segmentation bundle](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/docs/license.txt).
+As described in [README](https://github.com/Project-MONAI/model-zoo#readme), please include `LICENSE` into the root directory of the bundle, and please also include `docs/data_license.txt` if there are any license conditions stated for data your bundle uses. Here is an example of [the brats_mri_segmentation bundle](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/docs/data_license.txt).
 
 ### Model naming
 
@@ -56,13 +56,36 @@ large_files:
     url: "url-of-model.ts"
 ```
 
+### Preferred Files and Keys
+
+In order to be compatible with other apps such as MONAI FL, MONAI deploy and MONAI Label, except the format requirements from MONAI Bundle Specification, a bundle in MONAI Model Zoo should also contain the necessary files `LICENSE`, `configs/metadata.json` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/metadata.json)), and the following preferred files:
+
+1. `models/model.pt` (or a download link in the config file for large files, [click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/large_files.yml))
+1. `configs/inference.json` (or `.yaml`, `.json`, [click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json))
+
+If your bundle does not have any of the preferred files, please add the bundle name into `exclude_verify_preferred_files_list` in `ci/bundle_custom_data.py`.
+
+Except the requirements of files, there are also some requirements of keys within config files:
+
+In inference config file (if exists), please include the following keys: `bundle_root` (root directory of your bundle), `device` (required device), `network_def` (definition of the network components), `inferer` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json)).
+
+In train config file (if exists), please follow the following requirements in order to maintain consistent naming format ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/train.json)):
+
+1. Please include keys `bundle_root` and `device`.
+1. If having `train`, components `train#trainer`, `train#trainer#max_epochs`, `train#dataset`, `train#dataset#data` should be defined.
+1. If having `validate`, components `validate#evaluator`, `validate#dataset`, `validate#dataset#data` should be defined.
+1. In `train` and/or `validate`, please define `preprocessing`, `postprocessing`, `inferer` and `key_metric` if they are used.
+1. If `ValidationHandler` is used, please define the key `val_interval` and use it for the argument `interval`.
+
+
 ## Verifying the bundle
 
 We prepared several premerge CI tests to verify your bundle.
 
 ### Necessary verifications
 
-1. Check if `configs/metadata.json` is existing in your bundle.
+1. Check if necessary files are existing in your bundle.
+1. Check if keys naming are consistent with our requirements.
 1. If an existing bundle has been modified, check if `version` and `changelog` are updated.
 1. Check if metadata format is correct. You can also run the following command locally to verify your bundle before submitting a pull request:
 
@@ -79,7 +102,7 @@ Check if the input and output data shape and data type of network defined in the
 python -m monai.bundle verify_net_in_out --net_id network_def --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
-`net_id` is the ID name of the network component, `config_file` is the filepath (within the bundle) of the config file to get the network definition. The default values in the CI tests are `network_def` for `net_id` and `configs/inference.json` for `config_file`, if different values are used, please include them into `custom_net_config_dict` in `ci/bundle_custom_data.py`. This requirement also works for the torchscript test that will be mentioned bellow.
+`net_id` is the ID name of the network component, `config_file` is the filepath (within the bundle) of the config file to get the network definition. Please modify the default values if needed.
 
 If this test is not suitable for your bundle, please add your bundle name into `exclude_verify_shape_list` in `ci/bundle_custom_data.py`.
 

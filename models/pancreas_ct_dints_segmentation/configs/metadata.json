@@ -1,16 +1,24 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.1.0",
+    "version": "0.3.5",
     "changelog": {
+        "0.3.5": "restructure readme to match updated template",
+        "0.3.4": "correct typos",
+        "0.3.3": "update learning rate and readme",
+        "0.3.2": "update to use monai 1.0.1",
+        "0.3.1": "fix license Copyright error",
+        "0.3.0": "update license files",
+        "0.2.0": "unify naming",
+        "0.1.1": "fix data type issue in searching/training configurations",
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "0.9.0",
-    "pytorch_version": "1.12.0",
+    "monai_version": "1.0.1",
+    "pytorch_version": "1.13.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
         "fire": "0.4.0",
-        "nibabel": "3.2.1",
+        "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
     },
     "task": "Neural architecture search on pancreas CT segmentation",
@@ -23,7 +31,7 @@
     "label_classes": "single channel data, 1 is pancreas, 2 is pancreatic tumor, 0 is everything else",
     "pred_classes": "3 channels OneHot data, channel 1 is pancreas, channel 2 is pancreatic tumor, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.72
+        "mean_dice": 0.62
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

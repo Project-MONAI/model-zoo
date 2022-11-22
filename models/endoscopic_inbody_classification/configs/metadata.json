@@ -1,0 +1,82 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.3.2",
+    "changelog": {
+        "0.3.2": "restructure readme to match updated template",
+        "0.3.1": "add workflow, train loss and validation accuracy figures",
+        "0.3.0": "update dataset processing",
+        "0.2.2": "update to use monai 1.0.1",
+        "0.2.1": "enhance readme on commands example",
+        "0.2.0": "update license files",
+        "0.1.0": "complete the first version model package",
+        "0.0.1": "initialize the model package structure"
+    },
+    "monai_version": "1.0.1",
+    "pytorch_version": "1.13.0",
+    "numpy_version": "1.22.4",
+    "optional_packages_version": {
+        "nibabel": "4.0.1",
+        "pytorch-ignite": "0.4.9"
+    },
+    "task": "Endoscopic inbody classification classification",
+    "description": "A pre-trained binary classification model for endoscopic inbody classification task",
+    "authors": "NVIDIA DLMED team",
+    "copyright": "Copyright (c) 2021-2022, NVIDIA CORPORATION",
+    "data_source": "private dataset",
+    "data_type": "RGB",
+    "image_classes": "three channel data, intensity [0-255]",
+    "label_classes": "0: inbody, 1: outbody",
+    "pred_classes": "vector whose length equals to 2, [1,0] means in body, [0,1] means out body",
+    "eval_metrics": {
+        "accuracy": 0.98
+    },
+    "references": [
+        "J. Hu, L. Shen and G. Sun, Squeeze-and-Excitation Networks, 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2018, pp. 7132-7141. https://arxiv.org/pdf/1709.01507.pdf"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "magnitude",
+                "format": "RGB",
+                "modality": "regular",
+                "num_channels": 3,
+                "spatial_shape": [
+                    256,
+                    256
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "R",
+                    "1": "G",
+                    "2": "B"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "probabilities",
+                "format": "classes",
+                "num_channels": 2,
+                "spatial_shape": [
+                    1,
+                    2
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "in body",
+                    "1": "out body"
+                }
+            }
+        }
+    }
+}

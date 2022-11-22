@@ -3,7 +3,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/workspace/brats_mri_segmentation",
+    "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "data_list_file_path": "$@bundle_root + '/configs/datalist.json'",
@@ -12,7 +12,7 @@
     "val_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation', base_dir=@data_file_base_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "epochs": 300,
-    "num_interval_per_valid": 1,
+    "val_interval": 1,
     "learning_rate": 0.0001,
     "amp": true,
     "network_def": {
@@ -171,7 +171,7 @@
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
-                "interval": "@num_interval_per_valid"
+                "interval": "@val_interval"
             },
             {
                 "_target_": "StatsHandler",
@@ -248,7 +248,7 @@
                     "threshold": 0.5
                 },
                 {
-                    "_target_": "SplitChanneld",
+                    "_target_": "SplitDimd",
                     "keys": [
                         "pred",
                         "label"

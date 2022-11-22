@@ -1,11 +1,15 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.1.1",
+    "version": "0.2.1",
     "changelog": {
+        "0.2.1": "fix license Copyright error",
+        "0.2.0": "update license files",
+        "0.1.3": "Add training pipeline for fine-tuning models, support MONAI Label active learning",
+        "0.1.2": "fixed the dimension in convolution according to MONAI 1.0 update",
         "0.1.1": "fixed the model state dict name",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "0.9.0",
+    "monai_version": "1.0.0",
     "pytorch_version": "1.10.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
