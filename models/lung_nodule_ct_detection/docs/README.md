@@ -55,11 +55,11 @@ In evaluation mode: list of dictionary of predicted box, classification label, a
 
 ## 3. Performance
 <p align="center">
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png" alt="detection scheme")
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png" alt="detection train loss")
 </p>
 
 <p align="center">
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png" alt="detection scheme")
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png" alt="detection val accuracy")
 </p>
 
 With a single DGX1V 16G GPU, it took around 80 hours to train 300 epochs for each data fold. The pre-trained model was trained on fold 0.
