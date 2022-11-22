@@ -60,12 +60,45 @@
             },
             {
                 "_target_": "RandAffined",
-                "keys": ["image", "label_inst", "label_type"],
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
                 "prob": 1.0,
-                "rotate_range": ["$np.pi"],
-                "scale_range": [[-0.2, 0.2], [-0.2, 0.2]],
-                "shear_range": [[-0.05, 0.05], [-0.05, 0.05]],
-                "translate_range": [[-6, 6], [-6, 6]],
+                "rotate_range": [
+                    "$np.pi"
+                ],
+                "scale_range": [
+                    [
+                        -0.2,
+                        0.2
+                    ],
+                    [
+                        -0.2,
+                        0.2
+                    ]
+                ],
+                "shear_range": [
+                    [
+                        -0.05,
+                        0.05
+                    ],
+                    [
+                        -0.05,
+                        0.05
+                    ]
+                ],
+                "translate_range": [
+                    [
+                        -6,
+                        6
+                    ],
+                    [
+                        -6,
+                        6
+                    ]
+                ],
                 "padding_mode": "zeros",
                 "mode": "nearest"
             },
@@ -107,8 +140,14 @@
                         "keys": [
                             "image"
                         ],
-                        "sigma_x": [0.1, 1.1],
-                        "sigma_y": [0.1, 1.1],
+                        "sigma_x": [
+                            0.1,
+                            1.1
+                        ],
+                        "sigma_y": [
+                            0.1,
+                            1.1
+                        ],
                         "prob": 1.0
                     },
                     {
@@ -137,10 +176,22 @@
                 "_target_": "TorchVisiond",
                 "keys": "image",
                 "name": "ColorJitter",
-                "brightness": [0.9, 1.0],
-                "contrast": [0.95, 1.10],
-                "saturation": [0.8, 1.2],
-                "hue": [-0.04, 0.04]
+                "brightness": [
+                    0.9,
+                    1.0
+                ],
+                "contrast": [
+                    0.95,
+                    1.1
+                ],
+                "saturation": [
+                    0.8,
+                    1.2
+                ],
+                "hue": [
+                    -0.04,
+                    0.04
+                ]
             },
             {
                 "_target_": "AsDiscreted",
@@ -191,7 +242,11 @@
             },
             {
                 "_target_": "CastToTyped",
-                "keys": ["image", "label_inst", "label_type"],
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
                 "dtype": "$torch.float32"
             }
         ],
@@ -308,7 +363,10 @@
             },
             {
                 "_target_": "CastToTyped",
-                "keys": ["image", "label_inst"],
+                "keys": [
+                    "image",
+                    "label_inst"
+                ],
                 "dtype": "$torch.int"
             },
             {
@@ -355,7 +413,11 @@
             },
             {
                 "_target_": "CastToTyped",
-                "keys": ["image", "label_inst", "label_type"],
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
                 "dtype": "$torch.float32"
             }
         ],
@@ -378,7 +440,7 @@
         "inferer": {
             "_target_": "SimpleInferer"
         },
-        "postprocessing": "$@train#postprocessing", 
+        "postprocessing": "$@train#postprocessing",
         "handlers": [
             {
                 "_target_": "StatsHandler",
