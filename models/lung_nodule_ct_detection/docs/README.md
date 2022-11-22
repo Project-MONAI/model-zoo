@@ -60,7 +60,8 @@ In evaluation mode: list of dictionary of predicted box, classification label, a
 
 With a single DGX1V 16G GPU, it took around 55 hours to train 300 epochs for each data fold. The pre-trained model was trained on fold 0.
 
-The script to compute FROC sensitivity value on 10-fold inference results can be found in https://github.com/Project-MONAI/tutorials/tree/main/detection
+The output of inference for each data fold is a result json file. The script to combine 10 result json files to one csv file can be found in https://github.com/Project-MONAI/tutorials/blob/main/detection/luna16_post_combine_cross_fold_results.py.
+The script to compute FROC sensitivity value on 10-fold inference results can be downloaded from [LUNA16](https://luna16.grand-challenge.org/Evaluation/) in https://www.dropbox.com/s/wue67fg9bk5xdxt/evaluationScript.zip?dl=0. An example useage is in https://github.com/Project-MONAI/tutorials/blob/main/detection/run_luna16_offical_eval.sh.
 
 This model achieves the following FROC sensitivity value on the 10-fold validation data:
 
