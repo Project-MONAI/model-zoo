@@ -14,7 +14,6 @@ under the Creative Commons [CC BY-SA 4.0 license](https://creativecommons.org/li
 
 If you use the MedNIST dataset, please acknowledge the source.
 
-
 ## Training
 
 Training with same-subject image inputs
@@ -27,7 +26,7 @@ Training with cross-subject image inputs
 python -m monai.bundle run training \
   --config_file configs/train.yaml \
   --dataset_dir "/workspace/data/MedNIST/Hand" \
-  --cross_subjects true
+  --cross_subjects True
 ```
 
 Training from an existing checkpoint file, for example, `models/model_key_metric=-0.0734.pt`:
@@ -35,15 +34,15 @@ Training from an existing checkpoint file, for example, `models/model_key_metric
 python -m monai.bundle run training --config_file configs/train.yaml [...omitting other args] --ckpt "models/model_key_metric=-0.0734.pt"
 ```
 
-
 ## Inference
 
-The following figure shows an intra-subject (`--cross_subjects false`) model inference results (Fixed, moving and predicted images from left to right)
+The following figure shows an intra-subject (`--cross_subjects False`) model inference results (Fixed, moving and predicted images from left to right)
 
 ![fixed](./examples/008502_fixed_6.png)
 ![moving](./examples/008502_moving_6.png)
 ![predicted](./examples/008502_pred_6.png)
 
+The command shows an inference workflow with the checkpoint `"models/model_key_metric=-0.0890.pt"` and using device `"cuda:1"`:
 ```bash
 python -m monai.bundle run eval \
   --config_file configs/inference.yaml \
@@ -60,18 +59,17 @@ for `5` epochs using the global mutual information loss.
 ```bash
 python -m monai.bundle run training \
   --config_file configs/train.yaml \
-  --cross_subjects true \
+  --cross_subjects True \
   --ckpt "models/model_key_metric=-0.0065.pt" \
   --lr 0.000001 \
   --trainer#loss_function "@mutual_info_loss" \
   --max_epochs 5
 ```
-The following figure shows an inter-subject (`--cross_subjects true`) model inference results (Fixed, moving and predicted images from left to right)
+The following figure shows an inter-subject (`--cross_subjects True`) model inference results (Fixed, moving and predicted images from left to right)
 
 ![fixed](./examples/008501_fixed_7.png)
 ![moving](./examples/008504_moving_7.png)
 ![predicted](./examples/008504_pred_7.png)
-
 
 ## Visualize the first pair of images for debugging (requires `matplotlib`)
 
@@ -80,11 +78,8 @@ python -m monai.bundle run display --config_file configs/train.yaml
 ```
 
 ```bash
-python -m monai.bundle run display --config_file configs/train.yaml --cross_subjects true
+python -m monai.bundle run display --config_file configs/train.yaml --cross_subjects True
 ```
-
-
-
 
 # License
 Copyright (c) MONAI Consortium

@@ -10,8 +10,7 @@ ckpt_dir: "$@bundle_root + '/models'"  # folder to save new checkpoints
 ckpt: ""  # path to load an existing checkpoint
 val_interval: 1  # every epoch
 max_epochs: 300
-val_epochs: "$@max_epochs // @val_interval"
-cross_subjects: false
+cross_subjects: false  # whether the input images are from the same subject
 
 # construct the moving and fixed datasets
 dataset_dir: "../MedNIST/Hand"
@@ -80,7 +79,7 @@ zip_dataset:
 
 data_loader:
   _requires_:
-    - $@cache_datasets[0].data.disable_share_memory_cache()
+    - $@cache_datasets[0].data.disable_share_memory_cache()  # to cache on GPU
     - $@cache_datasets[1].data.disable_share_memory_cache()
   _target_: ThreadDataLoader
   dataset: "@zip_dataset"

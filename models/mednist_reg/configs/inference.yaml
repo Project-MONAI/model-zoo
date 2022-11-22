@@ -3,6 +3,7 @@ imports:
   - $import glob
   - $import matplotlib.pyplot as plt
 dataset_dir: "../MedNIST/Hand"
+# inference with 10 images, modify the indices to run it with different image inputs
 datalist: "$list(sorted(glob.glob(@dataset_dir + '/*.jpeg')))[8500:8510]"
 
 bundle_root: "./"
