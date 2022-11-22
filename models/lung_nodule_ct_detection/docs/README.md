@@ -34,10 +34,15 @@ Alternatively, we provide [resampled nifti images](https://drive.google.com/driv
 The training was the following:
 
 GPU: at least 16GB GPU memory
+
 Actual Model Input: 192 x 192 x 80
+
 AMP: True
+
 Optimizer: Adam
+
 Learning Rate: 1e-2
+
 Loss: BCE loss and L1 loss
 
 ### Input
@@ -45,6 +50,7 @@ list of 1 channel 3D CT patches
 
 ### Output
 In training mode: dictionary of classification and box regression loss in training mode;
+
 In evaluation mode: list of dictionary of predicted box, classification label, and classification score in evaluation mode.
 
 ## 3. Performance
