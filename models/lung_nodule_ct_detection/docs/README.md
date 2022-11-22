@@ -63,6 +63,7 @@ Coco metric is used for evaluating the performance of the model. The pre-trained
   <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png" alt="detection train loss")
 </p>
 
+The validation accuracy in this curve is the mean of mAP and mAR in Coco metric.
 <p align="center">
   <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png" alt="detection val accuracy")
 </p>
