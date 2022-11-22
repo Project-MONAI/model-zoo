@@ -2,16 +2,13 @@
 A pre-trained model for volumetric (3D) detection of the lung lesion from CT image.
 
 # Model Overview
+A pre-trained model for lung nodule detectiion of lung CT images.
+
 This model is trained on LUNA16 dataset (https://luna16.grand-challenge.org/Home/), using the RetinaNet (Lin, Tsung-Yi, et al. "Focal loss for dense object detection." ICCV 2017. https://arxiv.org/abs/1708.02002).
 
 <p align="center">
   <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_workflow.png" alt="detection scheme")
 </p>
-
-
-LUNA16 is a public dataset of CT lung nodule detection. Using raw CT scans, the goal is to identify locations of possible nodules, and to assign a probability for being a nodule to each location.
-
-Disclaimer: We are not the host of the data. Please make sure to read the requirements and usage policies of the data and give credit to the authors of the dataset!
 
 ## 1. Data
 ### 1.1 Data description
