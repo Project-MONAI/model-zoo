@@ -34,7 +34,6 @@
         "AP_IoU_0.10_MaxDet_100": 0.862,
         "mAR_IoU_0.10_0.50_0.05_MaxDet_100": 0.994,
         "AR_IoU_0.10_MaxDet_100": 1.0
-
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
