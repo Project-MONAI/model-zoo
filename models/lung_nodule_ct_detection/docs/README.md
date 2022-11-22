@@ -4,13 +4,18 @@ A pre-trained model for volumetric (3D) detection of the lung lesion from CT ima
 # Model Overview
 This model is trained on LUNA16 dataset (https://luna16.grand-challenge.org/Home/), using the RetinaNet (Lin, Tsung-Yi, et al. "Focal loss for dense object detection." ICCV 2017. https://arxiv.org/abs/1708.02002).
 
+<p align="center">
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_workflow.png" alt="detection scheme")
+</p>
+
+
 LUNA16 is a public dataset of CT lung nodule detection. Using raw CT scans, the goal is to identify locations of possible nodules, and to assign a probability for being a nodule to each location.
 
 Disclaimer: We are not the host of the data. Please make sure to read the requirements and usage policies of the data and give credit to the authors of the dataset!
 
 ## 1. Data
 ### 1.1 Data description
-The dataset we are experimenting in this example is LUNA16 (https://luna16.grand-challenge.org/Home/), which is based on [LIDC/IDRI database](https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI) [3,4,5].
+The dataset we are experimenting in this example is LUNA16 (https://luna16.grand-challenge.org/Home/), which is based on [LIDC-IDRI database](https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI) [3,4,5].
 
 LUNA16 is a public dataset of CT lung nodule detection. Using raw CT scans, the goal is to identify locations of possible nodules, and to assign a probability for being a nodule to each location.
 
@@ -29,21 +34,35 @@ In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm.
 
 Please following the instruction in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection to do the resampling.
 
+Alternatively, we provide [resampled nifti images](https://drive.google.com/drive/folders/1JozrufA1VIZWJIc5A1EMV3J4CNCYovKK?usp=share_link) and a copy of [original mhd/raw images](https://drive.google.com/drive/folders/1-enN4eNEnKmjltevKg3W2V-Aj0nriQWE?usp=share_link) from [LUNA16](https://luna16.grand-challenge.org/Home/) for users to download.
+
 ## 2. Training configuration
-The training was performed with at least 12GB-memory GPUs.
+The training was the following:
 
+GPU: at least 16GB GPU memory
 Actual Model Input: 192 x 192 x 80
+AMP: True
+Optimizer: Adam
+Learning Rate: 1e-2
+Loss: BCE loss and L1 loss
 
-## 3. Input and output formats
-Input: list of 1 channel 3D CT patches
+### Input
+list of 1 channel 3D CT patches
 
-Output: dictionary of classification and box regression loss in training mode;
-list of dictionary of predicted box, classification label, and classification score in evaluation mode.
+### Output
+In training mode: dictionary of classification and box regression loss in training mode;
+In evaluation mode: list of dictionary of predicted box, classification label, and classification score in evaluation mode.
 
-## 4. Results and Scores
-The script to compute FROC sensitivity value on inference results can be found in https://github.com/Project-MONAI/tutorials/tree/main/detection
+## 3. Performance
+<p align="center">
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_and_val_metrics.png" alt="detection scheme")
+</p>
 
-This model achieves the following FROC sensitivity value on the validation data (our own split from the training dataset):
+With a single DGX1V 16G GPU, it took around 55 hours to train 300 epochs for each data fold. The pre-trained model was trained on fold 0. 
+
+The script to compute FROC sensitivity value on 10-fold inference results can be found in https://github.com/Project-MONAI/tutorials/tree/main/detection
+
+This model achieves the following FROC sensitivity value on the 10-fold validation data:
 
 | Methods             | 1/8   | 1/4   | 1/2   | 1     | 2     | 4     | 8     |
 | :---:               | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -53,7 +72,8 @@ This model achieves the following FROC sensitivity value on the validation data 
 
 **Table 1**. The FROC sensitivity values at the predefined false positive per scan thresholds of the LUNA16 challenge.
 
-## 5. Commands example
+
+## 4. Commands example
 Execute training:
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf

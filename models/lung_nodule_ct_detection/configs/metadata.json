@@ -2,6 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "version": "0.4.3",
     "changelog": {
+        "0.4.4": "add data resource",
         "0.4.3": "update val patch size to avoid warning in monai 1.0.1",
         "0.4.2": "update to use monai 1.0.1",
         "0.4.1": "fix license Copyright error",
@@ -29,8 +30,7 @@
     "label_classes": "dict data, containing Nx6 box and Nx1 classification labels.",
     "pred_classes": "dict data, containing Nx6 box, Nx1 classification labels, Nx1 classification scores.",
     "eval_metrics": {
-        "val_coco": 0,
-        "froc": 0
+        "val_coco": 0.927
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
