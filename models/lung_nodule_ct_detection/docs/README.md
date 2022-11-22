@@ -54,6 +54,14 @@ In training mode: dictionary of classification and box regression loss in traini
 In evaluation mode: list of dictionary of predicted box, classification label, and classification score in evaluation mode.
 
 ## 3. Performance
+<p align="center">
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png" alt="detection scheme")
+</p>
+
+<p align="center">
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png" alt="detection scheme")
+</p>
+
 With a single DGX1V 16G GPU, it took around 80 hours to train 300 epochs for each data fold. The pre-trained model was trained on fold 0.
 
 The output of inference for each data fold is a result json file. The script to combine 10 result json files to one csv file can be found in https://github.com/Project-MONAI/tutorials/blob/main/detection/luna16_post_combine_cross_fold_results.py.
