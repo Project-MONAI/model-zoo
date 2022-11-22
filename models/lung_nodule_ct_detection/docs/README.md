@@ -58,7 +58,7 @@ In evaluation mode: list of dictionary of predicted box, classification label, a
   <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_and_val_metrics.png" alt="detection scheme")
 </p>
 
-With a single DGX1V 16G GPU, it took around 55 hours to train 300 epochs for each data fold. The pre-trained model was trained on fold 0. 
+With a single DGX1V 16G GPU, it took around 55 hours to train 300 epochs for each data fold. The pre-trained model was trained on fold 0.
 
 The script to compute FROC sensitivity value on 10-fold inference results can be found in https://github.com/Project-MONAI/tutorials/tree/main/detection
 
