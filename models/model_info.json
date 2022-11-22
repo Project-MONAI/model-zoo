@@ -450,5 +450,9 @@
     "swin_unetr_btcv_segmentation_v0.3.9": {
         "checksum": "90aad6320190c85d5e6e78d8023f2b2519ea4efc",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.9.zip"
+    },
+    "mednist_reg_v0.0.1": {
+        "checksum": "65cd7e8adaca9beed0a948a7fe7535754722ecfe",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_reg_v0.0.1.zip"
     }
 }
