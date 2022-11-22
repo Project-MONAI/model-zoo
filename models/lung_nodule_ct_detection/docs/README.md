@@ -57,7 +57,7 @@ In training mode: dictionary of classification and box regression loss in traini
 In evaluation mode: list of dictionary of predicted box, classification label, and classification score in evaluation mode.
 
 ## 3. Performance
-Coco metric is used for evaluating the performance of the model. The pre-trained model was trained and validated on data fold 0. This model achieves a mean of mAP and mAR in Coco metric of 0.927.
+Coco metric is used for evaluating the performance of the model. The pre-trained model was trained and validated on data fold 0. This model achieves a mAP=0.853 and mAR=0.994.
 
 <p align="center">
   <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png" alt="detection train loss")

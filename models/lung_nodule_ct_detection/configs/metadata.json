@@ -30,7 +30,11 @@
     "label_classes": "dict data, containing Nx6 box and Nx1 classification labels.",
     "pred_classes": "dict data, containing Nx6 box, Nx1 classification labels, Nx1 classification scores.",
     "eval_metrics": {
-        "val_coco": 0.927
+        "val_mAP": 0.853,
+        "val_AP_IoU_0.1": 0.862,
+        "val_mAR": 0.994,
+        "val_AR_IoU_0.1": 1.0,
+
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
