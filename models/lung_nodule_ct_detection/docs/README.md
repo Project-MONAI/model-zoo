@@ -2,7 +2,7 @@
 A pre-trained model for volumetric (3D) detection of the lung lesion from CT image.
 
 # Model Overview
-A pre-trained model for lung nodule detectiion of lung CT images.
+A pre-trained model for lung nodule detection of lung CT images.
 
 This model is trained on LUNA16 dataset (https://luna16.grand-challenge.org/Home/), using the RetinaNet (Lin, Tsung-Yi, et al. "Focal loss for dense object detection." ICCV 2017. https://arxiv.org/abs/1708.02002).
 
