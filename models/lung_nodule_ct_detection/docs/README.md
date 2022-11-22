@@ -36,7 +36,7 @@ Alternatively, we provide [resampled nifti images](https://drive.google.com/driv
 ## 2. Training configuration
 The training was the following:
 
-GPU: at least 12GB GPU memory
+GPU: at least 16GB GPU memory
 
 Actual Model Input: 192 x 192 x 80
 
