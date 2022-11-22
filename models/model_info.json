@@ -446,5 +446,9 @@
     "lung_nodule_ct_detection_v0.4.3": {
         "checksum": "4f31fdd27a24cb15ed2c4acc2cf1c746b84723c5",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.3.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.3.9": {
+        "checksum": "90aad6320190c85d5e6e78d8023f2b2519ea4efc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.3.9.zip"
     }
 }
