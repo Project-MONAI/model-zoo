@@ -12,6 +12,7 @@
 import argparse
 import os
 import sys
+from typing import List
 
 import torch
 from bundle_custom_data import (
@@ -42,6 +43,19 @@ def _find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
             file_name = full_name
 
     return file_name
+
+
+def _check_missing_keys(file_name: str, bundle_path: str, keys_list: List):
+    config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", file_name))
+    missing_keys = []
+    for key in keys_list:
+        if key not in config:
+            missing_keys.append(key)
+
+    if len(missing_keys) > 0:
+        raise ValueError(f"missing key(s): {str(missing_keys)} in {file_name}.")
+
+    return config
 
 
 def _check_main_section_necessary_key(necessary_key: str, config: dict, main_section: str = "train"):
@@ -128,18 +142,14 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
     # verify inference config (if exists)
     inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
     if inference_file_name is not None:
-        infer_config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", inference_file_name))
-        for key in infer_keys_list:
-            if key not in infer_config:
-                raise ValueError(f"necessary key: '{key}' is not existing in {inference_file_name}.")
+        _ = _check_missing_keys(file_name=inference_file_name, bundle_path=bundle_path, keys_list=infer_keys_list)
 
     # verify train config (if exists)
     train_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "train")
     if train_file_name is not None:
-        train_config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", train_file_name))
-        for key in train_keys_list:
-            if key not in train_config:
-                raise ValueError(f"necessary key: '{key}' is not existing in {train_file_name}.")
+        train_config = _check_missing_keys(
+            file_name=train_file_name, bundle_path=bundle_path, keys_list=train_keys_list
+        )
 
         if "train" in train_config:
             _check_main_section_necessary_key(necessary_key="trainer", config=train_config)

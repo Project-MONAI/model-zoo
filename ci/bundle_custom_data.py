@@ -28,4 +28,5 @@ exclude_verify_torchscript_list = [
     "wholeBrainSeg_Large_UNEST_segmentation",
     "breast_density_classification",
     "pathology_tumor_detection",
+    "mednist_reg",
 ]
