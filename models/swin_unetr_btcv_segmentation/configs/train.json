@@ -41,7 +41,8 @@
                 "keys": [
                     "image",
                     "label"
-                ]
+                ],
+                "reader": "ITKReader"
             },
             {
                 "_target_": "EnsureChannelFirstd",
