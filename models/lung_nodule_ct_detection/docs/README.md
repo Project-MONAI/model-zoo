@@ -3,9 +3,7 @@ A pre-trained model for volumetric (3D) detection of the lung nodule from CT ima
 
 This model is trained on LUNA16 dataset (https://luna16.grand-challenge.org/Home/), using the RetinaNet (Lin, Tsung-Yi, et al. "Focal loss for dense object detection." ICCV 2017. https://arxiv.org/abs/1708.02002).
 
-<p align="center">
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_workflow.png" alt="detection scheme")
-</p>
+![model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_workflow.png)
 
 ## 1. Data
 ### 1.1 Data description
@@ -59,14 +57,10 @@ In evaluation mode: list of dictionary of predicted box, classification label, a
 ## 3. Performance
 Coco metric is used for evaluating the performance of the model. The pre-trained model was trained and validated on data fold 0. This model achieves a mAP=0.853, mAR=0.994, AP(IoU=0.1)=0.862, AR(IoU=0.1)=1.0.
 
-<p align="center">
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png" alt="detection train loss")
-</p>
+![detection train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png)
 
 The validation accuracy in this curve is the mean of mAP, mAR, AP(IoU=0.1), and AR(IoU=0.1) in Coco metric.
-<p align="center">
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png" alt="detection val accuracy")
-</p>
+![detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png)
 
 ## 4. Commands example
 Execute training:
