@@ -1,3 +1,3 @@
 large_files:
-  - path: "models/stage1/checkpoint_epoch=50.pt"
+  - path: "models/model.pt"
     url: "https://drive.google.com/file/d/1Auwm8YrQCx9EAX_oViNTlJ_JgBb-wbzZ/view?usp=sharing"
