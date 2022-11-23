@@ -327,7 +327,7 @@
                 "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
             }
         ],
-        "extra_handers":[
+        "extra_handers": [
             {
                 "_target_": "CheckpointLoader",
                 "load_path": "$@ckpt_dir_stage0 + '/checkpoint_epoch=50.pt'",
