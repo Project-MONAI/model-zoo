@@ -89,7 +89,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training
 Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf --ckpt_dir "/workspace/Code/model-zoo/models/pathology_nuclei_segmentation_classification/models/stage1"
+python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
 
