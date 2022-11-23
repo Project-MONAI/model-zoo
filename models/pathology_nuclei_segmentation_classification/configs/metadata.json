@@ -4,7 +4,7 @@
     "changelog": {
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.0.0",
+    "monai_version": "1.0.1",
     "pytorch_version": "1.13.0",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
@@ -20,7 +20,9 @@
     "label_classes": "a dictionary contains binary nuclear segmentation, hover map and pixel-level classification",
     "pred_classes": "a dictionary contains scalar probability for binary nuclear segmentation, hover map and pixel-level classification",
     "eval_metrics": {
-        "val_mean_dice": 0.8518
+        "Binary Dice": 0.82762,
+        "PQ": 0.48976,
+        "F1d": 0.73592
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

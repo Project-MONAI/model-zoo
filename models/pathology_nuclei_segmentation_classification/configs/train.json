@@ -2,10 +2,13 @@
     "imports": [
         "$import glob",
         "$import os",
-        "$import skimage"
+        "$import skimage",
+        "$import scripts"
     ],
-    "bundle_root": "/workspace/Code/model-zoo/models/pathology_hovernet",
-    "ckpt_dir": "$@bundle_root + '/models'",
+    "bundle_root": "/workspace/Code/model-zoo/models/pathology_nuclei_segmentation_classification",
+    "ckpt_dir_stage0": "$@bundle_root + '/models/stage0'",
+    "ckpt_dir_stage1": "$@bundle_root + '/models/stage1'",
+    "ckpt_path_stage0": "$@ckpt_dir_stage0 + '/checkpoint_epoch=50.pt'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/Data/CoNSeP/Prepared/consep",
     "train_images": "$list(sorted(glob.glob(@dataset_dir + '/train/*/*image.npy')))",
@@ -15,10 +18,12 @@
     "train_type_map": "$list(sorted(glob.glob(@dataset_dir + '/train/*/*type_map.npy')))",
     "val_type_map": "$list(sorted(glob.glob(@dataset_dir + '/valid/*/*type_map.npy')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "stage": 0,
     "epochs": 50,
     "num_interval_per_valid": 1,
     "learning_rate": 0.0001,
     "amp": true,
+    "ckpt_dir": "$@ckpt_dir_stage0 if @stage == 0 else @ckpt_dir_stage1",
     "network_def": {
         "_target_": "HoVerNet",
         "mode": "original",
@@ -27,7 +32,9 @@
         "pretrained_url": "$None",
         "freeze_encoder": true
     },
-    "network": "$@network_def.to(@device)",
+    "network_stage0": "$@network_def.to(@device)",
+    "network_stage1": "$scripts.utils.load_weight(ckpt_path=@ckpt_path_stage0, model=@network_stage0)",
+    "network": "$@network_stage0 if @stage==0 else @network_stage1",
     "loss": {
         "_target_": "HoVerNetLoss",
         "lambda_hv_mse": 1.0
@@ -481,7 +488,7 @@
         }
     },
     "training": [
-        "$monai.utils.set_determinism(seed=123)",
+        "$monai.utils.set_determinism(seed=24)",
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$@train#trainer.run()"
     ]
