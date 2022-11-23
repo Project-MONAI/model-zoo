@@ -5,6 +5,17 @@
         "data": "$@test_datalist",
         "transform": "@validate#preprocessing"
     },
+    "validate#key_metric": {
+        "val_coco": {
+            "_target_": "scripts.cocometric_ignite.IgniteCocoMetric",
+            "coco_metric_monai": "$monai.apps.detection.metrics.coco.COCOMetric(classes=['nodule'], iou_list=[0.1], max_detection=[100])",
+            "output_transform": "$monai.handlers.from_engine(['pred', 'label'])",
+            "box_key": "box",
+            "label_key": "label",
+            "pred_score_key": "label_scores",
+            "reduce_scalar": false
+        }
+    },
     "validate#handlers": [
         {
             "_target_": "CheckpointLoader",
