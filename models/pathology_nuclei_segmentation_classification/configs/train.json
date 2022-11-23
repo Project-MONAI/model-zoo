@@ -2,8 +2,7 @@
     "imports": [
         "$import glob",
         "$import os",
-        "$import skimage",
-        "$import scripts"
+        "$import skimage"
     ],
     "bundle_root": "/workspace/Code/model-zoo/models/pathology_nuclei_segmentation_classification",
     "ckpt_dir_stage0": "$@bundle_root + '/models/stage0'",
@@ -32,9 +31,7 @@
         "pretrained_url": "$None",
         "freeze_encoder": true
     },
-    "network_stage0": "$@network_def.to(@device)",
-    "network_stage1": "$scripts.utils.load_weight(ckpt_path=@ckpt_path_stage0, model=@network_stage0)",
-    "network": "$@network_stage0 if @stage==0 else @network_stage1",
+    "network": "$@network_def.to(@device)",
     "loss": {
         "_target_": "HoVerNetLoss",
         "lambda_hv_mse": 1.0
@@ -330,6 +327,16 @@
                 "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
             }
         ],
+        "extra_handers":[
+            {
+                "_target_": "CheckpointLoader",
+                "load_path": "$@ckpt_dir_stage0 + '/checkpoint_epoch=50.pt'",
+                "load_dict": {
+                    "net": "@network"
+                }
+            }
+        ],
+        "train_handlers": "$@train#extra_handers + @train#handlers if @stage==1 else @train#handlers",
         "key_metric": {
             "train_mean_dice": {
                 "_target_": "MeanDice",
@@ -349,7 +356,7 @@
             "inferer": "@train#inferer",
             "postprocessing": "@train#postprocessing",
             "key_train_metric": "@train#key_metric",
-            "train_handlers": "@train#handlers",
+            "train_handlers": "@train#train_handlers",
             "amp": "@amp"
         }
     },
