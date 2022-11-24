@@ -9,7 +9,7 @@
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/dataset_fold0.json'",
-    "data_file_base_dir": "/home/canz/Projects/datasets/LUNA16/93176/Images_resample",
+    "data_file_base_dir": "/datasets/LUNA16_Images_resample",
     "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='validation', base_dir=@data_file_base_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "amp": true,
