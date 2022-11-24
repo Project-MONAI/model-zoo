@@ -17,7 +17,6 @@ mypy>=0.790
 pre-commit
 fire
 pytorch-ignite>=0.4.9
-git+https://github.com/yiheng-wang-nv/gdown.git@223-fix-gdown-download-issue
 einops
 nibabel
 pyyaml

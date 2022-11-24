@@ -44,6 +44,7 @@ remove_pipenv() {
 verify_bundle() {
     echo 'Run verify bundle...'
     init_pipenv requirements-dev.txt
+    pip install git+https://github.com/yiheng-wang-nv/gdown.git@223-fix-gdown-download-issue
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
