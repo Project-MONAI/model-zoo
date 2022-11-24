@@ -1,14 +1,14 @@
-import os
-import math
-import tqdm
 import glob
-import shutil
+import math
+import os
 import pathlib
+import shutil
+from argparse import ArgumentParser
 
 import cv2
 import numpy as np
 import scipy.io as sio
-from argparse import ArgumentParser
+import tqdm
 
 
 def load_img(path):
@@ -30,7 +30,7 @@ def load_ann(path):
     return ann
 
 
-class PatchExtractor():
+class PatchExtractor:
     """Extractor to generate patches with or without padding.
     Turn on debug mode to see how it is done.
 
@@ -166,9 +166,7 @@ def main(cfg):
         os.makedirs(out_dir)
 
         pbar_format = "Process File: |{bar}| {n_fmt}/{total_fmt}[{elapsed}<{remaining},{rate_fmt}]"
-        pbarx = tqdm.tqdm(
-            total=len(file_list), bar_format=pbar_format, ascii=True, position=0
-        )
+        pbarx = tqdm.tqdm(total=len(file_list), bar_format=pbar_format, ascii=True, position=0)
 
         for file_path in file_list:
             base_name = pathlib.Path(file_path).stem
@@ -181,18 +179,12 @@ def main(cfg):
             sub_patches = xtractor.extract(img, cfg["extract_type"])
 
             pbar_format = "Extracting  : |{bar}| {n_fmt}/{total_fmt}[{elapsed}<{remaining},{rate_fmt}]"
-            pbar = tqdm.tqdm(
-                total=len(sub_patches),
-                leave=False,
-                bar_format=pbar_format,
-                ascii=True,
-                position=1,
-            )
+            pbar = tqdm.tqdm(total=len(sub_patches), leave=False, bar_format=pbar_format, ascii=True, position=1)
 
             for idx, patch in enumerate(sub_patches):
-                image_patch = patch[..., :3].transpose(2, 0, 1) # make channel first
-                inst_map_patch = patch[..., 3][None] # add channel dim
-                type_map_patch = patch[..., 4][None] # add channel dim
+                image_patch = patch[..., :3].transpose(2, 0, 1)  # make channel first
+                inst_map_patch = patch[..., 3][None]  # add channel dim
+                type_map_patch = patch[..., 4][None]  # add channel dim
                 np.save("{0}/{1}_{2:03d}_image.npy".format(out_dir, base_name, idx), image_patch)
                 np.save("{0}/{1}_{2:03d}_inst_map.npy".format(out_dir, base_name, idx), inst_map_patch)
                 np.save("{0}/{1}_{2:03d}_type_map.npy".format(out_dir, base_name, idx), type_map_patch)
@@ -202,6 +194,7 @@ def main(cfg):
 
             pbarx.update()
         pbarx.close()
+
 
 def parse_arguments():
     parser = ArgumentParser(description="Extract patches from the original images")
@@ -213,12 +206,13 @@ def parse_arguments():
         help="root path to image folder containing training/test",
     )
     parser.add_argument("--type", type=str, default="mirror", dest="extract_type", help="Choose 'mirror' or 'valid'")
-    parser.add_argument("--ps", nargs='+', type=int, default=[540, 540], dest="patch_size", help="patch size")
-    parser.add_argument("--ss", nargs='+', type=int, default=[164, 164], dest="step_size", help="patch size")
+    parser.add_argument("--ps", nargs="+", type=int, default=[540, 540], dest="patch_size", help="patch size")
+    parser.add_argument("--ss", nargs="+", type=int, default=[164, 164], dest="step_size", help="patch size")
     args = parser.parse_args()
     config_dict = vars(args)
 
     return config_dict
+
 
 if __name__ == "__main__":
     cfg = parse_arguments()
