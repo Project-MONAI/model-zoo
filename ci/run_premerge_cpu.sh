@@ -32,7 +32,6 @@ fi
 init_pipenv() {
     echo "initializing pip environment: $1"
     pipenv install -r $1
-    pipenv install -e git+https://github.com/yiheng-wang-nv/gdown.git@223-fix-gdown-download-issue
     export PYTHONPATH=$PWD
 }
 

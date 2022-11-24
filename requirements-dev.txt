@@ -21,3 +21,4 @@ einops
 nibabel
 pyyaml
 jsonschema
+git+https://github.com/yiheng-wang-nv/gdown.git@223-fix-gdown-download-issue#egg=gdown
