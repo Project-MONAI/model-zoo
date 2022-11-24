@@ -19,10 +19,10 @@ The training data is from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/
 
 The provided labelled data was partitioned, based on the original split, into training (27 tiles) and testing (14 tiles) datasets.
 
-Please run `scripts/prepare_dataset.py` to decollate images, instance maps and type maps in channel dim. The command is like:
+After download the datasets, please run `scripts/prepare_patches.py` to prepare patches from tiles. Prepared patches are saved in `your-concep-dataset-path`/Prepared. The implementation is referring to https://github.com/vqdang/hover_net/blob/master/extract_patches.py. The command is like:
 
 ```
-python scripts/prepare_dataset.py -d your-concep-dataset-path
+python scripts/prepare_patches.py -root your-concep-dataset-path
 ```
 
 ## Training configuration
@@ -79,11 +79,11 @@ Override the `train` config to execute multi-GPU training:
 
 - Run first stage
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf --network_def#freeze_encoder true --network_def#pretrained_url `pretrained_model` --stage 0
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf --train#dataloader#batch_size 8 --network_def#freeze_encoder true --network_def#pretrained_url `pretrained_model` --stage 0
 ```
 - Run second stage
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf --network_def#freeze_encoder false --network_def#pretrained_url None --stage 1
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf --train#dataloader#batch_size 4 --network_def#freeze_encoder false --network_def#pretrained_url None --stage 1
 ```
 
 Override the `train` config to execute evaluation with the trained model:
