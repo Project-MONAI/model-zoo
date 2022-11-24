@@ -58,12 +58,7 @@ if __name__ == "__main__":
     )
 
     # path to save label json.
-    parser.add_argument(
-        "--outpath",
-        type=str,
-        default=r"./label",
-        help="A path to save the onnx model.",
-    )
+    parser.add_argument("--outpath", type=str, default=r"./label", help="A path to save the onnx model.")
 
     args = parser.parse_args()
     data_path = args.datapath
