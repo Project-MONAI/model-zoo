@@ -109,6 +109,7 @@ python -m monai.bundle run evaluating \
     --config_file configs/inference.json \
     --logging_file configs/logging.conf
 ```
+The classification result of every images in `test.json` will be printed to the screen.
 
 #### Export checkpoint to TorchScript file:
 
