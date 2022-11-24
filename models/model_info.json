@@ -458,5 +458,13 @@
     "lung_nodule_ct_detection_v0.4.4": {
         "checksum": "9819cf65445080e1d436df0dc1707db8d64e3fce",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.4.zip"
+    },
+    "lung_nodule_ct_detection_v0.4.5": {
+        "checksum": "1de3327538abd81229e18ead569d89c3bd8e7039",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.5.zip"
+    },
+    "pathology_tumor_detection_v0.4.5": {
+        "checksum": "e3925ebb911692fd4f4246e7c21511e0ec0553d6",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.5.zip"
     }
 }

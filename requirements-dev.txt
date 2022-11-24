@@ -17,8 +17,8 @@ mypy>=0.790
 pre-commit
 fire
 pytorch-ignite>=0.4.9
-gdown>=4.4.0
 einops
 nibabel
 pyyaml
 jsonschema
+git+https://github.com/Project-MONAI/gdown.git@main#egg=gdown
