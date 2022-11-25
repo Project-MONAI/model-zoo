@@ -466,5 +466,9 @@
     "pathology_tumor_detection_v0.4.5": {
         "checksum": "e3925ebb911692fd4f4246e7c21511e0ec0553d6",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.5.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.3": {
+        "checksum": "b368231c7fb8d0b0735b57b94e93fc663039f4bc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.3.zip"
     }
 }
