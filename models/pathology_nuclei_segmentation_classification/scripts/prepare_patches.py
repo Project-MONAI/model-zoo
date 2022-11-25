@@ -90,12 +90,12 @@ class PatchExtractor:
         w_flag, w_last = extract_infos(im_w, self.patch_size[1], self.step_size[1])
 
         sub_patches = []
-        #### Deal with valid block
+        # Deal with valid block
         for row in range(0, h_last, self.step_size[0]):
             for col in range(0, w_last, self.step_size[1]):
                 win = self.__get_patch(x, (row, col))
                 sub_patches.append(win)
-        #### Deal with edge case
+        # Deal with edge case
         if h_flag:
             row = im_h - self.patch_size[0]
             for col in range(0, w_last, self.step_size[1]):
@@ -146,8 +146,7 @@ class PatchExtractor:
         elif patch_type == "mirror":
             return self.__extract_mirror(x)
         else:
-            assert False, "Unknown Patch Type [%s]" % patch_type
-        return
+            raise ValueError(f"Unknown Patch Type {patch_type}")
 
 
 def main(cfg):
@@ -157,7 +156,7 @@ def main(cfg):
         img_dir = os.path.join(cfg["root"], f"{phase}/Images")
         ann_dir = os.path.join(cfg["root"], f"{phase}/Labels")
 
-        file_list = glob.glob(os.path.join(ann_dir, f"*mat"))
+        file_list = glob.glob(os.path.join(ann_dir, "*mat"))
         file_list.sort()  # ensure same ordering across platform
 
         out_dir = f"{cfg['root']}/Prepared/{phase}"
