@@ -11,13 +11,13 @@ The datasets used in this work were provided by [Activ Surgical](https://www.act
 We've provided a [link](https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/inbody_outbody_samples.zip) of 20 samples (10 in-body and 10 out-body) to show what this dataset looks like.
 
 ### Preprocessing
-After downloading this dataset, python script in `scripts` folder naming `data_process` can be used to get label json files by running the command below and replacing datapath and outpath parameters.
+After downloading this dataset, python script in `scripts` folder named `data_process` can be used to generate label json files by running the command below and modifying `datapath` to path of unziped downloaded data. Generated label json files will be stored in `label` folder under the bundle path.
 
 ```
-python scripts/data_process.py --datapath /path/to/data/root --outpath /path/to/label/folder
+python scripts/data_process.py --datapath /path/to/data/root
 ```
 
-After generating label files, please modify the `dataset_dir` parameter specified in `configs/train.json` and `configs/inference.json` to reflect where label files are.
+By default, label path parameter in `train.json` and `inference.json` of this bundle is point to the generated `label` folder under bundle path. If you move these generated label files to another place, please modify the `train_json`, `val_json` and `test_json` parameters specified in `configs/train.json` and `configs/inference.json` to where these label files are.
 
 The input label json should be a list made up by dicts which includes `image` and `label` keys. An example format is shown below.
 
@@ -109,6 +109,7 @@ python -m monai.bundle run evaluating \
     --config_file configs/inference.json \
     --logging_file configs/logging.conf
 ```
+The classification result of every images in `test.json` will be printed to the screen.
 
 #### Export checkpoint to TorchScript file:
 
