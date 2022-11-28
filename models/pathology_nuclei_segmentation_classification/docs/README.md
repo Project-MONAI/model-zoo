@@ -7,7 +7,7 @@ The model is trained to simultaneous segment and classify nuclei. Training is do
 
 - Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use.The license for the pre-trained model used in examples is different than MONAI license. Please check the source where these weights are obtained from: https://github.com/vqdang/hover_net#data-format
 
-pretrained_model = "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download"
+`pretrained_model` is "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download" which will be used in bash code below.
 
 ![Model workflow](https://ars.els-cdn.com/content/image/1-s2.0-S1361841519301045-fx1_lrg.jpg)
 
@@ -53,10 +53,10 @@ Input: RGB images
 
 ## Output
 
-Output: a dictionary
-- nucleus_prediction: predict whether or not a pixel belongs to the nuclei or background
-- horizontal_vertical: predict the horizontal and vertical distances of nuclear pixels to their centres of mass
-- type_prediction: predict the type of nucleus for each pixel
+Output: a dictionary with the following keys:
+1. nucleus_prediction: predict whether or not a pixel belongs to the nuclei or background
+2. horizontal_vertical: predict the horizontal and vertical distances of nuclear pixels to their centres of mass
+3. type_prediction: predict the type of nucleus for each pixel
 
 ## Model Performance
 
