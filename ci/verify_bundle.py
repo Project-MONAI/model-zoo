@@ -302,8 +302,6 @@ def verify(bundle, mode="full"):
     bundle_path = os.path.join(models_path, bundle)
     verify_metadata_format(bundle_path)
     print("metadata format is verified correctly.")
-    if mode == "min":
-        return
 
     # The following are optional tests
     net_id, inference_file_name = "network_def", _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
@@ -314,6 +312,10 @@ def verify(bundle, mode="full"):
     else:
         verify_data_shape(bundle_path, net_id, config_file)
         print("data shape is verified correctly.")
+    if mode == "min":
+        return
+
+    # The following tests require to use GPU
     if bundle in exclude_verify_torchscript_list:
         print(f"bundle: {bundle} does not support torchscript, skip verifying.")
     else:
