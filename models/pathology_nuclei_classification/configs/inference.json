@@ -3,28 +3,21 @@
         "$import glob",
         "$import json",
         "$import pathlib",
-        "$import os"
+        "$import os",
+        "$import scripts"
     ],
-    "bundle_root": "/localhome/sachi/Projects/model-zoo/models/pathology_nuclick_annotation",
+    "bundle_root": "/localhome/sachi/Projects/model-zoo/models/pathology_nuclei_classification",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/localhome/sachi/Dataset/Pathology/CoNSePNuclei",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
-    "centroids": "$list(sorted(glob.glob(@dataset_dir + '/Test/Centroids/*.txt')))[:1]",
-    "input_data": "$[{'image': i, 'foreground': json.loads(pathlib.Path(c).read_text())} for i,c in zip(@images, @centroids)]",
+    "labels": "$list(sorted(glob.glob(@dataset_dir + '/Test/Labels/*.png')))[:1]",
+    "input_data": "$[{'image': i, 'label': l} for i,l in zip(@images, @labels)]",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
-        "_target_": "BasicUNet",
+        "_target_": "DenseNet121",
         "spatial_dims": 2,
-        "in_channels": 5,
-        "out_channels": 1,
-        "features": [
-            32,
-            64,
-            128,
-            256,
-            512,
-            32
-        ]
+        "in_channels": 4,
+        "out_channels": 4
     },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
@@ -32,11 +25,17 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": [
+                    "image",
+                    "label"
+                ]
             },
             {
                 "_target_": "EnsureChannelFirstd",
-                "keys": "image"
+                "keys": [
+                    "image",
+                    "label"
+                ]
             },
             {
                 "_target_": "ScaleIntensityRanged",
@@ -47,14 +46,9 @@
                 "b_max": 1.0
             },
             {
-                "_target_": "AddClickSignalsd",
-                "image": "image",
-                "foreground": "foreground",
-                "gaussian": false
-            },
-            {
-                "_target_": "SqueezeDimd",
-                "keys": "image"
+                "_target_": "AddLabelAsGuidanced",
+                "keys": "image",
+                "source": "label"
             }
         ]
     },
@@ -79,23 +73,14 @@
             {
                 "_target_": "Activationsd",
                 "keys": "pred",
-                "sigmoid": true
-            },
-            {
-                "_target_": "AsDiscreted",
-                "keys": "pred",
-                "threshold": 0.5
-            },
-            {
-                "_target_": "KeepLargestConnectedComponentd",
-                "keys": "pred"
+                "softmax": true
             },
             {
                 "_target_": "SaveImaged",
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
-                "output_ext": ".png"
+                "output_ext": ".json"
             }
         ]
     },
@@ -124,6 +109,7 @@
     },
     "evaluating": [
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$monai.data.register_writer('json', scripts.ClassificationWriter)",
         "$@evaluator.run()"
     ]
 }

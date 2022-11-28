@@ -1,0 +1,6 @@
+Third Party Licenses
+-----------------------------------------------------------------------
+
+/*********************************************************************/
+i. HoVer-Net: Simultaneous Segmentation and Classification of Nuclei in Multi-Tissue Histology Images
+   https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/
