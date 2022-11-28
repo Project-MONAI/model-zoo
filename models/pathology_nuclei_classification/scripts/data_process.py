@@ -42,20 +42,8 @@ def main():
         default=r"/workspace/data/CoNSePNuclei",
         help="Output dir to store pre-processed data",
     )
-    parser.add_argument(
-        "--crop_size",
-        "-s",
-        type=int,
-        default=128,
-        help="Crop size for each Nuclei",
-    )
-    parser.add_argument(
-        "--limit",
-        "-n",
-        type=int,
-        default=0,
-        help="Non-zero value to limit processing max records",
-    )
+    parser.add_argument("--crop_size", "-s", type=int, default=128, help="Crop size for each Nuclei")
+    parser.add_argument("--limit", "-n", type=int, default=0, help="Non-zero value to limit processing max records")
 
     args = parser.parse_args()
     dataset_json = {}

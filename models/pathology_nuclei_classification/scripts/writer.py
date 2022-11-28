@@ -10,11 +10,10 @@
 # limitations under the License.
 import json
 import logging
-from typing import Optional, Mapping, Dict
+from typing import Dict, Mapping, Optional
 
 import numpy as np
-
-from monai.config import PathLike, NdarrayOrTensor
+from monai.config import NdarrayOrTensor, PathLike
 from monai.data import ImageWriter
 
 logger = logging.getLogger(__name__)
@@ -26,12 +25,7 @@ class ClassificationWriter(ImageWriter):
         self.label_index_map = (
             label_index_map
             if label_index_map
-            else {
-                "0": "Other",
-                "1": "Inflammatory",
-                "2": "Epithelial",
-                "3": "Spindle-Shaped",
-            }
+            else {"0": "Other", "1": "Inflammatory", "2": "Epithelial", "3": "Spindle-Shaped"}
         )
 
     def set_data_array(
