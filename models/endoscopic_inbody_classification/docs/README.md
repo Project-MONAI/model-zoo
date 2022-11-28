@@ -17,11 +17,6 @@ After downloading this dataset, python script in `scripts` folder named `data_pr
 python scripts/data_process.py --datapath /path/to/data/root
 ```
 
-**Note:**
-> - If using the 20 samples example dataset, this preprocessing script will divide the samples to 16 training samples, 2 validation samples and 2 test samples.
-> - However, pytorch multi-gpu training requires number of samples in dataloader larger than gpu numbers.
-> - Therefore, please use no more than 2 gpus to run this bundle if using the 20 samples example dataset.
-
 By default, label path parameter in `train.json` and `inference.json` of this bundle is point to the generated `label` folder under bundle path. If you move these generated label files to another place, please modify the `train_json`, `val_json` and `test_json` parameters specified in `configs/train.json` and `configs/inference.json` to where these label files are.
 
 The input label json should be a list made up by dicts which includes `image` and `label` keys. An example format is shown below.
@@ -96,6 +91,8 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training
 ```
 
 Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
+
+In addition, if using the 20 samples example dataset, the preprocessing script will divide the samples to 16 training samples, 2 validation samples and 2 test samples. However, pytorch multi-gpu training requires number of samples in dataloader larger than gpu numbers. Therefore, please use no more than 2 gpus to run this bundle if using the 20 samples example dataset.
 
 #### Override the `train` config to execute evaluation with the trained model:
 
