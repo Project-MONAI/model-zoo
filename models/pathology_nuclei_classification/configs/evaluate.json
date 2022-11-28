@@ -19,7 +19,7 @@
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
-                "output_ext": ".png"
+                "output_ext": ".json"
             }
         ]
     },
@@ -51,6 +51,8 @@
     ],
     "evaluating": [
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$import scripts",
+        "$monai.data.register_writer('json', scripts.ClassificationWriter)",
         "$@validate#evaluator.run()"
     ]
 }

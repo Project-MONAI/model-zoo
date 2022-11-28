@@ -3,8 +3,7 @@
         "$import glob",
         "$import json",
         "$import pathlib",
-        "$import os",
-        "$import scripts"
+        "$import os"
     ],
     "bundle_root": "/localhome/sachi/Projects/model-zoo/models/pathology_nuclei_classification",
     "output_dir": "$@bundle_root + '/eval'",
@@ -109,6 +108,7 @@
     },
     "evaluating": [
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$import scripts",
         "$monai.data.register_writer('json', scripts.ClassificationWriter)",
         "$@evaluator.run()"
     ]

@@ -22,6 +22,8 @@
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$import logging",
         "$@validate#evaluator.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)",
+        "$import scripts",
+        "$monai.data.register_writer('json', scripts.ClassificationWriter)",
         "$@validate#evaluator.run()",
         "$dist.destroy_process_group()"
     ]

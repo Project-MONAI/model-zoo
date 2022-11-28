@@ -14,7 +14,7 @@ import json
 import logging
 import os
 
-from monai.apps.nuclick.dataset import consep_nuclei_dataset
+from dataset import consep_nuclei_dataset
 
 logger = logging.getLogger(__name__)
 
