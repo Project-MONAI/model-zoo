@@ -4,7 +4,7 @@
         "$import os",
         "$import skimage"
     ],
-    "bundle_root": "/workspace/Code/model-zoo/models/pathology_nuclei_segmentation_classification",
+    "bundle_root": "$os.getcwd()",
     "ckpt_dir_stage0": "$@bundle_root + '/models/stage0'",
     "ckpt_dir_stage1": "$@bundle_root + '/models/stage1'",
     "ckpt_path_stage0": "$@ckpt_dir_stage0 + '/checkpoint_epoch=50.pt'",
@@ -282,9 +282,9 @@
                     "softmax": true
                 },
                 {
-                    "_target_": "Lambdad",
+                    "_target_": "AsDiscreted",
                     "keys": "nucleus_prediction",
-                    "func": "$lambda x: x[1: 2, ...] > 0.5"
+                    "argmax": true
                 }
             ]
         },
