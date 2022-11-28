@@ -470,5 +470,9 @@
     "endoscopic_inbody_classification_v0.3.3": {
         "checksum": "b368231c7fb8d0b0735b57b94e93fc663039f4bc",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.3.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.4": {
+        "checksum": "010fcbb538fbb161afd95c569b99abb7574dc381",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.4.zip"
     }
 }
