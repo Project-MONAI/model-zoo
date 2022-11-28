@@ -6,7 +6,10 @@ A pre-trained model for simultaneous segmentation and classification of nuclei w
 The model is trained to simultaneous segment and classify nuclei. Training is done via a two-stage approach. First initialised the model with pre-trained weights on the [ImageNet dataset](https://ieeexplore.ieee.org/document/5206848), trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs.
 
 - Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use.The license for the pre-trained model used in examples is different than MONAI license. Please check the source where these weights are obtained from: https://github.com/vqdang/hover_net#data-format
+
 pretrained_model = "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download"
+
+![Model workflow](https://ars.els-cdn.com/content/image/1-s2.0-S1361841519301045-fx1_lrg.jpg)
 
 ## Data
 
@@ -61,6 +64,25 @@ The achieved metrics on the validation data are:
 - Binary Dice: 0.82762
 - PQ: 0.48976
 - F1d: 0.73592
+
+#### Training Loss and Dice
+
+stage1:
+![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://drive.google.com/file/d/1sc0ZqKWmphZbhHxKu-UredYriFtUFlbk/view?usp=sharing)
+
+stage2:
+![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://drive.google.com/file/d/1zdflo7lr6E4tX6YzoTUQItqlJwIbHBEg/view?usp=sharing)
+
+#### Validation Dice
+stage1:
+
+![A graph showing the validation mean dice over 50 epochs in stage1](https://drive.google.com/file/d/1skc_BqdqHht7r1zV288lq9XKUiH83hHe/view?usp=sharing)
+
+stage2:
+
+![A graph showing the validation mean dice over 50 epochs in stage2](https://drive.google.com/file/d/1hjO6vOnU5zXwrNqu3gpKOdcrABIcy1Ua/view?usp=sharing)
+
+
 
 ## commands example
 
