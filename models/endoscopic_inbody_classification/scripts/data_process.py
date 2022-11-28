@@ -42,9 +42,9 @@ def generate_labels(data_path, output_path):
     train_list = inbody_train_list + outbody_train_list
     val_list = inbody_val_list + outbody_val_list
     test_list = inbody_test_list + outbody_test_list
-    save_json(train_list, out_path, "train.json")
-    save_json(val_list, out_path, "val.json")
-    save_json(test_list, out_path, "test.json")
+    save_json(train_list, out_path, "train_samples.json")
+    save_json(val_list, out_path, "val_samples.json")
+    save_json(test_list, out_path, "test_samples.json")
 
 
 if __name__ == "__main__":
@@ -58,12 +58,7 @@ if __name__ == "__main__":
     )
 
     # path to save label json.
-    parser.add_argument(
-        "--outpath",
-        type=str,
-        default=r"/workspace/data/endoscopic_inbody_classification",
-        help="A path to save the onnx model.",
-    )
+    parser.add_argument("--outpath", type=str, default=r"./label", help="A path to save the onnx model.")
 
     args = parser.parse_args()
     data_path = args.datapath
