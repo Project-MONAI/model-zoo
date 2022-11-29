@@ -6,10 +6,10 @@
         "$import pathlib",
         "$import os"
     ],
-    "bundle_root": "/localhome/sachi/Projects/model-zoo/models/pathology_nuclei_classification",
+    "bundle_root": "/workspace/data/pathology_nuclei_classification",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/localhome/sachi/Dataset/temp/CoNSePNuclei",
+    "dataset_dir": "/workspace/data/CoNSePNuclei",
     "dataset_json": "$@dataset_dir + '/dataset.json'",
     "train_datalist": "$json.loads(pathlib.Path(@dataset_json).read_text())['training']",
     "val_datalist": "$json.loads(pathlib.Path(@dataset_json).read_text())['validation']",
@@ -30,7 +30,7 @@
         "params": "$@network.parameters()",
         "lr": 0.0001
     },
-    "max_epochs": 50,
+    "max_epochs": 5,
     "train": {
         "preprocessing": {
             "_target_": "Compose",

@@ -8,7 +8,6 @@ A pre-trained model for classifying nuclei cells as the following types.
 # Model Overview
 This model is trained using [DenseNet121](https://docs.monai.io/en/latest/networks.html#densenet121) over [ConSeP](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet) dataset.
 
-
 ## Data
 The training dataset is from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet
 ```commandline
@@ -29,13 +28,14 @@ The training was performed with the following:
 
 
 ### Preprocessing
-After downloading this dataset, python script in `scripts` folder naming `data_process` can be used to get label json files by running the command below and replacing datapath and outpath parameters.
+After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip), 
+python script `data_process.py` from `scripts` folder can be used to preprocess and generate the final dataset for training.
 
 ```commandline
 python scripts/data_process.py --input /path/to/data/CoNSeP --output /path/to/data/CoNSePNuclei
 ```
 
-After generating label files, please modify the `dataset_dir` parameter specified in `configs/train.json` and `configs/inference.json` to reflect where label files are.
+After generating the output files, please modify the `dataset_dir` parameter specified in `configs/train.json` and `configs/inference.json` to reflect the output folder which contains new dataset.json.
 
 Class values in dataset are
 
@@ -96,30 +96,45 @@ Example `dataset.json` in output folder:
  - 2 = Epithelial
  - 3 = Spindle-Shaped
 
+![](images/val_in_out.jpeg)
 
 ## Scores
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-- Train F1 score = 0.y
-- Validation F1 score = 0.x
+- Train F1 score = 0.96
+- Validation F1 score = 0.85
 
-Validation F1 score of individual classes are:
+<hr/>
+Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50):
 
-| F1 <sub>Other</sub> | F1 <sub>Inflammatory</sub> | F1 <sub>Epithelial</sub> | F1 <sub>Spindle-Shaped</sub> |
-|---------------------|----------------------------|--------------------------|------------------------------|
-| 0.756               | 0.636                      | 0.559                    | 0.348                        |
+| Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
+|-----------|--------|--------------|------------|----------------|
+| Precision | 0.5846 | 0.7143       | 0.9158     | 0.8399         |
+| Recall    | 0.2550 | 0.8441       | 0.9193     | 0.8106         |
+| F1-score  | 0.3551 | 0.7738       | 0.9175     | 0.8250         |
+
+
+<hr/>
+Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
+
+| Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
+|-----------|--------|--------------|------------|----------------|
+| Precision | 0.9059 | 0.9569       | 0.9754     | 0.9494         |
+| Recall    | 0.8370 | 0.9547       | 0.9790     | 0.9502         |
+| F1-score  | 0.8701 | 0.9558       | 0.9772     | 0.9498         |
 
 
 
 ## Training Performance
-A graph showing the training loss over 50 epochs.
+A graph showing the training Loss and F1-score over 50 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_train_2.png) <br>
+![](images/train_loss.jpeg) <br>
+![](images/train_f1.jpeg) <br>
 
 ## Validation Performance
 A graph showing the validation F1-score over 50 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_val_2.png) <br>
+![](images/val_f1.jpeg) <br>
 
 
 ## commands example

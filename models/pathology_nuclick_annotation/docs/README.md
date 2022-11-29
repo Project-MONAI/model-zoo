@@ -28,7 +28,8 @@ The training was performed with the following:
 
 
 ### Preprocessing
-After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip), python script in `scripts` folder naming `data_process` can be used to get label json files by running the command below and replacing datapath and outpath parameters.
+After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip), 
+python script `data_process.py` from `scripts` folder can be used to preprocess and generate the final dataset for training.
 
 ```
 python scripts/data_process.py --input /path/to/data/CoNSeP --output /path/to/data/CoNSePNuclei
@@ -104,7 +105,7 @@ This model achieves the following F1 score on the validation data provided as pa
 
 
 ## Training Performance
-A graph showing the training loss and dice over 50 epochs.
+A graph showing the training Loss and Dice over 50 epochs.
 
 ![](images/train_loss.jpeg) <br>
 ![](images/train_dice.jpeg) <br>

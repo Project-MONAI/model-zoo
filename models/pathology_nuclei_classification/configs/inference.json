@@ -5,9 +5,9 @@
         "$import pathlib",
         "$import os"
     ],
-    "bundle_root": "/localhome/sachi/Projects/model-zoo/models/pathology_nuclei_classification",
+    "bundle_root": "/workspace/data/pathology_nuclei_classification",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/localhome/sachi/Dataset/temp/CoNSePNuclei",
+    "dataset_dir": "/workspace/data/CoNSePNuclei",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
     "labels": "$list(sorted(glob.glob(@dataset_dir + '/Test/Labels/*.png')))[:1]",
     "input_data": "$[{'image': i, 'label': l} for i,l in zip(@images, @labels)]",

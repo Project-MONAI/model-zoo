@@ -129,12 +129,12 @@ class TensorBoardImageHandler:
         for k, v in cr.items():
             if isinstance(v, dict):
                 ltext = []
+                cname = self.class_names.get(k, k)
                 for n, m in v.items():
                     ltext.append(f"{n} => {m:.4f}")
-                    cname = self.class_names.get(k, k)
                     self.writer.add_scalar(f"{self.tag_name}_cr_{cname}_{n}", m, epoch)
 
-                self.logger.info(f"{self.tag_name} => Epoch[{epoch}] Metrics -- {'; '.join(ltext)}")
+                self.logger.info(f"{self.tag_name} => Epoch[{epoch}] - {cname} - Metrics -- {'; '.join(ltext)}")
             else:
                 self.logger.info(f"{self.tag_name} => Epoch[{epoch}] Metrics -- {k} => {v:.4f}")
                 self.writer.add_scalar(f"{self.tag_name}_cr_{k}", v, epoch)
