@@ -28,7 +28,7 @@ The training was performed with the following:
 
 
 ### Preprocessing
-After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip), 
+After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip),
 python script `data_process.py` from `scripts` folder can be used to preprocess and generate the final dataset for training.
 
 ```commandline
