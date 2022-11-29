@@ -11,6 +11,11 @@ This model is trained using [DenseNet121](https://docs.monai.io/en/latest/networ
 
 ## Data
 The training dataset is from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet
+```commandline
+wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
+unzip -q consep_dataset.zip
+```
+![](images/dataset.jpeg)<br/>
 
 ## Training configuration
 The training was performed with the following:
@@ -26,8 +31,8 @@ The training was performed with the following:
 ### Preprocessing
 After downloading this dataset, python script in `scripts` folder naming `data_process` can be used to get label json files by running the command below and replacing datapath and outpath parameters.
 
-```
-python scripts/data_process.py --datapath /path/to/data/root --outpath /path/to/label/folder
+```commandline
+python scripts/data_process.py --input /path/to/data/CoNSeP --output /path/to/data/CoNSePNuclei
 ```
 
 After generating label files, please modify the `dataset_dir` parameter specified in `configs/train.json` and `configs/inference.json` to reflect where label files are.
@@ -49,7 +54,7 @@ As part of pre-processing, the following steps are executed.
  - Update the label index for the target nuclie based on the class value
  - Other cells which are part of the patch are modified to have label idex = 255
 
-Example dataset.json
+Example `dataset.json` in output folder:
 ```json
 {
   "training": [
@@ -82,7 +87,7 @@ Example dataset.json
 
 ## Input and output formats
 ### Input: 4 channels
-- 3 RGB channels (RGB)
+- 3 RGB channels
 - 1 signal channel (label mask)
 
 ### Output: 4 channels
@@ -95,14 +100,14 @@ Example dataset.json
 ## Scores
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-- Train F1 score = 0.96
+- Train F1 score = 0.y
 - Validation F1 score = 0.x
 
 Validation F1 score of individual classes are:
 
-| F1<sub>Other</sub> | F1<sub>Inflammatory</sub> | F1<sub>Epithelial</sub> | F1<sub>Spindle-Shaped</sub> |
-|--------------------|---------------------------|-------------------------|-----------------------------|
-| 0.756              | 0.636                     | 0.559                   | 0.348                       |
+| F1 <sub>Other</sub> | F1 <sub>Inflammatory</sub> | F1 <sub>Epithelial</sub> | F1 <sub>Spindle-Shaped</sub> |
+|---------------------|----------------------------|--------------------------|------------------------------|
+| 0.756               | 0.636                      | 0.559                    | 0.348                        |
 
 
 

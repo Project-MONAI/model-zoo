@@ -9,7 +9,7 @@
     "bundle_root": "/localhome/sachi/Projects/model-zoo/models/pathology_nuclei_classification",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/localhome/sachi/Dataset/Pathology/CoNSePNuclei",
+    "dataset_dir": "/localhome/sachi/Dataset/temp/CoNSePNuclei",
     "dataset_json": "$@dataset_dir + '/dataset.json'",
     "train_datalist": "$json.loads(pathlib.Path(@dataset_json).read_text())['training']",
     "val_datalist": "$json.loads(pathlib.Path(@dataset_json).read_text())['validation']",
@@ -40,7 +40,8 @@
                     "keys": [
                         "image",
                         "label"
-                    ]
+                    ],
+                    "dtype": "uint8"
                 },
                 {
                     "_target_": "EnsureChannelFirstd",
@@ -60,10 +61,11 @@
                     "_target_": "RandTorchVisiond",
                     "keys": "image",
                     "name": "ColorJitter",
-                    "brightness": 0.251,
+                    "brightness": 0.25,
                     "contrast": 0.75,
                     "saturation": 0.25,
-                    "hue": 0.04
+                    "hue": 0.04,
+                    "prob": 0.5
                 },
                 {
                     "_target_": "RandFlipd",
@@ -120,7 +122,7 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
-            "batch_size": 32,
+            "batch_size": 64,
             "shuffle": true,
             "num_workers": 4
         },
@@ -174,6 +176,18 @@
                 "log_dir": "@output_dir",
                 "tag_name": "train_loss",
                 "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            },
+            {
+                "_target_": "scripts.TensorBoardImageHandler",
+                "class_names": {
+                    "0": "Other",
+                    "1": "Inflammatory",
+                    "2": "Epithelial",
+                    "3": "Spindle-Shaped"
+                },
+                "log_dir": "@output_dir",
+                "batch_limit": 4,
+                "tag_name": "train"
             }
         ],
         "key_metric": {
@@ -207,7 +221,8 @@
                     "keys": [
                         "image",
                         "label"
-                    ]
+                    ],
+                    "dtype": "uint8"
                 },
                 {
                     "_target_": "EnsureChannelFirstd",
@@ -259,7 +274,7 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@validate#dataset",
-            "batch_size": 1,
+            "batch_size": 64,
             "shuffle": false,
             "num_workers": 4
         },
@@ -285,6 +300,17 @@
                 },
                 "save_key_metric": true,
                 "key_metric_filename": "model.pt"
+            },{
+                "_target_": "scripts.TensorBoardImageHandler",
+                "class_names": {
+                    "0": "Other",
+                    "1": "Inflammatory",
+                    "2": "Epithelial",
+                    "3": "Spindle-Shaped"
+                },
+                "log_dir": "@output_dir",
+                "batch_limit": 8,
+                "tag_name": "val"
             }
         ],
         "key_metric": {

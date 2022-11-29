@@ -5,9 +5,9 @@
         "$import pathlib",
         "$import os"
     ],
-    "bundle_root": "/localhome/sachi/Projects/model-zoo/models/pathology_nuclick_annotation",
+    "bundle_root": "/workspace/data/pathology_nuclick_annotation",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/localhome/sachi/Dataset/Pathology/CoNSePNuclei",
+    "dataset_dir": "/workspace/data/CoNSePNuclei",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
     "centroids": "$list(sorted(glob.glob(@dataset_dir + '/Test/Centroids/*.txt')))[:1]",
     "input_data": "$[{'image': i, 'foreground': json.loads(pathlib.Path(c).read_text())} for i,c in zip(@images, @centroids)]",
@@ -32,7 +32,8 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": "image",
+                "dtype": "uint8"
             },
             {
                 "_target_": "EnsureChannelFirstd",

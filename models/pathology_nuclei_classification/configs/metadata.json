@@ -16,16 +16,16 @@
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "consep_dataset.zip from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet",
-    "data_type": "nibabel",
-    "image_classes": "single channel data, intensity scaled to [0, 1]",
-    "label_classes": "single channel data, 1 is spleen, 0 is everything else",
+    "data_type": "png",
+    "image_classes": "RGB channel data, intensity scaled to [0, 1]",
+    "label_classes": "single channel data",
     "pred_classes": "4 channels OneHot data, channel 0 is Other, channel 1 is Inflammatory, channel 2 is Epithelial, channel 3 is Spindle-Shaped",
     "eval_metrics": {
         "f1_score": 0.8
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
-        "S. Graham, Q. D. Vu, S. E. A. Raza, A. Azam, Y-W. Tsang, J. T. Kwak and N. Rajpoot. \"HoVer-Net: Simultaneous Segmentation and Classification of Nuclei in Multi-Tissue Histology Images.\" Medical Image Analysis, Sept. 2019. https://doi.org/10.1016/j.media.2019.101563",
+        "S. Graham, Q. D. Vu, S. E. A. Raza, A. Azam, Y-W. Tsang, J. T. Kwak and N. Rajpoot. \"HoVer-Net: Simultaneous Segmentation and Classification of Nuclei in Multi-Tissue Histology Images.\" Medical Image Analysis, Sept. 2019. https://doi.org/10.1016/j.media.2019.101563"
     ],
     "network_data_format": {
         "inputs": {

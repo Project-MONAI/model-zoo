@@ -1,54 +1,118 @@
 # Description
-A pre-trained model for volumetric (3D) segmentation of the spleen from CT image.
+A pre-trained model for segmenting nuclei cells with user clicks/interactions.
+
+![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/11.gif)
+![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/33.gif)
+![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/22.gif)
 
 # Model Overview
-This model is trained using the runner-up [1] awarded pipeline of the "Medical Segmentation Decathlon Challenge 2018" using the UNet architecture [2] with 32 training images and 9 validation images.
-
-![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_workflow.png)
+This model is trained using [BasicUNet](https://docs.monai.io/en/latest/networks.html#basicunet) over [ConSeP](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet) dataset.
 
 ## Data
-The training dataset is Task09_Spleen.tar from http://medicaldecathlon.com/.
+The training dataset is from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet
+```commandline
+wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
+unzip -q consep_dataset.zip
+```
+![](images/dataset.jpeg)<br/>
 
 ## Training configuration
-The segmentation of spleen region is formulated as the voxel-wise binary classification. Each voxel is predicted as either foreground (spleen) or background. And the model is optimized with gradient descent method minimizing Dice + cross entropy loss between the predicted mask and ground truth segmentation.
-
 The training was performed with the following:
 
 - GPU: at least 12GB of GPU memory
-- Actual Model Input: 96 x 96 x 96
+- Actual Model Input: 4 x 128 x 128
 - AMP: True
 - Optimizer: Adam
 - Learning Rate: 1e-4
-- Loss: DiceCELoss
+- Loss: DiceLoss
 
-Pre-processing transforms:
 
-1. Convert data to channel-first
-2. Resample to resolution 1.5 x 1.5 x 2 mm
-3. Scale intensity
-4. Cropping foreground surrounding regions
-5. Cropping random fixed sized regions of size [96,96,96] with the center being a foreground or background voxel at ratio 1 : 1
-6. Randomly shifting intensity of the volume
+### Preprocessing
+After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip), python script in `scripts` folder naming `data_process` can be used to get label json files by running the command below and replacing datapath and outpath parameters.
+
+```
+python scripts/data_process.py --input /path/to/data/CoNSeP --output /path/to/data/CoNSePNuclei
+```
+
+After generating the output files, please modify the `dataset_dir` parameter specified in `configs/train.json` and `configs/inference.json` to reflect the output folder which contains new dataset.json.
+
+Class values in dataset are
+
+ - 1 = other
+ - 2 = inflammatory
+ - 3 = healthy epithelial
+ - 4 = dysplastic/malignant epithelial
+ - 5 = fibroblast
+ - 6 = muscle
+ - 7 = endothelial
+
+As part of pre-processing, the following steps are executed.
+
+ - Crop and Extract each nuclei Image + Label (128x128) based on the centroid given in the dataset.
+ - Combine classes 3 & 4 into the epithelial class and 5,6 & 7 into the spindle-shaped class.
+ - Update the label index for the target nuclie based on the class value
+ - Other cells which are part of the patch are modified to have label idex = 255
+
+Example dataset.json
+```json
+{
+  "training": [
+    {
+      "image": "/workspace/data/CoNSePNuclei/Train/Images/train_1_3_0001.png",
+      "label": "/workspace/data/CoNSePNuclei/Train/Labels/train_1_3_0001.png",
+      "nuclei_id": 1,
+      "mask_value": 3,
+      "centroid": [
+        64,
+        64
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "image": "/workspace/data/CoNSePNuclei/Test/Images/test_1_3_0001.png",
+      "label": "/workspace/data/CoNSePNuclei/Test/Labels/test_1_3_0001.png",
+      "nuclei_id": 1,
+      "mask_value": 3,
+      "centroid": [
+        64,
+        64
+      ]
+    }
+  ]
+}
+```
+
 
 ## Input and output formats
-Input: 1 channel CT image
+### Input: 5 channels
+- 3 RGB channels
+- +ve signal channel (this nuclei)
+- -ve signal channel (other nuclei)
 
-Output: 2 channels: Label 1: spleen; Label 0: everything else
+### Output: 2 channels
+ - 0 = Background
+ - 1 = Nuclei
+
+![](images/train_in_out.jpeg)
 
 ## Scores
-This model achieves the following Dice score on the validation data (our own split from the training dataset):
+This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-Mean Dice = 0.96
+- Train Dice score = 0.89
+- Validation Dice score = 0.85
+
 
 ## Training Performance
-A graph showing the training loss over 1260 epochs (10080 iterations).
+A graph showing the training loss and dice over 50 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_train_2.png) <br>
+![](images/train_loss.jpeg) <br>
+![](images/train_dice.jpeg) <br>
 
 ## Validation Performance
-A graph showing the validation mean Dice over 1260 epochs.
+A graph showing the validation mean Dice over 50 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_val_2.png) <br>
+![](images/val_dice.jpeg) <br>
 
 
 ## commands example
@@ -89,9 +153,11 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 This is an example, not to be used for diagnostic purposes.
 
 # References
-[1] Xia, Yingda, et al. "3D Semi-Supervised Learning with Uncertainty-Aware Multi-View Co-Training." arXiv preprint arXiv:1811.12506 (2018). https://arxiv.org/abs/1811.12506.
+[1] Koohbanani, Navid Alemi, et al. "NuClick: a deep learning framework for interactive segmentation of microscopic images." Medical Image Analysis 65 (2020): 101771. https://arxiv.org/abs/2005.14511.
 
-[2] Kerfoot E., Clough J., Oksuz I., Lee J., King A.P., Schnabel J.A. (2019) Left-Ventricle Quantification Using Residual U-Net. In: Pop M. et al. (eds) Statistical Atlases and Computational Models of the Heart. Atrial Segmentation and LV Quantification Challenges. STACOM 2018. Lecture Notes in Computer Science, vol 11395. Springer, Cham. https://doi.org/10.1007/978-3-030-12029-0_40
+[2] S. Graham, Q. D. Vu, S. E. A. Raza, A. Azam, Y-W. Tsang, J. T. Kwak and N. Rajpoot. "HoVer-Net: Simultaneous Segmentation and Classification of Nuclei in Multi-Tissue Histology Images." Medical Image Analysis, Sept. 2019. [[doi](https://doi.org/10.1016/j.media.2019.101563)]
+
+[3] NuClick [PyTorch](https://github.com/mostafajahanifar/nuclick_torch) Implementation
 
 # License
 Copyright (c) MONAI Consortium
