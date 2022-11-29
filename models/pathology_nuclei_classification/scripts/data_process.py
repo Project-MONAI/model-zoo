@@ -56,8 +56,8 @@ def main():
         logger.info(f"Processing Images/labels for: {f}")
         images_path = os.path.join(args.input, f, "Images", "*.png")
         labels_path = os.path.join(args.input, f, "Labels", "*.mat")
-        images = list(sorted(glob.glob(images_path)))
-        labels = list(sorted(glob.glob(labels_path)))
+        images = sorted(glob.glob(images_path))
+        labels = sorted(glob.glob(labels_path))
         ds = [{"image": i, "label": l} for i, l in zip(images, labels)]
 
         output_dir = os.path.join(args.output, f) if args.output else f

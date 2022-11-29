@@ -15,7 +15,6 @@ from typing import TYPE_CHECKING, Callable, Optional
 import numpy as np
 import torch
 import torch.distributed
-
 from monai.config import IgniteInfo
 from monai.utils import min_version, optional_import
 
@@ -101,16 +100,11 @@ class TensorBoardImageHandler:
                 )
             )
 
-            tag_prefix = f"{self.tag_name} - b{bidx} - " if self.batch_limit != 1  else f"{self.tag_name} - "
-            label_pred = [y,  y_pred, image[3][None] > 0, image[4][None] > 0]
+            tag_prefix = f"{self.tag_name} - b{bidx} - " if self.batch_limit != 1 else f"{self.tag_name} - "
+            label_pred = [y, y_pred, image[3][None] > 0, image[4][None] > 0]
             label_pred_tag = f"{tag_prefix}Label vs Pred vs Pos vs Neg"
 
-            img_tensor = make_grid(
-                tensor=torch.from_numpy(np.array(label_pred)),
-                nrow=4,
-                normalize=True,
-                pad_value=10,
-            )
+            img_tensor = make_grid(tensor=torch.from_numpy(np.array(label_pred)), nrow=4, normalize=True, pad_value=10)
             self.writer.add_image(tag=label_pred_tag, img_tensor=img_tensor, global_step=epoch)
 
             if self.batch_limit == 1 or bidx == (self.batch_limit - 1):

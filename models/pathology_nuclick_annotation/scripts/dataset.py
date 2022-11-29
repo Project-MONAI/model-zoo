@@ -17,7 +17,6 @@ import pathlib
 from typing import Dict, List
 
 import numpy as np
-
 from monai.apps.utils import tqdm
 from monai.utils import optional_import
 
