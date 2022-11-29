@@ -8,7 +8,10 @@
     "pytorch_version": "1.13.0",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
-        "scikit-image": "0.19.3"
+        "scikit-image": "0.19.3",
+        "scipy": "1.8.1",
+        "tqdm": "4.64.1",
+        "pillow": "9.0.1"
     },
     "task": "Nuclear segmentation and classification",
     "description": "A simultaneous segmentation and classification of nuclei within multitissue histology images based on CoNSeP data",

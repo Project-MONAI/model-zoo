@@ -5,14 +5,14 @@ import pathlib
 import shutil
 from argparse import ArgumentParser
 
-import cv2
+from PIL import Image
 import numpy as np
 import scipy.io as sio
 import tqdm
 
 
 def load_img(path):
-    return cv2.cvtColor(cv2.imread(path), cv2.COLOR_BGR2RGB)
+    return np.array(Image.open(path).convert("RGB"))
 
 
 def load_ann(path):
