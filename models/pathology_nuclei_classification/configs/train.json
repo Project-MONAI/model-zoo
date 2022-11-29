@@ -300,7 +300,8 @@
                 },
                 "save_key_metric": true,
                 "key_metric_filename": "model.pt"
-            },{
+            },
+            {
                 "_target_": "scripts.TensorBoardImageHandler",
                 "class_names": {
                     "0": "Other",
