@@ -1,0 +1,17 @@
+Third Party Licenses
+-----------------------------------------------------------------------
+
+/*********************************************************************/
+i. Prostate cANcer graDe Assessment (PANDA) Challenge 2020
+    https://www.kaggle.com/c/prostate-cancer-grade-assessment/
+/*********************************************************************/
+
+[1] Bulten, W., Kartasalo, K., Chen, PH.C. et al. Artificial intelligence
+for diagnosis and Gleason grading of prostate cancer: the PANDA challenge.
+Nat Med (2022). https://doi.org/10.1038/s41591-021-01620-2
+
+With the paper's publication, the embargo on the data is now lifted.
+If you want, you can now use the dataset for further scientific work and publish your
+results on the dataset. If you do so, please take the license (CC BY-SA-NC 4.0) into
+account (non-commercial) and make sure you cite the PANDA paper.
+https://www.kaggle.com/competitions/prostate-cancer-grade-assessment/discussion/300840

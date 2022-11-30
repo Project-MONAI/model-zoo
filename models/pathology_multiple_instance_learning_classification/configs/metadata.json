@@ -1,0 +1,70 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "complete the model package"
+    },
+    "monai_version": "1.1.0",
+    "pytorch_version": "1.13.0",
+    "numpy_version": "1.22.2",
+    "optional_packages_version": {
+        "cucim": "22.10.0"
+    },
+    "task": " Multiple Instance Learning (MIL) classification from Whole Slide Images (WSI).",
+    "description": "A pre-trained baseline model for Multiple Instance Learning (MIL) classification from Whole Slide Images (WSI) based on PANDA 2020 data",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "https://www.kaggle.com/c/prostate-cancer-grade-assessment/",
+    "data_type": "tiff",
+    "image_classes": "3 channel RGB data, 2D TIFF WSI",
+    "label_classes": "5 classes, ISUP grade",
+    "pred_classes": "5 classes, ISUP grade",
+    "eval_metrics": {
+        "QWK": 0.9071
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Andriy Myronenko, Ziyue Xu, Dong Yang, Holger Roth, Daguang Xu: 'Accounting for Dependencies in Deep Learning Based Multiple Instance Learning for Whole Slide Imaging'. In MICCAI (2021). https://arxiv.org/abs/2111.01556"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "TIFF",
+                "num_channels": 3,
+                "spatial_shape": [
+                    "256*n",
+                    "256*n"
+                ],
+                "dtype": "uint8",
+                "value_range": [],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "R",
+                    "1": "G",
+                    "2": "B"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "labels",
+                "dtype": "int",
+                "value_range": [
+                    0,
+                    5
+                ],
+                "num_channels": 1,
+                "spatial_shape": [
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "ISUP grade"
+                }
+            }
+        }
+    }
+}

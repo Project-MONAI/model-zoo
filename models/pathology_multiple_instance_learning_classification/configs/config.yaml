@@ -1,0 +1,43 @@
+bundle_root: "./"                                                # root path of this bundle
+device: cuda
+validation_key: validation                                       # datalist key to run evaluation on
+testing_key: testing                                             # datalist key to run inference on
+
+config:
+
+  dataroot: /data/PandaChallenge2020/train_images               # path to dataset location (update it with your own path)
+  datalist: "$@bundle_root + 'scripts/datalist_panda_0.json'"   # path to json file with file list
+
+  ckpt_dir: "$@bundle_root + 'models'"                          # folder to save new checkpoints
+  output_dir: "$@bundle_root + 'eval'"                          # folder to save eval results
+  eval_ckpt_path: "$@bundle_root + 'models/model.pt'"           # ckpt to initialize validation/inference
+  pretrained_ckpt_path: null                                    # ckpt to initialize training, if exists
+
+  amp: true                                                     # use AMP
+  determ: false                                                 # deterministic training
+  quick: false                                                  # quick run on 8 images (for debugging)
+  epochs: 50                                                    # number of training epochs
+  weight_decay: 0                                               # weight decay during training
+  val_every: 1                                                  # evaluate on a validation set every 'val_every' epochs
+  tile_count: 44                                                # number of tiles to extract
+  tile_size: 256                                                # size of square tiles in px
+  num_classes: 5                                                # number of output classes
+  batch_size: 4                                                 # batch size per GPU
+  workers: 2                                                    # number of workers for data loading
+  mil_mode: att_trans                                           # mode of MilModel
+  optim_lr: 3.e-5                                               # initial learning rate
+
+
+runner:
+  _target_: scripts.mil_runner.MilRunner
+  _desc_: mil_model supervised runner
+  config: "@config"
+
+training:
+  - $@runner.train()
+
+evaluating:
+  - $@runner.evaluate(data_list_key=@validation_key)
+
+inference:
+  - $@runner.evaluate(data_list_key=@testing_key, calc_metric=False)
