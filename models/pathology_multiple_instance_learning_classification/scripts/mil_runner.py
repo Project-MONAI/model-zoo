@@ -11,7 +11,6 @@ import numpy as np
 import torch
 import torch.distributed as dist
 import torch.nn as nn
-from monai.apps.pathology.transforms import TileOnGridd
 from monai.config import KeysCollection
 from monai.data import Dataset, load_decathlon_datalist
 from monai.data.wsi_reader import WSIReader
@@ -526,7 +525,7 @@ class MilRunner:
         val_acc_max = 0.0
         scaler = GradScaler(enabled=amp)
 
-        ###RUN TRAINING LOOP
+        # RUN TRAINING LOOP
         for epoch in range(n_epochs):
 
             if distributed and isinstance(train_loader.sampler, DistributedSampler):
