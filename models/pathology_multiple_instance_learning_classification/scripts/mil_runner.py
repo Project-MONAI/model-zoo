@@ -30,7 +30,7 @@ from monai.transforms import (
     SplitDimd,
     ToTensord,
 )
-from monai.utils import set_determinism
+from monai.utils import require_pkg, set_determinism
 from sklearn.metrics import cohen_kappa_score
 from torch.cuda.amp import GradScaler, autocast
 from torch.utils.data.dataloader import DataLoader, default_collate
@@ -315,8 +315,14 @@ class MilRunner:
             # if datalist file is not provided, download the default json
             datalist = "./scripts/datalist_panda_0.json"
             if not os.path.exists(datalist) and self.rank == 0:
-                resource_url = "https://drive.google.com/uc?id=1L6PtKBlHHyUgTE4rVhRuOLTQKgD4tBRK"
-                gdown.download(resource_url, datalist, quiet=False)
+
+                @require_pkg(pkg_name="gdown")
+                def download_datalist():
+                    resource_url = "https://drive.google.com/uc?id=1L6PtKBlHHyUgTE4rVhRuOLTQKgD4tBRK"
+                    gdown.download(resource_url, datalist, quiet=False)
+
+                download_datalist()
+
             if self.distributed:
                 dist.barrier()
 
