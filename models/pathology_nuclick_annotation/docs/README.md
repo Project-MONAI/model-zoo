@@ -98,7 +98,7 @@ Example dataset.json
 ![](images/train_in_out.jpeg)
 
 ## Scores
-This model achieves the following F1 score on the validation data provided as part of the dataset:
+This model achieves the following Dice score on the validation data provided as part of the dataset:
 
 - Train Dice score = 0.89
 - Validation Dice score = 0.85
