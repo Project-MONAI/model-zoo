@@ -6,7 +6,7 @@ testing_key: testing                                             # datalist key 
 config:
 
   dataroot: /data/PandaChallenge2020/train_images               # path to dataset location (update it with your own path)
-  datalist: "$@bundle_root + 'scripts/datalist_panda_0.json'"   # path to json file with file list
+  datalist: null                                                # path to json file with file list (if null the default is downloaded)
 
   ckpt_dir: "$@bundle_root + 'models'"                          # folder to save new checkpoints
   output_dir: "$@bundle_root + 'eval'"                          # folder to save eval results

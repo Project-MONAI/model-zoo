@@ -7,6 +7,7 @@ import sys
 import time
 from copy import deepcopy
 
+import gdown
 import numpy as np
 import torch
 import torch.distributed as dist
@@ -292,6 +293,17 @@ class MilRunner:
             set_determinism(seed=0)
         else:
             torch.backends.cudnn.benchmark = True
+
+        if self.mil_config.get("datalist", None) is None:
+            # if datalist file is not provided, download the default json datalist
+            dst = "./scripts/datalist_panda_0.json"
+            if not os.path.exists(dst):
+                if self.rank == 0:
+                    resource_url = "https://drive.google.com/uc?id=1L6PtKBlHHyUgTE4rVhRuOLTQKgD4tBRK"
+                    gdown.download(resource_url, dst, quiet=False)
+                if self.distributed:
+                    dist.barrier()
+            self.mil_config["datalist"] = dst
 
     def init_distributed(self):
 
