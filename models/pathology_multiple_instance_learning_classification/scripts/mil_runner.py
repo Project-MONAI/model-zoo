@@ -294,17 +294,6 @@ class MilRunner:
         else:
             torch.backends.cudnn.benchmark = True
 
-        if self.mil_config.get("datalist", None) is None:
-            # if datalist file is not provided, download the default json datalist
-            dst = "./scripts/datalist_panda_0.json"
-            if not os.path.exists(dst):
-                if self.rank == 0:
-                    resource_url = "https://drive.google.com/uc?id=1L6PtKBlHHyUgTE4rVhRuOLTQKgD4tBRK"
-                    gdown.download(resource_url, dst, quiet=False)
-                if self.distributed:
-                    dist.barrier()
-            self.mil_config["datalist"] = dst
-
     def init_distributed(self):
 
         if dist.is_torchelastic_launched() and torch.cuda.device_count() > 1:
@@ -318,9 +307,24 @@ class MilRunner:
             self.world_size = 1
             self.distributed = False
 
+    def get_datalist(self):
+
+        datalist = self.mil_config.get("datalist", None)
+
+        if datalist is None:
+            # if datalist file is not provided, download the default json
+            datalist = "./scripts/datalist_panda_0.json"
+            if not os.path.exists(datalist) and self.rank == 0:
+                resource_url = "https://drive.google.com/uc?id=1L6PtKBlHHyUgTE4rVhRuOLTQKgD4tBRK"
+                gdown.download(resource_url, datalist, quiet=False)
+            if self.distributed:
+                dist.barrier()
+
+        return datalist
+
     def get_train_loader(self, data_list_key="training"):
 
-        datalist = self.mil_config["datalist"]
+        datalist = self.get_datalist()
         dataroot = self.mil_config["dataroot"]
         quick = self.mil_config["quick"]
         tile_size = self.mil_config["tile_size"]
@@ -380,7 +384,7 @@ class MilRunner:
 
     def get_val_loader(self, data_list_key="validation"):
 
-        datalist = self.mil_config["datalist"]
+        datalist = self.get_datalist()
         dataroot = self.mil_config["dataroot"]
         quick = self.mil_config["quick"]
         tile_size = self.mil_config["tile_size"]

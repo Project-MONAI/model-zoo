@@ -8,7 +8,8 @@
     "pytorch_version": "1.13.0",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
-        "cucim": "22.10.0"
+        "cucim": "22.10.0",
+        "gdown": "4.5.4"
     },
     "task": " Multiple Instance Learning (MIL) classification from Whole Slide Images (WSI).",
     "description": "A pre-trained baseline model for Multiple Instance Learning (MIL) classification from Whole Slide Images (WSI) based on PANDA 2020 data",
