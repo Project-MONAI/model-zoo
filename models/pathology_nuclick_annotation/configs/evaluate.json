@@ -50,6 +50,8 @@
         }
     ],
     "evaluating": [
+        "$import sys",
+        "$sys.path.append(@bundle_root)",
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$@validate#evaluator.run()"
     ]
