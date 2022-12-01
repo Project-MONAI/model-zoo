@@ -7,7 +7,6 @@ import sys
 import time
 from copy import deepcopy
 
-import gdown
 import numpy as np
 import torch
 import torch.distributed as dist
@@ -318,6 +317,8 @@ class MilRunner:
 
                 @require_pkg(pkg_name="gdown")
                 def download_datalist():
+                    import gdown
+
                     resource_url = "https://drive.google.com/uc?id=1L6PtKBlHHyUgTE4rVhRuOLTQKgD4tBRK"
                     gdown.download(resource_url, datalist, quiet=False)
 
