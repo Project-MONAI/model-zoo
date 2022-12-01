@@ -11,7 +11,7 @@ config:
   ckpt_dir: "$@bundle_root + 'models'"                          # folder to save new checkpoints
   output_dir: "$@bundle_root + 'eval'"                          # folder to save eval results
   eval_ckpt_path: "$@bundle_root + 'models/model.pt'"           # ckpt to initialize validation/inference
-  pretrained_ckpt_path: null                                    # ckpt to initialize training, if exists
+  pretrained_ckpt_path: "$@bundle_root + 'models/model.pt'"     # ckpt to initialize training, if exists
 
   amp: true                                                     # use AMP
   determ: false                                                 # deterministic training
