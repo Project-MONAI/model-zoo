@@ -135,14 +135,8 @@
         "collate_fn": "$monai.data.utils.no_collation"
     },
     "inferer": {
-        "_target_": "SlidingWindowInferer",
-        "roi_size": [
-            240,
-            240,
-            160
-        ],
-        "sw_batch_size": 1,
-        "overlap": 0.5
+        "_target_": "scripts.detection_inferer.RetinaNetInferer",
+        "detector": "@detector"
     },
     "postprocessing": {
         "_target_": "Compose",
@@ -203,7 +197,8 @@
         "_requires_": "@detector_ops",
         "device": "@device",
         "val_data_loader": "@dataloader",
-        "detector": "@detector",
+        "network": "@network",
+        "inferer": "@inferer",
         "val_handlers": "@handlers",
         "amp": "@amp"
     },

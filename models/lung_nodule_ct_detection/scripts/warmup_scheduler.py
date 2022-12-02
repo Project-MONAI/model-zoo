@@ -39,6 +39,7 @@ class GradualWarmupScheduler(_LRScheduler):
         super(GradualWarmupScheduler, self).__init__(optimizer)
 
     def get_lr(self):
+        self.last_epoch = max(1, self.last_epoch) # to avoid epoch=0 thus lr=0
         if self.last_epoch > self.total_epoch:
             if self.after_scheduler:
                 if not self.finished:
