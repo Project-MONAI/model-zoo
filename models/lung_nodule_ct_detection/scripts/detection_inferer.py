@@ -34,10 +34,8 @@ class RetinaNetInferer(Inferer):
         self.detector = detector
         self.sliding_window_size = None
         if self.detector.inferer is not None:
-            try:
+            if hasattr(self.detector.inferer, "roi_size"):
                 self.sliding_window_size = np.prod(self.detector.inferer.roi_size)
-            except:
-                pass
 
     def __call__(self, inputs: Union[List[Tensor], Tensor], network: torch.nn.Module, *args: Any, **kwargs: Any):
         """Unified callable function API of Inferers.
