@@ -13,18 +13,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
-import numpy as np
 import torch
 from monai.apps.detection.networks.retinanet_detector import RetinaNetDetector
 from monai.config import IgniteInfo
 from monai.engines.evaluator import SupervisedEvaluator
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn
-from monai.inferers import Inferer
-from monai.networks.utils import eval_mode, train_mode
 from monai.transforms import Transform
 from monai.utils import ForwardMode, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
-from monai.utils.module import look_up_option
 from torch.utils.data import DataLoader
 
 from .detection_inferer import RetinaNetInferer

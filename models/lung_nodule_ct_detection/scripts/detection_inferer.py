@@ -23,7 +23,8 @@ class RetinaNetInferer(Inferer):
     RetinaNet Inferer takes RetinaNet as input
 
     Args:
-        detector: the RetinaNetDetector that converts network output BxCxMxN or BxCxMxNxP map into boxes and classification scores.
+        detector: the RetinaNetDetector that converts network output BxCxMxN or BxCxMxNxP
+            map into boxes and classification scores.
         args: other optional args to be passed to detector.
         kwargs: other optional keyword args to be passed to detector.
     """
@@ -43,7 +44,8 @@ class RetinaNetInferer(Inferer):
         Args:
             inputs: model input data for inference.
             network: target detection network to execute inference.
-                supports callable that fullfilles requirements of network in monai.apps.detection.networks.retinanet_detector.RetinaNetDetector``
+                supports callable that fullfilles requirements of network in
+                monai.apps.detection.networks.retinanet_detector.RetinaNetDetector``
             args: optional args to be passed to ``network``.
             kwargs: optional keyword args to be passed to ``network``.
         """
