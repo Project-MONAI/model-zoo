@@ -9,12 +9,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, List, Union
 
 import numpy as np
 import torch
 from monai.apps.detection.networks.retinanet_detector import RetinaNetDetector
-from monai.inferers.inferer import Inferer, SlidingWindowInferer
+from monai.inferers.inferer import Inferer
 from torch import Tensor
 
 
