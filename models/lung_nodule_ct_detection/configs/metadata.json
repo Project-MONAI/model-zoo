@@ -2,6 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "version": "0.4.5",
     "changelog": {
+        "0.5.0": "use detection inferer",
         "0.4.5": "fixed some small changes with formatting in readme",
         "0.4.4": "add data resource to readme",
         "0.4.3": "update val patch size to avoid warning in monai 1.0.1",
