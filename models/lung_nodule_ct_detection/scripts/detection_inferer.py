@@ -9,12 +9,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from monai.inferers.inferer import SlidingWindowInferer, Inferer
-from monai.apps.detection.networks.retinanet_detector import RetinaNetDetector
-from typing import Any, Callable, Dict, Mapping, Optional, Sequence, Tuple, Union, List
-from torch import Tensor
+from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple, Union
+
 import numpy as np
 import torch
+from monai.apps.detection.networks.retinanet_detector import RetinaNetDetector
+from monai.inferers.inferer import Inferer, SlidingWindowInferer
+from torch import Tensor
+
 
 class RetinaNetInferer(Inferer):
     """
@@ -26,10 +28,7 @@ class RetinaNetInferer(Inferer):
         kwargs: other optional keyword args to be passed to detector.
     """
 
-    def __init__(self,
-        detector: RetinaNetDetector,
-        *args, **kwargs
-    ) -> None:
+    def __init__(self, detector: RetinaNetDetector, *args, **kwargs) -> None:
         Inferer.__init__(self)
         self.detector = detector
         self.sliding_window_size = None
