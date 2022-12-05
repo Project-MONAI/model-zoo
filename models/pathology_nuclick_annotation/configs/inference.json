@@ -1,0 +1,130 @@
+{
+    "imports": [
+        "$import glob",
+        "$import json",
+        "$import pathlib",
+        "$import os"
+    ],
+    "bundle_root": "/workspace/data/pathology_nuclick_annotation",
+    "output_dir": "$@bundle_root + '/eval'",
+    "dataset_dir": "/workspace/data/CoNSePNuclei",
+    "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
+    "centroids": "$list(sorted(glob.glob(@dataset_dir + '/Test/Centroids/*.txt')))[:1]",
+    "input_data": "$[{'image': i, 'foreground': json.loads(pathlib.Path(c).read_text())} for i,c in zip(@images, @centroids)]",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "BasicUNet",
+        "spatial_dims": 2,
+        "in_channels": 5,
+        "out_channels": 1,
+        "features": [
+            32,
+            64,
+            128,
+            256,
+            512,
+            32
+        ]
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image",
+                "dtype": "uint8"
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": "image"
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": 0.0,
+                "a_max": 255.0,
+                "b_min": -1.0,
+                "b_max": 1.0
+            },
+            {
+                "_target_": "AddClickSignalsd",
+                "image": "image",
+                "foreground": "foreground",
+                "gaussian": false
+            },
+            {
+                "_target_": "SqueezeDimd",
+                "keys": "image"
+            }
+        ]
+    },
+    "dataset": {
+        "_target_": "Dataset",
+        "data": "@input_data",
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": 1,
+        "shuffle": false,
+        "num_workers": 4
+    },
+    "inferer": {
+        "_target_": "SimpleInferer"
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "sigmoid": true
+            },
+            {
+                "_target_": "AsDiscreted",
+                "keys": "pred",
+                "threshold": 0.5
+            },
+            {
+                "_target_": "KeepLargestConnectedComponentd",
+                "keys": "pred"
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "pred",
+                "meta_keys": "pred_meta_dict",
+                "output_dir": "@output_dir",
+                "output_ext": ".png"
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false
+        }
+    ],
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "network": "@network",
+        "inferer": "@inferer",
+        "postprocessing": "@postprocessing",
+        "val_handlers": "@handlers",
+        "amp": true
+    },
+    "evaluating": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@evaluator.run()"
+    ]
+}
