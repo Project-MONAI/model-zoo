@@ -482,5 +482,9 @@
     "pathology_nuclick_annotation_v0.0.1": {
         "checksum": "5eed4f5fe19751c961c4890423df5ec1b27ceae4",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.1.zip"
+    },
+    "mednist_reg_v0.0.2": {
+        "checksum": "9a27ec44e29e71b1364e4d0faf4b90582915291b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_reg_v0.0.2.zip"
     }
 }
