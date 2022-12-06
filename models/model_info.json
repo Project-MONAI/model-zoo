@@ -486,5 +486,9 @@
     "mednist_reg_v0.0.2": {
         "checksum": "9a27ec44e29e71b1364e4d0faf4b90582915291b",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_reg_v0.0.2.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.0": {
+        "checksum": "906b14f64134cdd170c572a798c9037214ba3a65",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.0.zip"
     }
 }
