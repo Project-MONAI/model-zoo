@@ -60,7 +60,7 @@ cache_datasets:
       data: "@datalist"
       transform: $@preprocessing.set_random_state(123)
       hash_as_key: true
-      runtime_cache: true
+      runtime_cache: threads
     epochs: "@max_epochs"
     seed: "$int(3) if @cross_subjects else int(2)"
   - _target_: ShuffleBuffer
@@ -69,7 +69,7 @@ cache_datasets:
       data: "@datalist"
       transform: $@preprocessing.set_random_state(234)
       hash_as_key: true
-      runtime_cache: true
+      runtime_cache: threads
     epochs: "@max_epochs"
     seed: 2
 
@@ -78,9 +78,6 @@ zip_dataset:
   data: "$map(lambda t: dict(image=monai.transforms.concatenate(t), label=t[1]), zip(*@cache_datasets))"
 
 data_loader:
-  _requires_:
-    - $@cache_datasets[0].data.disable_share_memory_cache()  # to cache on GPU
-    - $@cache_datasets[1].data.disable_share_memory_cache()
   _target_: ThreadDataLoader
   dataset: "@zip_dataset"
   batch_size: 64
@@ -122,7 +119,7 @@ val:
         data: "@val_datalist"
         transform: $@preprocessing.set_random_state(123)
         hash_as_key: true
-        runtime_cache: true
+        runtime_cache: threads
       epochs: -1  # infinite
       seed: "$int(3) if @cross_subjects else int(2)"
     - _target_: ShuffleBuffer
@@ -131,7 +128,7 @@ val:
         data: "@val_datalist"
         transform: $@preprocessing.set_random_state(234)
         hash_as_key: true
-        runtime_cache: true
+        runtime_cache: threads
       epochs: -1  # infinite
       seed: 2
 
@@ -140,9 +137,6 @@ val:
     data: "$map(lambda t: dict(image=monai.transforms.concatenate(t), label=t[1]), zip(*@val#cache_datasets))"
 
   data_loader:
-    _requires_:
-      - $@val#cache_datasets[0].data.disable_share_memory_cache()
-      - $@val#cache_datasets[1].data.disable_share_memory_cache()
     _target_: ThreadDataLoader
     dataset: "@val#zip_dataset"
     batch_size: 64
