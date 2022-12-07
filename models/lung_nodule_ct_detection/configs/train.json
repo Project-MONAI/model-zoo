@@ -399,6 +399,10 @@
             "num_workers": 2,
             "collate_fn": "$monai.data.utils.no_collation"
         },
+        "inferer": {
+            "_target_": "scripts.detection_inferer.RetinaNetInferer",
+            "detector": "@detector"
+        },
         "handlers": [
             {
                 "_target_": "StatsHandler",
@@ -435,7 +439,8 @@
             "_requires_": "@detector_ops",
             "device": "@device",
             "val_data_loader": "@validate#dataloader",
-            "detector": "@detector",
+            "network": "@network",
+            "inferer": "@validate#inferer",
             "key_val_metric": "@validate#key_metric",
             "val_handlers": "@validate#handlers",
             "amp": "@amp"

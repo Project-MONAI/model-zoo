@@ -13,7 +13,7 @@
     "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='validation', base_dir=@data_file_base_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "amp": true,
-    "val_patch_size": [
+    "infer_patch_size": [
         512,
         512,
         192
@@ -67,7 +67,7 @@
     "detector_ops": [
         "$@detector.set_target_keys(box_key='box', label_key='label')",
         "$@detector.set_box_selector_parameters(score_thresh=0.02,topk_candidates_per_level=1000,nms_thresh=0.22,detections_per_img=300)",
-        "$@detector.set_sliding_window_inferer(roi_size=@val_patch_size,overlap=0.25,sw_batch_size=1,mode='constant',device='cpu')"
+        "$@detector.set_sliding_window_inferer(roi_size=@infer_patch_size,overlap=0.25,sw_batch_size=1,mode='constant',device='cpu')"
     ],
     "preprocessing": {
         "_target_": "Compose",
@@ -135,14 +135,8 @@
         "collate_fn": "$monai.data.utils.no_collation"
     },
     "inferer": {
-        "_target_": "SlidingWindowInferer",
-        "roi_size": [
-            240,
-            240,
-            160
-        ],
-        "sw_batch_size": 1,
-        "overlap": 0.5
+        "_target_": "scripts.detection_inferer.RetinaNetInferer",
+        "detector": "@detector"
     },
     "postprocessing": {
         "_target_": "Compose",
@@ -203,7 +197,8 @@
         "_requires_": "@detector_ops",
         "device": "@device",
         "val_data_loader": "@dataloader",
-        "detector": "@detector",
+        "network": "@network",
+        "inferer": "@inferer",
         "val_handlers": "@handlers",
         "amp": "@amp"
     },
