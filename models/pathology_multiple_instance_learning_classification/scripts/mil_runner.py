@@ -98,8 +98,8 @@ def val_epoch(model, loader, epoch, distributed, rank, amp, epochs, calc_metric,
 
     criterion = nn.BCEWithLogitsLoss()
 
-    PREDS = Cumulative()
-    TARGETS = Cumulative()
+    all_preds = Cumulative()
+    all_targets = Cumulative()
 
     start_time = time.time()
     loss, acc = 0.0, 0.0
@@ -150,7 +150,7 @@ def val_epoch(model, loader, epoch, distributed, rank, amp, epochs, calc_metric,
                 logits = model(data)
 
         pred = logits.sigmoid().sum(1).detach().round()
-        PREDS.extend(pred)
+        all_preds.extend(pred)
 
         if calc_metric:
             target = batch_data["label"].as_subclass(torch.Tensor).cuda(rank)
@@ -164,7 +164,7 @@ def val_epoch(model, loader, epoch, distributed, rank, amp, epochs, calc_metric,
             loss = run_loss.aggregate()
             acc = run_acc.get_current()
 
-            TARGETS.extend(target)
+            all_targets.extend(target)
 
             if rank == 0:
                 print(
@@ -198,11 +198,11 @@ def val_epoch(model, loader, epoch, distributed, rank, amp, epochs, calc_metric,
 
     if calc_metric:
         # Calculate QWK metric (Quadratic Weigted Kappa) https://en.wikipedia.org/wiki/Cohen%27s_kappa
-        PREDS = PREDS.get_buffer().cpu().numpy().astype(np.float64)
-        TARGETS = TARGETS.get_buffer().cpu().numpy().astype(np.float64)
-        qwk = cohen_kappa_score(PREDS, TARGETS, weights="quadratic")
+        all_preds = all_preds.get_buffer().cpu().numpy().astype(np.float64)
+        all_targets = all_targets.get_buffer().cpu().numpy().astype(np.float64)
+        qwk = cohen_kappa_score(all_preds, all_targets, weights="quadratic")
 
-        acc = np.mean((PREDS == TARGETS).astype(np.float64))
+        acc = np.mean((all_preds == all_targets).astype(np.float64))
 
         if output_dir is not None:
             write_csv_row(os.path.join(output_dir, "summary.csv"), ["avg_acc", "qwk"], mode="w")
