@@ -129,7 +129,7 @@
             "load_path": "$os.path.join(@bundle_root, 'models', 'model.pt')",
             "map_location": "@device",
             "load_dict": {
-                "net": "@network"
+                "model": "@network"
             }
         }
     ],

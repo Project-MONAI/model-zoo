@@ -309,7 +309,7 @@
                 "_target_": "CheckpointSaver",
                 "save_dir": "@ckpt_dir",
                 "save_dict": {
-                    "net": "@network",
+                    "model": "@network",
                     "opt": "@optimizer"
                 },
                 "save_interval": 10,
@@ -334,7 +334,7 @@
                 "_target_": "CheckpointLoader",
                 "load_path": "$os.path.join(@ckpt_dir_stage0, 'model.pt')",
                 "load_dict": {
-                    "net": "@network"
+                    "model": "@network"
                 }
             }
         ],
@@ -471,7 +471,7 @@
                 "_target_": "CheckpointSaver",
                 "save_dir": "@ckpt_dir",
                 "save_dict": {
-                    "net": "@network"
+                    "model": "@network"
                 },
                 "save_key_metric": true
             }

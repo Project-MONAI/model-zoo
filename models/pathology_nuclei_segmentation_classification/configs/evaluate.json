@@ -4,7 +4,7 @@
             "_target_": "CheckpointLoader",
             "load_path": "$@ckpt_dir_stage1 + '/checkpoint_epoch=50.pt'",
             "load_dict": {
-                "net": "@network"
+                "model": "@network"
             }
         },
         {
