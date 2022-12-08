@@ -5,10 +5,10 @@ import pathlib
 import shutil
 from argparse import ArgumentParser
 
-from PIL import Image
 import numpy as np
 import scipy.io as sio
 import tqdm
+from PIL import Image
 
 
 def load_img(path):

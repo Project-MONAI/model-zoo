@@ -69,7 +69,6 @@
         "padding_mode": "constant",
         "cval": 0,
         "sw_device": "@device",
-        "device": "@device",
         "progress": true,
         "extra_input_padding": "$((@patch_size - @out_size) // 2,) * 4"
     },
