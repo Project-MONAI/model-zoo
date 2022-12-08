@@ -71,20 +71,20 @@ The achieved metrics on the validation data are:
 #### Training Loss and Dice
 
 stage1:
-![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://drive.google.com/file/d/1sc0ZqKWmphZbhHxKu-UredYriFtUFlbk/view?usp=sharing)
+![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train.png)
 
 stage2:
-![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://drive.google.com/file/d/1zdflo7lr6E4tX6YzoTUQItqlJwIbHBEg/view?usp=sharing)
+![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage2.png)
 
 #### Validation Dice
 
 stage1:
 
-![A graph showing the validation mean dice over 50 epochs in stage1](https://drive.google.com/file/d/1skc_BqdqHht7r1zV288lq9XKUiH83hHe/view?usp=sharing)
+![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage1.png)
 
 stage2:
 
-![A graph showing the validation mean dice over 50 epochs in stage2](https://drive.google.com/file/d/1hjO6vOnU5zXwrNqu3gpKOdcrABIcy1Ua/view?usp=sharing)
+![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage2.png)
 
 ## commands example
 
