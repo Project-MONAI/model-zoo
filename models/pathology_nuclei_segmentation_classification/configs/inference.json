@@ -25,7 +25,9 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": "image",
+                "reader": "$monai.data.PILReader",
+                "converter": "$lambda x: x.convert('RGB')"
             },
             {
                 "_target_": "EnsureChannelFirstd",
