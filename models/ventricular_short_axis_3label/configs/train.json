@@ -9,7 +9,8 @@
     "val_interval": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
-    "dataset_file": "./allimages3label.npz",
+    "dataset_dir": ".",
+    "dataset_file": "$@dataset_dir + '/allimages3label.npz'",
     "network_def": {
         "_target_": "UNet",
         "spatial_dims": 2,
