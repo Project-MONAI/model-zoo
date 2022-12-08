@@ -21,4 +21,4 @@ einops
 nibabel
 pyyaml
 jsonschema
-git+https://github.com/Project-MONAI/gdown.git@main#egg=gdown
+gdown>=4.5.4

@@ -13,18 +13,17 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
-import numpy as np
 import torch
+from monai.apps.detection.networks.retinanet_detector import RetinaNetDetector
 from monai.config import IgniteInfo
-from monai.engines.evaluator import Evaluator
+from monai.engines.evaluator import SupervisedEvaluator
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn
-from monai.inferers import Inferer
-from monai.networks.utils import eval_mode, train_mode
 from monai.transforms import Transform
 from monai.utils import ForwardMode, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
-from monai.utils.module import look_up_option
 from torch.utils.data import DataLoader
+
+from .detection_inferer import RetinaNetInferer
 
 if TYPE_CHECKING:
     from ignite.engine import Engine, EventEnum
@@ -67,17 +66,17 @@ def detection_prepare_val_batch(
     return inputs, None
 
 
-class DetectionEvaluator(Evaluator):
+class DetectionEvaluator(SupervisedEvaluator):
     """
-    Supervised detection evaluation method with image and label, inherits from ``Evaluator`` and ``Workflow``.
+    Supervised detection evaluation method with image and label, inherits from ``SupervisedEvaluator`` and ``Workflow``.
     Args:
         device: an object representing the device on which to run.
-        val_data_loader: Ignite engine use data_loader to run, must be Iterable or torch.DataLoader.
-        detector: detector to train in the trainer, should be regular PyTorch `torch.nn.Module`.
+        val_data_loader: Ignite engine use data_loader to run, must be Iterable, typically be torch.DataLoader.
+        network: detector to evaluate in the evaluator, should be regular PyTorch `torch.nn.Module`.
         epoch_length: number of iterations for one epoch, default to `len(val_data_loader)`.
         non_blocking: if True and this copy is between CPU and GPU, the copy may occur asynchronously
             with respect to the host. For other cases, this argument has no effect.
-        prepare_batch: function to parse expected data (usually `image`,`box`, `label` and other detector args)
+        prepare_batch: function to parse expected data (usually `image`, `label` and other network args)
             from `engine.state.batch` for every iteration, for more details please refer to:
             https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html.
         iteration_update: the callable function for every iteration, expect to accept `engine`
@@ -117,12 +116,12 @@ class DetectionEvaluator(Evaluator):
         self,
         device: torch.device,
         val_data_loader: Iterable | DataLoader,
-        detector: torch.nn.Module,
+        network: RetinaNetDetector,
         epoch_length: int | None = None,
         non_blocking: bool = False,
         prepare_batch: Callable = detection_prepare_val_batch,
         iteration_update: Callable[[Engine, Any], Any] | None = None,
-        inferer: Inferer | None = None,
+        inferer: RetinaNetInferer | None = None,
         postprocessing: Transform | None = None,
         key_val_metric: dict[str, Metric] | None = None,
         additional_metrics: dict[str, Metric] | None = None,
@@ -139,10 +138,12 @@ class DetectionEvaluator(Evaluator):
         super().__init__(
             device=device,
             val_data_loader=val_data_loader,
+            network=network,
             epoch_length=epoch_length,
             non_blocking=non_blocking,
             prepare_batch=prepare_batch,
             iteration_update=iteration_update,
+            inferer=inferer,
             postprocessing=postprocessing,
             key_val_metric=key_val_metric,
             additional_metrics=additional_metrics,
@@ -156,16 +157,6 @@ class DetectionEvaluator(Evaluator):
             to_kwargs=to_kwargs,
             amp_kwargs=amp_kwargs,
         )
-
-        self.detector = detector
-
-        mode = look_up_option(mode, ForwardMode)
-        if mode == ForwardMode.EVAL:
-            self.mode = eval_mode
-        elif mode == ForwardMode.TRAIN:
-            self.mode = train_mode
-        else:
-            raise ValueError(f"unsupported mode: {mode}, should be 'eval' or 'train'.")
 
     def _register_decollate(self):
         """
@@ -181,48 +172,3 @@ class DetectionEvaluator(Evaluator):
                     if engine.state.output[k] is not None:
                         output_list[i][k] = engine.state.output[k][i]
             engine.state.output = output_list
-
-    def _iteration(self, engine, batchdata: dict[str, torch.Tensor]):
-        """
-        callback function for the Supervised Evaluation processing logic of 1 iteration in Ignite Engine.
-        Return below items in a dictionary:
-            - IMAGE: image Tensor data for model input, already moved to device.
-            - LABEL: label Tensor data corresponding to the image, already moved to device.
-            - PRED: prediction result of model.
-        Args:
-            engine: `SupervisedEvaluator` to execute operation for an iteration.
-            batchdata: input data for this iteration, usually can be dictionary or tuple of Tensor data.
-        Raises:
-            ValueError: When ``batchdata`` is None.
-        """
-
-        if batchdata is None:
-            raise ValueError("Must provide batch data for current iteration.")
-
-        batch = engine.prepare_batch(batchdata, engine.state.device, engine.non_blocking, **engine.to_kwargs)
-        if len(batch) == 2:
-            inputs, targets = batch
-            args: tuple = ()
-            kwargs: dict = {}
-        else:
-            inputs, targets, args, kwargs = batch
-        # put iteration outputs into engine.state
-        engine.state.output = {Keys.IMAGE: inputs, Keys.LABEL: targets}
-
-        # execute forward computation
-        sliding_window_size = np.prod(engine.detector.inferer.roi_size)
-
-        with engine.mode(engine.detector):
-
-            use_inferer = not all([val_data_i[0, ...].numel() < sliding_window_size for val_data_i in inputs])
-
-            if engine.amp:
-                with torch.cuda.amp.autocast(**engine.amp_kwargs):
-                    engine.state.output[Keys.PRED] = engine.detector(inputs, use_inferer=use_inferer)
-            else:
-                engine.state.output[Keys.PRED] = engine.detector(inputs, use_inferer=use_inferer)
-
-        engine.fire_event(IterationEvents.FORWARD_COMPLETED)
-        engine.fire_event(IterationEvents.MODEL_COMPLETED)
-
-        return engine.state.output

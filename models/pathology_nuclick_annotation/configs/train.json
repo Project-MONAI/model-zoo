@@ -1,0 +1,328 @@
+{
+    "imports": [
+        "$import glob",
+        "$import ignite",
+        "$import json",
+        "$import pathlib",
+        "$import os"
+    ],
+    "bundle_root": "/workspace/data/pathology_nuclick_annotation",
+    "ckpt_dir": "$@bundle_root + '/models'",
+    "output_dir": "$@bundle_root + '/eval'",
+    "dataset_dir": "/workspace/data/CoNSePNuclei",
+    "dataset_json": "$@dataset_dir + '/dataset.json'",
+    "train_datalist": "$json.loads(pathlib.Path(@dataset_json).read_text())['training']",
+    "val_datalist": "$json.loads(pathlib.Path(@dataset_json).read_text())['validation']",
+    "val_interval": 1,
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "BasicUNet",
+        "spatial_dims": 2,
+        "in_channels": 5,
+        "out_channels": 1,
+        "features": [
+            32,
+            64,
+            128,
+            256,
+            512,
+            32
+        ]
+    },
+    "network": "$@network_def.to(@device)",
+    "loss": {
+        "_target_": "DiceLoss",
+        "sigmoid": true,
+        "squared_pred": true
+    },
+    "optimizer": {
+        "_target_": "torch.optim.Adam",
+        "params": "$@network.parameters()",
+        "lr": 0.0001
+    },
+    "max_epochs": 50,
+    "train": {
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "LoadImaged",
+                    "keys": [
+                        "image",
+                        "label"
+                    ],
+                    "dtype": "uint8"
+                },
+                {
+                    "_target_": "EnsureChannelFirstd",
+                    "keys": [
+                        "image",
+                        "label"
+                    ]
+                },
+                {
+                    "_target_": "SplitLabeld",
+                    "keys": "label",
+                    "mask_value": "",
+                    "others_value": 255
+                },
+                {
+                    "_target_": "RandTorchVisiond",
+                    "keys": "image",
+                    "name": "ColorJitter",
+                    "brightness": 0.251,
+                    "contrast": 0.75,
+                    "saturation": 0.25,
+                    "hue": 0.04,
+                    "prob": 0.5
+                },
+                {
+                    "_target_": "RandFlipd",
+                    "keys": [
+                        "image",
+                        "label",
+                        "others"
+                    ],
+                    "prob": 0.5
+                },
+                {
+                    "_target_": "RandRotate90d",
+                    "keys": [
+                        "image",
+                        "label",
+                        "others"
+                    ],
+                    "prob": 0.5
+                },
+                {
+                    "_target_": "ScaleIntensityRanged",
+                    "keys": "image",
+                    "a_min": 0.0,
+                    "a_max": 255.0,
+                    "b_min": -1.0,
+                    "b_max": 1.0
+                },
+                {
+                    "_target_": "AddPointGuidanceSignald",
+                    "image": "image",
+                    "label": "label",
+                    "others": "others",
+                    "use_distance": true,
+                    "gaussian": false
+                },
+                {
+                    "_target_": "SelectItemsd",
+                    "keys": [
+                        "image",
+                        "label"
+                    ]
+                }
+            ]
+        },
+        "dataset": {
+            "_target_": "CacheDataset",
+            "data": "@train_datalist",
+            "transform": "@train#preprocessing",
+            "cache_rate": 1.0,
+            "num_workers": 4
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@train#dataset",
+            "batch_size": 64,
+            "shuffle": true,
+            "num_workers": 4
+        },
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "postprocessing": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "Activationsd",
+                    "keys": "pred",
+                    "sigmoid": true
+                },
+                {
+                    "_target_": "AsDiscreted",
+                    "keys": "pred",
+                    "threshold": 0.5
+                }
+            ]
+        },
+        "handlers": [
+            {
+                "_target_": "ValidationHandler",
+                "validator": "@validate#evaluator",
+                "epoch_level": true,
+                "interval": "@val_interval"
+            },
+            {
+                "_target_": "StatsHandler",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            },
+            {
+                "_target_": "scripts.TensorBoardImageHandler",
+                "log_dir": "@output_dir",
+                "batch_limit": 4,
+                "tag_name": "train"
+            }
+        ],
+        "key_metric": {
+            "train_dice": {
+                "_target_": "monai.handlers.MeanDice",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])",
+                "include_background": false
+            }
+        },
+        "trainer": {
+            "_target_": "SupervisedTrainer",
+            "max_epochs": "@max_epochs",
+            "device": "@device",
+            "train_data_loader": "@train#dataloader",
+            "network": "@network",
+            "loss_function": "@loss",
+            "optimizer": "@optimizer",
+            "inferer": "@train#inferer",
+            "postprocessing": "@train#postprocessing",
+            "key_train_metric": "@train#key_metric",
+            "train_handlers": "@train#handlers",
+            "amp": true
+        }
+    },
+    "validate": {
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "LoadImaged",
+                    "keys": [
+                        "image",
+                        "label"
+                    ],
+                    "dtype": "uint8"
+                },
+                {
+                    "_target_": "EnsureChannelFirstd",
+                    "keys": [
+                        "image",
+                        "label"
+                    ]
+                },
+                {
+                    "_target_": "SplitLabeld",
+                    "keys": "label",
+                    "mask_value": "",
+                    "others_value": 255
+                },
+                {
+                    "_target_": "ScaleIntensityRanged",
+                    "keys": "image",
+                    "a_min": 0.0,
+                    "a_max": 255.0,
+                    "b_min": -1.0,
+                    "b_max": 1.0
+                },
+                {
+                    "_target_": "AddPointGuidanceSignald",
+                    "image": "image",
+                    "label": "label",
+                    "others": "others",
+                    "use_distance": true,
+                    "gaussian": false,
+                    "drop_rate": 1.0
+                },
+                {
+                    "_target_": "SelectItemsd",
+                    "keys": [
+                        "image",
+                        "label"
+                    ]
+                }
+            ]
+        },
+        "dataset": {
+            "_target_": "CacheDataset",
+            "data": "@val_datalist",
+            "transform": "@validate#preprocessing",
+            "cache_rate": 1.0
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@validate#dataset",
+            "batch_size": 64,
+            "shuffle": false,
+            "num_workers": 4
+        },
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "postprocessing": "%train#postprocessing",
+        "handlers": [
+            {
+                "_target_": "StatsHandler",
+                "iteration_log": false
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "iteration_log": false
+            },
+            {
+                "_target_": "CheckpointSaver",
+                "save_dir": "@ckpt_dir",
+                "save_dict": {
+                    "model": "@network"
+                },
+                "save_key_metric": true,
+                "key_metric_filename": "model.pt"
+            },
+            {
+                "_target_": "scripts.TensorBoardImageHandler",
+                "log_dir": "@output_dir",
+                "batch_limit": 8,
+                "tag_name": "val"
+            }
+        ],
+        "key_metric": {
+            "val_mean_dice": {
+                "_target_": "MeanDice",
+                "include_background": false,
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "additional_metrics": {
+            "val_accuracy": {
+                "_target_": "ignite.metrics.Accuracy",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "evaluator": {
+            "_target_": "SupervisedEvaluator",
+            "device": "@device",
+            "val_data_loader": "@validate#dataloader",
+            "network": "@network",
+            "inferer": "@validate#inferer",
+            "postprocessing": "@validate#postprocessing",
+            "key_val_metric": "@validate#key_metric",
+            "additional_metrics": "@validate#additional_metrics",
+            "val_handlers": "@validate#handlers",
+            "amp": true
+        }
+    },
+    "training": [
+        "$import sys",
+        "$sys.path.append(@bundle_root)",
+        "$monai.utils.set_determinism(seed=123)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@train#trainer.run()"
+    ]
+}
