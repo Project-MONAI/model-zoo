@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "changelog": {
+        "0.5.1": "modify dataset key name",
         "0.5.0": "use detection inferer",
         "0.4.5": "fixed some small changes with formatting in readme",
         "0.4.4": "add data resource to readme",

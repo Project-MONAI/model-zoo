@@ -7,8 +7,8 @@
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "data_list_file_path": "$@bundle_root + '/configs/datalist.json'",
-    "data_file_base_dir": "/workspace/data/medical/brats2018challenge",
-    "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing', base_dir=@data_file_base_dir)",
+    "dataset_dir": "/workspace/data/medical/brats2018challenge",
+    "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing', base_dir=@dataset_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "amp": true,
     "network_def": {

@@ -31,7 +31,7 @@ preferred_files_list = ["models/model.pt", "configs/inference.json"]
 # keys that must be included in inference config
 infer_keys_list = ["bundle_root", "device", "network_def", "inferer"]
 # keys that must be included in train config
-train_keys_list = ["bundle_root", "device"]
+train_keys_list = ["bundle_root", "device", "dataset_dir"]
 
 
 def _find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
@@ -154,6 +154,7 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
         if "train" in train_config:
             _check_main_section_necessary_key(necessary_key="trainer", config=train_config)
             _check_main_section_necessary_key(necessary_key="dataset", config=train_config)
+            _check_main_section_necessary_key(necessary_key="handlers", config=train_config)
             _check_sub_section_necessary_key(necessary_key="max_epochs", config=train_config, sub_section="trainer")
             _check_sub_section_necessary_key(necessary_key="data", config=train_config, sub_section="dataset")
             _check_main_section_optional_key(
@@ -170,6 +171,7 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
         if "validate" in train_config:
             _check_main_section_necessary_key(necessary_key="evaluator", config=train_config, main_section="validate")
             _check_main_section_necessary_key(necessary_key="dataset", config=train_config, main_section="validate")
+            _check_main_section_necessary_key(necessary_key="handlers", config=train_config, main_section="validate")
             _check_sub_section_necessary_key(
                 necessary_key="data", config=train_config, main_section="validate", sub_section="dataset"
             )
