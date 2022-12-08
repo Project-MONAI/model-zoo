@@ -3,7 +3,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": ".",
+    "bundle_root": "$os.getcwd()",
     "output_dir": "$os.path.join(@bundle_root, 'eval')",
     "dataset_dir": "/workspace/Data/Pathology/CoNSeP/Test/Images",
     "num_cpus": 2,
@@ -70,7 +70,6 @@
         "overlap": "$1.0 - float(@out_size) / float(@patch_size)",
         "padding_mode": "constant",
         "cval": 0,
-        "sw_device": "@device",
         "progress": true,
         "extra_input_padding": "$((@patch_size - @out_size) // 2,) * 4"
     },

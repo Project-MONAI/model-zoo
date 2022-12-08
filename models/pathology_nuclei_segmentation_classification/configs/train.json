@@ -5,10 +5,10 @@
         "$import skimage"
     ],
     "bundle_root": "$os.getcwd()",
-    "ckpt_dir_stage0": "$@bundle_root + '/models/stage0'",
-    "ckpt_dir_stage1": "$@bundle_root + '/models/stage1'",
-    "ckpt_path_stage0": "$@ckpt_dir_stage0 + '/checkpoint_epoch=50.pt'",
-    "output_dir": "$@bundle_root + '/eval'",
+    "ckpt_dir_stage0": "$os.path.join(@bundle_root, 'models', 'stage0')",
+    "ckpt_dir_stage1": "$os.path.join(@bundle_root, 'models')",
+    "ckpt_path_stage0": "$os.path.join(@ckpt_dir_stage0, 'model.pt')",
+    "output_dir": "$os.path.join(@bundle_root, 'eval')",
     "dataset_dir": "/workspace/Data/Pathology/CoNSeP/Prepared/",
     "train_images": "$list(sorted(glob.glob(@dataset_dir + '/Train/*image.npy')))",
     "val_images": "$list(sorted(glob.glob(@dataset_dir + '/Test/*image.npy')))",
@@ -313,7 +313,9 @@
                     "opt": "@optimizer"
                 },
                 "save_interval": 10,
-                "epoch_level": true
+                "epoch_level": true,
+                "save_final": true,
+                "final_filename": "model.pt"
             },
             {
                 "_target_": "StatsHandler",
@@ -330,13 +332,13 @@
         "extra_handlers": [
             {
                 "_target_": "CheckpointLoader",
-                "load_path": "$@ckpt_dir_stage0 + '/checkpoint_epoch=50.pt'",
+                "load_path": "$os.path.join(@ckpt_dir_stage0, 'model.pt')",
                 "load_dict": {
                     "net": "@network"
                 }
             }
         ],
-        "train_handlers": "$@train#extra_handers + @train#handlers if @stage==1 else @train#handlers",
+        "train_handlers": "$@train#extra_handlers + @train#handlers if @stage==1 else @train#handlers",
         "key_metric": {
             "train_mean_dice": {
                 "_target_": "MeanDice",
