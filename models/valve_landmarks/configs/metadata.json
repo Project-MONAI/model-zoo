@@ -8,8 +8,8 @@
         "0.2.0": "Unify naming",
         "0.1.0": "Initial version"
     },
-    "monai_version": "1.0.0",
-    "pytorch_version": "1.10.2",
+    "monai_version": "1.0.1",
+    "pytorch_version": "1.13.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {},
     "task": "Given long axis MR images of the heart, identify valve insertion points through the full cardiac cycle",
