@@ -298,7 +298,7 @@ def verify(bundle, mode="full"):
     verify_bundle_keys(models_path, bundle)
     print("keys are verified correctly.")
     # verify version, changelog
-    # verify_version_changes(models_path, bundle)
+    verify_version_changes(models_path, bundle)
     print("version and changelog are verified correctly.")
     # verify metadata format and data
     bundle_path = os.path.join(models_path, bundle)
