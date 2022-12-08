@@ -201,7 +201,7 @@ def parse_arguments():
     parser.add_argument(
         "--root",
         type=str,
-        default="/home/yunliu/Workspace/Data/CoNSeP",
+        default="/workspace/Data/Pathology/CoNSeP",
         help="root path to image folder containing training/test",
     )
     parser.add_argument("--type", type=str, default="mirror", dest="extract_type", help="Choose 'mirror' or 'valid'")

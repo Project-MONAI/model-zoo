@@ -9,7 +9,7 @@
     "ckpt_dir_stage1": "$@bundle_root + '/models/stage1'",
     "ckpt_path_stage0": "$@ckpt_dir_stage0 + '/checkpoint_epoch=50.pt'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/Data/CoNSeP/Prepared/",
+    "dataset_dir": "/workspace/Data/Pathology/CoNSeP/Prepared/",
     "train_images": "$list(sorted(glob.glob(@dataset_dir + '/Train/*image.npy')))",
     "val_images": "$list(sorted(glob.glob(@dataset_dir + '/Test/*image.npy')))",
     "train_inst_map": "$list(sorted(glob.glob(@dataset_dir + '/Train/*inst_map.npy')))",

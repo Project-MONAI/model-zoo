@@ -5,7 +5,7 @@
     ],
     "bundle_root": ".",
     "output_dir": "$os.path.join(@bundle_root, 'eval')",
-    "dataset_dir": "/workspace/Data/CoNSeP/Test/Images",
+    "dataset_dir": "/workspace/Data/Pathology/CoNSeP/Test/Images",
     "num_cpus": 2,
     "batch_size": 1,
     "sw_batch_size": 16,
@@ -129,7 +129,7 @@
             "load_path": "$os.path.join(@bundle_root, 'models', 'model.pt')",
             "map_location": "@device",
             "load_dict": {
-                "model": "@network"
+                "net": "@network"
             }
         }
     ],
