@@ -16,7 +16,8 @@
     "num_substeps": 3,
     "learning_rate": 0.0001,
     "num_workers": 8,
-    "dataset_file": "./valvelandmarks.npz",
+    "dataset_dir": ".",
+    "dataset_file": "$@dataset_dir + '/valvelandmarks.npz'",
     "output_dir": "$datetime.datetime.now().strftime('./results/output_%y%m%d_%H%M%S')",
     "network_def": {
         "_target_": "scripts.valve_landmarks.PointRegressor",
