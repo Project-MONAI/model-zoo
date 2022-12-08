@@ -44,14 +44,6 @@ This model utilized a two-stage approach. The training was performed with the fo
 
 Input: RGB images
 
-1. Randomly performing rotate, scale, shear, translate, etc
-2. Cropping images to (270, 270)
-3. Randomly spatial flipping
-4. Randomly choosing one transform to smooth images
-5. Randomly adjusting brightness, saturation, contrast and hue
-6. Scaleing intensity to [0, 1]
-7. Generating horizontal and vertical distance maps from label instance map
-
 ## Output
 
 Output: a dictionary with the following keys:
