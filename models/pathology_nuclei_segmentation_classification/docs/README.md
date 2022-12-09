@@ -34,7 +34,7 @@ python scripts/prepare_patches.py -root your-concep-dataset-path
 This model utilized a two-stage approach. The training was performed with the following:
 
 - GPU: At least 24GB of GPU memory.
-- Actual Model Input: 270 x 270
+- Actual Model Input: 256 x 256
 - AMP: True
 - Optimizer: Adam
 - Learning Rate: 1e-4
