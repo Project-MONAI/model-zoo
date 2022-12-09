@@ -182,8 +182,8 @@ def main(cfg):
 
             for idx, patch in enumerate(sub_patches):
                 image_patch = patch[..., :3]
-                inst_map_patch = patch[..., 3: 4]
-                type_map_patch = patch[..., 4: 5]
+                inst_map_patch = patch[..., 3:4]
+                type_map_patch = patch[..., 4:5]
                 np.save("{0}/{1}_{2:03d}_image.npy".format(out_dir, base_name, idx), image_patch)
                 np.save("{0}/{1}_{2:03d}_inst_map.npy".format(out_dir, base_name, idx), inst_map_patch)
                 np.save("{0}/{1}_{2:03d}_type_map.npy".format(out_dir, base_name, idx), type_map_patch)
