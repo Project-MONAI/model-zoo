@@ -23,9 +23,9 @@
     "label_classes": "a dictionary contains binary nuclear segmentation, hover map and pixel-level classification",
     "pred_classes": "a dictionary contains scalar probability for binary nuclear segmentation, hover map and pixel-level classification",
     "eval_metrics": {
-        "Binary Dice": 0.82762,
-        "PQ": 0.48976,
-        "F1d": 0.73592
+        "Binary Dice": 0.83398,
+        "PQ": 0.50675,
+        "F1d": 0.73692
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
