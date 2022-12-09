@@ -22,10 +22,13 @@
     "val_interval": 1,
     "learning_rate": 0.0001,
     "amp": true,
+    "hovernet_mode": "original",
+    "patch_size": 270,
+    "out_size": 80,
     "ckpt_dir": "$@ckpt_dir_stage0 if @stage == 0 else @ckpt_dir_stage1",
     "network_def": {
         "_target_": "HoVerNet",
-        "mode": "original",
+        "mode": "@hovernet_mode",
         "in_channels": 3,
         "out_classes": 5,
         "pretrained_url": "$None",
@@ -112,8 +115,8 @@
                     "image"
                 ],
                 "roi_size": [
-                    270,
-                    270
+                    "@patch_size",
+                    "@patch_size"
                 ]
             },
             {
@@ -235,8 +238,8 @@
                     "label_type"
                 ],
                 "roi_size": [
-                    80,
-                    80
+                    "@out_size",
+                    "@out_size"
                 ]
             },
             {
@@ -391,8 +394,8 @@
                     "image"
                 ],
                 "roi_size": [
-                    270,
-                    270
+                    "@patch_size",
+                    "@patch_size"
                 ]
             },
             {
@@ -423,8 +426,8 @@
                     "label_type"
                 ],
                 "roi_size": [
-                    80,
-                    80
+                    "@out_size",
+                    "@out_size"
                 ]
             },
             {
