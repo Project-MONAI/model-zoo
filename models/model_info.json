@@ -490,5 +490,25 @@
     "lung_nodule_ct_detection_v0.5.0": {
         "checksum": "906b14f64134cdd170c572a798c9037214ba3a65",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.0.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.1": {
+        "checksum": "ede43a09da23ddd5fbd2fa1e2d34e6fad79a5847",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.1.zip"
+    },
+    "ventricular_short_axis_3label_v0.3.1": {
+        "checksum": "9d8f8b45b296f7a2f510d8e323a29e1ef042bf43",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/ventricular_short_axis_3label_v0.3.1.zip"
+    },
+    "brats_mri_segmentation_v0.3.8": {
+        "checksum": "d7caa3d04768034c70d20573f8a8c9fb0b00369a",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.8.zip"
+    },
+    "valve_landmarks_v0.4.1": {
+        "checksum": "c5d3588ab9565a01b7aba704035749c172540b46",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.4.1.zip"
+    },
+    "pathology_tumor_detection_v0.4.6": {
+        "checksum": "dacf01faa3884969cedd67fe833afc27193cd1bc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.6.zip"
     }
 }
