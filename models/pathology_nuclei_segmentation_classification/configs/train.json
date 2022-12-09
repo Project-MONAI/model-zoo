@@ -61,6 +61,15 @@
                 ]
             },
             {
+                "_target_": "EnsureChannelFirstd",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "channel_dim": -1
+            },
+            {
                 "_target_": "Lambdad",
                 "keys": "label_inst",
                 "func": "$lambda x: skimage.measure.label(x)"
@@ -374,6 +383,15 @@
                     "label_inst",
                     "label_type"
                 ]
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "channel_dim": -1
             },
             {
                 "_target_": "Lambdad",
