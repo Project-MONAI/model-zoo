@@ -20,7 +20,7 @@ Annotation information are adopted from [NCRF/jsons](https://github.com/baidu-re
 
 ### Preprocessing
 
-This bundle expects the training/validation data (whole slide images) reside in a `{data_root}/training/images`. By default `data_root` is pointing to `/workspace/data/medical/pathology/` You can modify `data_root` in the bundle config files to point to a different directory.
+This bundle expects the training/validation data (whole slide images) reside in a `{dataset_dir}/training/images`. By default `dataset_dir` is pointing to `/workspace/data/medical/pathology/` You can modify `dataset_dir` in the bundle config files to point to a different directory.
 
 To reduce the computation burden during the inference, patches are extracted only where there is tissue and ignoring the background according to a tissue mask. Please also create a directory for prediction output. By default `output_dir` is set to `eval` folder under the bundle root.
 
