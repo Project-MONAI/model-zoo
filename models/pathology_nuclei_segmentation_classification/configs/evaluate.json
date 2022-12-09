@@ -2,7 +2,7 @@
     "validate#handlers": [
         {
             "_target_": "CheckpointLoader",
-            "load_path": "$@ckpt_dir_stage1 + '/checkpoint_epoch=50.pt'",
+            "load_path": "$os.path.join(@bundle_root, 'models', 'model.pt')",
             "load_dict": {
                 "model": "@network"
             }

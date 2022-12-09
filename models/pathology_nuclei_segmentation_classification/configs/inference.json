@@ -9,9 +9,9 @@
     "num_cpus": 2,
     "batch_size": 1,
     "sw_batch_size": 16,
-    "hovernet_mode": "original",
-    "patch_size": 270,
-    "out_size": 80,
+    "hovernet_mode": "fast",
+    "patch_size": 256,
+    "out_size": 164,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "HoVerNet",

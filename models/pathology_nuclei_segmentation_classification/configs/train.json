@@ -22,9 +22,9 @@
     "val_interval": 1,
     "learning_rate": 0.0001,
     "amp": true,
-    "hovernet_mode": "original",
-    "patch_size": 270,
-    "out_size": 80,
+    "hovernet_mode": "fast",
+    "patch_size": 256,
+    "out_size": 164,
     "ckpt_dir": "$@ckpt_dir_stage0 if @stage == 0 else @ckpt_dir_stage1",
     "network_def": {
         "_target_": "HoVerNet",
