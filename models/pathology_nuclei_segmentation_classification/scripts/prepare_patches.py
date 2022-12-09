@@ -181,9 +181,9 @@ def main(cfg):
             pbar = tqdm.tqdm(total=len(sub_patches), leave=False, bar_format=pbar_format, ascii=True, position=1)
 
             for idx, patch in enumerate(sub_patches):
-                image_patch = patch[..., :3].transpose(2, 0, 1)  # make channel first
-                inst_map_patch = patch[..., 3][None]  # add channel dim
-                type_map_patch = patch[..., 4][None]  # add channel dim
+                image_patch = patch[..., :3]
+                inst_map_patch = patch[..., 3: 4]
+                type_map_patch = patch[..., 4: 5]
                 np.save("{0}/{1}_{2:03d}_image.npy".format(out_dir, base_name, idx), image_patch)
                 np.save("{0}/{1}_{2:03d}_inst_map.npy".format(out_dir, base_name, idx), inst_map_patch)
                 np.save("{0}/{1}_{2:03d}_type_map.npy".format(out_dir, base_name, idx), type_map_patch)
