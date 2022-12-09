@@ -62,9 +62,9 @@ Original mode:
 - F1d: 0.73592
 
 Fast mode:
-- Binary Dice: 0.83587
-- PQ: 0.50882
-- F1d: 0.75415
+- Binary Dice: 0.83398
+- PQ: 0.50675
+- F1d: 0.73692
 
 #### Training Loss and Dice
 
