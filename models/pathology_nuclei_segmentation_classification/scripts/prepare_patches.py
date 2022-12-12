@@ -207,7 +207,14 @@ def parse_arguments():
         default="/workspace/Data/Pathology/CoNSeP",
         help="root path to image folder containing training/test",
     )
-    parser.add_argument("--phase", nargs="+", type=str, default=["Train", "Test"], dest="phase", help="Phases of data need to be extracted")
+    parser.add_argument(
+        "--phase",
+        nargs="+",
+        type=str,
+        default=["Train", "Test"],
+        dest="phase",
+        help="Phases of data need to be extracted",
+    )
     parser.add_argument("--type", type=str, default="mirror", dest="extract_type", help="Choose 'mirror' or 'valid'")
     parser.add_argument("--is", type=str, default="png", dest="image_suffix", help="image file name suffix")
     parser.add_argument("--ls", type=str, default="mat", dest="label_suffix", help="label file name suffix")
