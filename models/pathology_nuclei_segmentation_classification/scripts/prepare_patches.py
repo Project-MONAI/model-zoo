@@ -16,6 +16,10 @@ def load_img(path):
 
 
 def load_ann(path):
+    """
+    This function is specific to CoNSeP dataset.
+    if own dataset is used, then below may need to be modified
+    """
     # assumes that ann is HxW
     ann_inst = sio.loadmat(path)["inst_map"]
     ann_type = sio.loadmat(path)["type_map"]
@@ -151,12 +155,11 @@ class PatchExtractor:
 
 def main(cfg):
     xtractor = PatchExtractor(cfg["patch_size"], cfg["step_size"])
-
-    for phase in ["Train", "Test"]:
+    for phase in cfg["phase"]:
         img_dir = os.path.join(cfg["root"], f"{phase}/Images")
         ann_dir = os.path.join(cfg["root"], f"{phase}/Labels")
 
-        file_list = glob.glob(os.path.join(ann_dir, "*mat"))
+        file_list = glob.glob(os.path.join(ann_dir, f"*{cfg['label_suffix']}"))
         file_list.sort()  # ensure same ordering across platform
 
         out_dir = f"{cfg['root']}/Prepared/{phase}"
@@ -170,8 +173,8 @@ def main(cfg):
         for file_path in file_list:
             base_name = pathlib.Path(file_path).stem
 
-            img = load_img(f"{img_dir}/{base_name}.png")
-            ann = load_ann(f"{ann_dir}/{base_name}.mat")
+            img = load_img(f"{img_dir}/{base_name}.{cfg['image_suffix']}")
+            ann = load_ann(f"{ann_dir}/{base_name}.{cfg['label_suffix']}")
 
             # *
             img = np.concatenate([img, ann], axis=-1)
@@ -204,7 +207,10 @@ def parse_arguments():
         default="/workspace/Data/Pathology/CoNSeP",
         help="root path to image folder containing training/test",
     )
+    parser.add_argument("--phase", nargs="+", type=str, default=["Train", "Test"], dest="phase", help="Phases of data need to be extracted")
     parser.add_argument("--type", type=str, default="mirror", dest="extract_type", help="Choose 'mirror' or 'valid'")
+    parser.add_argument("--is", type=str, default="png", dest="image_suffix", help="image file name suffix")
+    parser.add_argument("--ls", type=str, default="mat", dest="label_suffix", help="label file name suffix")
     parser.add_argument("--ps", nargs="+", type=int, default=[540, 540], dest="patch_size", help="patch size")
     parser.add_argument("--ss", nargs="+", type=int, default=[164, 164], dest="step_size", help="patch size")
     args = parser.parse_args()
