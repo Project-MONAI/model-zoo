@@ -1,4 +1,10 @@
 {
+    "network_def": {
+        "_target_": "HoVerNet",
+        "mode": "@hovernet_mode",
+        "in_channels": 3,
+        "out_classes": 5
+    },
     "validate#handlers": [
         {
             "_target_": "CheckpointLoader",

@@ -6,9 +6,11 @@ A pre-trained model for simultaneous segmentation and classification of nuclei w
 
 The model is trained to simultaneous segment and classify nuclei. Training is done via a two-stage approach. First initialized the model with pre-trained weights on the [ImageNet dataset](https://ieeexplore.ieee.org/document/5206848), trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs. There are two training modes in total. If "original" mode is specified, it uses [270, 270] and [80, 80] for `patch_size` and `out_size` respectively. If "fast" mode is specified, it uses [256, 256] and [164, 164] for `patch_size` and `out_size` respectively. The results we show below are based on the "fast" model.
 
-- Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use.The license for the pre-trained model used in examples is different than MONAI license. Please check the source where these weights are obtained from: <https://github.com/vqdang/hover_net#data-format>
+- We train the first stage with pre-trained weights from some internal data. 
 
-`PRETRAIN_MODEL_URL` is "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download" which will be used in bash code below.
+- The original author's repo also has pre-trained weights which is for non-commercial use. Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use. The license for the pre-trained model is different than MONAI license. Please check the source where these weights are obtained from: <https://github.com/vqdang/hover_net#data-format>
+
+`PRETRAIN_MODEL_URL` is "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download" which can be used in bash code below.
 
 ![Model workflow](https://ars.els-cdn.com/content/image/1-s2.0-S1361841519301045-fx1_lrg.jpg)
 
@@ -57,9 +59,9 @@ Output: a dictionary with the following keys:
 The achieved metrics on the validation data are:
 
 Fast mode:
-- Binary Dice: 0.8329
-- PQ: 0.4977
-- F1d: 0.7421
+- Binary Dice: 0.8293
+- PQ: 0.4936
+- F1d: 0.7480
 
 #### Training Loss and Dice
 

@@ -518,7 +518,7 @@
         }
     },
     "training": [
-        "$monai.utils.set_determinism(seed=24)",
+        "$monai.utils.set_determinism(seed=321)",
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$@train#trainer.run()"
     ]
