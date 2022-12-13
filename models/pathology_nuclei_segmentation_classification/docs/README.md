@@ -6,7 +6,7 @@ A pre-trained model for simultaneous segmentation and classification of nuclei w
 
 The model is trained to simultaneous segment and classify nuclei. Training is done via a two-stage approach. First initialized the model with pre-trained weights on the [ImageNet dataset](https://ieeexplore.ieee.org/document/5206848), trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs. There are two training modes in total. If "original" mode is specified, it uses [270, 270] and [80, 80] for `patch_size` and `out_size` respectively. If "fast" mode is specified, it uses [256, 256] and [164, 164] for `patch_size` and `out_size` respectively. The results we show below are based on the "fast" model.
 
-- We train the first stage with pre-trained weights from some internal data. 
+- We train the first stage with pre-trained weights from some internal data.
 
 - The original author's repo also has pre-trained weights which is for non-commercial use. Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use. The license for the pre-trained model is different than MONAI license. Please check the source where these weights are obtained from: <https://github.com/vqdang/hover_net#data-format>
 

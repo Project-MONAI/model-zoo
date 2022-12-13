@@ -25,7 +25,7 @@
     "eval_metrics": {
         "Binary Dice": 0.8293,
         "PQ": 0.4936,
-        "F1d": 0.7480
+        "F1d": 0.748
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
