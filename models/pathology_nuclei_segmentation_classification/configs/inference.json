@@ -16,6 +16,7 @@
     "network_def": {
         "_target_": "HoVerNet",
         "mode": "@hovernet_mode",
+        "adapt_standard_resnet": true,
         "in_channels": 3,
         "out_classes": 5
     },
