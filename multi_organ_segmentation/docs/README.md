@@ -46,7 +46,7 @@ python -m monai.bundle run training \
     --logging_file configs/logging.conf
 ```
 
-Execute multi-GPU training
+Execute multi-GPU training with 4 GPUs:
 
 ```
 torchrun --nnodes=1 --nproc_per_node=4 \
@@ -70,12 +70,11 @@ python -m monai.bundle run evaluating \
     --config_file configs/inference.yaml \
 
     --logging_file configs/logging.conf
-
-```  
-
-Override the train config to execute evaluation with the trained model:
 ```
 
+Override the train config to execute evaluation with the trained model:
+
+```
 python -m monai.bundle run evaluating \
 
     --meta_file configs/metadata.json \
@@ -84,21 +83,20 @@ python -m monai.bundle run evaluating \
 
     --logging_file configs/logging.conf
 
+
 ```
+
 Export checkpoint to TorchScript file:
-```
 
+```
 python -m monai.bundle ckpt_export network_def \
-
-    --filepath models/model.ts \
-
-    --ckpt_file models/model.pt \
-
-    --meta_file configs/metadata.json \
-
-    --config_file configs/inference.yaml
-
+    --filepath models/model.ts \
+    --ckpt_file models/model.pt \
+    --meta_file configs/metadata.json \
+    --config_file configs/inference.yaml
 ```
+
+
 
 ## **References**
 
