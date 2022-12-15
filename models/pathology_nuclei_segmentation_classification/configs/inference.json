@@ -89,8 +89,8 @@
             },
             {
                 "_target_": "HoVerNetInstanceMapPostProcessingd",
-                "sobel_kernel_size": 3,
-                "marker_threshold": 0.7,
+                "sobel_kernel_size": 21,
+                "marker_threshold": 0.4,
                 "marker_radius": 2
             },
             {
