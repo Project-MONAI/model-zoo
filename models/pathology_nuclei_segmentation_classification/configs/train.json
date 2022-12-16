@@ -322,8 +322,7 @@
                 "_target_": "CheckpointSaver",
                 "save_dir": "@ckpt_dir",
                 "save_dict": {
-                    "model": "@network",
-                    "opt": "@optimizer"
+                    "model": "@network"
                 },
                 "save_interval": 10,
                 "epoch_level": true,
