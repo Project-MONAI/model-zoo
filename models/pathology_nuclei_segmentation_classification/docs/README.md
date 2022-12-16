@@ -66,20 +66,20 @@ Fast mode:
 #### Training Loss and Dice
 
 stage1:
-![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train.png)
+![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage1_fast.png)
 
 stage2:
-![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage2.png)
+![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage2_fast.png)
 
 #### Validation Dice
 
 stage1:
 
-![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage1.png)
+![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage1_fast.png)
 
 stage2:
 
-![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage2.png)
+![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage2_fast.png)
 
 ## commands example
 
