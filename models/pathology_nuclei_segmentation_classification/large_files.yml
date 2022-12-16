@@ -3,3 +3,7 @@ large_files:
     url: "https://drive.google.com/file/d/1Pznw-5AeoybEdjCrjmN-TzMHjWW0UjXn/view?usp=share_link"
     hash_val: "0d3d8a5bcb295b3e75e4403ccc9c808c"
     hash_type: "md5"
+  - path: "models/stage0/model.pt"
+    url: "https://drive.google.com/file/d/1XzTL1ck96y4M_nUAEp0awGz8DAeukkME/view?usp=sharing"
+    hash_val: "c3baa51c2a8e3508c22e798542cc3973"
+    hash_type: "md5"
