@@ -1,0 +1,525 @@
+{
+    "imports": [
+        "$import glob",
+        "$import os",
+        "$import skimage"
+    ],
+    "bundle_root": "$os.getcwd()",
+    "ckpt_dir_stage0": "$os.path.join(@bundle_root, 'models', 'stage0')",
+    "ckpt_dir_stage1": "$os.path.join(@bundle_root, 'models')",
+    "ckpt_path_stage0": "$os.path.join(@ckpt_dir_stage0, 'model.pt')",
+    "output_dir": "$os.path.join(@bundle_root, 'eval')",
+    "dataset_dir": "/workspace/Data/Pathology/CoNSeP/Prepared/",
+    "train_images": "$list(sorted(glob.glob(@dataset_dir + '/Train/*image.npy')))",
+    "val_images": "$list(sorted(glob.glob(@dataset_dir + '/Test/*image.npy')))",
+    "train_inst_map": "$list(sorted(glob.glob(@dataset_dir + '/Train/*inst_map.npy')))",
+    "val_inst_map": "$list(sorted(glob.glob(@dataset_dir + '/Test/*inst_map.npy')))",
+    "train_type_map": "$list(sorted(glob.glob(@dataset_dir + '/Train/*type_map.npy')))",
+    "val_type_map": "$list(sorted(glob.glob(@dataset_dir + '/Test/*type_map.npy')))",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "stage": 0,
+    "epochs": 50,
+    "val_interval": 1,
+    "learning_rate": 0.0001,
+    "amp": true,
+    "hovernet_mode": "fast",
+    "patch_size": 256,
+    "out_size": 164,
+    "ckpt_dir": "$@ckpt_dir_stage0 if @stage == 0 else @ckpt_dir_stage1",
+    "network_def": {
+        "_target_": "HoVerNet",
+        "mode": "@hovernet_mode",
+        "in_channels": 3,
+        "out_classes": 5,
+        "adapt_standard_resnet": true,
+        "pretrained_url": "$None",
+        "freeze_encoder": true
+    },
+    "network": "$@network_def.to(@device)",
+    "loss": {
+        "_target_": "HoVerNetLoss",
+        "lambda_hv_mse": 1.0
+    },
+    "optimizer": {
+        "_target_": "torch.optim.Adam",
+        "params": "$filter(lambda p: p.requires_grad, @network.parameters())",
+        "lr": "@learning_rate",
+        "weight_decay": 1e-05
+    },
+    "lr_scheduler": {
+        "_target_": "torch.optim.lr_scheduler.StepLR",
+        "optimizer": "@optimizer",
+        "step_size": 25
+    },
+    "train": {
+        "preprocessing_transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ]
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "channel_dim": -1
+            },
+            {
+                "_target_": "Lambdad",
+                "keys": "label_inst",
+                "func": "$lambda x: skimage.measure.label(x)"
+            },
+            {
+                "_target_": "RandAffined",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "prob": 1.0,
+                "rotate_range": [
+                    "$np.pi"
+                ],
+                "scale_range": [
+                    [
+                        -0.2,
+                        0.2
+                    ],
+                    [
+                        -0.2,
+                        0.2
+                    ]
+                ],
+                "shear_range": [
+                    [
+                        -0.05,
+                        0.05
+                    ],
+                    [
+                        -0.05,
+                        0.05
+                    ]
+                ],
+                "translate_range": [
+                    [
+                        -6,
+                        6
+                    ],
+                    [
+                        -6,
+                        6
+                    ]
+                ],
+                "padding_mode": "zeros",
+                "mode": "nearest"
+            },
+            {
+                "_target_": "CenterSpatialCropd",
+                "keys": [
+                    "image"
+                ],
+                "roi_size": [
+                    "@patch_size",
+                    "@patch_size"
+                ]
+            },
+            {
+                "_target_": "RandFlipd",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "prob": 0.5,
+                "spatial_axis": 0
+            },
+            {
+                "_target_": "RandFlipd",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "prob": 0.5,
+                "spatial_axis": 1
+            },
+            {
+                "_target_": "OneOf",
+                "transforms": [
+                    {
+                        "_target_": "RandGaussianSmoothd",
+                        "keys": [
+                            "image"
+                        ],
+                        "sigma_x": [
+                            0.1,
+                            1.1
+                        ],
+                        "sigma_y": [
+                            0.1,
+                            1.1
+                        ],
+                        "prob": 1.0
+                    },
+                    {
+                        "_target_": "MedianSmoothd",
+                        "keys": [
+                            "image"
+                        ],
+                        "radius": 1
+                    },
+                    {
+                        "_target_": "RandGaussianNoised",
+                        "keys": [
+                            "image"
+                        ],
+                        "std": 0.05,
+                        "prob": 1.0
+                    }
+                ]
+            },
+            {
+                "_target_": "CastToTyped",
+                "keys": "image",
+                "dtype": "$np.uint8"
+            },
+            {
+                "_target_": "TorchVisiond",
+                "keys": "image",
+                "name": "ColorJitter",
+                "brightness": [
+                    0.9,
+                    1.0
+                ],
+                "contrast": [
+                    0.95,
+                    1.1
+                ],
+                "saturation": [
+                    0.8,
+                    1.2
+                ],
+                "hue": [
+                    -0.04,
+                    0.04
+                ]
+            },
+            {
+                "_target_": "AsDiscreted",
+                "keys": "label_type",
+                "to_onehot": 5
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": 0.0,
+                "a_max": 255.0,
+                "b_min": 0.0,
+                "b_max": 1.0,
+                "clip": true
+            },
+            {
+                "_target_": "CastToTyped",
+                "keys": "label_inst",
+                "dtype": "$torch.int"
+            },
+            {
+                "_target_": "ComputeHoVerMapsd",
+                "keys": "label_inst"
+            },
+            {
+                "_target_": "Lambdad",
+                "keys": "label_inst",
+                "func": "$lambda x: x > 0",
+                "overwrite": "label"
+            },
+            {
+                "_target_": "CenterSpatialCropd",
+                "keys": [
+                    "label",
+                    "hover_label_inst",
+                    "label_inst",
+                    "label_type"
+                ],
+                "roi_size": [
+                    "@out_size",
+                    "@out_size"
+                ]
+            },
+            {
+                "_target_": "AsDiscreted",
+                "keys": "label",
+                "to_onehot": 2
+            },
+            {
+                "_target_": "CastToTyped",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "dtype": "$torch.float32"
+            }
+        ],
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": "$@train#preprocessing_transforms"
+        },
+        "dataset": {
+            "_target_": "Dataset",
+            "data": "$[{'image': i, 'label_inst': j, 'label_type': k} for i, j, k in zip(@train_images, @train_inst_map, @train_type_map)]",
+            "transform": "@train#preprocessing"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@train#dataset",
+            "batch_size": 16,
+            "shuffle": true,
+            "num_workers": 4
+        },
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "postprocessing_np": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "Activationsd",
+                    "keys": "nucleus_prediction",
+                    "softmax": true
+                },
+                {
+                    "_target_": "AsDiscreted",
+                    "keys": "nucleus_prediction",
+                    "argmax": true
+                }
+            ]
+        },
+        "postprocessing": {
+            "_target_": "Lambdad",
+            "keys": "pred",
+            "func": "$@train#postprocessing_np"
+        },
+        "handlers": [
+            {
+                "_target_": "LrScheduleHandler",
+                "lr_scheduler": "@lr_scheduler",
+                "print_lr": true
+            },
+            {
+                "_target_": "ValidationHandler",
+                "validator": "@validate#evaluator",
+                "epoch_level": true,
+                "interval": "@val_interval"
+            },
+            {
+                "_target_": "CheckpointSaver",
+                "save_dir": "@ckpt_dir",
+                "save_dict": {
+                    "model": "@network"
+                },
+                "save_interval": 10,
+                "epoch_level": true,
+                "save_final": true,
+                "final_filename": "model.pt"
+            },
+            {
+                "_target_": "StatsHandler",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "tag_name": "train_loss",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
+            }
+        ],
+        "extra_handlers": [
+            {
+                "_target_": "CheckpointLoader",
+                "load_path": "$os.path.join(@ckpt_dir_stage0, 'model.pt')",
+                "load_dict": {
+                    "model": "@network"
+                }
+            }
+        ],
+        "train_handlers": "$@train#extra_handlers + @train#handlers if @stage==1 else @train#handlers",
+        "key_metric": {
+            "train_mean_dice": {
+                "_target_": "MeanDice",
+                "include_background": false,
+                "output_transform": "$monai.apps.pathology.handlers.utils.from_engine_hovernet(keys=['pred', 'label'], nested_key='nucleus_prediction')"
+            }
+        },
+        "trainer": {
+            "_target_": "SupervisedTrainer",
+            "max_epochs": "@epochs",
+            "device": "@device",
+            "train_data_loader": "@train#dataloader",
+            "prepare_batch": "$monai.apps.pathology.engines.utils.PrepareBatchHoVerNet(extra_keys=['label_type', 'hover_label_inst'])",
+            "network": "@network",
+            "loss_function": "@loss",
+            "optimizer": "@optimizer",
+            "inferer": "@train#inferer",
+            "postprocessing": "@train#postprocessing",
+            "key_train_metric": "@train#key_metric",
+            "train_handlers": "@train#train_handlers",
+            "amp": "@amp"
+        }
+    },
+    "validate": {
+        "preprocessing_transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ]
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "channel_dim": -1
+            },
+            {
+                "_target_": "Lambdad",
+                "keys": "label_inst",
+                "func": "$lambda x: skimage.measure.label(x)"
+            },
+            {
+                "_target_": "CastToTyped",
+                "keys": [
+                    "image",
+                    "label_inst"
+                ],
+                "dtype": "$torch.int"
+            },
+            {
+                "_target_": "CenterSpatialCropd",
+                "keys": [
+                    "image"
+                ],
+                "roi_size": [
+                    "@patch_size",
+                    "@patch_size"
+                ]
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": 0.0,
+                "a_max": 255.0,
+                "b_min": 0.0,
+                "b_max": 1.0,
+                "clip": true
+            },
+            {
+                "_target_": "ComputeHoVerMapsd",
+                "keys": "label_inst"
+            },
+            {
+                "_target_": "Lambdad",
+                "keys": "label_inst",
+                "func": "$lambda x: x > 0",
+                "overwrite": "label"
+            },
+            {
+                "_target_": "CenterSpatialCropd",
+                "keys": [
+                    "label",
+                    "hover_label_inst",
+                    "label_inst",
+                    "label_type"
+                ],
+                "roi_size": [
+                    "@out_size",
+                    "@out_size"
+                ]
+            },
+            {
+                "_target_": "CastToTyped",
+                "keys": [
+                    "image",
+                    "label_inst",
+                    "label_type"
+                ],
+                "dtype": "$torch.float32"
+            }
+        ],
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": "$@validate#preprocessing_transforms"
+        },
+        "dataset": {
+            "_target_": "Dataset",
+            "data": "$[{'image': i, 'label_inst': j, 'label_type': k} for i, j, k in zip(@val_images, @val_inst_map, @val_type_map)]",
+            "transform": "@validate#preprocessing"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@validate#dataset",
+            "batch_size": 16,
+            "shuffle": false,
+            "num_workers": 4
+        },
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "postprocessing": "$@train#postprocessing",
+        "handlers": [
+            {
+                "_target_": "StatsHandler",
+                "iteration_log": false
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@output_dir",
+                "iteration_log": false
+            },
+            {
+                "_target_": "CheckpointSaver",
+                "save_dir": "@ckpt_dir",
+                "save_dict": {
+                    "model": "@network"
+                },
+                "save_key_metric": true
+            }
+        ],
+        "key_metric": {
+            "val_mean_dice": {
+                "_target_": "MeanDice",
+                "include_background": false,
+                "output_transform": "$monai.apps.pathology.handlers.utils.from_engine_hovernet(keys=['pred', 'label'], nested_key='nucleus_prediction')"
+            }
+        },
+        "evaluator": {
+            "_target_": "SupervisedEvaluator",
+            "device": "@device",
+            "val_data_loader": "@validate#dataloader",
+            "prepare_batch": "$monai.apps.pathology.engines.utils.PrepareBatchHoVerNet(extra_keys=['label_type', 'hover_label_inst'])",
+            "network": "@network",
+            "inferer": "@validate#inferer",
+            "postprocessing": "@validate#postprocessing",
+            "key_val_metric": "@validate#key_metric",
+            "val_handlers": "@validate#handlers",
+            "amp": "@amp"
+        }
+    },
+    "training": [
+        "$monai.utils.set_determinism(seed=321)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@train#trainer.run()"
+    ]
+}
