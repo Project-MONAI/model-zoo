@@ -510,5 +510,9 @@
     "pathology_tumor_detection_v0.4.6": {
         "checksum": "dacf01faa3884969cedd67fe833afc27193cd1bc",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.6.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.0": {
+        "checksum": "0987fed369b169aa325111474a5badf9cb14d2b1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.0.zip"
     }
 }
