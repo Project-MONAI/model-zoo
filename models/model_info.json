@@ -510,5 +510,33 @@
     "pathology_tumor_detection_v0.4.6": {
         "checksum": "dacf01faa3884969cedd67fe833afc27193cd1bc",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.6.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.0": {
+        "checksum": "0987fed369b169aa325111474a5badf9cb14d2b1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.0.zip"
+    },
+    "pathology_nuclick_annotation_v0.0.2": {
+        "checksum": "95ca52dc82fbb417ae463a9bcfe1315f4532763a",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.2.zip"
+    },
+    "pathology_nuclei_classification_v0.0.2": {
+        "checksum": "fb4cc137e368ed50d9afeead5d1b08d7c00a712c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.0.2.zip"
+    },
+    "pathology_nuclick_annotation_v0.0.3": {
+        "checksum": "9a27b5069eb4ccfcf96e7e2868d5c0c7ac4a7410",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.3.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.1": {
+        "checksum": "ed5cad9e51d63dba14bd8ddb3edf59f7c8dc5464",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.1.zip"
+    },
+    "mednist_reg_v0.0.3": {
+        "checksum": "1ecb340bda91260caf9e71c4eddd2d5a6151baad",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_reg_v0.0.3.zip"
+    },
+    "pathology_nuclei_classification_v0.0.3": {
+        "checksum": "fb88c2e161e5cd3e139e28184c01cdbb10601bb9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.0.3.zip"
     }
 }

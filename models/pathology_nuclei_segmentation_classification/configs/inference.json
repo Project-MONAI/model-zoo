@@ -1,0 +1,151 @@
+{
+    "imports": [
+        "$import glob",
+        "$import os"
+    ],
+    "bundle_root": "$os.getcwd()",
+    "output_dir": "$os.path.join(@bundle_root, 'eval')",
+    "dataset_dir": "/workspace/Data/Pathology/CoNSeP/Test/Images",
+    "num_cpus": 2,
+    "batch_size": 1,
+    "sw_batch_size": 16,
+    "hovernet_mode": "fast",
+    "patch_size": 256,
+    "out_size": 164,
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "HoVerNet",
+        "mode": "@hovernet_mode",
+        "adapt_standard_resnet": true,
+        "in_channels": 3,
+        "out_classes": 5
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "image",
+                "reader": "$monai.data.PILReader",
+                "converter": "$lambda x: x.convert('RGB')"
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": "image"
+            },
+            {
+                "_target_": "CastToTyped",
+                "keys": "image",
+                "dtype": "float32"
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": 0.0,
+                "a_max": 255.0,
+                "b_min": 0.0,
+                "b_max": 1.0,
+                "clip": true
+            }
+        ]
+    },
+    "data_list": "$[{'image': image} for image in glob.glob(os.path.join(@dataset_dir, '*.png'))]",
+    "dataset": {
+        "_target_": "Dataset",
+        "data": "@data_list",
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": "@batch_size",
+        "shuffle": false,
+        "num_workers": "@num_cpus",
+        "pin_memory": true
+    },
+    "inferer": {
+        "_target_": "SlidingWindowHoVerNetInferer",
+        "roi_size": "@patch_size",
+        "sw_batch_size": "@sw_batch_size",
+        "overlap": "$1.0 - float(@out_size) / float(@patch_size)",
+        "padding_mode": "constant",
+        "cval": 0,
+        "progress": true,
+        "extra_input_padding": "$((@patch_size - @out_size) // 2,) * 4"
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "FlattenSubKeysd",
+                "keys": "pred",
+                "sub_keys": [
+                    "horizontal_vertical",
+                    "nucleus_prediction",
+                    "type_prediction"
+                ],
+                "delete_keys": true
+            },
+            {
+                "_target_": "HoVerNetInstanceMapPostProcessingd",
+                "sobel_kernel_size": 21,
+                "marker_threshold": 0.4,
+                "marker_radius": 2
+            },
+            {
+                "_target_": "HoVerNetNuclearTypePostProcessingd"
+            },
+            {
+                "_target_": "FromMetaTensord",
+                "keys": [
+                    "image"
+                ]
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "instance_map",
+                "meta_keys": "image_meta_dict",
+                "output_ext": ".nii.gz",
+                "output_dir": "@output_dir",
+                "output_postfix": "instance_map",
+                "output_dtype": "uint32",
+                "separate_folder": false
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "type_map",
+                "meta_keys": "image_meta_dict",
+                "output_ext": ".nii.gz",
+                "output_dir": "@output_dir",
+                "output_postfix": "type_map",
+                "output_dtype": "uint8",
+                "separate_folder": false
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$os.path.join(@bundle_root, 'models', 'model.pt')",
+            "map_location": "@device",
+            "load_dict": {
+                "model": "@network"
+            }
+        }
+    ],
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "val_handlers": "@handlers",
+        "network": "@network",
+        "postprocessing": "@postprocessing",
+        "inferer": "@inferer",
+        "amp": true
+    },
+    "evaluating": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@evaluator.run()"
+    ]
+}
