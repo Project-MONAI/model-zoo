@@ -1,16 +1,7 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.5",
+    "version": "0.0.1",
     "changelog": {
-        "0.3.5": "restructure readme to match updated template",
-        "0.3.4": "correct typos",
-        "0.3.3": "update learning rate and readme",
-        "0.3.2": "update to use monai 1.0.1",
-        "0.3.1": "fix license Copyright error",
-        "0.3.0": "update license files",
-        "0.2.0": "unify naming",
-        "0.1.1": "fix data type issue in searching/training configurations",
-        "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
     "monai_version": "1.0.1",
