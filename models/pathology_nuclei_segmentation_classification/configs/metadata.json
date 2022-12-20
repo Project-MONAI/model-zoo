@@ -1,0 +1,116 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
+    "version": "0.1.1",
+    "changelog": {
+        "0.1.1": "update to use monai 1.1.0",
+        "0.1.0": "complete the model package"
+    },
+    "monai_version": "1.1.0",
+    "pytorch_version": "1.13.0",
+    "numpy_version": "1.22.2",
+    "optional_packages_version": {
+        "scikit-image": "0.19.3",
+        "scipy": "1.8.1",
+        "tqdm": "4.64.1",
+        "pillow": "9.0.1"
+    },
+    "task": "Nuclear segmentation and classification",
+    "description": "A simultaneous segmentation and classification of nuclei within multitissue histology images based on CoNSeP data",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/",
+    "data_type": "numpy",
+    "image_classes": "RGB image with intensity between 0 and 255",
+    "label_classes": "a dictionary contains binary nuclear segmentation, hover map and pixel-level classification",
+    "pred_classes": "a dictionary contains scalar probability for binary nuclear segmentation, hover map and pixel-level classification",
+    "eval_metrics": {
+        "Binary Dice": 0.8293,
+        "PQ": 0.4936,
+        "F1d": 0.748
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Simon Graham. 'HoVer-Net: Simultaneous Segmentation and Classification of Nuclei in Multi-Tissue Histology Images.' Medical Image Analysis, 2019. https://arxiv.org/abs/1812.06499"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "num_channels": 3,
+                "spatial_shape": [
+                    "256",
+                    "256"
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    255
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "nucleus_prediction": {
+                "type": "probability",
+                "format": "segmentation",
+                "num_channels": 3,
+                "spatial_shape": [
+                    "164",
+                    "164"
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "background",
+                    "1": "nuclei"
+                }
+            },
+            "horizontal_vertical": {
+                "type": "probability",
+                "format": "regression",
+                "num_channels": 2,
+                "spatial_shape": [
+                    "164",
+                    "164"
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "horizontal distances map",
+                    "1": "vertical distances map"
+                }
+            },
+            "type_prediction": {
+                "type": "probability",
+                "format": "classification",
+                "num_channels": 2,
+                "spatial_shape": [
+                    "164",
+                    "164"
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "background",
+                    "1": "type of nucleus for each pixel"
+                }
+            }
+        }
+    }
+}
