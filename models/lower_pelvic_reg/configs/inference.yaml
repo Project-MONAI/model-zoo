@@ -1,0 +1,46 @@
+---
+imports:
+  - $import matplotlib.pyplot as plt
+dataset_dir: "/Users/yiwenli/data/multiorgan_final"
+bundle_root: "./"
+device: "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"
+output_dir: "$@bundle_root + '/eval'"
+ckpt: "$@bundle_root + '/models/model.pt'"
+cross_subjects: false  # whether the input images are from the same subject
+
+dataset:
+  _target_: "scripts.dataset.RegDataset"
+  train: false
+  dataset_dir: "@dataset_dir"
+  pixdim: [0.75, 0.75, 2.5]
+  spatial_size: [256, 256, 40]
+  rotate_range: $np.pi / 36
+  translate_range: [20, 20, 4]
+  scale_range: [0.15, 0.15, 0.15]
+
+data_loader:
+  _target_: "torch.utils.data.DataLoader"
+  dataset: "@dataset"
+  batch_size: 1
+  num_workers: 0
+
+# components for debugging
+first_pair: $@dataset[0]
+display:
+  - $plt.subplot(2,2,1)
+  - $plt.gca().set_title("moving t2w")
+  - $plt.gca().axis('off')
+  - $plt.imshow(np.transpose(@first_pair[0]["t2w"][0, ..., @first_pair[0]["t2w"].shape[-1]//2]))
+  - $plt.subplot(2,2,2)
+  - $plt.gca().set_title("fixed t2w")
+  - $plt.gca().axis('off')
+  - $plt.imshow(np.transpose(@first_pair[1]["t2w"][0, ..., @first_pair[0]["t2w"].shape[-1]//2]))
+  - $plt.subplot(2,2,3)
+  - $plt.gca().set_title("moving seg")
+  - $plt.gca().axis('off')
+  - $plt.imshow(np.transpose(@first_pair[0]["seg"][0, ..., @first_pair[0]["t2w"].shape[-1]//2]))
+  - $plt.subplot(2,2,4)
+  - $plt.gca().set_title("fixed seg")
+  - $plt.gca().axis('off')
+  - $plt.imshow(np.transpose(@first_pair[1]["seg"][0, ..., @first_pair[0]["t2w"].shape[-1]//2]))
+  - $plt.show()
