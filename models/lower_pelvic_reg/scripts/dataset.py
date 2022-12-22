@@ -315,4 +315,3 @@ class LoadImages:
                 mode="trilinear" if k == "t2w" else "nearest"
             ).squeeze(0)
         return x
-
