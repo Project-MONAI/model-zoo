@@ -20,7 +20,7 @@ unzip -q consep_dataset.zip
 The training was performed with the following:
 
 - GPU: at least 12GB of GPU memory
-- Actual Model Input: 4 x 128 x 128
+- Actual Model Input: 5 x 128 x 128
 - AMP: True
 - Optimizer: Adam
 - Learning Rate: 1e-4

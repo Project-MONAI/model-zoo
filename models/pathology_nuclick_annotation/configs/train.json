@@ -73,8 +73,7 @@
                     "brightness": 0.251,
                     "contrast": 0.75,
                     "saturation": 0.25,
-                    "hue": 0.04,
-                    "prob": 0.5
+                    "hue": 0.04
                 },
                 {
                     "_target_": "RandFlipd",
