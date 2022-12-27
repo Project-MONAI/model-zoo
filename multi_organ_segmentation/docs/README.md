@@ -16,19 +16,19 @@ Segmentation, Multi-organ, Abdominal
 
 ## **Model Description**
 
-This model uses the DiNTS model architecture searched on MSD Pancreas [1] and re-trained for multi-organ segmentation from abdominal CT images [2,3].
+This model uses the DiNTS model architecture searched on [Medical Segmentation Decathlon](http://medicaldecathlon.com/) Pancreas [1] and re-trained for multi-organ segmentation from abdominal CT images [2,3].
 
 ## **Data**
 
-This model was trained on an abdominal CT dataset in portal venous phase from Aichi Cancer Center in Japan. The dataset was split into traininig, validation and testing with 300, 60 and 60 cases, respectively.
+This model was trained on an abdominal CT dataset in portal venous phase collected from Aichi Cancer Center in Japan. Since this is a private dataset, similar models can be trained using other public multi-organ datasets like [BTCV](https://www.synapse.org/#!Synapse:syn3193805/wiki/89480).
 
-The labels{"0": "background","1": "artery","2": "portal vein","3": "liver",
+For this bundle, we split the 420 cases into training, validation and testing with 300, 60 and 60 cases, respectively.
 
-"4": "spleen","5": "stomach","6": "gallbladder","7": "pancreas"}
+The labels are {"0": "background","1": "artery","2": "portal vein","3": "liver","4": "spleen","5": "stomach","6": "gallbladder","7": "pancreas"}
 
 ## **Scores**
 
-This model achieves the following Dice score on the validation data (our own split from the training dataset):
+This model achieves the following Dice score on the validation data (our own split from the whole dataset):
 
 Mean Dice = 0.88
 
@@ -38,37 +38,27 @@ Execute training:
 
 ```
 python -m monai.bundle run training \
-
     --meta_file configs/metadata.json \
-
     --config_file configs/train.yaml \
-
     --logging_file configs/logging.conf
 ```
 
 Execute multi-GPU training with 4 GPUs:
 
 ```
-torchrun --nnodes=1 --nproc_per_node=4 \
-
--m monai.bundle run training 、
-
---meta_file configs/metadata.json \
-
---config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" \
-
---logging_file configs/logging.conf
+torchrun --nnodes=4 --nproc_per_node=4 \
+    -m monai.bundle run training \
+    --meta_file configs/metadata.json \
+    --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" \
+    --logging_file configs/logging.conf
 ```
 
 Execute inference:
 
 ```
 python -m monai.bundle run evaluating \
-
     --meta_file configs/metadata.json \
-
     --config_file configs/inference.yaml \
-
     --logging_file configs/logging.conf
 ```
 
@@ -76,14 +66,9 @@ Override the train config to execute evaluation with the trained model:
 
 ```
 python -m monai.bundle run evaluating \
-
     --meta_file configs/metadata.json \
-
     --config_file "['configs/train.yaml','configs/evaluate.yaml']" \
-
     --logging_file configs/logging.conf
-
-
 ```
 
 Export checkpoint to TorchScript file:
@@ -103,9 +88,7 @@ python -m monai.bundle ckpt_export network_def \
 [1] He, Y., Yang, D., Roth, H., Zhao, C. and Xu, D., 2021. Dints: Differentiable neural network topology search for 3d medical image segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5841-5850).
 
 ​
-
 [2] Roth, Holger R., et al. "A multi-scale pyramid of 3D fully convolutional networks for abdominal multi-organ segmentation." International conference on medical image computing and computer-assisted intervention. Springer, Cham, 2018.
-
 ​
 
 [3] Shen, Chen, et al. "Effective hyperparameter optimization with proxy data for multi-organ segmentation." Medical Imaging 2022: Image Processing. Vol. 12032. SPIE, 2022.
