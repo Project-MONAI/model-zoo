@@ -458,5 +458,93 @@
     "lung_nodule_ct_detection_v0.4.4": {
         "checksum": "9819cf65445080e1d436df0dc1707db8d64e3fce",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.4.zip"
+    },
+    "lung_nodule_ct_detection_v0.4.5": {
+        "checksum": "1de3327538abd81229e18ead569d89c3bd8e7039",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.4.5.zip"
+    },
+    "pathology_tumor_detection_v0.4.5": {
+        "checksum": "e3925ebb911692fd4f4246e7c21511e0ec0553d6",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.5.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.3": {
+        "checksum": "b368231c7fb8d0b0735b57b94e93fc663039f4bc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.3.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.4": {
+        "checksum": "010fcbb538fbb161afd95c569b99abb7574dc381",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.4.zip"
+    },
+    "pathology_nuclei_classification_v0.0.1": {
+        "checksum": "5fe4797b91f142e3a8c6948a0e040a39188067e8",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.0.1.zip"
+    },
+    "pathology_nuclick_annotation_v0.0.1": {
+        "checksum": "5eed4f5fe19751c961c4890423df5ec1b27ceae4",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.1.zip"
+    },
+    "mednist_reg_v0.0.2": {
+        "checksum": "9a27ec44e29e71b1364e4d0faf4b90582915291b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_reg_v0.0.2.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.0": {
+        "checksum": "906b14f64134cdd170c572a798c9037214ba3a65",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.0.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.1": {
+        "checksum": "ede43a09da23ddd5fbd2fa1e2d34e6fad79a5847",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.1.zip"
+    },
+    "ventricular_short_axis_3label_v0.3.1": {
+        "checksum": "9d8f8b45b296f7a2f510d8e323a29e1ef042bf43",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/ventricular_short_axis_3label_v0.3.1.zip"
+    },
+    "brats_mri_segmentation_v0.3.8": {
+        "checksum": "d7caa3d04768034c70d20573f8a8c9fb0b00369a",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.8.zip"
+    },
+    "valve_landmarks_v0.4.1": {
+        "checksum": "c5d3588ab9565a01b7aba704035749c172540b46",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.4.1.zip"
+    },
+    "pathology_tumor_detection_v0.4.6": {
+        "checksum": "dacf01faa3884969cedd67fe833afc27193cd1bc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.6.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.0": {
+        "checksum": "0987fed369b169aa325111474a5badf9cb14d2b1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.0.zip"
+    },
+    "pathology_nuclick_annotation_v0.0.2": {
+        "checksum": "95ca52dc82fbb417ae463a9bcfe1315f4532763a",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.2.zip"
+    },
+    "pathology_nuclei_classification_v0.0.2": {
+        "checksum": "fb4cc137e368ed50d9afeead5d1b08d7c00a712c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.0.2.zip"
+    },
+    "pathology_nuclick_annotation_v0.0.3": {
+        "checksum": "9a27b5069eb4ccfcf96e7e2868d5c0c7ac4a7410",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.3.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.1": {
+        "checksum": "ed5cad9e51d63dba14bd8ddb3edf59f7c8dc5464",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.1.zip"
+    },
+    "mednist_reg_v0.0.3": {
+        "checksum": "1ecb340bda91260caf9e71c4eddd2d5a6151baad",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_reg_v0.0.3.zip"
+    },
+    "pathology_nuclei_classification_v0.0.3": {
+        "checksum": "fb88c2e161e5cd3e139e28184c01cdbb10601bb9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.0.3.zip"
+    },
+    "endoscopic_tool_segmentation_v0.4.0": {
+        "checksum": "6ff8a1ff3c36cb69228129e0c1cd5313d38efbe5",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.4.0.zip"
+    },
+    "endoscopic_inbody_classification_v0.3.5": {
+        "checksum": "e9e5902ee25aa80208062e2b5696ed9c78a651f6",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.5.zip"
     }
 }

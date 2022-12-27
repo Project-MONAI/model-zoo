@@ -7,8 +7,8 @@
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/dataset_fold0.json'",
-    "data_file_base_dir": "/datasets/LUNA16_Images_resample",
-    "train_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='training', base_dir=@data_file_base_dir)",
+    "dataset_dir": "/datasets/LUNA16_Images_resample",
+    "train_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='training', base_dir=@dataset_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "epochs": 300,
     "val_interval": 10,
@@ -399,6 +399,10 @@
             "num_workers": 2,
             "collate_fn": "$monai.data.utils.no_collation"
         },
+        "inferer": {
+            "_target_": "scripts.detection_inferer.RetinaNetInferer",
+            "detector": "@detector"
+        },
         "handlers": [
             {
                 "_target_": "StatsHandler",
@@ -435,7 +439,8 @@
             "_requires_": "@detector_ops",
             "device": "@device",
             "val_data_loader": "@validate#dataloader",
-            "detector": "@detector",
+            "network": "@network",
+            "inferer": "@validate#inferer",
             "key_val_metric": "@validate#key_metric",
             "val_handlers": "@validate#handlers",
             "amp": "@amp"

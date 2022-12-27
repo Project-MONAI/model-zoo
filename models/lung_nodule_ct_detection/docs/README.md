@@ -5,88 +5,85 @@ This model is trained on LUNA16 dataset (https://luna16.grand-challenge.org/Home
 
 ![model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_workflow.png)
 
-## 1. Data
-### 1.1 Data description
+## Data
 The dataset we are experimenting in this example is LUNA16 (https://luna16.grand-challenge.org/Home/), which is based on [LIDC-IDRI database](https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI) [3,4,5].
 
 LUNA16 is a public dataset of CT lung nodule detection. Using raw CT scans, the goal is to identify locations of possible nodules, and to assign a probability for being a nodule to each location.
 
 Disclaimer: We are not the host of the data. Please make sure to read the requirements and usage policies of the data and give credit to the authors of the dataset! We acknowledge the National Cancer Institute and the Foundation for the National Institutes of Health, and their critical role in the creation of the free publicly available LIDC/IDRI Database used in this study.
 
-### 1.2 10-fold data splitting
+### 10-fold data splitting
 We follow the official 10-fold data splitting from LUNA16 challenge and generate data split json files using the script from [nnDetection](https://github.com/MIC-DKFZ/nnDetection/blob/main/projects/Task016_Luna/scripts/prepare.py).
 
 Please download the resulted json files from https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/LUNA16_datasplit-20220615T233840Z-001.zip.
 
 In these files, the values of "box" are the ground truth boxes in world coordinate.
 
-### 1.3 Data resampling
+### Data resampling
 The raw CT images in LUNA16 have various of voxel sizes. The first step is to resample them to the same voxel size.
 In this model, we resampled them into 0.703125 x 0.703125 x 1.25 mm.
 
 Please following the instruction in Section 3.1 of https://github.com/Project-MONAI/tutorials/tree/main/detection to do the resampling.
 
-### 1.4 Data download
+### Data download
 The mhd/raw original data can be downloaded from [LUNA16](https://luna16.grand-challenge.org/Home/). The DICOM original data can be downloaded from [LIDC-IDRI database](https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI) [3,4,5]. You will need to resample the original data to start training.
 
 Alternatively, we provide [resampled nifti images](https://drive.google.com/drive/folders/1JozrufA1VIZWJIc5A1EMV3J4CNCYovKK?usp=share_link) and a copy of [original mhd/raw images](https://drive.google.com/drive/folders/1-enN4eNEnKmjltevKg3W2V-Aj0nriQWE?usp=share_link) from [LUNA16](https://luna16.grand-challenge.org/Home/) for users to download.
 
-## 2. Training configuration
-The training was the following:
+## Training configuration
+The training was performed with the following:
 
-GPU: at least 16GB GPU memory
-
-Actual Model Input: 192 x 192 x 80
-
-AMP: True
-
-Optimizer: Adam
-
-Learning Rate: 1e-2
-
-Loss: BCE loss and L1 loss
+- GPU: at least 16GB GPU memory
+- Actual Model Input: 192 x 192 x 80
+- AMP: True
+- Optimizer: Adam
+- Learning Rate: 1e-2
+- Loss: BCE loss and L1 loss
 
 ### Input
-list of 1 channel 3D CT patches
+1 channel
+- List of 3D CT patches
 
 ### Output
-In training mode: dictionary of classification and box regression loss in training mode;
+In Training Mode: A dictionary of classification and box regression loss.
 
-In evaluation mode: list of dictionary of predicted box, classification label, and classification score in evaluation mode.
+In Evaluation Mode: A list of dictionaries of predicted box, classification label, and classification score.
 
-## 3. Performance
+## Performance
 Coco metric is used for evaluating the performance of the model. The pre-trained model was trained and validated on data fold 0. This model achieves a mAP=0.853, mAR=0.994, AP(IoU=0.1)=0.862, AR(IoU=0.1)=1.0.
 
-![detection train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png)
+#### Training Loss
+![A graph showing the detection train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png)
 
+#### Validation Accuracy
 The validation accuracy in this curve is the mean of mAP, mAR, AP(IoU=0.1), and AR(IoU=0.1) in Coco metric.
 
-![detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png)
+![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png)
 
-## 4. Commands example
-Execute training:
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
+
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute training:
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
-Override the `train` config to execute evaluation with the trained model:
+#### Override the `train` config to execute evaluation with the trained model:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
-Execute inference on resampled LUNA16 images by setting `"whether_raw_luna16": false` in `inference.json`:
+#### Execute inference on resampled LUNA16 images by setting `"whether_raw_luna16": false` in `inference.json`:
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
-With the same command, we can execute inference on original LUNA16 images by setting `"whether_raw_luna16": true` in `inference.json`. Remember to also set `"data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/mhd_original/dataset_fold0.json'"` and change `"data_file_base_dir"`.
+With the same command, we can execute inference on original LUNA16 images by setting `"whether_raw_luna16": true` in `inference.json`. Remember to also set `"data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/mhd_original/dataset_fold0.json'"` and change `"dataset_dir"`.
 
 Note that in inference.json, the transform "LoadImaged" in "preprocessing" and "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`.
 This depends on the input images. LUNA16 needs `"affine_lps_to_ras": true`.
 It is possible that your inference dataset should set `"affine_lps_to_ras": false`.
-
-
-# Disclaimer
-This is an example, not to be used for diagnostic purposes.
 
 # References
 [1] Lin, Tsung-Yi, et al. "Focal loss for dense object detection." ICCV 2017. https://arxiv.org/abs/1708.02002)

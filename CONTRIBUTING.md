@@ -6,7 +6,7 @@ Welcome to MONAI Model Zoo! We're excited you're here and want to contribute. Th
 
 Please refer to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html) and the description of bundle [config syntax](https://docs.monai.io/en/latest/config_syntax.html) to prepare your bundle.
 
-The [get started](https://github.com/Project-MONAI/tutorials/blob/main/bundle/get_started.ipynb) notebook is a step-by-step tutorial to help developers easily get started to develop a bundle. And [bundle examples](https://github.com/Project-MONAI/tutorials/tree/main/bundle) show the typical bundle for 3D segmentation, how to use customized components in a bundle, and how to parse bundle in your own program as "hybrid" mode, etc.
+The [get started](https://github.com/Project-MONAI/tutorials/blob/main/bundle/get_started.md) notebook is a step-by-step tutorial to help developers easily get started to develop a bundle. And [bundle examples](https://github.com/Project-MONAI/tutorials/tree/main/bundle) show the typical bundle for 3D segmentation, how to use customized components in a bundle, and how to parse bundle in your own program as "hybrid" mode, etc.
 
 As for the path related varibles within config files (such as "bundle_root"), we suggest to use path that do not include personal information (such as `"/home/your_name/"`).The following is an example of path using:
 
@@ -67,13 +67,13 @@ If your bundle does not have any of the preferred files, please add the bundle n
 
 Except the requirements of files, there are also some requirements of keys within config files:
 
-In inference config file (if exists), please include the following keys: `bundle_root` (root directory of your bundle), `device` (required device), `network_def` (definition of the network components), `inferer` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json)).
+In inference config file (if exists), please include the following keys: `bundle_root` (root directory of your bundle), `device` (required device), `network_def` (definition of the network components), `inferer`, and if there are any output files, the directory key should be defined as `output_dir` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json)).
 
 In train config file (if exists), please follow the following requirements in order to maintain consistent naming format ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/train.json)):
 
-1. Please include keys `bundle_root` and `device`.
-1. If having `train`, components `train#trainer`, `train#trainer#max_epochs`, `train#dataset`, `train#dataset#data` should be defined.
-1. If having `validate`, components `validate#evaluator`, `validate#dataset`, `validate#dataset#data` should be defined.
+1. Please include keys `bundle_root`, `device` and `dataset_dir`, and if there are any output files, the directory key should be defined as `output_dir`.
+1. If having `train`, components `train#trainer`, `train#trainer#max_epochs`, `train#dataset`, `train#dataset#data`, `train#handlers` should be defined.
+1. If having `validate`, components `validate#evaluator`, `validate#handlers`, `validate#dataset`, `validate#dataset#data` should be defined.
 1. In `train` and/or `validate`, please define `preprocessing`, `postprocessing`, `inferer` and `key_metric` if they are used.
 1. If `ValidationHandler` is used, please define the key `val_interval` and use it for the argument `interval`.
 

@@ -11,7 +11,7 @@
     "output_dir": "$os.path.join(@bundle_root, 'log')",
     "training_file": "$os.path.join(@bundle_root, 'training.csv')",
     "validation_file": "$os.path.join(@bundle_root, 'validation.csv')",
-    "data_root": "/workspace/data/medical/pathology",
+    "dataset_dir": "/workspace/data/medical/pathology",
     "wsi_reader": "cuCIM",
     "region_size": [
         768,
@@ -159,7 +159,7 @@
             "transform": {
                 "_target_": "Lambdad",
                 "keys": "image",
-                "func": "$lambda x: os.path.join(@data_root, 'training/images', x + '.tif')"
+                "func": "$lambda x: os.path.join(@dataset_dir, 'training/images', x + '.tif')"
             }
         },
         "dataset": {
@@ -310,7 +310,7 @@
             "transform": {
                 "_target_": "Lambdad",
                 "keys": "image",
-                "func": "$lambda x: os.path.join(@data_root, 'training/images', x + '.tif')"
+                "func": "$lambda x: os.path.join(@dataset_dir, 'training/images', x + '.tif')"
             }
         },
         "dataset": {
@@ -372,7 +372,7 @@
         }
     },
     "training": [
-        "$monai.utils.set_determinism(seed=123)",
+        "$monai.utils.set_determinism(seed=15)",
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$@train#trainer.run()"
     ]

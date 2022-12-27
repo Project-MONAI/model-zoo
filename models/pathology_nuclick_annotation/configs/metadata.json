@@ -1,0 +1,81 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.0.3",
+    "changelog": {
+        "0.0.3": "Update to use MONAI 1.1.0",
+        "0.0.2": "Update The Torch Vision Transform",
+        "0.0.1": "initialize the model package structure"
+    },
+    "monai_version": "1.1.0",
+    "pytorch_version": "1.13.0",
+    "numpy_version": "1.21.2",
+    "optional_packages_version": {
+        "nibabel": "4.0.1",
+        "pytorch-ignite": "0.4.9"
+    },
+    "task": "Pathology Nuclick segmentation",
+    "description": "A pre-trained model for Nuclei Classification within Haematoxylin & Eosin stained histology images",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "consep_dataset.zip from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet",
+    "data_type": "png",
+    "image_classes": "RGB channel data, intensity scaled to [0, 1]",
+    "label_classes": "single channel data",
+    "pred_classes": "1 channel data, with value 1 as nuclei and 0 as background",
+    "eval_metrics": {
+        "mean_dice": 0.85
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Koohbanani, Navid Alemi, et al. \"NuClick: A Deep Learning Framework for Interactive Segmentation of Microscopy Images.\" https://arxiv.org/abs/2005.14511",
+        "S. Graham, Q. D. Vu, S. E. A. Raza, A. Azam, Y-W. Tsang, J. T. Kwak and N. Rajpoot. \"HoVer-Net: Simultaneous Segmentation and Classification of Nuclei in Multi-Tissue Histology Images.\" Medical Image Analysis, Sept. 2019. https://doi.org/10.1016/j.media.2019.101563",
+        "NuClick PyTorch Implementation, https://github.com/mostafajahanifar/nuclick_torch"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "png",
+                "format": "RGB",
+                "modality": "regular",
+                "num_channels": 5,
+                "spatial_shape": [
+                    128,
+                    128
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "R",
+                    "1": "G",
+                    "2": "B",
+                    "3": "+ve Signal",
+                    "4": "-ve Signal"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 1,
+                "spatial_shape": [
+                    128,
+                    128
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "Nuclei"
+                }
+            }
+        }
+    }
+}

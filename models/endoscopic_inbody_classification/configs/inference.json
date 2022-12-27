@@ -5,9 +5,8 @@
         "$import torch"
     ],
     "bundle_root": "/workspace/bundle/endoscopic_inbody_classification",
-    "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/endoscopic_inbody_classification",
-    "test_json": "$@dataset_dir+'/test.json'",
+    "test_json": "$@bundle_root+'/label/test_samples.json'",
     "test_fp": "$open(@test_json,'r', encoding='utf8')",
     "test_dict": "$json.load(@test_fp)",
     "test_close": "$@test_fp.close()",
