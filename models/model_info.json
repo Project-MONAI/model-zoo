@@ -546,5 +546,9 @@
     "endoscopic_inbody_classification_v0.3.5": {
         "checksum": "e9e5902ee25aa80208062e2b5696ed9c78a651f6",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.3.5.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.2": {
+        "checksum": "3e89dd1c3d43fca3a3b10cbae23b3d229d0c416c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.2.zip"
     }
 }
