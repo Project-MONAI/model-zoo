@@ -11,7 +11,24 @@
     "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing', base_dir=@dataset_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "amp": true,
-    "network_def": "$torch.jit.load(@ckpt_dir + '/model.ts')",
+    "network_def": {
+        "_target_": "SegResNet",
+        "blocks_down": [
+            1,
+            2,
+            2,
+            4
+        ],
+        "blocks_up": [
+            1,
+            1,
+            1
+        ],
+        "init_filters": 16,
+        "in_channels": 4,
+        "out_channels": 3,
+        "dropout_prob": 0.2
+    },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
         "_target_": "Compose",
@@ -90,6 +107,13 @@
         ]
     },
     "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
         {
             "_target_": "StatsHandler",
             "iteration_log": false

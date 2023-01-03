@@ -119,8 +119,6 @@ After exporting your TorchScript file, you can check the validation or inference
 1. Define `network_def` as: `"$torch.jit.load(<your TorchScript file path>)"`.
 1. Execute validation or inference command.
 
-There is an example of using the TorchScript file to do inference, please [click here](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json) for more details.
-
 If your bundle does not support TorchScript, please mention it in `docs/README.md`, and add your bundle name into `exclude_verify_torchscript_list` in `ci/bundle_custom_data.py`.
 
 
