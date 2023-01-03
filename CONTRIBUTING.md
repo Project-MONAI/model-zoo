@@ -110,8 +110,16 @@ If this test is not suitable for your bundle, please add your bundle name into `
 Check the functionality of exporting the checkpoint to TorchScript file. You can also run the following command locally to verify your bundle before submitting a pull request.
 
 ```bash
-python -m monai.bundle ckpt_export --net_id network_def --filepath models/verify_model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
+python -m monai.bundle ckpt_export --net_id network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
 ```
+
+After exporting your TorchScript file, you can check the validation or inference results based on it rather than `model.pt` with the following changes:
+
+1. Remove or disable `CheckpointLoader` in validation or inference config file if exists.
+1. Define `network_def` as: `"$torch.jit.load(<your TorchScript file path>)"`.
+1. Execute validation or inference command.
+
+There is an example of using the TorchScript file to do inference, please [click here](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/inference.json) for more details.
 
 If your bundle does not support TorchScript, please mention it in `docs/README.md`, and add your bundle name into `exclude_verify_torchscript_list` in `ci/bundle_custom_data.py`.
 
