@@ -129,3 +129,5 @@ temp/
 # VSCode
 .vscode/
 *.zip
+
+models/lower_pelvic_reg/eval/

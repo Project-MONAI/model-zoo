@@ -1,6 +1,5 @@
 import os
-from ctypes import Union
-from typing import Optional, Sequence, Tuple
+from typing import Optional, Sequence, Tuple, Union
 
 import numpy as np
 
@@ -51,16 +50,16 @@ def get_institution_patient_dict(dataset_dir, train):
     return institution_patient_dict
 
 
-def sample_pair(idx, img_list_len):
+def sample_pair(idx, image_list_len):
     """
     given query index, sample a support index
     :param idx: int, query index
-    :param img_list_len: int, number of training images
+    :param image_list_len: int, number of training images
     :return: int
     """
     out = idx
     while out == idx:
-        out = np.random.randint(img_list_len)
+        out = np.random.randint(image_list_len)
     return out
 
 
@@ -70,15 +69,15 @@ class RegDataset(Dataset):
                  train: bool,
                  dataset_dir: str,
                  pixdim: Sequence[float],
-                 spatial_size,#: Optional[Union[Sequence[int], int]] = None,
-                 rotate_range,#: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
-                 translate_range,#: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
-                 scale_range,#: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None
+                 spatial_size: Optional[Union[Sequence[int], int]] = None,
+                 rotate_range: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
+                 translate_range: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
+                 scale_range: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None
                  ) -> None:
         """
         Args:
             train: bool, specify if training or not
-            dataset_dir: directory storing the t2w images and segmentations.
+            dataset_dir: directory storing the t2w images and labels.
             pixdim: output voxel spacing. if providing a single number, will use it for the first dimension.
                 items of the pixdim sequence map to the spatial dimensions of input image, if length
                 of pixdim sequence is longer than image spatial dimensions, will ignore the longer part,
@@ -88,10 +87,10 @@ class RegDataset(Dataset):
                 matrix of input image.
             spatial_size: output image spatial size.
                 if `spatial_size` and `self.spatial_size` are not defined, or smaller than 1,
-                the transform will use the spatial size of `img`.
+                the transform will use the spatial size of `image`.
                 if some components of the `spatial_size` are non-positive values, the transform will use the
-                corresponding components of img size. For example, `spatial_size=(32, -1)` will be adapted
-                to `(32, 64)` if the second spatial dimension size of img is `64`.
+                corresponding components of image size. For example, `spatial_size=(32, -1)` will be adapted
+                to `(32, 64)` if the second spatial dimension size of image is `64`.
             rotate_range: angle range in radians. If element `i` is a pair of (min, max) values, then
                 `uniform[-rotate_range[i][0], rotate_range[i][1])` will be used to generate the rotation parameter
                 for the `i`th spatial dimension. If not, `uniform[-rotate_range[i], rotate_range[i])` will be used.
@@ -112,15 +111,15 @@ class RegDataset(Dataset):
             dataset_dir=dataset_dir,
             train=train,
         )
-        self.img_list = []
+        self.image_list = []
         for ins, patient_list in institution_patient_dict.items():
-            self.img_list.extend([(p, ins) for p in patient_list])
+            self.image_list.extend([(p, ins) for p in patient_list])
 
         # sample inference pairs if not training
         if not train:
             self.val_pair = []
             # for each query image
-            for moving_p, moving_ins in self.img_list:
+            for moving_p, moving_ins in self.image_list:
                 # for each institution
                 for fixed_ins, patient_list in institution_patient_dict.items():
                     while True:
@@ -141,13 +140,13 @@ class RegDataset(Dataset):
         )
 
     def __len__(self):
-        return len(self.img_list) if self.train else len(self.val_pair)
+        return len(self.image_list) if self.train else len(self.val_pair)
 
     def __getitem__(self, idx):
         if self.train:
             moving = idx
-            fixed = sample_pair(idx, len(self.img_list))
-            moving, fixed = self.img_list[moving], self.img_list[fixed]
+            fixed = sample_pair(idx, len(self.image_list))
+            moving, fixed = self.image_list[moving], self.image_list[fixed]
         else:
             moving, fixed = self.val_pair[idx]
 
@@ -169,10 +168,10 @@ def get_transform(augmentation, spatial_size, pixdim, rotate_range, translate_ra
             matrix of input image.
         spatial_size: output image spatial size.
             if `spatial_size` and `self.spatial_size` are not defined, or smaller than 1,
-            the transform will use the spatial size of `img`.
+            the transform will use the spatial size of `image`.
             if some components of the `spatial_size` are non-positive values, the transform will use the
-            corresponding components of img size. For example, `spatial_size=(32, -1)` will be adapted
-            to `(32, 64)` if the second spatial dimension size of img is `64`.
+            corresponding components of image size. For example, `spatial_size=(32, -1)` will be adapted
+            to `(32, 64)` if the second spatial dimension size of image is `64`.
         augmentation: bool, specifying apply augmentation or not.
         rotate_range: angle range in radians. If element `i` is a pair of (min, max) values, then
             `uniform[-rotate_range[i][0], rotate_range[i][1])` will be used to generate the rotation parameter
@@ -187,25 +186,25 @@ def get_transform(augmentation, spatial_size, pixdim, rotate_range, translate_ra
             This allows 0 to correspond to no change (i.e., a scaling of 1.0).
     """
     pre_augmentation = [
-        LoadImaged(keys=["t2w", "seg"]),
-        AddChanneld(keys=["t2w", "seg"]),
+        LoadImaged(keys=["image", "label"]),
+        AddChanneld(keys=["image", "label"]),
         Spacingd(
-            keys=["t2w", "seg"],
+            keys=["image", "label"],
             pixdim=pixdim,
             mode=("bilinear", "nearest"),
         ),
     ]
 
     post_augmentation = [
-        NormalizeIntensityd(keys=["t2w"]),
-        ScaleIntensityd(keys=["t2w"]),
-        ToTensord(keys=["t2w", "seg"])
+        NormalizeIntensityd(keys=["image"]),
+        ScaleIntensityd(keys=["image"]),
+        ToTensord(keys=["image", "label"])
     ]
 
     if augmentation:
         middle_transform = [
             RandAffined(
-                keys=["t2w", "seg"],
+                keys=["image", "label"],
                 spatial_size=spatial_size,
                 prob=1.0,
                 rotate_range=(rotate_range, rotate_range, rotate_range),
@@ -221,9 +220,9 @@ def get_transform(augmentation, spatial_size, pixdim, rotate_range, translate_ra
         ]
     else:
         middle_transform = [
-            CenterSpatialCropd(keys=["t2w", "seg"], roi_size=spatial_size),
+            CenterSpatialCropd(keys=["image", "label"], roi_size=spatial_size),
             SpatialPadd(
-                keys=["t2w", "seg"],
+                keys=["image", "label"],
                 spatial_size=spatial_size,
                 method='symmetric',
                 mode='constant',
@@ -239,23 +238,23 @@ class LoadImages:
     Transform customised for registration
     given a dictionary specifying moving and fixed image names, output a dictionary of dictionaries each containing the
     following keys:
-    - "t2w": tensor of shape (1, ...) the t2w image
-    - "seg": tensor of shape (1, ...) the segmentation of the corresponding image
-    - "image_name": the name of the image
+    "image": tensor of shape (1, ...) the t2w image
+    "label": tensor of shape (1, ...) the label of the corresponding image
+    "image_name": the name of the image
     """
 
     def __init__(self,
-                 dataset_dir,#: str,
-                 pixdim,#: Union[Sequence[float], float],
-                 spatial_size,#: Optional[Union[Sequence[int], int]] = None,
-                 augmentation,#: bool = False,
-                 rotate_range,#: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
-                 translate_range,#: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
-                 scale_range,#: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
+                 dataset_dir: str,
+                 pixdim: Union[Sequence[float], float],
+                 spatial_size: Optional[Union[Sequence[int], int]] = None,
+                 augmentation: bool = False,
+                 rotate_range: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
+                 translate_range: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
+                 scale_range: Optional[Union[Sequence[Union[Tuple[float, float], float]], float]] = None,
                  ) -> None:
         """
         Args:
-            dataset_dir: directory storing the t2w images and segmentations.
+            dataset_dir: directory storing the t2w images and labels.
             pixdim: output voxel spacing. if providing a single number, will use it for the first dimension.
                 items of the pixdim sequence map to the spatial dimensions of input image, if length
                 of pixdim sequence is longer than image spatial dimensions, will ignore the longer part,
@@ -265,10 +264,10 @@ class LoadImages:
                 matrix of input image.
             spatial_size: output image spatial size.
                 if `spatial_size` and `self.spatial_size` are not defined, or smaller than 1,
-                the transform will use the spatial size of `img`.
+                the transform will use the spatial size of `image`.
                 if some components of the `spatial_size` are non-positive values, the transform will use the
-                corresponding components of img size. For example, `spatial_size=(32, -1)` will be adapted
-                to `(32, 64)` if the second spatial dimension size of img is `64`.
+                corresponding components of image size. For example, `spatial_size=(32, -1)` will be adapted
+                to `(32, 64)` if the second spatial dimension size of image is `64`.
             augmentation: bool, specifying apply augmentation or not.
             rotate_range: angle range in radians. If element `i` is a pair of (min, max) values, then
                 `uniform[-rotate_range[i][0], rotate_range[i][1])` will be used to generate the rotation parameter
@@ -295,23 +294,64 @@ class LoadImages:
 
     def __call__(self, patient_ins_tuple):
         patient_name, ins = patient_ins_tuple
-        print({
-            "t2w": f"{self.dataset_dir}/data/{patient_name}_img.nii",
-            "seg": f"{self.dataset_dir}/data/{patient_name}_mask.nii",
-            "name": patient_name,
-        })
+        # print({
+        #     "image": f"{self.dataset_dir}/data/{patient_name}_img.nii",
+        #     "label": f"{self.dataset_dir}/data/{patient_name}_mask.nii",
+        #     "name": patient_name,
+        # })
         x = self.transform({
-            "t2w": f"{self.dataset_dir}/data/{patient_name}_img.nii",
-            "seg": f"{self.dataset_dir}/data/{patient_name}_mask.nii",
+            "image": f"{self.dataset_dir}/data/{patient_name}_img.nii",
+            "label": f"{self.dataset_dir}/data/{patient_name}_mask.nii",
             "name": patient_name,
         })
+        # print(x["image_meta_dict"]["affine"])
         # crop and resize foregrounds depth-wise
-        target_slice = torch.sum(x["seg"], dim=(0, 1, 2)) != 0
-        for k in ["t2w", "seg"]:
+        target_slice = torch.sum(x["label"], dim=(0, 1, 2)) != 0
+        for k in ["image", "label"]:
             x[k] = x[k][..., target_slice]
             x[k] = F.interpolate(
                 x[k].unsqueeze(0).to(torch.float),
                 size=self.spatial_size,
-                mode="trilinear" if k == "t2w" else "nearest"
+                mode="trilinear" if k == "image" else "nearest"
             ).squeeze(0)
+        # print(x["image_meta_dict"]["affine"])
+        # print(x["image_meta_dict"]["original_affine"])
+        # print(x["image_meta_dict"]["pixdim"])
+        # print(x["label_meta_dict"]["pixdim"])
         return x
+
+
+if __name__ == '__main__':
+    from matplotlib import pyplot as plt
+    transform = get_transform(
+        augmentation=False,
+        spatial_size=[256, 256, 40],
+        pixdim=[0.75, 0.75, 2.5],
+        rotate_range=np.pi / 36,
+        translate_range=[20, 20, 4],
+        scale_range=[0.15, 0.15, 0.15]
+    )
+    dataset_dir = "/Users/yiwenli/data/multiorgan_final"
+    patient_name = "005082"
+    img = transform({
+            "image": f"{dataset_dir}/data/{patient_name}_img.nii",
+            "label": f"{dataset_dir}/data/{patient_name}_mask.nii",
+            "name": patient_name,
+        })
+    print(img["image"].shape)
+
+    plt.subplot(2, 2, 1)
+    plt.gca().set_title("img")
+    plt.gca().axis('off')
+    img_slice = img["image"][0, ..., 20]
+    plt.imshow(np.transpose(img_slice))
+
+    spacingd = Spacingd(keys=["image"], pixdim=[5, 5, 2.5])
+    transformed_img = spacingd(img)
+    plt.subplot(2, 2, 2)
+    plt.gca().set_title("spaced_img")
+    plt.gca().axis('off')
+    print(transformed_img["image"].shape)
+    transformed_slice = transformed_img["image"][0, ..., 20]
+    plt.imshow(np.transpose(transformed_slice))
+    plt.show()

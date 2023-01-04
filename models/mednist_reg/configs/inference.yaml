@@ -113,12 +113,11 @@ evaluator:
         keys: [m_img]
         resample: False
         output_dir: "@output_dir"
-        output_ext: "png"
+        output_ext: "nii"
         output_postfix: "moving"
-        output_dtype: "$np.uint8"
+        output_dtype: "$np.float32"
         scale: 255
         separate_folder: False
-        writer: "PILWriter"
         output_name_formatter: "$lambda x, s: dict(idx=s._data_index, subject=x['filename_or_obj'])"
       - _target_: SaveImaged
         keys: [label]

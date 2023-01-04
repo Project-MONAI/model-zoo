@@ -5,7 +5,7 @@ dataset_dir: "/Users/yiwenli/data/multiorgan_final"
 bundle_root: "./"
 device: "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"
 output_dir: "$@bundle_root + '/eval'"
-ckpt: "$@bundle_root + '/models/model.pt'"
+ckpt: "$@bundle_root + '/lower_pelvic_reg_cpu_nonparallel-2.pth'"
 cross_subjects: false  # whether the input images are from the same subject
 
 dataset:
@@ -24,23 +24,62 @@ data_loader:
   batch_size: 1
   num_workers: 0
 
-# components for debugging
+# display first pair of data
 first_pair: $@dataset[0]
 display:
   - $plt.subplot(2,2,1)
-  - $plt.gca().set_title("moving t2w")
+  - $plt.gca().set_title("moving image")
   - $plt.gca().axis('off')
-  - $plt.imshow(np.transpose(@first_pair[0]["t2w"][0, ..., @first_pair[0]["t2w"].shape[-1]//2]))
+  - $plt.imshow(np.transpose(@first_pair[0]["image"][0, ..., @first_pair[0]["image"].shape[-1]//2]))
   - $plt.subplot(2,2,2)
-  - $plt.gca().set_title("fixed t2w")
+  - $plt.gca().set_title("fixed image")
   - $plt.gca().axis('off')
-  - $plt.imshow(np.transpose(@first_pair[1]["t2w"][0, ..., @first_pair[0]["t2w"].shape[-1]//2]))
+  - $plt.imshow(np.transpose(@first_pair[1]["image"][0, ..., @first_pair[0]["image"].shape[-1]//2]))
   - $plt.subplot(2,2,3)
-  - $plt.gca().set_title("moving seg")
+  - $plt.gca().set_title("moving label")
   - $plt.gca().axis('off')
-  - $plt.imshow(np.transpose(@first_pair[0]["seg"][0, ..., @first_pair[0]["t2w"].shape[-1]//2]))
+  - $plt.imshow(np.transpose(@first_pair[0]["label"][0, ..., @first_pair[0]["image"].shape[-1]//2]))
   - $plt.subplot(2,2,4)
-  - $plt.gca().set_title("fixed seg")
+  - $plt.gca().set_title("fixed label")
   - $plt.gca().axis('off')
-  - $plt.imshow(np.transpose(@first_pair[1]["seg"][0, ..., @first_pair[0]["t2w"].shape[-1]//2]))
+  - $plt.imshow(np.transpose(@first_pair[1]["label"][0, ..., @first_pair[0]["image"].shape[-1]//2]))
   - $plt.show()
+
+network:
+  _target_: LocalNet
+  spatial_dims: 3
+  in_channels: 2
+  out_channels: 3
+  num_channel_initial: 32
+  extract_levels: [0, 1, 2, 3]
+  out_kernel_initializer: "zeros"
+
+handlers:
+  - _target_: CheckpointLoader
+    load_path: "@ckpt"
+    load_dict: {model: "@network"}
+
+inferer:
+  _target_: "scripts.inferer.RegistrationInferer"
+
+evaluator:
+  _target_: "scripts.evaluator.RegistrationEvaluator"
+  device: "@device"
+  val_data_loader: "@data_loader"
+  network: "@network"
+  epoch_length: $len(@dataset) // @data_loader#batch_size
+  inferer: "@inferer"
+  val_handlers: "@handlers"
+  postprocessing:
+    _target_: Compose
+    transforms:
+      - _target_: "scripts.visualise.SaveRegd"
+        keys: ["moving_image", "moving_label", "fixed_image", "fixed_label", "warped_image", "warped_label"]
+        pixdim: [ 0.75, 0.75, 2.5 ]
+        spatial_size: [ 256, 256, 40 ]
+        output_dir: "@output_dir"
+
+eval:
+  - $monai.utils.set_determinism(seed=123)
+  - "$setattr(torch.backends.cudnn, 'benchmark', True)"
+  - $@evaluator.run()
