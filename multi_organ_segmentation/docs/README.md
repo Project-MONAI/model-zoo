@@ -24,7 +24,19 @@ This model was trained on an abdominal CT dataset in portal venous phase collect
 
 For this bundle, we split the 420 cases into training, validation and testing with 300, 60 and 60 cases, respectively.
 
-The labels are {"0": "background","1": "artery","2": "portal vein","3": "liver","4": "spleen","5": "stomach","6": "gallbladder","7": "pancreas"}
+## **Output**
+8 channels
+
+- 0: Background
+- 1: Artery
+- 2: Portal vein
+- 3: Liver
+- 4: Spleen
+- 5: Stomach
+- 6: Gallbladder
+- 7: Pancreas
+
+![alt用テキスト](output_example.png)
 
 ## **Scores**
 
