@@ -40,7 +40,7 @@
             "save_dir": "@output_dir",
             "metrics": [
                 "val_mean_dice",
-                "val_acc"
+                "val_accuracy"
             ],
             "metric_details": [
                 "val_mean_dice"
