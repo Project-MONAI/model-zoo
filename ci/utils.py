@@ -17,7 +17,7 @@ import shutil
 import subprocess
 from typing import List
 
-from monai.apps.utils import download_url
+from monai.apps.utils import download_url, extractall
 from monai.bundle.config_parser import ConfigParser
 from monai.utils import look_up_option
 
@@ -109,6 +109,37 @@ def save_model_info(model_info_dict, model_info_path: str):
     with open(model_info_path, "w") as f:
         json.dump(model_info_dict, f)
 
+
+def get_latest_model_info(model_info_dict):
+    all_bundles = {}
+    for k in model_info_dict.keys():
+        bundle_name = k.split("_v")[0]
+        bundle_version = k.split("_v")[1]
+        if bundle_name not in all_bundles.keys():
+            all_bundles[bundle_name] = {bundle_version: model_info_dict[k]}
+        else:
+            all_bundles[bundle_name][bundle_version] = model_info_dict[k]
+            
+    all_bundles_latest = {}
+    for bundle in all_bundles.keys():
+        latest = sorted(all_bundles[bundle].keys())[-1]
+        all_bundles_latest[bundle] = all_bundles[bundle][latest]
+
+    return all_bundles_latest
+
+
+def get_latest_bundle_list(model_info: str = "models/model_info.json", download_path = "download"):
+    # download all bundles (latest version), and return names
+    all_bundles_latest = get_latest_model_info(get_json_dict(model_info))
+    os.makedirs(download_path, exist_ok=True)
+    all_bundle_names = []
+
+    for bundle_name, info in all_bundles_latest.items():
+        download_url(filepath=os.path.join(download_path, f"{bundle_name}.zip"), url=info["source"], hash_val=info["checksum"], hash_type="sha1")
+        extractall(filepath=os.path.join(download_path, f"{bundle_name}.zip"), output_dir=download_path, has_base=True)
+        all_bundle_names.append(bundle_name)
+
+    return all_bundle_names
 
 def push_new_model_info_branch(model_info_path: str):
     email = os.environ["email"]
