@@ -128,18 +128,24 @@ def get_latest_model_info(model_info_dict):
     return all_bundles_latest
 
 
-def get_latest_bundle_list(model_info: str = "models/model_info.json", download_path = "download"):
+def get_latest_bundle_list(model_info: str = "models/model_info.json", download_path="download"):
     # download all bundles (latest version), and return names
     all_bundles_latest = get_latest_model_info(get_json_dict(model_info))
     os.makedirs(download_path, exist_ok=True)
     all_bundle_names = []
 
     for bundle_name, info in all_bundles_latest.items():
-        download_url(filepath=os.path.join(download_path, f"{bundle_name}.zip"), url=info["source"], hash_val=info["checksum"], hash_type="sha1")
+        download_url(
+            filepath=os.path.join(download_path, f"{bundle_name}.zip"),
+            url=info["source"],
+            hash_val=info["checksum"],
+            hash_type="sha1",
+        )
         extractall(filepath=os.path.join(download_path, f"{bundle_name}.zip"), output_dir=download_path, has_base=True)
         all_bundle_names.append(bundle_name)
 
     return all_bundle_names
+
 
 def push_new_model_info_branch(model_info_path: str):
     email = os.environ["email"]

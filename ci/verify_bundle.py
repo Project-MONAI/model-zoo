@@ -22,7 +22,7 @@ from bundle_custom_data import (
 )
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
-from utils import download_large_files, get_json_dict, get_latest_model_info
+from utils import download_large_files, get_json_dict
 
 # files that must be included in a bundle
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
