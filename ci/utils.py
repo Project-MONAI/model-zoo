@@ -119,7 +119,7 @@ def get_latest_model_info(model_info_dict):
             all_bundles[bundle_name] = {bundle_version: model_info_dict[k]}
         else:
             all_bundles[bundle_name][bundle_version] = model_info_dict[k]
-            
+
     all_bundles_latest = {}
     for bundle in all_bundles.keys():
         latest = sorted(all_bundles[bundle].keys())[-1]
