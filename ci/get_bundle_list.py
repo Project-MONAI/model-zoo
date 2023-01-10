@@ -21,7 +21,7 @@ def main():
 
     for bundle in bundle_list:
         bundle_names += f"{bundle} "
-    print(bundle_names)
+    print(bundle_names[:-1])
 
 
 if __name__ == "__main__":
