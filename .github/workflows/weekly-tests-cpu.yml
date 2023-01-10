@@ -6,7 +6,6 @@ on:
   - cron: "0 5 * * 0"  # 5:00, every Sunday
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  pull_request:
 
 jobs:
   get-list:
@@ -67,7 +66,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip wheel
         python -m pip install cffi && python -m pip install pipenv
-    - name: gcheck
+    - name: check
       run: |
         # clean up temporary files
         $(pwd)/runtests.sh --clean
