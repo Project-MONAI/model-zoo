@@ -17,7 +17,7 @@ import shutil
 import subprocess
 from typing import List
 
-from monai.apps.utils import download_url, extractall
+from monai.apps.utils import download_url
 from monai.bundle.config_parser import ConfigParser
 from monai.utils import look_up_option
 
