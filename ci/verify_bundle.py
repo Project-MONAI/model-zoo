@@ -285,9 +285,8 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
         print("Provided TorchScript module is verified correctly.")
 
 
-def verify(bundle, mode="full"):
+def verify(bundle, models_path="models", mode="full"):
 
-    models_path = "models"
     print(f"start verifying {bundle}:")
     # add bundle path to ensure custom code can be used
     sys.path = [os.path.join(models_path, bundle)] + sys.path
@@ -297,18 +296,19 @@ def verify(bundle, mode="full"):
     # verify bundle keys
     verify_bundle_keys(models_path, bundle)
     print("keys are verified correctly.")
-    # verify version, changelog
-    verify_version_changes(models_path, bundle)
-    print("version and changelog are verified correctly.")
+    if mode != "regular":
+        # verify version, changelog
+        verify_version_changes(models_path, bundle)
+        print("version and changelog are verified correctly.")
     # verify metadata format and data
     bundle_path = os.path.join(models_path, bundle)
     verify_metadata_format(bundle_path)
     print("metadata format is verified correctly.")
 
-    if mode == "min":
+    if mode in ["min", "regular"]:
         return
 
-    # The following are optional tests
+    # The following are optional tests and require GPU
     net_id, inference_file_name = "network_def", _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
     config_file = os.path.join("configs", inference_file_name)
 
@@ -318,7 +318,6 @@ def verify(bundle, mode="full"):
         verify_data_shape(bundle_path, net_id, config_file)
         print("data shape is verified correctly.")
 
-    # The following tests require to use GPU
     if bundle in exclude_verify_torchscript_list:
         print(f"bundle: {bundle} does not support torchscript, skip verifying.")
     else:
@@ -328,8 +327,10 @@ def verify(bundle, mode="full"):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-b", "--b", type=str, help="bundle name.")
+    parser.add_argument("-p", "--p", type=str, default="models", help="models path.")
     parser.add_argument("-m", "--mode", type=str, default="full", help="verify bundle mode (full/min).")
     args = parser.parse_args()
     bundle = args.b
+    models_path = args.p
     mode = args.mode
-    verify(bundle, mode)
+    verify(bundle, models_path, mode)
