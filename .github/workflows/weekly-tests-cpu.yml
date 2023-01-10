@@ -37,7 +37,9 @@ jobs:
       run: |
         # clean up temporary files
         $(pwd)/runtests.sh --clean
-        echo "list=$(python $(pwd)/ci/get_bundle_list.py)" >> $GITHUB_OUTPUT
+        list=$(python $(pwd)/ci/get_bundle_list.py)
+        echo "$list"
+        echo "$list" >> $GITHUB_OUTPUT
       shell: bash
   test-cpu:
     needs: get-list
