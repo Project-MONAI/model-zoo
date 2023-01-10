@@ -35,7 +35,7 @@ verify_release_bundle() {
     download_path="download"
     pip install -r requirements-dev.txt
     # download bundle from releases
-    python -m monai.bundle download --source "github" --name "$bundle" --bundle_dir "$download_path"
+    python $(pwd)/ci/download_latest_bundle.py --b "$bundle" --models_path $(pwd)/models --p "$download_path"
     # get required libraries according to the bundle's metadata file
     requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --p "$download_path")
     if [ ! -z "$requirements" ]; then

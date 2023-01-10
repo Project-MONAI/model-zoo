@@ -110,6 +110,16 @@ def save_model_info(model_info_dict, model_info_path: str):
         json.dump(model_info_dict, f)
 
 
+def get_latest_version(bundle_name: str, model_info_path: str):
+    model_info_dict = get_json_dict(model_info_path)
+    versions = []
+    for k in model_info_dict.keys():
+        if bundle_name in k:
+            versions.append(k.split(f"{bundle_name}_v")[1])
+
+    return sorted(versions)[-1]
+
+
 def push_new_model_info_branch(model_info_path: str):
     email = os.environ["email"]
     username = os.environ["username"]

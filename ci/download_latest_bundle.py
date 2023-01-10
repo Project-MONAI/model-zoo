@@ -11,20 +11,26 @@
 
 
 import argparse
+import os
 
-from utils import get_sub_folders
+from monai.bundle import download
+from utils import get_latest_version
 
 
-def main(models_path):
+def main(bundle_name: str, models_path: str, download_path: str):
 
-    bundle_list = get_sub_folders(root_dir=models_path)
-
-    print(bundle_list)
+    model_info_path = os.path.join(models_path, "model_info.json")
+    version = get_latest_version(bundle_name=bundle_name, model_info_path=model_info_path)
+    download(name=bundle_name, source="github", version=version, bundle_dir=download_path)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-b", "--b", type=str, help="bundle name.")
     parser.add_argument("-models_path", "--models_path", type=str, help="models path.")
+    parser.add_argument("-p", "--p", type=str, help="download path.")
     args = parser.parse_args()
+    bundle_name = args.b
     models_path = args.models_path
-    main(models_path)
+    download_path = args.p
+    main(bundle_name, models_path, download_path)

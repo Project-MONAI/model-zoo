@@ -36,7 +36,7 @@ jobs:
       run: |
         # clean up temporary files
         $(pwd)/runtests.sh --clean
-        echo "list=$(python $(pwd)/ci/get_bundle_list.py)" >> $GITHUB_OUTPUT
+        echo "list=$(python $(pwd)/ci/get_bundle_list.py --models_path $(pwd)/models/)" >> $GITHUB_OUTPUT
       shell: bash
     outputs:
       list: ${{ steps.get-bundle-list.outputs.list }}
