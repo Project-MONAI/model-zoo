@@ -40,9 +40,10 @@ jobs:
         echo "list=$(python $(pwd)/ci/get_bundle_list.py)" >> $GITHUB_OUTPUT
       shell: bash
   test-cpu:
+    needs: get-list
     strategy:
       matrix:
-        bundle: ${{ jobs.get-list.steps.get-bundle-list.outputs.list }}
+        bundle: ${{ needs.get-list.steps.get-bundle-list.outputs.list }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
