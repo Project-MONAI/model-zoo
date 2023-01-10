@@ -15,7 +15,6 @@ from monai.bundle import get_all_bundles_list
 
 def main():
 
-    bundle_names = ""
     bundle_list = get_all_bundles_list()
     bundle_list = [l[0] for l in bundle_list]
 
