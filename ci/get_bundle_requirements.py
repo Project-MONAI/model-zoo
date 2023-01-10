@@ -16,9 +16,8 @@ import os
 from utils import get_json_dict
 
 
-def get_requirements(bundle):
+def get_requirements(bundle, models_path):
 
-    models_path = "models"
     bundle_path = os.path.join(models_path, bundle)
     meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
     if os.path.exists(meta_file_path):
@@ -49,6 +48,8 @@ def get_requirements(bundle):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-b", "--b", type=str, help="bundle name.")
+    parser.add_argument("-p", "--p", type=str, default="models", help="models path.")
     args = parser.parse_args()
     bundle = args.b
-    get_requirements(bundle)
+    models_path = args.p
+    get_requirements(bundle, models_path)

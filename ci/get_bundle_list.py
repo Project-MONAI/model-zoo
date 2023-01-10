@@ -12,20 +12,19 @@
 
 import argparse
 
-from utils import prepare_schema
+from utils import get_sub_folders
 
 
-def main(bundle_list, models_path):
+def main(models_path):
 
-    prepare_schema(bundle_list, root_path=models_path)
+    bundle_list = get_sub_folders(root_dir=models_path)
+
+    print(bundle_list)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
-    parser.add_argument("-l", "--l", type=str, help="bundle list.")
-    parser.add_argument("-p", "--p", type=str, default="models", help="models path.")
+    parser.add_argument("-models_path", "--models_path", type=str, help="models path.")
     args = parser.parse_args()
-    bundle_list = args.l.split(" ")
-    bundle_list = [f for f in bundle_list if f != ""]
-    models_path = args.p
-    main(bundle_list, models_path)
+    models_path = args.models_path
+    main(models_path)
