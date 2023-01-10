@@ -12,13 +12,14 @@
 
 import argparse
 
-from utils import get_latest_bundle_list
+from monai.bundle import get_all_bundles_list
 
 
-def main(model_info, download_path):
+def main(model_info: str):
 
     bundle_names = ""
-    bundle_list = get_latest_bundle_list(model_info=model_info, download_path=download_path)
+    bundle_list = get_all_bundles_list()
+    bundle_list = [l[0] for l in bundles_list]
 
     for bundle in bundle_list:
         bundle_names += f"{bundle} "
@@ -26,10 +27,4 @@ def main(model_info, download_path):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="")
-    parser.add_argument("-model_info", "--model_info", type=str, help="model_info.json path")
-    parser.add_argument("-p", "--p", type=str, help="download path")
-    args = parser.parse_args()
-    download_path = args.p
-    model_info = args.model_info
-    main(model_info, download_path)
+    main()

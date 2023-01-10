@@ -16,13 +16,13 @@
 #
 
 # Argument(s):
-#   BUILD_TYPE:   all, tests to execute
+#   bundle:   bundle to be tested
 
 set -ex
-BUILD_TYPE=all
+bundle=""
 
 if [[ $# -eq 1 ]]; then
-    BUILD_TYPE=$1
+    bundle=$1
 
 elif [[ $# -gt 1 ]]; then
     echo "ERROR: too many parameters are provided"
@@ -43,36 +43,27 @@ remove_pipenv() {
 
 verify_release_bundle() {
     echo 'Run verify bundle...'
-    init_pipenv requirements-dev.txt
     # get all bundles
     download_path="download"
-    bundle_list=$(pipenv run python $(pwd)/ci/get_all_latest_bundle.py --model_info $(pwd)/models/model_info.json --p "$download_path")
-    pipenv run python $(pwd)/ci/prepare_schema.py --l "$bundle_list" --p "$download_path"
-    echo $bundle_list
-    for bundle in $bundle_list;
-    do
-        init_pipenv requirements-dev.txt
-        # get required libraries according to the bundle's metadata file
-        requirements=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --p "$download_path")
-        if [ ! -z "$requirements" ]; then
-            echo "install required libraries for bundle: $bundle"
-            pipenv install -r "$requirements"
-        fi
-        # verify bundle
-        pipenv run python $(pwd)/ci/verify_bundle.py -b "$bundle" -p "$download_path" -m "regular"  # regular tests on cpu
-        remove_pipenv
-    done
+    init_pipenv requirements-dev.txt
+    # download bundle from releases
+    pipenv run python -m monai.bundle download --source "github" --name "$bundle" --bundle_dir "$download_path"
+    # get required libraries according to the bundle's metadata file
+    requirements=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --p "$download_path")
+    if [ ! -z "$requirements" ]; then
+        echo "install required libraries for bundle: $bundle"
+        pipenv install -r "$requirements"
     fi
+    # verify bundle
+    pipenv run python $(pwd)/ci/verify_bundle.py -b "$bundle" -p "$download_path" -m "regular"  # regular tests on cpu
+    remove_pipenv
 }
 
 
-case $BUILD_TYPE in
+case $bundle in
 
-    all)
-        echo "Run all tests..."
-        verify_release_bundle
-        ;;
     *)
-        echo "ERROR: unknown parameter: $BUILD_TYPE"
+        echo "Check bundle: $bundle"
+        verify_release_bundle
         ;;
 esac
