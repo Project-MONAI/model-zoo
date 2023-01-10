@@ -29,34 +29,21 @@ elif [[ $# -gt 1 ]]; then
     exit 1
 fi
 
-init_pipenv() {
-    echo "initializing pip environment: $1"
-    pipenv install -r $1
-    export PYTHONPATH=$PWD
-}
-
-remove_pipenv() {
-    echo "removing pip environment"
-    pipenv --rm
-    rm Pipfile Pipfile.lock
-}
-
 verify_release_bundle() {
     echo 'Run verify bundle...'
     # get all bundles
     download_path="download"
-    init_pipenv requirements-dev.txt
+    pip install -r requirements-dev.txt
     # download bundle from releases
-    pipenv run python -m monai.bundle download --source "github" --name "$bundle" --bundle_dir "$download_path"
+    python -m monai.bundle download --source "github" --name "$bundle" --bundle_dir "$download_path"
     # get required libraries according to the bundle's metadata file
-    requirements=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --p "$download_path")
+    requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --p "$download_path")
     if [ ! -z "$requirements" ]; then
         echo "install required libraries for bundle: $bundle"
-        pipenv install -r "$requirements"
+        pip install -r "$requirements"
     fi
     # verify bundle
-    pipenv run python $(pwd)/ci/verify_bundle.py -b "$bundle" -p "$download_path" -m "regular"  # regular tests on cpu
-    remove_pipenv
+    python $(pwd)/ci/verify_bundle.py -b "$bundle" -p "$download_path" -m "regular"  # regular tests on cpu
 }
 
 

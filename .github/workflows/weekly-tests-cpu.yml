@@ -6,6 +6,7 @@ on:
   - cron: "0 5 * * 0"  # 5:00, every Sunday
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  pull_request:
 
 jobs:
   get-list:
@@ -30,7 +31,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip wheel
         python -m pip install -r requirements-dev.txt
-        python -m pip install cffi && python -m pip install pipenv
     - name: get bundle list
       id: get-bundle-list
       run: |
@@ -65,7 +65,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip wheel
-        python -m pip install cffi && python -m pip install pipenv
     - name: check
       run: |
         # clean up temporary files
