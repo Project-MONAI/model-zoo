@@ -37,15 +37,15 @@ jobs:
       run: |
         # clean up temporary files
         $(pwd)/runtests.sh --clean
-        lst=$(python $(pwd)/ci/get_bundle_list.py)
-        echo "$lst"
-        echo "list=$lst" >> $GITHUB_OUTPUT
+        echo "list=$(python $(pwd)/ci/get_bundle_list.py)" >> $GITHUB_OUTPUT
       shell: bash
+    outputs:
+      list: ${{ steps.get-bundle-list.outputs.list }}
   test-cpu:
     needs: get-list
     strategy:
       matrix:
-        bundle: ${{ fromJson(needs.get-list.steps.get-bundle-list.outputs.list) }}
+        bundle: ${{ fromJson(needs.get-list.outputs.list) }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
