@@ -43,7 +43,7 @@ jobs:
     needs: get-list
     strategy:
       matrix:
-        bundle: ${{ needs.get-list.steps.get-bundle-list.outputs.list }}
+        bundle: ${{ fromJson(needs.get-list.steps.get-bundle-list.outputs.list) }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

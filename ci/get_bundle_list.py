@@ -19,9 +19,7 @@ def main():
     bundle_list = get_all_bundles_list()
     bundle_list = [l[0] for l in bundle_list]
 
-    for bundle in bundle_list:
-        bundle_names += f"{bundle} "
-    print(bundle_names[:-1])
+    print(bundle_list)
 
 
 if __name__ == "__main__":
