@@ -12,7 +12,7 @@ The model is trained to simultaneous segment and classify nuclei. Training is do
 
 `PRETRAIN_MODEL_URL` is "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download" which can be used in bash code below.
 
-![Model workflow](https://ars.els-cdn.com/content/image/1-s2.0-S1361841519301045-fx1_lrg.jpg)
+![Model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_hovernet_pipeline.png)
 
 ## Data
 

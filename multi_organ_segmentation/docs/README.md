@@ -37,7 +37,7 @@ For this bundle, we split the 420 cases into training, validation and testing wi
 - 7: Pancreas
 
 Here is an example of output.
- 
+
 ![alt用テキスト](output_example.png)
 
 ## **Scores**

@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "changelog": {
+        "0.0.4": "Fix evaluation",
         "0.0.3": "Update to use MONAI 1.1.0",
         "0.0.2": "Update The Torch Vision Transform",
         "0.0.1": "initialize the model package structure"
