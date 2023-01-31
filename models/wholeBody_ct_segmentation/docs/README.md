@@ -50,10 +50,10 @@ One channel
 
 
 #### Training Loss
-![A graph showing the training loss over 1260 epochs (10080 iterations).](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_train_2.png)
+![A graph showing the training loss over 200 epochs (over 100,000 iterations).]
 
 #### Validation Dice
-![A graph showing the validation mean Dice over 1260 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_val_2.png)
+![A graph showing the validation mean Dice over 100 epochs.]
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
