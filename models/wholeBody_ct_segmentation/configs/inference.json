@@ -96,10 +96,10 @@
             96
         ],
         "sw_batch_size": 1,
-        "overlap": 0.4,
+        "overlap": 0.3,
         "padding_mode": "replicate",
         "mode": "gaussian",
-        "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"
+        "device": "$torch.device('cpu')"
     },
     "postprocessing": {
         "_target_": "Compose",
