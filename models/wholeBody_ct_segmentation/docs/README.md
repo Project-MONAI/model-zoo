@@ -22,7 +22,7 @@ The segmentation of 104 tissues is formulated as the voxel-wise multi-label segm
 
 The training was performed with the following:
 
-- GPU: at least 24 GB of GPU memory
+- GPU: 32 GB of GPU memory
 - Actual Model Input: 96 x 96 x 96
 - AMP: True
 - Optimizer: AdamW
@@ -38,15 +38,31 @@ One channel
 
 105 channels
 - Label 0: Background (everything else)
-- TODO
+- label 1-105: Foreground classes (104)
 
 ### Resource Requirements
 
 - TODO
 
+### Implementation Details
+
+
+
 ## Performance
 
-- TODO
+- 3.0 mm Model Training
+
+
+- 1.5 mm Model Training
+
+  - Training Accuracy
+
+![](./imgs/totalsegmentator_train_accuracy.png) <br>
+
+  - Validation Dice 
+
+![](./imgs/totalsegmentator_15mm_validation.png) <br>
+
 
 
 #### Training Loss

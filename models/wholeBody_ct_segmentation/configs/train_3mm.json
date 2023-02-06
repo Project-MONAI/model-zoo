@@ -81,9 +81,9 @@
                     "label"
                 ],
                 "pixdim": [
-                    1.5,
-                    1.5,
-                    1.5
+                    3,
+                    3,
+                    3
                 ],
                 "mode": [
                     "bilinear",
@@ -153,7 +153,7 @@
             "_target_": "CacheDataset",
             "data": "$[{'image': i, 'label': l} for i, l in zip(@images[:-57], @labels[:-57])]",
             "transform": "@train#preprocessing",
-            "cache_rate": 0.4,
+            "cache_rate": 1.0,
             "num_workers": 4
         },
         "dataloader": {
@@ -268,9 +268,9 @@
                         "label"
                     ],
                     "pixdim": [
-                        1.5,
-                        1.5,
-                        1.5
+                        3,
+                        3,
+                        3
                     ],
                     "mode": [
                         "bilinear",
@@ -347,7 +347,7 @@
         },
         "dataset": {
             "_target_": "Dataset",
-            "data": "$[{'image': i, 'label': l} for i, l in zip(@images[-200:], @labels[-200:])]",
+            "data": "$[{'image': i, 'label': l} for i, l in zip(@images[-57:], @labels[-57:])]",
             "transform": "@validate#preprocessing"
         },
         "dataloader": {
