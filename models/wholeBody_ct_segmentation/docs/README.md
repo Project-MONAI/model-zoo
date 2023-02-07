@@ -18,7 +18,7 @@ The training set is the 104 whole body structures from the TotalSegmentator rele
 
 ## Training configuration
 
-The segmentation of 104 tissues is formulated as the voxel-wise multi-label segmentation. The model is optimized with gradient descent method minimizing Dice + cross entropy loss between the predicted mask and ground truth segmentation.
+The segmentation of 104 tissues is formulated as the voxel-wise multi-label segmentation. The model is optimized with the gradient descent method minimizing Dice + cross entropy loss between the predicted mask and ground truth segmentation.
 
 The training was performed with the following:
 

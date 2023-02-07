@@ -52,9 +52,9 @@
                 "_target_": "Spacingd",
                 "keys": "image",
                 "pixdim": [
-                    1.5,
-                    1.5,
-                    1.5
+                    3.0,
+                    3.0,
+                    3.0
                 ],
                 "mode": "bilinear"
             },
