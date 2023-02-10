@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "changelog": {
+        "0.5.2": "black autofix format and add name tag",
         "0.5.1": "modify dataset key name",
         "0.5.0": "use detection inferer",
         "0.4.5": "fixed some small changes with formatting in readme",
@@ -23,6 +24,7 @@
         "pytorch-ignite": "0.4.9",
         "torchvision": "0.14.0"
     },
+    "name": "Lung nodule CT detection",
     "task": "CT lung nodule detection",
     "description": "A pre-trained model for volumetric (3D) detection of the lung lesion from CT image on LUNA16 dataset",
     "authors": "MONAI team",
