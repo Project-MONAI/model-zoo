@@ -41,7 +41,7 @@
                     96,
                     96
                 ],
-                "dtype": "float64",
+                "dtype": "float32",
                 "value_range": [
                     0,
                     1

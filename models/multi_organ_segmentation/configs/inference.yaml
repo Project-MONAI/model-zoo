@@ -6,7 +6,7 @@ input_channels: 1
 output_classes: 8
 arch_ckpt_path: "$@bundle_root + '/models/search_code_18590.pt'"
 arch_ckpt: "$torch.load(@arch_ckpt_path, map_location=torch.device('cuda'))"
-bundle_root: "/work/"
+bundle_root: "."
 output_dir: "$@bundle_root + '/eval'"
 dataset_dir: "/data/"
 data_list_file_path: "$@bundle_root + '/configs/dataset_0.json'"
