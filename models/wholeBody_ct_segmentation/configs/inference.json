@@ -1,13 +1,23 @@
 {
+    "loadable_params": [
+        "highres",
+        "sw_overlap",
+        "sw_batch_size"
+    ],
     "imports": [
         "$import glob",
         "$import os"
     ],
     "bundle_root": ".",
-    "output_dir": "$@bundle_root + '/eval_v2'",
+    "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "../datasets/totalSegmentator",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "highres": true,
+    "sw_overlap":0.25,
+    "sw_batch_size": 1,
+    "pixdim":  "$[1.5, 1.5, 1.5] if @highres else [3.0, 3.0, 3.0]",
+    "modelname": "$'model.pt' if @highres else 'model_lowres.pt'",
     "network_def": {
         "_target_": "SegResNet",
         "spatial_dims": 3,
@@ -51,11 +61,7 @@
             {
                 "_target_": "Spacingd",
                 "keys": "image",
-                "pixdim": [
-                    1.5,
-                    1.5,
-                    1.5
-                ],
+                "pixdim": "@pixdim",
                 "mode": "bilinear"
             },
             {
@@ -90,8 +96,8 @@
             96,
             96
         ],
-        "sw_batch_size": 1,
-        "overlap": 0.25,
+        "sw_batch_size": "@sw_batch_size",
+        "overlap": "@sw_overlap",
         "padding_mode": "replicate",
         "mode": "gaussian",
         "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"
@@ -129,7 +135,7 @@
     "handlers": [
         {
             "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_path": "$@bundle_root + '/models/' + @modelname",
             "load_dict": {
                 "model": "@network"
             }
