@@ -16,7 +16,7 @@
     "highres": true,
     "sw_overlap": 0.25,
     "sw_batch_size": 1,
-    "pixdim":  "$[1.5, 1.5, 1.5] if @highres else [3.0, 3.0, 3.0]",
+    "pixdim": "$[1.5, 1.5, 1.5] if @highres else [3.0, 3.0, 3.0]",
     "modelname": "$'model.pt' if @highres else 'model_lowres.pt'",
     "network_def": {
         "_target_": "SegResNet",

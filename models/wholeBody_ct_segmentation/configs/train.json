@@ -20,7 +20,7 @@
     "val_interval": 20,
     "init_LR": 0.0001,
     "batch_size": 4,
-    "pixdim":  "$[1.5, 1.5, 1.5] if @highres else [3.0, 3.0, 3.0]",
+    "pixdim": "$[1.5, 1.5, 1.5] if @highres else [3.0, 3.0, 3.0]",
     "modelname": "$'model.pt' if @highres else 'model_lowres.pt'",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
@@ -52,7 +52,7 @@
         "_target_": "torch.optim.AdamW",
         "params": "$@network.parameters()",
         "lr": "@init_LR",
-        "weight_decay": 0.00001
+        "weight_decay": 1e-05
     },
     "train": {
         "deterministic_transforms": [

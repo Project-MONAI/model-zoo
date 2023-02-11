@@ -10,19 +10,19 @@ Figure source from the TotalSegmentator [2].
 
 ## MONAI Label Showcase
 
-- We highlight the use of this bundle to use and visualize in MONAI Label + 3D Slicer integration. 
+- We highlight the use of this bundle to use and visualize in MONAI Label + 3D Slicer integration.
 
 ![](./imgs/totalsegmentator_monailabel.png) <br>
 
 ## Data
 
-The training set is the 104 whole-body structures from the TotalSegmentator released datasets. Users can find more details on the datasets at https://github.com/wasserth/TotalSegmentator. All rights and licenses are reserved to the original authors.  
+The training set is the 104 whole-body structures from the TotalSegmentator released datasets. Users can find more details on the datasets at https://github.com/wasserth/TotalSegmentator. All rights and licenses are reserved to the original authors.
 
 - Target: 104 structures
 - Modality: CT
 - Source: TotalSegmentator
 - Challenge: Large volumes of structures in CT images
-  
+
 ### Preprocessing
 
 To use the bundle, users need to download the data and merge all annotated labels into one NIFTI file. Each file contains 0-104 values, each value represents one anatomy class. A sample set is provided with this [link](https://drive.google.com/file/d/1DtDmERVMjks1HooUhggOKAuDm0YIEunG/view?usp=share_link).
@@ -56,7 +56,7 @@ One channel
 We retrained two versions of the totalSegmentator models, following the original paper and implementation.
 To meet multiple demands according to computation resources and performance, we provide a 1.5 mm model and a 3.0 mm model, both models are trained with 104 foreground output channels.
 
-In this bundle, we configured a parameter called `highres`, users can set it to `true` when using 1.5 mm model, and set it to `false` to use the 3.0 mm model. The high-resolution model is named `model.pt` by default, the low-resolution model is named `model_lowres.pt`. 
+In this bundle, we configured a parameter called `highres`, users can set it to `true` when using 1.5 mm model, and set it to `false` to use the 3.0 mm model. The high-resolution model is named `model.pt` by default, the low-resolution model is named `model_lowres.pt`.
 
 In MONAI Label use case, users can set the parameter in 3D Slicer plugin to control which model to infer and train.
 
@@ -76,7 +76,7 @@ Benchmarking on GPU: Memory: **28.73G**
 
 - `++ Latencies => Total: 6.0277; Pre: 1.6228; Inferer: 4.1153; Invert: 0.0000; Post: 0.0897; Write: 0.1995`
 
-Benchmarking on CPU: Memory: **26G** 
+Benchmarking on CPU: Memory: **26G**
 
 - `++ Latencies => Total: 38.3108; Pre: 1.6643; Inferer: 30.3018; Invert: 0.0000; Post: 6.1656; Write: 0.1786`
 
