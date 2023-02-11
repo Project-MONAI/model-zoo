@@ -92,8 +92,6 @@ CPU: Memory: **2.3G**
 
 ## Performance
 
-- 3.0 mm Model Training
-
 - 1.5 mm Model Training
 
   - Training Accuracy
@@ -103,12 +101,6 @@ CPU: Memory: **2.3G**
   - Validation Dice
 
 ![](./imgs/totalsegmentator_15mm_validation.png) <br>
-
-#### Training Loss
-![A graph showing the training loss over 200 epochs (over 100,000 iterations).]
-
-#### Validation Dice
-![A graph showing the validation mean Dice over 100 epochs.]
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
