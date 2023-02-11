@@ -1,4 +1,10 @@
 {
+    "loadable_params": [
+        "highres",
+        "sw_overlap",
+        "sw_batch_size",
+        "init_LR"
+    ],
     "imports": [
         "$import glob",
         "$import os",
@@ -7,10 +13,15 @@
     "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "../datasets/totalSegmentator",
-    "images": "$list(sorted(glob.glob(@dataset_dir + '/images/*.nii.gz')))",
-    "labels": "$list(sorted(glob.glob(@dataset_dir + '/labels/*.nii.gz')))",
+    "dataset_dir": "sampledata",
+    "images": "$list(sorted(glob.glob(@dataset_dir + '/imagesTr/*.nii.gz')))",
+    "labels": "$list(sorted(glob.glob(@dataset_dir + '/labelsTr/*.nii.gz')))",
+    "highres": true,
     "val_interval": 20,
+    "init_LR": 0.0001,
+    "batch_size": 4,
+    "pixdim":  "$[1.5, 1.5, 1.5] if @highres else [3.0, 3.0, 3.0]",
+    "modelname": "$'model.pt' if @highres else 'model_lowres.pt'",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "SegResNet",
@@ -40,7 +51,7 @@
     "optimizer": {
         "_target_": "torch.optim.AdamW",
         "params": "$@network.parameters()",
-        "lr": 0.0001,
+        "lr": "@init_LR",
         "weight_decay": 0.00001
     },
     "train": {
@@ -80,11 +91,7 @@
                     "image",
                     "label"
                 ],
-                "pixdim": [
-                    1.5,
-                    1.5,
-                    1.5
-                ],
+                "pixdim": "@pixdim",
                 "mode": [
                     "bilinear",
                     "nearest"
@@ -151,7 +158,7 @@
         },
         "dataset": {
             "_target_": "CacheDataset",
-            "data": "$[{'image': i, 'label': l} for i, l in zip(@images[:-57], @labels[:-57])]",
+            "data": "$[{'image': i, 'label': l} for i, l in zip(@images[:-10], @labels[:-10])]",
             "transform": "@train#preprocessing",
             "cache_rate": 0.4,
             "num_workers": 4
@@ -159,7 +166,7 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
-            "batch_size": 16,
+            "batch_size": "@batch_size",
             "shuffle": true,
             "num_workers": 4
         },
@@ -267,11 +274,7 @@
                         "image",
                         "label"
                     ],
-                    "pixdim": [
-                        1.5,
-                        1.5,
-                        1.5
-                    ],
+                    "pixdim": "@pixdim",
                     "mode": [
                         "bilinear",
                         "nearest"
@@ -347,7 +350,7 @@
         },
         "dataset": {
             "_target_": "Dataset",
-            "data": "$[{'image': i, 'label': l} for i, l in zip(@images[-200:], @labels[-200:])]",
+            "data": "$[{'image': i, 'label': l} for i, l in zip(@images[-10:], @labels[-10:])]",
             "transform": "@validate#preprocessing"
         },
         "dataloader": {
@@ -384,7 +387,7 @@
                     "model": "@network"
                 },
                 "save_key_metric": true,
-                "key_metric_filename": "model.pt"
+                "key_metric_filename": "@modelname"
             }
         ],
         "key_metric": {

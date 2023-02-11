@@ -1,24 +1,35 @@
 # Model Overview
-A pre-trained model for volumetric (3D) segmentation of 104 whole body segments.
 
-This model is trained using the SegResNet [1] network. The model is trained using TotalSegmentator datasets [2].
+Body CT segmentation models are evolving. Starting from abdominal multi-organ segmentation model [1]. Now the community is developing hundreds of target anatomies. In this bundle, we provide re-trained models for (3D) segmentation of 104 whole-body segments.
+
+This model is trained using the SegResNet [3] network. The model is trained using TotalSegmentator datasets [2].
 
 ![structures](https://github.com/wasserth/TotalSegmentator/blob/master/resources/imgs/overview_classes.png)
 
 Figure source from the TotalSegmentator [2].
 
+## MONAI Label Showcase
+
+- We highlight the use of this bundle to use and visualize in MONAI Label + 3D Slicer integration. 
+
+![](./imgs/totalsegmentator_monailabel.png) <br>
+
 ## Data
 
-The training set is the 104 whole body structures from the TotalSegmentator released datasets. Users can find more details on the datasets at https://github.com/wasserth/TotalSegmentator.
+The training set is the 104 whole-body structures from the TotalSegmentator released datasets. Users can find more details on the datasets at https://github.com/wasserth/TotalSegmentator. All rights and licenses are reserved to the original authors.  
 
 - Target: 104 structures
 - Modality: CT
 - Source: TotalSegmentator
 - Challenge: Large volumes of structures in CT images
+  
+### Preprocessing
 
-## Training configuration
+To use the bundle, users need to download the data and merge all annotated labels into one NIFTI file. Each file contains 0-104 values, each value represents one anatomy class. A sample set is provided with this [link](https://drive.google.com/file/d/1DtDmERVMjks1HooUhggOKAuDm0YIEunG/view?usp=share_link).
 
-The segmentation of 104 tissues is formulated as the voxel-wise multi-label segmentation. The model is optimized with the gradient descent method minimizing Dice + cross entropy loss between the predicted mask and ground truth segmentation.
+## Training Configuration
+
+The segmentation of 104 tissues is formulated as voxel-wise multi-label segmentation. The model is optimized with the gradient descent method minimizing Dice + cross-entropy loss between the predicted mask and ground truth segmentation.
 
 The training was performed with the following:
 
@@ -40,18 +51,48 @@ One channel
 - Label 0: Background (everything else)
 - label 1-105: Foreground classes (104)
 
-### Resource Requirements
+### High-Resolution and Low-Resolution Models
 
-- TODO
+We retrained two versions of the totalSegmentator models, following the original paper and implementation.
+To meet multiple demands according to computation resources and performance, we provide a 1.5 mm model and a 3.0 mm model, both models are trained with 104 foreground output channels.
 
-### Implementation Details
+In this bundle, we configured a parameter called `highres`, users can set it to `true` when using 1.5 mm model, and set it to `false` to use the 3.0 mm model. The high-resolution model is named `model.pt` by default, the low-resolution model is named `model_lowres.pt`. 
 
+In MONAI Label use case, users can set the parameter in 3D Slicer plugin to control which model to infer and train.
 
+- Pretrained Checkpoints
+  - 1.5 mm model: [Download link](https://drive.google.com/file/d/1PHpFWboimEXmMSe2vBra6T8SaCMC2SHT/view?usp=share_link)
+  - 3.0 mm model: [Download link](https://drive.google.com/file/d/1c3osYscnr6710ObqZZS8GkZJQlWlc7rt/view?usp=share_link)
+
+### Resource Requirements and Latency Benchmarks
+
+Latencies and memory performance of using the bundle with MONAI Label:
+
+Tested Image Dimension: **(512, 512, 397)**, the slice thickness is **1.5mm** in this case. After resample to **1.5** isotropic resolution, the dimension is   **(287, 287, 397)**
+
+## 1.5 mm (highres) model (Single Model with 104 foreground classes)
+
+Benchmarking on GPU: Memory: **28.73G**
+
+- `++ Latencies => Total: 6.0277; Pre: 1.6228; Inferer: 4.1153; Invert: 0.0000; Post: 0.0897; Write: 0.1995`
+
+Benchmarking on CPU: Memory: **26G** 
+
+- `++ Latencies => Total: 38.3108; Pre: 1.6643; Inferer: 30.3018; Invert: 0.0000; Post: 6.1656; Write: 0.1786`
+
+## 3.0 mm (lowres) model (single model with 104 foreground classes)
+
+GPU: Memory: **5.89G**
+
+ - `++ Latencies => Total: 1.9993; Pre: 1.2363; Inferer: 0.5207; Invert: 0.0000; Post: 0.0358; Write: 0.2060`
+
+CPU: Memory: **2.3G**
+
+ - `++ Latencies => Total: 6.6138; Pre: 1.3192; Inferer: 3.6746; Invert: 0.0000; Post: 1.4431; Write: 0.1760`
 
 ## Performance
 
 - 3.0 mm Model Training
-
 
 - 1.5 mm Model Training
 
@@ -59,11 +100,9 @@ One channel
 
 ![](./imgs/totalsegmentator_train_accuracy.png) <br>
 
-  - Validation Dice 
+  - Validation Dice
 
 ![](./imgs/totalsegmentator_15mm_validation.png) <br>
-
-
 
 #### Training Loss
 ![A graph showing the training loss over 200 epochs (over 100,000 iterations).]
@@ -76,13 +115,13 @@ In addition to the Pythonic APIs, a few command line interfaces (CLI) are provid
 
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-#### Execute training:
+#### Execute training
 
 ```
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
-#### Override the `train` config to execute multi-GPU training:
+#### Override the `train` config to execute multi-GPU training
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf
@@ -90,30 +129,34 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training
 
 Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-#### Override the `train` config to execute evaluation with the trained model:
+#### Override the `train` config to execute evaluation with the trained model
 
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
 ```
 
-#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
+#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']" --logging_file configs/logging.conf
 ```
 
-#### Execute inference:
+#### Execute inference
 
 ```
 python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
 # References
-[1] Myronenko, A., Siddiquee, M.M.R., Yang, D., He, Y. and Xu, D., 2022. Automated head and neck tumor segmentation from 3D PET/CT. arXiv preprint arXiv:2209.10809.
 
-[2] Wasserthal, J., Meyer, M., Breit, H.C., Cyriac, J., Yang, S. and Segeroth, M., 2022. TotalSegmentator: robust segmentation of 104 anatomical structures in CT images. arXiv preprint arXiv:2208.05868.
+[1] Tang, Y., Gao, R., Lee, H.H., Han, S., Chen, Y., Gao, D., Nath, V., Bermudez, C., Savona, M.R., Abramson, R.G. and Bao, S., 2021. High-resolution 3D abdominal segmentation with random patch network fusion. Medical image analysis, 69, p.101894.
+
+[2] Myronenko, A., Siddiquee, M.M.R., Yang, D., He, Y. and Xu, D., 2022. Automated head and neck tumor segmentation from 3D PET/CT. arXiv preprint arXiv:2209.10809.
+
+[3] Wasserthal, J., Meyer, M., Breit, H.C., Cyriac, J., Yang, S. and Segeroth, M., 2022. TotalSegmentator: robust segmentation of 104 anatomical structures in CT images. arXiv preprint arXiv:2208.05868.
 
 # License
+
 Copyright (c) MONAI Consortium
 
 Licensed under the Apache License, Version 2.0 (the "License");

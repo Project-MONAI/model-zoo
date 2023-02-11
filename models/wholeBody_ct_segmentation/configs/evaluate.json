@@ -29,7 +29,7 @@
                 "orig_keys": "image",
                 "meta_key_postfix": "meta_dict",
                 "nearest_interp": [
-                    false,
+                    true,
                     true
                 ],
                 "to_tensor": true
