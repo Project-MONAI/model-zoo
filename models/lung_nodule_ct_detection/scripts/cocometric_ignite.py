@@ -89,7 +89,6 @@ class IgniteCocoMetric(Metric):
 
     @sync_all_reduce("val_targets_all", "val_outputs_all")
     def compute(self) -> float:
-
         self.val_outputs_all = detach_to_numpy(self.val_outputs_all)
         self.val_targets_all = detach_to_numpy(self.val_targets_all)
 

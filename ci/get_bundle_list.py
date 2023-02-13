@@ -16,7 +16,6 @@ from utils import get_sub_folders
 
 
 def main(models_path):
-
     bundle_list = get_sub_folders(root_dir=models_path)
 
     print(bundle_list)
