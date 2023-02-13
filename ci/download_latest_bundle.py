@@ -18,7 +18,6 @@ from utils import get_latest_version
 
 
 def main(bundle_name: str, models_path: str, download_path: str):
-
     model_info_path = os.path.join(models_path, "model_info.json")
     version = get_latest_version(bundle_name=bundle_name, model_info_path=model_info_path)
     download(name=bundle_name, source="github", version=version, bundle_dir=download_path)

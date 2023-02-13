@@ -16,7 +16,6 @@ from utils import get_changed_bundle_list
 
 
 def main(changed_dirs):
-
     bundle_names = ""
     root_path = "models"
     bundle_list = get_changed_bundle_list(changed_dirs, root_path=root_path)
