@@ -6,12 +6,27 @@
             {
                 "_target_": "Activationsd",
                 "keys": "pred",
-                "sigmoid": true
+                "softmax": true
             },
             {
                 "_target_": "AsDiscreted",
-                "keys": "pred",
-                "threshold": 0.5
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "argmax": [
+                    true,
+                    false
+                ],
+                "to_onehot": 4
+            },
+            {
+                "_target_": "ToTensord",
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "device": "@device"
             },
             {
                 "_target_": "SaveImaged",
@@ -39,11 +54,11 @@
             "_target_": "MetricsSaver",
             "save_dir": "@output_dir",
             "metrics": [
-                "val_mean_dice",
-                "val_acc"
+                "val_f1",
+                "val_accuracy"
             ],
             "metric_details": [
-                "val_mean_dice"
+                "val_f1"
             ],
             "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
             "summary_ops": "*"

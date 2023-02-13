@@ -54,11 +54,11 @@ if __name__ == "__main__":
         "--datapath",
         type=str,
         default=r"/workspace/data/endoscopic_inbody_classification",
-        help="Input an existing model weight",
+        help="The root path of the inbody classification dataset.",
     )
 
     # path to save label json.
-    parser.add_argument("--outpath", type=str, default=r"./label", help="A path to save the onnx model.")
+    parser.add_argument("--outpath", type=str, default=r"./label", help="The output path of labels.")
 
     args = parser.parse_args()
     data_path = args.datapath

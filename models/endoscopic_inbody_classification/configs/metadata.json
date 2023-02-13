@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "changelog": {
+        "0.3.5": "fix a comment issue in the data_process script",
         "0.3.4": "add note for multi-gpu training with example dataset",
         "0.3.3": "enhance data preprocess script and readme file",
         "0.3.2": "restructure readme to match updated template",
