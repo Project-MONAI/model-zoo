@@ -144,7 +144,6 @@ def create_pull_request(branch_name: str, pr_title: str = "'auto update model_in
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
-
     touch_cmd = f"find {bundle_name} -exec touch -t 202205300000 " + "{} +"
     zip_cmd = f"zip -rq -D -X -9 -A --compression-method deflate {bundle_zip_name} {bundle_name}"
     subprocess.check_call(f"{touch_cmd}; {zip_cmd}", shell=True, cwd=root_path)
@@ -163,7 +162,6 @@ def upload_bundle(
     release_tag: str = "hosting_storage_v1",
     repo_name: str = "Project-MONAI/model-zoo",
 ):
-
     upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
     call_status = subprocess.run(upload_command, shell=True)
     call_status.check_returncode()

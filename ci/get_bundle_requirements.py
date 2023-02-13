@@ -17,7 +17,6 @@ from utils import get_json_dict
 
 
 def get_requirements(bundle, models_path):
-
     bundle_path = os.path.join(models_path, bundle)
     meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
     if os.path.exists(meta_file_path):

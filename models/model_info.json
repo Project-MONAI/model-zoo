@@ -558,5 +558,21 @@
     "pathology_nuclick_annotation_v0.0.4": {
         "checksum": "16b41f6c655e5acd9a599e74f88767d6aa7f230e",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.4.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.2": {
+        "checksum": "fa7baac2a414210f0630692fd325fec1067b49a2",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.2.zip"
+    },
+    "brats_mri_segmentation_v0.3.9": {
+        "checksum": "31fb0611ef6acc1238f24c8cfcacba7a039a9122",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.3.9.zip"
+    },
+    "breast_density_classification_v0.1.2": {
+        "checksum": "9d52f4669bdac19a37538d516884edfb8057a59f",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/breast_density_classification_v0.1.2.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.3.6": {
+        "checksum": "8cdbb94b3aab6de0336a0709c8460450fccf145d",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.3.6.zip"
     }
 }
