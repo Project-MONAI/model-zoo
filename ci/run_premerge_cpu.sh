@@ -67,7 +67,7 @@ verify_bundle() {
                 fi
                 # verify bundle
                 pipenv run python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
-                pip uninstall -r "$requirements"
+                pip uninstall -r "$requirements" -y
                 remove_pipenv
             done
         else
