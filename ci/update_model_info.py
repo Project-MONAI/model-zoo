@@ -107,7 +107,6 @@ def main(changed_dirs):
     model_info_file = "model_info.json"
     if len(bundle_list) > 0:
         for bundle in bundle_list:
-
             # create a temporary copy of the bundle for further processing
             temp_dir = tempfile.mkdtemp()
             update_state, msg = update_model_info(

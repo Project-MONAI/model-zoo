@@ -16,7 +16,6 @@ from utils import prepare_schema
 
 
 def main(bundle_list, models_path):
-
     prepare_schema(bundle_list, root_path=models_path)
 
 
