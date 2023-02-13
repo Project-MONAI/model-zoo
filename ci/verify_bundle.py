@@ -286,7 +286,6 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
 
 
 def verify(bundle, models_path="models", mode="full"):
-
     print(f"start verifying {bundle}:")
     # add bundle path to ensure custom code can be used
     sys.path = [os.path.join(models_path, bundle)] + sys.path
