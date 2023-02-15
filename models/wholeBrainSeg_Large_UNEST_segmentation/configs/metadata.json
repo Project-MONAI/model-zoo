@@ -17,7 +17,8 @@
         "pytorch-ignite": "0.4.8",
         "einops": "0.4.1",
         "fire": "0.4.0",
-        "timm": "0.6.7"
+        "timm": "0.6.7",
+        "torchvision": "0.11.1"
     },
     "name": "Whole brain large UNEST segmentation",
     "task": "Whole Brain Segmentation",
