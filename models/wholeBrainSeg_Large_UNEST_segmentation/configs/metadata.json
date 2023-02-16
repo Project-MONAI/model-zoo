@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "changelog": {
+        "0.2.2": "add name tag",
         "0.2.1": "fix license Copyright error",
         "0.2.0": "update license files",
         "0.1.2": "Add training support for whole brain segmentation, users can use active learning in the MONAI Label",
@@ -16,8 +17,10 @@
         "pytorch-ignite": "0.4.8",
         "einops": "0.4.1",
         "fire": "0.4.0",
-        "timm": "0.6.7"
+        "timm": "0.6.7",
+        "torchvision": "0.11.1"
     },
+    "name": "Whole brain large UNEST segmentation",
     "task": "Whole Brain Segmentation",
     "description": "A 3D transformer-based model for whole brain segmentation from T1W MRI image",
     "authors": "Vanderbilt University + MONAI team",
