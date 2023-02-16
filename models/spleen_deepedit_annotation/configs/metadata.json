@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "changelog": {
+        "0.3.7": "add name tag",
         "0.3.6": "restructure readme to match updated template",
         "0.3.5": "update metric in metadata",
         "0.3.4": "add validate.json file and dice score in readme",
@@ -21,6 +22,7 @@
         "pytorch-ignite": "0.4.9",
         "scikit-image": "0.19.3"
     },
+    "name": "Spleen DeepEdit annotation",
     "task": "Decathlon spleen segmentation",
     "description": "This is a pre-trained model for 3D segmentation of the spleen organ from CT images using DeepEdit.",
     "authors": "MONAI team",
