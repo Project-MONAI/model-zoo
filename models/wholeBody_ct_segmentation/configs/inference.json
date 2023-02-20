@@ -1,9 +1,9 @@
 {
-    "loadable_params": [
-        "highres",
-        "sw_overlap",
-        "sw_batch_size"
-    ],
+    "displayable_configs": {
+        "highres": true,
+        "sw_overlap": 0.25,
+        "sw_batch_size": 1
+    },
     "imports": [
         "$import glob",
         "$import os"
@@ -13,11 +13,8 @@
     "dataset_dir": "sampledata",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "highres": true,
-    "sw_overlap": 0.25,
-    "sw_batch_size": 1,
-    "pixdim": "$[1.5, 1.5, 1.5] if @highres else [3.0, 3.0, 3.0]",
-    "modelname": "$'model.pt' if @highres else 'model_lowres.pt'",
+    "pixdim": "$[1.5, 1.5, 1.5] if @displayable_configs#highres else [3.0, 3.0, 3.0]",
+    "modelname": "$'model.pt' if @displayable_configs#highres else 'model_lowres.pt'",
     "network_def": {
         "_target_": "SegResNet",
         "spatial_dims": 3,
@@ -96,8 +93,8 @@
             96,
             96
         ],
-        "sw_batch_size": "@sw_batch_size",
-        "overlap": "@sw_overlap",
+        "sw_batch_size": "@displayable_configs#sw_batch_size",
+        "overlap": "@displayable_configs#sw_overlap",
         "padding_mode": "replicate",
         "mode": "gaussian",
         "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"

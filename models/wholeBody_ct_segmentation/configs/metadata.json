@@ -12,7 +12,8 @@
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
     },
-    "task": "Whole Body CT Segmentation",
+    "name": "whole-body CT segmentation",
+    "task": "TotalSegmentator Segmentation",
     "description": "A pre-trained SegResNet model for volumetric (3D) segmentation of the 104 whole body segments",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
