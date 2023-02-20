@@ -638,5 +638,9 @@
     "endoscopic_tool_segmentation_v0.4.1": {
         "checksum": "4c76f2137d062faa45dcbf2ffb94600ee42f9b95",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.4.1.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.4.1": {
+        "checksum": "e1df9ec44f28a7ebf24ad4bcda46b2d90bef6c1d",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.4.1.zip"
     }
 }
