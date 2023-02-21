@@ -19,7 +19,7 @@
         "in_channels": 1,
         "out_channels": 14,
         "feature_size": 48,
-        "use_checkpoint": false
+        "use_checkpoint": true
     },
     "network": "$@network_def.to(@device)",
     "loss": {
