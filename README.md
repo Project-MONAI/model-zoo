@@ -5,7 +5,19 @@ All source code of models (bundles) are tracked in `models/`, and for each disti
 
 ## Getting Started
 
-To download and get started with the models, please see [the model browser](https://monai.io/model-zoo.html) and [the example use cases](https://github.com/Project-MONAI/tutorials/tree/main/model_zoo).
+A basic example to download and extract a bundle is:
+
+```bash
+pip install "monai[fire]"
+python -m monai.bundle download wholeBody_ct_segmentation --bundle_dir "bundles/"
+```
+
+- The commands will download `wholeBody_ct_segmentation` to the current directory's `bundles/` subdirectory.
+- For more downloading options, please run `python -m monai.bundle download -h`
+- For the specific usage of a bundle, please refer to its `docs` folder, for example, `bundles/wholeBody_ct_segmentation/docs`.
+
+To browse the available models, please see [the model browser](https://monai.io/model-zoo.html).
+To get started with the models, please see [the example use cases](https://github.com/Project-MONAI/tutorials/tree/main/model_zoo).
 
 ## License
 
