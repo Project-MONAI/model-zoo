@@ -357,7 +357,8 @@ then
         exit 1
     else
         ${cmdPrefix}${PY_EXE} -m pytype --version
-        ${cmdPrefix}${PY_EXE} -m pytype models -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")"
+
+        ${cmdPrefix}${PY_EXE} -m pytype -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")" "$(pwd)"
 
         pytype_status=$?
         if [ ${pytype_status} -ne 0 ]

@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
-    "version": "0.1.1",
+    "version": "0.1.3",
     "changelog": {
+        "0.1.3": "add name tag",
+        "0.1.2": "update the workflow figure",
         "0.1.1": "update to use monai 1.1.0",
         "0.1.0": "complete the model package"
     },
@@ -14,6 +16,7 @@
         "tqdm": "4.64.1",
         "pillow": "9.0.1"
     },
+    "name": "Nuclear segmentation and classification",
     "task": "Nuclear segmentation and classification",
     "description": "A simultaneous segmentation and classification of nuclei within multitissue histology images based on CoNSeP data",
     "authors": "MONAI team",

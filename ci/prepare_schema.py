@@ -15,16 +15,16 @@ import argparse
 from utils import prepare_schema
 
 
-def main(bundle_list):
-
-    root_path = "models"
-    prepare_schema(bundle_list, root_path=root_path)
+def main(bundle_list, models_path):
+    prepare_schema(bundle_list, root_path=models_path)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-l", "--l", type=str, help="bundle list.")
+    parser.add_argument("-p", "--p", type=str, default="models", help="models path.")
     args = parser.parse_args()
     bundle_list = args.l.split(" ")
     bundle_list = [f for f in bundle_list if f != ""]
-    main(bundle_list)
+    models_path = args.p
+    main(bundle_list, models_path)

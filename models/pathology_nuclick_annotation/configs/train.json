@@ -243,7 +243,8 @@
                     "_target_": "SelectItemsd",
                     "keys": [
                         "image",
-                        "label"
+                        "label",
+                        "image_meta_dict"
                     ]
                 }
             ]

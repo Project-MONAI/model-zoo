@@ -31,6 +31,8 @@ chest_xray_classification
 pathology_metastasis_detection
 ```
 
+In addition, please also define a display name via editing the `"name"` tag in `metadata.json`, and it will be shown in [the model browser](https://monai.io/model-zoo.html).
+
 ### Model storage
 
 Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)). Therefore, MONAI Model Zoo limits each single file to be no larger than **25MB**.
@@ -110,8 +112,14 @@ If this test is not suitable for your bundle, please add your bundle name into `
 Check the functionality of exporting the checkpoint to TorchScript file. You can also run the following command locally to verify your bundle before submitting a pull request.
 
 ```bash
-python -m monai.bundle ckpt_export --net_id network_def --filepath models/verify_model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
+python -m monai.bundle ckpt_export --net_id network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
 ```
+
+After exporting your TorchScript file, you can check the evaluation or inference results based on it rather than `model.pt` with the following changes:
+
+1. Remove or disable `CheckpointLoader` in evaluation or inference config file if exists.
+1. Define `network_def` as: `"$torch.jit.load(<your TorchScript file path>)"`.
+1. Execute evaluation or inference command.
 
 If your bundle does not support TorchScript, please mention it in `docs/README.md`, and add your bundle name into `exclude_verify_torchscript_list` in `ci/bundle_custom_data.py`.
 

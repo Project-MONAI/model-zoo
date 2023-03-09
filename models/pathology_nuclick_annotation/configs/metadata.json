@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "changelog": {
+        "0.0.5": "add name tag",
+        "0.0.4": "Fix evaluation",
         "0.0.3": "Update to use MONAI 1.1.0",
         "0.0.2": "Update The Torch Vision Transform",
         "0.0.1": "initialize the model package structure"
@@ -13,8 +15,9 @@
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
     },
-    "task": "Pathology Nuclick segmentation",
-    "description": "A pre-trained model for Nuclei Classification within Haematoxylin & Eosin stained histology images",
+    "name": "Pathology nuclick annotation",
+    "task": "Pathology Nuclick annotation",
+    "description": "A pre-trained model for segmenting nuclei cells with user clicks/interactions",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "consep_dataset.zip from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet",

@@ -1,7 +1,10 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.9",
+    "version": "0.4.2",
     "changelog": {
+        "0.4.2": "fix train params of use_checkpoint",
+        "0.4.1": "update params to supprot torch.jit.trace torchscript conversion",
+        "0.4.0": "add name tag",
         "0.3.9": "use ITKreader to avoid mass logs at image loading",
         "0.3.8": "restructure readme to match updated template",
         "0.3.7": "Update metric in metadata",
@@ -24,6 +27,7 @@
         "pytorch-ignite": "0.4.8",
         "einops": "0.4.1"
     },
+    "name": "Swin UNETR BTCV segmentation",
     "task": "BTCV multi-organ segmentation",
     "description": "A pre-trained model for volumetric (3D) multi-organ segmentation from CT image",
     "authors": "MONAI team",
