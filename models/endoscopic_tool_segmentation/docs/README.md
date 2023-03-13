@@ -45,8 +45,8 @@ The `endoscopic_tool_segmentation` bundle supports the TensorRT acceleration. Th
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| random infer | 6.48 | 4.48 | 6.40 | 6.30 | 1.45 | 1.01 | 1.03 | 0.71 |
-| end2end | 3900.73 | 3823.89 | 3887.37 | 3883.01 |	1.02 | 1.00 | 1.00 | 0.98 |
+| random infer | 12.00 | 14.06 | 6.59 | 5.20 | 0.85 | 1.82 | 2.31 | 2.70 |
+| end2end |170.04 | 172.20 | 155.26 | 155.57 | 0.99 | 1.10 | 1.09 | 1.11|
 
 
 ## MONAI Bundle Commands
