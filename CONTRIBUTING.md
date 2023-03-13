@@ -123,6 +123,25 @@ After exporting your TorchScript file, you can check the evaluation or inference
 
 If your bundle does not support TorchScript, please mention it in `docs/README.md`, and add your bundle name into `exclude_verify_torchscript_list` in `ci/bundle_custom_data.py`.
 
+#### Verify TensorRT models
+Check the functionality of exporting the checkpoint to [TensorRT](https://developer.nvidia.com/tensorrt) based models. TensorRT based models target NVIDIA GPUs via NVIDIA’s TensorRT Deep Learning Optimizer and Runtime. It can accelerate models' inference on NVIDIA GPU with speedup ratio up to 6x by converting models weight to float32 or float16 precision. In MONAI, models are compiled to TensorRT based models through [Torch_TensorRT](https://pytorch.org/TensorRT/). Therefore, you need to have a NVIDIA GPU adn install TensorRT and Torch-TensorRT to enable this export. Or you can use the MONAI docker in which MONAI version is >= 1.2. You can also run the following command locally to verify your bundle in float32 precision or float16 precision.
+
+```bash
+python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt_fp32.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision fp32
+```
+
+```bash
+python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt_fp16.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision fp16
+```
+
+After exporting your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following changes:
+
+1. Remove or disable `CheckpointLoader` in evaluation or inference config file if exists.
+1. Define `network_def` as: `"$torch.jit.load(<your TensorRT model path>)"`.
+1. Execute evaluation or inference command.
+
+If your bundle does not support TensorRT compilation, please mention it in `docs/README.md`.
+
 
 ## Checking the coding style
 
