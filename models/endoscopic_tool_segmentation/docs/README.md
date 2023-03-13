@@ -40,6 +40,15 @@ IoU was used for evaluating the performance of the model. This model achieves a 
 #### Validation IoU
 ![A graph showing the validation mean IoU over 100 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_val_iou.png)
 
+#### TensorRT speedup
+The `endoscopic_tool_segmentation` bundle supports the TensorRT acceleration. The table below shows the speedup ratios benchmarked on an A100 80G GPU, in which the `random inference` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing and the `end2end` means run the bundle end to end with the TensorRT based model. The `torch_fp32` and `torch_amp` is for the pytorch model with or without `amp` mode. The `trt_fp32` and `trt_fp16` is for the TensorRT based model converted in corresponding precision. The `speedup amp`, `speedup fp32` and `speedup fp16` is the speedup ratio of corresponding models versus the pytorch float32 model, while the `amp vs fp16` is between the pytorch amp model and the TensorRT float16 based model.
+
+| method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| random infer | 6.48 | 4.48 | 6.40 | 6.30 | 1.45 | 1.01 | 1.03 | 0.71 |
+| end2end | 3900.73 | 3823.89 | 3887.37 | 3883.01 |	1.02 | 1.00 | 1.00 | 0.98 |
+
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
@@ -69,6 +78,7 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']" --logging_file configs/logging.conf
+```
 
 #### Execute inference:
 
