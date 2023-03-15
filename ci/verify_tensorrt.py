@@ -10,7 +10,6 @@
 # limitations under the License.
 
 import argparse
-import os
 
 from utils import get_changed_bundle_list
 
@@ -25,7 +24,6 @@ def verify_tensorrt(changed_dirs):
     root_path = "models"
     bundle_list = get_changed_bundle_list(changed_dirs, tensorrt_only=True, root_path=root_path)
     for bundle in bundle_list:
-        bundle_path = os.path.join(root_path, bundle)
         print(f"export bundle {bundle} weights into TensorRT module successfully.")
 
 
