@@ -1,3 +1,5 @@
+
+
 # Copyright (c) MONAI Consortium
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +19,6 @@ import shutil
 import subprocess
 from typing import List
 
-from bundle_custom_data import include_verify_tensorrt_list
 from monai.apps.utils import download_url
 from monai.bundle.config_parser import ConfigParser
 from monai.utils import look_up_option
@@ -47,11 +48,10 @@ def get_hash_func(hash_type: str = "sha1"):
     return actual_hash_func()
 
 
-def get_changed_bundle_list(changed_dirs: List[str], tensorrt_only: bool = False, root_path: str = "models"):
+def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
     """
     This function is used to return all bundle names that have changed files.
     If a bundle is totally removed, it will be ignored (since it not exists).
-
     """
     bundles = get_sub_folders(root_path)
 
@@ -60,11 +60,7 @@ def get_changed_bundle_list(changed_dirs: List[str], tensorrt_only: bool = False
         for bundle in bundles:
             bundle_path = os.path.join(root_path, bundle)
             if os.path.commonpath([bundle_path]) == os.path.commonpath([bundle_path, sub_dir]):
-                if tensorrt_only:
-                    if bundle in include_verify_tensorrt_list:
-                        changed_bundle_list.append(bundle)
-                else:
-                    changed_bundle_list.append(bundle)
+                changed_bundle_list.append(bundle)
 
     return list(set(changed_bundle_list))
 
@@ -75,7 +71,6 @@ def prepare_schema(bundle_list: List[str], root_path: str = "models"):
     Due to Github's limitation (see: https://github.com/Project-MONAI/model-zoo/issues/111),
     to avoid repeated downloading, all distinct schemas will be downloaded first, and copy
     to changed bundle directories.
-
     """
     schema_dict = {}
     for bundle_name in bundle_list:
@@ -173,3 +168,4 @@ def upload_bundle(
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source
+    
