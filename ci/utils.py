@@ -1,5 +1,3 @@
-
-
 # Copyright (c) MONAI Consortium
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -52,6 +50,7 @@ def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
     """
     This function is used to return all bundle names that have changed files.
     If a bundle is totally removed, it will be ignored (since it not exists).
+
     """
     bundles = get_sub_folders(root_path)
 
@@ -71,6 +70,7 @@ def prepare_schema(bundle_list: List[str], root_path: str = "models"):
     Due to Github's limitation (see: https://github.com/Project-MONAI/model-zoo/issues/111),
     to avoid repeated downloading, all distinct schemas will be downloaded first, and copy
     to changed bundle directories.
+
     """
     schema_dict = {}
     for bundle_name in bundle_list:
@@ -168,4 +168,3 @@ def upload_bundle(
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source
-    
