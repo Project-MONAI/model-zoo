@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220729.json",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "changelog": {
+        "0.4.2": "add name tag",
         "0.4.1": "modify dataset key name",
         "0.4.0": "update license files",
         "0.3.0": "Update to scripts",
@@ -12,6 +13,7 @@
     "pytorch_version": "1.13.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {},
+    "name": "Valve landmarks regression",
     "task": "Given long axis MR images of the heart, identify valve insertion points through the full cardiac cycle",
     "description": "This network is used to find where valves attach to heart to help construct 3D FEM models for computation. The output is an array of 10 2D coordinates.",
     "authors": "Eric Kerfoot",
