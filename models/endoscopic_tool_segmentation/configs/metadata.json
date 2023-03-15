@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "changelog": {
+        "0.4.1": "add name tag",
         "0.4.0": "add support for multi-GPU training and evaluation",
         "0.3.2": "restructure readme to match updated template",
         "0.3.1": "add figures of workflow and metrics, add invert transform",
@@ -18,7 +19,8 @@
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
     },
-    "task": "endoscopic tool segmentation",
+    "name": "Endoscopic tool segmentation",
+    "task": "Endoscopic tool segmentation",
     "description": "A pre-trained binary segmentation model for endoscopic tool segmentation",
     "authors": "NVIDIA DLMED team",
     "copyright": "Copyright (c) 2021-2022, NVIDIA CORPORATION",
