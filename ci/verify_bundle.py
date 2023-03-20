@@ -300,10 +300,11 @@ def verify(bundle, models_path="models", mode="full"):
     # verify bundle keys
     verify_bundle_keys(models_path, bundle)
     print("keys are verified correctly.")
-    if mode != "regular":
-        # verify version, changelog
-        verify_version_changes(models_path, bundle)
-        print("version and changelog are verified correctly.")
+    # if mode != "regular":
+    #     # verify version, changelog
+    #     # TODO: the following check should be used after merge into dev branch
+    #     verify_version_changes(models_path, bundle)
+    #     print("version and changelog are verified correctly.")
     # verify metadata format and data
     bundle_path = os.path.join(models_path, bundle)
     verify_metadata_format(bundle_path)

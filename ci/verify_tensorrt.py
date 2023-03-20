@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from bundle_custom_data import include_verify_tensorrt_list
+from .bundle_custom_data import include_verify_tensorrt_list
 
 
 def verify_tensorrt():
