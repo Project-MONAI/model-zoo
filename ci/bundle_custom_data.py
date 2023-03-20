@@ -27,6 +27,5 @@ exclude_verify_torchscript_list = [
     "renalStructures_UNEST_segmentation",
     "wholeBrainSeg_Large_UNEST_segmentation",
     "breast_density_classification",
-    "pathology_tumor_detection",
     "mednist_reg",
 ]
