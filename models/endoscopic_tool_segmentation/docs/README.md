@@ -92,7 +92,7 @@ python -m monai.bundle run evaluating --meta_file configs/metadata.json --config
 python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
-#### Export checkpoint to TensorRT based models with fp32 and fp16 precision:
+#### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
 
 ```
 python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16>
