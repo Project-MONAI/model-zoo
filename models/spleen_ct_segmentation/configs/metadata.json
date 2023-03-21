@@ -23,7 +23,7 @@
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9",
-        "torch_tensorrt": "1.4.0"
+        "torch_tensorrt": "1.3.0"
     },
     "name": "Spleen CT segmentation",
     "task": "Decathlon spleen segmentation",
