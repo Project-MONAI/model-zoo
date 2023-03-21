@@ -52,6 +52,15 @@ The `spleen_ct_segmentation` bundle supports the TensorRT acceleration. The tabl
 | model computation | 6.48 | 4.48 | 6.40 | 6.30 | 1.45 | 1.01 | 1.03 | 0.71 |
 | end2end | 3900.73 | 3823.89 | 3887.37 | 3883.01 |	1.02 | 1.00 | 1.00 | 0.98 |
 
+This result is benchmarked under:
+ - TensorRT: 8.5.3+cuda11.8
+ - Torch-TensorRT Version: 1.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.8.10
+ - CUDA version: 11.8
+ - GPU models and configuration: A100 80G
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 

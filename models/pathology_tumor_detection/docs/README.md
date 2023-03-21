@@ -67,6 +67,15 @@ Please notice that the benchmark results are tested on one WSI image since the i
 | model computation |1.93 | 2.52 | 1.61 | 1.33 | 0.77 | 1.20 | 1.45 | 1.89 |
 | end2end |224.97 | 223.50 | 222.65 | 224.03 | 1.01 | 1.01 | 1.00 | 1.00 |
 
+This result is benchmarked under:
+ - TensorRT: 8.5.3+cuda11.8
+ - Torch-TensorRT Version: 1.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.8.10
+ - CUDA version: 11.8
+ - GPU models and configuration: A100 80G
+
 ## MONAI Bundle Commands
 
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.

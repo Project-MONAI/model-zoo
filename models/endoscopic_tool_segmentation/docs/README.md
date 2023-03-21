@@ -48,6 +48,14 @@ The `endoscopic_tool_segmentation` bundle supports the TensorRT acceleration. Th
 | model computation | 12.00 | 14.06 | 6.59 | 5.20 | 0.85 | 1.82 | 2.31 | 2.70 |
 | end2end |170.04 | 172.20 | 155.26 | 155.57 | 0.99 | 1.10 | 1.09 | 1.11 |
 
+This result is benchmarked under:
+ - TensorRT: 8.5.3+cuda11.8
+ - Torch-TensorRT Version: 1.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.8.10
+ - CUDA version: 11.8
+ - GPU models and configuration: A100 80G
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
