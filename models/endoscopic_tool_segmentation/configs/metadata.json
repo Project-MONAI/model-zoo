@@ -13,13 +13,13 @@
         "0.1.0": "complete the first version model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0",
+    "monai_version": "1.1.0",
     "pytorch_version": "1.13.0",
     "numpy_version": "1.22.4",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9",
-        "torch_tensorrt_version": "1.4.0"
+        "torch_tensorrt": "1.4.0"
     },
     "name": "Endoscopic tool segmentation",
     "task": "Endoscopic tool segmentation",
