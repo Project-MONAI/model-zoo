@@ -24,9 +24,6 @@ def get_requirements(bundle, models_path):
         libs = []
         if "monai_version" in metadata.keys():
             monai_version = metadata["monai_version"]
-            # TODO: remove this workaround when merging into dev branch
-            if monai_version == "1.2.0":
-                monai_version = "1.2.0rc2"
             libs.append(f"monai=={monai_version}")
         if "pytorch_version" in metadata.keys():
             pytorch_version = metadata["pytorch_version"]

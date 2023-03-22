@@ -32,7 +32,6 @@ def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: 
         config_file=os.path.join(bundle_path, config_file),
         precision=precision,
         bundle_root=bundle_path,
-        dynamic_batchsize=(1, 1, 1),
     )
 
     _ = torch.jit.load(trt_model_path)
