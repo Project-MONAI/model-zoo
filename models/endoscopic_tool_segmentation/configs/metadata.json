@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "changelog": {
-        "0.4.2": "update the readme file with TensorRT convert",
+        "0.4.3": "update this bundle to support TensorRT convert",
+        "0.4.2": "support monai 1.2 new FlexibleUNet",
         "0.4.1": "add name tag",
         "0.4.0": "add support for multi-GPU training and evaluation",
         "0.3.2": "restructure readme to match updated template",
@@ -13,7 +14,7 @@
         "0.1.0": "complete the first version model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0rc2",
+    "monai_version": "1.2.0",
     "pytorch_version": "1.13.0",
     "numpy_version": "1.22.4",
     "optional_packages_version": {
