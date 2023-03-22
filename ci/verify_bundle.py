@@ -269,8 +269,8 @@ def verify_data_shape(bundle_path: str, net_id: str, config_file: str):
 
 def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     """
-    This function is used to verify if the checkpoint is able to torchscript, and
-    if "models/model.ts" is provided, it will be checked if is able to be loaded
+    This function is used to verify if the checkpoint is able to export into torchscript model, and
+    if "models/model.ts" is provided, it will be checked if it is able to be loaded
     successfully.
 
     """

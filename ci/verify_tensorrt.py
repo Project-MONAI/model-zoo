@@ -19,9 +19,8 @@ from verify_bundle import _find_bundle_file
 
 def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: str):
     """
-    This function is used to verify if the checkpoint is able to torchscript, and
-    if "models/model.ts" is provided, it will be checked if is able to be loaded
-    successfully.
+    This function is used to verify if the checkpoint is able to export into TensorRT model, and
+    the exported model will be checked if it is able to be loaded successfully.
 
     """
     trt_model_path = os.path.join(bundle_path, f"models/model_trt_{precision}.ts")
@@ -39,9 +38,9 @@ def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: 
     _ = torch.jit.load(trt_model_path)
 
 
-def verify_bundle(models_path="models"):
+def verify_all_tensorrt_bundles(models_path="models"):
     """
-    This function is used to verify if the checkpoint is able to export into TensorRT module.
+    This function is used to verify all bundles that support TensorRT.
 
     """
     for bundle in include_verify_tensorrt_list:
@@ -56,4 +55,4 @@ def verify_bundle(models_path="models"):
 
 
 if __name__ == "__main__":
-    verify_bundle()
+    verify_all_tensorrt_bundles()
