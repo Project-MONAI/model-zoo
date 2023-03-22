@@ -19,7 +19,7 @@
         "0.1.1": "fix location variable name change",
         "0.1.0": "initialize release of the bundle"
     },
-    "monai_version": "1.2.0",
+    "monai_version": "1.2.0rc2",
     "pytorch_version": "1.13.0",
     "numpy_version": "1.21.2",
     "optional_packages_version": {
