@@ -44,6 +44,7 @@ def verify_all_tensorrt_bundles(models_path="models"):
 
     """
     for bundle in include_verify_tensorrt_list:
+        print(f"start verifying bundle {bundle}.")
         bundle_path = os.path.join(models_path, bundle)
         net_id, inference_file_name = "network_def", _find_bundle_file(
             os.path.join(bundle_path, "configs"), "inference"
