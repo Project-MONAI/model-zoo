@@ -23,7 +23,8 @@
         "spatial_dims": 2,
         "dropout": 0.5,
         "pretrained": true,
-        "is_pad": false
+        "is_pad": false,
+        "pre_conv": null
     },
     "network": "$@network_def.to(@device)",
     "loss": {
