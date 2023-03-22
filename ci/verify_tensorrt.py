@@ -42,8 +42,6 @@ def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: 
 def verify_bundle(models_path="models"):
     """
     This function is used to verify if the checkpoint is able to export into TensorRT module.
-    This function will be updated after the following PR is merged:
-    https://github.com/Project-MONAI/MONAI/pull/5986/files
 
     """
     for bundle in include_verify_tensorrt_list:
