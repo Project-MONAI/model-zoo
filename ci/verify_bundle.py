@@ -302,7 +302,7 @@ def verify(bundle, models_path="models", mode="full"):
     print("keys are verified correctly.")
     # if mode != "regular":
     #     # verify version, changelog
-    #     # TODO: the following check should be used after merge into dev branch
+    #     # TODO: the following check should be used when merging into dev branch
     #     verify_version_changes(models_path, bundle)
     #     print("version and changelog are verified correctly.")
     # verify metadata format and data
