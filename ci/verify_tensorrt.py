@@ -24,17 +24,24 @@ def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: 
 
     """
     trt_model_path = os.path.join(bundle_path, f"models/model_trt_{precision}.ts")
-    trt_export(
-        net_id=net_id,
-        filepath=trt_model_path,
-        ckpt_file=os.path.join(bundle_path, "models/model.pt"),
-        meta_file=os.path.join(bundle_path, "configs/metadata.json"),
-        config_file=os.path.join(bundle_path, config_file),
-        precision=precision,
-        bundle_root=bundle_path,
-    )
-
-    _ = torch.jit.load(trt_model_path)
+    try:
+        trt_export(
+            net_id=net_id,
+            filepath=trt_model_path,
+            ckpt_file=os.path.join(bundle_path, "models/models.pt"),
+            meta_file=os.path.join(bundle_path, "configs/metadata.json"),
+            config_file=os.path.join(bundle_path, config_file),
+            precision=precision,
+            bundle_root=bundle_path,
+        )
+    except Exception as e:
+        print(f"'trt_export' failed with error: {e}")
+        raise
+    try:
+        _ = torch.jit.load(trt_model_path)
+    except Exception as e:
+        print(f"load TensorRT model {trt_model_path} failed with error: {e}")
+        raise
 
 
 def verify_all_tensorrt_bundles(models_path="models"):
@@ -50,8 +57,12 @@ def verify_all_tensorrt_bundles(models_path="models"):
         )
         config_file = os.path.join("configs", inference_file_name)
         for precision in ["fp32", "fp16"]:
-            verify_tensorrt(bundle_path=bundle_path, net_id=net_id, config_file=config_file, precision=precision)
-            print(f"export bundle {bundle} weights into TensorRT module with precision {precision} successfully.")
+            try:
+                verify_tensorrt(bundle_path=bundle_path, net_id=net_id, config_file=config_file, precision=precision)
+                print(f"export bundle {bundle} weights into TensorRT module with precision {precision} successfully.")
+            except BaseException:
+                print(f"verify bundle {bundle} with precision {precision} failed.")
+                raise
 
 
 if __name__ == "__main__":
