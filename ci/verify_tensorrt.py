@@ -38,7 +38,7 @@ def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: 
         print(f"'trt_export' failed with error: {e}")
         raise
     try:
-        _ = torch.jit.load(trt_model_path)
+        torch.jit.load(trt_model_path)
     except Exception as e:
         print(f"load TensorRT model {trt_model_path} failed with error: {e}")
         raise

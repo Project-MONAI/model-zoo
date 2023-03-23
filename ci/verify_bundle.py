@@ -286,7 +286,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
 
     ts_model_path = os.path.join(bundle_path, "models/model.ts")
     if os.path.exists(ts_model_path):
-        _ = torch.jit.load(ts_model_path)
+        torch.jit.load(ts_model_path)
         print("Provided TorchScript module is verified correctly.")
 
 
