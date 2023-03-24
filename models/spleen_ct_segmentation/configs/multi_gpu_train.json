@@ -24,16 +24,20 @@
     },
     "validate#dataloader#sampler": "@validate#sampler",
     "validate#evaluator#val_handlers": "$None if dist.get_rank() > 0 else @validate#handlers",
-    "training": [
+    "initialize": [
         "$import torch.distributed as dist",
-        "$dist.init_process_group(backend='nccl')",
+        "dist.is_initialized() or dist.init_process_group(backend='nccl')",
         "$torch.cuda.set_device(@device)",
         "$monai.utils.set_determinism(seed=123)",
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$import logging",
         "$@train#trainer.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)",
-        "$@validate#evaluator.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)",
-        "$@train#trainer.run()",
+        "$@validate#evaluator.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)"
+    ],
+    "run": [
+        "$@train#trainer.run()"
+    ],
+    "finalize": [
         "$dist.destroy_process_group()"
     ]
 }
