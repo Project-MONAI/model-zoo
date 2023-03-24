@@ -17,7 +17,7 @@
     "validate#handlers#1#_disabled_": "$dist.get_rank() > 0",
     "initialize": [
         "$import torch.distributed as dist",
-        "$dist.init_process_group(backend='nccl')",
+        "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
         "$torch.cuda.set_device(@device)",
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$import logging",
