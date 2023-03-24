@@ -658,5 +658,9 @@
     "spleen_ct_segmentation_v0.3.9": {
         "checksum": "4795cb37f51d016b1a80bd0c4f1250c97a35ae43",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.3.9.zip"
+    },
+    "spleen_ct_segmentation_v0.4.0": {
+        "checksum": "b258c051b7b803700d30d58fa35adb1499527fb5",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.4.0.zip"
     }
 }
