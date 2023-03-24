@@ -32,4 +32,4 @@ exclude_verify_torchscript_list = [
 
 # This list is used for our CI tests to determine whether a bundle supports TensorRT. Related
 # test will be employed for bundles in the list.
-include_verify_tensorrt_list = []
+include_verify_tensorrt_list = ["spleen_ct_segmentation", "endoscopic_tool_segmentation", "pathology_tumor_detection"]
