@@ -371,9 +371,11 @@
             "amp": true
         }
     },
-    "training": [
+    "initialize": [
         "$monai.utils.set_determinism(seed=15)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }
