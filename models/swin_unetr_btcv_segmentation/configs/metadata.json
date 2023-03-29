@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "changelog": {
+        "0.4.4": "update numbers",
         "0.4.3": "adapt to BundleWorkflow interface",
         "0.4.2": "fix train params of use_checkpoint",
         "0.4.1": "update params to supprot torch.jit.trace torchscript conversion",
@@ -39,7 +40,7 @@
     "label_classes": "multi-channel data,0:background,1:spleen, 2:Right Kidney, 3:Left Kideny, 4:Gallbladder, 5:Esophagus, 6:Liver, 7:Stomach, 8:Aorta, 9:IVC, 10:Portal and Splenic Veins, 11:Pancreas, 12:Right adrenal gland, 13:Left adrenal gland",
     "pred_classes": "14 channels OneHot data, 0:background,1:spleen, 2:Right Kidney, 3:Left Kideny, 4:Gallbladder, 5:Esophagus, 6:Liver, 7:Stomach, 8:Aorta, 9:IVC, 10:Portal and Splenic Veins, 11:Pancreas, 12:Right adrenal gland, 13:Left adrenal gland",
     "eval_metrics": {
-        "mean_dice": 0.8269
+        "mean_dice": 0.8120
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
