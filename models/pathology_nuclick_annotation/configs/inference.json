@@ -123,8 +123,10 @@
         "val_handlers": "@handlers",
         "amp": true
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

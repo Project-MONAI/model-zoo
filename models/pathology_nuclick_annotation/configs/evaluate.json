@@ -49,10 +49,12 @@
             "summary_ops": "*"
         }
     ],
-    "evaluating": [
+    "initialize": [
         "$import sys",
         "$sys.path.append(@bundle_root)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@validate#evaluator.run()"
     ]
 }
