@@ -14,7 +14,8 @@
     "numpy_version": "1.22.4",
     "optional_packages_version": {
         "nibabel": "4.0.1",
-        "pytorch-ignite": "0.4.9"
+        "pytorch-ignite": "0.4.9",
+        "torchvision": "0.14.1"
     },
     "name": "Pathology nuclei classification",
     "task": "Pathology Nuclei classification",
