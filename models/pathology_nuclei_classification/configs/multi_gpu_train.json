@@ -24,7 +24,7 @@
     },
     "validate#dataloader#sampler": "@validate#sampler",
     "validate#evaluator#val_handlers": "$None if dist.get_rank() > 0 else @validate#handlers",
-    "training": [
+    "initialize": [
         "$import sys",
         "$sys.path.append(@bundle_root)",
         "$import torch.distributed as dist",
