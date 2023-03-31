@@ -96,22 +96,22 @@ Example `dataset.json` in output folder:
  - 2 = Epithelial
  - 3 = Spindle-Shaped
 
-![](images/val_in_out.jpeg)
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_in_out.jpeg)
 
 ## Scores
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-- Train F1 score = 0.96
-- Validation F1 score = 0.85
+- Train F1 score = 0.942
+- Validation F1 score = 0.837
 
 <hr/>
 Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50):
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.5846 | 0.7143       | 0.9158     | 0.8399         |
-| Recall    | 0.2550 | 0.8441       | 0.9193     | 0.8106         |
-| F1-score  | 0.3551 | 0.7738       | 0.9175     | 0.8250         |
+| Precision | 0.7500 | 0.6798       | 0.9072     | 0.8830         |
+| Recall    | 0.1087 | 0.9111       | 0.9540     | 0.7693         |
+| F1-score  | 0.1899 | 0.7786       | 0.9300     | 0.8222         |
 
 
 <hr/>
@@ -119,22 +119,22 @@ Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.9059 | 0.9569       | 0.9754     | 0.9494         |
-| Recall    | 0.8370 | 0.9547       | 0.9790     | 0.9502         |
-| F1-score  | 0.8701 | 0.9558       | 0.9772     | 0.9498         |
+| Precision | 0.8415 | 0.9421       | 0.9680     | 0.9196         |
+| Recall    | 0.7500 | 0.9290       | 0.9684     | 0.9328         |
+| F1-score  | 0.7931 | 0.9355       | 0.9682     | 0.9261         |
 
 
 
 ## Training Performance
 A graph showing the training Loss and F1-score over 50 epochs.
 
-![](images/train_loss.jpeg) <br>
-![](images/train_f1.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1.png) <br>
 
 ## Validation Performance
 A graph showing the validation F1-score over 50 epochs.
 
-![](images/val_f1.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1.png) <br>
 
 
 ## commands example
