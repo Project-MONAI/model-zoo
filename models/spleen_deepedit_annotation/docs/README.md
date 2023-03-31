@@ -55,7 +55,7 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 #### Execute training:
 
 ```
-python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.json
 ```
 
 #### Override the `train` config to execute multi-GPU training:
