@@ -2,6 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "version": "0.0.5",
     "changelog": {
+        "0.0.6": "update benchmark on A100",
         "0.0.5": "add name tag",
         "0.0.4": "Fix evaluation",
         "0.0.3": "Update to use MONAI 1.1.0",
@@ -26,7 +27,7 @@
     "label_classes": "single channel data",
     "pred_classes": "4 channels OneHot data, channel 0 is Other, channel 1 is Inflammatory, channel 2 is Epithelial, channel 3 is Spindle-Shaped",
     "eval_metrics": {
-        "f1_score": 0.85
+        "f1_score": 0.837
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
