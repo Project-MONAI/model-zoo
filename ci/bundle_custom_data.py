@@ -30,3 +30,7 @@ exclude_verify_torchscript_list = [
     "pathology_tumor_detection",
     "mednist_reg",
 ]
+
+# This list is used for our CI tests to determine whether a bundle supports TensorRT. Related
+# test will be employed for bundles in the list.
+include_verify_tensorrt_list = []

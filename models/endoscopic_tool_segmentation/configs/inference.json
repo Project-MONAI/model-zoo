@@ -15,7 +15,8 @@
         "backbone": "efficientnet-b2",
         "spatial_dims": 2,
         "pretrained": false,
-        "is_pad": false
+        "is_pad": false,
+        "pre_conv": null
     },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
