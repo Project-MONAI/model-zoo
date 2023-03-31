@@ -8,9 +8,9 @@
         "0.1.1": "update to use monai 1.1.0",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.2.0rc2",
+    "monai_version": "1.2.0rc3",
     "pytorch_version": "1.13.1",
-    "numpy_version": "1.22.4",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "scikit-image": "0.19.3",
         "scipy": "1.8.1",
