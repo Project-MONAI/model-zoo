@@ -1,6 +1,6 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "changelog": {
         "0.0.6": "update benchmark on A100",
         "0.0.5": "add name tag",
