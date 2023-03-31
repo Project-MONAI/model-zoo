@@ -24,7 +24,7 @@
     "label_classes": "0 is the background, others are whole body segments",
     "pred_classes": "0 is the background, 104 other chanels are whole body segments",
     "eval_metrics": {
-        "mean_dice": 0.80
+        "mean_dice": 0.8
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
