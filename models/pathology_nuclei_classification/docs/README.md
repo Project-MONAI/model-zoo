@@ -14,7 +14,7 @@ The training dataset is from https://warwick.ac.uk/fac/cross_fac/tia/data/hovern
 wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
 unzip -q consep_dataset.zip
 ```
-![](images/dataset.jpeg)<br/>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_dataset.jpeg)<br/>
 
 ## Training configuration
 The training was performed with the following:
