@@ -662,5 +662,17 @@
     "spleen_ct_segmentation_v0.4.0": {
         "checksum": "b258c051b7b803700d30d58fa35adb1499527fb5",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.4.0.zip"
+    },
+    "endoscopic_tool_segmentation_v0.4.3": {
+        "checksum": "126aed915ea337782e9a5257594616093848e0f9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.4.3.zip"
+    },
+    "spleen_ct_segmentation_v0.4.1": {
+        "checksum": "0ee0cbd316d8d032881eb31a602e67be8d66767e",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.4.1.zip"
+    },
+    "pathology_tumor_detection_v0.4.8": {
+        "checksum": "52fbd0fce980cb1998505bbf9cd595ee3a3a8045",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.4.8.zip"
     }
 }
