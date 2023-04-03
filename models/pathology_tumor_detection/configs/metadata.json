@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.8",
+    "version": "0.4.9",
     "changelog": {
-        "0.4.8": "adapt to BundleWorkflow interface",
+        "0.4.9": "adapt to BundleWorkflow interface",
+        "0.4.8": "update the readme file with TensorRT convert",
         "0.4.7": "add name tag",
         "0.4.6": "modify dataset key name",
         "0.4.5": "update model weights and perfomance metrics",
@@ -23,7 +24,7 @@
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
-        "cucim": "22.04",
+        "cucim": "22.8.1",
         "pandas": "1.3.5",
         "torchvision": "0.14.1"
     },
