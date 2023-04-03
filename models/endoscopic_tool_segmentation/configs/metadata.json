@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "changelog": {
-        "0.4.3": "adapt to BundleWorkflow interface",
+        "0.4.4": "adapt to BundleWorkflow interface",
+        "0.4.3": "update this bundle to support TensorRT convert",
         "0.4.2": "support monai 1.2 new FlexibleUNet",
         "0.4.1": "add name tag",
         "0.4.0": "add support for multi-GPU training and evaluation",
