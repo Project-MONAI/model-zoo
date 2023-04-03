@@ -8,18 +8,6 @@
                 "softmax": true
             },
             {
-                "_target_": "AsDiscreted",
-                "keys": [
-                    "pred",
-                    "label"
-                ],
-                "argmax": [
-                    true,
-                    false
-                ],
-                "to_onehot": 105
-            },
-            {
                 "_target_": "Invertd",
                 "keys": [
                     "pred",
@@ -33,6 +21,18 @@
                     true
                 ],
                 "to_tensor": true
+            },
+            {
+                "_target_": "AsDiscreted",
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "argmax": [
+                    true,
+                    false
+                ],
+                "to_onehot": 105
             },
             {
                 "_target_": "SaveImaged",
@@ -61,7 +61,8 @@
             "_target_": "MetricsSaver",
             "save_dir": "@output_dir",
             "metrics": [
-                "val_mean_dice"
+                "val_mean_dice",
+                "val_acc"
             ],
             "metric_details": [
                 "val_mean_dice"
