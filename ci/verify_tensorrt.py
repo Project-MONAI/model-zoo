@@ -63,6 +63,7 @@ def verify_all_tensorrt_bundles(models_path="models"):
             except BaseException:
                 print(f"verify bundle {bundle} with precision {precision} failed.")
                 raise
+    print("all TensorRT supported bundles are verified correctly.")
 
 
 if __name__ == "__main__":
