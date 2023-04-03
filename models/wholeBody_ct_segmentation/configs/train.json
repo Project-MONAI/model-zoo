@@ -309,18 +309,6 @@
                     "keys": "image",
                     "minv": -1.0,
                     "maxv": 1.0
-                },
-                {
-                    "_target_": "CenterSpatialCropd",
-                    "keys": [
-                        "image",
-                        "label"
-                    ],
-                    "roi_size": [
-                        160,
-                        160,
-                        160
-                    ]
                 }
             ]
         },
