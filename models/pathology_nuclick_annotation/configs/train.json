@@ -6,7 +6,7 @@
         "$import pathlib",
         "$import os"
     ],
-    "bundle_root": "/workspace/data/pathology_nuclick_annotation",
+    "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/CoNSePNuclei",
@@ -318,11 +318,13 @@
             "amp": true
         }
     },
-    "training": [
+    "initialize": [
         "$import sys",
         "$sys.path.append(@bundle_root)",
         "$monai.utils.set_determinism(seed=123)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }

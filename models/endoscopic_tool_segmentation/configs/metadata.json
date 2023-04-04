@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "changelog": {
+        "0.4.4": "adapt to BundleWorkflow interface",
         "0.4.3": "update this bundle to support TensorRT convert",
         "0.4.2": "support monai 1.2 new FlexibleUNet",
         "0.4.1": "add name tag",
@@ -15,8 +16,8 @@
         "0.0.1": "initialize the model package structure"
     },
     "monai_version": "1.2.0rc3",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.22.4",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
