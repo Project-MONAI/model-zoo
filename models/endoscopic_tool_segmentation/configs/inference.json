@@ -3,7 +3,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/workspace/bundle/endoscopic_tool_segmentation",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/endoscopic_tool_dataset",
     "datalist": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'test', '*', '*[!seg].jpg'))))",
@@ -130,8 +130,10 @@
         "postprocessing": "@postprocessing",
         "val_handlers": "@handlers"
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

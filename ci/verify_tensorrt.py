@@ -28,7 +28,7 @@ def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: 
         trt_export(
             net_id=net_id,
             filepath=trt_model_path,
-            ckpt_file=os.path.join(bundle_path, "models/models.pt"),
+            ckpt_file=os.path.join(bundle_path, "models/model.pt"),
             meta_file=os.path.join(bundle_path, "configs/metadata.json"),
             config_file=os.path.join(bundle_path, config_file),
             precision=precision,
@@ -63,6 +63,7 @@ def verify_all_tensorrt_bundles(models_path="models"):
             except BaseException:
                 print(f"verify bundle {bundle} with precision {precision} failed.")
                 raise
+    print("all TensorRT supported bundles are verified correctly.")
 
 
 if __name__ == "__main__":

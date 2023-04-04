@@ -4,7 +4,7 @@
         "$import os",
         "$import ignite"
     ],
-    "bundle_root": "/workspace/tutorials/deepedit/deepedit_bundle",
+    "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/Datasets/MSD_datasets/Task09_Spleen",
@@ -425,9 +425,11 @@
             "amp": true
         }
     },
-    "training": [
+    "initialize": [
         "$monai.utils.set_determinism(seed=123)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }
