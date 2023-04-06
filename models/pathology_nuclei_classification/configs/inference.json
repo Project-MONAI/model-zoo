@@ -5,7 +5,7 @@
         "$import pathlib",
         "$import os"
     ],
-    "bundle_root": "/workspace/data/pathology_nuclei_classification",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/CoNSePNuclei",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
@@ -107,10 +107,12 @@
         "val_handlers": "@handlers",
         "amp": true
     },
-    "evaluating": [
+    "initialize": [
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$import scripts",
-        "$monai.data.register_writer('json', scripts.ClassificationWriter)",
+        "$monai.data.register_writer('json', scripts.ClassificationWriter)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

@@ -5,7 +5,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "./",
+    "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/dataset_fold0.json'",
@@ -202,8 +202,10 @@
         "val_handlers": "@handlers",
         "amp": "@amp"
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

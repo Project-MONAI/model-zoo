@@ -5,7 +5,7 @@
         "$import pathlib",
         "$import os"
     ],
-    "bundle_root": "/workspace/data/pathology_nuclick_annotation",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/CoNSePNuclei",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
@@ -123,8 +123,10 @@
         "val_handlers": "@handlers",
         "amp": true
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

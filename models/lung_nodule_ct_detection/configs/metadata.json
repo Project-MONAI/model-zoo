@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "changelog": {
+        "0.5.3": "adapt to BundleWorkflow interface",
         "0.5.2": "black autofix format and add name tag",
         "0.5.1": "modify dataset key name",
         "0.5.0": "use detection inferer",
@@ -16,13 +17,13 @@
         "0.1.1": "add reference for LIDC dataset",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.0.1",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.22.4",
+    "monai_version": "1.2.0rc3",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9",
-        "torchvision": "0.14.0"
+        "torchvision": "0.14.1"
     },
     "name": "Lung nodule CT detection",
     "task": "CT lung nodule detection",

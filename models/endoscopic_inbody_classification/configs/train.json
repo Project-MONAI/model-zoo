@@ -4,7 +4,7 @@
         "$import json",
         "$import ignite"
     ],
-    "bundle_root": "/workspace/bundle/endoscopic_inbody_classification",
+    "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/endoscopic_inbody_classification",
@@ -251,9 +251,11 @@
             "val_handlers": "@validate#handlers"
         }
     },
-    "training": [
-        "$monai.utils.set_determinism(seed=0)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }

@@ -1,13 +1,14 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "changelog": {
+        "0.1.1": "adapt to BundleWorkflow interface and val metric",
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.1.0",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.21.2",
+    "monai_version": "1.2.0rc3",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
@@ -23,7 +24,7 @@
     "label_classes": "0 is the background, others are whole body segments",
     "pred_classes": "0 is the background, 104 other chanels are whole body segments",
     "eval_metrics": {
-        "mean_dice": 0.5
+        "mean_dice": 0.8
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
