@@ -47,6 +47,23 @@ Dice score is used for evaluating the performance of the model. This model achie
 #### Validation Dice
 ![A graph showing the validation dice over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_val_dice.png)
 
+#### TensorRT speedup
+The `endoscopic_inbody_classification` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU, in which the `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing and the `end2end` means run the bundle end to end with the TensorRT based model. The `torch_fp32` and `torch_amp` is for the pytorch model with or without `amp` mode. The `trt_fp32` and `trt_fp16` is for the TensorRT based model converted in corresponding precision. The `speedup amp`, `speedup fp32` and `speedup fp16` is the speedup ratio of corresponding models versus the pytorch float32 model, while the `amp vs fp16` is between the pytorch amp model and the TensorRT float16 based model. Currently, this model can only be accelerated through the ONNX-TensorRT way and the Torch-TensorRT way will be comming soon.
+
+| method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| model computation | 147.52 | 40.32 | 28.87 | 11.94 | 3.66 | 5.11 | 12.36 | 3.38 |
+| end2end | 3284.9 | 3209.3 | 3169.49 | 3144.88 | 1.02 | 1.04 | 1.04 | 1.02 |
+
+This result is benchmarked under:
+ - TensorRT: 8.5.3+cuda11.8
+ - Torch-TensorRT Version: 1.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.8.10
+ - CUDA version: 11.8
+ - GPU models and configuration: A100 80G
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
@@ -76,6 +93,16 @@ python -m monai.bundle run --config_file "['configs/train.json','configs/evaluat
 
 ```
 python -m monai.bundle run --config_file configs/inference.json
+```
+
+#### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
+
+```bash
+python -m monai.bundle trt_export --net_id network_def \
+--filepath models/model_trt.ts --ckpt_file models/model.pt \
+--meta_file configs/metadata.json --config_file configs/inference.json \
+--precision <fp32/fp16> --dynamic_batchsize "[1, 4, 8]" --use_onnx "True" \
+--use_trace "True"
 ```
 
 # References

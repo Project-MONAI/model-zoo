@@ -58,6 +58,23 @@ Coco metric is used for evaluating the performance of the model. The pre-trained
 #### Validation Accuracy
 The validation accuracy in this curve is the mean of mAP, mAR, AP(IoU=0.1), and AR(IoU=0.1) in Coco metric.
 
+#### TensorRT speedup
+The `endoscopic_inbody_classification` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU, in which the `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing and the `end2end` means run the bundle end to end with the TensorRT based model. The `torch_fp32` and `torch_amp` is for the pytorch model with or without `amp` mode. The `trt_fp32` and `trt_fp16` is for the TensorRT based model converted in corresponding precision. The `speedup amp`, `speedup fp32` and `speedup fp16` is the speedup ratio of corresponding models versus the pytorch float32 model, while the `amp vs fp16` is between the pytorch amp model and the TensorRT float16 based model. Currently, this model can only be accelerated through the ONNX-TensorRT way and the Torch-TensorRT way will be comming soon.
+
+| method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| model computation | 34.60 | 7.97 | 3.77 | 3.16 | 4.34 | 9.18 | 10.95 | 2.52 |
+| end2end | - | - | - | - | - | - | - | - |
+
+This result is benchmarked under:
+ - TensorRT: 8.5.3+cuda11.8
+ - Torch-TensorRT Version: 1.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.8.10
+ - CUDA version: 11.8
+ - GPU models and configuration: A100 80G
+
 ![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png)
 
 ## MONAI Bundle Commands
@@ -84,6 +101,16 @@ With the same command, we can execute inference on original LUNA16 images by set
 Note that in inference.json, the transform "LoadImaged" in "preprocessing" and "AffineBoxToWorldCoordinated" in "postprocessing" has `"affine_lps_to_ras": true`.
 This depends on the input images. LUNA16 needs `"affine_lps_to_ras": true`.
 It is possible that your inference dataset should set `"affine_lps_to_ras": false`.
+
+#### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
+
+```bash
+python -m monai.bundle trt_export --net_id network_def \
+filepath models/model_trt.ts --ckpt_file models/model.pt \
+--meta_file configs/metadata.json --config_file configs/inference.json \
+--precision <fp32/fp16> --dynamic_batchsize "[1, 4, 8]" --use_onnx "True" \
+--use_trace "True" --output_names "[`ouput_0`, `ouput_1`, `ouput_2`, `ouput_3`, `ouput_4`, `ouput_5`, `ouput_6`]
+```
 
 # References
 [1] Lin, Tsung-Yi, et al. "Focal loss for dense object detection." ICCV 2017. https://arxiv.org/abs/1708.02002)
