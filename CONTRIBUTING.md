@@ -123,6 +123,27 @@ After exporting your TorchScript file, you can check the evaluation or inference
 
 If your bundle does not support TorchScript, please mention it in `docs/README.md`, and add your bundle name into `exclude_verify_torchscript_list` in `ci/bundle_custom_data.py`.
 
+#### Verify TensorRT models
+Check the functionality of exporting the checkpoint to [TensorRT](https://developer.nvidia.com/tensorrt) based models. TensorRT based models target NVIDIA GPUs via NVIDIA’s TensorRT Deep Learning Optimizer and Runtime. It can accelerate models' inference on NVIDIA GPU with speedup ratio up to 6x by converting models weight to float32 or float16 precision. In MONAI, models are compiled to TensorRT based models through [Torch_TensorRT](https://pytorch.org/TensorRT/). To use the TensorRT conversion to accelerate model inference, you must have a NVIDIA GPU, install TensorRT and Torch-TensorRT. We have started testing most of our models on NVIDIA A100 80G GPU with **Torch_TensorRT version >= 1.4.0** and **TensorRT version >= 8.5.3**. Please make sure your environment meets these minimum requirements. Or you can use the MONAI docker where the **MONAI version is >= 1.2**. Currently, only a subset of models in the MONAI model-zoo support TensorRT conversion. More models will be covered in the future with the new Torch-TensorRT and TensorRT version. The specific versions of these two libraries that support TensorRT conversion for the corresponding models can be found in the README file of the bundle. You can also run the following command locally to export your bundle to float32 precision or float16 precision.
+
+```bash
+python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[min, opt, max]"
+```
+
+The other way to export your pytorch model to a TensorRT engine based torchscript is：
+1. Export the model to a **TensorRT engine** through [onnx](https://pytorch.org/docs/stable/onnx.html).
+1. Use the `torch_tensorrt.ts.embed_engine_in_new_module` API in [this link](https://pytorch.org/TensorRT/py_api/ts.html) to wrap the **TensorRT engine** to a **TensorRT engine based torchscript**.
+
+After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following changes:
+
+1. Add a `$import torch_tensorrt` at the import part of `inference.json` file.
+1. Remove or disable `CheckpointLoader` in evaluation or inference config file if exists.
+1. Define `network_def` as: `"$torch.jit.load(<your TensorRT model path>)"`.
+1. Set the `amp` parameter in the `evaluator` to false.
+1. Execute evaluation or inference command.
+
+If your bundle does not support TensorRT compilation, please mention it in `docs/README.md`.
+
 
 ## Checking the coding style
 

@@ -13,6 +13,7 @@ import os
 
 import torch
 from bundle_custom_data import include_verify_tensorrt_list
+from download_latest_bundle import download_latest_bundle
 from monai.bundle import trt_export
 from verify_bundle import _find_bundle_file
 
@@ -28,7 +29,7 @@ def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: 
         trt_export(
             net_id=net_id,
             filepath=trt_model_path,
-            ckpt_file=os.path.join(bundle_path, "models/models.pt"),
+            ckpt_file=os.path.join(bundle_path, "models/model.pt"),
             meta_file=os.path.join(bundle_path, "configs/metadata.json"),
             config_file=os.path.join(bundle_path, config_file),
             precision=precision,
@@ -44,14 +45,15 @@ def verify_tensorrt(bundle_path: str, net_id: str, config_file: str, precision: 
         raise
 
 
-def verify_all_tensorrt_bundles(models_path="models"):
+def verify_all_tensorrt_bundles(download_path="download"):
     """
     This function is used to verify all bundles that support TensorRT.
 
     """
     for bundle in include_verify_tensorrt_list:
         print(f"start verifying bundle {bundle}.")
-        bundle_path = os.path.join(models_path, bundle)
+        download_latest_bundle(bundle_name=bundle, models_path="models", download_path=download_path)
+        bundle_path = os.path.join(download_path, bundle)
         net_id, inference_file_name = "network_def", _find_bundle_file(
             os.path.join(bundle_path, "configs"), "inference"
         )
@@ -63,6 +65,7 @@ def verify_all_tensorrt_bundles(models_path="models"):
             except BaseException:
                 print(f"verify bundle {bundle} with precision {precision} failed.")
                 raise
+    print("all TensorRT supported bundles are verified correctly.")
 
 
 if __name__ == "__main__":

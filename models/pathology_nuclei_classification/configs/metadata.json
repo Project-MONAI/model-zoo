@@ -2,19 +2,21 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "version": "0.0.6",
     "changelog": {
-        "0.0.6": "update benchmark on A100",
+        "0.0.7": "update benchmark on A100",
+        "0.0.6": "adapt to BundleWorkflow interface",
         "0.0.5": "add name tag",
         "0.0.4": "Fix evaluation",
         "0.0.3": "Update to use MONAI 1.1.0",
         "0.0.2": "Update The Torch Vision Transform",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.1.0",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.21.2",
+    "monai_version": "1.2.0rc3",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
-        "pytorch-ignite": "0.4.9"
+        "pytorch-ignite": "0.4.9",
+        "torchvision": "0.14.1"
     },
     "name": "Pathology nuclei classification",
     "task": "Pathology Nuclei classification",

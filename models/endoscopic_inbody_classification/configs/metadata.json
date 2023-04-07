@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "changelog": {
+        "0.3.7": "adapt to BundleWorkflow interface",
         "0.3.6": "add name tag",
         "0.3.5": "fix a comment issue in the data_process script",
         "0.3.4": "add note for multi-gpu training with example dataset",
@@ -15,9 +16,9 @@
         "0.1.0": "complete the first version model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.0.1",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.22.4",
+    "monai_version": "1.2.0rc3",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"

@@ -4,7 +4,7 @@
         "$import os",
         "$import skimage"
     ],
-    "bundle_root": "$os.getcwd()",
+    "bundle_root": ".",
     "ckpt_dir_stage0": "$os.path.join(@bundle_root, 'models', 'stage0')",
     "ckpt_dir_stage1": "$os.path.join(@bundle_root, 'models')",
     "ckpt_path_stage0": "$os.path.join(@ckpt_dir_stage0, 'model.pt')",
@@ -522,9 +522,11 @@
             "amp": "@amp"
         }
     },
-    "training": [
+    "initialize": [
         "$monai.utils.set_determinism(seed=321)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }
