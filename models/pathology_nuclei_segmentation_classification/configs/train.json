@@ -19,6 +19,7 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "stage": 0,
     "epochs": 50,
+    "batch_size": 16,
     "val_interval": 1,
     "learning_rate": 0.0001,
     "amp": true,
@@ -195,7 +196,7 @@
                 "name": "ColorJitter",
                 "brightness": [
                     0.9,
-                    1.0
+                    1.1
                 ],
                 "contrast": [
                     0.95,
@@ -272,14 +273,16 @@
             "transforms": "$@train#preprocessing_transforms"
         },
         "dataset": {
-            "_target_": "Dataset",
+            "_target_": "CacheDataset",
             "data": "$[{'image': i, 'label_inst': j, 'label_type': k} for i, j, k in zip(@train_images, @train_inst_map, @train_type_map)]",
-            "transform": "@train#preprocessing"
+            "transform": "@train#preprocessing",
+            "cache_rate": 1.0,
+            "num_workers": 4
         },
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
-            "batch_size": 16,
+            "batch_size": "@batch_size",
             "shuffle": true,
             "num_workers": 4
         },
@@ -463,14 +466,16 @@
             "transforms": "$@validate#preprocessing_transforms"
         },
         "dataset": {
-            "_target_": "Dataset",
+            "_target_": "CacheDataset",
             "data": "$[{'image': i, 'label_inst': j, 'label_type': k} for i, j, k in zip(@val_images, @val_inst_map, @val_type_map)]",
-            "transform": "@validate#preprocessing"
+            "transform": "@validate#preprocessing",
+            "cache_rate": 1.0,
+            "num_workers": 4
         },
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@validate#dataset",
-            "batch_size": 16,
+            "batch_size": "@batch_size",
             "shuffle": false,
             "num_workers": 4
         },
