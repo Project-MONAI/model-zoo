@@ -101,17 +101,17 @@ Example `dataset.json` in output folder:
 ## Scores
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-- Train F1 score = 0.942
-- Validation F1 score = 0.837
+- Train F1 score = 0.941
+- Validation F1 score = 0.840
 
 <hr/>
 Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50):
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.7500 | 0.6798       | 0.9072     | 0.8830         |
-| Recall    | 0.1087 | 0.9111       | 0.9540     | 0.7693         |
-| F1-score  | 0.1899 | 0.7786       | 0.9300     | 0.8222         |
+| Precision | 0.6250 | 0.7085       | 0.9188     | 0.8571         |
+| Recall    | 0.1449 | 0.8750       | 0.9310     | 0.8154         |
+| F1-score  | 0.2353 | 0.7830       | 0.9249     | 0.8357         |
 
 
 <hr/>
@@ -119,9 +119,9 @@ Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.8415 | 0.9421       | 0.9680     | 0.9196         |
-| Recall    | 0.7500 | 0.9290       | 0.9684     | 0.9328         |
-| F1-score  | 0.7931 | 0.9355       | 0.9682     | 0.9261         |
+| Precision | 0.8902 | 0.9418       | 0.9717     | 0.9189         |
+| Recall    | 0.7935 | 0.9250       | 0.9725     | 0.9345         |
+| F1-score  | 0.8391 | 0.9333       | 0.9721     | 0.9267         |
 
 
 
