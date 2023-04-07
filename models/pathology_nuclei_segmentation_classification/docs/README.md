@@ -59,27 +59,27 @@ Output: a dictionary with the following keys:
 The achieved metrics on the validation data are:
 
 Fast mode:
-- Binary Dice: 0.8013
-- PQ: 0.4629
-- F1d: 0.7370
+- Binary Dice: 0.8293
+- PQ: 0.4936
+- F1d: 0.7480
 
 #### Training Loss and Dice
 
 stage1:
-![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_train_stage0.png)
+![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage1_fast.png)
 
 stage2:
-![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_train_stage1.png)
+![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage2_fast.png)
 
 #### Validation Dice
 
 stage1:
 
-![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_val_stage0.png)
+![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage1_fast.png)
 
 stage2:
 
-![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_val_stage1.png)
+![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage2_fast.png)
 
 ## commands example
 
