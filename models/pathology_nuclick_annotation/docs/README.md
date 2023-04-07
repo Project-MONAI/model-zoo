@@ -14,7 +14,7 @@ The training dataset is from https://warwick.ac.uk/fac/cross_fac/tia/data/hovern
 wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
 unzip -q consep_dataset.zip
 ```
-![](images/dataset.jpeg)<br/>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_dataset.jpeg)<br/>
 
 ## Training configuration
 The training was performed with the following:
@@ -51,8 +51,8 @@ As part of pre-processing, the following steps are executed.
 
  - Crop and Extract each nuclei Image + Label (128x128) based on the centroid given in the dataset.
  - Combine classes 3 & 4 into the epithelial class and 5,6 & 7 into the spindle-shaped class.
- - Update the label index for the target nuclie based on the class value
- - Other cells which are part of the patch are modified to have label idex = 255
+ - Update the label index for the target nuclei based on the class value
+ - Other cells which are part of the patch are modified to have label idx = 255
 
 Example dataset.json
 ```json
@@ -95,7 +95,7 @@ Example dataset.json
  - 0 = Background
  - 1 = Nuclei
 
-![](images/train_in_out.jpeg)
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_in_out.jpeg)
 
 ## Scores
 This model achieves the following Dice score on the validation data provided as part of the dataset:
@@ -107,13 +107,13 @@ This model achieves the following Dice score on the validation data provided as 
 ## Training Performance
 A graph showing the training Loss and Dice over 50 epochs.
 
-![](images/train_loss.jpeg) <br>
-![](images/train_dice.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_loss.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_dice.jpeg) <br>
 
 ## Validation Performance
 A graph showing the validation mean Dice over 50 epochs.
 
-![](images/val_dice.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_val_dice.jpeg) <br>
 
 
 ## commands example

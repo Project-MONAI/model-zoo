@@ -12,7 +12,7 @@ Figure source from the TotalSegmentator [2].
 
 - We highlight the use of this bundle to use and visualize in MONAI Label + 3D Slicer integration.
 
-![](./imgs/totalsegmentator_monailabel.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_monailabel.png) <br>
 
 ## Data
 
@@ -96,11 +96,11 @@ CPU: Memory: **2.3G**
 
   - Training Accuracy
 
-![](./imgs/totalsegmentator_train_accuracy.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_train_accuracy.png) <br>
 
   - Validation Dice
 
-![](./imgs/totalsegmentator_15mm_validation.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_15mm_validation.png) <br>
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
