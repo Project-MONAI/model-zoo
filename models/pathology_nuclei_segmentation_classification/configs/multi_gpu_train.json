@@ -15,7 +15,7 @@
     },
     "train#dataloader#sampler": "@train#sampler",
     "train#dataloader#shuffle": false,
-    "train#trainer#train_handlers": "$@train#train_handlers[: -3 if dist.get_rank() > 0 else None]",
+    "train#trainer#train_handlers": "$@train#train_handlers[: -2 if dist.get_rank() > 0 else None]",
     "validate#sampler": {
         "_target_": "DistributedSampler",
         "dataset": "@validate#dataset",
