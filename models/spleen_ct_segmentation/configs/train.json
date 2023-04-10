@@ -11,7 +11,7 @@
     "images": "$list(sorted(glob.glob(@dataset_dir + '/imagesTr/*.nii.gz')))",
     "labels": "$list(sorted(glob.glob(@dataset_dir + '/labelsTr/*.nii.gz')))",
     "val_interval": 1,
-    "epochs": 1260,
+    "epochs": 800,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "UNet",
@@ -37,7 +37,7 @@
     "network": "$@network_def.to(@device)",
     "loss": {
         "_target_": "DiceCELoss",
-        "include_background": false,
+        "include_background": true,
         "to_onehot_y": true,
         "softmax": true,
         "squared_pred": true,
