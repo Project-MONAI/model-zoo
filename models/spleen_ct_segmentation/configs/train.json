@@ -36,10 +36,15 @@
     "network": "$@network_def.to(@device)",
     "loss": {
         "_target_": "DiceCELoss",
+        "include_background": false,
         "to_onehot_y": true,
         "softmax": true,
         "squared_pred": true,
-        "batch": true
+        "batch": true,
+        "smooth_nr": 0.00001,
+        "smooth_dr": 0.00001,
+        "lambda_dice": 0.5,
+        "lambda_ce": 0.5
     },
     "optimizer": {
         "_target_": "torch.optim.Adam",
