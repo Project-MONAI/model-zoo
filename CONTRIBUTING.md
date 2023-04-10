@@ -130,10 +130,10 @@ Check the functionality of exporting the checkpoint to [TensorRT](https://develo
 python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[min, opt, max]"
 ```
 
-The other way to export your pytorch model to a TensorRT engine based torchscript is through ONNX-TensorRT way. This way can solve the slowdown issue of some models. Please notice that by defaulf the ONNX-TensorRT way assign only one output to the model. If a model has many outputs, please use the `--output_names` to specify the name of outputs.
+The other way to export a pytorch model to a TensorRT engine-based TorchScript is through the ONNX-TensorRT. This way can solve the slowdown issue of some models. Please notice that by defaulf the ONNX-TensorRT way assign only one output to the model. If a model has many outputs, please use the `--output_names` to specify the name of outputs.
 
 ```bash
-python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[min, opt, max]" --use_onnx "True" --ouput_names "['output_0', 'output_1', ..., 'output_N']
+python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[min, opt, max]" --use_onnx "True" --ouput_names "['output_0', 'output_1', ..., 'output_N']"
 ```
 
 After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following changes:

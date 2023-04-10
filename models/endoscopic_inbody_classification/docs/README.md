@@ -73,7 +73,7 @@ The `endoscopic_inbody_classification` bundle supports the TensorRT acceleration
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | model computation | 6.50 | 9.23 | 2.78 | 2.31 | 0.70 | 2.34 | 2.81 | 4.00 |
-| end2end | - | - | - | - | - | - | - | - |
+| end2end | 23.54 | 23.78 | 7.37 | 7.14 | 0.99 | 3.19 | 3.30 | 3.33 |
 
 This result is benchmarked under:
  - TensorRT: 8.5.3+cuda11.8
@@ -135,8 +135,7 @@ python -m monai.bundle ckpt_export network_def \
 python -m monai.bundle trt_export --net_id network_def \
 --filepath models/model_trt.ts --ckpt_file models/model.pt \
 --meta_file configs/metadata.json --config_file configs/inference.json \
---precision <fp32/fp16> --dynamic_batchsize "[1, 4, 8]" --use_onnx "True" \
---use_trace "True"
+--precision <fp32/fp16>  --use_onnx "True" --use_trace "True"
 ```
 
 # References
