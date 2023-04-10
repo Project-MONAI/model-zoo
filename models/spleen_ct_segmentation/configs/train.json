@@ -198,7 +198,7 @@
         },
         "trainer": {
             "_target_": "SupervisedTrainer",
-            "max_epochs": 100,
+            "max_epochs": 300,
             "device": "@device",
             "train_data_loader": "@train#dataloader",
             "network": "@network",
