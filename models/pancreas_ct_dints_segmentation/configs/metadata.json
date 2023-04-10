@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "changelog": {
+        "0.3.7": "re-train model with updated dints implementation",
         "0.3.6": "black autofix format and add name tag",
         "0.3.5": "restructure readme to match updated template",
         "0.3.4": "correct typos",
