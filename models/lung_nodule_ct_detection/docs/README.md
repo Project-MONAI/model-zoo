@@ -57,6 +57,7 @@ Coco metric is used for evaluating the performance of the model. The pre-trained
 
 #### Validation Accuracy
 The validation accuracy in this curve is the mean of mAP, mAR, AP(IoU=0.1), and AR(IoU=0.1) in Coco metric.
+
 ![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png)
 
 ## MONAI Bundle Commands
