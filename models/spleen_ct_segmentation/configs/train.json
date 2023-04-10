@@ -10,7 +10,7 @@
     "dataset_dir": "/workspace/data/Task09_Spleen",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/imagesTr/*.nii.gz')))",
     "labels": "$list(sorted(glob.glob(@dataset_dir + '/labelsTr/*.nii.gz')))",
-    "val_interval": 5,
+    "val_interval": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "UNet",
@@ -49,7 +49,7 @@
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@network.parameters()",
-        "lr": 0.0002
+        "lr": 0.0001
     },
     "train": {
         "deterministic_transforms": [
@@ -198,7 +198,7 @@
         },
         "trainer": {
             "_target_": "SupervisedTrainer",
-            "max_epochs": 300,
+            "max_epochs": 1260,
             "device": "@device",
             "train_data_loader": "@train#dataloader",
             "network": "@network",
