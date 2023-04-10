@@ -1,8 +1,7 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.4",
+    "version": "0.5.3",
     "changelog": {
-        "0.5.4": "add the ONNX-TensorRT way of model conversion",
         "0.5.3": "adapt to BundleWorkflow interface",
         "0.5.2": "black autofix format and add name tag",
         "0.5.1": "modify dataset key name",
