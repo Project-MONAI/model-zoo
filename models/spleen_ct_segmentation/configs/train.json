@@ -11,6 +11,7 @@
     "images": "$list(sorted(glob.glob(@dataset_dir + '/imagesTr/*.nii.gz')))",
     "labels": "$list(sorted(glob.glob(@dataset_dir + '/labelsTr/*.nii.gz')))",
     "val_interval": 1,
+    "epochs": 1260,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "UNet",
@@ -47,9 +48,15 @@
         "lambda_ce": 0.5
     },
     "optimizer": {
-        "_target_": "torch.optim.Adam",
+        "_target_": "Novograd",
         "params": "$@network.parameters()",
-        "lr": 0.0001
+        "lr": 0.002
+    },
+    "lr_scheduler": {
+        "_target_": "torch.optim.lr_scheduler.StepLR",
+        "optimizer": "@optimizer",
+        "step_size": 5000,
+        "gamma": 0.1
     },
     "train": {
         "deterministic_transforms": [
@@ -173,6 +180,11 @@
         },
         "handlers": [
             {
+                "_target_": "LrScheduleHandler",
+                "lr_scheduler": "@lr_scheduler",
+                "print_lr": true
+            },
+            {
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
@@ -198,7 +210,7 @@
         },
         "trainer": {
             "_target_": "SupervisedTrainer",
-            "max_epochs": 1260,
+            "max_epochs": "@epochs",
             "device": "@device",
             "train_data_loader": "@train#dataloader",
             "network": "@network",
