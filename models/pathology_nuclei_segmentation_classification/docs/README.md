@@ -94,7 +94,7 @@ python -m monai.bundle run --config_file configs/train.json --network_def#pretra
 - Run second stage
 
 ```
-python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder false --network_def#pretrained_url None --stage 1
+python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
 Override the `train` config to execute multi-GPU training:
@@ -108,7 +108,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 - Run second stage
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 4 --network_def#freeze_encoder false --network_def#pretrained_url None --stage 1
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 4 --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
 Override the `train` config to execute evaluation with the trained model:
