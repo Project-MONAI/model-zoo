@@ -59,7 +59,7 @@ Output: a dictionary with the following keys:
 The achieved metrics on the validation data are:
 
 Fast mode:
-- Binary Dice: 0.8290
+- Binary Dice: 0.8291
 - PQ: 0.4973
 - F1d: 0.7417
 
