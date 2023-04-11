@@ -730,5 +730,9 @@
     "pathology_nuclick_annotation_v0.0.7": {
         "checksum": "11f2a4cf46a4496caf126fe39a4f1b90c0717d81",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.7.zip"
+    },
+    "spleen_ct_segmentation_v0.4.3": {
+        "checksum": "59502b9f3c367f39d6baa9bf02c3333cd6cfaf78",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.4.3.zip"
     }
 }
