@@ -66,20 +66,20 @@ Fast mode:
 #### Training Loss and Dice
 
 stage1:
-![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage1_fast.png)
+![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_train_stage0_v2.png)
 
 stage2:
-![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage2_fast.png)
+![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_train_stage1_v2.png)
 
 #### Validation Dice
 
 stage1:
 
-![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage1_fast.png)
+![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_val_stage0_v2.png)
 
 stage2:
 
-![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage2_fast.png)
+![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_val_stage1_v2.png)
 
 ## commands example
 
@@ -102,7 +102,7 @@ Override the `train` config to execute multi-GPU training:
 - Run first stage
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 8 --network_def#freeze_encoder true --network_def#pretrained_url `PRETRAIN_MODEL_URL` --stage 0
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 8 --network_def#freeze_encoder True --network_def#pretrained_url `PRETRAIN_MODEL_URL` --stage 0
 ```
 
 - Run second stage
