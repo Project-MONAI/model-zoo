@@ -18,65 +18,68 @@
         "num_workers": 4
     },
     "validate#preprocessing_transforms": [
-            {
-                "_target_": "LoadImaged",
-                "keys": [
-                    "image",
-                    "label"
-                ]
-            },
-            {
-                "_target_": "SplitDimd",
-                "keys": "label",
-                "output_postfixes": ["inst", "type"],
-                "dim": -1
-            },
-            {
-                "_target_": "EnsureChannelFirstd",
-                "keys": [
-                    "image",
-                    "label_inst",
-                    "label_type"
-                ],
-                "channel_dim": -1
-            },
-            {
-                "_target_": "CastToTyped",
-                "keys": [
-                    "image",
-                    "label_inst"
-                ],
-                "dtype": "$torch.int"
-            },
-            {
-                "_target_": "ScaleIntensityRanged",
-                "keys": "image",
-                "a_min": 0.0,
-                "a_max": 255.0,
-                "b_min": 0.0,
-                "b_max": 1.0,
-                "clip": true
-            },
-            {
-                "_target_": "ComputeHoVerMapsd",
-                "keys": "label_inst"
-            },
-            {
-                "_target_": "Lambdad",
-                "keys": "label_inst",
-                "func": "$lambda x: x > 0",
-                "overwrite": "label"
-            },
-            {
-                "_target_": "CastToTyped",
-                "keys": [
-                    "image",
-                    "label_inst",
-                    "label_type"
-                ],
-                "dtype": "$torch.float32"
-            }
-        ],
+        {
+            "_target_": "LoadImaged",
+            "keys": [
+                "image",
+                "label"
+            ]
+        },
+        {
+            "_target_": "SplitDimd",
+            "keys": "label",
+            "output_postfixes": [
+                "inst",
+                "type"
+            ],
+            "dim": -1
+        },
+        {
+            "_target_": "EnsureChannelFirstd",
+            "keys": [
+                "image",
+                "label_inst",
+                "label_type"
+            ],
+            "channel_dim": -1
+        },
+        {
+            "_target_": "CastToTyped",
+            "keys": [
+                "image",
+                "label_inst"
+            ],
+            "dtype": "$torch.int"
+        },
+        {
+            "_target_": "ScaleIntensityRanged",
+            "keys": "image",
+            "a_min": 0.0,
+            "a_max": 255.0,
+            "b_min": 0.0,
+            "b_max": 1.0,
+            "clip": true
+        },
+        {
+            "_target_": "ComputeHoVerMapsd",
+            "keys": "label_inst"
+        },
+        {
+            "_target_": "Lambdad",
+            "keys": "label_inst",
+            "func": "$lambda x: x > 0",
+            "overwrite": "label"
+        },
+        {
+            "_target_": "CastToTyped",
+            "keys": [
+                "image",
+                "label_inst",
+                "label_type"
+            ],
+            "dtype": "$torch.float32"
+        }
+    ],
     "validate#handlers": [
         {
             "_target_": "CheckpointLoader",
