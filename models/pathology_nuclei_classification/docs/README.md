@@ -128,13 +128,13 @@ Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
 ## Training Performance
 A graph showing the training Loss and F1-score over 50 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss.png) <br>
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss_v2.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1_v2.png) <br>
 
 ## Validation Performance
 A graph showing the validation F1-score over 50 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1_v2.png) <br>
 
 
 ## commands example
