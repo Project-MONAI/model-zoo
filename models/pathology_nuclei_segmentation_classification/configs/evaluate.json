@@ -80,7 +80,7 @@
     "validate#handlers": [
         {
             "_target_": "CheckpointLoader",
-            "load_path": "$os.path.join(@bundle_root, 'nvimagenet_v014/models', 'model.pt')",
+            "load_path": "$os.path.join(@bundle_root, 'models', 'model.pt')",
             "load_dict": {
                 "model": "@network"
             }
