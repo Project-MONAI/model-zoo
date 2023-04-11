@@ -110,10 +110,12 @@
                 "_target_": "HoVerNetInstanceMapPostProcessingd",
                 "sobel_kernel_size": 21,
                 "marker_threshold": 0.5,
-                "marker_radius": 2
+                "marker_radius": 2,
+                "device": "@device"
             },
             {
-                "_target_": "HoVerNetNuclearTypePostProcessingd"
+                "_target_": "HoVerNetNuclearTypePostProcessingd",
+                "device": "@device"
             },
             {
                 "_target_": "SaveImaged",
