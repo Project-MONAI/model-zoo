@@ -63,6 +63,8 @@ Fast mode:
 - PQ: 0.4973
 - F1d: 0.7417
 
+Note: Binary Dice is calculated based on the whole input. PQ and F1d were calculated from https://github.com/vqdang/hover_net#inference.
+
 #### Training Loss and Dice
 
 stage1:
@@ -83,7 +85,7 @@ stage2:
 
 ## commands example
 
-Execute training:
+Execute training, the evaluation in the training were evaluated on patches:
 
 - Run first stage
 
@@ -111,7 +113,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 4 --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
-Override the `train` config to execute evaluation with the trained model:
+Override the `train` config to execute evaluation with the trained model, here we evaluated dice from the whole input instead of the patches:
 
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
