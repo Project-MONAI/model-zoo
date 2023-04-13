@@ -734,5 +734,9 @@
     "spleen_ct_segmentation_v0.4.3": {
         "checksum": "59502b9f3c367f39d6baa9bf02c3333cd6cfaf78",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.4.3.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.3.7": {
+        "checksum": "fe66944a118d4d0040acee9402acdaeeff9bf6e1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.3.7.zip"
     }
 }
