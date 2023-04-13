@@ -59,17 +59,17 @@ Dice score is used for evaluating the performance of the model. This model achie
 #### Training Loss
 The loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)
 
-![Training loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_train_4-2.png)
+![Training loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_train_4-3.png)
 
 #### Validation Dice
 The mean dice score over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)
 
-![Validation mean dice score over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_validation_4-2.png)
+![Validation mean dice score over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_validation_4-3.png)
 
 ### Searched Architecture Visualization
-Users can install Graphviz for visualization of searched architectures (needed in custom/decode_plot.py). The edges between nodes indicate global structure, and numbers next to edges represent different operations in the cell searching space. An example of searched architecture is shown as follows:
+Users can install Graphviz for visualization of searched architectures (needed in [decode_plot.py](https://github.com/Project-MONAI/tutorials/blob/main/automl/DiNTS/decode_plot.py)). The edges between nodes indicate global structure, and numbers next to edges represent different operations in the cell searching space. An example of searched architecture is shown as follows:
 
-![Example of Searched Architecture](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_searched_arch_example.png)
+![Example of Searched Architecture](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_searched_arch_example_1.png)
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
@@ -91,25 +91,25 @@ torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file confi
 #### Execute training:
 
 ```
-python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.yaml --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.yaml
 ```
 
 #### Override the `train` config to execute multi-GPU training:
 
 ```
-torchrun --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" --logging_file configs/logging.conf
+torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']"
 ```
 
 #### Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/evaluate.yaml']" --logging_file configs/logging.conf
+python -m monai.bundle run --config_file "['configs/train.yaml','configs/evaluate.yaml']"
 ```
 
 #### Execute inference:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.yaml --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/inference.yaml
 ```
 
 #### Export checkpoint for TorchScript
