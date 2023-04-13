@@ -134,7 +134,7 @@ The other way to export your pytorch model to a TensorRT engine based torchscrip
 1. Export the model to a **TensorRT engine** through [onnx](https://pytorch.org/docs/stable/onnx.html).
 1. Use the `torch_tensorrt.ts.embed_engine_in_new_module` API in [this link](https://pytorch.org/TensorRT/py_api/ts.html) to wrap the **TensorRT engine** to a **TensorRT engine based torchscript**.
 
-After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following steps.
+After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following steps:
 
 1. Add a `$import torch_tensorrt` at the import part of `inference.json` file.
 1. Remove or disable `CheckpointLoader` in evaluation or inference config file if exists.
