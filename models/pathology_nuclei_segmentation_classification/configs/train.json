@@ -33,7 +33,7 @@
         "in_channels": 3,
         "out_classes": 5,
         "adapt_standard_resnet": true,
-        "pretrained_url": "$None",
+        "pretrained_url": null,
         "freeze_encoder": true
     },
     "network": "$@network_def.to(@device)",
