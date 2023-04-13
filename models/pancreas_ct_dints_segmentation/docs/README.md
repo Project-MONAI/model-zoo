@@ -91,7 +91,7 @@ torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file confi
 #### Execute training:
 
 ```
-python -m monai.bundle run training --config_file configs/train.yaml
+python -m monai.bundle run --config_file configs/train.yaml
 ```
 
 #### Override the `train` config to execute multi-GPU training:
