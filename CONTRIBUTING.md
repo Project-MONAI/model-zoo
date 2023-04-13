@@ -134,7 +134,14 @@ The other way to export your pytorch model to a TensorRT engine based torchscrip
 1. Export the model to a **TensorRT engine** through [onnx](https://pytorch.org/docs/stable/onnx.html).
 1. Use the `torch_tensorrt.ts.embed_engine_in_new_module` API in [this link](https://pytorch.org/TensorRT/py_api/ts.html) to wrap the **TensorRT engine** to a **TensorRT engine based torchscript**.
 
-After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following command:
+After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following steps.
+
+1. Add a `$import torch_tensorrt` at the import part of `inference.json` file.
+1. Remove or disable `CheckpointLoader` in evaluation or inference config file if exists.
+1. Define `network_def` as: `"$torch.jit.load(<your TensorRT model path>)"`.
+1. Set the `amp` parameter in the `evaluator` to false.
+
+All above steps can be covered in an `inference_trt.json` like this [example](./models/spleen_ct_segmentation/configs/inference_trt.json). Update the `inference_trt.json` based on your bundle and put it in the `configs` folder of the bundle. Then run the following command to execute the inference:
 
 ```
 python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
