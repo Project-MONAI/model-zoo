@@ -106,13 +106,13 @@ Override the `train` config to execute multi-GPU training:
 - Run first stage
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 8 --network_def#freeze_encoder True --network_def#pretrained_url `PRETRAIN_MODEL_URL` --stage 0
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 8 --network_def#freeze_encoder True --network_def#pretrained_url `PRETRAIN_MODEL_URL --stage 0
 ```
 
 - Run second stage
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 4 --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 4 --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
 Override the `train` config to execute evaluation with the trained model, here we evaluated dice from the whole input instead of the patches:
