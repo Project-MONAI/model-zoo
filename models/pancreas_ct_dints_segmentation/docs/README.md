@@ -91,25 +91,25 @@ torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file confi
 #### Execute training:
 
 ```
-python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.yaml --logging_file configs/logging.conf
+python -m monai.bundle run training --config_file configs/train.yaml
 ```
 
 #### Override the `train` config to execute multi-GPU training:
 
 ```
-torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" --logging_file configs/logging.conf
+torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']"
 ```
 
 #### Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/evaluate.yaml']" --logging_file configs/logging.conf
+python -m monai.bundle run --config_file "['configs/train.yaml','configs/evaluate.yaml']"
 ```
 
 #### Execute inference:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.yaml --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/inference.yaml
 ```
 
 #### Export checkpoint for TorchScript

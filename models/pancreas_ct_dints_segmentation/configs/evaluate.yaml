@@ -59,6 +59,7 @@ validate#handlers:
   - val_mean_dice
   batch_transform: "$monai.handlers.from_engine(['image_meta_dict'])"
   summary_ops: "*"
-evaluating:
+initialize:
 - "$setattr(torch.backends.cudnn, 'benchmark', True)"
+run:
 - "$@validate#evaluator.run()"

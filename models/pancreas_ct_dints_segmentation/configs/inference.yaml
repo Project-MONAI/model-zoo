@@ -111,6 +111,7 @@ evaluator:
   postprocessing: "@postprocessing"
   val_handlers: "@handlers"
   amp: true
-evaluating:
+initialize:
 - "$setattr(torch.backends.cudnn, 'benchmark', True)"
+run:
 - "$@evaluator.run()"
