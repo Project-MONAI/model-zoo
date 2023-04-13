@@ -63,7 +63,9 @@ Fast mode:
 - PQ: 0.4973
 - F1d: 0.7417
 
-Note: Binary Dice is calculated based on the whole input. PQ and F1d were calculated from https://github.com/vqdang/hover_net#inference.
+Note: Binary Dice is calculated based on the whole input. PQ and F1d were calculated from https://github.com/vqdang/hover_net#inference. 
+
+This bundle is non-deterministic, for more details please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms
 
 #### Training Loss and Dice
 
