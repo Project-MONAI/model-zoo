@@ -742,5 +742,9 @@
     "pathology_nuclei_classification_v0.0.7": {
         "checksum": "b148e31149062d6a1235dce44e6114f9c67f11f0",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.0.7.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.5": {
+        "checksum": "1ec12788d6ac6c381e317b64c1af4420c91dd400",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.5.zip"
     }
 }
