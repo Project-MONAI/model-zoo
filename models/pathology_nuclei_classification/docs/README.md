@@ -14,7 +14,7 @@ The training dataset is from https://warwick.ac.uk/fac/cross_fac/tia/data/hovern
 wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
 unzip -q consep_dataset.zip
 ```
-![](images/dataset.jpeg)<br/>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_dataset.jpeg)<br/>
 
 ## Training configuration
 The training was performed with the following:
@@ -96,22 +96,22 @@ Example `dataset.json` in output folder:
  - 2 = Epithelial
  - 3 = Spindle-Shaped
 
-![](images/val_in_out.jpeg)
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_in_out.jpeg)
 
 ## Scores
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-- Train F1 score = 0.96
-- Validation F1 score = 0.85
+- Train F1 score = 0.941
+- Validation F1 score = 0.840
 
 <hr/>
 Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50):
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.5846 | 0.7143       | 0.9158     | 0.8399         |
-| Recall    | 0.2550 | 0.8441       | 0.9193     | 0.8106         |
-| F1-score  | 0.3551 | 0.7738       | 0.9175     | 0.8250         |
+| Precision | 0.6250 | 0.7085       | 0.9188     | 0.8571         |
+| Recall    | 0.1449 | 0.8750       | 0.9310     | 0.8154         |
+| F1-score  | 0.2353 | 0.7830       | 0.9249     | 0.8357         |
 
 
 <hr/>
@@ -119,22 +119,22 @@ Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.9059 | 0.9569       | 0.9754     | 0.9494         |
-| Recall    | 0.8370 | 0.9547       | 0.9790     | 0.9502         |
-| F1-score  | 0.8701 | 0.9558       | 0.9772     | 0.9498         |
+| Precision | 0.8902 | 0.9418       | 0.9717     | 0.9189         |
+| Recall    | 0.7935 | 0.9250       | 0.9725     | 0.9345         |
+| F1-score  | 0.8391 | 0.9333       | 0.9721     | 0.9267         |
 
 
 
 ## Training Performance
 A graph showing the training Loss and F1-score over 50 epochs.
 
-![](images/train_loss.jpeg) <br>
-![](images/train_f1.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss_v2.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1_v2.png) <br>
 
 ## Validation Performance
 A graph showing the validation F1-score over 50 epochs.
 
-![](images/val_f1.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1_v2.png) <br>
 
 
 ## commands example
