@@ -1,14 +1,15 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "changelog": {
+        "0.1.5": "update benchmark on A100",
         "0.1.4": "adapt to BundleWorkflow interface",
         "0.1.3": "add name tag",
         "0.1.2": "update the workflow figure",
         "0.1.1": "update to use monai 1.1.0",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.2.0rc3",
+    "monai_version": "1.2.0rc4",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
@@ -28,9 +29,7 @@
     "label_classes": "a dictionary contains binary nuclear segmentation, hover map and pixel-level classification",
     "pred_classes": "a dictionary contains scalar probability for binary nuclear segmentation, hover map and pixel-level classification",
     "eval_metrics": {
-        "Binary Dice": 0.8293,
-        "PQ": 0.4936,
-        "F1d": 0.748
+        "Binary Dice": 0.8291
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
