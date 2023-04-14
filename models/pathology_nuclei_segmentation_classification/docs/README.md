@@ -59,31 +59,35 @@ Output: a dictionary with the following keys:
 The achieved metrics on the validation data are:
 
 Fast mode:
-- Binary Dice: 0.8293
-- PQ: 0.4936
-- F1d: 0.7480
+- Binary Dice: 0.8291
+- PQ: 0.4973
+- F1d: 0.7417
+
+Note: Binary Dice is calculated based on the whole input. PQ and F1d were calculated from https://github.com/vqdang/hover_net#inference.
+
+This bundle is non-deterministic, for more details please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms
 
 #### Training Loss and Dice
 
 stage1:
-![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage1_fast.png)
+![A graph showing the training loss and the mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_train_stage0_v2.png)
 
 stage2:
-![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_train_stage2_fast.png)
+![A graph showing the training loss and the mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_train_stage1_v2.png)
 
 #### Validation Dice
 
 stage1:
 
-![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage1_fast.png)
+![A graph showing the validation mean dice over 50 epochs in stage1](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_val_stage0_v2.png)
 
 stage2:
 
-![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclei_seg_cls_val_stage2_fast.png)
+![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_val_stage1_v2.png)
 
 ## commands example
 
-Execute training:
+Execute training, the evaluation in the training were evaluated on patches:
 
 - Run first stage
 
@@ -94,7 +98,7 @@ python -m monai.bundle run --config_file configs/train.json --network_def#pretra
 - Run second stage
 
 ```
-python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder false --network_def#pretrained_url None --stage 1
+python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
 Override the `train` config to execute multi-GPU training:
@@ -102,16 +106,16 @@ Override the `train` config to execute multi-GPU training:
 - Run first stage
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 8 --network_def#freeze_encoder true --network_def#pretrained_url `PRETRAIN_MODEL_URL` --stage 0
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 8 --network_def#freeze_encoder True --network_def#pretrained_url `PRETRAIN_MODEL_URL --stage 0
 ```
 
 - Run second stage
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --train#dataloader#batch_size 4 --network_def#freeze_encoder false --network_def#pretrained_url None --stage 1
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 4 --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
-Override the `train` config to execute evaluation with the trained model:
+Override the `train` config to execute evaluation with the trained model, here we evaluated dice from the whole input instead of the patches:
 
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
