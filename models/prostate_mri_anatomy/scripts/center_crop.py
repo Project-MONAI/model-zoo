@@ -54,10 +54,10 @@ def crop(image: sitk.Image, margin: Union[int, float], interpolator=sitk.sitkLin
     old_size = image.GetSize()
 
     # calculate new origin and new image size
-    if all((isinstance(m, float) for m in _flatten(margin))):
-        assert all((m >= 0 and m < 0.5 for m in _flatten(margin))), "margins must be between 0 and 0.5"
+    if all([isinstance(m, float) for m in _flatten(margin)]):
+        assert all([m >= 0 and m < 0.5 for m in _flatten(margin)]), "margins must be between 0 and 0.5"
         to_crop = [[int(sz * _m) for _m in m] for sz, m in zip(old_size, margin)]
-    elif all((isinstance(m, int) for m in _flatten(margin))):
+    elif all([isinstance(m, int) for m in _flatten(margin)]):
         to_crop = margin
     else:
         raise ValueError("Wrong format of margins.")

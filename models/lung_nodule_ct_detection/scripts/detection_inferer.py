@@ -53,7 +53,7 @@ class RetinaNetInferer(Inferer):
         # if image smaller than sliding window roi size, no need to use sliding window inferer
         # use sliding window inferer only when image is large
         use_inferer = self.sliding_window_size is not None and not all(
-            (data_i[0, ...].numel() < self.sliding_window_size for data_i in inputs)
+            [data_i[0, ...].numel() < self.sliding_window_size for data_i in inputs]
         )
 
         return self.detector(inputs, use_inferer=use_inferer, *args, **kwargs)
