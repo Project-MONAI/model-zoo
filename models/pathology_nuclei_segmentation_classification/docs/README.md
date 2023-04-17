@@ -1,8 +1,5 @@
 # Model Overview
-
 A pre-trained model for simultaneous segmentation and classification of nuclei within multi-tissue histology images based on CoNSeP data. The details of the model can be found in [1].
-
-## Workflow
 
 The model is trained to simultaneous segment and classify nuclei. Training is done via a two-stage approach. First initialized the model with pre-trained weights on the [ImageNet dataset](https://ieeexplore.ieee.org/document/5206848), trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs. There are two training modes in total. If "original" mode is specified, it uses [270, 270] and [80, 80] for `patch_size` and `out_size` respectively. If "fast" mode is specified, it uses [256, 256] and [164, 164] for `patch_size` and `out_size` respectively. The results we show below are based on the "fast" model.
 
@@ -24,6 +21,8 @@ The training data is from <https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet
 - Size: 41 image tiles (2009 patches)
 
 The provided labelled data was partitioned, based on the original split, into training (27 tiles) and testing (14 tiles) datasets.
+
+### Preprocessing
 
 After download the datasets, please run `scripts/prepare_patches.py` to prepare patches from tiles. Prepared patches are saved in `your-concep-dataset-path`/Prepared. The implementation is referring to <https://github.com/vqdang/hover_net/blob/master/extract_patches.py>. The command is like:
 
@@ -54,7 +53,7 @@ Output: a dictionary with the following keys:
 2. horizontal_vertical: predict the horizontal and vertical distances of nuclear pixels to their centres of mass
 3. type_prediction: predict the type of nucleus for each pixel
 
-## Model Performance
+## Performance
 
 The achieved metrics on the validation data are:
 
@@ -85,9 +84,12 @@ stage2:
 
 ![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_val_stage1_v2.png)
 
-## commands example
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-Execute training, the evaluation in the training were evaluated on patches:
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute training, the evaluation in the training were evaluated on patches:
 
 - Run first stage
 
@@ -101,7 +103,7 @@ python -m monai.bundle run --config_file configs/train.json --network_def#pretra
 python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
-Override the `train` config to execute multi-GPU training:
+#### Override the `train` config to execute multi-GPU training:
 
 - Run first stage
 
@@ -115,21 +117,17 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 4 --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
-Override the `train` config to execute evaluation with the trained model, here we evaluated dice from the whole input instead of the patches:
+#### Override the `train` config to execute evaluation with the trained model, here we evaluated dice from the whole input instead of the patches:
 
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
-### Execute inference
+#### Execute inference
 
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
-
-# Disclaimer
-
-This is an example, not to be used for diagnostic purposes.
 
 # References
 
