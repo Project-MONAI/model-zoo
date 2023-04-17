@@ -1,6 +1,6 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.5",
+    "version": "0.5.4",
     "changelog": {
         "0.5.4": "add non-deterministic note",
         "0.5.3": "adapt to BundleWorkflow interface",
