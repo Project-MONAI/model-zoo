@@ -1,10 +1,8 @@
 # Model Overview
 A pre-trained model for simultaneous segmentation and classification of nuclei within multi-tissue histology images based on CoNSeP data. The details of the model can be found in [1].
 
-## Workflow
 The model is trained to simultaneously segment and classify nuclei. Training is done via a two-stage approach. First initialized the model with pre-trained weights on the [ImageNet dataset](https://ieeexplore.ieee.org/document/5206848), trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs. There are two training modes in total. If "original" mode is specified, [270, 270] and [80, 80] are used for `patch_size` and `out_size` respectively. If "fast" mode is specified, [256, 256] and [164, 164] are used for `patch_size` and `out_size` respectively. The results shown below are based on the "fast" mode.
 
-### Pre-trained weights
 The first stage is trained with pre-trained weights from some internal data.The [original author's repo](https://github.com/vqdang/hover_net#data-format) also provides pre-trained weights but for non-commercial use.
 Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use.
 
@@ -21,6 +19,8 @@ The training data is from <https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet
 - Size: 41 image tiles (2009 patches)
 
 The provided labelled data was partitioned, based on the original split, into training (27 tiles) and testing (14 tiles) datasets.
+
+### Preprocessing
 
 After download the datasets, please run `scripts/prepare_patches.py` to prepare patches from tiles. Prepared patches are saved in `your-concep-dataset-path`/Prepared. The implementation is referring to <https://github.com/vqdang/hover_net/blob/master/extract_patches.py>. The command is like:
 
@@ -117,9 +117,6 @@ python -m monai.bundle run --config_file "['configs/train.json','configs/evaluat
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
-
-# Disclaimer
-This is an example, not to be used for diagnostic purposes.
 
 # References
 [1] Simon Graham, Quoc Dang Vu, Shan E Ahmed Raza, Ayesha Azam, Yee Wah Tsang, Jin Tae Kwak, Nasir Rajpoot, Hover-Net: Simultaneous segmentation and classification of nuclei in multi-tissue histology images, Medical Image Analysis, 2019 https://doi.org/10.1016/j.media.2019.101563
