@@ -65,7 +65,8 @@ Fast mode:
 
 Note: Binary Dice is calculated based on the whole input. PQ and F1d were calculated from https://github.com/vqdang/hover_net#inference.
 
-This bundle is non-deterministic, for more details please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms
+Please note that This bundle is non-deterministic because of the bilinear interpolation used in the network. Therefore, reproduce the training process may not get exactly the same performance.
+Please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms for more details about the reproducibility.
 
 #### Training Loss and Dice
 

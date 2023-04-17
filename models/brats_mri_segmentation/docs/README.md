@@ -55,6 +55,8 @@ Dice score was used for evaluating the performance of the model. This model achi
 - Enhancing tumor (ET): 0.7905
 - Average: 0.8518
 
+This bundle is non-deterministic because of the trilinear interpolation used in the network. For more details please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms
+
 #### Training Loss and Dice
 ![A graph showing the training loss and the mean dice over 300 epochs](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_train.png)
 

@@ -9,6 +9,21 @@
                 "softmax": true
             },
             {
+                "_target_": "Invertd",
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "transform": "@validate#preprocessing",
+                "orig_keys": "image",
+                "meta_key_postfix": "meta_dict",
+                "nearest_interp": [
+                    false,
+                    true
+                ],
+                "to_tensor": true
+            },
+            {
                 "_target_": "AsDiscreted",
                 "keys": [
                     "pred",
