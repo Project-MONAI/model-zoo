@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.5",
+    "version": "0.4.6",
     "changelog": {
-        "0.4.5": "update the model weight",
+        "0.4.6": "update the model weight",
+        "0.4.5": "add the command of executing inference with TensorRT models",
         "0.4.4": "adapt to BundleWorkflow interface",
         "0.4.3": "update this bundle to support TensorRT convert",
         "0.4.2": "support monai 1.2 new FlexibleUNet",
