@@ -806,5 +806,21 @@
     "spleen_deepedit_annotation_v0.3.9": {
         "checksum": "7db31acc011fa89340b8abb1d126929dd4effa80",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.3.9.zip"
+    },
+    "wholeBody_ct_segmentation_v0.1.4": {
+        "checksum": "70d2d5cf3de7747e2951a64d3d29bd4f44a2a79b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBody_ct_segmentation_v0.1.4.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.7": {
+        "checksum": "0582912cde6e26ee942691ac037da0a8b001f845",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.7.zip"
+    },
+    "pathology_nuclei_classification_v0.0.9": {
+        "checksum": "205ec91ebd8884c9da7810ca4a2a6b9a926d0b3c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.0.9.zip"
+    },
+    "pathology_nuclick_annotation_v0.0.9": {
+        "checksum": "004d04d6afac032aa6b3d0ae2ebad64bc6e0fc04",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.0.9.zip"
     }
 }
