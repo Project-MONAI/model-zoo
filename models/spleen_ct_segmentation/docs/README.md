@@ -105,7 +105,7 @@ python -m monai.bundle run --config_file configs/inference.json
 python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[1, 4, 8]"
 ```
 
-#### Execute inference with the TensorRT model
+#### Execute inference with the TensorRT model:
 
 ```
 python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
