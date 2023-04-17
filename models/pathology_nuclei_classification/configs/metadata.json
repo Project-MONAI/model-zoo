@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "changelog": {
-        "0.0.8": "Update README Formatting",
+        "0.0.9": "Update README Formatting",
+        "0.0.8": "enable deterministic training",
         "0.0.7": "update benchmark on A100",
         "0.0.6": "adapt to BundleWorkflow interface",
         "0.0.5": "add name tag",

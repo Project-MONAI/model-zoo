@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "changelog": {
-        "0.0.8": "Update README Formatting",
+        "0.0.9": "Update README Formatting",
+        "0.0.8": "enable deterministic training",
         "0.0.7": "Update with figure links",
         "0.0.6": "adapt to BundleWorkflow interface",
         "0.0.5": "add name tag",
@@ -11,7 +12,7 @@
         "0.0.2": "Update The Torch Vision Transform",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0rc3",
+    "monai_version": "1.2.0rc4",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {

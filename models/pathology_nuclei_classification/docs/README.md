@@ -134,6 +134,8 @@ A graph showing the validation F1-score over 50 epochs.
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1_v2.png) <br>
 
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.

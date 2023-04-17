@@ -101,18 +101,21 @@ CPU: Memory: **2.3G**
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_15mm_validation.png) <br>
 
+Please note that this bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-#### Execute training
+#### Execute training:
 
 ```
 python -m monai.bundle run --config_file configs/train.json
 ```
 
-#### Override the `train` config to execute multi-GPU training
+#### Override the `train` config to execute multi-GPU training:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
@@ -120,24 +123,24 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 
 Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-#### Override the `train` config to execute evaluation with the trained model
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
-#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation
+#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']"
 ```
 
-#### Execute inference
+#### Execute inference:
 
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
-#### Execute inference with Data Samples
+#### Execute inference with Data Samples:
 
 ```
 python -m monai.bundle run --config_file configs/inference.json --datalist "['sampledata/imagesTr/s0037.nii.gz','sampledata/imagesTr/s0038.nii.gz']"
