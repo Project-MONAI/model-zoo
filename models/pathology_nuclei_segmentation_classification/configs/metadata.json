@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "changelog": {
+        "0.1.6": "add non-deterministic note",
         "0.1.5": "update benchmark on A100",
         "0.1.4": "adapt to BundleWorkflow interface",
         "0.1.3": "add name tag",

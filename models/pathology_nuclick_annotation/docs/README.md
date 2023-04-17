@@ -116,14 +116,18 @@ A graph showing the validation mean Dice over 50 epochs.
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_val_dice.jpeg) <br>
 
 
-## commands example
-Execute training:
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
+
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute training:
 
 ```
 python -m monai.bundle run --config_file configs/train.json
 ```
 
-Override the `train` config to execute multi-GPU training:
+#### Override the `train` config to execute multi-GPU training:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
@@ -132,19 +136,19 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
 Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
 
-Override the `train` config to execute evaluation with the trained model:
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
-Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
+#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']"
 ```
 
-Execute inference:
+#### Execute inference:
 
 ```
 python -m monai.bundle run --config_file configs/inference.json

@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "changelog": {
+        "0.5.4": "add non-deterministic note",
         "0.5.3": "adapt to BundleWorkflow interface",
         "0.5.2": "black autofix format and add name tag",
         "0.5.1": "modify dataset key name",
@@ -17,7 +18,7 @@
         "0.1.1": "add reference for LIDC dataset",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.2.0rc3",
+    "monai_version": "1.2.0rc4",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
