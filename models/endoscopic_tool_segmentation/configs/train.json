@@ -6,6 +6,7 @@
         "$import numpy as np"
     ],
     "bundle_root": ".",
+    "use_imagenet_pretrain": false,
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/endoscopic_tool_dataset",
@@ -22,13 +23,13 @@
         "backbone": "efficientnet-b2",
         "spatial_dims": 2,
         "dropout": 0.5,
-        "pretrained": true,
+        "pretrained": "@use_imagenet_pretrain",
         "is_pad": false,
         "pre_conv": null
     },
     "network": "$@network_def.to(@device)",
     "loss": {
-        "_target_": "DiceLoss",
+        "_target_": "DiceFocalLoss",
         "include_background": false,
         "to_onehot_y": true,
         "softmax": true,
@@ -136,6 +137,15 @@
             "_target_": "SimpleInferer"
         },
         "handlers": [
+            {
+                "_target_": "CheckpointLoader",
+                "_disabled_": "@use_imagenet_pretrain",
+                "load_path": "/path/to/local/weight/model.pt",
+                "load_dict": {
+                    "model": "@network"
+                },
+                "strict": false
+            },
             {
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",

@@ -3,6 +3,12 @@ A pre-trained model for the endoscopic tool segmentation task and is trained usi
 
 The [PyTorch model](https://drive.google.com/file/d/19yS3t2oLBiB7wT-qeQ82da95VJs_vzRK/view?usp=share_link) and [torchscript model](https://drive.google.com/file/d/1cDZ3Jr7mhpzdzaFyz8yHNowH8k0T1VZz/view?usp=share_link) are shared in google drive. Details can be found in large_files.yml file. Modify the "bundle_root" parameter specified in configs/train.json and configs/inference.json to reflect where models are downloaded. Expected directory path to place downloaded models is "models/" under "bundle_root".
 
+Either an [ImageNet](https://ieeexplore.ieee.org/document/5206848) pre-trained or a local pre-trained encoder weight could be loaded to the model for training, which is controlled by the `use_imagenet_pretrain` parameter in the `configs/train.json` file. If using local pre-trained weight, please update the `load_path`  parameter of the `CheckpointLoader` in the `configs/train.json` with the local weight path.
+
+- We trained the encoder with pre-trained weights from some internal data.
+
+- The ImageNet pre-trained encoder repo has pre-trained weights which is for non-commercial use. Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use. The license for the pre-trained model is different than MONAI license. Please check the source where these weights are obtained from: <https://github.com/lukemelas/EfficientNet-PyTorch>
+
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_workflow.png)
 
 ## Data
