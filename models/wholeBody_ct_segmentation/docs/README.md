@@ -102,7 +102,7 @@ CPU: Memory: **2.3G**
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_15mm_validation.png) <br>
 
-Please note that This bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproduce the training process may not get exactly the same performance.
+Please note that This bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
 Please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms for more details about the reproducibility.
 
 ## MONAI Bundle Commands
