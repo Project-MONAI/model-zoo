@@ -103,7 +103,7 @@ CPU: Memory: **2.3G**
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_15mm_validation.png) <br>
 
 Please note that This bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
-Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about the reproducibility.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.

@@ -57,7 +57,7 @@ Three channels
 Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.62.
 
 Please note that This bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
-Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about the reproducibility.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
 
 #### Training Loss
 The loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)
