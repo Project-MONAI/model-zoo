@@ -91,13 +91,13 @@ CPU: Memory: **2.3G**
 
 ## Performance
 
-- 1.5 mm Model Training
+### 1.5 mm Model Training
 
-  - Training Accuracy
+#### Training Accuracy
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_train_accuracy.png) <br>
 
-  - Validation Dice
+#### Validation Dice
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_15mm_validation.png) <br>
 
