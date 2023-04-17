@@ -66,7 +66,7 @@ Fast mode:
 Note: Binary Dice is calculated based on the whole input. PQ and F1d were calculated from https://github.com/vqdang/hover_net#inference.
 
 Please note that This bundle is non-deterministic because of the bilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
-Please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms for more details about the reproducibility.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about the reproducibility.
 
 #### Training Loss and Dice
 
@@ -86,9 +86,12 @@ stage2:
 
 ![A graph showing the validation mean dice over 50 epochs in stage2](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_segmentation_classification_val_stage1_v2.png)
 
-## commands example
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-Execute training, the evaluation in the training were evaluated on patches:
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute training, the evaluation in the training were evaluated on patches:
 
 - Run first stage
 
@@ -102,7 +105,7 @@ python -m monai.bundle run --config_file configs/train.json --network_def#pretra
 python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
-Override the `train` config to execute multi-GPU training:
+#### Override the `train` config to execute multi-GPU training:
 
 - Run first stage
 
@@ -116,13 +119,13 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 4 --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
 ```
 
-Override the `train` config to execute evaluation with the trained model, here we evaluated dice from the whole input instead of the patches:
+#### Override the `train` config to execute evaluation with the trained model, here we evaluated dice from the whole input instead of the patches:
 
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
-### Execute inference
+#### Execute inference:
 
 ```
 python -m monai.bundle run --config_file configs/inference.json

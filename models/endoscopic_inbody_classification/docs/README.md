@@ -105,11 +105,7 @@ The classification result of every images in `test.json` will be printed to the 
 #### Export checkpoint to TorchScript file:
 
 ```
-python -m monai.bundle ckpt_export network_def \
-    --filepath models/model.ts \
-    --ckpt_file models/model.pt \
-    --meta_file configs/metadata.json \
-    --config_file configs/inference.json
+python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
 # References

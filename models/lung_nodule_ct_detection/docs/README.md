@@ -53,7 +53,7 @@ In Evaluation Mode: A list of dictionaries of predicted box, classification labe
 Coco metric is used for evaluating the performance of the model. The pre-trained model was trained and validated on data fold 0. This model achieves a mAP=0.853, mAR=0.994, AP(IoU=0.1)=0.862, AR(IoU=0.1)=1.0.
 
 Please note that This bundle is non-deterministic because of the max pooling layer used in the network. Therefore, reproducing the training process may not get exactly the same performance.
-Please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms for more details about the reproducibility.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about the reproducibility.
 
 #### Training Loss
 ![A graph showing the detection train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png)

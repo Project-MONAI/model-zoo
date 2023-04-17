@@ -57,7 +57,7 @@ Three channels
 Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.62.
 
 Please note that This bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
-Please refer to https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms for more details about the reproducibility.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about the reproducibility.
 
 #### Training Loss
 The loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)
@@ -115,7 +115,7 @@ python -m monai.bundle run --config_file "['configs/train.yaml','configs/evaluat
 python -m monai.bundle run --config_file configs/inference.yaml
 ```
 
-#### Export checkpoint for TorchScript
+#### Export checkpoint for TorchScript:
 
 ```
 python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.yaml
