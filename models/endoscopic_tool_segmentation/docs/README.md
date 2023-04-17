@@ -38,7 +38,7 @@ Two channels:
 - Label 0: everything else
 
 ## Performance
-IoU was used for evaluating the performance of the model. This model achieves a mean IoU score of 0.87.
+IoU was used for evaluating the performance of the model. This model achieves a mean IoU score of 0.86.
 
 #### Training Loss
 ![A graph showing the training loss over 100 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_train_loss.png)
