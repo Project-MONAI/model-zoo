@@ -1,11 +1,10 @@
-# Description
+# Model Overview
 A pre-trained model for segmenting nuclei cells with user clicks/interactions.
 
 ![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/11.gif)
 ![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/33.gif)
 ![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/22.gif)
 
-# Model Overview
 This model is trained using [BasicUNet](https://docs.monai.io/en/latest/networks.html#basicunet) over [ConSeP](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet) dataset.
 
 ## Data
@@ -15,17 +14,6 @@ wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
 unzip -q consep_dataset.zip
 ```
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_dataset.jpeg)<br/>
-
-## Training configuration
-The training was performed with the following:
-
-- GPU: at least 12GB of GPU memory
-- Actual Model Input: 5 x 128 x 128
-- AMP: True
-- Optimizer: Adam
-- Learning Rate: 1e-4
-- Loss: DiceLoss
-
 
 ### Preprocessing
 After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip),
@@ -84,33 +72,45 @@ Example dataset.json
 }
 ```
 
+## Training configuration
+The training was performed with the following:
 
-## Input and output formats
-### Input: 5 channels
+- GPU: at least 12GB of GPU memory
+- Actual Model Input: 5 x 128 x 128
+- AMP: True
+- Optimizer: Adam
+- Learning Rate: 1e-4
+- Loss: DiceLoss
+
+
+## Input
+5 channels
 - 3 RGB channels
 - +ve signal channel (this nuclei)
 - -ve signal channel (other nuclei)
 
-### Output: 2 channels
+## Output
+2 channels
  - 0 = Background
  - 1 = Nuclei
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_in_out.jpeg)
 
-## Scores
+
+## Performance
 This model achieves the following Dice score on the validation data provided as part of the dataset:
 
 - Train Dice score = 0.89
 - Validation Dice score = 0.85
 
 
-## Training Performance
+#### Training Loss and Dice
 A graph showing the training Loss and Dice over 50 epochs.
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_loss.jpeg) <br>
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_dice.jpeg) <br>
 
-## Validation Performance
+#### Validation Dice
 A graph showing the validation mean Dice over 50 epochs.
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_val_dice.jpeg) <br>
@@ -133,8 +133,7 @@ python -m monai.bundle run --config_file configs/train.json
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
 ```
 
-Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
-Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
+Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
 #### Override the `train` config to execute evaluation with the trained model:
 
@@ -153,9 +152,6 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
-
-# Disclaimer
-This is an example, not to be used for diagnostic purposes.
 
 # References
 [1] Koohbanani, Navid Alemi, et al. "NuClick: a deep learning framework for interactive segmentation of microscopic images." Medical Image Analysis 65 (2020): 101771. https://arxiv.org/abs/2005.14511.
