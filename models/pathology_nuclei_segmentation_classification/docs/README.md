@@ -84,7 +84,7 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 
 - Run first stage
 ```
-python -m monai.bundle run --config_file configs/train.json --network_def#pretrained_url `PRETRAIN_MODEL_URL` --stage 0
+python -m monai.bundle run --config_file configs/train.json --network_def#pretrained_url $PRETRAIN_MODEL_URL --stage 0
 ```
 Here `PRETRAIN_MODEL_URL` can be "https://download.pytorch.org/models/resnet50-11ad3fa6.pth".
 
@@ -97,7 +97,7 @@ python -m monai.bundle run --config_file configs/train.json --network_def#freeze
 
 - Run first stage
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 8 --network_def#freeze_encoder True --network_def#pretrained_url `PRETRAIN_MODEL_URL --stage 0
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 8 --network_def#freeze_encoder True --network_def#pretrained_url $PRETRAIN_MODEL_URL --stage 0
 ```
 
 - Run second stage
