@@ -99,17 +99,17 @@ The training was performed with the following:
 ## Performance
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-- Train F1 score = 0.941
-- Validation F1 score = 0.840
+- Train F1 score = 0.903
+- Validation F1 score = 0.8457
 
 <hr/>
 Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50):
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.6250 | 0.7085       | 0.9188     | 0.8571         |
-| Recall    | 0.1449 | 0.8750       | 0.9310     | 0.8154         |
-| F1-score  | 0.2353 | 0.7830       | 0.9249     | 0.8357         |
+| Precision | 0.7857 | 0.7749       | 0.9142     | 0.8130         |
+| Recall    | 0.0369 | 0.7954       | 0.9391     | 0.8628         |
+| F1-score  | 0.0705 | 0.7850       | 0.9265     | 0.8372         |
 
 
 <hr/>
@@ -117,9 +117,9 @@ Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.8902 | 0.9418       | 0.9717     | 0.9189         |
-| Recall    | 0.7935 | 0.9250       | 0.9725     | 0.9345         |
-| F1-score  | 0.8391 | 0.9333       | 0.9721     | 0.9267         |
+| Precision | 0.6861 | 0.8988       | 0.9414     | 0.8720         |
+| Recall    | 0.5109 | 0.8932       | 0.9518     | 0.8745         |
+| F1-score  | 0.5857 | 0.8960       | 0.9466     | 0.8732         |
 
 
 
