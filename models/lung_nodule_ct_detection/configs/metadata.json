@@ -1,6 +1,6 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.4",
+    "version": "0.5.5",
     "changelog": {
         "0.5.5": "update retrained validation results and training curve",
         "0.5.4": "add non-deterministic note",
