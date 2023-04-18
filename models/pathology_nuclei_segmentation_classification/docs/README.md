@@ -1,10 +1,17 @@
 # Model Overview
 A pre-trained model for simultaneous segmentation and classification of nuclei within multi-tissue histology images based on CoNSeP data. The details of the model can be found in [1].
 
-The model is trained to simultaneously segment and classify nuclei. Training is done via a two-stage approach. First initialized the model with pre-trained weights, trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs. There are two training modes in total. If "original" mode is specified, [270, 270] and [80, 80] are used for `patch_size` and `out_size` respectively. If "fast" mode is specified, [256, 256] and [164, 164] are used for `patch_size` and `out_size` respectively. The results shown below are based on the "fast" mode.
+The model is trained to simultaneously segment and classify nuclei, and a two-stage training approach is utilized:
+
+- Initialize the model with pre-trained weights, and train the decoder only for 50 epochs.
+- Finetune all layers for another 50 epochs.
+
+There are two training modes in total. If "original" mode is specified, [270, 270] and [80, 80] are used for `patch_size` and `out_size` respectively. If "fast" mode is specified, [256, 256] and [164, 164] are used for `patch_size` and `out_size` respectively. The results shown below are based on the "fast" mode.
 
 In this bundle, the first stage is trained with pre-trained weights from some internal data. The [original author's repo](https://github.com/vqdang/hover_net#data-format) and [torchvison](https://pytorch.org/vision/stable/_modules/torchvision/models/resnet.html#ResNet18_Weights) also provide pre-trained weights but for non-commercial use.
 Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use.
+
+If you want to train the first stage with pre-trained weights, just specify `--network_def#pretrained_url your-pretrain-weights-url` in the training command below.
 
 ![Model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_hovernet_pipeline.png)
 
@@ -84,25 +91,24 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 
 - Run first stage
 ```
-python -m monai.bundle run --config_file configs/train.json --network_def#pretrained_url $PRETRAIN_MODEL_URL --stage 0
+python -m monai.bundle run --config_file configs/train.json --stage 0
 ```
-Here `PRETRAIN_MODEL_URL` can be "https://download.pytorch.org/models/resnet50-11ad3fa6.pth".
 
 - Run second stage
 ```
-python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
+python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --stage 1
 ```
 
 #### Override the `train` config to execute multi-GPU training:
 
 - Run first stage
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 8 --network_def#freeze_encoder True --network_def#pretrained_url $PRETRAIN_MODEL_URL --stage 0
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 8 --network_def#freeze_encoder True --stage 0
 ```
 
 - Run second stage
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 4 --network_def#freeze_encoder False --network_def#pretrained_url None --stage 1
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']" --batch_size 4 --network_def#freeze_encoder False --stage 1
 ```
 
 #### Override the `train` config to execute evaluation with the trained model, here we evaluated dice from the whole input instead of the patches:
