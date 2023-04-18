@@ -32,7 +32,7 @@
         "mode": "@hovernet_mode",
         "in_channels": 3,
         "out_classes": 5,
-        "adapt_standard_resnet": true,
+        "adapt_standard_resnet": false,
         "pretrained_url": null,
         "freeze_encoder": true
     },

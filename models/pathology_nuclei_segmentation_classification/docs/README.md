@@ -1,12 +1,10 @@
 # Model Overview
 A pre-trained model for simultaneous segmentation and classification of nuclei within multi-tissue histology images based on CoNSeP data. The details of the model can be found in [1].
 
-The model is trained to simultaneously segment and classify nuclei. Training is done via a two-stage approach. First initialized the model with pre-trained weights on the [ImageNet dataset](https://ieeexplore.ieee.org/document/5206848), trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs. There are two training modes in total. If "original" mode is specified, [270, 270] and [80, 80] are used for `patch_size` and `out_size` respectively. If "fast" mode is specified, [256, 256] and [164, 164] are used for `patch_size` and `out_size` respectively. The results shown below are based on the "fast" mode.
+The model is trained to simultaneously segment and classify nuclei. Training is done via a two-stage approach. First initialized the model with pre-trained weights, trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs. There are two training modes in total. If "original" mode is specified, [270, 270] and [80, 80] are used for `patch_size` and `out_size` respectively. If "fast" mode is specified, [256, 256] and [164, 164] are used for `patch_size` and `out_size` respectively. The results shown below are based on the "fast" mode.
 
-The first stage is trained with pre-trained weights from some internal data.The [original author's repo](https://github.com/vqdang/hover_net#data-format) also provides pre-trained weights but for non-commercial use.
+In this bundle, the first stage is trained with pre-trained weights from some internal data. The [original author's repo](https://github.com/vqdang/hover_net#data-format) also provides pre-trained weights but for non-commercial use.
 Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use.
-
-`PRETRAIN_MODEL_URL` is "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download" which can be used in bash code below.
 
 ![Model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_hovernet_pipeline.png)
 
@@ -25,7 +23,7 @@ The provided labelled data was partitioned, based on the original split, into tr
 After download the datasets, please run `scripts/prepare_patches.py` to prepare patches from tiles. Prepared patches are saved in `your-concep-dataset-path`/Prepared. The implementation is referring to <https://github.com/vqdang/hover_net/blob/master/extract_patches.py>. The command is like:
 
 ```
-python scripts/prepare_patches.py -root your-concep-dataset-path
+python scripts/prepare_patches.py --root your-concep-dataset-path
 ```
 
 ## Training configuration
@@ -56,9 +54,9 @@ Fast mode:
 - PQ: 0.4973
 - F1d: 0.7417
 
-Note: Binary Dice is calculated based on the whole input. PQ and F1d were calculated from https://github.com/vqdang/hover_net#inference.
-
-Please note that this bundle is non-deterministic because of the bilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
+Note:
+- Binary Dice is calculated based on the whole input. PQ and F1d were calculated from https://github.com/vqdang/hover_net#inference.
+- This bundle is non-deterministic because of the bilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
 Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
 
 #### Training Loss and Dice
@@ -88,6 +86,7 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 ```
 python -m monai.bundle run --config_file configs/train.json --network_def#pretrained_url `PRETRAIN_MODEL_URL` --stage 0
 ```
+Here `PRETRAIN_MODEL_URL` can be "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download".
 
 - Run second stage
 ```
