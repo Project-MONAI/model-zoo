@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "changelog": {
+        "0.1.8": "modify readme",
         "0.1.7": "Update README Formatting",
         "0.1.6": "add non-deterministic note",
         "0.1.5": "update benchmark on A100",
