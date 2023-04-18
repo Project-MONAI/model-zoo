@@ -3,7 +3,7 @@ A pre-trained model for simultaneous segmentation and classification of nuclei w
 
 The model is trained to simultaneously segment and classify nuclei. Training is done via a two-stage approach. First initialized the model with pre-trained weights, trained only the decoders for the first 50 epochs, and then fine-tuned all layers for another 50 epochs. There are two training modes in total. If "original" mode is specified, [270, 270] and [80, 80] are used for `patch_size` and `out_size` respectively. If "fast" mode is specified, [256, 256] and [164, 164] are used for `patch_size` and `out_size` respectively. The results shown below are based on the "fast" mode.
 
-In this bundle, the first stage is trained with pre-trained weights from some internal data. The [original author's repo](https://github.com/vqdang/hover_net#data-format) also provides pre-trained weights but for non-commercial use.
+In this bundle, the first stage is trained with pre-trained weights from some internal data. The [original author's repo](https://github.com/vqdang/hover_net#data-format) and [torchvison](https://pytorch.org/vision/stable/_modules/torchvision/models/resnet.html#ResNet18_Weights) also provide pre-trained weights but for non-commercial use.
 Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use.
 
 ![Model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_hovernet_pipeline.png)
@@ -86,7 +86,7 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 ```
 python -m monai.bundle run --config_file configs/train.json --network_def#pretrained_url `PRETRAIN_MODEL_URL` --stage 0
 ```
-Here `PRETRAIN_MODEL_URL` can be "https://drive.google.com/u/1/uc?id=1KntZge40tAHgyXmHYVqZZ5d2p_4Qr2l5&export=download".
+Here `PRETRAIN_MODEL_URL` can be "https://download.pytorch.org/models/resnet50-11ad3fa6.pth".
 
 - Run second stage
 ```
