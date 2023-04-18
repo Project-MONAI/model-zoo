@@ -56,12 +56,12 @@ Please note that this bundle is non-deterministic because of the max pooling lay
 Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
 
 #### Training Loss
-![A graph showing the detection train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png)
+![A graph showing the detection train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss_v2.png)
 
 #### Validation Accuracy
 The validation accuracy in this curve is the mean of mAP, mAR, AP(IoU=0.1), and AR(IoU=0.1) in Coco metric.
 
-![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png)
+![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc_v2.png)
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
