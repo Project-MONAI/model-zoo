@@ -37,6 +37,6 @@
         "$@train#trainer.run()"
     ],
     "finalize": [
-        "$dist.destroy_process_group()"
+        "$dist.is_initialized() and dist.destroy_process_group()"
     ]
 }
