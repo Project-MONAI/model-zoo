@@ -1,7 +1,7 @@
 # Model Overview
 A pre-trained model for the endoscopic tool segmentation task, trained using a flexible unet structure with an efficientnet-b2 [1] as the backbone and a UNet architecture [2] as the decoder. Datasets use private samples from [Activ Surgical](https://www.activsurgical.com/).
 
-The [PyTorch model](https://drive.google.com/file/d/12TasaVVwAwNkf7bVCto5dB-6TBvLq-vI/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/1L-Hr9BiBnRh2dh8XD1ijPGxaQ1Bi40xk/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file. Modify the "bundle_root" parameter specified in configs/train.json and configs/inference.json to reflect where models are downloaded. Expected directory path to place downloaded models is "models/" under "bundle_root".
+The [PyTorch model](https://drive.google.com/file/d/12t59v198WfvHE4tZzzNrkM-imDyuiIYw/view?usp=sharing) and [torchscript model](https://drive.google.com/file/d/15zmtLJNZHOgdeqbdVZZQnFuEbC1tN0gm/view?usp=sharing) are shared in google drive. Details can be found in large_files.yml file. Modify the "bundle_root" parameter specified in configs/train.json and configs/inference.json to reflect where models are downloaded. Expected directory path to place downloaded models is "models/" under "bundle_root".
 
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_workflow.png)
 

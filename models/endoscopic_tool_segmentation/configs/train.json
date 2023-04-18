@@ -22,7 +22,7 @@
         "out_channels": 2,
         "backbone": "efficientnet-b2",
         "spatial_dims": 2,
-        "dropout": 0.5,
+        "dropout": 0.6,
         "pretrained": "@use_imagenet_pretrain",
         "is_pad": false,
         "pre_conv": null
@@ -123,7 +123,7 @@
             "_target_": "CacheDataset",
             "data": "$[{'image': i, 'label': l} for i, l in zip(@images, @labels)]",
             "transform": "@train#preprocessing",
-            "cache_rate": 0.1,
+            "cache_rate": 0.5,
             "num_workers": 4
         },
         "dataloader": {
@@ -220,7 +220,7 @@
             "_target_": "CacheDataset",
             "data": "$[{'image': i, 'label': l} for i, l in zip(@val_images, @val_labels)]",
             "transform": "@validate#preprocessing",
-            "cache_rate": 0.1
+            "cache_rate": 1.0
         },
         "dataloader": {
             "_target_": "DataLoader",
