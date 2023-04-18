@@ -1,11 +1,10 @@
-# Description
-A pre-trained model for classifying nuclei cells as the following types.
+# Model Overview
+A pre-trained model for classifying nuclei cells as the following types
  - Other
  - Inflammatory
  - Epithelial
  - Spindle-Shaped
 
-# Model Overview
 This model is trained using [DenseNet121](https://docs.monai.io/en/latest/networks.html#densenet121) over [ConSeP](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet) dataset.
 
 ## Data
@@ -15,17 +14,6 @@ wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
 unzip -q consep_dataset.zip
 ```
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_dataset.jpeg)<br/>
-
-## Training configuration
-The training was performed with the following:
-
-- GPU: at least 12GB of GPU memory
-- Actual Model Input: 4 x 128 x 128
-- AMP: True
-- Optimizer: Adam
-- Learning Rate: 1e-4
-- Loss: torch.nn.CrossEntropyLoss
-
 
 ### Preprocessing
 After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip),
@@ -84,13 +72,23 @@ Example `dataset.json` in output folder:
 }
 ```
 
+## Training configuration
+The training was performed with the following:
 
-## Input and output formats
-### Input: 4 channels
+- GPU: at least 12GB of GPU memory
+- Actual Model Input: 4 x 128 x 128
+- AMP: True
+- Optimizer: Adam
+- Learning Rate: 1e-4
+- Loss: torch.nn.CrossEntropyLoss
+
+## Input
+4 channels
 - 3 RGB channels
 - 1 signal channel (label mask)
 
-### Output: 4 channels
+## Output
+4 channels
  - 0 = Other
  - 1 = Inflammatory
  - 2 = Epithelial
@@ -98,7 +96,7 @@ Example `dataset.json` in output folder:
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_in_out.jpeg)
 
-## Scores
+## Performance
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
 - Train F1 score = 0.941
@@ -125,54 +123,53 @@ Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
 
 
 
-## Training Performance
+#### Training Loss and F1
 A graph showing the training Loss and F1-score over 50 epochs.
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss_v2.png) <br>
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1_v2.png) <br>
 
-## Validation Performance
+#### Validation F1
 A graph showing the validation F1-score over 50 epochs.
 
 ![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1_v2.png) <br>
 
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-## commands example
-Execute training:
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute training:
 
 ```
 python -m monai.bundle run --config_file configs/train.json
 ```
 
-Override the `train` config to execute multi-GPU training:
+#### Override the `train` config to execute multi-GPU training:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
 ```
 
-Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
-Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
+Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-Override the `train` config to execute evaluation with the trained model:
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
-Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
+#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']"
 ```
 
-Execute inference:
+#### Execute inference:
 
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
-
-# Disclaimer
-This is an example, not to be used for diagnostic purposes.
 
 # References
 [1] S. Graham, Q. D. Vu, S. E. A. Raza, A. Azam, Y-W. Tsang, J. T. Kwak and N. Rajpoot. "HoVer-Net: Simultaneous Segmentation and Classification of Nuclei in Multi-Tissue Histology Images." Medical Image Analysis, Sept. 2019. [[doi](https://doi.org/10.1016/j.media.2019.101563)]

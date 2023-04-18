@@ -1,8 +1,10 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.6",
+    "version": "0.4.8",
     "changelog": {
-        "0.4.6": "update the model weights",
+        "0.4.8": "update the model weights",
+        "0.4.7": "fix mgpu finalize issue",
+        "0.4.6": "enable deterministic training",
         "0.4.5": "add the command of executing inference with TensorRT models",
         "0.4.4": "adapt to BundleWorkflow interface",
         "0.4.3": "update this bundle to support TensorRT convert",
@@ -17,7 +19,7 @@
         "0.1.0": "complete the first version model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0rc3",
+    "monai_version": "1.2.0rc4",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {

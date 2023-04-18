@@ -18,7 +18,6 @@ Datasets used in this work were provided by [Activ Surgical](https://www.activsu
 Since datasets are private, existing public datasets like [EndoVis 2017](https://endovissub2017-roboticinstrumentsegmentation.grand-challenge.org/Data/) can be used to train a similar model.
 
 ### Preprocessing
-
 When using EndoVis or any other dataset, it should be divided into "train", "valid" and "test" folders. Samples in each folder would better be images and converted to jpg format. Otherwise, "images", "labels", "val_images" and "val_labels" parameters in "configs/train.json" and "datalist" in "configs/inference.json" should be modified to fit given dataset. After that, "dataset_dir" parameter in "configs/train.json" and "configs/inference.json" should be changed to root folder which contains previous "train", "valid" and "test" folders.
 
 Please notice that loading data operation in this bundle is adaptive. If images and labels are not in the same format, it may lead to a mismatching problem. For example, if images are in jpg format and labels are in npy format, PIL and Numpy readers will be used separately to load images and labels. Since these two readers have their own way to parse file's shape, loaded labels will be transpose of the correct ones and incur a missmatching problem.
@@ -113,7 +112,7 @@ python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt
 python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16>
 ```
 
-#### Execute inference with the TensorRT model
+#### Execute inference with the TensorRT model:
 
 ```
 python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"

@@ -21,7 +21,6 @@
         "$import torch.distributed as dist",
         "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
         "$torch.cuda.set_device(@device)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
         "$import logging",
         "$@validate#evaluator.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)"
     ],
@@ -29,6 +28,6 @@
         "$@validate#evaluator.run()"
     ],
     "finalize": [
-        "$dist.destroy_process_group()"
+        "$dist.is_initialized() and dist.destroy_process_group()"
     ]
 }
