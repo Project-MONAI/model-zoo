@@ -31,6 +31,8 @@ chest_xray_classification
 pathology_metastasis_detection
 ```
 
+In addition, please also define a display name via editing the `"name"` tag in `metadata.json`, and it will be shown in [the model browser](https://monai.io/model-zoo.html).
+
 ### Model storage
 
 Github limits the size of files allowed in the repository (see [About size limits on GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)). Therefore, MONAI Model Zoo limits each single file to be no larger than **25MB**.

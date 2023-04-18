@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.6",
+    "version": "0.4.7",
     "changelog": {
+        "0.4.7": "add name tag",
         "0.4.6": "modify dataset key name",
         "0.4.5": "update model weights and perfomance metrics",
         "0.4.4": "restructure readme to match updated template",
@@ -25,6 +26,7 @@
         "pandas": "1.3.5",
         "torchvision": "0.14.0"
     },
+    "name": "Pathology tumor detection",
     "task": "Pathology metastasis detection",
     "description": "A pre-trained model for metastasis detection on Camelyon 16 dataset.",
     "authors": "MONAI team",

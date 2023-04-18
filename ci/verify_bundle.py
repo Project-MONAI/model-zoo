@@ -32,6 +32,8 @@ preferred_files_list = ["models/model.pt", "configs/inference.json"]
 infer_keys_list = ["bundle_root", "device", "network_def", "inferer"]
 # keys that must be included in train config
 train_keys_list = ["bundle_root", "device", "dataset_dir"]
+# keys that must be included in metadata
+metadata_keys_list = ["name"]
 
 
 def _find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
@@ -138,6 +140,9 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
 
     """
     bundle_path = os.path.join(models_path, bundle_name)
+
+    # verify metadata
+    _ = _check_missing_keys(file_name="metadata.json", bundle_path=bundle_path, keys_list=metadata_keys_list)
 
     # verify inference config (if exists)
     inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
@@ -286,7 +291,6 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
 
 
 def verify(bundle, models_path="models", mode="full"):
-
     print(f"start verifying {bundle}:")
     # add bundle path to ensure custom code can be used
     sys.path = [os.path.join(models_path, bundle)] + sys.path

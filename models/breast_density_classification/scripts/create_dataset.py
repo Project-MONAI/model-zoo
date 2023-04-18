@@ -5,7 +5,6 @@ import sys
 
 
 def main(base_dir: str, output_file: str):
-
     list_classes = ["A", "B", "C", "D"]
 
     output_list = []
