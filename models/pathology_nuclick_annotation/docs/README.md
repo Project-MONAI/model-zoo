@@ -107,14 +107,13 @@ This model achieves the following Dice score on the validation data provided as 
 #### Training Loss and Dice
 A graph showing the training Loss and Dice over 50 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_loss.jpeg) <br>
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_dice.jpeg) <br>
+![](./nuclick_train_loss.png) <br>
+![](./nuclick_train_dice.png) <br>
 
 #### Validation Dice
 A graph showing the validation mean Dice over 50 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_val_dice.jpeg) <br>
-
+![](./nuclick_val_dice.png) <br>
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
