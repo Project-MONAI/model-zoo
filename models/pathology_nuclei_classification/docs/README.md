@@ -103,7 +103,7 @@ This model achieves the following F1 score on the validation data provided as pa
 - Validation F1 score = 0.852
 
 <hr/>
-Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50):
+Confusion Metrics for <b>Validation</b> for individual classes are:
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
@@ -113,7 +113,7 @@ Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50)
 
 
 <hr/>
-Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
+Confusion Metrics for <b>Training</b> for individual classes are:
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
@@ -124,15 +124,15 @@ Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
 
 
 #### Training Loss and F1
-A graph showing the training Loss and F1-score over 50 epochs.
+A graph showing the training Loss and F1-score over 100 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss_v2.png) <br>
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1_v2.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss_v3.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1_v3.png) <br>
 
 #### Validation F1
-A graph showing the validation F1-score over 50 epochs.
+A graph showing the validation F1-score over 100 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1_v2.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1_v3.png) <br>
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
