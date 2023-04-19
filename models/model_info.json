@@ -854,5 +854,9 @@
     "wholeBody_ct_segmentation_v0.1.5": {
         "checksum": "1b8a37dd38cf59e539c02f99d69d8e8f29444f92",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBody_ct_segmentation_v0.1.5.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.8": {
+        "checksum": "49d45bcad10be23189d0e473dbf99670309701f2",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.8.zip"
     }
 }
