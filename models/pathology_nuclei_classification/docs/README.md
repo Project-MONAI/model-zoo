@@ -99,8 +99,8 @@ The training was performed with the following:
 ## Performance
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-- Train F1 score = 0.924
-- Validation F1 score = 0.853
+- Train F1 score = 0.926
+- Validation F1 score = 0.852
 
 <hr/>
 Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50):
