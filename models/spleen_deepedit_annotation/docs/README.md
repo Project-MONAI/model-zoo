@@ -39,13 +39,13 @@ Two channels
 Dice score is used for evaluating the performance of the model. This model achieves a dice score of greater than 0.90, depending on the number of simulated clicks.
 
 #### Training Dice
-![A graph showing the train dice over 90 epochs.](./deepedit_train_dice.png)
+![A graph showing the train dice over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_dice_v2.png)
 
 #### Training Loss
-![A graph showing the training loss over 90 epochs.](deepedit_train_loss)
+![A graph showing the training loss over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_loss_v2.png)
 
 #### Validation Dice
-![A graph showing the validation dice over 90 epochs.](deepedit_val_dice)
+![A graph showing the validation dice over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_val_dice_v2.png)
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.

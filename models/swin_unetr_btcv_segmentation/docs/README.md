@@ -55,11 +55,11 @@ The training as performed with the following:
 Dice score was used for evaluating the performance of the model. This model achieves a mean dice score of 0.8120
 
 #### Training Loss
-![The figure shows the training loss curve for 10K iterations.](./swin_train_loss.png)
+![The figure shows the training loss curve for 10K iterations.](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_train_loss_v2.png)
 
 #### Validation Dice
 
-![A graph showing the validation mean Dice for 5000 epochs.](./swin_val_dice.png)
+![A graph showing the validation mean Dice for 5000 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_val_dice_v2.png)
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
