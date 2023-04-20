@@ -80,7 +80,7 @@ Where:
 - `end2end` means run the bundle end-to-end with the TensorRT based model.
 - `torch_fp32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
 - `trt_fp32` and `trt_fp16` are for the TensorRT based models converted in corresponding precision.
-- `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratio of corresponding models versus the PyTorch float32 model
+- `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
 - `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
 
 Currently, this model can only be accelerated through the ONNX-TensorRT way and the Torch-TensorRT way will come soon.
