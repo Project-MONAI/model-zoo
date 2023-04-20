@@ -854,5 +854,17 @@
     "wholeBody_ct_segmentation_v0.1.5": {
         "checksum": "1b8a37dd38cf59e539c02f99d69d8e8f29444f92",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBody_ct_segmentation_v0.1.5.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.8": {
+        "checksum": "49d45bcad10be23189d0e473dbf99670309701f2",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.8.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.5": {
+        "checksum": "18857e619cee19dd5a696b3fc75ddddf1b9f7f2b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.5.zip"
+    },
+    "pathology_nuclei_classification_v0.1.0": {
+        "checksum": "793545a39061c8d27918e2ddbca5cc5b5004bcbb",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.1.0.zip"
     }
 }
