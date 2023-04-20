@@ -1,0 +1,11 @@
+{
+    "imports": [
+        "$import glob",
+        "$import os",
+        "$import ignite",
+        "$import torch_tensorrt"
+    ],
+    "handlers#0#_disabled_": true,
+    "network_def": "$torch.jit.load(@bundle_root + '/models/model_trt.ts')",
+    "evaluator#amp": false
+}

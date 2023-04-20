@@ -68,20 +68,30 @@ Accuracy was used for evaluating the performance of the model. This model achiev
 ![A graph showing the validation accuracy over 25 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_val_accuracy.png)
 
 #### TensorRT speedup
-The `endoscopic_inbody_classification` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU, in which the `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing and the `end2end` means run the bundle end-to-end with the TensorRT based model. The `torch_fp32` and `torch_amp` is for the PyTorch model with or without `amp` mode. The `trt_fp32` and `trt_fp16` is for the TensorRT based model exported in corresponding precision. The `speedup amp`, `speedup fp32` and `speedup fp16` is the speedup ratio of corresponding models versus the PyTorch float32 model, while the `amp vs fp16` is between the PyTorch amp model and the TensorRT float16 based model. Currently, this model can only be accelerated through the ONNX-TensorRT way and the Torch-TensorRT way is comming soon.
+The `endoscopic_inbody_classification` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | model computation | 6.50 | 9.23 | 2.78 | 2.31 | 0.70 | 2.34 | 2.81 | 4.00 |
 | end2end | 23.54 | 23.78 | 7.37 | 7.14 | 0.99 | 3.19 | 3.30 | 3.33 |
 
+Where:
+- `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
+- `end2end` means run the bundle end-to-end with the TensorRT based model.
+- `torch_fp32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
+- `trt_fp32` and `trt_fp16` are for the TensorRT based models converted in corresponding precision.
+- `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratio of corresponding models versus the PyTorch float32 model
+- `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
+
+Currently, this model can only be accelerated through the ONNX-TensorRT way and the Torch-TensorRT way will come soon.
+
 This result is benchmarked under:
- - TensorRT: 8.5.3+cuda12.0
+ - TensorRT: 8.5.3+cuda11.8
  - Torch-TensorRT Version: 1.4.0
  - CPU Architecture: x86-64
  - OS: ubuntu 20.04
  - Python version:3.8.10
- - CUDA version: 11.8
+ - CUDA version: 12.0
  - GPU models and configuration: A100 80G
 
 ## MONAI Bundle Commands
@@ -132,6 +142,12 @@ python -m monai.bundle trt_export --net_id network_def \
 --filepath models/model_trt.ts --ckpt_file models/model.pt \
 --meta_file configs/metadata.json --config_file configs/inference.json \
 --precision <fp32/fp16>  --use_onnx "True" --use_trace "True"
+```
+
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
 
 # References
