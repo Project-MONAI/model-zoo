@@ -50,15 +50,18 @@ In Training Mode: A dictionary of classification and box regression loss.
 In Evaluation Mode: A list of dictionaries of predicted box, classification label, and classification score.
 
 ## Performance
-Coco metric is used for evaluating the performance of the model. The pre-trained model was trained and validated on data fold 0. This model achieves a mAP=0.853, mAR=0.994, AP(IoU=0.1)=0.862, AR(IoU=0.1)=1.0.
+Coco metric is used for evaluating the performance of the model. The pre-trained model was trained and validated on data fold 0. This model achieves a mAP=0.852, mAR=0.998, AP(IoU=0.1)=0.858, AR(IoU=0.1)=1.0.
+
+Please note that this bundle is non-deterministic because of the max pooling layer used in the network. Therefore, reproducing the training process may not get exactly the same performance.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
 
 #### Training Loss
-![A graph showing the detection train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss.png)
+![A graph showing the detection train loss](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_train_loss_v2.png)
 
 #### Validation Accuracy
 The validation accuracy in this curve is the mean of mAP, mAR, AP(IoU=0.1), and AR(IoU=0.1) in Coco metric.
 
-![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc.png)
+![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc_v2.png)
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
@@ -66,16 +69,19 @@ In addition to the Pythonic APIs, a few command line interfaces (CLI) are provid
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
 #### Execute training:
+
 ```
 python -m monai.bundle run --config_file configs/train.json
 ```
 
 #### Override the `train` config to execute evaluation with the trained model:
+
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
 #### Execute inference on resampled LUNA16 images by setting `"whether_raw_luna16": false` in `inference.json`:
+
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```

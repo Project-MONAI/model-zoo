@@ -1,7 +1,11 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.2",
+    "version": "0.4.6",
     "changelog": {
+        "0.4.6": "fix mgpu finalize issue",
+        "0.4.5": "enable deterministic training",
+        "0.4.4": "add the command of executing inference with TensorRT models",
+        "0.4.3": "fix figure and weights inconsistent error",
         "0.4.2": "use torch 1.13.1",
         "0.4.1": "update the readme file with TensorRT convert",
         "0.4.0": "fix multi-gpu train config typo",
@@ -20,7 +24,7 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0rc3",
+    "monai_version": "1.2.0rc4",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
@@ -38,7 +42,7 @@
     "label_classes": "single channel data, 1 is spleen, 0 is everything else",
     "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.96
+        "mean_dice": 0.959
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

@@ -1,4 +1,7 @@
 {
+    "val_images": "$list(sorted(glob.glob(@dataset_dir + '/Test/image*.npy')))",
+    "val_labels": "$list(sorted(glob.glob(@dataset_dir + '/Test/label*.npy')))",
+    "data_list": "$[{'image': i, 'label': j} for i, j in zip(@val_images, @val_labels)]",
     "network_def": {
         "_target_": "HoVerNet",
         "mode": "@hovernet_mode",
@@ -6,6 +9,77 @@
         "in_channels": 3,
         "out_classes": 5
     },
+    "sw_batch_size": 16,
+    "validate#dataset": {
+        "_target_": "CacheDataset",
+        "data": "@data_list",
+        "transform": "@validate#preprocessing",
+        "cache_rate": 1.0,
+        "num_workers": 4
+    },
+    "validate#preprocessing_transforms": [
+        {
+            "_target_": "LoadImaged",
+            "keys": [
+                "image",
+                "label"
+            ]
+        },
+        {
+            "_target_": "SplitDimd",
+            "keys": "label",
+            "output_postfixes": [
+                "inst",
+                "type"
+            ],
+            "dim": -1
+        },
+        {
+            "_target_": "EnsureChannelFirstd",
+            "keys": [
+                "image",
+                "label_inst",
+                "label_type"
+            ],
+            "channel_dim": -1
+        },
+        {
+            "_target_": "CastToTyped",
+            "keys": [
+                "image",
+                "label_inst"
+            ],
+            "dtype": "$torch.int"
+        },
+        {
+            "_target_": "ScaleIntensityRanged",
+            "keys": "image",
+            "a_min": 0.0,
+            "a_max": 255.0,
+            "b_min": 0.0,
+            "b_max": 1.0,
+            "clip": true
+        },
+        {
+            "_target_": "ComputeHoVerMapsd",
+            "keys": "label_inst"
+        },
+        {
+            "_target_": "Lambdad",
+            "keys": "label_inst",
+            "func": "$lambda x: x > 0",
+            "overwrite": "label"
+        },
+        {
+            "_target_": "CastToTyped",
+            "keys": [
+                "image",
+                "label_inst",
+                "label_type"
+            ],
+            "dtype": "$torch.float32"
+        }
+    ],
     "validate#handlers": [
         {
             "_target_": "CheckpointLoader",
@@ -16,6 +90,7 @@
         },
         {
             "_target_": "StatsHandler",
+            "output_transform": "$lambda x: None",
             "iteration_log": false
         },
         {
@@ -31,6 +106,63 @@
             "summary_ops": "*"
         }
     ],
+    "validate#inferer": {
+        "_target_": "SlidingWindowHoVerNetInferer",
+        "roi_size": "@patch_size",
+        "sw_batch_size": "@sw_batch_size",
+        "overlap": "$1.0 - float(@out_size) / float(@patch_size)",
+        "padding_mode": "constant",
+        "cval": 0,
+        "progress": true,
+        "extra_input_padding": "$((@patch_size - @out_size) // 2,) * 4"
+    },
+    "postprocessing_pred": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "HoVerNetInstanceMapPostProcessingd",
+                "sobel_kernel_size": 21,
+                "marker_threshold": 0.5,
+                "marker_radius": 2,
+                "device": "@device"
+            },
+            {
+                "_target_": "HoVerNetNuclearTypePostProcessingd",
+                "device": "@device"
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "instance_map",
+                "meta_keys": "image_meta_dict",
+                "output_ext": ".nii.gz",
+                "output_dir": "@output_dir",
+                "output_postfix": "instance_map",
+                "output_dtype": "uint32",
+                "separate_folder": false
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "type_map",
+                "meta_keys": "image_meta_dict",
+                "output_ext": ".nii.gz",
+                "output_dir": "@output_dir",
+                "output_postfix": "type_map",
+                "output_dtype": "uint8",
+                "separate_folder": false
+            },
+            {
+                "_target_": "Lambdad",
+                "keys": "instance_map",
+                "func": "$lambda x: x > 0",
+                "overwrite": "nucleus_prediction"
+            }
+        ]
+    },
+    "validate#postprocessing": {
+        "_target_": "Lambdad",
+        "keys": "pred",
+        "func": "@postprocessing_pred"
+    },
     "initialize": [
         "$setattr(torch.backends.cudnn, 'benchmark', True)"
     ],

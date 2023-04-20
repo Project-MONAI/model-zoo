@@ -136,13 +136,18 @@ The other way to export a pytorch model to a TensorRT engine-based TorchScript i
 python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[min, opt, max]" --use_onnx "True" --ouput_names "['output_0', 'output_1', ..., 'output_N']"
 ```
 
-After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following changes:
+After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following steps:
 
 1. Add a `$import torch_tensorrt` at the import part of `inference.json` file.
 1. Remove or disable `CheckpointLoader` in evaluation or inference config file if exists.
 1. Define `network_def` as: `"$torch.jit.load(<your TensorRT model path>)"`.
 1. Set the `amp` parameter in the `evaluator` to false.
-1. Execute evaluation or inference command.
+
+All above steps can be covered in an `inference_trt.json` like this [example](./models/spleen_ct_segmentation/configs/inference_trt.json). Update the `inference_trt.json` based on your bundle and put it in the `configs` folder of the bundle. Then run the following command to execute the inference:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
 
 If your bundle does not support TensorRT compilation, please mention it in `docs/README.md`.
 

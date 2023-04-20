@@ -28,9 +28,15 @@
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@network.parameters()",
-        "lr": 0.0001
+        "lr": 0.0001,
+        "weight_decay": 1e-05
     },
-    "max_epochs": 50,
+    "lr_scheduler": {
+        "_target_": "torch.optim.lr_scheduler.StepLR",
+        "optimizer": "@optimizer",
+        "step_size": 50
+    },
+    "max_epochs": 100,
     "train": {
         "preprocessing": {
             "_target_": "Compose",
@@ -159,6 +165,11 @@
             ]
         },
         "handlers": [
+            {
+                "_target_": "LrScheduleHandler",
+                "lr_scheduler": "@lr_scheduler",
+                "print_lr": true
+            },
             {
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
@@ -343,8 +354,7 @@
     "initialize": [
         "$import sys",
         "$sys.path.append(@bundle_root)",
-        "$monai.utils.set_determinism(seed=123)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+        "$monai.utils.set_determinism(seed=123)"
     ],
     "run": [
         "$@train#trainer.run()"

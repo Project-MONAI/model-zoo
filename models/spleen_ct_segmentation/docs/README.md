@@ -22,8 +22,8 @@ The training was performed with the following:
 - GPU: at least 12GB of GPU memory
 - Actual Model Input: 96 x 96 x 96
 - AMP: True
-- Optimizer: Adam
-- Learning Rate: 1e-4
+- Optimizer: Novograd
+- Learning Rate: 0.002
 - Loss: DiceCELoss
 
 ### Input
@@ -36,13 +36,13 @@ Two channels
 - Label 0: everything else
 
 ## Performance
-Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.96.
+Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.959.
 
 #### Training Loss
-![A graph showing the training loss over 1260 epochs (10080 iterations).](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_train_2.png)
+![A graph showing the training loss over 1260 epochs (10080 iterations).](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_train_3.png)
 
 #### Validation Dice
-![A graph showing the validation mean Dice over 1260 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_val_2.png)
+![A graph showing the validation mean Dice over 1260 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_val_3.png)
 
 #### TensorRT speedup
 The `spleen_ct_segmentation` bundle supports the TensorRT acceleration. The table below shows the speedup ratios benchmarked on an A100 80G GPU. The `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing. The `model computation(onnx)` basically means the same thing as the `model computation`, except that the model is converted through the onnx-torchscript way. We add this line in the table since it has a better performance than the model converted through Torch-TensorRT. The `end2end` means run the bundle end to end with the TensorRT based model converted through Torch-TensorRT. The `torch_fp32` and `torch_amp` is for the pytorch model with or without `amp` mode. The `trt_fp32` and `trt_fp16` is for the TensorRT based model converted in corresponding precision. The `speedup amp`, `speedup fp32` and `speedup fp16` is the speedup ratio of corresponding models versus the pytorch float32 model, while the `amp vs fp16` is between the pytorch amp model and the TensorRT float16 based model.
@@ -103,6 +103,12 @@ python -m monai.bundle run --config_file configs/inference.json
 
 ```
 python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[1, 4, 8]"
+```
+
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
 
 # References

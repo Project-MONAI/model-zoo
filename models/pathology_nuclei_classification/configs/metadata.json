@@ -1,7 +1,11 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.6",
+    "version": "0.1.0",
     "changelog": {
+        "0.1.0": "Update deterministic results",
+        "0.0.9": "Update README Formatting",
+        "0.0.8": "enable deterministic training",
+        "0.0.7": "update benchmark on A100",
         "0.0.6": "adapt to BundleWorkflow interface",
         "0.0.5": "add name tag",
         "0.0.4": "Fix evaluation",
@@ -9,7 +13,7 @@
         "0.0.2": "Update The Torch Vision Transform",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0rc3",
+    "monai_version": "1.2.0rc4",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
@@ -28,7 +32,7 @@
     "label_classes": "single channel data",
     "pred_classes": "4 channels OneHot data, channel 0 is Other, channel 1 is Inflammatory, channel 2 is Epithelial, channel 3 is Spindle-Shaped",
     "eval_metrics": {
-        "f1_score": 0.85
+        "f1_score": 0.852
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

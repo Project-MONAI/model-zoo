@@ -55,11 +55,13 @@ Dice score was used for evaluating the performance of the model. This model achi
 - Enhancing tumor (ET): 0.7905
 - Average: 0.8518
 
+Please note that this bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
+
 #### Training Loss and Dice
 ![A graph showing the training loss and the mean dice over 300 epochs](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_train.png)
 
 #### Validation Dice
-
 ![A graph showing the validation mean dice over 300 epochs](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_val.png)
 
 #### TensorRT speedup
@@ -85,11 +87,13 @@ In addition to the Pythonic APIs, a few command line interfaces (CLI) are provid
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
 #### Execute training:
+
 ```
 python -m monai.bundle run --config_file configs/train.json
 ```
 
 #### Override the `train` config to execute multi-GPU training:
+
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
 ```
@@ -97,11 +101,13 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config
 Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
 #### Override the `train` config to execute evaluation with the trained model:
+
 ```
 python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
 #### Execute inference:
+
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
