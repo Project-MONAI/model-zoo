@@ -59,13 +59,13 @@ Two Channels
 - Label 1: out body
 
 ## Performance
-Accuracy was used for evaluating the performance of the model. This model achieves an accuracy score of 0.98
+Accuracy was used for evaluating the performance of the model. This model achieves an accuracy score of 0.99
 
 #### Training Loss
-![A graph showing the training loss over 25 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_train_loss.png)
+![A graph showing the training loss over 25 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_train_loss_v2.png)
 
 #### Validation Accuracy
-![A graph showing the validation accuracy over 25 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_val_accuracy.png)
+![A graph showing the validation accuracy over 25 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_inbody_classification_val_accuracy_v2.png)
 
 #### TensorRT speedup
 The `endoscopic_inbody_classification` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU.

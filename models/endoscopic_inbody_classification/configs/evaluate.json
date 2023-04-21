@@ -41,9 +41,6 @@
             "summary_ops": "*"
         }
     ],
-    "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
-    ],
     "run": [
         "$@validate#evaluator.run()"
     ]
