@@ -131,6 +131,9 @@
         "postprocessing": "@postprocessing",
         "val_handlers": "@handlers"
     },
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)"
+    ],
     "run": [
         "$@evaluator.run()"
     ]
