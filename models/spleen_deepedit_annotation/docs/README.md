@@ -36,7 +36,7 @@ Two channels
 
 ## Performance
 
-Dice score is used for evaluating the performance of the model. This model achieves a dice score of 0.97457, depending on the number of simulated clicks.
+Dice score is used for evaluating the performance of the model. This model achieves a dice score of 0.97, depending on the number of simulated clicks.
 
 #### Training Dice
 ![A graph showing the train dice over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_dice_v2.png)

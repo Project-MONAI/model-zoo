@@ -33,7 +33,7 @@
     "label_classes": "single channel data",
     "pred_classes": "1 channel data, with value 1 as nuclei and 0 as background",
     "eval_metrics": {
-        "mean_dice": 0.85185
+        "mean_dice": 0.85
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

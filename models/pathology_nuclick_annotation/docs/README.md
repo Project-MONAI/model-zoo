@@ -100,8 +100,8 @@ The training was performed with the following:
 ## Performance
 This model achieves the following Dice score on the validation data provided as part of the dataset:
 
-- Train Dice score = 0.88940
-- Validation Dice score = 0.85185
+- Train Dice score = 0.89
+- Validation Dice score = 0.85
 
 
 #### Training Loss and Dice

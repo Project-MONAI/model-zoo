@@ -52,7 +52,7 @@ The training as performed with the following:
 - 13: Left adrenal gland
 
 ## Performance
-Dice score was used for evaluating the performance of the model. This model achieves a mean dice score of 0.82094
+Dice score was used for evaluating the performance of the model. This model achieves a mean dice score of 0.82
 
 #### Training Loss
 ![The figure shows the training loss curve for 10K iterations.](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_train_loss_v2.png)
