@@ -54,9 +54,9 @@ Inference is performed on WSI in a sliding window manner with specified stride. 
 ## Performance
 
 FROC score is used for evaluating the performance of the model. After inference is done, `evaluate_froc.sh` needs to be run to evaluate FROC score based on predicted probability map (output of inference) and the ground truth tumor masks.
-This model achieve the 0.91 accuracy on validation patches, and FROC of 0.72 on the 48 Camelyon testing data that have ground truth annotations available.
+This model deterministically achieves the 0.91 accuracy on validation patches, and FROC of 0.71 on the 48 Camelyon testing data that have ground truth annotations available.
 
-![A Graph showing Train Acc, Train Loss, and Validation Acc](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics_v3.png)
+![A Graph showing Train Acc, Train Loss, and Validation Acc](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics_v4.png)
 
 The `pathology_tumor_detection` bundle supports the TensorRT acceleration. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
 
@@ -68,6 +68,7 @@ Please notice that the benchmark results are tested on one WSI image since the i
 | end2end |224.97 | 223.50 | 222.65 | 224.03 | 1.01 | 1.01 | 1.00 | 1.00 |
 
 Where:
+
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
 - `end2end` means run the bundle end-to-end with the TensorRT based model.
 - `torch_fp32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
@@ -134,6 +135,10 @@ python -m monai.bundle trt_export --net_id network_def --filepath models/model_t
 ```
 python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
+
+#### Note on determinism
+
+By default this bundle use a deterministic approach to make the results reproducible. However, it comes at a cost of performance loss. Thus if you do not care about reproducibility, you can have a performance gain by replacing `"$monai.utils.set_determinism"` line with `"$setattr(torch.backends.cudnn, 'benchmark', True)"` in initialize section of training configuration (`configs/train.json` and `configs/multi_gpu_train.json` for single GPU and multi-GPU training respectively).
 
 # References
 
