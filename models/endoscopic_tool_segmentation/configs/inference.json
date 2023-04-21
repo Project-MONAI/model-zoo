@@ -131,9 +131,6 @@
         "postprocessing": "@postprocessing",
         "val_handlers": "@handlers"
     },
-    "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
-    ],
     "run": [
         "$@evaluator.run()"
     ]
