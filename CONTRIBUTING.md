@@ -130,9 +130,11 @@ Check the functionality of exporting the checkpoint to [TensorRT](https://develo
 python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[min, opt, max]"
 ```
 
-The other way to export your pytorch model to a TensorRT engine based torchscript is：
-1. Export the model to a **TensorRT engine** through [onnx](https://pytorch.org/docs/stable/onnx.html).
-1. Use the `torch_tensorrt.ts.embed_engine_in_new_module` API in [this link](https://pytorch.org/TensorRT/py_api/ts.html) to wrap the **TensorRT engine** to a **TensorRT engine based torchscript**.
+The other way to export a PyTorch model to a TensorRT engine-based TorchScript is through the ONNX-TensorRT. This way can solve the slowdown issue of some models. It can be simply achieved by adding an extra option `--use_onnx "True"` to the export command. Please notice that by default the ONNX-TensorRT way assigns only one output to a model. If a model has many outputs, please use the `--onnx_output_names` to specify the name of outputs.
+
+```bash
+python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[min, opt, max]" --use_onnx "True" --onnx_output_names "['output_0', 'output_1', ..., 'output_N']"
+```
 
 After exported your TensorRT based models, you can check the evaluation or inference results based on it rather than `model.pt` with the following steps:
 

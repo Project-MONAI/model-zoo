@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "changelog": {
-        "0.4.0": "update the model weights with the deterministic training",
+        "0.4.1": "update the model weights with the deterministic training",
+        "0.4.0": "add the ONNX-TensorRT way of model conversion",
         "0.3.9": "fix mgpu finalize issue",
         "0.3.8": "enable deterministic training",
         "0.3.7": "adapt to BundleWorkflow interface",
