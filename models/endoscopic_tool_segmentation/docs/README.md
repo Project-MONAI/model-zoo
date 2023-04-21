@@ -6,11 +6,11 @@ The [PyTorch model](https://drive.google.com/file/d/1I7UtWDKDEcezMqYiA-i_hsRTCrv
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_workflow.png)
 
 ## Pre-trained weights
-A pre-trained encoder weights would benefit the training accuracy. Either the [ImageNet](https://ieeexplore.ieee.org/document/5206848) pre-trained or a local pre-trained encoder weights could be loaded to the model for the segmentation training, which is controlled by the `use_imagenet_pretrain` parameter in the `configs/train.json` file. If using the local pre-trained weights, please update the `load_path`  parameter of the `CheckpointLoader` in the `configs/train.json` file with the local weights path.
+A pre-trained encoder weights would benefit the training accuracy. Either the [ImageNet](https://ieeexplore.ieee.org/document/5206848) pre-trained or a local pre-trained encoder weights could be loaded to the model for the segmentation training. Whether to use the ImageNet pre-trained weights is controlled by the `use_imagenet_pretrain` parameter in the `configs/train.json` file. If using the local pre-trained weights, please update the `load_path`  parameter of the `CheckpointLoader` in the `configs/train.json` file with the local weights path.
 
-- We trained the encoder with pre-trained weights from some internal data.
+- We trained a pre-trained encoder weights using some internal data.
 
-- The ImageNet pre-trained encoder repo has pre-trained weights which is for non-commercial use. Each user is responsible for checking the content of models/datasets and the applicable licenses and determining if suitable for the intended use. The license for the pre-trained model is different than MONAI license. Please check the source where these weights are obtained from: <https://github.com/lukemelas/EfficientNet-PyTorch>
+- The [EfficientNet-PyTorch repo](https://github.com/lukemelas/EfficientNet-PyTorch) provides the ImageNet pre-trained encoder weights but for non-commercial use. The ImageNet pre-trained encoder weights would be loaded for training, if setting the `use_imagenet_pretrain` parameter to `True`. Each user is responsible for checking the content of the models/datasets and the applicable licenses and determining if suitable for the intended use.
 
 ## Data
 Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/).
