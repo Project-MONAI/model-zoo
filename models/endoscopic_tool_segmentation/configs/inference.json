@@ -114,7 +114,8 @@
             "load_path": "$@bundle_root + '/models/model.pt'",
             "load_dict": {
                 "model": "@network"
-            }
+            },
+            "map_location": "@device"
         },
         {
             "_target_": "StatsHandler",

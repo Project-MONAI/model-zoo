@@ -144,7 +144,8 @@
                 "load_dict": {
                     "model": "@network"
                 },
-                "strict": false
+                "strict": false,
+                "map_location": "@device"
             },
             {
                 "_target_": "ValidationHandler",
