@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.6",
+    "version": "0.4.8",
     "changelog": {
+        "0.4.8": "update deterministic training results",
+        "0.4.7": "update the TensorRT part in the README file",
         "0.4.6": "fix mgpu finalize issue",
         "0.4.5": "enable deterministic training",
         "0.4.4": "add the command of executing inference with TensorRT models",
@@ -42,7 +44,7 @@
     "label_classes": "single channel data, 1 is spleen, 0 is everything else",
     "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.959
+        "mean_dice": 0.961
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
