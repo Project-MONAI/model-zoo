@@ -114,7 +114,8 @@
             "load_path": "$@bundle_root + '/models/model.pt'",
             "load_dict": {
                 "model": "@network"
-            }
+            },
+            "map_location": "@device"
         },
         {
             "_target_": "StatsHandler",
@@ -131,7 +132,7 @@
         "val_handlers": "@handlers"
     },
     "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+        "$monai.utils.set_determinism(seed=123)"
     ],
     "run": [
         "$@evaluator.run()"

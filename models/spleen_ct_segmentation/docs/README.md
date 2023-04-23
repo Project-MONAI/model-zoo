@@ -45,7 +45,7 @@ Dice score is used for evaluating the performance of the model. This model achie
 ![A graph showing the validation mean Dice over 1260 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_ct_segmentation_val.png)
 
 #### TensorRT speedup
-The `spleen_ct_segmentation` bundle supports the TensorRT acceleration. The table below shows the speedup ratios benchmarked on an A100 80G GPU. The `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing. The `model computation(onnx)` basically means the same thing as the `model computation`, except that the model is converted through the onnx-torchscript way. We add this line in the table since it has a better performance than the model converted through Torch-TensorRT. The `end2end` means run the bundle end to end with the TensorRT based model converted through Torch-TensorRT. The `torch_fp32` and `torch_amp` is for the pytorch model with or without `amp` mode. The `trt_fp32` and `trt_fp16` is for the TensorRT based model converted in corresponding precision. The `speedup amp`, `speedup fp32` and `speedup fp16` is the speedup ratio of corresponding models versus the pytorch float32 model, while the `amp vs fp16` is between the pytorch amp model and the TensorRT float16 based model.
+The `spleen_ct_segmentation` bundle supports the TensorRT acceleration. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -53,13 +53,21 @@ The `spleen_ct_segmentation` bundle supports the TensorRT acceleration. The tabl
 | model computation(onnx) | 6.46 | 4.48 | 2.52 | 1.96 | 1.44 | 2.56 | 3.30 | 2.29 |
 | end2end | 3900.73 | 3823.89 | 3887.37 | 3883.01 |	1.02 | 1.00 | 1.00 | 0.98 |
 
+Where:
+- `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
+- `end2end` means run the bundle end-to-end with the TensorRT based model.
+- `torch_fp32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
+- `trt_fp32` and `trt_fp16` are for the TensorRT based models converted in corresponding precision.
+- `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
+- `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
+
 This result is benchmarked under:
  - TensorRT: 8.5.3+cuda11.8
  - Torch-TensorRT Version: 1.4.0
  - CPU Architecture: x86-64
  - OS: ubuntu 20.04
  - Python version:3.8.10
- - CUDA version: 11.8
+ - CUDA version: 12.0
  - GPU models and configuration: A100 80G
 
 ## MONAI Bundle Commands

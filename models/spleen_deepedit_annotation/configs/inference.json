@@ -177,7 +177,7 @@
         "amp": true
     },
     "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+        "$monai.utils.set_determinism(seed=123)"
     ],
     "run": [
         "$@evaluator.run()"
