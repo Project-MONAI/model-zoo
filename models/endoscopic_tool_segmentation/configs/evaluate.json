@@ -47,7 +47,8 @@
             "load_path": "$@ckpt_dir + '/model.pt'",
             "load_dict": {
                 "model": "@network"
-            }
+            },
+            "map_location": "@device"
         },
         {
             "_target_": "StatsHandler",
@@ -67,9 +68,6 @@
             "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
             "summary_ops": "*"
         }
-    ],
-    "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
     ],
     "run": [
         "$@validate#evaluator.run()"
