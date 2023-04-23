@@ -910,5 +910,9 @@
     "endoscopic_tool_segmentation_v0.4.9": {
         "checksum": "131d0bd3a19f08a57bcf080d25e478c9544c74aa",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.4.9.zip"
+    },
+    "spleen_ct_segmentation_v0.4.8": {
+        "checksum": "3e110199882d4bcd7de4c603dec438b672e0b547",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.4.8.zip"
     }
 }
