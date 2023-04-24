@@ -1,7 +1,10 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.9",
+    "version": "0.4.2",
     "changelog": {
+        "0.4.2": "deterministic retrain benchmark, update fig links",
+        "0.4.1": "add the ONNX-TensorRT way of model conversion",
+        "0.4.0": "fix mgpu finalize issue",
         "0.3.9": "enable deterministic training",
         "0.3.8": "adapt to BundleWorkflow interface",
         "0.3.7": "add name tag",
@@ -35,7 +38,7 @@
     "label_classes": "single channel data, 1 is spleen, 0 is background",
     "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.9
+        "mean_dice": 0.97
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

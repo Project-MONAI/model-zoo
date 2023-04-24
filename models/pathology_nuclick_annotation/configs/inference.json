@@ -124,7 +124,9 @@
         "amp": true
     },
     "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+        "$import sys",
+        "$sys.path.append(@bundle_root)",
+        "$monai.utils.set_determinism(seed=123)"
     ],
     "run": [
         "$@evaluator.run()"

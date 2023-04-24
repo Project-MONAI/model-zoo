@@ -1,7 +1,10 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.6",
+    "version": "0.4.9",
     "changelog": {
+        "0.4.9": "update the model weights",
+        "0.4.8": "update the TensorRT part in the README file",
+        "0.4.7": "fix mgpu finalize issue",
         "0.4.6": "enable deterministic training",
         "0.4.5": "add the command of executing inference with TensorRT models",
         "0.4.4": "adapt to BundleWorkflow interface",
@@ -35,7 +38,7 @@
     "label_classes": "single channel data, 1/255 is tool, 0 is background",
     "pred_classes": "2 channels OneHot data, channel 1 is tool, channel 0 is background",
     "eval_metrics": {
-        "mean_iou": 0.87
+        "mean_iou": 0.86
     },
     "references": [
         "Tan, M. and Le, Q. V. Efficientnet: Rethinking model scaling for convolutional neural networks. ICML, 2019a. https://arxiv.org/pdf/1905.11946.pdf",

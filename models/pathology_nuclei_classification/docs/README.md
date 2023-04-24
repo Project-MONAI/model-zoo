@@ -99,40 +99,40 @@ The training was performed with the following:
 ## Performance
 This model achieves the following F1 score on the validation data provided as part of the dataset:
 
-- Train F1 score = 0.941
-- Validation F1 score = 0.840
+- Train F1 score = 0.926
+- Validation F1 score = 0.852
 
 <hr/>
-Confusion Metrics for <b>Validation</b> for individual classes are (at epoch 50):
+Confusion Metrics for <b>Validation</b> for individual classes are:
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.6250 | 0.7085       | 0.9188     | 0.8571         |
-| Recall    | 0.1449 | 0.8750       | 0.9310     | 0.8154         |
-| F1-score  | 0.2353 | 0.7830       | 0.9249     | 0.8357         |
+| Precision | 0.6909 | 0.7773       | 0.9078     | 0.8478         |
+| Recall    | 0.2754 | 0.7831       | 0.9533     | 0.8514         |
+| F1-score  | 0.3938 | 0.7802       | 0.9300     | 0.8496         |
 
 
 <hr/>
-Confusion Metrics for <b>Training</b> for individual classes are (at epoch 50):
+Confusion Metrics for <b>Training</b> for individual classes are:
 
 | Metric    | Other  | Inflammatory | Epithelial | Spindle-Shaped |
 |-----------|--------|--------------|------------|----------------|
-| Precision | 0.8902 | 0.9418       | 0.9717     | 0.9189         |
-| Recall    | 0.7935 | 0.9250       | 0.9725     | 0.9345         |
-| F1-score  | 0.8391 | 0.9333       | 0.9721     | 0.9267         |
+| Precision | 0.8000 | 0.9076       | 0.9560     | 0.9019         |
+| Recall    | 0.6512 | 0.9028       | 0.9690     | 0.8989         |
+| F1-score  | 0.7179 | 0.9052       | 0.9625     | 0.9004         |
 
 
 
 #### Training Loss and F1
-A graph showing the training Loss and F1-score over 50 epochs.
+A graph showing the training Loss and F1-score over 100 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss_v2.png) <br>
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1_v2.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_loss_v3.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_train_f1_v3.png) <br>
 
 #### Validation F1
-A graph showing the validation F1-score over 50 epochs.
+A graph showing the validation F1-score over 100 epochs.
 
-![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1_v2.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_classification_val_f1_v3.png) <br>
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.

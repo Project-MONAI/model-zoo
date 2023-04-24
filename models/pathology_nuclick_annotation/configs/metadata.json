@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.9",
+    "version": "0.1.1",
     "changelog": {
+        "0.1.1": "deterministic retrain benchmark and add link",
+        "0.1.0": "fix mgpu finalize issue",
         "0.0.9": "Update README Formatting",
         "0.0.8": "enable deterministic training",
         "0.0.7": "Update with figure links",
