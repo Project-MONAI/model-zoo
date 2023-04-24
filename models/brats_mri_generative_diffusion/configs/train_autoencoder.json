@@ -10,17 +10,21 @@
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/dataset",
     "channel": 0,
-    "spacing": [1.1, 1.1, 1.1],
+    "spacing": [
+        1.1,
+        1.1,
+        1.1
+    ],
     "spatial_dims": 3,
     "image_channels": 1,
     "latent_channels": 8,
     "discriminator_def": {
         "_target_": "generative.networks.nets.PatchDiscriminator",
         "spatial_dims": "@spatial_dims",
-        "num_layers_d":3,
-        "num_channels":32,
-        "in_channels":1,
-        "out_channels":1,
+        "num_layers_d": 3,
+        "num_channels": 32,
+        "in_channels": 1,
+        "out_channels": 1,
         "norm": "INSTANCE"
     },
     "autoencoder_def": {
@@ -48,9 +52,9 @@
     "perceptual_loss_def": {
         "_target_": "generative.losses.PerceptualLoss",
         "spatial_dims": "@spatial_dims",
-        "network_type":"squeeze", 
-        "is_fake_3d":true, 
-        "fake_3d_ratio":0.2
+        "network_type": "squeeze",
+        "is_fake_3d": true,
+        "fake_3d_ratio": 0.2
     },
     "dnetwork": "$@discriminator_def.to(@device)",
     "gnetwork": "$@autoencoder_def.to(@device)",
@@ -58,13 +62,13 @@
     "doptimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@dnetwork.parameters()",
-        "lr": 1e-5
+        "lr": 1e-05
     },
     "goptimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@gnetwork.parameters()",
-        "lr": 1e-5
-    }, 
+        "lr": 1e-05
+    },
     "train": {
         "preprocessing_transforms": [
             {
@@ -104,7 +108,11 @@
             {
                 "_target_": "RandSpatialCropd",
                 "keys": "image",
-                "roi_size": [112,128,80],
+                "roi_size": [
+                    112,
+                    128,
+                    80
+                ],
                 "random_size": false
             }
         ],
@@ -112,10 +120,10 @@
             {
                 "_target_": "ScaleIntensityRangePercentilesd",
                 "keys": "image",
-                "lower":0, 
-                "upper":99.5, 
-                "b_min":0, 
-                "b_max":1
+                "lower": 0,
+                "upper": 99.5,
+                "b_min": 0,
+                "b_max": 1
             }
         ],
         "preprocessing": {
@@ -125,12 +133,12 @@
         "real_dataset": {
             "_target_": "monai.apps.DecathlonDataset",
             "root_dir": "@dataset_dir",
-            "task":"Task01_BrainTumour",
-            "section":"training",
-            "cache_rate":0,
-            "num_workers":8,
-            "download":false,
-            "transform":"@train#preprocessing"
+            "task": "Task01_BrainTumour",
+            "section": "training",
+            "cache_rate": 0,
+            "num_workers": 8,
+            "download": false,
+            "transform": "@train#preprocessing"
         },
         "real_dataloader": {
             "_target_": "DataLoader",
@@ -175,7 +183,6 @@
             "train_handlers": "@train#handlers"
         }
     },
-    
     "initialize": [
         "$monai.utils.set_determinism(seed=0)"
     ],

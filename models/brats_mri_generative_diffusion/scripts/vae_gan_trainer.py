@@ -171,7 +171,7 @@ class VaeGanTrainer(Trainer):
         """
         if batchdata is None:
             raise ValueError("must provide batch data for current iteration.")
-            
+
         d_input = engine.prepare_batch(batchdata, engine.state.device, engine.non_blocking, **engine.to_kwargs)[0]
         batch_size = engine.data_loader.batch_size  # type: ignore
         g_input = d_input
