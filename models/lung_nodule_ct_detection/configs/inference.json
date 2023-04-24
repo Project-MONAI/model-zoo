@@ -144,7 +144,8 @@
     },
     "inferer": {
         "_target_": "scripts.detection_inferer.RetinaNetInferer",
-        "detector": "@detector"
+        "detector": "@detector",
+        "force_inferer": "@force_inferer"
     },
     "postprocessing": {
         "_target_": "Compose",
