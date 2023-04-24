@@ -1,0 +1,66 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20220718.json",
+    "version": "0.4.2",
+    "changelog": {
+        "0.4.2": "add name tag",
+        "0.4.1": "fix license Copyright error",
+        "0.4.0": "update license files",
+        "0.3.0": "Update for 1.0",
+        "0.2.0": "Unify naming",
+        "0.1.0": "Initial version"
+    },
+    "monai_version": "1.0.0",
+    "pytorch_version": "1.10.0",
+    "numpy_version": "1.21.0",
+    "optional_packages_version": {
+        "pytorch-ignite": "0.4.8",
+        "pillow": "8.4.0"
+    },
+    "name": "MedNIST GAN",
+    "task": "Generate random hand images from the MedNIST dataset",
+    "description": "This example of a GAN generator produces hand xray images like those in the MedNIST dataset",
+    "authors": "MONAI Team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "intended_use": "This is an example of a GAN with generator discriminator networks using MONAI, suitable for demonstration purposes only.",
+    "data_source": "MedNIST dataset kindly made available by Dr. Bradley J. Erickson M.D., Ph.D. (Department of Radiology, Mayo Clinic)",
+    "data_type": "jpeg",
+    "network_data_format": {
+        "inputs": {
+            "latent": {
+                "type": "tuples",
+                "format": "latent",
+                "num_channels": 0,
+                "spatial_shape": [
+                    64
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {}
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "magnitude",
+                "num_channels": 1,
+                "spatial_shape": [
+                    64,
+                    64
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        }
+    }
+}
