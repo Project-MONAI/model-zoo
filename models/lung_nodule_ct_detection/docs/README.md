@@ -64,12 +64,12 @@ The validation accuracy in this curve is the mean of mAP, mAR, AP(IoU=0.1), and 
 ![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc_v2.png)
 
 #### TensorRT speedup
-The `lung_nodule_ct_detection` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
+The `lung_nodule_ct_detection` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU. Please note the `force_inferer` in the `inference.json` must be set to `true` when doing inference with the TensorRT model. This forces the bundle using the `SlidingWindowInferer` during inference and keeps the input spatial size of the network invariable. Otherwise, give an input with spatial sizes less than the `infer_patch_size`, the input spatial size of the network would be changed.
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| model computation | 6.50 | 9.23 | 2.78 | 2.31 | 0.70 | 2.34 | 2.81 | 4.00 |
-| end2end | 23.54 | 23.78 | 7.37 | 7.14 | 0.99 | 3.19 | 3.30 | 3.33 |
+| model computation | 7449.84 | 996.08 | 976.67 | 626.90 | 7.63 | 7.63 | 11.88 | 1.56 |
+| end2end | 36458.26 | 7259.35 | 6420.60 | 4698.34 | 5.02 | 5.68 | 7.76 | 1.55 |
 
 Where:
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing

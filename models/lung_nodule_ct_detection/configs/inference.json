@@ -15,6 +15,7 @@
     "amp": true,
     "spatial_dims": 3,
     "num_classes": 1,
+    "force_inferer": true,
     "size_divisible": [
         16,
         16,
