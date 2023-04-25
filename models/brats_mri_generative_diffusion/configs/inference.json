@@ -38,7 +38,8 @@
         "output_dir": "@output_dir",
         "output_postfix": "@output_postfix"
     },
-    "run": [
-        "$@saver(@sample)"
+    "generated_image": "$@sample",
+    "run": [        
+        "$@saver(@generated_image[0])"
     ]
 }

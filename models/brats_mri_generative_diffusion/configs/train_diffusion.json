@@ -52,7 +52,7 @@
         ],
         "gamma": 0.1
     },
-    "scale_factor": "$1.0/torch.std(@autoencoder.to(@device).encode_stage_2_inputs(monai.utils.first(@train#dataloader)['image'].to(@device))).item()",
+    "scale_factor": "$scripts.utils.compute_scale_factor(@autoencoder,@train#dataloader,@device)",
     "noise_scheduler": {
         "_target_": "generative.networks.schedulers.DDPMScheduler",
         "_requires_": [
@@ -127,7 +127,7 @@
                 "log_dir": "@tf_dir",
                 "tag_name": "train_diffusion_loss",
                 "output_transform": "$lambda x: monai.handlers.from_engine(['loss'], first=True)(x)",
-                "iteration_log": false
+                "iteration_log":false
             }
         ],
         "trainer": {
