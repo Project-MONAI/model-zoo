@@ -10,4 +10,4 @@
 # limitations under the License.
 
 from . import losses
-from . import vae_gan_trainer
+from . import ldm_trainer

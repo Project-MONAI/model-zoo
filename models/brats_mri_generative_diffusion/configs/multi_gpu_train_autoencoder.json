@@ -5,16 +5,14 @@
         "module": "$@autoencoder_def.to(@device)",
         "device_ids": [
             "@device"
-        ],
-        "find_unused_parameters": true
+        ]
     },
     "dnetwork": {
         "_target_": "torch.nn.parallel.DistributedDataParallel",
         "module": "$@discriminator_def.to(@device)",
         "device_ids": [
             "@device"
-        ],
-        "find_unused_parameters": true
+        ]
     },
     "train#sampler": {
         "_target_": "DistributedSampler",
