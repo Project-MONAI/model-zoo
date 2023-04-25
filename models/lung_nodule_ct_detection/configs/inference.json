@@ -15,7 +15,7 @@
     "amp": true,
     "spatial_dims": 3,
     "num_classes": 1,
-    "force_inferer": true,
+    "force_sliding_window": true,
     "size_divisible": [
         16,
         16,
@@ -145,7 +145,7 @@
     "inferer": {
         "_target_": "scripts.detection_inferer.RetinaNetInferer",
         "detector": "@detector",
-        "force_inferer": "@force_inferer"
+        "force_sliding_window": "@force_sliding_window"
     },
     "postprocessing": {
         "_target_": "Compose",
