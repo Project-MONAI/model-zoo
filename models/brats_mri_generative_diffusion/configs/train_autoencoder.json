@@ -9,6 +9,7 @@
     "ckpt_path": "$@bundle_root + '/models/model_autoencoder.pt'",
     "tf_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/dataset",
+    "download_brats": true,
     "train_batch_size": 2,
     "train_patch_size": [
         112,
@@ -139,7 +140,7 @@
             "section": "training",
             "cache_rate": 0,
             "num_workers": 8,
-            "download": false,
+            "download": "@download_brats",
             "transform": "@train#preprocessing"
         },
         "dataloader": {
