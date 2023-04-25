@@ -39,7 +39,7 @@
         "output_postfix": "@output_postfix"
     },
     "generated_image": "$@sample",
-    "run": [        
+    "run": [
         "$@saver(@generated_image[0])"
     ]
 }
