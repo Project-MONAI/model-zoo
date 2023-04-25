@@ -11,6 +11,7 @@ This is a demonstration network meant to just show the training process for this
 git clone https://github.com/Project-MONAI/GenerativeModels.git
 cd GenerativeModels/
 python setup.py install
+cd ..
 ```
 We also need
 ```
