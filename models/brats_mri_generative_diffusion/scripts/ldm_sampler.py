@@ -30,7 +30,7 @@ class LDMSampler:
         autoencoder_model: nn.Module,
         diffusion_model: nn.Module,
         scheduler: nn.Module,
-        conditioning: torch.Tensor|None=None,
+        conditioning: torch.Tensor | None = None,
     ) -> torch.Tensor:
         if has_tqdm:
             progress_bar = tqdm(scheduler.timesteps)
@@ -41,7 +41,6 @@ class LDMSampler:
         if conditioning is not None:
             cond_concat = conditioning.squeeze(1).unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
             cond_concat = cond_concat.expand(list(cond_concat.shape[0:2]) + list(input_noise.shape[2:]))
-
 
         for t in progress_bar:
             with torch.no_grad():

@@ -10,7 +10,9 @@
 
 import torch
 import monai
-def compute_scale_factor(autoencoder,train_loader,device):
+
+
+def compute_scale_factor(autoencoder, train_loader, device):
     with torch.no_grad():
         check_data = monai.utils.first(train_loader)
         z = autoencoder.encode_stage_2_inputs(check_data["image"].to(device))
