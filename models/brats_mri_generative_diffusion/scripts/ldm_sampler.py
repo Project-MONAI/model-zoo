@@ -41,7 +41,7 @@ class LDMSampler:
         if conditioning is not None:
             cond_concat = conditioning.squeeze(1).unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
             cond_concat = cond_concat.expand(list(cond_concat.shape[0:2]) + list(input_noise.shape[2:]))
-            
+
 
         for t in progress_bar:
             with torch.no_grad():
