@@ -4,7 +4,7 @@
     "changelog": {
         "1.0.0": "Initial release"
     },
-    "monai_version": "1.2.0",
+    "monai_version": "1.2.0rc5",
     "pytorch_version": "2.0.0",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
