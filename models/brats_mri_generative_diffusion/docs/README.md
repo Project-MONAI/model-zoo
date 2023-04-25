@@ -1,18 +1,16 @@
 
 # Brats MRI 3D Latent Diffusion Generative Model
 
-This model is a generator for creating images like the Flair MRIs based on BraTS 2018 data.. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss, and is based on the [MONAI GAN tutorials](https://github.com/Project-MONAI/tutorials/blob/main/modules/mednist_GAN_workflow_dict.ipynb).
-
+This model is a generator for creating images like the Flair MRIs based on BraTS 2018 data.. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 3D latent diffusion model.
 This is a demonstration network meant to just show the training process for this sort of network with MONAI. 
 
 ### Downloading the Dataset
-The training data is from the Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018.
+The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/sbia/brats2018.html).
 
-Target: 3 tumor subregions
-Task: Segmentation
+Target: image generatiion
+Task: Synthesis
 Modality: MRI
-Size: 285 3D volumes (4 channels each)
-The provided labelled data was partitioned, based on our own split, into training (200 studies), validation (42 studies) and testing (43 studies) datasets.
+Size: 285 3D volumes (1 channel used)
 
 ### Training
 
@@ -40,14 +38,14 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 The generator can be exported to a Torchscript bundle with the following:
 
 ```
-python -m monai.bundle ckpt_export network_def --filepath mednist_gan.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json
+python -m monai.bundle ckpt_export autoencoder_def --filepath autoencoder.ts --ckpt_file models/model_autoencoder.pt --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
 The model can be loaded without MONAI code after this operation. For example, an image can be generated from a set of random values with:
 
 ```python
 import torch
-net = torch.jit.load("mednist_gan.ts")
+net = torch.jit.load("autoencoder.ts")
 latent = torch.rand(1, 64)
 img = net(latent)  # (1,1,64,64)
 ```
