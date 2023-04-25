@@ -6,8 +6,7 @@ This model is a generator for creating images like the Flair MRIs based on BraTS
 This is a demonstration network meant to just show the training process for this sort of network with MONAI.
 
 ### Install the dependency of MONAI generative models
-[MONAI generative models](https://github.com/Project-MONAI/GenerativeModels)
-can be installed by
+[MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
 ```
 git clone https://github.com/Project-MONAI/GenerativeModels.git
 cd GenerativeModels/
