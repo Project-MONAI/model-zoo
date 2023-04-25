@@ -126,8 +126,7 @@
                 "_target_": "TensorBoardStatsHandler",
                 "log_dir": "@tf_dir",
                 "tag_name": "train_diffusion_loss",
-                "output_transform": "$lambda x: monai.handlers.from_engine(['loss'], first=True)(x)",
-                "iteration_log": false
+                "output_transform": "$lambda x: monai.handlers.from_engine(['loss'], first=True)(x)"
             }
         ],
         "trainer": {
