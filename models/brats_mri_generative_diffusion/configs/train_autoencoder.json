@@ -172,7 +172,7 @@
                 "log_dir": "@tf_dir",
                 "tag_name": "train_loss",
                 "output_transform": "$lambda x: monai.handlers.from_engine(['g_loss'], first=True)(x)[0]",
-                "iteration_log":false
+                "iteration_log": false
             }
         ],
         "trainer": {
