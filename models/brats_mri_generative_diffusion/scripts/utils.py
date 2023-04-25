@@ -16,4 +16,3 @@ def compute_scale_factor(autoencoder,train_loader,device):
         z = autoencoder.encode_stage_2_inputs(check_data["image"].to(device))
     scale_factor = 1 / torch.std(z)
     return scale_factor.item()
-    
