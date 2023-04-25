@@ -54,13 +54,13 @@ It will print out the scale factor of the latent feature space. If your autoenco
 
 Or run it with multi-gpu:
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_diffusion.json']"
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_diffusion.json']"
 ```
 
 
 ### Inference
 ```
-python -m monai.bundle save_nii --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
+python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
 ```
 
 
