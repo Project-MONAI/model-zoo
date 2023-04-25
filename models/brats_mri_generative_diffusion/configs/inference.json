@@ -38,7 +38,7 @@
         "output_dir": "@output_dir",
         "output_postfix": "@output_postfix"
     },
-    "run": [        
+    "run": [
         "$@saver(@sample)"
     ]
 }
