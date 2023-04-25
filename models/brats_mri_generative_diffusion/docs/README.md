@@ -26,9 +26,16 @@ Task: Synthesis
 Modality: MRI
 Size: 285 3D volumes (1 channel used)
 
+The dataset can be downloaded automatically at the beggining of training.
+
 ### Training
 
-Assuming the current directory is the bundle directory, and the dataset was extracted to the directory `./Task01_BrainTumour`, the following command will train the autoencoder network for 1500 epochs:
+Assuming the current directory is the bundle directory, the following command will train the autoencoder network for 1500 epochs.
+If the Brats dataset is not downloaded, run the following command, the data will be downloaded and extracted to `./Task01_BrainTumour`.
+```
+python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir ./ --download_brats True
+```
+If it is already downloaded, run:
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
@@ -37,9 +44,15 @@ Or run it with multi-gpu:
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']"
 ```
+It take 9 hours when trianing with 9 32G GPU.
 
+After the autoencoder is trained, run the following command to train the latent diffusion model.
 ```
 python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json']"
+```
+Or run it with multi-gpu:
+```
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_diffusion.json']"
 ```
 
 

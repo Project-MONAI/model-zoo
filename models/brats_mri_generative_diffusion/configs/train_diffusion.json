@@ -1,5 +1,5 @@
 {
-    "ckpt_path": "$@bundle_root + '/models/model_ldm.pt'",
+    "ckpt_dir": "$@bundle_root + '/models'",
     "train_batch_size": 4,
     "train_patch_size": [
         144,
@@ -87,7 +87,7 @@
             "section": "training",
             "cache_rate": 1.0,
             "num_workers": 8,
-            "download": false,
+            "download": "@download_brats",
             "transform": "@train#preprocessing"
         },
         "dataloader": {
@@ -105,13 +105,14 @@
             },
             {
                 "_target_": "CheckpointSaver",
-                "save_dir": "$@bundle_root + '/models'",
+                "save_dir": "@ckpt_dir",
                 "save_dict": {
                     "model": "@diffusion"
                 },
                 "save_interval": 0,
                 "save_final": true,
-                "epoch_level": true
+                "epoch_level": true,
+                "key_metric_filename": "model_ldm.pt"
             },
             {
                 "_target_": "StatsHandler",

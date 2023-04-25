@@ -6,10 +6,10 @@
     ],
     "bundle_root": ".",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "ckpt_path": "$@bundle_root + '/models/model_autoencoder.pt'",
+    "ckpt_dir": "$@bundle_root + '/models'",
     "tf_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/dataset",
-    "download_brats": true,
+    "download_brats": false,
     "train_batch_size": 2,
     "train_patch_size": [
         112,
@@ -153,13 +153,14 @@
         "handlers": [
             {
                 "_target_": "CheckpointSaver",
-                "save_dir": "$@bundle_root + '/models'",
+                "save_dir": "@ckpt_dir",
                 "save_dict": {
                     "model": "@gnetwork"
                 },
                 "save_interval": 0,
                 "save_final": true,
-                "epoch_level": true
+                "epoch_level": true,
+                "key_metric_filename": "model_autoencoder.pt"
             },
             {
                 "_target_": "StatsHandler",
