@@ -914,5 +914,9 @@
     "spleen_ct_segmentation_v0.4.8": {
         "checksum": "3e110199882d4bcd7de4c603dec438b672e0b547",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.4.8.zip"
+    },
+    "brats_mri_segmentation_v0.4.4": {
+        "checksum": "b06f06ad6a8b87f7c8c34816e4324f995eab80d4",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.4.4.zip"
     }
 }
