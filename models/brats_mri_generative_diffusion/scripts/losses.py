@@ -1,6 +1,5 @@
 import torch
 from generative.losses import PatchAdversarialLoss, PerceptualLoss
-from generative.networks.nets import PatchDiscriminator
 
 intensity_loss = torch.nn.L1Loss()
 adv_loss = PatchAdversarialLoss(criterion="least_squares")
@@ -26,11 +25,11 @@ def generator_loss(gen_images, real_images, z_mu, z_sigma, disc_net, loss_percep
     logits_fake = disc_net(gen_images)[-1]
     generator_loss = adv_loss(logits_fake, target_is_real=True, for_discriminator=False)
     loss_g = loss_g + adv_weight * generator_loss
-
+    
     return loss_g
-
-
-def discriminator_loss(gen_images, real_images, disc_net):
+    
+    
+def discriminator_loss(gen_images, real_images, disc_net):    
     logits_fake = disc_net(gen_images.contiguous().detach())[-1]
     loss_d_fake = adv_loss(logits_fake, target_is_real=False, for_discriminator=True)
     logits_real = disc_net(real_images.contiguous().detach())[-1]
