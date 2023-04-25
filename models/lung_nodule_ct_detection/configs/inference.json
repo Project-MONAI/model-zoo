@@ -15,7 +15,7 @@
     "amp": true,
     "spatial_dims": 3,
     "num_classes": 1,
-    "force_sliding_window": true,
+    "force_sliding_window": false,
     "size_divisible": [
         16,
         16,

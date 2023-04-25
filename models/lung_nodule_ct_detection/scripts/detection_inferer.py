@@ -33,7 +33,7 @@ class RetinaNetInferer(Inferer):
         kwargs: other optional keyword args to be passed to detector.
     """
 
-    def __init__(self, detector: RetinaNetDetector, force_sliding_window: bool, *args, **kwargs) -> None:
+    def __init__(self, detector: RetinaNetDetector, force_sliding_window: bool=False) -> None:
         Inferer.__init__(self)
         self.detector = detector
         self.sliding_window_size = None
