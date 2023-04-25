@@ -1,18 +1,12 @@
 {
     "device": "$torch.device(f'cuda:{dist.get_rank()}')",
-    "autoencoder": {
-        "_target_": "torch.nn.parallel.DistributedDataParallel",
-        "module": "$@autoencoder_def.to(@device)",
-        "device_ids": [
-            "@device"
-        ]
-    },
     "diffusion": {
         "_target_": "torch.nn.parallel.DistributedDataParallel",
         "module": "$@diffusion_def.to(@device)",
         "device_ids": [
             "@device"
-        ]
+        ],
+        "find_unused_parameters": true
     },
     "train#sampler": {
         "_target_": "DistributedSampler",
@@ -32,6 +26,9 @@
         "$@train#trainer.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)"
     ],
     "run": [
+        "@load_autoencoder",
+        "$@autoencoder.eval()",
+        "$print('scale factor:',@scale_factor)",
         "$@train#trainer.run()"
     ],
     "finalize": [

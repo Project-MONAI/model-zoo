@@ -1,0 +1,44 @@
+{
+    "imports": [
+        "$import torch",
+        "$from datetime import datetime",
+        "$from pathlib import Path"
+    ],
+    "bundle_root": ".",
+    "model_dir": "$@bundle_root + '/models'",
+    "output_dir": "$@bundle_root + '/output'",
+    "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "output_postfix": "$datetime.now().strftime('sample_%Y%m%d_%H%M%S')",
+    "load_diffusion_path": "$@model_dir + '/model_ldm.pt'",
+    "load_diffusion": "$@diffusion_def.load_state_dict(torch.load(@load_diffusion_path))",
+    "diffusion": "$@diffusion_def.to(@device)",
+    "noise_scheduler": {
+        "_target_": "generative.networks.schedulers.DDIMScheduler",
+        "_requires_": [
+            "@load_diffusion",
+            "@load_autoencoder"
+        ],
+        "num_train_timesteps": 1000,
+        "beta_start": 0.0015,
+        "beta_end": 0.0195,
+        "beta_schedule": "scaled_linear",
+        "clip_sample": false
+    },
+    "noise": "$torch.randn([1]+@latent_shape).to(@device)",
+    "set_timesteps": "$@noise_scheduler.set_timesteps(num_inference_steps=50)",
+    "sampler": {
+        "_target_": "scripts.ldm_sampler.LDMSampler",
+        "_requires_": "@set_timesteps"
+    },
+    "sample": "$@sampler.sampling_fn(@noise, @autoencoder, @diffusion, @noise_scheduler)",
+    "saver": {
+        "_target_": "SaveImage",
+        "_requires_": "@create_output_dir",
+        "output_dir": "@output_dir",
+        "output_postfix": "@output_postfix"
+    },
+    "run": [        
+        "$@saver(@sample)"
+    ]
+}

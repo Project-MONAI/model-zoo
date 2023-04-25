@@ -52,9 +52,12 @@
         ],
         "gamma": 0.1
     },
-    "scale_factor": 1.0,
+    "scale_factor": "$1.0/torch.std(@autoencoder.to(@device).encode_stage_2_inputs(monai.utils.first(@train#dataloader)['image'].to(@device))).item()",
     "noise_scheduler": {
         "_target_": "generative.networks.schedulers.DDPMScheduler",
+        "_requires_": [
+            "@load_autoencoder"
+        ],
         "beta_schedule": "scaled_linear",
         "num_train_timesteps": 1000,
         "beta_start": 0.0015,
@@ -112,7 +115,7 @@
                 "save_interval": 0,
                 "save_final": true,
                 "epoch_level": true,
-                "key_metric_filename": "model_ldm.pt"
+                "final_filename": "model_ldm.pt"
             },
             {
                 "_target_": "StatsHandler",
@@ -145,6 +148,9 @@
         "$monai.utils.set_determinism(seed=0)"
     ],
     "run": [
+        "@load_autoencoder",
+        "$@autoencoder.eval()",
+        "$print('scale factor:',@scale_factor)",
         "$@train#trainer.run()"
     ]
 }

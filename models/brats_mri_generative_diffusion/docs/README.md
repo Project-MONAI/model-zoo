@@ -35,7 +35,7 @@ If the Brats dataset is not downloaded, run the following command, the data will
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir ./ --download_brats True
 ```
-If it is already downloaded, run:
+If it is already downloaded, check if `"dataset_dir"` in `configs/train_autoencoder.json`has folder `Task01_BrainTumour`. If so, run:
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
@@ -44,12 +44,14 @@ Or run it with multi-gpu:
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']"
 ```
-It take 9 hours when trianing with 9 32G GPU.
+It take 9 hours when training with 9 32G GPU.
 
 After the autoencoder is trained, run the following command to train the latent diffusion model.
 ```
 python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json']"
 ```
+It will print out the scale factor of the latent feature space. If your autoencoder is well trained, this value should be close to 1.0.
+
 Or run it with multi-gpu:
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_diffusion.json']"
@@ -57,6 +59,9 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 
 
 ### Inference
+```
+python -m monai.bundle save_nii --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
+```
 
 
 
