@@ -85,7 +85,7 @@
             "root_dir": "@dataset_dir",
             "task": "Task01_BrainTumour",
             "section": "training",
-            "cache_rate": 0,
+            "cache_rate": 1.0,
             "num_workers": 8,
             "download": false,
             "transform": "@train#preprocessing"
