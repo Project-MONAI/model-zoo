@@ -18,8 +18,7 @@
     "data_source": "https://www.med.upenn.edu/sbia/brats2018/data.html",
     "data_type": "nibabel",
     "image_classes": "Flair brain MRI with 1.1x1.1x1.1 mm voxel size",
-    "eval_metrics": {
-    },
+    "eval_metrics": {},
     "intended_use": "This is a research tool/prototype and not to be used clinically",
     "references": [],
     "network_data_format": {

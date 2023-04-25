@@ -1,8 +1,17 @@
 {
-    "ckpt_path": "$@bundle_root + '/models/model_ldm.pt'",    
+    "ckpt_path": "$@bundle_root + '/models/model_ldm.pt'",
     "train_batch_size": 4,
-    "train_patch_size": [144,176,112],
-    "latent_shape": [8,36,44,28],
+    "train_patch_size": [
+        144,
+        176,
+        112
+    ],
+    "latent_shape": [
+        8,
+        36,
+        44,
+        28
+    ],
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
     "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
@@ -11,30 +20,45 @@
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
-        "num_channels":[256, 256, 512],
-        "attention_levels":[false, true, true], 
-        "num_head_channels":[0, 64, 64],
+        "num_channels": [
+            256,
+            256,
+            512
+        ],
+        "attention_levels": [
+            false,
+            true,
+            true
+        ],
+        "num_head_channels": [
+            0,
+            64,
+            64
+        ],
         "num_res_blocks": 2
     },
     "diffusion": "$@diffusion_def.to(@device)",
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@diffusion.parameters()",
-        "lr": 1e-5
+        "lr": 1e-05
     },
     "lr_scheduler": {
         "_target_": "torch.optim.lr_scheduler.MultiStepLR",
         "optimizer": "@optimizer",
-        "milestones": [100, 1000],
+        "milestones": [
+            100,
+            1000
+        ],
         "gamma": 0.1
     },
     "scale_factor": 1.0,
-    "noise_scheduler":{
+    "noise_scheduler": {
         "_target_": "generative.networks.schedulers.DDPMScheduler",
         "beta_schedule": "scaled_linear",
         "num_train_timesteps": 1000,
         "beta_start": 0.0015,
-        "beta_end": 0.0195    
+        "beta_end": 0.0195
     },
     "inferer": {
         "_target_": "generative.inferers.LatentDiffusionInferer",
@@ -44,14 +68,14 @@
     "loss": {
         "_target_": "torch.nn.MSELoss"
     },
-    "train": {        
+    "train": {
         "crop_transforms": [
             {
                 "_target_": "CenterSpatialCropd",
                 "keys": "image",
                 "roi_size": "@train_patch_size"
             }
-        ],        
+        ],
         "preprocessing": {
             "_target_": "Compose",
             "transforms": "$@preprocessing_transforms + @train#crop_transforms + @final_transforms"
@@ -59,12 +83,12 @@
         "dataset": {
             "_target_": "monai.apps.DecathlonDataset",
             "root_dir": "@dataset_dir",
-            "task":"Task01_BrainTumour",
-            "section":"training",
-            "cache_rate":0,
-            "num_workers":8,
-            "download":false,
-            "transform":"@train#preprocessing"
+            "task": "Task01_BrainTumour",
+            "section": "training",
+            "cache_rate": 0,
+            "num_workers": 8,
+            "download": false,
+            "transform": "@train#preprocessing"
         },
         "dataloader": {
             "_target_": "DataLoader",
@@ -110,7 +134,7 @@
             "key_train_metric": "$None",
             "train_handlers": "@train#handlers"
         }
-    },    
+    },
     "initialize": [
         "$monai.utils.set_determinism(seed=0)"
     ],

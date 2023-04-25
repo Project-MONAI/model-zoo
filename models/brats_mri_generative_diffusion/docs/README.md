@@ -3,7 +3,7 @@
 
 This model is a generator for creating images like the Flair MRIs based on BraTS 2018 data.. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss, and is based on the [MONAI GAN tutorials](https://github.com/Project-MONAI/tutorials/blob/main/modules/mednist_GAN_workflow_dict.ipynb).
 
-This is a demonstration network meant to just show the training process for this sort of network with MONAI. 
+This is a demonstration network meant to just show the training process for this sort of network with MONAI.
 
 ### Downloading the Dataset
 The training data is from the Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018.
