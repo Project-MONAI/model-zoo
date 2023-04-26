@@ -67,7 +67,7 @@ The training of latent diffusion model was performed with the following:
 8 channel random noise
 
 #### Output
-- 8 channel predicted added noise
+8 channel predicted added noise
 
 
 ## MONAI Bundle Commands
