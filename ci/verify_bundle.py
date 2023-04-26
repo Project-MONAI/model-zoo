@@ -23,6 +23,7 @@ from bundle_custom_data import (
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
 from utils import download_large_files, get_json_dict
+from tests import TestSpleenConfigs
 
 # files that must be included in a bundle
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
@@ -326,6 +327,10 @@ def verify(bundle, models_path="models", mode="full"):
         print(f"bundle: {bundle} does not support torchscript, skip verifying.")
     else:
         verify_torchscript(bundle_path, net_id, config_file)
+    
+    if bundle == "spleen_ct_segmentation":
+        config_tests = TestSpleenConfigs(bundle_root=bundle_path)
+        config_tests.test_all_configs()
 
 
 if __name__ == "__main__":
