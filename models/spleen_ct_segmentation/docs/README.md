@@ -45,13 +45,12 @@ Dice score is used for evaluating the performance of the model. This model achie
 ![A graph showing the validation mean Dice over 1260 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_ct_segmentation_val.png)
 
 #### TensorRT speedup
-The `spleen_ct_segmentation` bundle supports the TensorRT acceleration. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
+The `spleen_ct_segmentation` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| model computation | 6.48 | 4.48 | 6.40 | 6.30 | 1.45 | 1.01 | 1.03 | 0.71 |
-| model computation(onnx) | 6.46 | 4.48 | 2.52 | 1.96 | 1.44 | 2.56 | 3.30 | 2.29 |
-| end2end | 3900.73 | 3823.89 | 3887.37 | 3883.01 |	1.02 | 1.00 | 1.00 | 0.98 |
+| model computation | 6.46 | 4.48 | 2.52 | 1.96 | 1.44 | 2.56 | 3.30 | 2.29 |
+| end2end | 1268.03 | 1152.40 | 1137.40 | 1114.25 |	1.10 | 1.11 | 1.14 | 1.03 |
 
 Where:
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
@@ -61,13 +60,15 @@ Where:
 - `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
 - `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
 
+Currently, this model can only be accelerated through the ONNX-TensorRT way and the Torch-TensorRT way will come soon.
+
 This result is benchmarked under:
  - TensorRT: 8.5.3+cuda11.8
  - Torch-TensorRT Version: 1.4.0
  - CPU Architecture: x86-64
  - OS: ubuntu 20.04
  - Python version:3.8.10
- - CUDA version: 12.0
+ - CUDA version: 12.1
  - GPU models and configuration: A100 80G
 
 ## MONAI Bundle Commands
@@ -110,7 +111,7 @@ python -m monai.bundle run --config_file configs/inference.json
 #### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
 
 ```
-python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[1, 4, 8]"
+python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --dynamic_batchsize "[1, 4, 8]" --use_onnx "True" --use_trace "True"
 ```
 
 #### Execute inference with the TensorRT model:
