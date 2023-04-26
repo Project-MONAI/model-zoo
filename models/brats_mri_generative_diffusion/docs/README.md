@@ -1,7 +1,7 @@
 # Model Overview
 A pre-trained model for volumetric (3D) Brats MRI 3D Latent Diffusion Generative Model.
 
-This model is trained on BraTS 2018 data (https://luna16.grand-challenge.org/Home/), using the Latent diffusion model (Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf).
+This model is trained on BraTS 2018 data (https://www.med.upenn.edu/sbia/brats2018.html), using the Latent diffusion model (Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf).
 
 ![model workflow placeholder, will update](https://miro.medium.com/v2/resize:fit:1256/1*3Jjlrb-TB8hPpIexoCKpZQ.png)
 
