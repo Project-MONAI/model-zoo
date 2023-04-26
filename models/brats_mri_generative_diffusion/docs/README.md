@@ -3,7 +3,7 @@ A pre-trained model for volumetric (3D) Brats MRI 3D Latent Diffusion Generative
 
 This model is trained on BraTS 2018 data (https://luna16.grand-challenge.org/Home/), using the Latent diffusion model (Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf).
 
-![model workflow placeholder, will update](https://www.google.com/url?sa=i&url=https%3A%2F%2Ftowardsdatascience.com%2Fpaper-explained-high-resolution-image-synthesis-with-latent-diffusion-models-f372f7636d42&psig=AOvVaw2X9URb15ch3IEeql1vDRRO&ust=1682555678960000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCOCzmr-mxv4CFQAAAAAdAAAAABAE)
+![model workflow placeholder, will update](https://miro.medium.com/v2/resize:fit:1256/1*3Jjlrb-TB8hPpIexoCKpZQ.png)
 
 This model is a generator for creating images like the Flair MRIs based on BraTS 2018 data. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 3D latent diffusion model.
 
