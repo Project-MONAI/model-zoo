@@ -63,11 +63,17 @@ The training of latent diffusion model was performed with the following:
 - Learning Rate: 1e-5
 - Loss: MSE loss
 
-#### Input
-8 channel random noise
+#### Training Input
+8 channel noisy latent features
 
-#### Output
+#### Training Output
 8 channel predicted added noise
+
+#### Inference Input
+8 channel noise
+
+#### Inference Output
+8 channel denoised latent features
 
 
 ## MONAI Bundle Commands
