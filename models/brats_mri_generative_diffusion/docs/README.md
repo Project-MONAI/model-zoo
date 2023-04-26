@@ -53,7 +53,7 @@ The training of autoencoder was performed with the following:
 The training of latent diffusion model was performed with the following:
 
 - GPU: at least 32GB GPU memory
-- Actual Model Input: 144 x 176 x 112
+- Actual Model Input: 36 x 44 x 28
 - AMP: False
 - Optimizer: Adam
 - Learning Rate: 1e-5
