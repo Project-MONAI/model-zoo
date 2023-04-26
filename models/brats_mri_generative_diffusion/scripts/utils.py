@@ -8,8 +8,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import torch
 import monai
+import torch
 
 
 def compute_scale_factor(autoencoder, train_loader, device):
