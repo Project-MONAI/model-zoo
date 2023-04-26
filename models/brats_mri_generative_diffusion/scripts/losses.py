@@ -24,8 +24,8 @@ kl_weight = 1e-7
 
 
 def kl_loss(z_mu, z_sigma):
-    kl_loss = 0.5 * torch.sum(z_mu.pow(2) + z_sigma.pow(2) - torch.log(z_sigma.pow(2)) - 1, dim=[1, 2, 3, 4])
-    return torch.sum(kl_loss) / kl_loss.shape[0]
+    kl_loss_all = 0.5 * torch.sum(z_mu.pow(2) + z_sigma.pow(2) - torch.log(z_sigma.pow(2)) - 1, dim=[1, 2, 3, 4])
+    return torch.sum(kl_loss_all) / kl_loss_all.shape[0]
 
 
 def generator_loss(gen_images, real_images, z_mu, z_sigma, disc_net, loss_perceptual=loss_perceptual):
