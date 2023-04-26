@@ -60,7 +60,7 @@ The training of latent diffusion model was performed with the following:
 - Loss: MSE loss
 
 #### Input
-8 channel random noise
+8 channel random noise which represents latent features
 
 #### Output
 - 1 channel 3D MRI reconstructed images
