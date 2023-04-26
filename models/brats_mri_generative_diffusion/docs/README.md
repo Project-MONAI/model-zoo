@@ -39,7 +39,7 @@ The training of autoencoder was performed with the following:
 - AMP: False
 - Optimizer: Adam
 - Learning Rate: 1e-5
-- Loss: L1 loss, perceptual loss, adversianl loss, GAN BCE loss
+- Loss: L1 loss, perceptual loss, KL divergence loss, adversianl loss, GAN BCE loss
 
 #### Input
 1 channel 3D MRI patches
