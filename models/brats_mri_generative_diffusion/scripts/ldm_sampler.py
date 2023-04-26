@@ -49,9 +49,7 @@ class LDMSampler:
                 else:
                     input_t = image
                 model_output = diffusion_model(
-                    input_t,
-                    timesteps=torch.Tensor((t,)).to(input_noise.device).long(),
-                    context=conditioning,
+                    input_t, timesteps=torch.Tensor((t,)).to(input_noise.device).long(), context=conditioning
                 )
                 image, _ = scheduler.step(model_output, t, image)
 
