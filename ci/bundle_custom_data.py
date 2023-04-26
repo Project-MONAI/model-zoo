@@ -30,6 +30,13 @@ exclude_verify_torchscript_list = [
     "mednist_reg",
 ]
 
+# This dict is used for our CI tests to install required dependencies that cannot be installed by `pip install` directly.
+# If a bundle has this kind of dependencies, please add the bundle name (key), and the path of the install script (value)
+# into the dict.
+install_dependency_dict = {
+    "brats_mri_generative_diffusion": "ci/install_scripts/install_brats_mri_generative_diffusion_dependency.sh"
+}
+
 # This list is used for our CI tests to determine whether a bundle supports TensorRT export. Related
 # test will be employed for bundles in the list.
 include_verify_tensorrt_list = ["spleen_ct_segmentation", "endoscopic_tool_segmentation", "pathology_tumor_detection"]

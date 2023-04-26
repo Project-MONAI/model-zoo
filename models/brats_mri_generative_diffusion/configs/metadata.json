@@ -9,7 +9,7 @@
     "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "5.1.0",
-        "generative": "0.1.0"
+        "lpips": "0.1.4"
     },
     "task": "BraTS MRI image synthesis",
     "description": "A generative model for creating 3D brain MRI from Gaussian noise based on BraTS dataset",

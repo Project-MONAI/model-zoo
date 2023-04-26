@@ -84,6 +84,11 @@ In train config file (if exists), please follow the following requirements in or
 
 We prepared several premerge CI tests to verify your bundle.
 
+### Prepare dependencies
+
+For dependencies that support `pip install` command, please put them into `optional_packages_version` in `configs/metadata.json` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/metadata.json)), and the CI test program will extract and install all libraries directly before running tests.
+For dependencies that require multiple steps to install, please prepare a install script in `ci/install_scripts`, and put the bundle name and the script path into `install_dependency_dict` in `ci/bundle_custom_data.py` ([click here for instance](https://github.com/Project-MONAI/model-zoo/tree/dev/ci/install_scripts/)).
+
 ### Necessary verifications
 
 1. Check if necessary files are existing in your bundle.
