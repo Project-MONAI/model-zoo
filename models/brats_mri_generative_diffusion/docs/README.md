@@ -5,7 +5,7 @@ This model is a generator for creating images like the Flair MRIs based on BraTS
 
 This is a demonstration network meant to just show the training process for this sort of network with MONAI.
 
-### Install the dependency of MONAI generative models
+## Install the dependency of MONAI generative models
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
 ```
 git clone https://github.com/Project-MONAI/GenerativeModels.git
@@ -18,7 +18,7 @@ We also need
 pip install lpips
 ```
 
-### Downloading the Dataset
+## Downloading the Dataset
 The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/sbia/brats2018.html).
 
 Target: image generatiion
@@ -28,7 +28,45 @@ Size: 285 3D volumes (1 channel used)
 
 The dataset can be downloaded automatically at the beggining of training.
 
-### Training
+## Training configuration
+If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
+
+### Training configuration of autoencoder
+The training of autoencoder was performed with the following:
+
+- GPU: at least 32GB GPU memory
+- Actual Model Input: 112 x 128 x 80
+- AMP: False
+- Optimizer: Adam
+- Learning Rate: 1e-5
+- Loss: L1 loss, perceptual loss, adversianl loss, GAN BCE loss
+
+#### Input
+1 channel 3D MRI patches
+
+#### Output
+- 1 channel 3D MRI reconstructed patches
+- 8 channel mean of latent features
+- 8 channel standard deviation of latent features
+
+### Training configuration of difusion model
+The training of latent diffusion model was performed with the following:
+
+- GPU: at least 32GB GPU memory
+- Actual Model Input: 144 x 176 x 112
+- AMP: False
+- Optimizer: Adam
+- Learning Rate: 1e-5
+- Loss: MSE loss
+
+#### Input
+8 channel random noise
+
+#### Output
+- 1 channel 3D MRI reconstructed images
+
+
+## MONAI Bundle Commands
 
 Assuming the current directory is the bundle directory, the following command will train the autoencoder network for 1500 epochs.
 If the Brats dataset is not downloaded, run the following command, the data will be downloaded and extracted to `./Task01_BrainTumour`.
@@ -44,7 +82,7 @@ Or run it with multi-gpu:
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']"
 ```
-It take 9 hours when training with 9 32G GPU.
+It take 9 hours when training with 8 32G GPU.
 
 After the autoencoder is trained, run the following command to train the latent diffusion model.
 ```
