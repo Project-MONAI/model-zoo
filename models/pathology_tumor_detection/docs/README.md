@@ -39,6 +39,8 @@ The training was performed with the following:
 - Loss: BCEWithLogitsLoss
 - Whole slide image reader: cuCIM (if running on Windows or Mac, please install `OpenSlide` on your system and change `wsi_reader` to "OpenSlide")
 
+By setting the `"pretrained"` parameter in the config file to `true`, ImageNet pre-trained weights will be used for training. Please note that these weights are for non-commercial use. Each user is responsible for checking the content of the models/datasets and the applicable licenses and determining if suitable for the intended use.
+
 ### Input
 
 The training pipeline is a json file (dataset.json) which includes path to each WSI, the location and the label information for each training patch.
