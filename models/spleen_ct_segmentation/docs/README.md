@@ -50,7 +50,7 @@ The `spleen_ct_segmentation` bundle supports the TensorRT acceleration through t
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | model computation | 6.46 | 4.48 | 2.52 | 1.96 | 1.44 | 2.56 | 3.30 | 2.29 |
-| end2end | 1268.03 | 1152.40 | 1137.40 | 1114.25 |	1.10 | 1.11 | 1.14 | 1.03 |
+| end2end | 1268.03 | 1152.40 | 1137.40 | 1114.25 | 1.10 | 1.11 | 1.14 | 1.03 |
 
 Where:
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
