@@ -64,7 +64,7 @@ The validation accuracy in this curve is the mean of mAP, mAR, AP(IoU=0.1), and 
 ![A graph showing the detection val accuracy](https://developer.download.nvidia.com/assets/Clara/Images/monai_retinanet_detection_val_acc_v2.png)
 
 #### TensorRT speedup
-The `lung_nodule_ct_detection` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU. Please note the `force_sliding_window` in the `inference.json` must be set to `true` when doing inference with the TensorRT model. This forces the bundle using the `SlidingWindowInferer` during inference and keeps the input spatial size of the network invariable. Otherwise, if given an input with spatial size less than the `infer_patch_size`, the input spatial size of the network would be changed.
+The `lung_nodule_ct_detection` bundle supports acceleration with TensorRT through the ONNX-TensorRT method. The table below displays the speedup ratios observed on an A100 80G GPU. Please note that when using the TensorRT model for inference, the `force_sliding_window` parameter in the `inference.json` file must be set to `true`. This ensures that the bundle uses the `SlidingWindowInferer` during inference and maintains the input spatial size of the network. Otherwise, if given an input with spatial size less than the `infer_patch_size`, the input spatial size of the network would be changed.
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -79,7 +79,7 @@ Where:
 - `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
 - `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
 
-Currently, this model can only be accelerated through the ONNX-TensorRT way and the Torch-TensorRT way will come soon.
+Currently, the only available method to accelerate this model is through ONNX-TensorRT. However, the Torch-TensorRT method is under development and will be available in the near future.
 
 This result is benchmarked under:
  - TensorRT: 8.5.3+cuda11.8
