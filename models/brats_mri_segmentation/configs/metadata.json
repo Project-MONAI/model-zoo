@@ -23,7 +23,7 @@
         "0.1.1": "update for MetaTensor",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.2.0rc4",
+    "monai_version": "1.2.0rc5",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
