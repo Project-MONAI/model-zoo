@@ -21,6 +21,8 @@
     "pixdim": "$[1.5, 1.5, 1.5] if @displayable_configs#highres else [3.0, 3.0, 3.0]",
     "modelname": "$'model.pt' if @displayable_configs#highres else 'model_lowres.pt'",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "lazy": false,
+    "overrides": "${'mode': ('bilinear', 'nearest'), 'padding_mode': ('zeros', 'zeros'), 'dtype': torch.float32}",
     "network_def": {
         "_target_": "SegResNet",
         "spatial_dims": 3,
@@ -96,9 +98,10 @@
                 ]
             },
             {
-                "_target_": "NormalizeIntensityd",
+                "_target_": "ScaleIntensityd",
                 "keys": "image",
-                "nonzero": true
+                "minv": 0.0,
+                "maxv": 1.0
             },
             {
                 "_target_": "CropForegroundd",
@@ -120,12 +123,6 @@
                     "image"
                 ],
                 "sigma": 0.4
-            },
-            {
-                "_target_": "ScaleIntensityd",
-                "keys": "image",
-                "minv": -1.0,
-                "maxv": 1.0
             },
             {
                 "_target_": "EnsureTyped",
@@ -152,7 +149,10 @@
         ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@train#deterministic_transforms + @train#random_transforms"
+            "transforms": "$@train#deterministic_transforms + @train#random_transforms",
+            "lazy_evaluation": "@lazy",
+            "override_keys": ["image", "label"],
+            "overrides": "@overrides"
         },
         "dataset": {
             "_target_": "CacheDataset",
@@ -213,9 +213,11 @@
             }
         ],
         "key_metric": {
-            "train_accuracy": {
-                "_target_": "ignite.metrics.Accuracy",
-                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            "train_mean_dice": {
+                "_target_": "MeanDice",
+                "include_background": false,
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])",
+                "num_classes": 105
             }
         },
         "trainer": {
@@ -234,95 +236,98 @@
         }
     },
     "validate": {
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": [
+                    "image",
+                    "label"
+                ]
+            },
+            {
+                "_target_": "EnsureChannelFirstd",
+                "keys": [
+                    "image",
+                    "label"
+                ]
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": [
+                    "image",
+                    "label"
+                ]
+            },
+            {
+                "_target_": "Orientationd",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "axcodes": "RAS"
+            },
+            {
+                "_target_": "Spacingd",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "pixdim": "@pixdim",
+                "mode": [
+                    "bilinear",
+                    "nearest"
+                ]
+            },
+            {
+                "_target_": "Identityd",
+                "keys": "image"
+            },
+            {
+                "_target_": "ScaleIntensityd",
+                "keys": "image",
+                "minv": 0.0,
+                "maxv": 1.0
+            },
+            {
+                "_target_": "CropForegroundd",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "source_key": "image",
+                "margin": 10,
+                "k_divisible": [
+                    96,
+                    96,
+                    96
+                ]
+            },
+            {
+                "_target_": "GaussianSmoothd",
+                "keys": [
+                    "image"
+                ],
+                "sigma": 0.4
+            },
+            {
+                "_target_": "CenterSpatialCropd",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "roi_size": [
+                    160,
+                    160,
+                    160
+                ]
+            }
+        ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": [
-                {
-                    "_target_": "LoadImaged",
-                    "keys": [
-                        "image",
-                        "label"
-                    ]
-                },
-                {
-                    "_target_": "EnsureChannelFirstd",
-                    "keys": [
-                        "image",
-                        "label"
-                    ]
-                },
-                {
-                    "_target_": "EnsureTyped",
-                    "keys": [
-                        "image",
-                        "label"
-                    ]
-                },
-                {
-                    "_target_": "Orientationd",
-                    "keys": [
-                        "image",
-                        "label"
-                    ],
-                    "axcodes": "RAS"
-                },
-                {
-                    "_target_": "Spacingd",
-                    "keys": [
-                        "image",
-                        "label"
-                    ],
-                    "pixdim": "@pixdim",
-                    "mode": [
-                        "bilinear",
-                        "nearest"
-                    ]
-                },
-                {
-                    "_target_": "NormalizeIntensityd",
-                    "keys": "image",
-                    "nonzero": true
-                },
-                {
-                    "_target_": "CropForegroundd",
-                    "keys": [
-                        "image",
-                        "label"
-                    ],
-                    "source_key": "image",
-                    "margin": 10,
-                    "k_divisible": [
-                        96,
-                        96,
-                        96
-                    ]
-                },
-                {
-                    "_target_": "GaussianSmoothd",
-                    "keys": [
-                        "image"
-                    ],
-                    "sigma": 0.4
-                },
-                {
-                    "_target_": "ScaleIntensityd",
-                    "keys": "image",
-                    "minv": -1.0,
-                    "maxv": 1.0
-                },
-                {
-                    "_target_": "CenterSpatialCropd",
-                    "keys": [
-                        "image",
-                        "label"
-                    ],
-                    "roi_size": [
-                        160,
-                        160,
-                        160
-                    ]
-                }
-            ]
+            "transforms": "@validate#transforms",
+            "lazy_evaluation": "@lazy",
+            "override_keys": ["image", "label"],
+            "overrides": "@overrides"
         },
         "postprocessing": {
             "_target_": "Compose",
@@ -335,14 +340,11 @@
                 {
                     "_target_": "AsDiscreted",
                     "keys": [
-                        "pred",
-                        "label"
+                        "pred"
                     ],
                     "argmax": [
-                        true,
-                        false
-                    ],
-                    "to_onehot": 105
+                        true
+                    ]
                 }
             ]
         },
@@ -392,13 +394,8 @@
             "val_mean_dice": {
                 "_target_": "MeanDice",
                 "include_background": false,
-                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
-            }
-        },
-        "additional_metrics": {
-            "val_accuracy": {
-                "_target_": "ignite.metrics.Accuracy",
-                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])",
+                "num_classes": 105
             }
         },
         "evaluator": {
@@ -409,7 +406,6 @@
             "inferer": "@validate#inferer",
             "postprocessing": "@validate#postprocessing",
             "key_val_metric": "@validate#key_metric",
-            "additional_metrics": "@validate#additional_metrics",
             "val_handlers": "@validate#handlers",
             "amp": true
         }
