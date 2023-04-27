@@ -1,6 +1,7 @@
 {
     "ckpt_dir": "$@bundle_root + '/models'",
     "train_batch_size": 4,
+    "lr": 1e-05,
     "train_patch_size": [
         144,
         176,
@@ -41,7 +42,7 @@
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@diffusion.parameters()",
-        "lr": 1e-05
+        "lr": "@lr"
     },
     "lr_scheduler": {
         "_target_": "torch.optim.lr_scheduler.MultiStepLR",

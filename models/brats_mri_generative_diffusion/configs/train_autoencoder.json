@@ -11,6 +11,7 @@
     "dataset_dir": "$@bundle_root",
     "download_brats": false,
     "train_batch_size": 2,
+    "lr": 1e-05,
     "train_patch_size": [
         112,
         128,
@@ -69,7 +70,7 @@
     "doptimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@dnetwork.parameters()",
-        "lr": 1e-05
+        "lr": "@lr"
     },
     "goptimizer": {
         "_target_": "torch.optim.Adam",
