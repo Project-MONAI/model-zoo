@@ -151,7 +151,10 @@
             "_target_": "Compose",
             "transforms": "$@train#deterministic_transforms + @train#random_transforms",
             "lazy_evaluation": "@lazy",
-            "override_keys": ["image", "label"],
+            "override_keys": [
+                "image",
+                "label"
+            ],
             "overrides": "@overrides"
         },
         "dataset": {
@@ -299,7 +302,10 @@
             "_target_": "Compose",
             "transforms": "@validate#transforms",
             "lazy_evaluation": "@lazy",
-            "override_keys": ["image", "label"],
+            "override_keys": [
+                "image",
+                "label"
+            ],
             "overrides": "@overrides"
         },
         "preprocessing_inverse": {
