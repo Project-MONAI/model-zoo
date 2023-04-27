@@ -58,7 +58,7 @@ This model achieve the 0.91 accuracy on validation patches, and FROC of 0.72 on 
 
 ![A Graph showing Train Acc, Train Loss, and Validation Acc](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics_v3.png)
 
-The `pathology_tumor_detection` bundle supports the TensorRT acceleration. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
+The `pathology_tumor_detection` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU.
 
 Please notice that the benchmark results are tested on one WSI image since the images are too large to benchmark. And the inference time in the end-to-end line stands for one patch of the whole image.
 

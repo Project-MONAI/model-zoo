@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.8",
+    "version": "0.4.9",
     "changelog": {
+        "0.4.9": "update TensorRT descriptions",
         "0.4.8": "update deterministic training results",
         "0.4.7": "update the TensorRT part in the README file",
         "0.4.6": "fix mgpu finalize issue",
