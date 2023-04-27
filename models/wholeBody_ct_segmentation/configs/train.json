@@ -253,30 +253,18 @@
             },
             {
                 "_target_": "EnsureTyped",
-                "keys": [
-                    "image",
-                    "label"
-                ]
+                "keys": "image"
             },
             {
                 "_target_": "Orientationd",
-                "keys": [
-                    "image",
-                    "label"
-                ],
+                "keys": "image",
                 "axcodes": "RAS"
             },
             {
                 "_target_": "Spacingd",
-                "keys": [
-                    "image",
-                    "label"
-                ],
+                "keys": "image",
                 "pixdim": "@pixdim",
-                "mode": [
-                    "bilinear",
-                    "nearest"
-                ]
+                "mode": "bilinear"
             },
             {
                 "_target_": "Identityd",
@@ -290,10 +278,7 @@
             },
             {
                 "_target_": "CropForegroundd",
-                "keys": [
-                    "image",
-                    "label"
-                ],
+                "keys": "image",
                 "source_key": "image",
                 "margin": 10,
                 "k_divisible": [
@@ -308,18 +293,6 @@
                     "image"
                 ],
                 "sigma": 0.4
-            },
-            {
-                "_target_": "CenterSpatialCropd",
-                "keys": [
-                    "image",
-                    "label"
-                ],
-                "roi_size": [
-                    160,
-                    160,
-                    160
-                ]
             }
         ],
         "preprocessing": {
@@ -328,6 +301,11 @@
             "lazy_evaluation": "@lazy",
             "override_keys": ["image", "label"],
             "overrides": "@overrides"
+        },
+        "preprocessing_inverse": {
+            "_target_": "Compose",
+            "transforms": "@validate#transforms",
+            "lazy_evaluation": false
         },
         "postprocessing": {
             "_target_": "Compose",
@@ -345,6 +323,15 @@
                     "argmax": [
                         true
                     ]
+                },
+                {
+                    "_target_": "Invertd",
+                    "keys": "pred",
+                    "transform": "@validate#preprocessing_inverse",
+                    "orig_keys": "image",
+                    "meta_key_postfix": "meta_dict",
+                    "nearest_interp": true,
+                    "to_tensor": true
                 }
             ]
         },
