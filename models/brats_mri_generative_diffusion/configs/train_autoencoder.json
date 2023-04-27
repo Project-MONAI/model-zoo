@@ -75,7 +75,7 @@
     "goptimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@gnetwork.parameters()",
-        "lr": 1e-05
+        "lr": "@lr"
     },
     "preprocessing_transforms": [
         {
