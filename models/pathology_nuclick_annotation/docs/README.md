@@ -82,9 +82,8 @@ The training was performed with the following:
 - Learning Rate: 1e-4
 - Loss: DiceLoss
 
-This bundle uses CacheDataset by default, the dataset used for training is the ConSep dataset.
+This bundle uses CacheDataset by default, the dataset used for training is the ConSep dataset. The dataset contains 13,136 PNG images after preprocessing
 - Single GPU: 4.7G
-- Multi GPU: 37G (8 GPUs)
 
 
 ## Input
