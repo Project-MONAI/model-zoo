@@ -22,3 +22,4 @@ nibabel
 pyyaml
 jsonschema
 gdown>=4.5.4
+tensorboard
