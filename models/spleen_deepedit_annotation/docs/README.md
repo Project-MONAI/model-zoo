@@ -74,6 +74,12 @@ This result is benchmarked under:
  - CUDA version: 12.0
  - GPU models and configuration: A100 80G
 
+RAM consumption:
+
+This bundle uses CacheDataset by default, the given dataset is the MSD Task09 Spleen.
+- Single GPU: 8.2G
+- Multi GPU: 65G (8 GPUs)
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 

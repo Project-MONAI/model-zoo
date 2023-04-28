@@ -72,7 +72,7 @@ Example dataset.json
 }
 ```
 
-## Training configuration
+## Training Configuration
 The training was performed with the following:
 
 - GPU: at least 12GB of GPU memory
@@ -81,6 +81,10 @@ The training was performed with the following:
 - Optimizer: Adam
 - Learning Rate: 1e-4
 - Loss: DiceLoss
+
+This bundle uses CacheDataset by default, the dataset used for training is the ConSep dataset.
+- Single GPU: 4.7G
+- Multi GPU: 37G (8 GPUs)
 
 
 ## Input
