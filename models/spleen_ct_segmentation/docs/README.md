@@ -45,7 +45,7 @@ Dice score is used for evaluating the performance of the model. This model achie
 ![A graph showing the validation mean Dice over 1260 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_ct_segmentation_val.png)
 
 #### TensorRT speedup
-The `spleen_ct_segmentation` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU.
+The `spleen_ct_segmentation` bundle supports acceleration with TensorRT through the ONNX-TensorRT method. The table below displays the speedup ratios observed on an A100 80G GPU.
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
