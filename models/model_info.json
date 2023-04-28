@@ -918,5 +918,33 @@
     "brats_mri_segmentation_v0.4.4": {
         "checksum": "b06f06ad6a8b87f7c8c34816e4324f995eab80d4",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.4.4.zip"
+    },
+    "spleen_deepedit_annotation_v0.4.3": {
+        "checksum": "8f19a58b163bc3988b75b0b4dddcf3f3d44c1408",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.4.3.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.6": {
+        "checksum": "5c93a9be56de3c240c2cb0c3d487287730176a6a",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.6.zip"
+    },
+    "spleen_ct_segmentation_v0.4.9": {
+        "checksum": "58ab6c995cba4fc3e7826ba5e810d148030aa57f",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.4.9.zip"
+    },
+    "brats_mri_segmentation_v0.4.5": {
+        "checksum": "8a7b3cd161967f790a0e7d78fb81eea05ad0a671",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.4.5.zip"
+    },
+    "pathology_tumor_detection_v0.5.2": {
+        "checksum": "f3e3eb22d31f51d2a97df809a3220ee2bcdfb805",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.5.2.zip"
+    },
+    "endoscopic_tool_segmentation_v0.5.0": {
+        "checksum": "b3bf79399f0e3ec71e36008db0545f6256bc962e",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.5.0.zip"
+    },
+    "endoscopic_inbody_classification_v0.4.2": {
+        "checksum": "b6048167ff3b790880c22f754e08904ef373a381",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.4.2.zip"
     }
 }

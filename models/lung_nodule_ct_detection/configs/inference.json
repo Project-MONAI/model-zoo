@@ -13,6 +13,14 @@
     "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='validation', base_dir=@dataset_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "amp": true,
+    "spatial_dims": 3,
+    "num_classes": 1,
+    "force_sliding_window": false,
+    "size_divisible": [
+        16,
+        16,
+        8
+    ],
     "infer_patch_size": [
         512,
         512,
@@ -47,22 +55,22 @@
     "feature_extractor": "$monai.apps.detection.networks.retinanet_network.resnet_fpn_feature_extractor(@backbone,3,False,[1,2],None)",
     "network_def": {
         "_target_": "RetinaNet",
-        "spatial_dims": 3,
-        "num_classes": 1,
+        "spatial_dims": "@spatial_dims",
+        "num_classes": "@num_classes",
         "num_anchors": 3,
         "feature_extractor": "@feature_extractor",
-        "size_divisible": [
-            16,
-            16,
-            8
-        ]
+        "size_divisible": "@size_divisible",
+        "use_list_output": false
     },
     "network": "$@network_def.to(@device)",
     "detector": {
         "_target_": "RetinaNetDetector",
         "network": "@network",
         "anchor_generator": "@anchor_generator",
-        "debug": false
+        "debug": false,
+        "spatial_dims": "@spatial_dims",
+        "num_classes": "@num_classes",
+        "size_divisible": "@size_divisible"
     },
     "detector_ops": [
         "$@detector.set_target_keys(box_key='box', label_key='label')",
@@ -136,7 +144,8 @@
     },
     "inferer": {
         "_target_": "scripts.detection_inferer.RetinaNetInferer",
-        "detector": "@detector"
+        "detector": "@detector",
+        "force_sliding_window": "@force_sliding_window"
     },
     "postprocessing": {
         "_target_": "Compose",
