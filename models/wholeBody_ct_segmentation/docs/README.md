@@ -41,7 +41,7 @@ The training was performed with the following:
 
 ### GPU consumption warning:
 
-The model is trained with 104 classes in single instance, for predicting 104 structures, the GPU consumption can be large. 
+The model is trained with 104 classes in single instance, for predicting 104 structures, the GPU consumption can be large.
 
 For inference pipeline, please refer to the following section for benchmarking results. Normally, a CT scans with 300 slices will take about 27G memory, if your CT is larger, please prepare larger GPU memory or use CPU for inference.
 
@@ -51,8 +51,8 @@ For inference pipeline, please refer to the following section for benchmarking r
 This bundle uses CacheDataset by default, the given dataset is the TotalSegmentator dataset, and the dataset contains around 1000 images. The cache rate is set to 0.4, and the RAM consumption for caching around 400 images are
 - Single GPU: 83G
 - Multi GPU: 666G (8 GPUs)
-  
-Please use a normal class Dataset, or reduce the cache rate if RAM is limited. Users can also adjust the cache rate according to the number of images. 
+
+Please use a normal class Dataset, or reduce the cache rate if RAM is limited. Users can also adjust the cache rate according to the number of images.
 
 ### Input
 
