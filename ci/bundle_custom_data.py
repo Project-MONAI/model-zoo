@@ -41,4 +41,5 @@ include_verify_onnx_tensorrt_list = [
     "endoscopic_inbody_classification",
     "spleen_deepedit_annotation",
     "spleen_ct_segmentation",
+    "lung_nodule_ct_detection",
 ]
