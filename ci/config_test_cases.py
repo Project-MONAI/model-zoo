@@ -19,6 +19,8 @@ TEST_CASES = {
             "images": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
             "labels": "$list(sorted(glob.glob(@dataset_dir + '/label_*.nii.gz')))",
             "epochs": 1,
+            "train#dataset#cache_rate": 0.0,
+            "validate#dataset#cache_rate": 0.0,
             "validate#handlers#-1#key_metric_filename": "test_model.pt",
         },
         "inference_override": {
