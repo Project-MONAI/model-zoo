@@ -88,7 +88,7 @@ If it is already downloaded, check if `"dataset_dir"` in `configs/train_autoenco
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
-Or run it with multi-gpu, which requires the learning rate to be scaled up with the number of GPUs.
+Or run it with multi-gpu, which requires the learning rate to be scaled up according to the number of GPUs. 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
 ```
@@ -100,7 +100,7 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 ```
 It will print out the scale factor of the latent feature space. If your autoencoder is well trained, this value should be close to 1.0.
 
-Or run it with multi-gpu, which requires the learning rate to be scaled up with the number of GPUs.
+Or run it with multi-gpu, which requires the learning rate to be scaled up according to the number of GPUs.
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
 ```
