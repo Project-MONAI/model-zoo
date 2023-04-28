@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "changelog": {
+        "0.5.2": "update TensorRT descriptions",
         "0.5.1": "update the TensorRT part in the README file",
         "0.5.0": "add the command of executing inference with TensorRT models",
         "0.4.9": "adapt to BundleWorkflow interface",
@@ -22,7 +23,7 @@
         "0.1.1": "fix location variable name change",
         "0.1.0": "initialize release of the bundle"
     },
-    "monai_version": "1.2.0rc3",
+    "monai_version": "1.2.0rc5",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
