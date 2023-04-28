@@ -15,9 +15,14 @@ import json
 import os
 import shutil
 import subprocess
+import tempfile
 from typing import List
 
+import monai
+import nibabel as nib
+import numpy as np
 from monai.apps.utils import download_url
+from monai.bundle import ConfigWorkflow
 from monai.bundle.config_parser import ConfigParser
 from monai.utils import look_up_option
 
@@ -168,3 +173,84 @@ def upload_bundle(
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source
+
+
+def find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
+    # find bundle file with possible suffix
+    file_name = None
+    for name in suffix:
+        full_name = f"{file}.{name}"
+        if full_name in os.listdir(root_dir):
+            file_name = full_name
+
+    return file_name
+
+
+def produce_dataset(dataset_dir, dataset_size, input_shape):
+    for s in range(dataset_size):
+        test_image = np.random.randint(low=0, high=2, size=input_shape).astype(np.int8)
+        test_label = np.random.randint(low=0, high=2, size=input_shape).astype(np.int8)
+        image_filename = os.path.join(dataset_dir, f"image_{s}.nii.gz")
+        label_filename = os.path.join(dataset_dir, f"label_{s}.nii.gz")
+        nib.save(nib.Nifti1Image(test_image, np.eye(4)), image_filename)
+        nib.save(nib.Nifti1Image(test_label, np.eye(4)), label_filename)
+    print(f"produced fake dataset in {dataset_dir} for test.")
+
+
+class TestBundleConfigs:
+    """
+    A standard test bundle config class
+    """
+
+    def __init__(
+        self,
+        bundle_root,
+        dataset_size=16,
+        input_shape=(224, 224, 224),
+        check_determinism=False,
+        check_multi_gpu_train=False,
+        check_multi_gpu_evaluate=False,
+        train_override=None,
+        inference_override=None,
+    ):
+        self.bundle_root = bundle_root
+        self.input_shape = input_shape
+        self.dataset_size = dataset_size
+        self.check_determinism = check_determinism
+        self.check_multi_gpu_train = check_multi_gpu_train
+        self.check_multi_gpu_evaluate = check_multi_gpu_evaluate
+        self.dataset_dir = tempfile.mkdtemp()
+        self.train_override = train_override
+        self.inference_override = inference_override
+        monai.utils.set_determinism(seed=123)
+        produce_dataset(self.dataset_dir, self.dataset_size, self.input_shape)
+
+    def assign_override_default_info(self, override_dict):
+        override_dict["bundle_root"] = self.bundle_root
+        override_dict["dataset_dir"] = self.dataset_dir
+        return override_dict
+
+    def test_train_config(self):
+        if self.train_override is not None:
+            train_override = self.train_override
+        else:
+            train_override = {}
+        train_override = self.assign_override_default_info(train_override)
+        train_filename = find_bundle_file(os.path.join(self.bundle_root, "configs"), "train")
+
+        trainer = ConfigWorkflow(
+            workflow="train",
+            config_file=os.path.join(self.bundle_root, "configs", train_filename),
+            logging_file=os.path.join(self.bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(self.bundle_root, "configs/metadata.json"),
+            **train_override,
+        )
+        trainer.initialize()
+        trainer.run()
+        trainer.finalize()
+        print(f"{train_filename} is verified correctly.")
+
+    def test_all_configs(self):
+        self.test_train_config()
+        shutil.rmtree(self.dataset_dir)
+        print(f"tmp dataset in {self.dataset_dir} is removed.")
