@@ -115,31 +115,15 @@ The generated image will be saved to `./output/0`
 
 ### Export
 
-The autoencoder and latent diffusion generators can be exported to a Torchscript bundle with the following:
-
+The autoencoder can be exported to a Torchscript bundle with the following:
 ```
 python -m monai.bundle ckpt_export autoencoder_def --filepath models/model_autoencoder.ts --ckpt_file models/model_autoencoder.pt --meta_file configs/metadata.json --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
-python -m monai.bundle ckpt_export diffusion_def --filepath models/model_ldm.ts --ckpt_file models/model_ldm.pt --meta_file configs/metadata.json --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
 ```
 
-The models can be loaded after this operation. For example, an image can be generated from a set of random values with:
-
+The models can be loaded after this operation:
 ```python
 import torch
-from scripts.ldm_sampler import LDMSampler
-from generative.networks.schedulers import DDIMScheduler
 autoencoder = torch.jit.load("models/model_autoencoder.ts")
-diffusion = torch.jit.load("models/model_ldm.ts")
-noise = torch.rand(1, 8,36,44,28).to(device)
-noise_scheduler = DDIMScheduler(
-    num_train_timesteps=1000,
-    beta_start= 0.0015,
-    beta_end=0.0195,
-    beta_schedule= "scaled_linear",
-    clip_sample= False)
-noise_scheduler.set_timesteps(num_inference_steps=50)
-sampler = LDMSampler()
-img = sampler.sampling_fn(noise, autoencoder, diffusion, noise_scheduler)
 ```
 
 # License
