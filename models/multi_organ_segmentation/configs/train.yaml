@@ -348,7 +348,8 @@ validate:
     additional_metrics: "@validate#additional_metrics"
     val_handlers: "@validate#handlers"
     amp: true
-training:
+initialize:
 - "$monai.utils.set_determinism(seed=123)"
 - "$setattr(torch.backends.cudnn, 'benchmark', True)"
+run:
 - "$@train#trainer.run()"

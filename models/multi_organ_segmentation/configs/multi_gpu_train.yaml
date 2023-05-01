@@ -26,14 +26,16 @@ train#handlers:
 train#trainer#max_epochs: "$400*dist.get_world_size()"
 train#trainer#train_handlers: "$@train#handlers[: -2 if dist.get_rank() > 0 else None]"
 validate#evaluator#val_handlers: "$None if dist.get_rank() > 0 else @validate#handlers"
-training:
+initialize:
 - "$import torch.distributed as dist"
 - "$dist.init_process_group(backend='nccl')"
 - "$torch.cuda.set_device(@device)"
 - "$monai.utils.set_determinism(seed=123)"
 - "$setattr(torch.backends.cudnn, 'benchmark', True)"
+run:
 - "$@train#trainer.run()"
-- "$dist.destroy_process_group()"
+finalize:
+- $dist.is_initialized() and dist.destroy_process_group()
 train_data_partition: "$monai.data.partition_dataset(data=@train_datalist, num_partitions=dist.get_world_size(),
   shuffle=True, even_divisible=True,)[dist.get_rank()]"
 train#dataset:
