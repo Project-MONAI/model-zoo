@@ -12,14 +12,17 @@ This is a demonstration network meant to just show the training process for this
 ## Install the dependency of MONAI generative models
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
 ```
+pip install lpips
+pip install git+https://github.com/Project-MONAI/GenerativeModels.git#egg=Generative
+```
+
+Or we can install it from source
+```
+pip install lpips
 git clone https://github.com/Project-MONAI/GenerativeModels.git
 cd GenerativeModels/
 python setup.py install
 cd ..
-```
-We also need
-```
-pip install lpips
 ```
 
 ## Downloading the Dataset
