@@ -3,7 +3,7 @@ A pre-trained model for volumetric (3D) Brats MRI 3D Latent Diffusion Generative
 
 This model is trained on BraTS 2018 data (https://www.med.upenn.edu/sbia/brats2018.html), using the Latent diffusion model (Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf).
 
-![model workflow](https://miro.medium.com/v2/resize:fit:1256/1*3Jjlrb-TB8hPpIexoCKpZQ.png)
+![model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_network.png)
 
 This model is a generator for creating images like the Flair MRIs based on BraTS 2018 data. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 3D latent diffusion model.
 
@@ -109,9 +109,9 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config
 ```
 
 <p align="center">
-  <img src="placeholder" alt="autoencoder training curve" width="45%" >
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_autoencoder_loss.png" alt="autoencoder training curve" width="45%" >
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="placeholder" alt="latent diffusion training curve" width="45%" >
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_diffusion_loss.png" alt="latent diffusion training curve" width="45%" >
 </p>
 
 ### Inference
@@ -123,7 +123,7 @@ The generated image will be saved to `./output/0`
 
 An example output is shown below. Note that this is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.
 
-![Example synthetic image](placeholder)
+![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_example_generation.png)
 
 
 ### Export
