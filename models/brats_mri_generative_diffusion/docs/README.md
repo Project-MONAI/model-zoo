@@ -121,7 +121,7 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 ```
 The generated image will be saved to `./output/0`
 
-An example putput is shown below. Note that this is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.
+An example output is shown below. Note that this is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.
 
 ![Example synthetic image](placeholder)
 
