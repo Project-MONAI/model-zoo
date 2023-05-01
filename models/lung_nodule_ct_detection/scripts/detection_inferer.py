@@ -25,14 +25,19 @@ class RetinaNetInferer(Inferer):
     Args:
         detector: the RetinaNetDetector that converts network output BxCxMxN or BxCxMxNxP
             map into boxes and classification scores.
+        force_sliding_window: whether to force using a SlidingWindowInferer to do the inference.
+                If False, will check the input spatial size to decide whether to simply
+                forward the network or using SlidingWindowInferer.
+                If True, will force using SlidingWindowInferer to do the inference.
         args: other optional args to be passed to detector.
         kwargs: other optional keyword args to be passed to detector.
     """
 
-    def __init__(self, detector: RetinaNetDetector, *args, **kwargs) -> None:
+    def __init__(self, detector: RetinaNetDetector, force_sliding_window: bool = False) -> None:
         Inferer.__init__(self)
         self.detector = detector
         self.sliding_window_size = None
+        self.force_sliding_window = force_sliding_window
         if self.detector.inferer is not None:
             if hasattr(self.detector.inferer, "roi_size"):
                 self.sliding_window_size = np.prod(self.detector.inferer.roi_size)
@@ -52,8 +57,10 @@ class RetinaNetInferer(Inferer):
 
         # if image smaller than sliding window roi size, no need to use sliding window inferer
         # use sliding window inferer only when image is large
-        use_inferer = self.sliding_window_size is not None and not all(
-            [data_i[0, ...].numel() < self.sliding_window_size for data_i in inputs]
+        use_inferer = (
+            self.force_sliding_window
+            or self.sliding_window_size is not None
+            and not all([data_i[0, ...].numel() < self.sliding_window_size for data_i in inputs])
         )
 
         return self.detector(inputs, use_inferer=use_inferer, *args, **kwargs)
