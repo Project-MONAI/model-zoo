@@ -116,7 +116,7 @@
                 "save_interval": 0,
                 "save_final": true,
                 "epoch_level": true,
-                "final_filename": "model_ldm.pt"
+                "final_filename": "model.pt"
             },
             {
                 "_target_": "StatsHandler",

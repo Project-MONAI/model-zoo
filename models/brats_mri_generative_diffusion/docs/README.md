@@ -7,7 +7,7 @@ This model is trained on BraTS 2018 data (https://www.med.upenn.edu/sbia/brats20
 
 This model is a generator for creating images like the Flair MRIs based on BraTS 2018 data. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 3D latent diffusion model.
 
-This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.
+**This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.**
 
 ## Install the dependency of MONAI generative models
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
@@ -120,8 +120,6 @@ The following code generates a synthetic image from a random sampled noise.
 python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
 ```
 The generated image will be saved to `./output/0`
-
-An example output is shown below. Note that this is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.
 
 ![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_example_generation.png)
 

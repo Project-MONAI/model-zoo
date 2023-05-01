@@ -10,7 +10,7 @@
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "output_postfix": "$datetime.now().strftime('sample_%Y%m%d_%H%M%S')",
-    "load_diffusion_path": "$@model_dir + '/model_ldm.pt'",
+    "load_diffusion_path": "$@model_dir + '/model.pt'",
     "load_diffusion": "$@diffusion_def.load_state_dict(torch.load(@load_diffusion_path))",
     "diffusion": "$@diffusion_def.to(@device)",
     "noise_scheduler": {
