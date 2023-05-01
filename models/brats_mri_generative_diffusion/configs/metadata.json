@@ -11,6 +11,7 @@
         "nibabel": "5.1.0",
         "lpips": "0.1.4"
     },
+    "name": "BraTS MRI image latent diffusion generation",
     "task": "BraTS MRI image synthesis",
     "description": "A generative model for creating 3D brain MRI from Gaussian noise based on BraTS dataset",
     "authors": "MONAI team",
