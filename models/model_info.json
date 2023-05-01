@@ -946,5 +946,9 @@
     "endoscopic_inbody_classification_v0.4.2": {
         "checksum": "b6048167ff3b790880c22f754e08904ef373a381",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.4.2.zip"
+    },
+    "spleen_ct_segmentation_v0.5.0": {
+        "checksum": "3c07a2bcc36a320a67a70f67636d22a0fd1034e0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.5.0.zip"
     }
 }
