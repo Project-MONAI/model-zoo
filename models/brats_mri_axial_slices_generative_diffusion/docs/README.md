@@ -93,7 +93,7 @@ python -m monai.bundle run --config_file configs/train_autoencoder.json
 
 Or run it with multi-gpu, which requires the learning rate to be scaled up according to the number of GPUs.
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 1e-4
 ```
 It take 9 hours when training with 8 32G GPU.
 
@@ -105,7 +105,7 @@ It will print out the scale factor of the latent feature space. If your autoenco
 
 Or run it with multi-gpu, which requires the learning rate to be scaled up according to the number of GPUs.
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 1e-4
 ```
 
 <p align="center">

@@ -11,7 +11,7 @@
     "dataset_dir": "/workspace/dataset",
     "download_brats": false,
     "train_batch_size": 26,
-    "lr": 3e-05,
+    "lr": 2e-05,
     "train_patch_size": [
         240,
         240
