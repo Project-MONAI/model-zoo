@@ -1,0 +1,61 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "1.0.0",
+    "changelog": {
+        "1.0.0": "Initial release"
+    },
+    "monai_version": "1.2.0rc5",
+    "pytorch_version": "2.0.0",
+    "numpy_version": "1.22.2",
+    "optional_packages_version": {
+        "nibabel": "5.1.0",
+        "lpips": "0.1.4"
+    },
+    "task": "BraTS MRI image synthesis",
+    "description": "A generative model for creating 3D brain MRI from Gaussian noise based on BraTS dataset",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "https://www.med.upenn.edu/sbia/brats2018/data.html",
+    "data_type": "nibabel",
+    "image_classes": "Flair brain MRI with 1.1x1.1x1.1 mm voxel size",
+    "eval_metrics": {},
+    "intended_use": "This is a research tool/prototype and not to be used clinically",
+    "references": [],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "random noise",
+                "num_channels": 1,
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "MR",
+                "num_channels": 1,
+                "spatial_shape": [
+                    144,
+                    176,
+                    112
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "Flair"
+                }
+            }
+        }
+    }
+}
