@@ -31,7 +31,7 @@ The training data is from the [Multimodal Brain Tumor Segmentation Challenge (Br
 Target: image generatiion
 Task: Synthesis
 Modality: MRI
-Size: 285 3D volumes (1 channel used)
+Size: 388 3D volumes (1 channel used)
 
 The dataset can be downloaded automatically at the beggining of training.
 
@@ -42,41 +42,41 @@ If user has GPU memory smaller than 32G, then please decrease the `"train_batch_
 The training of autoencoder was performed with the following:
 
 - GPU: at least 32GB GPU memory
-- Actual Model Input: 112 x 128 x 80
+- Actual Model Input: 240x240
 - AMP: False
 - Optimizer: Adam
 - Learning Rate: 1e-5
 - Loss: L1 loss, perceptual loss, KL divergence loss, adversianl loss, GAN BCE loss
 
 #### Input
-1 channel 3D MRI patches
+1 channel 2D MRI Flair axial slices
 
 #### Output
-- 1 channel 3D MRI reconstructed patches
-- 8 channel mean of latent features
-- 8 channel standard deviation of latent features
+- 1 channel 2D MRI reconstructed axial slices
+- 1 channel mean of latent features
+- 1 channel standard deviation of latent features
 
 ### Training configuration of difusion model
 The training of latent diffusion model was performed with the following:
 
 - GPU: at least 32GB GPU memory
-- Actual Model Input: 36 x 44 x 28
+- Actual Model Input: 64x64
 - AMP: False
 - Optimizer: Adam
 - Learning Rate: 1e-5
 - Loss: MSE loss
 
 #### Training Input
-8 channel noisy latent features
+1 channel noisy latent features
 
 #### Training Output
-8 channel predicted added noise
+1 channel predicted added noise
 
 #### Inference Input
-8 channel noise
+1 channel noise
 
 #### Inference Output
-8 channel denoised latent features
+1 channel denoised latent features
 
 
 ## MONAI Bundle Commands
@@ -95,7 +95,7 @@ Or run it with multi-gpu, which requires the learning rate to be scaled up accor
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 1e-4
 ```
-It take 9 hours when training with 8 32G GPU.
+It take 21 hours when training with 8 GPU, each using 32G memory.
 
 After the autoencoder is trained, run the following command to train the latent diffusion model.
 ```

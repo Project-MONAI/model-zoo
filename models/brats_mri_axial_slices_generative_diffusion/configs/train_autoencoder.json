@@ -8,9 +8,10 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_dir": "$@bundle_root + '/models'",
     "tf_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/dataset",
+    "dataset_dir": "/workspace/debug_can_model_zoo",
     "download_brats": false,
-    "train_batch_size": 26,
+    "train_batch_size_img": 1,
+    "train_batch_size_slice": 26,
     "lr": 2e-05,
     "train_patch_size": [
         240,
@@ -122,7 +123,7 @@
                 "keys": "image",
                 "random_size": false,
                 "roi_size": "$[@train_patch_size[0], @train_patch_size[1], 1]",
-                "num_samples": "@train_batch_size"
+                "num_samples": "@train_batch_size_slice"
             },
             {
                 "_target_": "SqueezeDimd",
@@ -147,7 +148,7 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
-            "batch_size": 1,
+            "batch_size": "@train_batch_size_img",
             "shuffle": true,
             "num_workers": 0
         },

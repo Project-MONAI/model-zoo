@@ -1,6 +1,7 @@
 {
     "ckpt_dir": "$@bundle_root + '/models'",
-    "train_batch_size": 4,
+    "train_batch_size_img": 2,
+    "train_batch_size_slice": 50,
     "lr": 1e-05,
     "train_patch_size": [
         256,
@@ -19,20 +20,18 @@
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
-        "num_channels": [
-            256,
-            256,
-            512
-        ],
+        "num_channels": [32, 64, 128, 256],
         "attention_levels": [
             false,
+            true,
             true,
             true
         ],
         "num_head_channels": [
             0,
-            64,
-            64
+            32,
+            32,
+            32
         ],
         "num_res_blocks": 2
     },
@@ -45,9 +44,7 @@
     "lr_scheduler": {
         "_target_": "torch.optim.lr_scheduler.MultiStepLR",
         "optimizer": "@optimizer",
-        "milestones": [
-            1000
-        ],
+        "milestones": [1000],
         "gamma": 0.1
     },
     "scale_factor": "$scripts.utils.compute_scale_factor(@autoencoder,@train#dataloader,@device)",
@@ -81,7 +78,7 @@
                 "keys": "image",
                 "random_size": false,
                 "roi_size": "$[@train_patch_size[0], @train_patch_size[1], 1]",
-                "num_samples": "@train_batch_size"
+                "num_samples": "@train_batch_size_slice"
             },
             {
                 "_target_": "SqueezeDimd",
@@ -91,7 +88,7 @@
         ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@preprocessing_transforms + @train#crop_transforms + @final_transforms"
+            "transforms": "$@preprocessing_transforms + @train#crop_transforms"
         },
         "dataset": {
             "_target_": "monai.apps.DecathlonDataset",
@@ -106,7 +103,7 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
-            "batch_size": "@train_batch_size",
+            "batch_size": "@train_batch_size_img",
             "shuffle": true,
             "num_workers": 0
         },
@@ -142,7 +139,7 @@
         "trainer": {
             "_target_": "scripts.ldm_trainer.LDMTrainer",
             "device": "@device",
-            "max_epochs": 2000,
+            "max_epochs": 1500,
             "train_data_loader": "@train#dataloader",
             "network": "@diffusion",
             "autoencoder_model": "@autoencoder",
