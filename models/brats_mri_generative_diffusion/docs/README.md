@@ -31,7 +31,7 @@ The training data is Brats 2016 and 2017 from [Medical Decathlon](http://medical
 Target: image generatiion
 Task: Synthesis
 Modality: MRI
-Size: 285 3D volumes (1 channel used)
+Size: 388 3D volumes (1 channel used)
 
 The dataset can be downloaded automatically at the beggining of training.
 
@@ -49,7 +49,7 @@ The training of autoencoder was performed with the following:
 - Loss: L1 loss, perceptual loss, KL divergence loss, adversianl loss, GAN BCE loss
 
 #### Input
-1 channel 3D MRI patches
+1 channel 3D MRI Flair patches
 
 #### Output
 - 1 channel 3D MRI reconstructed patches
