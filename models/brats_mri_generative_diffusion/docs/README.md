@@ -95,7 +95,7 @@ Or run it with multi-gpu, which requires the learning rate to be scaled up accor
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
 ```
-It take 9 hours when training with 8 32G GPU.
+It take 9 hours when training with 8 GPU each using 32G memory.
 
 After the autoencoder is trained, run the following command to train the latent diffusion model.
 ```
