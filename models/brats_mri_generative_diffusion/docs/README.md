@@ -13,7 +13,7 @@ This model is a generator for creating images like the Flair MRIs based on BraTS
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
 ```
 pip install lpips
-pip install git+https://github.com/Project-MONAI/GenerativeModels.git#egg=Generative
+pip install git+https://github.com/Project-MONAI/GenerativeModels.git@0.2.0
 ```
 
 Or we can install it from source
