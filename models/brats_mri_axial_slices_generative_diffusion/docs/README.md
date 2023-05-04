@@ -36,7 +36,8 @@ Size: 388 3D volumes (1 channel used)
 The dataset can be downloaded automatically at the beggining of training.
 
 ## Training configuration
-If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
+If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size_img"` and `"train_batch_size_slice"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
+`"train_batch_size_img"` indicates how many 3D images in each batch. `"train_batch_size_slice"` indicates how many 2D slices it extracts from each 3D image. The product of these two hyper-parameters is the actual training batchsize.
 
 ### Training configuration of autoencoder
 The training of autoencoder was performed with the following:
