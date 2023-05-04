@@ -13,7 +13,7 @@ This is a demonstration network meant to just show the training process for this
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
 ```
 pip install lpips
-pip install git+https://github.com/Project-MONAI/GenerativeModels.git#egg=Generative
+pip install git+https://github.com/Project-MONAI/GenerativeModels.git@0.2.0
 ```
 
 Or we can install it from source
