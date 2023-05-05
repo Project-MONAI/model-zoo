@@ -74,6 +74,9 @@ Users can install Graphviz for visualization of searched architectures (needed i
 
 ![Example of Searched Architecture](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_searched_arch_example_1.png)
 
+### System memory requirement
+[The provided search architecture and checkpoints](https://github.com/dongyang0122/model-zoo/blob/dev/models/pancreas_ct_dints_segmentation/large_files.yml) result from training conducted using 400GB of system RAM. Ample RAM is essential as we aim to cache all pre-processed data points in RAM to enhance the efficiency of model searching and training with [CacheDataset](https://docs.monai.io/en/stable/data.html#cachedataset). Should any errors occur during data pre-processing or caching in model search or training, kindly adjust the caching rate `cache_rate` in the configurations (e.g., [training](https://github.com/dongyang0122/model-zoo/blob/dev/models/pancreas_ct_dints_segmentation/configs/train.yaml) and [multi-GPU training](https://github.com/dongyang0122/model-zoo/blob/dev/models/pancreas_ct_dints_segmentation/configs/multi_gpu_train.yaml)) to minimize the GPU RAM requirements.
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
@@ -122,6 +125,7 @@ python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt
 ```
 
 # References
+
 [1] He, Y., Yang, D., Roth, H., Zhao, C. and Xu, D., 2021. Dints: Differentiable neural network topology search for 3d medical image segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5841-5850).
 
 # License
