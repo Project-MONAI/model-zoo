@@ -52,6 +52,16 @@ Three channels
 - Label 1: pancreas
 - Label 0: everything else
 
+### GPU Memory Consumption
+
+Dataset Class: CacheDataset
+Data Size: 420 3D Volumes
+Cache Rate: 1.0
+Multi-GPU VRAM: (at least) 16GB GPUs
+
+### System RAM Consumption Warning
+The default settings of model training and searching are verified with 8 $\times$ 80GB A100 GPUs and 400GB of system (CPU) RAM. Ample RAM is essential as we aim to cache all pre-processed data points in RAM to enhance the efficiency of model searching and training with [CacheDataset](https://docs.monai.io/en/stable/data.html#cachedataset). Should any errors occur during data pre-processing or caching in model search or training, kindly decrease the caching rate `cache_rate` in the configurations (e.g., [training](../configs/train.yaml) and [multi-GPU training](../configs/multi_gpu_train.yaml)) within range $(0, 1)$ to minimize the CPU RAM requirements.
+
 ## Performance
 Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.62.
 
@@ -72,9 +82,6 @@ The mean dice score over 3200 epochs (the bright curve is smoothed, and the dark
 Users can install Graphviz for visualization of searched architectures (needed in [decode_plot.py](https://github.com/Project-MONAI/tutorials/blob/main/automl/DiNTS/decode_plot.py)). The edges between nodes indicate global structure, and numbers next to edges represent different operations in the cell searching space. An example of searched architecture is shown as follows:
 
 ![Example of Searched Architecture](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_searched_arch_example_1.png)
-
-### System Memory Requirement
-The default settings of model training and searching are verified with 8 $\times$ A100 GPUs and 400GB of system RAM. Ample RAM is essential as we aim to cache all pre-processed data points in RAM to enhance the efficiency of model searching and training with [CacheDataset](https://docs.monai.io/en/stable/data.html#cachedataset). Should any errors occur during data pre-processing or caching in model search or training, kindly decrease the caching rate `cache_rate` in the configurations (e.g., [training](../configs/train.yaml) and [multi-GPU training](../configs/multi_gpu_train.yaml)) within range $(0, 1)$ to minimize the GPU RAM requirements.
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
