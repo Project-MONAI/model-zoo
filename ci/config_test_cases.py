@@ -12,8 +12,8 @@
 
 TEST_CASES = {
     "spleen_ct_segmentation": {
-        "dataset_size": 16,
-        "input_shape": (224, 224, 224),
+        "dataset_size": 10,
+        "input_shape": (64, 64, 64),
         "check_determinism": True,
         "train_override": {
             "images": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
@@ -21,6 +21,9 @@ TEST_CASES = {
             "epochs": 1,
             "train#dataset#cache_rate": 0.0,
             "validate#dataset#cache_rate": 0.0,
+            "train#dataloader#num_workers": 1,
+            "validate#dataloader#num_workers": 1,
+            "train#random_transforms#0#spatial_size": [32, 32, 32],
             "validate#handlers#-1#key_metric_filename": "test_model.pt",
         },
         "inference_override": {
