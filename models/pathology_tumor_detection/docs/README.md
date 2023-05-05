@@ -39,7 +39,18 @@ The training was performed with the following:
 - Loss: BCEWithLogitsLoss
 - Whole slide image reader: cuCIM (if running on Windows or Mac, please install `OpenSlide` on your system and change `wsi_reader` to "OpenSlide")
 
-By setting the `"pretrained"` parameter in the config file to `true`, ImageNet pre-trained weights will be used for training. Please note that these weights are for non-commercial use. Each user is responsible for checking the content of the models/datasets and the applicable licenses and determining if suitable for the intended use.
+By setting the `"pretrained"` parameter of `TorchVisionFCModel` in the config file to `true`, ImageNet pre-trained weights will be used for training. Please note that these weights are for non-commercial use. Each user is responsible for checking the content of the models/datasets and the applicable licenses and determining if suitable for the intended use. In order to use other pretrained weights, you can use `CheckpointLoader` in train handlers section as the first handler:
+
+```json
+{
+    "_target_": "CheckpointLoader",
+    "load_path": "$@bundle_root + '/pretrained_resnet18.pth'",
+    "strict": false,
+    "load_dict": {
+        "model_new": "@network"
+    }
+}
+```
 
 ### Input
 
@@ -56,9 +67,9 @@ Inference is performed on WSI in a sliding window manner with specified stride. 
 ## Performance
 
 FROC score is used for evaluating the performance of the model. After inference is done, `evaluate_froc.sh` needs to be run to evaluate FROC score based on predicted probability map (output of inference) and the ground truth tumor masks.
-This model deterministically achieves the 0.91 accuracy on validation patches, and FROC of 0.71 on the 48 Camelyon testing data that have ground truth annotations available.
+Using an internal pretrained weights for ResNet18, this model deterministically achieves the 0.90 accuracy on validation patches, and FROC of 0.72 on the 48 Camelyon testing data that have ground truth annotations available.
 
-![A Graph showing Train Acc, Train Loss, and Validation Acc](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics_v4.png)
+![A Graph showing Train Acc, Train Loss, and Validation Acc](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics_v5.png)
 
 The `pathology_tumor_detection` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU.
 
