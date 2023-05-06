@@ -8,7 +8,7 @@
         112
     ],
     "latent_shape": [
-        8,
+        "@latent_channels",
         36,
         44,
         28
