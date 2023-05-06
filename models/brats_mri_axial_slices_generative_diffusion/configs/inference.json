@@ -12,7 +12,7 @@
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "output_postfix": "$datetime.now().strftime('sample_%Y%m%d_%H%M%S')",
-    "load_diffusion_path": "$@model_dir + '/model_ldm.pt'",
+    "load_diffusion_path": "$@model_dir + '/model.pt'",
     "load_diffusion": "$@diffusion_def.load_state_dict(torch.load(@load_diffusion_path))",
     "diffusion": "$@diffusion_def.to(@device)",
     "noise_scheduler": {
@@ -29,11 +29,11 @@
     },
     "noise": "$torch.randn([1]+@latent_shape).to(@device)",
     "set_timesteps": "$@noise_scheduler.set_timesteps(num_inference_steps=50)",
-    "sampler": {
+    "inferer": {
         "_target_": "scripts.ldm_sampler.LDMSampler",
         "_requires_": "@set_timesteps"
     },
-    "sample": "$@sampler.sampling_fn(@noise, @autoencoder, @diffusion, @noise_scheduler)",
+    "sample": "$@inferer.sampling_fn(@noise, @autoencoder, @diffusion, @noise_scheduler)",
     "saver": {
         "_target_": "SaveImage",
         "_requires_": "@create_output_dir",
@@ -41,9 +41,9 @@
         "output_postfix": "@output_postfix"
     },
     "generated_image": "$@sample",
-    "generated_image_np": "@generated_image[0,0].cpu().numpy().transpose(1, 0)[::-1, ::-1]",
+    "generated_image_np": "$@generated_image[0,0].cpu().numpy().transpose(1, 0)[::-1, ::-1]",
     "img_pil": "$Image.fromarray(visualize_2d_image(@generated_image_np), 'RGB')",
     "run": [
-        "$@img_pil.save(@output_dir+'/synimg_'+@output_postfix)"
+        "$@img_pil.save(@output_dir+'/synimg_'+@output_postfix+'.png')"
     ]
 }

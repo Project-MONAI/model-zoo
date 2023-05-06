@@ -15,7 +15,7 @@
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
     "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
-    "diffusion_def": {
+    "network_def": {
         "_target_": "generative.networks.nets.DiffusionModelUNet",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
@@ -35,7 +35,7 @@
         ],
         "num_res_blocks": 2
     },
-    "diffusion": "$@diffusion_def.to(@device)",
+    "diffusion": "$@network_def.to(@device)",
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@diffusion.parameters()",
@@ -122,7 +122,7 @@
                 "save_interval": 0,
                 "save_final": true,
                 "epoch_level": true,
-                "final_filename": "model_ldm.pt"
+                "final_filename": "model.pt"
             },
             {
                 "_target_": "StatsHandler",
