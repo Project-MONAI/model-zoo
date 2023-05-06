@@ -10,6 +10,31 @@
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "output_postfix": "$datetime.now().strftime('sample_%Y%m%d_%H%M%S')",
+    "spatial_dims": 3,
+    "image_channels": 1,
+    "latent_channels": 8,
+    "autoencoder_def": {
+        "_target_": "generative.networks.nets.AutoencoderKL",
+        "spatial_dims": "@spatial_dims",
+        "in_channels": "@image_channels",
+        "out_channels": "@image_channels",
+        "latent_channels": "@latent_channels",
+        "num_channels": [
+            64,
+            128,
+            256
+        ],
+        "num_res_blocks": 2,
+        "norm_num_groups": 32,
+        "norm_eps": 1e-06,
+        "attention_levels": [
+            false,
+            false,
+            false
+        ],
+        "with_encoder_nonlocal_attn": false,
+        "with_decoder_nonlocal_attn": false
+    },
     "network_def": {
         "_target_": "generative.networks.nets.DiffusionModelUNet",
         "spatial_dims": "@spatial_dims",
@@ -32,6 +57,9 @@
         ],
         "num_res_blocks": 2
     },
+    "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
+    "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
+    "autoencoder": "$@autoencoder_def.to(@device)",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
     "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path))",
     "diffusion": "$@network_def.to(@device)",
