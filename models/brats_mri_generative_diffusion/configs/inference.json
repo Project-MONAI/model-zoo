@@ -11,8 +11,8 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "output_postfix": "$datetime.now().strftime('sample_%Y%m%d_%H%M%S')",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
-    "load_diffusion": "$@diffusion_def.load_state_dict(torch.load(@load_diffusion_path))",
-    "diffusion": "$@diffusion_def.to(@device)",
+    "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path))",
+    "diffusion": "$@network_def.to(@device)",
     "noise_scheduler": {
         "_target_": "generative.networks.schedulers.DDIMScheduler",
         "_requires_": [
