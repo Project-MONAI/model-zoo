@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.2",
+    "version": "0.5.4",
     "changelog": {
+        "0.5.4": "retrain using an internal pretrained ResNet18",
+        "0.5.3": "make the training bundle deterministic",
         "0.5.2": "update TensorRT descriptions",
         "0.5.1": "update the TensorRT part in the README file",
         "0.5.0": "add the command of executing inference with TensorRT models",
@@ -42,8 +44,8 @@
     "label_classes": "binary labels for each patch",
     "pred_classes": "scalar probability",
     "eval_metrics": {
-        "accuracy": 0.91,
-        "froc": 0.685
+        "accuracy": 0.9,
+        "froc": 0.72
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

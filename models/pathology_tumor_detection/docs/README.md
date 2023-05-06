@@ -39,6 +39,21 @@ The training was performed with the following:
 - Loss: BCEWithLogitsLoss
 - Whole slide image reader: cuCIM (if running on Windows or Mac, please install `OpenSlide` on your system and change `wsi_reader` to "OpenSlide")
 
+### Pretrained Weights
+
+By setting the `"pretrained"` parameter of `TorchVisionFCModel` in the config file to `true`, ImageNet pre-trained weights will be used for training. Please note that these weights are for non-commercial use. Each user is responsible for checking the content of the models/datasets and the applicable licenses and determining if suitable for the intended use. In order to use other pretrained weights, you can use `CheckpointLoader` in train handlers section as the first handler:
+
+```json
+{
+    "_target_": "CheckpointLoader",
+    "load_path": "$@bundle_root + '/pretrained_resnet18.pth'",
+    "strict": false,
+    "load_dict": {
+        "model_new": "@network"
+    }
+}
+```
+
 ### Input
 
 The training pipeline is a json file (dataset.json) which includes path to each WSI, the location and the label information for each training patch.
@@ -51,12 +66,16 @@ A probability number of the input patch being tumor or normal.
 
 Inference is performed on WSI in a sliding window manner with specified stride. A foreground mask is needed to specify the region where the inference will be performed on, given that background region which contains no tissue at all can occupy a significant portion of a WSI. Output of the inference pipeline is a probability map of size 1/stride of original WSI size.
 
+### Note on determinism
+
+By default this bundle use a deterministic approach to make the results reproducible. However, it comes at a cost of performance loss. Thus if you do not care about reproducibility, you can have a performance gain by replacing `"$monai.utils.set_determinism"` line with `"$setattr(torch.backends.cudnn, 'benchmark', True)"` in initialize section of training configuration (`configs/train.json` and `configs/multi_gpu_train.json` for single GPU and multi-GPU training respectively).
+
 ## Performance
 
 FROC score is used for evaluating the performance of the model. After inference is done, `evaluate_froc.sh` needs to be run to evaluate FROC score based on predicted probability map (output of inference) and the ground truth tumor masks.
-This model achieve the 0.91 accuracy on validation patches, and FROC of 0.72 on the 48 Camelyon testing data that have ground truth annotations available.
+Using an internal pretrained weights for ResNet18, this model deterministically achieves the 0.90 accuracy on validation patches, and FROC of 0.72 on the 48 Camelyon testing data that have ground truth annotations available.
 
-![A Graph showing Train Acc, Train Loss, and Validation Acc](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics_v3.png)
+![A Graph showing Train Acc, Train Loss, and Validation Acc](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_tumor_detection_train_and_val_metrics_v5.png)
 
 The `pathology_tumor_detection` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU.
 
@@ -68,6 +87,7 @@ Please notice that the benchmark results are tested on one WSI image since the i
 | end2end |224.97 | 223.50 | 222.65 | 224.03 | 1.01 | 1.01 | 1.00 | 1.00 |
 
 Where:
+
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
 - `end2end` means run the bundle end-to-end with the TensorRT based model.
 - `torch_fp32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
