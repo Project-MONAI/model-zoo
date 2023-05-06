@@ -1,7 +1,7 @@
 {
     "diffusion": {
         "_target_": "torch.nn.parallel.DistributedDataParallel",
-        "module": "$@diffusion_def.to(@device)",
+        "module": "$@network_def.to(@device)",
         "device_ids": [
             "@device"
         ],
