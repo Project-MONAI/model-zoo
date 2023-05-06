@@ -15,12 +15,12 @@ intensity_loss = torch.nn.L1Loss()
 adv_loss = PatchAdversarialLoss(criterion="least_squares")
 loss_perceptual = PerceptualLoss(spatial_dims=3, network_type="squeeze", is_fake_3d=True, fake_3d_ratio=0.2)
 
-adv_weight = 0.01
-perceptual_weight = 0.01
+adv_weight = 0.5
+perceptual_weight = 1.0
 # kl_weight: important hyper-parameter.
 #     If too large, decoder cannot recon good results from latent space.
 #     If too small, latent space will not be regularized enough for the diffusion model
-kl_weight = 1e-7
+kl_weight = 1e-6
 
 
 def compute_kl_loss(z_mu, z_sigma):
