@@ -44,8 +44,8 @@
     "label_classes": "binary labels for each patch",
     "pred_classes": "scalar probability",
     "eval_metrics": {
-        "accuracy": 0.91,
-        "froc": 0.685
+        "accuracy": 0.90,
+        "froc": 0.72
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
