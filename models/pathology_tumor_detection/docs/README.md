@@ -39,6 +39,8 @@ The training was performed with the following:
 - Loss: BCEWithLogitsLoss
 - Whole slide image reader: cuCIM (if running on Windows or Mac, please install `OpenSlide` on your system and change `wsi_reader` to "OpenSlide")
 
+### Pretrained Weights
+
 By setting the `"pretrained"` parameter of `TorchVisionFCModel` in the config file to `true`, ImageNet pre-trained weights will be used for training. Please note that these weights are for non-commercial use. Each user is responsible for checking the content of the models/datasets and the applicable licenses and determining if suitable for the intended use. In order to use other pretrained weights, you can use `CheckpointLoader` in train handlers section as the first handler:
 
 ```json
@@ -63,6 +65,10 @@ A probability number of the input patch being tumor or normal.
 ### Inference on a WSI
 
 Inference is performed on WSI in a sliding window manner with specified stride. A foreground mask is needed to specify the region where the inference will be performed on, given that background region which contains no tissue at all can occupy a significant portion of a WSI. Output of the inference pipeline is a probability map of size 1/stride of original WSI size.
+
+### Note on determinism
+
+By default this bundle use a deterministic approach to make the results reproducible. However, it comes at a cost of performance loss. Thus if you do not care about reproducibility, you can have a performance gain by replacing `"$monai.utils.set_determinism"` line with `"$setattr(torch.backends.cudnn, 'benchmark', True)"` in initialize section of training configuration (`configs/train.json` and `configs/multi_gpu_train.json` for single GPU and multi-GPU training respectively).
 
 ## Performance
 
@@ -148,10 +154,6 @@ python -m monai.bundle trt_export --net_id network_def --filepath models/model_t
 ```
 python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
-
-#### Note on determinism
-
-By default this bundle use a deterministic approach to make the results reproducible. However, it comes at a cost of performance loss. Thus if you do not care about reproducibility, you can have a performance gain by replacing `"$monai.utils.set_determinism"` line with `"$setattr(torch.backends.cudnn, 'benchmark', True)"` in initialize section of training configuration (`configs/train.json` and `configs/multi_gpu_train.json` for single GPU and multi-GPU training respectively).
 
 # References
 
