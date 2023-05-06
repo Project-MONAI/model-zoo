@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.8",
+    "version": "0.5.0",
     "changelog": {
+        "0.5.0": "update the README file with the ONNX-TensorRT conversion",
+        "0.4.9": "update TensorRT descriptions",
         "0.4.8": "update deterministic training results",
         "0.4.7": "update the TensorRT part in the README file",
         "0.4.6": "fix mgpu finalize issue",
@@ -26,7 +28,7 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0rc4",
+    "monai_version": "1.2.0rc5",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
