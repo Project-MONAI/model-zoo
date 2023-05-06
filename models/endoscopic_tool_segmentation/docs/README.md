@@ -46,7 +46,7 @@ IoU was used for evaluating the performance of the model. This model achieves a 
 ![A graph showing the validation mean IoU over 100 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_val_iou_v3.png)
 
 #### TensorRT speedup
-The `endoscopic_tool_segmentation` bundle supports the TensorRT acceleration. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
+The `endoscopic_tool_segmentation` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU.
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |

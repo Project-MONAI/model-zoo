@@ -1,5 +1,5 @@
 # Model Overview
-A pre-trained model for volumetric (3D) segmentation of brain tumor subregions from multimodal MRIs based on BraTS 2018 data. The whole pipeline is modified from [clara_pt_brain_mri_segmentation](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/med/models/clara_pt_brain_mri_segmentation).
+A pre-trained model for volumetric (3D) segmentation of brain tumor subregions from multimodal MRIs based on BraTS 2018 data.
 
 The model is trained to segment 3 nested subregions of primary brain tumors (gliomas): the "enhancing tumor" (ET), the "tumor core" (TC), the "whole tumor" (WT) based on 4 aligned input MRI scans (T1c, T1, T2, FLAIR).
 - The ET is described by areas that show hyper intensity in T1c when compared to T1, but also when compared to "healthy" white matter in T1c.
@@ -9,7 +9,7 @@ The model is trained to segment 3 nested subregions of primary brain tumors (gli
 ![Model workflow](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_brain_mri_segmentation_workflow.png)
 
 ## Data
-The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/cbica/sbia/brats2018/tasks.html).
+The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/sbia/brats2018.html).
 
 - Target: 3 tumor subregions
 - Task: Segmentation
@@ -65,7 +65,7 @@ Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducib
 ![A graph showing the validation mean dice over 300 epochs](https://developer.download.nvidia.com/assets/Clara/Images/monai_brats_mri_segmentation_val.png)
 
 #### TensorRT speedup
-The `brats_mri_segmentation` bundle supports the TensorRT acceleration through the ONNX-TensorRT way. The table below shows the speedup ratios benchmarked on an A100 80G GPU.
+The `brats_mri_segmentation` bundle supports acceleration with TensorRT through the ONNX-TensorRT method. The table below displays the speedup ratios observed on an A100 80G GPU.
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -80,7 +80,7 @@ Where:
 - `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
 - `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
 
-Currently, this model can only be accelerated through the ONNX-TensorRT way and the Torch-TensorRT way will come soon.
+Currently, the only available method to accelerate this model is through ONNX-TensorRT. However, the Torch-TensorRT method is under development and will be available in the near future.
 
 This result is benchmarked under:
  - TensorRT: 8.5.3+cuda11.8
