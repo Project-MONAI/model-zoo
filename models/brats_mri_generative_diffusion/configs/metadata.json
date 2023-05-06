@@ -1,5 +1,5 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20220718.json",
     "version": "1.0.0",
     "changelog": {
         "1.0.0": "Initial release"
