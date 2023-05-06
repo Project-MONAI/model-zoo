@@ -109,10 +109,12 @@ Or run it with multi-gpu, which requires the learning rate to be scaled up accor
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 1e-4
 ```
 
+It take 13 hours when training with 8 GPU, each using 32G memory.
+
 <p align="center">
-  <img src="placeholder" alt="autoencoder training curve" width="45%" >
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_autoencoder_loss.png" alt="autoencoder training curve" width="45%" >
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="placeholder" alt="latent diffusion training curve" width="45%" >
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_diffusion_loss.png" alt="latent diffusion training curve" width="45%" >
 </p>
 
 ### Inference

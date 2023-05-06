@@ -2,7 +2,9 @@
     "imports": [
         "$import torch",
         "$from datetime import datetime",
-        "$from pathlib import Path"
+        "$from pathlib import Path",
+        "$from PIL import Image",
+        "$from scripts.utils import visualize_2d_image"
     ],
     "bundle_root": ".",
     "model_dir": "$@bundle_root + '/models'",
@@ -39,7 +41,9 @@
         "output_postfix": "@output_postfix"
     },
     "generated_image": "$@sample",
+    "generated_image_np": "@generated_image[0,0].cpu().numpy().transpose(1, 0)[::-1, ::-1]",
+    "img_pil": "$Image.fromarray(visualize_2d_image(@generated_image_np), 'RGB')",
     "run": [
-        "$@saver(@generated_image[0])"
+        "$@img_pil.save(@output_dir+'/synimg_'+@output_postfix)"
     ]
 }

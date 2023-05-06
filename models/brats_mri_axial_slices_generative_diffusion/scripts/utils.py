@@ -10,6 +10,8 @@
 
 import monai
 import torch
+import numpy as np
+from monai.utils.type_conversion import convert_to_numpy
 
 
 def compute_scale_factor(autoencoder, train_loader, device):
@@ -18,3 +20,30 @@ def compute_scale_factor(autoencoder, train_loader, device):
         z = autoencoder.encode_stage_2_inputs(check_data["image"].to(device))
     scale_factor = 1 / torch.std(z)
     return scale_factor.item()
+
+def normalize_image_to_uint8(image):
+    """
+    Normalize image to uint8
+    Args:
+        image: numpy array
+    """
+    draw_img = image
+    if np.amin(draw_img) < 0:
+        draw_img -= np.amin(draw_img)
+    if np.amax(draw_img) > 0.1:
+        draw_img /= np.amax(draw_img)
+    draw_img = (255 * draw_img).astype(np.uint8)
+    return draw_img
+
+
+def visualize_2d_image(image):
+    """
+    Prepare a 2D image for visualization.
+    Args:
+        image: image numpy array, sized (H, W)
+    """
+    image = convert_to_numpy(image)
+    # draw image
+    draw_img = normalize_image_to_uint8(image)
+    draw_img = np.stack([draw_img, draw_img, draw_img], axis=-1)
+    return draw_img
