@@ -7,7 +7,7 @@ This model is trained on BraTS 2016 and 2017 data from [Medical Decathlon](http:
 
 This model is a generator for creating images like the Flair MRIs based on BraTS 2016 and 2017 data. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 3D latent diffusion model.
 
-**This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.**
+**This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like Brats21 and have GPU with memory larger than 32G to enable larger networks and attention layers.**
 
 ## Install the dependency of MONAI generative models
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
@@ -117,7 +117,7 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config
 ### Inference
 The following code generates a synthetic image from a random sampled noise.
 ```
-python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
+python -m monai.bundle run --config_file configs/inference.json
 ```
 The generated image will be saved to `./output/0`
 

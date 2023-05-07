@@ -24,10 +24,10 @@
     "references": [],
     "network_data_format": {
         "inputs": {
-            "image": {
+            "latent": {
                 "type": "image",
-                "format": "random noise",
-                "num_channels": 1,
+                "format": "image",
+                "num_channels": 8,
                 "spatial_shape": [
                     36,
                     44,
@@ -38,15 +38,14 @@
                     0,
                     1
                 ],
-                "is_patch_data": false
+                "is_patch_data": true
             }
         },
         "outputs": {
             "pred": {
                 "type": "image",
-                "format": "feature map",
-                "modality": "feature map of MR",
-                "num_channels": 1,
+                "format": "image",
+                "num_channels": 8,
                 "spatial_shape": [
                     36,
                     44,
@@ -57,9 +56,9 @@
                     0,
                     1
                 ],
-                "is_patch_data": false,
+                "is_patch_data": true,
                 "channel_def": {
-                    "0": "Flair"
+                    "0": "image"
                 }
             }
         }
