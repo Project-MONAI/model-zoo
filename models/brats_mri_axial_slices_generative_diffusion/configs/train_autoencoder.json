@@ -8,7 +8,7 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_dir": "$@bundle_root + '/models'",
     "tf_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/dataset",
+    "dataset_dir": "./",
     "download_brats": false,
     "train_batch_size_img": 1,
     "train_batch_size_slice": 26,
