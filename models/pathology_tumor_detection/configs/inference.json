@@ -125,9 +125,6 @@
         "amp": true,
         "decollate": false
     },
-    "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
-    ],
     "run": [
         "$@evaluator.run()"
     ]
