@@ -20,7 +20,12 @@
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
-        "num_channels": [32, 64, 128, 256],
+        "num_channels": [
+            32,
+            64,
+            128,
+            256
+        ],
         "attention_levels": [
             false,
             true,
@@ -44,7 +49,9 @@
     "lr_scheduler": {
         "_target_": "torch.optim.lr_scheduler.MultiStepLR",
         "optimizer": "@optimizer",
-        "milestones": [1000],
+        "milestones": [
+            1000
+        ],
         "gamma": 0.1
     },
     "scale_factor": "$scripts.utils.compute_scale_factor(@autoencoder,@train#dataloader,@device)",
@@ -71,7 +78,11 @@
             {
                 "_target_": "DivisiblePadd",
                 "keys": "image",
-                "k": [32,32,1]
+                "k": [
+                    32,
+                    32,
+                    1
+                ]
             },
             {
                 "_target_": "RandSpatialCropSamplesd",

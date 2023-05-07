@@ -48,7 +48,12 @@
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
-        "num_channels": [32, 64, 128, 256],
+        "num_channels": [
+            32,
+            64,
+            128,
+            256
+        ],
         "attention_levels": [
             false,
             true,
