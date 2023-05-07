@@ -28,11 +28,11 @@ cd ..
 ## Downloading the Dataset
 The training data is Brats 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/).
 
-Target: image generatiion
-Task: Synthesis
-Modality: MRI
-Size: 388 3D MRI volumes (1 channel used)
-Training data size: 38800 2D MRI axial slices (1 channel used)
+- Target: image generatiion
+- Task: Synthesis
+- Modality: MRI
+- Size: 388 3D MRI volumes (1 channel used)
+- Training data size: 38800 2D MRI axial slices (1 channel used)
 
 The dataset can be downloaded automatically at the beggining of training.
 
