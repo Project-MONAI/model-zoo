@@ -1,13 +1,13 @@
 # Model Overview
-A pre-trained model for volumetric (3D) Brats MRI 3D Latent Diffusion Generative Model.
+A pre-trained model for 2D Latent Diffusion Generative Model on axial slices of Brats MRI.
 
-This model is trained on BraTS 2018 data (https://www.med.upenn.edu/sbia/brats2018.html), using the Latent diffusion model (Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf).
+This model is trained on BraTS 2016 and 2017 data from [Medical Decathlon](http://medicaldecathlon.com/), using the Latent diffusion model (Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf).
 
-![model workflow](https://miro.medium.com/v2/resize:fit:1256/1*3Jjlrb-TB8hPpIexoCKpZQ.png)
+![model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_network.png)
 
-This model is a generator for creating images like the Flair MRIs based on BraTS 2018 data. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 3D latent diffusion model.
+This model is a generator for creating images like the Flair MRIs based on BraTS 2016 and 2017 data. It was trained as a 2d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 2D latent diffusion model.
 
-This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.
+**This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like Brats21.**
 
 ## Install the dependency of MONAI generative models
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
@@ -26,34 +26,34 @@ cd ..
 ```
 
 ## Downloading the Dataset
-The training data is from the [Multimodal Brain Tumor Segmentation Challenge (BraTS) 2018](https://www.med.upenn.edu/sbia/brats2018.html).
+The training data is Brats 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/).
 
 Target: image generatiion
 Task: Synthesis
 Modality: MRI
-Size: 388 3D volumes (1 channel used)
+Size: 388 3D MRI volumes (1 channel used)
+Training data size: 38800 2D MRI axial slices (1 channel used)
 
 The dataset can be downloaded automatically at the beggining of training.
 
 ## Training configuration
-If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size_img"` and `"train_batch_size_slice"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
-`"train_batch_size_img"` indicates how many 3D images in each batch. `"train_batch_size_slice"` indicates how many 2D slices it extracts from each 3D image. The product of these two hyper-parameters is the actual training batchsize.
+If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
 
 ### Training configuration of autoencoder
 The training of autoencoder was performed with the following:
 
 - GPU: at least 32GB GPU memory
-- Actual Model Input: 240x240
+- Actual Model Input: 240 x 240
 - AMP: False
 - Optimizer: Adam
-- Learning Rate: 1e-5
+- Learning Rate: 2e-5
 - Loss: L1 loss, perceptual loss, KL divergence loss, adversianl loss, GAN BCE loss
 
 #### Input
-1 channel 2D MRI Flair axial slices
+1 channel 2D MRI Flair axial patches
 
 #### Output
-- 1 channel 2D MRI reconstructed axial slices
+- 1 channel 2D MRI reconstructed patches
 - 1 channel mean of latent features
 - 1 channel standard deviation of latent features
 
@@ -61,7 +61,7 @@ The training of autoencoder was performed with the following:
 The training of latent diffusion model was performed with the following:
 
 - GPU: at least 32GB GPU memory
-- Actual Model Input: 64x64
+- Actual Model Input: 64 x 64
 - AMP: False
 - Optimizer: Adam
 - Learning Rate: 1e-5
@@ -96,7 +96,7 @@ Or run it with multi-gpu, which requires the learning rate to be scaled up accor
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 2e-4
 ```
-It take 21 hours when training with 8 GPU, each using 32G memory.
+It take 9 hours when training with 8 GPU each using 32G memory.
 
 After the autoencoder is trained, run the following command to train the latent diffusion model.
 ```
@@ -106,10 +106,10 @@ It will print out the scale factor of the latent feature space. If your autoenco
 
 Or run it with multi-gpu, which requires the learning rate to be scaled up according to the number of GPUs.
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 1e-4
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
 ```
 
-It take 13 hours when training with 8 GPU, each using 32G memory.
+It take 5 hours when training with 8 GPU each using 32G memory.
 
 <p align="center">
   <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_autoencoder_loss.png" alt="autoencoder training curve" width="45%" >
@@ -120,13 +120,11 @@ It take 13 hours when training with 8 GPU, each using 32G memory.
 ### Inference
 The following code generates a synthetic image from a random sampled noise.
 ```
-python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
+python -m monai.bundle run --config_file configs/inference.json
 ```
-The generated image will be saved to `./output/0`
+The generated image will be saved to `./output`
 
-An example output is shown below. Note that this is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to have GPU with memory larger than 32G to enable larger networks and attention layers.
-
-![Example synthetic image](placeholder)
+![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_example_generation.png)
 
 
 ### Export
