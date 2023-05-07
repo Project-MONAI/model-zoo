@@ -38,6 +38,7 @@ The dataset can be downloaded automatically at the beggining of training.
 
 ## Training configuration
 If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size_img"` and `"train_batch_size_slice"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
+`"train_batch_size_img"` is number of 3D volumes loaded in each batch. `"train_batch_size_slice"` is the number of 2D axial slices extracted from each image. The actual batch size is the product of them.
 
 ### Training configuration of autoencoder
 The training of autoencoder was performed with the following:
