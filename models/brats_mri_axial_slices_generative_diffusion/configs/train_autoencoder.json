@@ -8,11 +8,11 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_dir": "$@bundle_root + '/models'",
     "tf_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/debug_can_model_zoo",
+    "dataset_dir": "/workspace/dataset",
     "download_brats": false,
     "train_batch_size_img": 1,
     "train_batch_size_slice": 26,
-    "lr": 2e-05,
+    "lr": 5e-05,
     "train_patch_size": [
         240,
         240
@@ -100,7 +100,7 @@
         {
             "_target_": "CenterSpatialCropd",
             "keys": "image",
-            "roi_size": "$[@train_patch_size[0], @train_patch_size[1], 80]"
+            "roi_size": "$[@train_patch_size[0], @train_patch_size[1], 100]"
         },
         {
             "_target_": "ScaleIntensityRangePercentilesd",
@@ -187,7 +187,7 @@
             "d_network": "@dnetwork",
             "d_optimizer": "@doptimizer",
             "d_loss_function": "$functools.partial(scripts.losses.discriminator_loss, disc_net=@dnetwork)",
-            "d_train_steps": 5,
+            "d_train_steps": 1,
             "g_update_latents": true,
             "latent_shape": "@latent_channels",
             "key_train_metric": "$None",

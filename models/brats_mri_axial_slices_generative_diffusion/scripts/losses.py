@@ -13,7 +13,7 @@ from generative.losses import PatchAdversarialLoss, PerceptualLoss
 
 intensity_loss = torch.nn.L1Loss()
 adv_loss = PatchAdversarialLoss(criterion="least_squares")
-loss_perceptual = PerceptualLoss(spatial_dims=3, network_type="squeeze", is_fake_3d=True, fake_3d_ratio=0.2)
+loss_perceptual = PerceptualLoss(spatial_dims=2, network_type="squeeze")
 
 adv_weight = 0.5
 perceptual_weight = 1.0

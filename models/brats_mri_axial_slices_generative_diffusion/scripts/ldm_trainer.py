@@ -176,6 +176,12 @@ class VaeGanTrainer(Trainer):
         g_input = d_input
         g_output, z_mu, z_sigma = engine.g_inferer(g_input, engine.g_network)
 
+        # Train Generator
+        engine.g_optimizer.zero_grad(set_to_none=engine.optim_set_to_none)
+        g_loss = engine.g_loss_function(g_output, g_input, z_mu, z_sigma)
+        g_loss.backward()
+        engine.g_optimizer.step()
+        
         # Train Discriminator
         d_total_loss = torch.zeros(1)
         for _ in range(engine.d_train_steps):
@@ -183,13 +189,7 @@ class VaeGanTrainer(Trainer):
             dloss = engine.d_loss_function(g_output, d_input)
             dloss.backward()
             engine.d_optimizer.step()
-            d_total_loss += dloss.item()
-
-        # Train Generator
-        engine.g_optimizer.zero_grad(set_to_none=engine.optim_set_to_none)
-        g_loss = engine.g_loss_function(g_output, g_input, z_mu, z_sigma)
-        g_loss.backward()
-        engine.g_optimizer.step()
+            d_total_loss += dloss.item()        
 
         return {
             GanKeys.REALS: d_input,
