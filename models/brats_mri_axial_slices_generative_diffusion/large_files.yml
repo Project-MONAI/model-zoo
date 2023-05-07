@@ -1,9 +1,9 @@
 large_files:
   - path: "models/model_autoencoder.pt"
     url: "https://drive.google.com/uc?id=1x4JEfWwCnR0wvS9v5TBWX1n9xl51xZj9"
-    hash_val: "314c9091a4b101461a5cc305995a4565"
+    hash_val: "fdf589a0bd0c46408c5c9fb88e0c7415"
     hash_type: "md5"
   - path: "models/model.pt"
     url: "https://drive.google.com/uc?id=1CJmlrLY4SYHl4swtnY1EJmuiNt1H7Jzu"
-    hash_val: "2463887ef1b704494014e2aecb72802b"
+    hash_val: "55aa4cb2e0fbfb5b3c51ceec69bd860e"
     hash_type: "md5"
