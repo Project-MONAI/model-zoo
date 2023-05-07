@@ -127,19 +127,6 @@ The generated image will be saved to `./output`
 ![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_example_generation.png)
 
 
-### Export
-
-The autoencoder can be exported to a Torchscript bundle with the following:
-```
-python -m monai.bundle ckpt_export autoencoder_def --filepath models/model_autoencoder.ts --ckpt_file models/model_autoencoder.pt --meta_file configs/metadata.json --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
-```
-
-The models can be loaded after this operation:
-```python
-import torch
-autoencoder = torch.jit.load("models/model_autoencoder.ts")
-```
-
 # License
 Copyright (c) MONAI Consortium
 
