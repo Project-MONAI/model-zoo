@@ -37,7 +37,7 @@ Training data size: 38800 2D MRI axial slices (1 channel used)
 The dataset can be downloaded automatically at the beggining of training.
 
 ## Training configuration
-If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
+If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size_img"` and `"train_batch_size_slice"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
 
 ### Training configuration of autoencoder
 The training of autoencoder was performed with the following:
