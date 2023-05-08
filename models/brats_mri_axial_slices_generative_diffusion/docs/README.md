@@ -58,7 +58,7 @@ The training of autoencoder was performed with the following:
 - 1 channel mean of latent features
 - 1 channel standard deviation of latent features
 
-### Training configuration of difusion model
+### Training configuration of diffusion model
 The training of latent diffusion model was performed with the following:
 
 - GPU: at least 32GB GPU memory
@@ -70,6 +70,7 @@ The training of latent diffusion model was performed with the following:
 
 #### Training Input
 1 channel noisy latent features
+an int tthat indicates the time step
 
 #### Training Output
 1 channel predicted added noise
