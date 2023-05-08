@@ -9,8 +9,8 @@
 # See the License for the specific language governing permissions and
 
 import monai
-import torch
 import numpy as np
+import torch
 from monai.utils.type_conversion import convert_to_numpy
 
 
@@ -20,6 +20,7 @@ def compute_scale_factor(autoencoder, train_loader, device):
         z = autoencoder.encode_stage_2_inputs(check_data["image"].to(device))
     scale_factor = 1 / torch.std(z)
     return scale_factor.item()
+
 
 def normalize_image_to_uint8(image):
     """
