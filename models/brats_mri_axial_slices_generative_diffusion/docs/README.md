@@ -69,8 +69,8 @@ The training of latent diffusion model was performed with the following:
 - Loss: MSE loss
 
 #### Training Input
-1 channel noisy latent features
-an int tthat indicates the time step
+- 1 channel noisy latent features
+- an int that indicates the time step
 
 #### Training Output
 1 channel predicted added noise
