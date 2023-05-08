@@ -86,7 +86,7 @@
                 "format": "timesteps",
                 "num_channels": 1,
                 "spatial_shape": [],
-                "dtype": "float32",
+                "dtype": "long",
                 "value_range": [
                     0,
                     1000
