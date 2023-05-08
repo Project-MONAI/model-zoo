@@ -13,6 +13,12 @@
     "spatial_dims": 3,
     "image_channels": 1,
     "latent_channels": 8,
+    "latent_shape": [
+        8,
+        36,
+        44,
+        28
+    ],
     "autoencoder_def": {
         "_target_": "generative.networks.nets.AutoencoderKL",
         "spatial_dims": "@spatial_dims",
