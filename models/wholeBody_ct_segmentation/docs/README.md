@@ -39,20 +39,17 @@ The training was performed with the following:
 - Learning Rate: 1e-4
 - Loss: DiceCELoss
 
-### GPU consumption warning:
+### Memory Consumption
 
-The model is trained with 104 classes in single instance, for predicting 104 structures, the GPU consumption can be large.
+- Dataset Manager: CacheDataset
+- Data Size: 1000 3D Volumes
+- Cache Rate: 0.4
+- Single GPU - System RAM Usage: 83G
+- Multi GPU (8 GPUs) - System RAM Usage: 666G
 
-For inference pipeline, please refer to the following section for benchmarking results. Normally, a CT scans with 300 slices will take about 27G memory, if your CT is larger, please prepare larger GPU memory or use CPU for inference.
+### Memory Consumption Warning
 
-
-### RAM consumption warning:
-
-This bundle uses CacheDataset by default, the given dataset is the TotalSegmentator dataset, and the dataset contains around 1000 images. The cache rate is set to 0.4, and the RAM consumption for caching around 400 images are
-- Single GPU: 83G
-- Multi GPU: 666G (8 GPUs)
-
-Please use a normal class Dataset, or reduce the cache rate if RAM is limited. Users can also adjust the cache rate according to the number of images.
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
 
 ### Input
 
@@ -66,6 +63,12 @@ One channel
 - label 1-105: Foreground classes (104)
 
 ## Resource Requirements and Latency Benchmarks
+
+### GPU Consumption Warning
+
+The model is trained with 104 classes in single instance, for predicting 104 structures, the GPU consumption can be large.
+
+For inference pipeline, please refer to the following section for benchmarking results. Normally, a CT scans with 300 slices will take about 27G memory, if your CT is larger, please prepare larger GPU memory or use CPU for inference.
 
 ### High-Resolution and Low-Resolution Models
 

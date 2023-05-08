@@ -29,10 +29,16 @@ The training as performed with the following:
 - Optimizer: Adam
 - Learning Rate: 2e-4
 
-RAM consumption:
+### Memory Consumption
 
-This bundle uses CacheDataset by default, the given dataset is the BTCV dataset with 30 samples (cache rate 1.0)
-- Single GPU: 5.8G
+- Dataset Manager: CacheDataset
+- Data Size: 30 samples
+- Cache Rate: 1.0
+- Single GPU - System RAM Usage: 5.8G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
 
 ### Input
 1 channel
