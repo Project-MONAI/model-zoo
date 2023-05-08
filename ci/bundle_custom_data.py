@@ -13,7 +13,12 @@
 # This list is used for our CI tests to determine whether a bundle needs to be tested with
 # the `verify_data_shape` function in `verify_bundle.py`.
 # If a bundle does not need to be tested, please add the bundle name into the list.
-exclude_verify_shape_list = ["mednist_gan", "lung_nodule_ct_detection", "pathology_nuclei_segmentation_classification"]
+exclude_verify_shape_list = [
+    "mednist_gan",
+    "lung_nodule_ct_detection",
+    "pathology_nuclei_segmentation_classification",
+    "brats_mri_generative_diffusion",
+]
 
 # This list is used for our CI tests to determine whether a bundle contains the preferred files.
 # If a bundle does not have any of the preferred files, please add the bundle name into the list.
@@ -28,6 +33,7 @@ exclude_verify_torchscript_list = [
     "wholeBrainSeg_Large_UNEST_segmentation",
     "breast_density_classification",
     "mednist_reg",
+    "brats_mri_generative_diffusion",
 ]
 
 # This dict is used for our CI tests to install required dependencies that cannot be installed by `pip install` directly.
