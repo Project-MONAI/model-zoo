@@ -5,7 +5,7 @@
         "1.0.0": "Initial release"
     },
     "monai_version": "1.2.0rc5",
-    "pytorch_version": "2.0.0",
+    "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "5.1.0",
@@ -16,7 +16,7 @@
     "description": "A generative model for creating 3D brain MRI from Gaussian noise based on BraTS dataset",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
-    "data_source": "https://www.med.upenn.edu/sbia/brats2018/data.html",
+    "data_source": "http://medicaldecathlon.com/",
     "data_type": "nibabel",
     "image_classes": "Flair brain MRI with 1.1x1.1x1.1 mm voxel size",
     "eval_metrics": {},
