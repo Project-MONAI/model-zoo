@@ -1,5 +1,5 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20220718.json",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20230507.json",
     "version": "1.0.0",
     "changelog": {
         "1.0.0": "Initial release"
@@ -22,10 +22,51 @@
     "eval_metrics": {},
     "intended_use": "This is a research tool/prototype and not to be used clinically",
     "references": [],
-    "network_data_format": {
+    "autoencoder_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "image",
+                "num_channels": 1,
+                "spatial_shape": [
+                    112,
+                    128,
+                    80
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "image",
+                "num_channels": 1,
+                "spatial_shape": [
+                    112,
+                    128,
+                    80
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        }
+    },
+    "generator_data_format": {
         "inputs": {
             "latent": {
-                "type": "image",
+                "type": "noise",
                 "format": "image",
                 "num_channels": 8,
                 "spatial_shape": [
@@ -43,7 +84,7 @@
         },
         "outputs": {
             "pred": {
-                "type": "image",
+                "type": "feature",
                 "format": "image",
                 "num_channels": 8,
                 "spatial_shape": [
