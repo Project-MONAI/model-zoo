@@ -29,6 +29,16 @@ The training as performed with the following:
 - Optimizer: Adam
 - Learning Rate: 2e-4
 
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 30 samples
+- Cache Rate: 1.0
+- Single GPU - System RAM Usage: 5.8G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
 
 ### Input
 1 channel
