@@ -113,9 +113,9 @@ torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config
 It take 5 hours when training with 8 GPU each using 32G memory.
 
 <p align="center">
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_autoencoder_loss.png" alt="autoencoder training curve" width="45%" >
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_autoencoder_loss_v2.png" alt="autoencoder training curve" width="45%" >
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_diffusion_loss.png" alt="latent diffusion training curve" width="45%" >
+  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_diffusion_loss_v2.png" alt="latent diffusion training curve" width="45%" >
 </p>
 
 ### Inference
