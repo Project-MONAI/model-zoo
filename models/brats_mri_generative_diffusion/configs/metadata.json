@@ -80,6 +80,18 @@
                     1
                 ],
                 "is_patch_data": true
+            },
+            "condition": {
+                "type": "timesteps",
+                "format": "timesteps",
+                "num_channels": 1,
+                "spatial_shape": [],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1000
+                ],
+                "is_patch_data": false
             }
         },
         "outputs": {
