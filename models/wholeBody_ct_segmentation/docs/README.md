@@ -32,12 +32,24 @@ The segmentation of 104 tissues is formulated as voxel-wise multi-label segmenta
 
 The training was performed with the following:
 
-- GPU: 32 GB of GPU memory
+- GPU: 48 GB of GPU memory
 - Actual Model Input: 96 x 96 x 96
 - AMP: True
 - Optimizer: AdamW
 - Learning Rate: 1e-4
 - Loss: DiceCELoss
+
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 1000 3D Volumes
+- Cache Rate: 0.4
+- Single GPU - System RAM Usage: 83G
+- Multi GPU (8 GPUs) - System RAM Usage: 666G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
 
 ### Input
 
@@ -51,6 +63,12 @@ One channel
 - label 1-105: Foreground classes (104)
 
 ## Resource Requirements and Latency Benchmarks
+
+### GPU Consumption Warning
+
+The model is trained with 104 classes in single instance, for predicting 104 structures, the GPU consumption can be large.
+
+For inference pipeline, please refer to the following section for benchmarking results. Normally, a CT scans with 300 slices will take about 27G memory, if your CT is larger, please prepare larger GPU memory or use CPU for inference.
 
 ### High-Resolution and Low-Resolution Models
 

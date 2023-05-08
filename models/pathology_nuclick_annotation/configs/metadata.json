@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "changelog": {
+        "0.1.2": "add RAM usage with CachDataset",
         "0.1.1": "deterministic retrain benchmark and add link",
         "0.1.0": "fix mgpu finalize issue",
         "0.0.9": "Update README Formatting",
