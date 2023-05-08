@@ -958,5 +958,37 @@
     "pathology_tumor_detection_v0.5.4": {
         "checksum": "8884d5573ed60487c9d78f9acdb27f1e54ef2d33",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.5.4.zip"
+    },
+    "spleen_deepedit_annotation_v0.4.4": {
+        "checksum": "9d09d3b60c4cb37f0a7078d1619c3a80152e8077",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.4.4.zip"
+    },
+    "pathology_nuclick_annotation_v0.1.2": {
+        "checksum": "87e54708dca26236302eb4a7ccca1886e6c89a04",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.1.2.zip"
+    },
+    "spleen_ct_segmentation_v0.5.1": {
+        "checksum": "cccbe509a24426228d8686adc844185effbada0f",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.5.1.zip"
+    },
+    "wholeBody_ct_segmentation_v0.1.6": {
+        "checksum": "59c4fdb90db7cc5215a0824f63e8896aa96af117",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBody_ct_segmentation_v0.1.6.zip"
+    },
+    "pathology_nuclei_classification_v0.1.2": {
+        "checksum": "d694c8f40876e0c7805da79ad1e8963704dfee98",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.1.2.zip"
+    },
+    "endoscopic_tool_segmentation_v0.5.1": {
+        "checksum": "562a75563524c5e76d9ff037f4f5d67e3168eda0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.5.1.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.1.9": {
+        "checksum": "355d08cd182a7770910ad32013f40f258a2d0d0d",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.1.9.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.4.8": {
+        "checksum": "6bc8d73152e4cfaeaa73b52f3a2c704260e9a527",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.4.8.zip"
     }
 }
