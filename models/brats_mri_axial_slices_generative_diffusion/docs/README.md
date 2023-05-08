@@ -7,7 +7,7 @@ This model is trained on BraTS 2016 and 2017 data from [Medical Decathlon](http:
 
 This model is a generator for creating images like the Flair MRIs based on BraTS 2016 and 2017 data. It was trained as a 2d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 2D latent diffusion model.
 
-**This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like Brats21.**
+**This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like [Brats 2021](https://www.synapse.org/#!Synapse:syn25829067/wiki/610865).**
 
 ## Install the dependency of MONAI generative models
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
