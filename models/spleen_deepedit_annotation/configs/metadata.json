@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "changelog": {
+        "0.4.5": "remove error dollar symbol in readme",
         "0.4.4": "add RAM comsumption with Cachedataset",
         "0.4.3": "update ONNX-TensorRT descriptions",
         "0.4.2": "deterministic retrain benchmark, update fig links",
@@ -21,7 +22,7 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0rc5",
+    "monai_version": "1.2.0rc6",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {

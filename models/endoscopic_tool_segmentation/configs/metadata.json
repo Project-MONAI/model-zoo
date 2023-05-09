@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "changelog": {
+        "0.5.2": "remove error dollar symbol in readme",
         "0.5.1": "add RAM warning",
         "0.5.0": "update TensorRT descriptions",
         "0.4.9": "update the model weights",
@@ -22,7 +23,7 @@
         "0.1.0": "complete the first version model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0rc5",
+    "monai_version": "1.2.0rc6",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {

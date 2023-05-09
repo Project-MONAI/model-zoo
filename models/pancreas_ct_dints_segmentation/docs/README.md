@@ -61,7 +61,7 @@ Three channels
 
 ### Memory Consumption Warning
 
-If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
 
 ## Performance
 Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.62.
