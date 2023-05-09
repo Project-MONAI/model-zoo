@@ -1,7 +1,7 @@
 # Model Overview
 A pre-trained model for volumetric (3D) Brats MRI 3D Latent Diffusion Generative Model.
 
-This model is trained on BraTS 2016 and 2017 data from [Medical Decathlon](http://medicaldecathlon.com/), using the Latent diffusion model (Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf).
+This model is trained on BraTS 2016 and 2017 data from [Medical Decathlon](http://medicaldecathlon.com/), using the Latent diffusion model [1].
 
 ![model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_network.png)
 
@@ -79,64 +79,73 @@ The training of latent diffusion model was performed with the following:
 #### Inference Output
 8 channel denoised latent features
 
+### Memory Consumption Warning
+
+If you face memory issues with data loading, you can lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
+
+## Performance
+
+#### Training Loss
+![A graph showing the autoencoder training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_autoencoder_loss.png)
+
+![A graph showing the latent diffusion training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_diffusion_loss.png)
+
+#### Example synthetic image
+![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_example_generation.png)
 
 ## MONAI Bundle Commands
 
-Assuming the current directory is the bundle directory, the following command will train the autoencoder network for 1500 epochs.
-If the Brats dataset is not downloaded, run the following command, the data will be downloaded and extracted to `./Task01_BrainTumour`.
-```
-python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir ./ --download_brats True
-```
-If it is already downloaded, check if `"dataset_dir"` in `configs/train_autoencoder.json`has folder `Task01_BrainTumour`. If so, run:
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
+
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute training:
+
+- Train autoencoder
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
-Or run it with multi-gpu, which requires the learning rate to be scaled up according to the number of GPUs.
-```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
-```
-It take 9 hours when training with 8 GPU each using 32G memory.
+Please specify "download_brats" into `True` if the dataset is not downloaded.
 
-After the autoencoder is trained, run the following command to train the latent diffusion model.
+- Train latent diffusion model
 ```
 python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json']"
 ```
+
 It will print out the scale factor of the latent feature space. If your autoencoder is well trained, this value should be close to 1.0.
 
-Or run it with multi-gpu, which requires the learning rate to be scaled up according to the number of GPUs.
+#### Override the `train` config to execute multi-GPU autoencoder training:
+
+Run with multi-GPU requires the learning rate to be scaled up according to the number of GPUs.
+
+- Train autoencoder
+
+```
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
+```
+
+- Train latent difussion model
+
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
 ```
 
-<p align="center">
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_autoencoder_loss.png" alt="autoencoder training curve" width="45%" >
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_diffusion_loss.png" alt="latent diffusion training curve" width="45%" >
-</p>
+#### Execute inference:
 
-### Inference
 The following code generates a synthetic image from a random sampled noise.
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
-The generated image will be saved to `./output/0`
 
-![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_example_generation.png)
+#### Export checkpoint to TorchScript file:
 
-
-### Export
-
-The autoencoder can be exported to a Torchscript bundle with the following:
 ```
 python -m monai.bundle ckpt_export autoencoder_def --filepath models/model_autoencoder.ts --ckpt_file models/model_autoencoder.pt --meta_file configs/metadata.json --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/inference.json']"
 ```
 
-The models can be loaded after this operation:
-```python
-import torch
-autoencoder = torch.jit.load("models/model_autoencoder.ts")
-```
+# References
+[1] Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf
 
 # License
 Copyright (c) MONAI Consortium
