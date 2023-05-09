@@ -9,7 +9,7 @@ This model is a generator for creating images like the Flair MRIs based on BraTS
 
 **This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like [Brats 2021](https://www.synapse.org/#!Synapse:syn25829067/wiki/610865) and have GPU with memory larger than 32G to enable larger networks and attention layers.**
 
-## Install the dependency of MONAI generative models
+## MONAI Generative Model Dependencies
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
 ```
 pip install lpips==0.1.4
@@ -25,28 +25,28 @@ python setup.py install
 cd ..
 ```
 
-## Downloading the Dataset
-The training data is Brats 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/).
+## Data
+The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/).
 
-Target: image generatiion
-Task: Synthesis
-Modality: MRI
-Size: 388 3D volumes (1 channel used)
+- Target: Image Generation
+- Task: Synthesis
+- Modality: MRI
+- Size: 388 3D volumes (1 channel used)
 
-The dataset can be downloaded automatically at the beggining of training.
+The dataset can be downloaded automatically at the beginning of training.
 
 ## Training configuration
-If user has GPU memory smaller than 32G, then please decrease the `"train_batch_size"` in `configs/train_autoencoder.json` and `configs/train_diffusion.json`.
+If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `train_batch_size` parameter in the [configs/train_autoencoder.json](configs/train_autoencoder.json) and [configs/train_diffusion.json](configs/train_diffusion.json) configuration files.
 
-### Training configuration of autoencoder
-The training of autoencoder was performed with the following:
+### Training Configuration of Autoencoder
+The autoencoder was trained using the following configuration:
 
 - GPU: at least 32GB GPU memory
 - Actual Model Input: 112 x 128 x 80
 - AMP: False
 - Optimizer: Adam
 - Learning Rate: 1e-5
-- Loss: L1 loss, perceptual loss, KL divergence loss, adversianl loss, GAN BCE loss
+- Loss: L1 loss, perceptual loss, KL divergence loss, adversarial loss, GAN BCE loss
 
 #### Input
 1 channel 3D MRI Flair patches
@@ -56,8 +56,8 @@ The training of autoencoder was performed with the following:
 - 8 channel mean of latent features
 - 8 channel standard deviation of latent features
 
-### Training configuration of diffusion model
-The training of latent diffusion model was performed with the following:
+### Training Configuration of Diffusion Model
+The latent diffusion model was trained using the following configuration:
 
 - GPU: at least 32GB GPU memory
 - Actual Model Input: 36 x 44 x 28
