@@ -27,6 +27,11 @@ The training as performed with the following:
 - Actual Model Input: 736 x 480 x 3
 - Optimizer: Adam
 - Learning Rate: 1e-4
+- Dataset Manager: CacheDataset
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
 
 ### Input
 A three channel video frame

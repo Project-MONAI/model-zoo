@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "changelog": {
+        "0.4.4": "add RAM comsumption with Cachedataset",
         "0.4.3": "update ONNX-TensorRT descriptions",
         "0.4.2": "deterministic retrain benchmark, update fig links",
         "0.4.1": "add the ONNX-TensorRT way of model conversion",

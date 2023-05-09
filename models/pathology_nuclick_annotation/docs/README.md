@@ -72,7 +72,7 @@ Example dataset.json
 }
 ```
 
-## Training configuration
+## Training Configuration
 The training was performed with the following:
 
 - GPU: at least 12GB of GPU memory
@@ -82,6 +82,16 @@ The training was performed with the following:
 - Learning Rate: 1e-4
 - Loss: DiceLoss
 
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 13,136 PNG images
+- Cache Rate: 1.0
+- Single GPU - System RAM Usage: 4.7G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
 
 ## Input
 5 channels
