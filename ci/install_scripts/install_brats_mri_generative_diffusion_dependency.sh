@@ -9,4 +9,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-pip install git+https://github.com/Project-MONAI/GenerativeModels.git@0.2.0
+git clone https://github.com/Project-MONAI/GenerativeModels.git
+cd GenerativeModels/
+git checkout ad973b8157130eaa146f35628f96eebd2b9d207d
+python setup.py install
+cd ..
