@@ -35,7 +35,7 @@ The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medical
 
 The dataset can be downloaded automatically at the beginning of training.
 
-## Training configuration
+## Training Configuration
 If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `train_batch_size` parameter in the [configs/train_autoencoder.json](configs/train_autoencoder.json) and [configs/train_diffusion.json](configs/train_diffusion.json) configuration files.
 
 ### Training Configuration of Autoencoder
