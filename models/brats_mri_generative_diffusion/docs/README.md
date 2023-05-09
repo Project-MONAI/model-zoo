@@ -18,7 +18,7 @@ pip install git+https://github.com/Project-MONAI/GenerativeModels.git@0.2.0
 
 Or we can install it from source
 ```
-pip install lpips
+pip install lpips==0.1.4
 git clone https://github.com/Project-MONAI/GenerativeModels.git
 cd GenerativeModels/
 python setup.py install
