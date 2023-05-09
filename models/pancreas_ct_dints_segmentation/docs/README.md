@@ -39,7 +39,6 @@ The training was performed with the following:
 - Optimizer: SGD
 - (Initial) Learning Rate: 0.025
 - Loss: DiceCELoss
-- Note: If out-of-memory or program crash occurs while caching the data set, please change the cache\_rate in CacheDataset to a lower value in the range (0, 1).
 
 The segmentation of pancreas region is formulated as the voxel-wise 3-class classification. Each voxel is predicted as either foreground (pancreas body, tumour) or background. And the model is optimized with gradient descent method minimizing soft dice loss and cross-entropy loss between the predicted mask and ground truth segmentation.
 
@@ -52,6 +51,17 @@ Three channels
 - Label 2: pancreatic tumor
 - Label 1: pancreas
 - Label 0: everything else
+
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 420 3D Volumes
+- Cache Rate: 1.0
+- Multi GPU (8 GPUs) - System RAM Usage: 400G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
 
 ## Performance
 Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.62.
@@ -122,6 +132,7 @@ python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt
 ```
 
 # References
+
 [1] He, Y., Yang, D., Roth, H., Zhao, C. and Xu, D., 2021. Dints: Differentiable neural network topology search for 3d medical image segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5841-5850).
 
 # License
