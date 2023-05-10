@@ -138,16 +138,6 @@
         },
         "handlers": [
             {
-                "_target_": "CheckpointLoader",
-                "_disabled_": "@use_imagenet_pretrain",
-                "load_path": "/path/to/local/weight/model.pt",
-                "load_dict": {
-                    "model": "@network"
-                },
-                "strict": false,
-                "map_location": "@device"
-            },
-            {
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
