@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
-    "version": "0.1.9",
+    "version": "0.2.0",
     "changelog": {
+        "0.2.0": "Update README for how to download dataset",
         "0.1.9": "add RAM warning",
         "0.1.8": "Update README for pretrained weights and save metrics in evaluate",
         "0.1.7": "Update README Formatting",
