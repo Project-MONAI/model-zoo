@@ -9,6 +9,9 @@ This model is a generator for creating images like the Flair MRIs based on BraTS
 
 **This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like [Brats 2021](https://www.synapse.org/#!Synapse:syn25829067/wiki/610865) and have GPU with memory larger than 32G to enable larger networks and attention layers.**
 
+#### Example synthetic image
+![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_example_generation.png)
+
 ## MONAI Generative Model Dependencies
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
 ```
@@ -90,49 +93,49 @@ If you face memory issues with data loading, you can lower the caching rate `cac
 
 ![A graph showing the latent diffusion training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_diffusion_loss.png)
 
-#### Example synthetic image
-![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_example_generation.png)
-
 ## MONAI Bundle Commands
 
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-#### Execute training:
+#### Execute Autoencoder Training (w/data download)
 
-- Train autoencoder
+Assuming the current directory is the bundle directory, the following command will train the autoencoder network for 1500 epochs using the BraTS dataset. If the dataset is not downloaded, it will be automatically downloaded and extracted to `./Task01_BrainTumour`.
+
+```
+python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir ./ --download_brats True
+```
+
+#### Execute Autoencoder Training
+If the dataset is already downloaded, make sure that `"dataset_dir"` in `configs/train_autoencoder.json` has the correct path to the dataset `Task01_BrainTumour`. Then, run:
+
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
-Please specify "download_brats" into `True` if the dataset is not downloaded.
-
-- Train latent diffusion model
-```
-python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json']"
-```
-
-It will print out the scale factor of the latent feature space. If your autoencoder is well trained, this value should be close to 1.0.
-
-#### Override the `train` config to execute multi-GPU autoencoder training:
-
-Run with multi-GPU requires the learning rate to be scaled up according to the number of GPUs.
-
-- Train autoencoder
+#### Override the `train` config to execute multi-GPU training for Autoencoder:
+To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
 ```
 
-- Train latent difussion model
+#### Execute Latent Diffusion Model Training
+After training the autoencoder, run the following command to train the latent diffusion model. This command will print out the scale factor of the latent feature space. If your autoencoder is well trained, this value should be close to 1.0.
+
+```
+python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json']"
+```
+
+#### Override the `train` config to execute multi-GPU training for Latent Diffusion Model:
+To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
 ```
 
 #### Execute inference:
-
 The following code generates a synthetic image from a random sampled noise.
 ```
 python -m monai.bundle run --config_file configs/inference.json
@@ -140,7 +143,7 @@ python -m monai.bundle run --config_file configs/inference.json
 
 #### Export checkpoint to TorchScript file:
 
-The autoencoder can be exported into a TorchScript file.
+The Autoencoder can be exported into a TorchScript file.
 
 ```
 python -m monai.bundle ckpt_export autoencoder_def --filepath models/model_autoencoder.ts --ckpt_file models/model_autoencoder.pt --meta_file configs/metadata.json --config_file configs/inference.json
