@@ -24,10 +24,14 @@ The training data is from <https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet
 - Size: 41 image tiles (2009 patches)
 
 The provided labelled data was partitioned, based on the original split, into training (27 tiles) and testing (14 tiles) datasets.
+```commandline
+wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
+unzip consep_dataset.zip
+```
 
 ### Preprocessing
 
-After download the datasets, please run `scripts/prepare_patches.py` to prepare patches from tiles. Prepared patches are saved in `<your concep dataset path>`/Prepared. The implementation is referring to <https://github.com/vqdang/hover_net>. The command is like:
+After download the [datasets](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip), please run `scripts/prepare_patches.py` to prepare patches from tiles. Prepared patches are saved in `<your concep dataset path>`/Prepared. The implementation is referring to <https://github.com/vqdang/hover_net>. The command is like:
 
 ```
 python scripts/prepare_patches.py --root <your concep dataset path>
