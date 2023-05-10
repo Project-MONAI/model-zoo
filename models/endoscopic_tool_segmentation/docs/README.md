@@ -6,10 +6,24 @@ The [PyTorch model](https://drive.google.com/file/d/1I7UtWDKDEcezMqYiA-i_hsRTCrv
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_workflow.png)
 
 ## Pre-trained weights
-A pre-trained encoder weights would benefit the model training. In this bundle, the encoder is trained with pre-trained weights from some internal data. For convenience, we provide two options in `configs/train.json` to enable users to load pre-trained weights:
+A pre-trained encoder weights would benefit the model training. In this bundle, the encoder is trained with pre-trained weights from some internal data. We provide two options to enable users to load pre-trained weights:
 
 1. Via setting the `use_imagenet_pretrain` parameter in the config file to `True`, [ImageNet](https://ieeexplore.ieee.org/document/5206848) pre-trained weights from the [EfficientNet-PyTorch repo](https://github.com/lukemelas/EfficientNet-PyTorch) can be loaded. Please note that these weights are for non-commercial use. Each user is responsible for checking the content of the models/datasets and the applicable licenses and determining if suitable for the intended use.
-2. Via updating the `load_path`  parameter of the `CheckpointLoader` in the config file, weights from a local path can be loaded.
+2. Via adding a `CheckpointLoader` as the first handler to the `handlers` section of the `train.json` config file, weights from a local path can be loaded. Here is an example `CheckpointLoader`:
+
+```json
+{
+    "_target_": "CheckpointLoader",
+    "load_path": "/path/to/local/weight/model.pt",
+    "load_dict": {
+        "model": "@network"
+    },
+    "strict": false,
+    "map_location": "@device"
+}
+```
+
+When executing the training command, if neither adding the `CheckpointLoader` to the `train.json` nor setting the `use_imagenet_pretrain` parameter to `True`, a training process would start from scratch.
 
 ## Data
 Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/).
