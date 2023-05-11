@@ -22,14 +22,14 @@ perceptual_weight = 0.1
 kl_weight = 1e-7
 
 
-def KL_loss(z_mu, z_sigma):
+def compute_kl_loss(z_mu, z_sigma):
     kl_loss = 0.5 * torch.sum(z_mu.pow(2) + z_sigma.pow(2) - torch.log(z_sigma.pow(2)) - 1, dim=[1, 2, 3, 4])
     return torch.sum(kl_loss) / kl_loss.shape[0]
 
 
 def generator_loss(gen_images, real_images, z_mu, z_sigma, disc_net, loss_perceptual):
     recons_loss = intensity_loss(gen_images, real_images)
-    kl_loss = KL_loss(z_mu, z_sigma)
+    kl_loss = compute_kl_loss(z_mu, z_sigma)
     p_loss = loss_perceptual(gen_images.float(), real_images.float())
     loss_g = recons_loss + kl_weight * kl_loss + perceptual_weight * p_loss
 
