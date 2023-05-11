@@ -9,28 +9,25 @@
 # See the License for the specific language governing permissions and
 
 import torch
-from generative.losses import PatchAdversarialLoss, PerceptualLoss
+from generative.losses import PatchAdversarialLoss
 
 intensity_loss = torch.nn.L1Loss()
 adv_loss = PatchAdversarialLoss(criterion="least_squares")
-loss_perceptual = PerceptualLoss(spatial_dims=3, network_type="squeeze", is_fake_3d=True, fake_3d_ratio=0.2)
 
-adv_weight = 0.01
-perceptual_weight = 0.01
+adv_weight = 0.1
+perceptual_weight = 0.1
 # kl_weight: important hyper-parameter.
 #     If too large, decoder cannot recon good results from latent space.
 #     If too small, latent space will not be regularized enough for the diffusion model
 kl_weight = 1e-7
 
-
-def compute_kl_loss(z_mu, z_sigma):
+def KL_loss(z_mu, z_sigma):
     kl_loss = 0.5 * torch.sum(z_mu.pow(2) + z_sigma.pow(2) - torch.log(z_sigma.pow(2)) - 1, dim=[1, 2, 3, 4])
     return torch.sum(kl_loss) / kl_loss.shape[0]
 
-
-def generator_loss(gen_images, real_images, z_mu, z_sigma, disc_net, loss_perceptual=loss_perceptual):
+def generator_loss(gen_images, real_images, z_mu, z_sigma, disc_net, loss_perceptual):
     recons_loss = intensity_loss(gen_images, real_images)
-    kl_loss = compute_kl_loss(z_mu, z_sigma)
+    kl_loss = KL_loss(z_mu, z_sigma)
     p_loss = loss_perceptual(gen_images.float(), real_images.float())
     loss_g = recons_loss + kl_weight * kl_loss + perceptual_weight * p_loss
 

@@ -8,7 +8,8 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_dir": "$@bundle_root + '/models'",
     "tf_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "$@bundle_root",
+    "dataset_dir": "@bundle_root",
+    "perceptual_loss_pretrained_path": "$@bundle_root +'/nv_resnet50.pth.tar'",
     "download_brats": false,
     "train_batch_size": 2,
     "lr": 1e-05,
@@ -60,9 +61,11 @@
     "perceptual_loss_def": {
         "_target_": "generative.losses.PerceptualLoss",
         "spatial_dims": "@spatial_dims",
-        "network_type": "squeeze",
+        "network_type": "resnet50",
         "is_fake_3d": true,
-        "fake_3d_ratio": 0.2
+        "fake_3d_ratio": 0.2,
+        "pretrained_path": "@perceptual_loss_pretrained_path",
+        "pretrained_state_dict_key": "state_dict"
     },
     "dnetwork": "$@discriminator_def.to(@device)",
     "gnetwork": "$@autoencoder_def.to(@device)",
