@@ -42,6 +42,9 @@ The dataset can be downloaded automatically at the beginning of training.
 ## Training Configuration
 If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `train_batch_size` parameter in the [configs/train_autoencoder.json](configs/train_autoencoder.json) and [configs/train_diffusion.json](configs/train_diffusion.json) configuration files.
 
+In this bundle, the autoencoder uses perceptual loss, which is based on a model with pre-trained weights from some internal data. This model is frozen and will not be trained in the bundle. 
+The path of the model is specified in `perceptual_loss_model_weights_path` parameter in the [configs/train_autoencoder.json](configs/train_autoencoder.json). The [MONAI Generative Model repo](https://github.com/Project-MONAI/GenerativeModels/blob/fd04ec6f98a1aec7b6886dff1cfb4d0fa72fe4fe/generative/losses/perceptual.py#L64-L69) and [torchvison](https://pytorch.org/vision/stable/_modules/torchvision/models/resnet.html#ResNet50_Weights) also provide pre-trained weights but may be for non-commercial use only. Each user is responsible for checking the data source of the pre-trained models, the applicable licenses, and determining if suitable for the intended use.
+
 ### Training Configuration of Autoencoder
 The autoencoder was trained using the following configuration:
 
