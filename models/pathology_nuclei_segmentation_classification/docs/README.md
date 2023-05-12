@@ -98,15 +98,16 @@ In addition to the Pythonic APIs, a few command line interfaces (CLI) are provid
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
 #### Execute training, the evaluation in the training were evaluated on patches:
+The default dataset path is defined as "/workspace/Data/Pathology/CoNSeP/Prepared/" in "configs/train.json", please modify it to the actual path via modifying `dataset_dir`:
 
 - Run first stage
 ```
-python -m monai.bundle run --config_file configs/train.json --stage 0
+python -m monai.bundle run --config_file configs/train.json --stage 0 --dataset_dir <actual dataset path>
 ```
 
 - Run second stage
 ```
-python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --stage 1
+python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --stage 1 --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute multi-GPU training:
