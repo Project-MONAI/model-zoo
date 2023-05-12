@@ -107,6 +107,12 @@ torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file confi
 python -m monai.bundle run --config_file configs/train.yaml
 ```
 
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.yaml --dataset_dir <actual dataset path>
+```
+
 #### Override the `train` config to execute multi-GPU training:
 
 ```

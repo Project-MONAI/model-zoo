@@ -136,6 +136,12 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 python -m monai.bundle run --config_file configs/train.json
 ```
 
+The default dataset path is defined as "/workspace/data/CoNSePNuclei" in "configs/train.json", please modify it to the actual path via modifying `dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
+```
+
 #### Override the `train` config to execute multi-GPU training:
 
 ```
