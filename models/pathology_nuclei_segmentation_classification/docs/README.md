@@ -25,6 +25,7 @@ The training data is from <https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet
 
 The provided labelled data was partitioned, based on the original split, into training (27 tiles) and testing (14 tiles) datasets.
 
+You can download the dataset by using this command:
 ```
 wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
 unzip consep_dataset.zip
