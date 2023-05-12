@@ -103,7 +103,9 @@ In addition to the Pythonic APIs, a few command line interfaces (CLI) are provid
 
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-#### Execute Autoencoder Training (w/data download)
+### Execute Autoencoder Training
+
+#### Execute Autoencoder Training (w/data download, single GPU)
 
 Assuming the current directory is the bundle directory, the following command will train the autoencoder network for 1500 epochs using the BraTS dataset. If the dataset is not downloaded, it will be automatically downloaded and extracted to `./Task01_BrainTumour`.
 
@@ -111,7 +113,7 @@ Assuming the current directory is the bundle directory, the following command wi
 python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir ./ --download_brats True
 ```
 
-#### Execute Autoencoder Training
+#### Execute Autoencoder Training (wo/data download, single GPU)
 If the dataset is already downloaded, make sure that `"dataset_dir"` in `configs/train_autoencoder.json` has the correct path to the dataset `Task01_BrainTumour`. Then, run:
 
 ```
@@ -125,7 +127,16 @@ To train with multiple GPUs, use the following command, which requires scaling u
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
 ```
 
-#### Execute Latent Diffusion Model Training
+#### Check the Autoencoder Training result
+The following code generates a reconstructed image from a random input image.
+We can visualize it to see if the autoencoder is trained correctly.
+```
+python -m monai.bundle run --config_file configs/inference_autoencoder.json
+```
+
+### Execute Latent Diffusion Training
+
+#### Execute Latent Diffusion Model Training (single GPU)
 After training the autoencoder, run the following command to train the latent diffusion model. This command will print out the scale factor of the latent feature space. If your autoencoder is well trained, this value should be close to 1.0.
 
 ```
