@@ -97,8 +97,8 @@ In addition to the Pythonic APIs, a few command line interfaces (CLI) are provid
 
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-#### Execute training, the evaluation in the training were evaluated on patches:
-The default dataset path is defined as "/workspace/Data/Pathology/CoNSeP/Prepared/" in "configs/train.json", please modify it to the actual path via modifying `dataset_dir`:
+#### Execute training, the evaluation during the training were evaluated on patches:
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
 
 - Run first stage
 ```
