@@ -8,7 +8,8 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_dir": "$@bundle_root + '/models'",
     "tf_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "./",
+    "dataset_dir": "@bundle_root",
+    "perceptual_loss_model_weights_path": "$@bundle_root +'/nv_resnet50.pth.tar'",
     "download_brats": false,
     "train_batch_size_img": 1,
     "train_batch_size_slice": 26,
@@ -55,7 +56,9 @@
     "perceptual_loss_def": {
         "_target_": "generative.losses.PerceptualLoss",
         "spatial_dims": "@spatial_dims",
-        "network_type": "squeeze"
+        "network_type": "resnet50",
+        "pretrained_path": "@perceptual_loss_model_weights_path",
+        "pretrained_state_dict_key": "state_dict"
     },
     "dnetwork": "$@discriminator_def.to(@device)",
     "gnetwork": "$@autoencoder_def.to(@device)",
@@ -116,11 +119,7 @@
             {
                 "_target_": "DivisiblePadd",
                 "keys": "image",
-                "k": [
-                    4,
-                    4,
-                    1
-                ]
+                "k": [4,4,1]
             },
             {
                 "_target_": "RandSpatialCropSamplesd",
@@ -133,6 +132,22 @@
                 "_target_": "SqueezeDimd",
                 "keys": "image",
                 "dim": 3
+            },
+            {
+                "_target_": "RandFlipd",
+                "keys": [
+                    "image"
+                ],
+                "prob": 0.5,
+                "spatial_axis": 0
+            },
+            {
+                "_target_": "RandFlipd",
+                "keys": [
+                    "image"
+                ],
+                "prob": 0.5,
+                "spatial_axis": 1
             }
         ],
         "preprocessing": {

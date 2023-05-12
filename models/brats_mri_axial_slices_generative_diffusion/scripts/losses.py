@@ -13,7 +13,6 @@ from generative.losses import PatchAdversarialLoss, PerceptualLoss
 
 intensity_loss = torch.nn.L1Loss()
 adv_loss = PatchAdversarialLoss(criterion="least_squares")
-loss_perceptual = PerceptualLoss(spatial_dims=2, network_type="squeeze")
 
 adv_weight = 0.5
 perceptual_weight = 1.0
@@ -30,7 +29,7 @@ def compute_kl_loss(z_mu, z_sigma):
     return torch.sum(kl_loss) / kl_loss.shape[0]
 
 
-def generator_loss(gen_images, real_images, z_mu, z_sigma, disc_net, loss_perceptual=loss_perceptual):
+def generator_loss(gen_images, real_images, z_mu, z_sigma, disc_net, loss_perceptual):
     recons_loss = intensity_loss(gen_images, real_images)
     kl_loss = compute_kl_loss(z_mu, z_sigma)
     p_loss = loss_perceptual(gen_images.float(), real_images.float())
