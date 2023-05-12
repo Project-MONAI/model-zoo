@@ -126,7 +126,7 @@ python -m monai.bundle run --config_file configs/train_autoencoder.json
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 9 hours to complete when using 8 GPUs, each with 32G of memory.
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 2e-4
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 4e-4
 ```
 
 #### Execute Latent Diffusion Model Training
@@ -139,7 +139,7 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 #### Override the `train` config to execute multi-GPU training for Latent Diffusion Model:
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 5 hours to complete when using 8 GPUs, each with 32G of memory.
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 2e-4
 ```
 
 
