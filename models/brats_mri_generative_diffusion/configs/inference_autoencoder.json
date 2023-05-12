@@ -10,7 +10,8 @@
     "output_dir": "$@bundle_root + '/output'",
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "output_postfix": "",
+    "output_orig_postfix": "recon",
+    "output_recon_postfix": "orig",
     "channel": 0,
     "spacing": [
         1.1,
@@ -122,15 +123,27 @@
         "shuffle": true,
         "num_workers": 0
     },
-    "saver": {
+    "saver_orig": {
         "_target_": "SaveImage",
         "_requires_": "@create_output_dir",
         "output_dir": "@output_dir",
-        "output_postfix": "@output_postfix"
+        "output_postfix": "@output_orig_postfix",
+        "resample": false,
+        "padding_mode": "zeros"
+    },
+    "saver_recon": {
+        "_target_": "SaveImage",
+        "_requires_": "@create_output_dir",
+        "output_dir": "@output_dir",
+        "output_postfix": "@output_recon_postfix",
+        "resample": false,
+        "padding_mode": "zeros"
     },
     "input_img": "$monai.utils.first(@dataloader)['image'].to(@device)",
     "recon_img": "$@autoencoder(@input_img)[0][0]",
     "run": [
-        "$@saver(@recon_img)"
+        "$@load_autoencoder",
+        "$@saver_orig(@input_img[0][0])",
+        "$@saver_recon(@recon_img)"
     ]
 }

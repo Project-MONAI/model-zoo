@@ -133,7 +133,7 @@
         "trainer": {
             "_target_": "scripts.ldm_trainer.LDMTrainer",
             "device": "@device",
-            "max_epochs": 10000,
+            "max_epochs": 5000,
             "train_data_loader": "@train#dataloader",
             "network": "@diffusion",
             "autoencoder_model": "@autoencoder",
