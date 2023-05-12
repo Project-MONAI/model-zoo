@@ -150,7 +150,7 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 python -m monai.bundle run --config_file configs/train.json
 ```
 
-The default dataset path is defined as "/workspace/data/CoNSePNuclei" in "configs/train.json", please modify it to the actual path via modifying `dataset_dir`:
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
 
 ```
 python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
