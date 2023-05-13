@@ -50,7 +50,7 @@ def main():
         seed=0,
     )
     val_ds = DecathlonDataset(
-        root_dir=args.data_base_dir,
+        root_dir=args.dataset_dir,
         task="Task01_BrainTumour",
         section="validation",  # validation
         cache_rate=0.0,  # you may need a few Gb of RAM... Set to 0 otherwise
