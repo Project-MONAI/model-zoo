@@ -31,7 +31,7 @@ Datasets used in this work were provided by [Activ Surgical](https://www.activsu
 Since datasets are private, existing public datasets like [EndoVis 2017](https://endovissub2017-roboticinstrumentsegmentation.grand-challenge.org/Data/) can be used to train a similar model.
 
 ### Preprocessing
-When using EndoVis or any other dataset, it should be divided into "train", "valid" and "test" folders. Samples in each folder would better be images and converted to jpg format. Otherwise, "images", "labels", "val_images" and "val_labels" parameters in `configs/train.json` and "datalist" in `configs/inference.json` should be modified to fit given dataset. After that, "dataset_dir" parameter in `configs/train.json` and `configs/inference.json` should be changed to root folder which contains previous "train", "valid" and "test" folders.
+When using EndoVis or any other dataset, it should be divided into "train", "valid" and "test" folders. Samples in each folder would better be images and converted to jpg format. Otherwise, "images", "labels", "val_images" and "val_labels" parameters in `configs/train.json` and "datalist" in `configs/inference.json` should be modified to fit given dataset. After that, "dataset_dir" parameter in `configs/train.json` and `configs/inference.json` should be changed to root folder which contains "train", "valid" and "test" folders.
 
 Please notice that loading data operation in this bundle is adaptive. If images and labels are not in the same format, it may lead to a mismatching problem. For example, if images are in jpg format and labels are in npy format, PIL and Numpy readers will be used separately to load images and labels. Since these two readers have their own way to parse file's shape, loaded labels will be transpose of the correct ones and incur a missmatching problem.
 
@@ -45,7 +45,7 @@ The training as performed with the following:
 
 ### Memory Consumption Warning
 
-If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
 
 ### Input
 A three channel video frame
@@ -98,6 +98,12 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 
 ```
 python -m monai.bundle run --config_file configs/train.json
+```
+
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute multi-GPU training:

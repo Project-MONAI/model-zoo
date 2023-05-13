@@ -28,7 +28,10 @@
         "$import torch.distributed as dist",
         "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
         "$torch.cuda.set_device(@device)",
-        "$monai.utils.set_determinism(seed=123)"
+        "$monai.utils.set_determinism(seed=123)",
+        "$import logging",
+        "$@train#trainer.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)",
+        "$@validate#evaluator.logger.setLevel(logging.WARNING if dist.get_rank() > 0 else logging.INFO)"
     ],
     "run": [
         "$@train#trainer.run()"
