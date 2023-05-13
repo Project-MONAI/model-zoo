@@ -1046,5 +1046,9 @@
     "pancreas_ct_dints_segmentation_v0.4.0": {
         "checksum": "6cbfc9e6ab478fc97cfff9516c0834f2fc96146b",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.4.0.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.2.0": {
+        "checksum": "338e605a8ead64611aa40f10e7022ba9d631f89e",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.2.0.zip"
     }
 }
