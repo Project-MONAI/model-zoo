@@ -116,7 +116,7 @@ If the dataset is already downloaded, make sure that `"dataset_dir"` in `configs
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
-#### Override the `train` config to execute multi-GPU training for Autoencoder:
+#### Override the `train` config to execute multi-GPU training for Autoencoder
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
@@ -137,27 +137,27 @@ An example of reconstructed image from inference is shown below. If the autoenco
 
 ### Execute Latent Diffusion Training
 
-#### Execute Latent Diffusion Model Training (single GPU)
+#### Execute Latent Diffusion Model Training on single GPU
 After training the autoencoder, run the following command to train the latent diffusion model. This command will print out the scale factor of the latent feature space. If your autoencoder is well trained, this value should be close to 1.0.
 
 ```
 python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json']"
 ```
 
-#### Override the `train` config to execute multi-GPU training for Latent Diffusion Model:
+#### Override the `train` config to execute multi-GPU training for Latent Diffusion Model
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
 ```
 
-#### Execute inference:
+#### Execute inference
 The following code generates a synthetic image from a random sampled noise.
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
 
-#### Export checkpoint to TorchScript file:
+#### Export checkpoint to TorchScript file
 
 The Autoencoder can be exported into a TorchScript file.
 
