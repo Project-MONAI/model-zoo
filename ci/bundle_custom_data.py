@@ -27,6 +27,19 @@ exclude_verify_torchscript_list = [
     "renalStructures_UNEST_segmentation",
     "wholeBrainSeg_Large_UNEST_segmentation",
     "breast_density_classification",
-    "pathology_tumor_detection",
     "mednist_reg",
+]
+
+# This list is used for our CI tests to determine whether a bundle supports TensorRT export. Related
+# test will be employed for bundles in the list.
+include_verify_tensorrt_list = ["spleen_ct_segmentation", "endoscopic_tool_segmentation", "pathology_tumor_detection"]
+
+# This list is used for our CI tests to determine whether a bundle supports ONNX-TensorRT export. Related
+# test will be employed for bundles in the list.
+include_verify_onnx_tensorrt_list = [
+    "brats_mri_segmentation",
+    "endoscopic_inbody_classification",
+    "spleen_deepedit_annotation",
+    "spleen_ct_segmentation",
+    "lung_nodule_ct_detection",
 ]

@@ -1,7 +1,19 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.1",
+    "version": "0.5.3",
     "changelog": {
+        "0.5.3": "remove error dollar symbol in readme",
+        "0.5.2": "remove the CheckpointLoader from the train.json",
+        "0.5.1": "add RAM warning",
+        "0.5.0": "update TensorRT descriptions",
+        "0.4.9": "update the model weights",
+        "0.4.8": "update the TensorRT part in the README file",
+        "0.4.7": "fix mgpu finalize issue",
+        "0.4.6": "enable deterministic training",
+        "0.4.5": "add the command of executing inference with TensorRT models",
+        "0.4.4": "adapt to BundleWorkflow interface",
+        "0.4.3": "update this bundle to support TensorRT convert",
+        "0.4.2": "support monai 1.2 new FlexibleUNet",
         "0.4.1": "add name tag",
         "0.4.0": "add support for multi-GPU training and evaluation",
         "0.3.2": "restructure readme to match updated template",
@@ -12,9 +24,9 @@
         "0.1.0": "complete the first version model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.0.1",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.22.4",
+    "monai_version": "1.2.0rc6",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
@@ -30,7 +42,7 @@
     "label_classes": "single channel data, 1/255 is tool, 0 is background",
     "pred_classes": "2 channels OneHot data, channel 1 is tool, channel 0 is background",
     "eval_metrics": {
-        "mean_iou": 0.87
+        "mean_iou": 0.86
     },
     "references": [
         "Tan, M. and Le, Q. V. Efficientnet: Rethinking model scaling for convolutional neural networks. ICML, 2019a. https://arxiv.org/pdf/1905.11946.pdf",

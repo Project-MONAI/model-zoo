@@ -4,7 +4,7 @@
         "$import os",
         "$import ignite"
     ],
-    "bundle_root": "/workspace/tutorials/deepedit/deepedit_bundle",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/Datasets/MSD_datasets/Task09_Spleen",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
@@ -176,8 +176,10 @@
         "val_handlers": "@handlers",
         "amp": true
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

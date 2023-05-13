@@ -1,7 +1,15 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.7",
+    "version": "0.4.5",
     "changelog": {
+        "0.4.5": "remove error dollar symbol in readme",
+        "0.4.4": "add RAM comsumption with Cachedataset",
+        "0.4.3": "update ONNX-TensorRT descriptions",
+        "0.4.2": "deterministic retrain benchmark, update fig links",
+        "0.4.1": "add the ONNX-TensorRT way of model conversion",
+        "0.4.0": "fix mgpu finalize issue",
+        "0.3.9": "enable deterministic training",
+        "0.3.8": "adapt to BundleWorkflow interface",
         "0.3.7": "add name tag",
         "0.3.6": "restructure readme to match updated template",
         "0.3.5": "update metric in metadata",
@@ -14,9 +22,9 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.0.1",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.21.2",
+    "monai_version": "1.2.0rc5",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9",
@@ -33,7 +41,7 @@
     "label_classes": "single channel data, 1 is spleen, 0 is background",
     "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.9
+        "mean_dice": 0.97
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

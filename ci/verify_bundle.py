@@ -269,8 +269,8 @@ def verify_data_shape(bundle_path: str, net_id: str, config_file: str):
 
 def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     """
-    This function is used to verify if the checkpoint is able to torchscript, and
-    if "models/model.ts" is provided, it will be checked if is able to be loaded
+    This function is used to verify if the checkpoint is able to export into torchscript model, and
+    if "models/model.ts" is provided, it will be checked if it is able to be loaded
     successfully.
 
     """
@@ -286,7 +286,7 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
 
     ts_model_path = os.path.join(bundle_path, "models/model.ts")
     if os.path.exists(ts_model_path):
-        _ = torch.jit.load(ts_model_path)
+        torch.jit.load(ts_model_path)
         print("Provided TorchScript module is verified correctly.")
 
 

@@ -4,7 +4,7 @@
         "$import os",
         "$import torch"
     ],
-    "bundle_root": "/workspace/bundle/endoscopic_inbody_classification",
+    "bundle_root": ".",
     "dataset_dir": "/workspace/data/endoscopic_inbody_classification",
     "test_json": "$@bundle_root+'/label/test_samples.json'",
     "test_fp": "$open(@test_json,'r', encoding='utf8')",
@@ -105,8 +105,10 @@
         "postprocessing": "@postprocessing",
         "val_handlers": "@handlers"
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

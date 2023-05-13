@@ -1,11 +1,10 @@
-# Description
+# Model Overview
 A pre-trained model for segmenting nuclei cells with user clicks/interactions.
 
 ![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/11.gif)
 ![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/33.gif)
 ![nuclick](https://github.com/mostafajahanifar/nuclick_torch/raw/master/docs/22.gif)
 
-# Model Overview
 This model is trained using [BasicUNet](https://docs.monai.io/en/latest/networks.html#basicunet) over [ConSeP](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet) dataset.
 
 ## Data
@@ -14,18 +13,7 @@ The training dataset is from https://warwick.ac.uk/fac/cross_fac/tia/data/hovern
 wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
 unzip -q consep_dataset.zip
 ```
-![](images/dataset.jpeg)<br/>
-
-## Training configuration
-The training was performed with the following:
-
-- GPU: at least 12GB of GPU memory
-- Actual Model Input: 5 x 128 x 128
-- AMP: True
-- Optimizer: Adam
-- Learning Rate: 1e-4
-- Loss: DiceLoss
-
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_dataset.jpeg)<br/>
 
 ### Preprocessing
 After [downloading this dataset](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip),
@@ -51,8 +39,8 @@ As part of pre-processing, the following steps are executed.
 
  - Crop and Extract each nuclei Image + Label (128x128) based on the centroid given in the dataset.
  - Combine classes 3 & 4 into the epithelial class and 5,6 & 7 into the spindle-shaped class.
- - Update the label index for the target nuclie based on the class value
- - Other cells which are part of the patch are modified to have label idex = 255
+ - Update the label index for the target nuclei based on the class value
+ - Other cells which are part of the patch are modified to have label idx = 255
 
 Example dataset.json
 ```json
@@ -84,74 +72,101 @@ Example dataset.json
 }
 ```
 
+## Training Configuration
+The training was performed with the following:
 
-## Input and output formats
-### Input: 5 channels
+- GPU: at least 12GB of GPU memory
+- Actual Model Input: 5 x 128 x 128
+- AMP: True
+- Optimizer: Adam
+- Learning Rate: 1e-4
+- Loss: DiceLoss
+
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 13,136 PNG images
+- Cache Rate: 1.0
+- Single GPU - System RAM Usage: 4.7G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
+
+## Input
+5 channels
 - 3 RGB channels
 - +ve signal channel (this nuclei)
 - -ve signal channel (other nuclei)
 
-### Output: 2 channels
+## Output
+2 channels
  - 0 = Background
  - 1 = Nuclei
 
-![](images/train_in_out.jpeg)
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_in_out.jpeg)
 
-## Scores
+
+## Performance
 This model achieves the following Dice score on the validation data provided as part of the dataset:
 
 - Train Dice score = 0.89
 - Validation Dice score = 0.85
 
 
-## Training Performance
+#### Training Loss and Dice
 A graph showing the training Loss and Dice over 50 epochs.
 
-![](images/train_loss.jpeg) <br>
-![](images/train_dice.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_loss_v2.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_train_dice_v2.png) <br>
 
-## Validation Performance
+#### Validation Dice
 A graph showing the validation mean Dice over 50 epochs.
 
-![](images/val_dice.jpeg) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_pathology_nuclick_annotation_val_dice_v2.png) <br>
 
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-## commands example
-Execute training:
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-```
-python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
-```
-
-Override the `train` config to execute multi-GPU training:
+#### Execute training:
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.json
 ```
 
-Please note that the distributed training related options depend on the actual running environment, thus you may need to remove `--standalone`, modify `--nnodes` or do some other necessary changes according to the machine you used.
-Please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) for more details.
-
-Override the `train` config to execute evaluation with the trained model:
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
 ```
 
-Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
+#### Override the `train` config to execute multi-GPU training:
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']" --logging_file configs/logging.conf
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
 ```
 
-Execute inference:
+Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
+
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
+python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
-# Disclaimer
-This is an example, not to be used for diagnostic purposes.
+#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
+
+```
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']"
+```
+
+#### Execute inference:
+
+```
+python -m monai.bundle run --config_file configs/inference.json
+```
 
 # References
 [1] Koohbanani, Navid Alemi, et al. "NuClick: a deep learning framework for interactive segmentation of microscopic images." Medical Image Analysis 65 (2020): 101771. https://arxiv.org/abs/2005.14511.

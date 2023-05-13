@@ -32,7 +32,7 @@
         "model_name": "resnet18",
         "num_classes": 1,
         "use_conv": true,
-        "pretrained": true
+        "pretrained": false
     },
     "network": "$@network_def.to(@device)",
     "loss": {
@@ -371,9 +371,10 @@
             "amp": true
         }
     },
-    "training": [
-        "$monai.utils.set_determinism(seed=15)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=15)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }
