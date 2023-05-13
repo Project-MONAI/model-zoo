@@ -24,7 +24,21 @@ The training set is the 104 whole-body structures from the TotalSegmentator rele
 
 ### Preprocessing
 
-To use the bundle, users need to download the data and merge all annotated labels into one NIFTI file. Each file contains 0-104 values, each value represents one anatomy class. A sample set is provided with this [link](https://drive.google.com/file/d/1DtDmERVMjks1HooUhggOKAuDm0YIEunG/view?usp=share_link).
+To use the bundle, users need to download the data and merge all annotated labels into one NIFTI file. Each file contains 0-104 values, each value represents one anatomy class. We provide sample datasets and step-by-step instructions on how to get prepared:
+
+Instruction on how to start with the prepared sample dataset:
+
+1. Download the sample set with this [link](https://drive.google.com/file/d/1DtDmERVMjks1HooUhggOKAuDm0YIEunG/view?usp=share_link).
+2. Unzip the dataset into a workspace folder. 
+3. There will be three sub-folders, each with several preprocessed CT volumes:
+      - imagesTr: 20 samples of training scans and validation scans.
+      - labelsTr: 20 samples of pre-processed label files.
+      - imagesTs: 5 samples of sample testing scans.
+4. Usage: users can add `--dataset_dir <totalSegmentator_mergedLabel_samples>` to the bundle run command to specify the data path.
+
+Instruction on how to merge labels with the raw dataset:
+
+- There are 104 binary masks associated with each CT scan, each mask corresponds to anatomy. These pixel-level labels are class-exclusive, users can assign each anatomy a class number then merge to a single NIFTI file as the ground truth label file. The order of anatomies can be found [here](https://github.com/Project-MONAI/model-zoo/blob/dev/models/wholeBody_ct_segmentation/configs/metadata.json).
 
 ## Training Configuration
 
@@ -38,6 +52,21 @@ The training was performed with the following:
 - Optimizer: AdamW
 - Learning Rate: 1e-4
 - Loss: DiceCELoss
+
+## Evaluation Configuration
+
+The model predicts 105 channels output at the same time using softmax and argmax. It requires higher GPU memory when calculating
+ metrics between predicted masked and ground truth. The consumption of hardware requirements, such as GPU memory is dependent on the input CT volume size.
+
+The recommended evaluation configuration and the metrics were acquired with the following hardware:
+
+- GPU: equal to or larger than 48 GB of GPU memory
+- Model: high resolution model pre-trained at a slice thickness of 1.5 mm.
+
+Note: there are two pre-trained models provided. The default is the high resolution model, evaluation pipeline at slice thickness of **1.5mm**,
+users can use the lower resolution model if out of memory (OOM) occurs, which the model is pre-trained with CT scans at a slice thickness of **3.0mm**.
+
+Users can also use the inference pipeline for predicted masks, we provide detailed GPU memory consumption in the following sections.
 
 ### Memory Consumption
 
