@@ -132,7 +132,7 @@ python -m monai.bundle run --config_file configs/inference_autoencoder.json
 
 An example of reconstructed image from inference is shown below. If the autoencoder is trained correctly, the reconstructed image should look similar to original image.
 
-![Example reconstructed image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_recon_example.png)
+![Example reconstructed image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_recon_example.jpg)
 
 
 ### Execute Latent Diffusion Training
