@@ -29,7 +29,7 @@ To use the bundle, users need to download the data and merge all annotated label
 Instruction on how to start with the prepared sample dataset:
 
 1. Download the sample set with this [link](https://drive.google.com/file/d/1DtDmERVMjks1HooUhggOKAuDm0YIEunG/view?usp=share_link).
-2. Unzip the dataset into a workspace folder. 
+2. Unzip the dataset into a workspace folder.
 3. There will be three sub-folders, each with several preprocessed CT volumes:
       - imagesTr: 20 samples of training scans and validation scans.
       - labelsTr: 20 samples of pre-processed label files.
