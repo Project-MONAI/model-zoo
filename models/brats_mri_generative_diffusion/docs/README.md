@@ -37,7 +37,11 @@ The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medical
 - Modality: MRI
 - Size: 388 3D volumes (1 channel used)
 
-The dataset can be downloaded automatically at the beginning of training.
+The data can be automatically downloaded from [Medical Decathlon](http://medicaldecathlon.com/). By running the following command, the Brats data will be downloaded from [Medical Decathlon](http://medicaldecathlon.com/) and extracted to `$dataset_dir` in [./config/train_autoencoder.json](./config/train_autoencoder.json). You will see a subfolder `Task01_BrainTumour` under `$dataset_dir`. By default, you will see `./Task01_BrainTumour`.
+
+```bash
+python ./scripts/download_brats_data.py -e ./config/train_autoencoder.json
+```
 
 ## Training Configuration
 If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `train_batch_size` parameter in the [configs/train_autoencoder.json](configs/train_autoencoder.json) and [configs/train_diffusion.json](configs/train_diffusion.json) configuration files.
@@ -105,15 +109,7 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 
 ### Execute Autoencoder Training
 
-#### Execute Autoencoder Training (w/data download, single GPU)
-
-Assuming the current directory is the bundle directory, the following command will train the autoencoder network for 1500 epochs using the BraTS dataset. If the dataset is not downloaded, it will be automatically downloaded and extracted to `./Task01_BrainTumour`.
-
-```
-python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir ./ --download_brats True
-```
-
-#### Execute Autoencoder Training (wo/data download, single GPU)
+#### Execute Autoencoder Training on single GPU
 If the dataset is already downloaded, make sure that `"dataset_dir"` in `configs/train_autoencoder.json` has the correct path to the dataset `Task01_BrainTumour`. Then, run:
 
 ```

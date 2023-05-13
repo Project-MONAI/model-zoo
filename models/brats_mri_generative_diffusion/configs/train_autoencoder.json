@@ -10,7 +10,6 @@
     "tf_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "@bundle_root",
     "perceptual_loss_model_weights_path": "$@bundle_root +'/nv_resnet50.pth.tar'",
-    "download_brats": false,
     "train_batch_size": 2,
     "lr": 1e-05,
     "train_patch_size": [
