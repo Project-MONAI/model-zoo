@@ -120,7 +120,7 @@ If the dataset is already downloaded, make sure that `"dataset_dir"` in `configs
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
-#### Override the `train` config to execute multi-GPU training for Autoencoder:
+#### Override the `train` config to execute multi-GPU training for Autoencoder
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 9 hours to complete when using 8 GPUs, each with 32G of memory.
 
 ```
@@ -147,12 +147,12 @@ After training the autoencoder, run the following command to train the latent di
 python -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json']"
 ```
 
-#### Override the `train` config to execute multi-GPU training for Latent Diffusion Model:
+#### Override the `train` config to execute multi-GPU training for Latent Diffusion Model
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 5 hours to complete when using 8 GPUs, each with 32G of memory.
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 2e-4
 ```
-#### Execute inference:
+### Execute inference
 The following code generates a synthetic image from a random sampled noise.
 ```
 python -m monai.bundle run --config_file configs/inference.json
