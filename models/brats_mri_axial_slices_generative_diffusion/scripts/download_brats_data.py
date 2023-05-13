@@ -14,9 +14,9 @@ import json
 import logging
 import sys
 
+from monai.apps import DecathlonDataset
 from monai.config import print_config
 from monai.utils import set_determinism
-from monai.apps import DecathlonDataset
 
 
 def main():
