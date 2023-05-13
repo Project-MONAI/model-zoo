@@ -33,7 +33,7 @@ Alternatively, we provide [resampled nifti images](https://drive.google.com/driv
 ## Training configuration
 The training was performed with the following:
 
-- GPU: at least 16GB GPU memory
+- GPU: at least 16GB GPU memory, requires 24G when exporting TRT model
 - Actual Model Input: 192 x 192 x 80
 - AMP: True
 - Optimizer: Adam
