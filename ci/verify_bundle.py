@@ -11,7 +11,6 @@
 
 import argparse
 import os
-import subprocess
 import sys
 from typing import List
 
@@ -20,7 +19,6 @@ from bundle_custom_data import (
     exclude_verify_preferred_files_list,
     exclude_verify_shape_list,
     exclude_verify_torchscript_list,
-    install_dependency_dict,
 )
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
@@ -310,12 +308,6 @@ def verify_torchscript(
 
 def verify(bundle, models_path="models", mode="full"):
     print(f"start verifying {bundle}:")
-    # install extra dependencies if needed
-    if bundle in install_dependency_dict.keys():
-        script_path = install_dependency_dict[bundle]
-        install_cmd = f"bash {script_path}"
-        call_status = subprocess.run(install_cmd, shell=True)
-        call_status.check_returncode()
     # add bundle path to ensure custom code can be used
     sys.path = [os.path.join(models_path, bundle)] + sys.path
     # verify bundle directory
