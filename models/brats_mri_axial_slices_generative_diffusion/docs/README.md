@@ -51,7 +51,7 @@ python ./scripts/download_brats_data.py -e ./config/train_autoencoder.json
 If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `"train_batch_size_img"` and `"train_batch_size_slice"` parameters in the `configs/train_autoencoder.json` and `configs/train_diffusion.json` configuration files.
 - `"train_batch_size_img"` is number of 3D volumes loaded in each batch.
 - `"train_batch_size_slice"` is the number of 2D axial slices extracted from each image. The actual batch size is the product of them.
-- `"perceptual_loss_model_weights_path"` is the path to load pretrained weights for perceptual loss. This path MUST be provided to ensure correct training. Users are responsible for downloading and providing the weights.
+- `"perceptual_loss_model_weights_path"` is the path to load pretrained weights for perceptual loss. This path MUST be provided to ensure correct training. Each user is responsible for checking the data source of the pre-trained models, the applicable licenses, and determining if suitable for the intended use.
 
 ### Training Configuration of Autoencoder
 The autoencoder was trained using the following configuration:
