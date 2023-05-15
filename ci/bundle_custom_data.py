@@ -42,7 +42,7 @@ exclude_verify_torchscript_list = [
 # If a bundle has this kind of dependencies, please add the bundle name (key), and the path of the install script (value)
 # into the dict.
 install_dependency_dict = {
-    "brats_mri_generative_diffusion": "ci/install_scripts/install_brats_mri_generative_diffusion_dependency.sh"
+    "brats_mri_generative_diffusion": "ci/install_scripts/install_brats_mri_generative_diffusion_dependency.sh",
     "brats_mri_axial_slices_generative_diffusion": "ci/install_scripts/install_brats_mri_generative_diffusion_dependency.sh"
 }
 
