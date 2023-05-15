@@ -1050,5 +1050,9 @@
     "pathology_nuclei_segmentation_classification_v0.2.0": {
         "checksum": "338e605a8ead64611aa40f10e7022ba9d631f89e",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.2.0.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.8": {
+        "checksum": "48f338dd1640a4fa9b6bc38cfc446a07245f6bf0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.8.zip"
     }
 }
