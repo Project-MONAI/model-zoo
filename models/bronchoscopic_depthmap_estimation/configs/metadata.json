@@ -8,41 +8,31 @@
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
-        "nibabel": "4.0.1"
-    },
-    "name": "Bronchoscopy Depth Map",
+    
+    },    
+    "name": "Bronchoscopy Depth Map Estimation",
     "task": "Depth map generation from bronchoscopic images",
+    "copyright": "CC BY 4.0",
     "description": "A model for generation of depth map images from bronchoscopic images",
     "authors": "Surgical Navigation and Robotics Lab",
-    "data_type": "nibabel",
-    "image_classes": "single channel data, intensity scaled to [0, 1]",
-    "label_classes": "single channel data, 1 is spleen, 0 is everything else",
-    "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
-    "eval_metrics": {
-        "mean_dice": 0.961
-    },
-    "intended_use": "This is an example, not to be used for diagnostic purposes",
-    "references": [
-      
-    ],
+    "image_classes": "single channel data, intensity scaled to [0, 255]",
     "network_data_format": {
         "inputs": {
             "image": {
                 "type": "image",
-                "format": "hounsfield",
-                "modality": "CT",
+                "format": "magnitude",
+                "modality": "regular",
                 "num_channels": 1,
                 "spatial_shape": [
-                    96,
-                    96,
-                    96
+                    200,
+                    200
                 ],
-                "dtype": "float32",
+                "dtype": "int",
                 "value_range": [
                     0,
-                    1
+                    255
                 ],
-                "is_patch_data": true,
+                "is_patch_data": false,
                 "channel_def": {
                     "0": "image"
                 }
@@ -51,22 +41,20 @@
         "outputs": {
             "pred": {
                 "type": "image",
-                "format": "segmentation",
-                "num_channels": 2,
+                "format": "magnitude",
+                "num_channels": 1,
                 "spatial_shape": [
-                    96,
-                    96,
-                    96
+                    200,
+                    200
                 ],
                 "dtype": "float32",
                 "value_range": [
                     0,
                     1
                 ],
-                "is_patch_data": true,
+                "is_patch_data": false,
                 "channel_def": {
-                    "0": "background",
-                    "1": "spleen"
+                    "0": "depth"
                 }
             }
         }
