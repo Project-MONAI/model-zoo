@@ -1058,5 +1058,9 @@
     "wholeBody_ct_segmentation_v0.1.8": {
         "checksum": "6234dab2764025414fb0aaebcf9af518702f6b3c",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBody_ct_segmentation_v0.1.8.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.0": {
+        "checksum": "eab697704e0849825e4d88c49348179b81d2d638",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.0.zip"
     }
 }
