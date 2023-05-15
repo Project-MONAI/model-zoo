@@ -7,8 +7,10 @@ This model is trained on BraTS 2016 and 2017 data from [Medical Decathlon](http:
 
 This model is a generator for creating images like the Flair MRIs based on BraTS 2016 and 2017 data. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 3D latent diffusion model.
 
-In this bundle, the autoencoder uses perceptual loss, which is based on a model with pre-trained weights from some internal data. This model is frozen and will not be trained in the bundle.
-The path of the model is specified in `perceptual_loss_model_weights_path` parameter in the [configs/train_autoencoder.json](../configs/train_autoencoder.json). The [MONAI Generative Model repo](https://github.com/Project-MONAI/GenerativeModels/blob/fd04ec6f98a1aec7b6886dff1cfb4d0fa72fe4fe/generative/losses/perceptual.py#L64-L69) and [torchvision](https://pytorch.org/vision/stable/_modules/torchvision/models/resnet.html#ResNet50_Weights) also provide pre-trained weights but may be for non-commercial use only. Each user is responsible for checking the data source of the pre-trained models, the applicable licenses, and determining if suitable for the intended use.
+In this bundle, the autoencoder uses perceptual loss, which is based on ResNet50 with pre-trained weights. The network is forzen and will not be trained in the bundle. In default, the `pretrained` parameter is specified as `False` in `train_autoencoder.json`. To ensure correct training, changing the default settings is necessary. There are two ways to utilize pretrained weights:
+1. if set `pretrained` to `True`, ImageNet pretrained weights from [torchvision](https://pytorch.org/vision/stable/_modules/torchvision/models/resnet.html#ResNet50_Weights) will be used. However, the weights are for non-commercial use only.
+2. if set `pretrained` to `True` and specifies the `perceptual_loss_model_weights_path` parameter, users are able to load weights from a local path. This is the way this bundle used to train, and the pre-trained weights are from some internal data.
+Please note that each user is responsible for checking the data source of the pre-trained models, the applicable licenses, and determining if suitable for the intended use.
 
 #### Example synthetic image
 An example result from inference is shown below:
@@ -48,9 +50,6 @@ python ./scripts/download_brats_data.py -e ./config/train_autoencoder.json
 
 ## Training Configuration
 If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `train_batch_size` parameter in the [configs/train_autoencoder.json](../configs/train_autoencoder.json) and [configs/train_diffusion.json](../configs/train_diffusion.json) configuration files.
-
-- `"train_batch_size"` is number of 3D volumes loaded in each batch.
-- `"perceptual_loss_model_weights_path"` is the path to load pre-trained weights for perceptual loss. This path MUST be provided to ensure correct training. Each user is responsible for checking the data source of the pre-trained models, the applicable licenses, and determining if suitable for the intended use.
 
 ### Training Configuration of Autoencoder
 The autoencoder was trained using the following configuration:
