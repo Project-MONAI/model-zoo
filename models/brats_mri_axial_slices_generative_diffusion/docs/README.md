@@ -7,8 +7,11 @@ This model is trained on BraTS 2016 and 2017 data from [Medical Decathlon](http:
 
 This model is a generator for creating images like the Flair MRIs based on BraTS 2016 and 2017 data. It was trained as a 2d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 2D latent diffusion model.
 
-In this bundle, the autoencoder uses perceptual loss, which is based on a model with pre-trained weights from some internal data. This model is frozen and will not be trained in the bundle.
-The path of the model is specified in `perceptual_loss_model_weights_path` parameter in the [configs/train_autoencoder.json](../configs/train_autoencoder.json). The [MONAI Generative Model repo](https://github.com/Project-MONAI/GenerativeModels/blob/fd04ec6f98a1aec7b6886dff1cfb4d0fa72fe4fe/generative/losses/perceptual.py#L64-L69) and [torchvison](https://pytorch.org/vision/stable/_modules/torchvision/models/resnet.html#ResNet50_Weights) also provide pre-trained weights but may be for non-commercial use only. Each user is responsible for checking the data source of the pre-trained models, the applicable licenses, and determining if suitable for the intended use.
+In this bundle, the autoencoder uses perceptual loss, which is based on ResNet50 with pre-trained weights (the network is frozen and will not be trained in the bundle). In default, the `pretrained` parameter is specified as `False` in `train_autoencoder.json`. To ensure correct training, changing the default settings is necessary. There are two ways to utilize pretrained weights:
+1. if set `pretrained` to `True`, ImageNet pretrained weights from [torchvision](https://pytorch.org/vision/stable/_modules/torchvision/models/resnet.html#ResNet50_Weights) will be used. However, the weights are for non-commercial use only.
+2. if set `pretrained` to `True` and specifies the `perceptual_loss_model_weights_path` parameter, users are able to load weights from a local path. This is the way this bundle used to train, and the pre-trained weights are from some internal data.
+
+Please note that each user is responsible for checking the data source of the pre-trained models, the applicable licenses, and determining if suitable for the intended use.
 
 #### Example synthetic image
 An example result from inference is shown below:
@@ -33,7 +36,7 @@ cd ..
 ```
 
 ## Data
-The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/).
+The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/). Users can find more details on the dataset (Task01_BrainTumour) at [Medical Decathlon](http://medicaldecathlon.com/).
 
 - Target: Image Generation
 - Task: Synthesis
@@ -41,17 +44,10 @@ The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medical
 - Size: 388 3D MRI volumes (1 channel used)
 - Training data size: 38800 2D MRI axial slices (1 channel used)
 
-The data can be downloaded from [Medical Decathlon](http://medicaldecathlon.com/). By running the following command, the Brats data will be downloaded from [Medical Decathlon](http://medicaldecathlon.com/) and extracted to `$dataset_dir` in [./config/train_autoencoder.json](../config/train_autoencoder.json). You will see a subfolder `Task01_BrainTumour` under `$dataset_dir`. By default, you will see `./Task01_BrainTumour`.
-
-```bash
-python ./scripts/download_brats_data.py -e ./config/train_autoencoder.json
-```
-
 ## Training Configuration
 If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `"train_batch_size_img"` and `"train_batch_size_slice"` parameters in the `configs/train_autoencoder.json` and `configs/train_diffusion.json` configuration files.
 - `"train_batch_size_img"` is number of 3D volumes loaded in each batch.
 - `"train_batch_size_slice"` is the number of 2D axial slices extracted from each image. The actual batch size is the product of them.
-- `"perceptual_loss_model_weights_path"` is the path to load pre-trained weights for perceptual loss. This path MUST be provided to ensure correct training. Each user is responsible for checking the data source of the pre-trained models, the applicable licenses, and determining if suitable for the intended use.
 
 ### Training Configuration of Autoencoder
 The autoencoder was trained using the following configuration:
@@ -94,6 +90,10 @@ The latent diffusion model was trained using the following configuration:
 #### Inference Output
 1 channel denoised latent features
 
+### Memory Consumption Warning
+
+If you face memory issues with data loading, you can lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
+
 ## Performance
 
 Below is an example of the loss values for both the Autoencoder and the Latent Diffusion Model during training:
@@ -115,14 +115,18 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 ### Execute Autoencoder Training
 
 #### Execute Autoencoder Training on single GPU
-If the dataset is already downloaded, make sure that `"dataset_dir"` in `configs/train_autoencoder.json` has the correct path to the dataset `Task01_BrainTumour`. Then, run:
-
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
+Please note that if the default dataset path is not modified with the actual path (it should be the path that contains Task01_BrainTumour) in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir <actual dataset path>
+```
+
 #### Override the `train` config to execute multi-GPU training for Autoencoder
-To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 29 hours to complete when using 8 GPUs, each with 32G of memory.
+To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 4e-4
@@ -149,7 +153,8 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 ```
 
 #### Override the `train` config to execute multi-GPU training for Latent Diffusion Model
-To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 5 hours to complete when using 8 GPUs, each with 32G of memory.
+To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
+
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 4e-4
 ```
@@ -158,7 +163,6 @@ The following code generates a synthetic image from a random sampled noise.
 ```
 python -m monai.bundle run --config_file configs/inference.json
 ```
-The generated image will be saved to `./output`
 
 # License
 Copyright (c) MONAI Consortium
