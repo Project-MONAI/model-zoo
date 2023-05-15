@@ -30,7 +30,7 @@ def normalize_image_to_uint8(image):
     """
     draw_img = image
     if np.amin(draw_img) < 0:
-        draw_img[draw_img<0] = 0
+        draw_img[draw_img < 0] = 0
     if np.amax(draw_img) > 0.1:
         draw_img /= np.amax(draw_img)
     draw_img = (255 * draw_img).astype(np.uint8)
