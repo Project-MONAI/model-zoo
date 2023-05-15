@@ -38,7 +38,7 @@ The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medical
 - Size: 388 3D MRI volumes (1 channel used)
 - Training data size: 38800 2D MRI axial slices (1 channel used)
 
-The data can be automatically downloaded from [Medical Decathlon](http://medicaldecathlon.com/). By running the following command, the Brats data will be downloaded from [Medical Decathlon](http://medicaldecathlon.com/) and extracted to `$dataset_dir` in [./config/train_autoencoder.json](./config/train_autoencoder.json). You will see a subfolder `Task01_BrainTumour` under `$dataset_dir`. By default, you will see `./Task01_BrainTumour`.
+The data can be downloaded from [Medical Decathlon](http://medicaldecathlon.com/). By running the following command, the Brats data will be downloaded from [Medical Decathlon](http://medicaldecathlon.com/) and extracted to `$dataset_dir` in [./config/train_autoencoder.json](./config/train_autoencoder.json). You will see a subfolder `Task01_BrainTumour` under `$dataset_dir`. By default, you will see `./Task01_BrainTumour`.
 
 ```bash
 python ./scripts/download_brats_data.py -e ./config/train_autoencoder.json
@@ -121,7 +121,7 @@ python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
 #### Override the `train` config to execute multi-GPU training for Autoencoder
-To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 9 hours to complete when using 8 GPUs, each with 32G of memory.
+To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 29 hours to complete when using 8 GPUs, each with 32G of memory.
 
 ```
 torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 4e-4
@@ -150,7 +150,7 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 #### Override the `train` config to execute multi-GPU training for Latent Diffusion Model
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs. Keep in mind that this command will take approximately 5 hours to complete when using 8 GPUs, each with 32G of memory.
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 2e-4
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 4e-4
 ```
 ### Execute inference
 The following code generates a synthetic image from a random sampled noise.
