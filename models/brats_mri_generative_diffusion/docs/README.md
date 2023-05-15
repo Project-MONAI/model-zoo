@@ -31,18 +31,12 @@ cd ..
 ```
 
 ## Data
-The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/).
+The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/). Users can find more details on the datasets (`Task01_BrainTumour`) at http://medicaldecathlon.com/.
 
 - Target: Image Generation
 - Task: Synthesis
 - Modality: MRI
 - Size: 388 3D volumes (1 channel used)
-
-The data can be automatically downloaded from [Medical Decathlon](http://medicaldecathlon.com/). By running the following command, the Brats data will be downloaded from [Medical Decathlon](http://medicaldecathlon.com/) and extracted to `$dataset_dir` in [./configs/train_autoencoder.json](./configs/train_autoencoder.json). You will see a subfolder `Task01_BrainTumour` under `$dataset_dir`. By default, you will see `./Task01_BrainTumour`.
-
-```bash
-python ./scripts/download_brats_data.py -e ./configs/train_autoencoder.json
-```
 
 ## Training Configuration
 If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `train_batch_size` parameter in the [configs/train_autoencoder.json](../configs/train_autoencoder.json) and [configs/train_diffusion.json](../configs/train_diffusion.json) configuration files.
@@ -108,10 +102,15 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 ### Execute Autoencoder Training
 
 #### Execute Autoencoder Training on single GPU
-If the dataset is already downloaded, make sure that `"dataset_dir"` in `configs/train_autoencoder.json` has the correct path to the dataset `Task01_BrainTumour`. Then, run:
 
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json
+```
+
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute multi-GPU training for Autoencoder
