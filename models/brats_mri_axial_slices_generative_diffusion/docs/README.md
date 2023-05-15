@@ -60,7 +60,7 @@ The autoencoder was trained using the following configuration:
 - Actual Model Input: 240 x 240
 - AMP: False
 - Optimizer: Adam
-- Learning Rate: 2e-5
+- Learning Rate: 5e-5
 - Loss: L1 loss, perceptual loss, KL divergence loss, adversarial  loss, GAN BCE loss
 
 #### Input
@@ -78,7 +78,7 @@ The latent diffusion model was trained using the following configuration:
 - Actual Model Input: 64 x 64
 - AMP: False
 - Optimizer: Adam
-- Learning Rate: 1e-5
+- Learning Rate: 5e-5
 - Loss: MSE loss
 
 #### Training Input
