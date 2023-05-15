@@ -38,10 +38,10 @@ The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medical
 - Modality: MRI
 - Size: 388 3D volumes (1 channel used)
 
-The data can be automatically downloaded from [Medical Decathlon](http://medicaldecathlon.com/). By running the following command, the Brats data will be downloaded from [Medical Decathlon](http://medicaldecathlon.com/) and extracted to `$dataset_dir` in [./config/train_autoencoder.json](./config/train_autoencoder.json). You will see a subfolder `Task01_BrainTumour` under `$dataset_dir`. By default, you will see `./Task01_BrainTumour`.
+The data can be automatically downloaded from [Medical Decathlon](http://medicaldecathlon.com/). By running the following command, the Brats data will be downloaded from [Medical Decathlon](http://medicaldecathlon.com/) and extracted to `$dataset_dir` in [./configs/train_autoencoder.json](./configs/train_autoencoder.json). You will see a subfolder `Task01_BrainTumour` under `$dataset_dir`. By default, you will see `./Task01_BrainTumour`.
 
 ```bash
-python ./scripts/download_brats_data.py -e ./config/train_autoencoder.json
+python ./scripts/download_brats_data.py -e ./configs/train_autoencoder.json
 ```
 
 ## Training Configuration

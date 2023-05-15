@@ -26,7 +26,7 @@ def main():
     parser.add_argument(
         "-e",
         "--environment-file",
-        default="./config/environment.json",
+        default="./configs/train_autoencoder.json",
         help="environment json file that stores environment path",
     )
     args = parser.parse_args()
