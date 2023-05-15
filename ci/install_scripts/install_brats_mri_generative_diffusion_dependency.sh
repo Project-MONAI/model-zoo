@@ -11,6 +11,6 @@
 
 git clone https://github.com/Project-MONAI/GenerativeModels.git
 cd GenerativeModels/
-git checkout ad973b8157130eaa146f35628f96eebd2b9d207d
+git checkout f969c24f88d013dc0045fb7b2885a01fb219992b
 python setup.py install
 cd ..
