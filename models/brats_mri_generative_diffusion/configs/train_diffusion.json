@@ -91,7 +91,7 @@
             "section": "training",
             "cache_rate": 1.0,
             "num_workers": 8,
-            "download": "@download_brats",
+            "download": false,
             "transform": "@train#preprocessing"
         },
         "dataloader": {
