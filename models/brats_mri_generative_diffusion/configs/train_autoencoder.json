@@ -8,7 +8,7 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_dir": "$@bundle_root + '/models'",
     "tf_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/data/medical/Task01_BrainTumour",
+    "dataset_dir": "/workspace/data/medical",
     "pretrained": false,
     "perceptual_loss_model_weights_path": null,
     "train_batch_size": 2,
