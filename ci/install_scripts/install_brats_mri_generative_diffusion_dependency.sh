@@ -11,8 +11,4 @@
 
 # install cython to avoid error:
 # https://github.com/Project-MONAI/model-zoo/actions/runs/4980530305/jobs/8913560199#step:2:550
-git clone https://github.com/Project-MONAI/GenerativeModels.git
-cd GenerativeModels/
-git checkout f969c24f88d013dc0045fb7b2885a01fb219992b
-python setup.py install
-cd ..
+pip install git+https://github.com/Project-MONAI/GenerativeModels.git@0.2.1

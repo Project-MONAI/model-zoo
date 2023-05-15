@@ -23,11 +23,7 @@ An example result from inference is shown below:
 [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
 ```
 pip install lpips==0.1.4
-git clone https://github.com/Project-MONAI/GenerativeModels.git
-cd GenerativeModels/
-git checkout f969c24f88d013dc0045fb7b2885a01fb219992b
-python setup.py install
-cd ..
+pip install git+https://github.com/Project-MONAI/GenerativeModels.git@0.2.1
 ```
 
 ## Data
