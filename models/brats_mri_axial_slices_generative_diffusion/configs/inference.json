@@ -88,11 +88,11 @@
     },
     "noise": "$torch.randn([1]+@latent_shape).to(@device)",
     "set_timesteps": "$@noise_scheduler.set_timesteps(num_inference_steps=50)",
-    "sampler": {
+    "inferer": {
         "_target_": "scripts.ldm_sampler.LDMSampler",
         "_requires_": "@set_timesteps"
     },
-    "sample": "$@sampler.sampling_fn(@noise, @autoencoder, @diffusion, @noise_scheduler)",
+    "sample": "$@inferer.sampling_fn(@noise, @autoencoder, @diffusion, @noise_scheduler)",
     "saver": {
         "_target_": "SaveImage",
         "_requires_": "@create_output_dir",
