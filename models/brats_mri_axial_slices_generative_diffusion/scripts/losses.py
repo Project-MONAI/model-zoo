@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 
 import torch
-from generative.losses import PatchAdversarialLoss, PerceptualLoss
+from generative.losses import PatchAdversarialLoss
 
 intensity_loss = torch.nn.L1Loss()
 adv_loss = PatchAdversarialLoss(criterion="least_squares")
