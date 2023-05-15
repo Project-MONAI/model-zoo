@@ -93,7 +93,11 @@
         {
             "_target_": "DivisiblePadd",
             "keys": "image",
-            "k": [4,4,1]
+            "k": [
+                4,
+                4,
+                1
+            ]
         },
         {
             "_target_": "RandSpatialCropSamplesd",
