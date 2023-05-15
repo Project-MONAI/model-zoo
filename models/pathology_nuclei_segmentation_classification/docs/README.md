@@ -25,9 +25,15 @@ The training data is from <https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet
 
 The provided labelled data was partitioned, based on the original split, into training (27 tiles) and testing (14 tiles) datasets.
 
+You can download the dataset by using this command:
+```
+wget https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip
+unzip consep_dataset.zip
+```
+
 ### Preprocessing
 
-After download the datasets, please run `scripts/prepare_patches.py` to prepare patches from tiles. Prepared patches are saved in `<your concep dataset path>`/Prepared. The implementation is referring to <https://github.com/vqdang/hover_net>. The command is like:
+After download the [datasets](https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/consep_dataset.zip), please run `scripts/prepare_patches.py` to prepare patches from tiles. Prepared patches are saved in `<your concep dataset path>`/Prepared. The implementation is referring to <https://github.com/vqdang/hover_net>. The command is like:
 
 ```
 python scripts/prepare_patches.py --root <your concep dataset path>
@@ -46,7 +52,7 @@ This model utilized a two-stage approach. The training was performed with the fo
 
 ### Memory Consumption Warning
 
-If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
 
 ## Input
 Input: RGB images
@@ -92,16 +98,17 @@ In addition to the Pythonic APIs, a few command line interfaces (CLI) are provid
 
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-#### Execute training, the evaluation in the training were evaluated on patches:
+#### Execute training, the evaluation during the training were evaluated on patches:
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
 
 - Run first stage
 ```
-python -m monai.bundle run --config_file configs/train.json --stage 0
+python -m monai.bundle run --config_file configs/train.json --stage 0 --dataset_dir <actual dataset path>
 ```
 
 - Run second stage
 ```
-python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --stage 1
+python -m monai.bundle run --config_file configs/train.json --network_def#freeze_encoder False --stage 1 --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute multi-GPU training:

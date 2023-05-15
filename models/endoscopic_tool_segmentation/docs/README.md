@@ -6,10 +6,24 @@ The [PyTorch model](https://drive.google.com/file/d/1I7UtWDKDEcezMqYiA-i_hsRTCrv
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/monai_endoscopic_tool_segmentation_workflow.png)
 
 ## Pre-trained weights
-A pre-trained encoder weights would benefit the model training. In this bundle, the encoder is trained with pre-trained weights from some internal data. For convenience, we provide two options in `configs/train.json` to enable users to load pre-trained weights:
+A pre-trained encoder weights would benefit the model training. In this bundle, the encoder is trained with pre-trained weights from some internal data. We provide two options to enable users to load pre-trained weights:
 
 1. Via setting the `use_imagenet_pretrain` parameter in the config file to `True`, [ImageNet](https://ieeexplore.ieee.org/document/5206848) pre-trained weights from the [EfficientNet-PyTorch repo](https://github.com/lukemelas/EfficientNet-PyTorch) can be loaded. Please note that these weights are for non-commercial use. Each user is responsible for checking the content of the models/datasets and the applicable licenses and determining if suitable for the intended use.
-2. Via updating the `load_path`  parameter of the `CheckpointLoader` in the config file, weights from a local path can be loaded.
+2. Via adding a `CheckpointLoader` as the first handler to the `handlers` section of the `train.json` config file, weights from a local path can be loaded. Here is an example `CheckpointLoader`:
+
+```json
+{
+    "_target_": "CheckpointLoader",
+    "load_path": "/path/to/local/weight/model.pt",
+    "load_dict": {
+        "model": "@network"
+    },
+    "strict": false,
+    "map_location": "@device"
+}
+```
+
+When executing the training command, if neither adding the `CheckpointLoader` to the `train.json` nor setting the `use_imagenet_pretrain` parameter to `True`, a training process would start from scratch.
 
 ## Data
 Datasets used in this work were provided by [Activ Surgical](https://www.activsurgical.com/).
@@ -17,7 +31,7 @@ Datasets used in this work were provided by [Activ Surgical](https://www.activsu
 Since datasets are private, existing public datasets like [EndoVis 2017](https://endovissub2017-roboticinstrumentsegmentation.grand-challenge.org/Data/) can be used to train a similar model.
 
 ### Preprocessing
-When using EndoVis or any other dataset, it should be divided into "train", "valid" and "test" folders. Samples in each folder would better be images and converted to jpg format. Otherwise, "images", "labels", "val_images" and "val_labels" parameters in `configs/train.json` and "datalist" in `configs/inference.json` should be modified to fit given dataset. After that, "dataset_dir" parameter in `configs/train.json` and `configs/inference.json` should be changed to root folder which contains previous "train", "valid" and "test" folders.
+When using EndoVis or any other dataset, it should be divided into "train", "valid" and "test" folders. Samples in each folder would better be images and converted to jpg format. Otherwise, "images", "labels", "val_images" and "val_labels" parameters in `configs/train.json` and "datalist" in `configs/inference.json` should be modified to fit given dataset. After that, "dataset_dir" parameter in `configs/train.json` and `configs/inference.json` should be changed to root folder which contains "train", "valid" and "test" folders.
 
 Please notice that loading data operation in this bundle is adaptive. If images and labels are not in the same format, it may lead to a mismatching problem. For example, if images are in jpg format and labels are in npy format, PIL and Numpy readers will be used separately to load images and labels. Since these two readers have their own way to parse file's shape, loaded labels will be transpose of the correct ones and incur a missmatching problem.
 
@@ -31,7 +45,7 @@ The training as performed with the following:
 
 ### Memory Consumption Warning
 
-If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range $(0, 1)$ to minimize the System RAM requirements.
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
 
 ### Input
 A three channel video frame
@@ -84,6 +98,12 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 
 ```
 python -m monai.bundle run --config_file configs/train.json
+```
+
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute multi-GPU training:
