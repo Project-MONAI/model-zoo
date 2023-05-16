@@ -8,15 +8,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import monai
 import numpy as np
 import torch
+from monai.utils import first
 from monai.utils.type_conversion import convert_to_numpy
 
 
 def compute_scale_factor(autoencoder, train_loader, device):
     with torch.no_grad():
-        check_data = monai.utils.first(train_loader)
+        check_data = first(train_loader)
         z = autoencoder.encode_stage_2_inputs(check_data["image"].to(device))
     scale_factor = 1 / torch.std(z)
     return scale_factor.item()
