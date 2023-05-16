@@ -67,7 +67,7 @@ The latent diffusion model was trained using the following configuration:
 
 #### Training Input
 - 8 channel noisy latent features
-- an int that indicates the time step
+- a long int that indicates the time step
 
 #### Training Output
 8 channel predicted added noise
