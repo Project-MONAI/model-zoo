@@ -52,7 +52,7 @@ def _get_weights_names(bundle: str):
     if bundle == "brats_mri_generative_diffusion":
         return "model_autoencoder.pt", "model_autoencoder.ts"
     if bundle == "brats_mri_axial_slices_generative_diffusion":
-        return "model_autoencoder.pt", "model_autoencoder.ts"
+        return "model_autoencoder.pt"
     return "model.pt", "model.ts"
 
 
