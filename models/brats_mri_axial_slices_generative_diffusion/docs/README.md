@@ -27,7 +27,7 @@ pip install git+https://github.com/Project-MONAI/GenerativeModels.git@0.2.1
 ```
 
 ## Data
-The training data is BraTS 2016 and 2017 from [Medical Decathlon](http://medicaldecathlon.com/). Users can find more details on the dataset (Task01_BrainTumour) at [Medical Decathlon](http://medicaldecathlon.com/).
+The training data is BraTS 2016 and 2017 from the Medical Segmentation Decathalon. Users can find more details on the dataset (`Task01_BrainTumour`) at http://medicaldecathlon.com/.
 
 - Target: Image Generation
 - Task: Synthesis
