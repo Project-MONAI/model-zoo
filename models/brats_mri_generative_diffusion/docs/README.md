@@ -20,11 +20,7 @@ An example result from inference is shown below:
 **This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like [Brats 2021](https://www.synapse.org/#!Synapse:syn25829067/wiki/610865) and have GPU with memory larger than 32G to enable larger networks and attention layers.**
 
 ## MONAI Generative Model Dependencies
-[MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) can be installed by
-```
-pip install lpips==0.1.4
-pip install git+https://github.com/Project-MONAI/GenerativeModels.git@0.2.1
-```
+This bundle requires to install [MONAI generative models](https://github.com/Project-MONAI/GenerativeModels) and [lpips](https://github.com/richzhang/PerceptualSimilarity). 
 
 ## Data
 The training data is BraTS 2016 and 2017 from the Medical Segmentation Decathalon. Users can find more details on the dataset (`Task01_BrainTumour`) at http://medicaldecathlon.com/.
