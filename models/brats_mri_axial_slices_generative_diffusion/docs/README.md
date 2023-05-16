@@ -87,13 +87,10 @@ If you face memory issues with data loading, you can lower the caching rate `cac
 
 ## Performance
 
-Below is an example of the loss values for both the Autoencoder and the Latent Diffusion Model during training:
+#### Training Loss
+![A graph showing the autoencoder training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_autoencoder_loss.png)
 
-<p align="center">
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_autoencoder_loss_v2.png" alt="autoencoder training curve" width="45%" >
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_diffusion_loss_v2.png" alt="latent diffusion training curve" width="45%" >
-</p>
+![A graph showing the latent diffusion training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_diffusion_loss.png)
 
 Keep in mind that actual performance will depend on a variety of factors, such as the size of the dataset, the quality of the images, and the training parameters used.
 
