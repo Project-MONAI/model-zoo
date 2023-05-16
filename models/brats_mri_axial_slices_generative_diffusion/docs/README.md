@@ -92,8 +92,6 @@ If you face memory issues with data loading, you can lower the caching rate `cac
 
 ![A graph showing the latent diffusion training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_diffusion_loss.png)
 
-Keep in mind that actual performance will depend on a variety of factors, such as the size of the dataset, the quality of the images, and the training parameters used.
-
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
