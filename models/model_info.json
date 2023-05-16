@@ -1070,5 +1070,17 @@
     "brats_mri_generative_diffusion_v1.0.1": {
         "checksum": "054d8431feaa4f2eb1e7b51a18b6a6d3b21a738c",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.1.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.2": {
+        "checksum": "b647879e89afc3e042c94a5cf90a80f6910d441e",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.2.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.1": {
+        "checksum": "4462d3e77b4055842159ff9ab6ea037794edee89",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.1.zip"
+    },
+    "spleen_deepedit_annotation_v0.4.6": {
+        "checksum": "970c83514175297c3a97e060e54c19627500a0f0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.4.6.zip"
     }
 }
