@@ -43,7 +43,7 @@ exclude_verify_torchscript_list = [
 # into the dict.
 install_dependency_dict = {
     "brats_mri_generative_diffusion": "ci/install_scripts/install_brats_mri_generative_diffusion_dependency.sh",
-    "brats_mri_axial_slices_generative_diffusion": "ci/install_scripts/install_brats_mri_generative_diffusion_dependency.sh",
+    "brats_mri_axial_slices_generative_diffusion": "ci/install_scripts/install_brats_mri_axial_slices_generative_diffusion.sh",
 }
 
 # This list is used for our CI tests to determine whether a bundle supports TensorRT export. Related
