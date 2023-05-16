@@ -103,6 +103,7 @@
     "generated_image_np": "$@generated_image[0,0].cpu().numpy().transpose(1, 0)[::-1, ::-1]",
     "img_pil": "$Image.fromarray(visualize_2d_image(@generated_image_np), 'RGB')",
     "run": [
+        "$@create_output_dir",
         "$@img_pil.save(@output_dir+'/synimg_'+@output_postfix+'.png')"
     ]
 }
