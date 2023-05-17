@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20230507.json",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "changelog": {
+        "1.0.2": "remove unused saver in inference",
         "1.0.1": "fix inference folder error",
         "1.0.0": "Initial release"
     },
