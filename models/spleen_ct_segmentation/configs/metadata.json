@@ -1,7 +1,21 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.8",
+    "version": "0.5.2",
     "changelog": {
+        "0.5.2": "remove error dollar symbol in readme",
+        "0.5.1": "add RAM warning",
+        "0.5.0": "update the README file with the ONNX-TensorRT conversion",
+        "0.4.9": "update TensorRT descriptions",
+        "0.4.8": "update deterministic training results",
+        "0.4.7": "update the TensorRT part in the README file",
+        "0.4.6": "fix mgpu finalize issue",
+        "0.4.5": "enable deterministic training",
+        "0.4.4": "add the command of executing inference with TensorRT models",
+        "0.4.3": "fix figure and weights inconsistent error",
+        "0.4.2": "use torch 1.13.1",
+        "0.4.1": "update the readme file with TensorRT convert",
+        "0.4.0": "fix multi-gpu train config typo",
+        "0.3.9": "adapt to BundleWorkflow interface",
         "0.3.8": "add name tag",
         "0.3.7": "restructure readme to match updated template",
         "0.3.6": "enhance readme with details of model training",
@@ -16,9 +30,9 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.0.1",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.21.2",
+    "monai_version": "1.2.0rc6",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9"
@@ -34,7 +48,7 @@
     "label_classes": "single channel data, 1 is spleen, 0 is everything else",
     "pred_classes": "2 channels OneHot data, channel 1 is spleen, channel 0 is background",
     "eval_metrics": {
-        "mean_dice": 0.96
+        "mean_dice": 0.961
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

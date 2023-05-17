@@ -1,9 +1,9 @@
 large_files:
   - path: "models/model.pt"
-    url: "https://drive.google.com/file/d/19yS3t2oLBiB7wT-qeQ82da95VJs_vzRK/view?usp=share_link"
-    hash_val: "9d568aaf7188b7b3f254f87c8656d7fe"
+    url: "https://drive.google.com/file/d/1I7UtWDKDEcezMqYiA-i_hsRTCrvWwJ61/view?usp=sharing"
+    hash_val: "7ca94167f05ac9f62a16b1898155ff71"
     hash_type: "md5"
   - path: "models/model.ts"
-    url: "https://drive.google.com/file/d/1cDZ3Jr7mhpzdzaFyz8yHNowH8k0T1VZz/view?usp=share_link"
-    hash_val: "e83d1849dd051ac67168093d53824fb1"
+    url: "https://drive.google.com/file/d/1e_wYd1HjJQ0dz_HKdbthRcMOyUL02aLG/view?usp=sharing"
+    hash_val: "889a9659f5ab245bd5c4a0a36c80728f"
     hash_type: "md5"

@@ -176,6 +176,9 @@ def main(cfg):
             img = load_img(f"{img_dir}/{base_name}.{cfg['image_suffix']}")
             ann = load_ann(f"{ann_dir}/{base_name}.{cfg['label_suffix']}")
 
+            np.save("{0}/label_{1}.npy".format(out_dir, base_name), ann)
+            np.save("{0}/image_{1}.npy".format(out_dir, base_name), img)
+
             # *
             img = np.concatenate([img, ann], axis=-1)
             sub_patches = xtractor.extract(img, cfg["extract_type"])

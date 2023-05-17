@@ -3,7 +3,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "$os.getcwd()",
+    "bundle_root": ".",
     "output_dir": "$os.path.join(@bundle_root, 'eval')",
     "dataset_dir": "/workspace/Data/Pathology/CoNSeP/Test/Images",
     "num_cpus": 2,
@@ -144,8 +144,10 @@
         "inferer": "@inferer",
         "amp": true
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

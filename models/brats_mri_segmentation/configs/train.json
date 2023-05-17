@@ -60,7 +60,8 @@
                 "keys": [
                     "image",
                     "label"
-                ]
+                ],
+                "image_only": false
             },
             {
                 "_target_": "ConvertToMultiChannelBasedOnBratsClassesd",
@@ -318,9 +319,11 @@
             "amp": "@amp"
         }
     },
-    "training": [
+    "initialize": [
         "$monai.utils.set_determinism(seed=123)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }

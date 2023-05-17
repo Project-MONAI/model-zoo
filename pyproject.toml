@@ -43,7 +43,7 @@ check_parameter_types = true
 # Check variable values against their annotations.
 check_variable_types = true
 # Comma or space separated list of error names to ignore.
-disable = ["pyi-error"]
+disable = ["pyi-error", "import-error"]
 # Report errors.
 report_errors = true
 # Experimental: Infer precise return types even for invalid function calls.

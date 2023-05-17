@@ -4,9 +4,9 @@ A neural architecture search algorithm for volumetric (3D) segmentation of the p
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_workflow_4-1.png)
 
 ## Data
-The training dataset is the Panceas Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
+The training dataset is the Pancreas Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
-- Target: Liver and tumour
+- Target: Pancreas and pancreatic tumor
 - Modality: Portal venous phase CT
 - Size: 420 3D volumes (282 Training +139 Testing)
 - Source: Memorial Sloan Kettering Cancer Center
@@ -39,7 +39,6 @@ The training was performed with the following:
 - Optimizer: SGD
 - (Initial) Learning Rate: 0.025
 - Loss: DiceCELoss
-- Note: If out-of-memory or program crash occurs while caching the data set, please change the cache\_rate in CacheDataset to a lower value in the range (0, 1).
 
 The segmentation of pancreas region is formulated as the voxel-wise 3-class classification. Each voxel is predicted as either foreground (pancreas body, tumour) or background. And the model is optimized with gradient descent method minimizing soft dice loss and cross-entropy loss between the predicted mask and ground truth segmentation.
 
@@ -53,23 +52,37 @@ Three channels
 - Label 1: pancreas
 - Label 0: everything else
 
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 420 3D Volumes
+- Cache Rate: 1.0
+- Multi GPU (8 GPUs) - System RAM Usage: 400G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
+
 ## Performance
 Dice score is used for evaluating the performance of the model. This model achieves a mean dice score of 0.62.
+
+Please note that this bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
 
 #### Training Loss
 The loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)
 
-![Training loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_train_4-2.png)
+![Training loss over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_train_4-3.png)
 
 #### Validation Dice
 The mean dice score over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)
 
-![Validation mean dice score over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_validation_4-2.png)
+![Validation mean dice score over 3200 epochs (the bright curve is smoothed, and the dark one is the actual curve)](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_validation_4-3.png)
 
 ### Searched Architecture Visualization
-Users can install Graphviz for visualization of searched architectures (needed in custom/decode_plot.py). The edges between nodes indicate global structure, and numbers next to edges represent different operations in the cell searching space. An example of searched architecture is shown as follows:
+Users can install Graphviz for visualization of searched architectures (needed in [decode_plot.py](https://github.com/Project-MONAI/tutorials/blob/main/automl/DiNTS/decode_plot.py)). The edges between nodes indicate global structure, and numbers next to edges represent different operations in the cell searching space. An example of searched architecture is shown as follows:
 
-![Example of Searched Architecture](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_searched_arch_example.png)
+![Example of Searched Architecture](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_searched_arch_example_1.png)
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
@@ -91,34 +104,41 @@ torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file confi
 #### Execute training:
 
 ```
-python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.yaml --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.yaml
+```
+
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.yaml --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute multi-GPU training:
 
 ```
-torchrun --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" --logging_file configs/logging.conf
+torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']"
 ```
 
 #### Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.yaml','configs/evaluate.yaml']" --logging_file configs/logging.conf
+python -m monai.bundle run --config_file "['configs/train.yaml','configs/evaluate.yaml']"
 ```
 
 #### Execute inference:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.yaml --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/inference.yaml
 ```
 
-#### Export checkpoint for TorchScript
+#### Export checkpoint for TorchScript:
 
 ```
 python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.yaml
 ```
 
 # References
+
 [1] He, Y., Yang, D., Roth, H., Zhao, C. and Xu, D., 2021. Dints: Differentiable neural network topology search for 3d medical image segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5841-5850).
 
 # License

@@ -1,7 +1,14 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.9",
+    "version": "0.4.6",
     "changelog": {
+        "0.4.6": "add dataset dir example",
+        "0.4.5": "update ONNX-TensorRT descriptions",
+        "0.4.4": "update error links",
+        "0.4.3": "add the ONNX-TensorRT way of model conversion",
+        "0.4.2": "fix mgpu finalize issue",
+        "0.4.1": "add non-deterministic note",
+        "0.4.0": "adapt to BundleWorkflow interface",
         "0.3.9": "black autofix format and add name tag",
         "0.3.8": "modify dataset key name",
         "0.3.7": "restructure readme to match updated template",
@@ -17,9 +24,9 @@
         "0.1.1": "update for MetaTensor",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.0.1",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.22.4",
+    "monai_version": "1.2.0rc6",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.9",
