@@ -1,0 +1,156 @@
+{
+    "imports": [
+        "$import torch",
+        "$from datetime import datetime",
+        "$from pathlib import Path",
+        "$from PIL import Image",
+        "$from scripts.utils import visualize_2d_image"
+    ],
+    "bundle_root": ".",
+    "model_dir": "$@bundle_root + '/models'",
+    "dataset_dir": "/workspace/data/medical",
+    "output_dir": "$@bundle_root + '/output'",
+    "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "output_postfix": "$datetime.now().strftime('%Y%m%d_%H%M%S')",
+    "channel": 0,
+    "spatial_dims": 2,
+    "image_channels": 1,
+    "latent_channels": 1,
+    "infer_patch_size": [
+        240,
+        240
+    ],
+    "infer_batch_size_img": 1,
+    "infer_batch_size_slice": 1,
+    "autoencoder_def": {
+        "_target_": "generative.networks.nets.AutoencoderKL",
+        "spatial_dims": "@spatial_dims",
+        "in_channels": "@image_channels",
+        "out_channels": "@image_channels",
+        "latent_channels": "@latent_channels",
+        "num_channels": [
+            64,
+            128,
+            256
+        ],
+        "num_res_blocks": 2,
+        "norm_num_groups": 32,
+        "norm_eps": 1e-06,
+        "attention_levels": [
+            false,
+            false,
+            false
+        ],
+        "with_encoder_nonlocal_attn": true,
+        "with_decoder_nonlocal_attn": true
+    },
+    "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
+    "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
+    "autoencoder": "$@autoencoder_def.to(@device)",
+    "preprocessing_transforms": [
+        {
+            "_target_": "LoadImaged",
+            "keys": "image"
+        },
+        {
+            "_target_": "EnsureChannelFirstd",
+            "keys": "image"
+        },
+        {
+            "_target_": "Lambdad",
+            "keys": "image",
+            "func": "$lambda x: x[@channel, :, :, :]"
+        },
+        {
+            "_target_": "AddChanneld",
+            "keys": "image"
+        },
+        {
+            "_target_": "EnsureTyped",
+            "keys": "image"
+        },
+        {
+            "_target_": "Orientationd",
+            "keys": "image",
+            "axcodes": "RAS"
+        },
+        {
+            "_target_": "CenterSpatialCropd",
+            "keys": "image",
+            "roi_size": "$[@infer_patch_size[0], @infer_patch_size[1], 20]"
+        },
+        {
+            "_target_": "ScaleIntensityRangePercentilesd",
+            "keys": "image",
+            "lower": 0,
+            "upper": 100,
+            "b_min": 0,
+            "b_max": 1
+        }
+    ],
+    "crop_transforms": [
+        {
+            "_target_": "DivisiblePadd",
+            "keys": "image",
+            "k": [
+                4,
+                4,
+                1
+            ]
+        },
+        {
+            "_target_": "RandSpatialCropSamplesd",
+            "keys": "image",
+            "random_size": false,
+            "roi_size": "$[@infer_patch_size[0], @infer_patch_size[1], 1]",
+            "num_samples": "@infer_batch_size_slice"
+        },
+        {
+            "_target_": "SqueezeDimd",
+            "keys": "image",
+            "dim": 3
+        }
+    ],
+    "final_transforms": [
+        {
+            "_target_": "ScaleIntensityRangePercentilesd",
+            "keys": "image",
+            "lower": 0,
+            "upper": 100,
+            "b_min": 0,
+            "b_max": 1
+        }
+    ],
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": "$@preprocessing_transforms + @crop_transforms + @final_transforms"
+    },
+    "dataset": {
+        "_target_": "monai.apps.DecathlonDataset",
+        "root_dir": "@dataset_dir",
+        "task": "Task01_BrainTumour",
+        "section": "validation",
+        "cache_rate": 0.0,
+        "num_workers": 8,
+        "download": false,
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": 1,
+        "shuffle": true,
+        "num_workers": 0
+    },
+    "recon_img_pil": "$Image.fromarray(visualize_2d_image(@recon_img), 'RGB')",
+    "orig_img_pil": "$Image.fromarray(visualize_2d_image(@input_img[0,0,...]), 'RGB')",
+    "input_img": "$monai.utils.first(@dataloader)['image'].to(@device)",
+    "recon_img": "$@autoencoder(@input_img)[0][0,0,...]",
+    "run": [
+        "$@create_output_dir",
+        "$@load_autoencoder",
+        "$@orig_img_pil.save(@output_dir+'/orig_img_'+@output_postfix+'.png')",
+        "$@recon_img_pil.save(@output_dir+'/recon_img_'+@output_postfix+'.png')"
+    ]
+}
