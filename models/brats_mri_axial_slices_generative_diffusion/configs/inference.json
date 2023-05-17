@@ -93,12 +93,6 @@
         "_requires_": "@set_timesteps"
     },
     "sample": "$@inferer.sampling_fn(@noise, @autoencoder, @diffusion, @noise_scheduler)",
-    "saver": {
-        "_target_": "SaveImage",
-        "_requires_": "@create_output_dir",
-        "output_dir": "@output_dir",
-        "output_postfix": "@output_postfix"
-    },
     "generated_image": "$@sample",
     "generated_image_np": "$@generated_image[0,0].cpu().numpy().transpose(1, 0)[::-1, ::-1]",
     "img_pil": "$Image.fromarray(visualize_2d_image(@generated_image_np), 'RGB')",
