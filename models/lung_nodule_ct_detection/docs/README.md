@@ -33,7 +33,7 @@ Alternatively, we provide [resampled nifti images](https://drive.google.com/driv
 ## Training configuration
 The training was performed with the following:
 
-- GPU: at least 16GB GPU memory
+- GPU: at least 16GB GPU memory, requires 32G when exporting TRT model
 - Actual Model Input: 192 x 192 x 80
 - AMP: True
 - Optimizer: Adam
@@ -99,6 +99,12 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 
 ```
 python -m monai.bundle run --config_file configs/train.json
+```
+
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute evaluation with the trained model:

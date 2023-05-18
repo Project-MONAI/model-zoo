@@ -37,6 +37,24 @@ train_keys_list = ["bundle_root", "device", "dataset_dir"]
 metadata_keys_list = ["name"]
 
 
+def _get_weights_names(bundle: str):
+    # TODO: this function is temporarily used. It should be replaced by detailed config tests.
+    if bundle == "brats_mri_generative_diffusion":
+        return "model_autoencoder.pt", "model_autoencoder.ts"
+    if bundle == "brats_mri_axial_slices_generative_diffusion":
+        return "model_autoencoder.pt", None
+    return "model.pt", "model.ts"
+
+
+def _get_net_id(bundle: str):
+    # TODO: this function is temporarily used. It should be replaced by detailed config tests.
+    if bundle == "brats_mri_generative_diffusion":
+        return "autoencoder_def"
+    if bundle == "brats_mri_axial_slices_generative_diffusion":
+        return "autoencoder_def"
+    return "network_def"
+
+
 def _check_missing_keys(file_name: str, bundle_path: str, keys_list: List):
     config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", file_name))
     missing_keys = []
@@ -257,7 +275,9 @@ def verify_data_shape(bundle_path: str, net_id: str, config_file: str):
     )
 
 
-def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
+def verify_torchscript(
+    bundle_path: str, net_id: str, config_file: str, model_name: str = "model.pt", ts_name: str = "model.ts"
+):
     """
     This function is used to verify if the checkpoint is able to export into torchscript model, and
     if "models/model.ts" is provided, it will be checked if it is able to be loaded
@@ -267,14 +287,14 @@ def verify_torchscript(bundle_path: str, net_id: str, config_file: str):
     ckpt_export(
         net_id=net_id,
         filepath=os.path.join(bundle_path, "models/verify_model.ts"),
-        ckpt_file=os.path.join(bundle_path, "models/model.pt"),
+        ckpt_file=os.path.join(bundle_path, "models", model_name),
         meta_file=os.path.join(bundle_path, "configs/metadata.json"),
         config_file=os.path.join(bundle_path, config_file),
         bundle_root=bundle_path,
     )
     print("export weights into TorchScript module successfully.")
 
-    ts_model_path = os.path.join(bundle_path, "models/model.ts")
+    ts_model_path = os.path.join(bundle_path, "models", ts_name)
     if os.path.exists(ts_model_path):
         torch.jit.load(ts_model_path)
         print("Provided TorchScript module is verified correctly.")
@@ -303,7 +323,8 @@ def verify(bundle, models_path="models", mode="full"):
         return
 
     # The following are optional tests and require GPU
-    net_id, inference_file_name = "network_def", find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
+    net_id = _get_net_id(bundle)
+    inference_file_name = find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
     config_file = os.path.join("configs", inference_file_name)
 
     if bundle in exclude_verify_shape_list:
@@ -315,7 +336,8 @@ def verify(bundle, models_path="models", mode="full"):
     if bundle in exclude_verify_torchscript_list:
         print(f"bundle: {bundle} does not support torchscript, skip verifying.")
     else:
-        verify_torchscript(bundle_path, net_id, config_file)
+        model_name, ts_name = _get_weights_names(bundle=bundle)
+        verify_torchscript(bundle_path, net_id, config_file, model_name, ts_name)
 
     if bundle in TEST_CASES.keys():
         print("find config test cases, start running config files:")

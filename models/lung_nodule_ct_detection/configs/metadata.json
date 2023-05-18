@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.6",
+    "version": "0.5.8",
     "changelog": {
+        "0.5.8": "update TRT memory requirement in readme",
+        "0.5.7": "add dataset dir example",
         "0.5.6": "add the ONNX-TensorRT way of model conversion",
         "0.5.5": "update retrained validation results and training curve",
         "0.5.4": "add non-deterministic note",
@@ -20,7 +22,7 @@
         "0.1.1": "add reference for LIDC dataset",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.2.0rc5",
+    "monai_version": "1.2.0rc6",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {

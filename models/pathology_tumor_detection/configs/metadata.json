@@ -1,7 +1,10 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.2",
+    "version": "0.5.5",
     "changelog": {
+        "0.5.5": "modify mgpu logging level",
+        "0.5.4": "retrain using an internal pretrained ResNet18",
+        "0.5.3": "make the training bundle deterministic",
         "0.5.2": "update TensorRT descriptions",
         "0.5.1": "update the TensorRT part in the README file",
         "0.5.0": "add the command of executing inference with TensorRT models",
@@ -23,7 +26,7 @@
         "0.1.1": "fix location variable name change",
         "0.1.0": "initialize release of the bundle"
     },
-    "monai_version": "1.2.0rc5",
+    "monai_version": "1.2.0rc6",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
@@ -42,8 +45,8 @@
     "label_classes": "binary labels for each patch",
     "pred_classes": "scalar probability",
     "eval_metrics": {
-        "accuracy": 0.91,
-        "froc": 0.685
+        "accuracy": 0.9,
+        "froc": 0.72
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

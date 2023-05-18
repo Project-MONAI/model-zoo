@@ -13,6 +13,7 @@
 import argparse
 import os
 
+from bundle_custom_data import install_dependency_dict
 from utils import get_json_dict
 
 
@@ -44,11 +45,24 @@ def get_requirements(bundle, models_path):
             print(requirements_file_name)
 
 
+def get_install_script(bundle):
+    # install extra dependencies if needed
+    script_path = ""
+    if bundle in install_dependency_dict.keys():
+        script_path = install_dependency_dict[bundle]
+    print(script_path)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-b", "--b", type=str, help="bundle name.")
     parser.add_argument("-p", "--p", type=str, default="models", help="models path.")
+    parser.add_argument("--get_script", type=bool, default=False, help="whether to get the install script.")
     args = parser.parse_args()
     bundle = args.b
     models_path = args.p
-    get_requirements(bundle, models_path)
+    get_script = args.get_script
+    if get_script is True:
+        get_install_script(bundle)
+    else:
+        get_requirements(bundle, models_path)

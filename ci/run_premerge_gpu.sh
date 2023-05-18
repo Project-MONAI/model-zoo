@@ -65,6 +65,12 @@ verify_bundle() {
                     echo "install required libraries for bundle: $bundle"
                     pipenv install -r "$requirements"
                 fi
+                # get extra install script if exists
+                extra_script=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --get_script True)
+                if [ ! -z "$extra_script" ]; then
+                    echo "install extra libraries with script: $extra_script"
+                    bash $extra_script
+                fi
                 # verify bundle
                 pipenv run python $(pwd)/ci/verify_bundle.py --b "$bundle"
                 remove_pipenv

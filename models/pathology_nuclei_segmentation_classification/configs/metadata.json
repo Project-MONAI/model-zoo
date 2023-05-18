@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
-    "version": "0.1.8",
+    "version": "0.2.0",
     "changelog": {
+        "0.2.0": "Update README for how to download dataset",
+        "0.1.9": "add RAM warning",
         "0.1.8": "Update README for pretrained weights and save metrics in evaluate",
         "0.1.7": "Update README Formatting",
         "0.1.6": "add non-deterministic note",
@@ -12,7 +14,7 @@
         "0.1.1": "update to use monai 1.1.0",
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.2.0rc4",
+    "monai_version": "1.2.0rc6",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {

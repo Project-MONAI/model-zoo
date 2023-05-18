@@ -74,6 +74,17 @@ This result is benchmarked under:
  - CUDA version: 12.0
  - GPU models and configuration: A100 80G
 
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 61 3D Volumes
+- Cache Rate: 1.0
+- Single GPU - System RAM Usage: 8.2G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
@@ -83,6 +94,12 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 
 ```
 python -m monai.bundle run --config_file configs/train.json
+```
+
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute multi-GPU training:
