@@ -168,4 +168,3 @@ def upload_bundle(
     source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
     return source
-
