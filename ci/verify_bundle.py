@@ -10,6 +10,7 @@
 # limitations under the License.
 
 import argparse
+import importlib
 import os
 import sys
 from typing import List
@@ -20,10 +21,9 @@ from bundle_custom_data import (
     exclude_verify_shape_list,
     exclude_verify_torchscript_list,
 )
-from config_test_cases import TEST_CASES
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
-from utils import TestBundleConfigs, download_large_files, find_bundle_file, get_json_dict
+from utils import download_large_files, find_bundle_file, get_json_dict
 
 # files that must be included in a bundle
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
@@ -300,6 +300,17 @@ def verify_torchscript(
         print("Provided TorchScript module is verified correctly.")
 
 
+def verify_configs(bundle_path: str, bundle: str):
+    test_config_file = f"test_{bundle}.py"
+    folder_name = "ci/config_tests"
+    if os.path.exists(os.path.join(folder_name, test_config_file)):
+        sys.path.append(folder_name)
+        module_name = f"test_{bundle}"
+        module = importlib.import_module(module_name)
+        module.test_bundle_configs(bundle_root=bundle_path)
+        print("config files are verified correctly.")
+
+
 def verify(bundle, models_path="models", mode="full"):
     print(f"start verifying {bundle}:")
     # add bundle path to ensure custom code can be used
@@ -339,11 +350,7 @@ def verify(bundle, models_path="models", mode="full"):
         model_name, ts_name = _get_weights_names(bundle=bundle)
         verify_torchscript(bundle_path, net_id, config_file, model_name, ts_name)
 
-    if bundle in TEST_CASES.keys():
-        print("find config test cases, start running config files:")
-        test_case = TEST_CASES[bundle]
-        config_tests = TestBundleConfigs(bundle_root=bundle_path, **test_case)
-        config_tests.test_all_configs()
+    verify_configs(bundle_path, bundle)
 
 
 if __name__ == "__main__":
