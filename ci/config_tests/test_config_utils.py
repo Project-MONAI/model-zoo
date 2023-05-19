@@ -118,7 +118,6 @@ class TestBundleConfigs:
             raise ValueError("train config is non-deterministic.")
         print(f"{train_filename} is deterministic.")
 
-
     def test_inference_config(self):
         print("start testing inference config:")
         infer_filename = self.test_context.get(ContextKeys.INFER, "inference.json")
