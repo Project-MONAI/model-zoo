@@ -73,68 +73,66 @@ class TestBundleConfigs:
         return override_dict
 
     def test_train_config(self):
-        try:
-            train_filename = self.test_context.get(ContextKeys.TRAIN, "train.json")
-            train_override = self.test_context.get(ContextKeys.TRAIN_OVERRIDE, {})
-            train_override = self.assign_override_default_info(train_override)
+        print("start testing train config:")
+        train_filename = self.test_context.get(ContextKeys.TRAIN, "train.json")
+        train_override = self.test_context.get(ContextKeys.TRAIN_OVERRIDE, {})
+        train_override = self.assign_override_default_info(train_override)
 
-            trainer = ConfigWorkflow(
-                workflow="train",
-                config_file=os.path.join(self.bundle_root, "configs", train_filename),
-                logging_file=os.path.join(self.bundle_root, "configs/logging.conf"),
-                meta_file=os.path.join(self.bundle_root, "configs/metadata.json"),
-                **train_override,
-            )
-            trainer.initialize()
-            trainer.run()
-            trainer.finalize()
-        except Exception as e:
-            raise Exception(f"test {train_filename} failed with error: {e}")
+        trainer = ConfigWorkflow(
+            workflow="train",
+            config_file=os.path.join(self.bundle_root, "configs", train_filename),
+            logging_file=os.path.join(self.bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(self.bundle_root, "configs/metadata.json"),
+            **train_override,
+        )
+        trainer.initialize()
+        trainer.run()
+        trainer.finalize()
+        print(f"{train_filename} is tested correctly.")
 
     def test_train_determinism(self):
-        try:
-            # step 1: run train config with determinism train config override
-            train_filename = self.test_context.get(ContextKeys.TRAIN, "train.json")
-            train_override = self.test_context.get(ContextKeys.TRAIN_DETERMINISM_OVERRIDE, {})
-            train_override = self.assign_override_default_info(train_override)
+        print("start testing determinism:")
+        # step 1: run train config with determinism train config override
+        train_filename = self.test_context.get(ContextKeys.TRAIN, "train.json")
+        train_override = self.test_context.get(ContextKeys.TRAIN_DETERMINISM_OVERRIDE, {})
+        train_override = self.assign_override_default_info(train_override)
 
-            trainer = ConfigWorkflow(
-                workflow="train",
-                config_file=os.path.join(self.bundle_root, "configs", train_filename),
-                logging_file=os.path.join(self.bundle_root, "configs/logging.conf"),
-                meta_file=os.path.join(self.bundle_root, "configs/metadata.json"),
-                **train_override,
-            )
-            trainer.initialize()
-            trainer.run()
-            trainer.finalize()
-            # step 2: compare weights
-            weights_1 = self.test_context.get(ContextKeys.DETERMINISM_WEIGHTS_1)
-            weights_2 = self.test_context.get(ContextKeys.DETERMINISM_WEIGHTS_2)
+        trainer = ConfigWorkflow(
+            workflow="train",
+            config_file=os.path.join(self.bundle_root, "configs", train_filename),
+            logging_file=os.path.join(self.bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(self.bundle_root, "configs/metadata.json"),
+            **train_override,
+        )
+        trainer.initialize()
+        trainer.run()
+        trainer.finalize()
+        # step 2: compare weights
+        weights_1 = self.test_context.get(ContextKeys.DETERMINISM_WEIGHTS_1)
+        weights_2 = self.test_context.get(ContextKeys.DETERMINISM_WEIGHTS_2)
 
-            result = test_weights_consistency(
-                os.path.join(self.bundle_root, "models", weights_1), os.path.join(self.bundle_root, "models", weights_2)
-            )
-            if result is False:
-                raise ValueError("train config is non-deterministic.")
-        except Exception as e:
-            raise Exception(f"test {train_filename} determinism failed with error: {e}")
+        result = test_weights_consistency(
+            os.path.join(self.bundle_root, "models", weights_1), os.path.join(self.bundle_root, "models", weights_2)
+        )
+        if result is False:
+            raise ValueError("train config is non-deterministic.")
+        print(f"{train_filename} is deterministic.")
+
 
     def test_inference_config(self):
-        try:
-            infer_filename = self.test_context.get(ContextKeys.INFER, "inference.json")
-            infer_override = self.test_context.get(ContextKeys.INFER_OVERRIDE, {})
-            infer_override = self.assign_override_default_info(infer_override)
+        print("start testing inference config:")
+        infer_filename = self.test_context.get(ContextKeys.INFER, "inference.json")
+        infer_override = self.test_context.get(ContextKeys.INFER_OVERRIDE, {})
+        infer_override = self.assign_override_default_info(infer_override)
 
-            inferrer = ConfigWorkflow(
-                workflow="inference",
-                config_file=os.path.join(self.bundle_root, "configs", infer_filename),
-                logging_file=os.path.join(self.bundle_root, "configs/logging.conf"),
-                meta_file=os.path.join(self.bundle_root, "configs/metadata.json"),
-                **infer_override,
-            )
-            inferrer.initialize()
-            inferrer.run()
-            inferrer.finalize()
-        except Exception as e:
-            raise Exception(f"test {infer_filename} failed with error: {e}")
+        inferrer = ConfigWorkflow(
+            workflow="inference",
+            config_file=os.path.join(self.bundle_root, "configs", infer_filename),
+            logging_file=os.path.join(self.bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(self.bundle_root, "configs/metadata.json"),
+            **infer_override,
+        )
+        inferrer.initialize()
+        inferrer.run()
+        inferrer.finalize()
+        print(f"{infer_filename} is tested correctly.")

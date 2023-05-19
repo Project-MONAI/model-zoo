@@ -319,7 +319,7 @@ def verify_configs(bundle_path: str, bundle: str):
         module_name = f"test_{bundle}"
         module = importlib.import_module(module_name)
         module.test_bundle_configs(bundle_root=bundle_path)
-        print("config files are verified correctly.")
+        print("all config files are verified correctly.")
 
 
 def verify(bundle, models_path="models", mode="full"):
