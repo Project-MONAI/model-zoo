@@ -169,13 +169,3 @@ def upload_bundle(
 
     return source
 
-
-def find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
-    # find bundle file with possible suffix
-    file_name = None
-    for name in suffix:
-        full_name = f"{file}.{name}"
-        if full_name in os.listdir(root_dir):
-            file_name = full_name
-
-    return file_name

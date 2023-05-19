@@ -23,7 +23,7 @@ from bundle_custom_data import (
 )
 from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
-from utils import download_large_files, find_bundle_file, get_json_dict
+from utils import download_large_files, get_json_dict
 
 # files that must be included in a bundle
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
@@ -35,6 +35,17 @@ infer_keys_list = ["bundle_root", "device", "network_def", "inferer"]
 train_keys_list = ["bundle_root", "device", "dataset_dir"]
 # keys that must be included in metadata
 metadata_keys_list = ["name"]
+
+
+def _find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
+    # find bundle file with possible suffix
+    file_name = None
+    for name in suffix:
+        full_name = f"{file}.{name}"
+        if full_name in os.listdir(root_dir):
+            file_name = full_name
+
+    return file_name
 
 
 def _get_weights_names(bundle: str):
@@ -117,7 +128,7 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
     bundle_path = os.path.join(models_path, bundle_name)
 
     # download large files (if exist) first
-    large_file_name = find_bundle_file(bundle_path, "large_files")
+    large_file_name = _find_bundle_file(bundle_path, "large_files")
     if large_file_name is not None:
         try:
             download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
@@ -134,7 +145,7 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
         for file in preferred_files_list:
             if file == "configs/inference.json":
                 # inference config file may have different suffix
-                inference_file_name = find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
+                inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
                 if inference_file_name is None:
                     raise ValueError("inference config file is not existing.")
             else:
@@ -153,12 +164,12 @@ def verify_bundle_keys(models_path: str, bundle_name: str):
     _ = _check_missing_keys(file_name="metadata.json", bundle_path=bundle_path, keys_list=metadata_keys_list)
 
     # verify inference config (if exists)
-    inference_file_name = find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
+    inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
     if inference_file_name is not None:
         _ = _check_missing_keys(file_name=inference_file_name, bundle_path=bundle_path, keys_list=infer_keys_list)
 
     # verify train config (if exists)
-    train_file_name = find_bundle_file(os.path.join(bundle_path, "configs"), "train")
+    train_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "train")
     if train_file_name is not None:
         train_config = _check_missing_keys(
             file_name=train_file_name, bundle_path=bundle_path, keys_list=train_keys_list
@@ -335,7 +346,7 @@ def verify(bundle, models_path="models", mode="full"):
 
     # The following are optional tests and require GPU
     net_id = _get_net_id(bundle)
-    inference_file_name = find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
+    inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
     config_file = os.path.join("configs", inference_file_name)
 
     if bundle in exclude_verify_shape_list:
