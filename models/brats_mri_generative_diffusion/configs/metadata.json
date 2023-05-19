@@ -13,7 +13,7 @@
     "optional_packages_version": {
         "nibabel": "5.1.0",
         "lpips": "0.1.4",
-        "monai-generative": "0.2.1"
+        "monai-generative": "0.2.2"
     },
     "name": "BraTS MRI image latent diffusion generation",
     "task": "BraTS MRI image synthesis",
