@@ -1086,5 +1086,17 @@
     "brats_mri_axial_slices_generative_diffusion_v1.0.2": {
         "checksum": "c1556115275967444291657b55f018857523c417",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.2.zip"
+    },
+    "valve_landmarks_v0.4.3": {
+        "checksum": "09c37134fb572461be439948a8949d4bd77ed725",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.4.3.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.3": {
+        "checksum": "41c7598d61bef3cf8501c55ebe1a884fedd138a0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.3.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.3": {
+        "checksum": "75c208333b6ce4a28aef81c258a5d932c8e52559",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.3.zip"
     }
 }

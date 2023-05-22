@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20230507.json",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "changelog": {
+        "1.0.3": "update required packages",
         "1.0.2": "remove unused saver in inference",
         "1.0.1": "fix inference folder error",
         "1.0.0": "Initial release"
@@ -11,7 +12,8 @@
     "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "5.1.0",
-        "lpips": "0.1.4"
+        "lpips": "0.1.4",
+        "monai-generative": "0.2.2"
     },
     "name": "BraTS MRI axial slices latent diffusion generation",
     "task": "BraTS MRI axial slices synthesis",
