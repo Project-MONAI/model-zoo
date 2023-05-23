@@ -76,7 +76,7 @@ class TestSpleenCTSeg(unittest.TestCase):
 
     @parameterized.expand([TEST_CASE])
     def test_required_properties(self, test_case):
-        
+
 
 
 if __name__ == "__main__":
