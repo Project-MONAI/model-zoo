@@ -74,10 +74,6 @@ class TestSpleenCTSeg(unittest.TestCase):
         # test inference
         run(config_file=infer_file, meta_file=meta_file, logging_file=logging_file, **infer_override)
 
-    @parameterized.expand([TEST_CASE])
-    def test_required_properties(self, test_case):
-
-
 
 if __name__ == "__main__":
     unittest.main()
