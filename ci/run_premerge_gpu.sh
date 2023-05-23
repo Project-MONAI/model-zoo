@@ -73,6 +73,8 @@ verify_bundle() {
                 fi
                 # verify bundle
                 pipenv run python $(pwd)/ci/verify_bundle.py --b "$bundle"
+                # do unit tests
+                pipenv run python $(pwd)/ci/runner.py --b "$bundle"
                 remove_pipenv
             done
         else

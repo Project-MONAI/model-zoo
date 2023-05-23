@@ -10,7 +10,6 @@
 # limitations under the License.
 
 import argparse
-import importlib
 import os
 import sys
 from typing import List
@@ -311,17 +310,6 @@ def verify_torchscript(
         print("Provided TorchScript module is verified correctly.")
 
 
-def verify_configs(bundle_path: str, bundle: str):
-    test_config_file = f"test_{bundle}.py"
-    folder_name = "ci/config_tests"
-    if os.path.exists(os.path.join(folder_name, test_config_file)):
-        sys.path.append(folder_name)
-        module_name = f"test_{bundle}"
-        module = importlib.import_module(module_name)
-        module.test_bundle_configs(bundle_root=bundle_path)
-        print("all config files are verified correctly.")
-
-
 def verify(bundle, models_path="models", mode="full"):
     print(f"start verifying {bundle}:")
     # add bundle path to ensure custom code can be used
@@ -360,8 +348,6 @@ def verify(bundle, models_path="models", mode="full"):
     else:
         model_name, ts_name = _get_weights_names(bundle=bundle)
         verify_torchscript(bundle_path, net_id, config_file, model_name, ts_name)
-
-    verify_configs(bundle_path, bundle)
 
 
 if __name__ == "__main__":
