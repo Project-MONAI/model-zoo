@@ -64,7 +64,7 @@ def print_results(results, thresh, status):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Runner for MONAI Model Zoo unittests with timing.")
-    parser.add_argument("-b", dest="bundle", help="bundle name")
+    parser.add_argument("-b", "--b", dest="bundle", help="bundle name")
     parser.add_argument(
         "-s", action="store", dest="path", default=".", help="Directory to start discovery (default: '%(default)s')"
     )
