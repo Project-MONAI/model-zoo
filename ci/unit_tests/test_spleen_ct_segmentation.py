@@ -16,27 +16,27 @@ import unittest
 
 import nibabel as nib
 import numpy as np
-from monai.bundle.scripts import run
+from monai.bundle import ConfigWorkflow
 from parameterized import parameterized
 
-TEST_CASE = [
+TEST_CASE_1 = [  # train, evaluate
     {
-        # override info
-        "TRAIN_OVERRIDE": {
-            "bundle_root": "models/spleen_ct_segmentation",
-            "images": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
-            "labels": "$list(sorted(glob.glob(@dataset_dir + '/label_*.nii.gz')))",
-            "epochs": 1,
-            "train#dataset#cache_rate": 0.0,
-            "validate#dataset#cache_rate": 0.0,
-            "train#dataloader#num_workers": 1,
-            "validate#dataloader#num_workers": 1,
-            "train#random_transforms#0#spatial_size": [32, 32, 32],
-        },
-        "INFER_OVERRIDE": {
-            "bundle_root": "models/spleen_ct_segmentation",
-            "datalist": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
-        },
+        "bundle_root": "models/spleen_ct_segmentation",
+        "images": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
+        "labels": "$list(sorted(glob.glob(@dataset_dir + '/label_*.nii.gz')))",
+        "epochs": 1,
+        "train#dataset#cache_rate": 0.0,
+        "validate#dataset#cache_rate": 0.0,
+        "train#dataloader#num_workers": 1,
+        "validate#dataloader#num_workers": 1,
+        "train#random_transforms#0#spatial_size": [32, 32, 32],
+    }
+]
+
+TEST_CASE_2 = [  # inference
+    {
+        "bundle_root": "models/spleen_ct_segmentation",
+        "datalist": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
     }
 ]
 
@@ -44,6 +44,9 @@ TEST_CASE = [
 class TestSpleenCTSeg(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
+        self.produce_fake_dataset()
+
+    def produce_fake_dataset(self):
         dataset_size = 10
         input_shape = (64, 64, 64)
         for s in range(dataset_size):
@@ -57,22 +60,52 @@ class TestSpleenCTSeg(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.dataset_dir)
 
-    @parameterized.expand([TEST_CASE])
-    def test_configs(self, test_case):
-        train_override, infer_override = test_case["TRAIN_OVERRIDE"], test_case["INFER_OVERRIDE"]
-        train_override["dataset_dir"] = infer_override["dataset_dir"] = self.dataset_dir
-        bundle_root = train_override["bundle_root"]
+    @parameterized.expand([TEST_CASE_1])
+    def test_train_eval_config(self, override):
+        override["dataset_dir"] = self.dataset_dir
+        bundle_root = override["bundle_root"]
         train_file = os.path.join(bundle_root, "configs/train.json")
         eval_file = os.path.join(bundle_root, "configs/evaluate.json")
-        infer_file = os.path.join(bundle_root, "configs/inference.json")
-        meta_file = os.path.join(bundle_root, "configs/metadata.json")
-        logging_file = os.path.join(bundle_root, "configs/logging.conf")
-        # test train
-        run(config_file=train_file, meta_file=meta_file, logging_file=logging_file, **train_override)
-        # test evaluate
-        run(config_file=[train_file, eval_file], meta_file=meta_file, logging_file=logging_file, **train_override)
-        # test inference
-        run(config_file=infer_file, meta_file=meta_file, logging_file=logging_file, **infer_override)
+
+        trainer = ConfigWorkflow(
+            workflow="train",
+            config_file=train_file,
+            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+            **override,
+        )
+        trainer.initialize()
+        trainer.check_properties()
+        trainer.run()
+        trainer.finalize()
+
+        validator = ConfigWorkflow(
+            workflow="eval",
+            config_file=[train_file, eval_file],
+            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+            **override,
+        )
+        validator.initialize()
+        validator.run()
+        validator.finalize()
+
+    @parameterized.expand([TEST_CASE_2])
+    def test_infer_config(self, override):
+        override["dataset_dir"] = self.dataset_dir
+        bundle_root = override["bundle_root"]
+
+        inferrer = ConfigWorkflow(
+            workflow="infer",
+            config_file=os.path.join(bundle_root, "configs/inference.json"),
+            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+            **override,
+        )
+        inferrer.initialize()
+        inferrer.check_properties()
+        inferrer.run()
+        inferrer.finalize()
 
 
 if __name__ == "__main__":
