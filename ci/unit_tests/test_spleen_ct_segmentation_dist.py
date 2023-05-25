@@ -16,10 +16,11 @@ import unittest
 
 import nibabel as nib
 import numpy as np
-from monai.bundle import ConfigWorkflow
+import torch
 from parameterized import parameterized
+from utils import export_config_and_run_mgpu_cmd
 
-TEST_CASE_1 = [  # train, evaluate
+TEST_CASE_1 = [  # mgpu train
     {
         "bundle_root": "models/spleen_ct_segmentation",
         "images": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
@@ -33,16 +34,8 @@ TEST_CASE_1 = [  # train, evaluate
     }
 ]
 
-TEST_CASE_2 = [  # inference
-    {
-        "bundle_root": "models/spleen_ct_segmentation",
-        "datalist": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
-        "handlers#0#_disabled_": True,  # do not load weights
-    }
-]
 
-
-class TestSpleenCTSeg(unittest.TestCase):
+class TestSpleenCTSegMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         self.produce_fake_dataset()
@@ -62,52 +55,33 @@ class TestSpleenCTSeg(unittest.TestCase):
         shutil.rmtree(self.dataset_dir)
 
     @parameterized.expand([TEST_CASE_1])
-    def test_train_eval_config(self, override):
+    def test_train_eval_mgpu_config(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
         train_file = os.path.join(bundle_root, "configs/train.json")
+        mgpu_train_file = os.path.join(bundle_root, "configs/multi_gpu_train.json")
+        output_path = os.path.join(bundle_root, "configs/train_override.json")
+        n_gpu = torch.cuda.device_count()
+        export_config_and_run_mgpu_cmd(
+            config_file=[train_file, mgpu_train_file],
+            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+            override_dict=override,
+            output_path=output_path,
+            ngpu=n_gpu,
+        )
+
         eval_file = os.path.join(bundle_root, "configs/evaluate.json")
-
-        trainer = ConfigWorkflow(
-            workflow="train",
-            config_file=train_file,
+        mgpu_eval_file = os.path.join(bundle_root, "configs/multi_gpu_evaluate.json")
+        eval_output_path = os.path.join(bundle_root, "configs/eval_override.json")
+        export_config_and_run_mgpu_cmd(
+            config_file=[train_file, eval_file, mgpu_eval_file],
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
-            **override,
+            override_dict=override,
+            output_path=eval_output_path,
+            ngpu=n_gpu,
         )
-        trainer.initialize()
-        trainer.check_properties()
-        trainer.run()
-        trainer.finalize()
-
-        validator = ConfigWorkflow(
-            workflow="eval",
-            config_file=[train_file, eval_file],
-            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
-            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
-            **override,
-        )
-        validator.initialize()
-        # no need to check properties since evaluate.json overrides train.json
-        validator.run()
-        validator.finalize()
-
-    @parameterized.expand([TEST_CASE_2])
-    def test_infer_config(self, override):
-        override["dataset_dir"] = self.dataset_dir
-        bundle_root = override["bundle_root"]
-
-        inferrer = ConfigWorkflow(
-            workflow="infer",
-            config_file=os.path.join(bundle_root, "configs/inference.json"),
-            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
-            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
-            **override,
-        )
-        inferrer.initialize()
-        inferrer.check_properties()
-        inferrer.run()
-        inferrer.finalize()
 
 
 if __name__ == "__main__":

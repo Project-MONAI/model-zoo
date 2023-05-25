@@ -65,6 +65,7 @@ def print_results(results, thresh, status):
 def parse_args():
     parser = argparse.ArgumentParser(description="Runner for MONAI Model Zoo unittests with timing.")
     parser.add_argument("-b", "--b", dest="bundle", help="bundle name")
+    parser.add_argument("-dist", "--dist", default=False, type=bool, help="whether to run multi-gpu tests")
     parser.add_argument(
         "-s", action="store", dest="path", default=".", help="Directory to start discovery (default: '%(default)s')"
     )
@@ -103,9 +104,10 @@ def get_default_pattern(loader):
 if __name__ == "__main__":
     # Parse input arguments
     args = parse_args()
-    test_file = os.path.join(os.path.dirname(__file__), f"test_{args.bundle}.py")
+    test_file_name = f"test_{args.bundle}_dist" if args.dist is True else f"test_{args.bundle}"
+    test_file = os.path.join(os.path.dirname(__file__), f"{test_file_name}.py")
     if os.path.exists(test_file):
-        tests = unittest.TestLoader().loadTestsFromNames([f"test_{args.bundle}"])
+        tests = unittest.TestLoader().loadTestsFromNames([test_file_name])
         test_runner = unittest.runner.TextTestRunner(
             resultclass=TimeLoggingTestResult, verbosity=args.verbosity, failfast=args.failfast
         )
