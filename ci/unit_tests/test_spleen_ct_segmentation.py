@@ -76,7 +76,7 @@ class TestSpleenCTSeg(unittest.TestCase):
             **override,
         )
         trainer.initialize()
-        # check if required properties are all contained
+        # check required and option properties
         check_result = trainer.check_properties()
         if check_result is not None and len(check_result) > 0:
             raise ValueError(f"check properties for train config failed: {check_result}")
@@ -108,7 +108,7 @@ class TestSpleenCTSeg(unittest.TestCase):
             **override,
         )
         inferrer.initialize()
-        # check if required properties are all contained
+        # check required and option properties
         check_result = inferrer.check_properties()
         if check_result is not None and len(check_result) > 0:
             raise ValueError(f"check properties for inference config failed: {check_result}")
