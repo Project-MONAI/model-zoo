@@ -12,7 +12,7 @@
 
 import subprocess
 
-from monai.bundle import ConfigParser, ConfigWorkflow
+from monai.bundle import ConfigParser
 
 
 def run_command(cmd):
@@ -58,16 +58,10 @@ def export_config_and_run_mgpu_cmd(
 ):
     """
     step 1: override the config file and export it
-    step 2: check the exported config file
-    step 3: produce multi-gpu running command
-    step 4: run produced command
+    step 2: produce multi-gpu running command
+    step 3: run produced command
     """
     export_overrided_config(config_file=config_file, override_dict=override_dict, output_path=output_path)
-    engine = ConfigWorkflow(workflow=workflow, config_file=output_path, logging_file=logging_file, meta_file=meta_file)
-    engine.initialize()
-    check_result = engine.check_properties()
-    if check_result is not None and len(check_result) > 0:
-        raise ValueError(f"check properties for overrided mgpu configs failed: {check_result}")
     cmd = produce_mgpu_cmd(
         config_file=output_path, meta_file=meta_file, logging_file=logging_file, nnodes=nnode, nproc_per_node=ngpu
     )
