@@ -38,9 +38,6 @@ TEST_CASE_1 = [  # mgpu train
 class TestSpleenCTSegMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
-        self.produce_fake_dataset()
-
-    def produce_fake_dataset(self):
         dataset_size = 10
         input_shape = (64, 64, 64)
         for s in range(dataset_size):

@@ -45,9 +45,6 @@ TEST_CASE_2 = [  # inference
 class TestSpleenCTSeg(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
-        self.produce_fake_dataset()
-
-    def produce_fake_dataset(self):
         dataset_size = 10
         input_shape = (64, 64, 64)
         for s in range(dataset_size):
@@ -76,7 +73,7 @@ class TestSpleenCTSeg(unittest.TestCase):
             **override,
         )
         trainer.initialize()
-        # check required and option properties
+        # check required and optional properties
         check_result = trainer.check_properties()
         if check_result is not None and len(check_result) > 0:
             raise ValueError(f"check properties for train config failed: {check_result}")
@@ -84,14 +81,17 @@ class TestSpleenCTSeg(unittest.TestCase):
         trainer.finalize()
 
         validator = ConfigWorkflow(
-            workflow="eval",
+            # override train.json, thus set the workflow to "train" rather than "eval"
+            workflow="train",
             config_file=[train_file, eval_file],
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
         validator.initialize()
-        # no need to check properties since evaluate.json overrides train.json
+        check_result = validator.check_properties()
+        if check_result is not None and len(check_result) > 0:
+            raise ValueError(f"check properties for overrided train config failed: {check_result}")
         validator.run()
         validator.finalize()
 
@@ -108,7 +108,7 @@ class TestSpleenCTSeg(unittest.TestCase):
             **override,
         )
         inferrer.initialize()
-        # check required and option properties
+        # check required and optional properties
         check_result = inferrer.check_properties()
         if check_result is not None and len(check_result) > 0:
             raise ValueError(f"check properties for inference config failed: {check_result}")
