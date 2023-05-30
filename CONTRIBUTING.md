@@ -89,7 +89,7 @@ We prepared several premerge CI tests to verify your bundle.
 For dependencies that support `pip install` command, please put them into `optional_packages_version` in `configs/metadata.json` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/metadata.json)), and the CI test program will extract and install all libraries directly before running tests.
 For dependencies that require multiple steps to install, please prepare a install script in `ci/install_scripts`, and put the bundle name and the script path into `install_dependency_dict` in `ci/bundle_custom_data.py` ([click here for instance](https://github.com/Project-MONAI/model-zoo/tree/dev/ci/install_scripts/)).
 
-### Necessary verifications
+### Necessary tests
 
 1. Check if necessary files are existing in your bundle.
 1. Check if keys naming are consistent with our requirements.
@@ -100,12 +100,7 @@ For dependencies that require multiple steps to install, please prepare a instal
 python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filepath eval/schema.json
 ```
 
-### Optional verifications
-
-#### Prepare unit tests
-It is recommended to prepare unit tests on your bundle. The main purpose is to ensure each config file is runnable.
-Please create a file called `test_<bundle_name>.py` in `ci/unit_tests/` (like this [example](./ci/unit_tests/test_spleen_ct_segmentation.py)), and you can define the testing scope within the file.
-If multi-gpu config files are also need to be tested, please create a separate file called `test_<bundle_name>_dist.py` in the same directory (like this [example](./ci/unit_tests/test_spleen_ct_segmentation_dist.py)).
+### Optional tests
 
 #### Verify data shape and data type
 Check if the input and output data shape and data type of network defined in the metadata are correct. You can also run the following command locally to verify your bundle before submitting a pull request.
@@ -161,8 +156,12 @@ python -m monai.bundle run --config_file "['configs/inference.json', 'configs/in
 
 If your bundle does not support TensorRT compilation, please mention it in `docs/README.md`.
 
+#### Customized unit tests
+It is recommended to prepare unit tests on your bundle. The main purpose is to ensure each config file is runnable.
+Please create a file called `test_<bundle_name>.py` in `ci/unit_tests/` (like this [example](./ci/unit_tests/test_spleen_ct_segmentation.py)), and you can define the testing scope within the file.
+If multi-gpu config files are also need to be tested, please create a separate file called `test_<bundle_name>_dist.py` in the same directory (like this [example](./ci/unit_tests/test_spleen_ct_segmentation_dist.py)).
 
-### Code format verification
+### Code format tests
 
 If there are any `.py` files in your bundle, coding style is checked and enforced by flake8, black, isort and pytype.
 Before submitting a pull request, we recommend that all checks should pass by running the following command locally:
@@ -196,9 +195,9 @@ Ideally, the new branch should be based on the latest `dev` branch.
 
 [monai model zoo issue list]: https://github.com/Project-MONAI/model-zoo/issues
 
-### Set verification scope for a pull request
+### Set tests scope for a pull request
 
-All aforementioned necessary verifications and code format verifications require CPU, and optional verifications require GPU. However, not all pull requests need above verifications, thus we defined different suffixes to determine the scope of verification. The way to trigger it is to add different suffixes into your pull request's title:
+All aforementioned necessary tests and code format tests require CPU, and optional tests require GPU. However, not all pull requests need above verifications, thus we defined different suffixes to determine the tests scope. The way to trigger it is to add different suffixes into your pull request's title:
 
 1. In default, if there is no suffix, will run CPU and single GPU tests.
 1. If adding `[mgpu]`, will also run multi-gpu tests.
