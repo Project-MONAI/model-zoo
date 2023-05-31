@@ -37,8 +37,8 @@
                 "modality": "Mammogram",
                 "num_channels": 3,
                 "spatial_shape": [
-                    229,
-                    229
+                    299,
+                    299
                 ],
                 "dtype": "float32",
                 "value_range": [
