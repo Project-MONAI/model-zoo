@@ -163,7 +163,7 @@ If multi-gpu config files are also need to be tested, please create a separate f
 
 ### Code format tests
 
-If there are any `.py` files in your bundle, coding style is checked and enforced by flake8, black, isort and pytype.
+If there are any `.py` files in your bundle, coding style is checked and enforced by `flake8`, `black`, `isort` and `pytype`.
 Before submitting a pull request, we recommend that all checks should pass by running the following command locally:
 
 ```bash
@@ -195,14 +195,6 @@ Ideally, the new branch should be based on the latest `dev` branch.
 
 [monai model zoo issue list]: https://github.com/Project-MONAI/model-zoo/issues
 
-### Set tests scope for a pull request
-
-All aforementioned necessary tests and code format tests require CPU, and optional tests require GPU. However, not all pull requests need above verifications, thus we defined different suffixes to determine the tests scope. The way to trigger it is to add different suffixes into your pull request's title:
-
-1. In default, if there is no suffix, will run all tests.
-1. If adding `[skip mgpu]`, will skip multi-gpu tests.
-1. if adding `[skip gpu]`, will skip all GPU tests.
-1. if adding `[skip ci]`, will skip all tests.
 
 ## Validate and release
 

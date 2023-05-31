@@ -20,7 +20,6 @@ git fetch origin dev $head_ref
 changes=$(git diff --name-only $head_ref origin/dev -- models)
 if [ ! -z "$changes" ]
 then
-    pip install -r requirements.txt
     flags=$(python $(pwd)/ci/get_required_resources.py --f "$changes")
 else
     flags=$("False False")

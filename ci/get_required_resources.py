@@ -13,7 +13,26 @@
 import argparse
 import os
 
-from utils import get_changed_bundle_list
+
+def get_changed_bundle_list(changed_dirs, root_path: str = "models"):
+    """
+    This function is used to return all bundle names that have changed files.
+    If a bundle is totally removed, it will be ignored (since it not exists).
+    A similar function is implemented in "utils.py", but that file requires monai.
+    In order to minimize the required libraries when running this file, this function
+    is defined.
+
+    """
+    bundles = [f.name for f in os.scandir(root_path) if f.is_dir()]
+
+    changed_bundle_list = []
+    for sub_dir in changed_dirs:
+        for bundle in bundles:
+            bundle_path = os.path.join(root_path, bundle)
+            if os.path.commonpath([bundle_path]) == os.path.commonpath([bundle_path, sub_dir]):
+                changed_bundle_list.append(bundle)
+
+    return list(set(changed_bundle_list))
 
 
 def get_required_resources(changed_dirs):
