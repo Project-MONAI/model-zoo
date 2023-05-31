@@ -199,10 +199,10 @@ Ideally, the new branch should be based on the latest `dev` branch.
 
 All aforementioned necessary tests and code format tests require CPU, and optional tests require GPU. However, not all pull requests need above verifications, thus we defined different suffixes to determine the tests scope. The way to trigger it is to add different suffixes into your pull request's title:
 
-1. In default, if there is no suffix, will run CPU and single GPU tests.
-1. If adding `[mgpu]`, will also run multi-gpu tests.
-1. if adding `[skip ci]`, will skip CPU and GPU tests.
-1. if adding `[skip gpu]`, will skip GPU tests.
+1. In default, if there is no suffix, will run all tests.
+1. If adding `[skip mgpu]`, will skip multi-gpu tests.
+1. if adding `[skip gpu]`, will skip all GPU tests.
+1. if adding `[skip ci]`, will skip all tests.
 
 ## Validate and release
 
