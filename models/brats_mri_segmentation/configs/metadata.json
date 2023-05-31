@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.6",
+    "version": "0.4.7",
     "changelog": {
+        "0.4.7": "enhance prepare datalist file",
         "0.4.6": "add dataset dir example",
         "0.4.5": "update ONNX-TensorRT descriptions",
         "0.4.4": "update error links",
