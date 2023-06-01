@@ -22,6 +22,6 @@ if [ ! -z "$changes" ]
 then
     flags=$(python $(pwd)/ci/get_required_resources.py --f "$changes")
 else
-    flags=$("False False")
+    flags=$"False False"
 fi
 echo $flags

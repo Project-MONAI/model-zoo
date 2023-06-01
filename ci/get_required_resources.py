@@ -43,13 +43,12 @@ def get_required_resources(changed_dirs):
     gpu_flag, mgpu_flag = False, False
     root_path, unit_test_path = "models", "ci/unit_tests"
     bundle_list = get_changed_bundle_list(changed_dirs, root_path=root_path)
-    if len(bundle_list) == 0:
-        print(f"{gpu_flag} {mgpu_flag}")
-    gpu_flag = True
-    for bundle in bundle_list:
-        mgpu_test_file = os.path.join(unit_test_path, f"test_{bundle}_dist.py")
-        if os.path.exists(mgpu_test_file):
-            mgpu_flag = True
+    if len(bundle_list) > 0:
+        gpu_flag = True
+        for bundle in bundle_list:
+            mgpu_test_file = os.path.join(unit_test_path, f"test_{bundle}_dist.py")
+            if os.path.exists(mgpu_test_file):
+                mgpu_flag = True
     print(f"{gpu_flag} {mgpu_flag}")
 
 
