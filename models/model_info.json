@@ -1098,5 +1098,9 @@
     "brats_mri_generative_diffusion_v1.0.3": {
         "checksum": "75c208333b6ce4a28aef81c258a5d932c8e52559",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.3.zip"
+    },
+    "breast_density_classification_v0.1.5": {
+        "checksum": "0202660e0ae4fe235d7de02d3fa92ad2040668e9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/breast_density_classification_v0.1.5.zip"
     }
 }
