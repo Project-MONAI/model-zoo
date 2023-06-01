@@ -2,12 +2,12 @@
 A pre-trained model for breast-density classification.
 
 # Model Overview
-This model is trained using transfer learning on InceptionV3. The model weights were fine tuned using the Mayo Clinic Data. The details of training and data is outlined in https://arxiv.org/abs/2202.08238.
-
+This model is trained using transfer learning on InceptionV3. The model weights were fine tuned using the Mayo Clinic Data. The details of training and data is outlined in https://arxiv.org/abs/2202.08238. The images should be resampled to a size [299, 299, 3] for training.
+A training pipeline will be added to the model zoo in near future.
 The bundle does not support torchscript.
 
 # Input and Output Formats
-The input image should have the size [3, 299, 299]. The output is an array with probabilities for each of the four class.
+The input image should have the size [299, 299, 3]. The output is an array with probabilities for each of the four class.
 
 # Sample Data
 In the folder `sample_data` few example input images are stored for each category of images. These images are stored in jpeg format for sharing purpose.
