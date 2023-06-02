@@ -15,7 +15,11 @@ import argparse
 from utils import get_changed_bundle_list
 
 
-def main(changed_dirs):
+def get_changed_bundle(changed_dirs):
+    """
+    This function is used to get all changed bundles, a string which
+    contains all bundle names will be printed, and can be used in shell scripts.
+    """
     bundle_names = ""
     root_path = "models"
     bundle_list = get_changed_bundle_list(changed_dirs, root_path=root_path)
@@ -30,4 +34,4 @@ if __name__ == "__main__":
     parser.add_argument("-f", "--f", type=str, help="changed files.")
     args = parser.parse_args()
     changed_dirs = args.f.splitlines()
-    main(changed_dirs)
+    get_changed_bundle(changed_dirs)
