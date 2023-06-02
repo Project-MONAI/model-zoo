@@ -1,5 +1,6 @@
 ---
-device: "$torch.device(f'cuda:{dist.get_rank()}')"
+local_rank: "$os.environ['LOCAL_RANK']"
+device: "$torch.device('cuda:' + @local_rank)"
 network:
   _target_: torch.nn.parallel.DistributedDataParallel
   module: "$@network_def.to(@device)"

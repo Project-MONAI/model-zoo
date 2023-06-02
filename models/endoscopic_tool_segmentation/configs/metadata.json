@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "changelog": {
+        "0.5.4": "fix multinode issue",
         "0.5.3": "remove error dollar symbol in readme",
         "0.5.2": "remove the CheckpointLoader from the train.json",
         "0.5.1": "add RAM warning",
