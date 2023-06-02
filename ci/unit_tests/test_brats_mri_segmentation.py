@@ -31,11 +31,7 @@ TEST_CASE_1 = [  # train, evaluate
 ]
 
 TEST_CASE_2 = [  # inference
-    {
-        "bundle_root": "models/brats_mri_segmentation",
-        "handlers#0#_disabled_": True,
-        "inferer#roi_size": [64, 64, 64],
-    }
+    {"bundle_root": "models/brats_mri_segmentation", "handlers#0#_disabled_": True, "inferer#roi_size": [64, 64, 64]}
 ]
 
 
