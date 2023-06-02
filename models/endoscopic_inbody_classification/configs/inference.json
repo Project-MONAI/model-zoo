@@ -110,5 +110,8 @@
     ],
     "run": [
         "$@evaluator.run()"
+    ],
+    "finalize": [
+        "$@test_close"
     ]
 }

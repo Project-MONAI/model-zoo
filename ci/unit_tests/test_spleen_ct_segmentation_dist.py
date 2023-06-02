@@ -52,7 +52,7 @@ class TestSpleenCTSegMGPU(unittest.TestCase):
         shutil.rmtree(self.dataset_dir)
 
     @parameterized.expand([TEST_CASE_1])
-    def test_train_eval_mgpu_config(self, override):
+    def test_train_mgpu_config(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
         train_file = os.path.join(bundle_root, "configs/train.json")

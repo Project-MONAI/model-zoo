@@ -2,7 +2,8 @@
     "imports": [
         "$import torch",
         "$import json",
-        "$import ignite"
+        "$import ignite",
+        "$import os"
     ],
     "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
@@ -256,5 +257,9 @@
     ],
     "run": [
         "$@train#trainer.run()"
+    ],
+    "finalize": [
+        "$@train_close",
+        "$@val_close"
     ]
 }
