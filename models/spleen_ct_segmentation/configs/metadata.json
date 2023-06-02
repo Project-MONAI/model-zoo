@@ -1,8 +1,7 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.3",
+    "version": "0.5.2",
     "changelog": {
-        "0.5.3": "test new ci",
         "0.5.2": "remove error dollar symbol in readme",
         "0.5.1": "add RAM warning",
         "0.5.0": "update the README file with the ONNX-TensorRT conversion",
