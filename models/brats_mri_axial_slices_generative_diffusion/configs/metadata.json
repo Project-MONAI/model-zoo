@@ -3,8 +3,8 @@
     "version": "1.0.3",
     "changelog": {
         "1.0.3": "update required packages",
-        "1.0.2": "unify dataset dir in different configs",
-        "1.0.1": "update dependency, update trained model weights",
+        "1.0.2": "remove unused saver in inference",
+        "1.0.1": "fix inference folder error",
         "1.0.0": "Initial release"
     },
     "monai_version": "1.2.0rc7",
@@ -15,14 +15,14 @@
         "lpips": "0.1.4",
         "monai-generative": "0.2.2"
     },
-    "name": "BraTS MRI image latent diffusion generation",
-    "task": "BraTS MRI image synthesis",
-    "description": "A generative model for creating 3D brain MRI from Gaussian noise based on BraTS dataset",
+    "name": "BraTS MRI axial slices latent diffusion generation",
+    "task": "BraTS MRI axial slices synthesis",
+    "description": "A generative model for creating 2D brain MRI axial slices from Gaussian noise based on BraTS dataset",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "http://medicaldecathlon.com/",
     "data_type": "nibabel",
-    "image_classes": "Flair brain MRI with 1.1x1.1x1.1 mm voxel size",
+    "image_classes": "Flair brain MRI axial slices with 1x1 mm voxel size",
     "eval_metrics": {},
     "intended_use": "This is a research tool/prototype and not to be used clinically",
     "references": [],
@@ -33,9 +33,8 @@
                 "format": "image",
                 "num_channels": 1,
                 "spatial_shape": [
-                    112,
-                    128,
-                    80
+                    240,
+                    240
                 ],
                 "dtype": "float32",
                 "value_range": [
@@ -51,9 +50,8 @@
                 "format": "image",
                 "num_channels": 1,
                 "spatial_shape": [
-                    112,
-                    128,
-                    80
+                    240,
+                    240
                 ],
                 "dtype": "float32",
                 "value_range": [
@@ -72,11 +70,10 @@
             "latent": {
                 "type": "noise",
                 "format": "image",
-                "num_channels": 8,
+                "num_channels": 1,
                 "spatial_shape": [
-                    36,
-                    44,
-                    28
+                    64,
+                    64
                 ],
                 "dtype": "float32",
                 "value_range": [
@@ -84,29 +81,16 @@
                     1
                 ],
                 "is_patch_data": true
-            },
-            "condition": {
-                "type": "timesteps",
-                "format": "timesteps",
-                "num_channels": 1,
-                "spatial_shape": [],
-                "dtype": "long",
-                "value_range": [
-                    0,
-                    1000
-                ],
-                "is_patch_data": false
             }
         },
         "outputs": {
             "pred": {
                 "type": "feature",
                 "format": "image",
-                "num_channels": 8,
+                "num_channels": 1,
                 "spatial_shape": [
-                    36,
-                    44,
-                    28
+                    64,
+                    64
                 ],
                 "dtype": "float32",
                 "value_range": [

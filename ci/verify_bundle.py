@@ -51,12 +51,16 @@ def _get_weights_names(bundle: str):
     # TODO: this function is temporarily used. It should be replaced by detailed config tests.
     if bundle == "brats_mri_generative_diffusion":
         return "model_autoencoder.pt", "model_autoencoder.ts"
+    if bundle == "brats_mri_axial_slices_generative_diffusion":
+        return "model_autoencoder.pt", None
     return "model.pt", "model.ts"
 
 
 def _get_net_id(bundle: str):
     # TODO: this function is temporarily used. It should be replaced by detailed config tests.
     if bundle == "brats_mri_generative_diffusion":
+        return "autoencoder_def"
+    if bundle == "brats_mri_axial_slices_generative_diffusion":
         return "autoencoder_def"
     return "network_def"
 

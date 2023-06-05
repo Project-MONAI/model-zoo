@@ -1062,5 +1062,49 @@
     "brats_mri_generative_diffusion_v1.0.0": {
         "checksum": "eab697704e0849825e4d88c49348179b81d2d638",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.0.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.0": {
+        "checksum": "9902213baf2e9632e1084495173ffe591a946cdc",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.0.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.1": {
+        "checksum": "054d8431feaa4f2eb1e7b51a18b6a6d3b21a738c",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.1.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.2": {
+        "checksum": "b647879e89afc3e042c94a5cf90a80f6910d441e",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.2.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.1": {
+        "checksum": "4462d3e77b4055842159ff9ab6ea037794edee89",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.1.zip"
+    },
+    "spleen_deepedit_annotation_v0.4.6": {
+        "checksum": "970c83514175297c3a97e060e54c19627500a0f0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.4.6.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.2": {
+        "checksum": "c1556115275967444291657b55f018857523c417",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.2.zip"
+    },
+    "valve_landmarks_v0.4.3": {
+        "checksum": "09c37134fb572461be439948a8949d4bd77ed725",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.4.3.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.3": {
+        "checksum": "41c7598d61bef3cf8501c55ebe1a884fedd138a0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.3.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.3": {
+        "checksum": "75c208333b6ce4a28aef81c258a5d932c8e52559",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.3.zip"
+    },
+    "breast_density_classification_v0.1.5": {
+        "checksum": "0202660e0ae4fe235d7de02d3fa92ad2040668e9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/breast_density_classification_v0.1.5.zip"
+    },
+    "brats_mri_segmentation_v0.4.7": {
+        "checksum": "61adc42363a946576956d41e7c7caf6598195264",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.4.7.zip"
     }
 }

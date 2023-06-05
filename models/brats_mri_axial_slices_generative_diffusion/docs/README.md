@@ -1,11 +1,11 @@
 # Model Overview
-A pre-trained model for volumetric (3D) Brats MRI 3D Latent Diffusion Generative Model.
+A pre-trained model for 2D Latent Diffusion Generative Model on axial slices of BraTS MRI.
 
 This model is trained on BraTS 2016 and 2017 data from [Medical Decathlon](http://medicaldecathlon.com/), using the Latent diffusion model [1].
 
 ![model workflow](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_network.png)
 
-This model is a generator for creating images like the Flair MRIs based on BraTS 2016 and 2017 data. It was trained as a 3d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 3D latent diffusion model.
+This model is a generator for creating images like the Flair MRIs based on BraTS 2016 and 2017 data. It was trained as a 2d latent diffusion model and accepts Gaussian random noise as inputs to produce an image output. The `train_autoencoder.json` file describes the training process of the variational autoencoder with GAN loss. The `train_diffusion.json` file describes the training process of the 2D latent diffusion model.
 
 In this bundle, the autoencoder uses perceptual loss, which is based on ResNet50 with pre-trained weights (the network is frozen and will not be trained in the bundle). In default, the `pretrained` parameter is specified as `False` in `train_autoencoder.json`. To ensure correct training, changing the default settings is necessary. There are two ways to utilize pretrained weights:
 1. if set `pretrained` to `True`, ImageNet pretrained weights from [torchvision](https://pytorch.org/vision/stable/_modules/torchvision/models/resnet.html#ResNet50_Weights) will be used. However, the weights are for non-commercial use only.
@@ -15,9 +15,9 @@ Please note that each user is responsible for checking the data source of the pr
 
 #### Example synthetic image
 An example result from inference is shown below:
-![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_example_generation_v2.png)
+![Example synthetic image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_example_generation_v2.png)
 
-**This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like [Brats 2021](https://www.synapse.org/#!Synapse:syn25829067/wiki/610865) and have GPU with memory larger than 32G to enable larger networks and attention layers.**
+**This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like [BraTS 2021](https://www.synapse.org/#!Synapse:syn25829067/wiki/610865).**
 
 ## Data
 The training data is BraTS 2016 and 2017 from the Medical Segmentation Decathalon. Users can find more details on the dataset (`Task01_BrainTumour`) at http://medicaldecathlon.com/.
@@ -25,51 +25,54 @@ The training data is BraTS 2016 and 2017 from the Medical Segmentation Decathalo
 - Target: Image Generation
 - Task: Synthesis
 - Modality: MRI
-- Size: 388 3D volumes (1 channel used)
+- Size: 388 3D MRI volumes (1 channel used)
+- Training data size: 38800 2D MRI axial slices (1 channel used)
 
 ## Training Configuration
-If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `train_batch_size` parameter in the [configs/train_autoencoder.json](../configs/train_autoencoder.json) and [configs/train_diffusion.json](../configs/train_diffusion.json) configuration files.
+If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `"train_batch_size_img"` and `"train_batch_size_slice"` parameters in the `configs/train_autoencoder.json` and `configs/train_diffusion.json` configuration files.
+- `"train_batch_size_img"` is number of 3D volumes loaded in each batch.
+- `"train_batch_size_slice"` is the number of 2D axial slices extracted from each image. The actual batch size is the product of them.
 
 ### Training Configuration of Autoencoder
 The autoencoder was trained using the following configuration:
 
 - GPU: at least 32GB GPU memory
-- Actual Model Input: 112 x 128 x 80
+- Actual Model Input: 240 x 240
 - AMP: False
 - Optimizer: Adam
-- Learning Rate: 1e-5
-- Loss: L1 loss, perceptual loss, KL divergence loss, adversarial loss, GAN BCE loss
+- Learning Rate: 5e-5
+- Loss: L1 loss, perceptual loss, KL divergence loss, adversarial  loss, GAN BCE loss
 
 #### Input
-1 channel 3D MRI Flair patches
+1 channel 2D MRI Flair axial patches
 
 #### Output
-- 1 channel 3D MRI reconstructed patches
-- 8 channel mean of latent features
-- 8 channel standard deviation of latent features
+- 1 channel 2D MRI reconstructed patches
+- 1 channel mean of latent features
+- 1 channel standard deviation of latent features
 
 ### Training Configuration of Diffusion Model
 The latent diffusion model was trained using the following configuration:
 
 - GPU: at least 32GB GPU memory
-- Actual Model Input: 36 x 44 x 28
+- Actual Model Input: 64 x 64
 - AMP: False
 - Optimizer: Adam
-- Learning Rate: 1e-5
+- Learning Rate: 5e-5
 - Loss: MSE loss
 
 #### Training Input
-- 8 channel noisy latent features
+- 1 channel noisy latent features
 - a long int that indicates the time step
 
 #### Training Output
-8 channel predicted added noise
+1 channel predicted added noise
 
 #### Inference Input
-8 channel noise
+1 channel noise
 
 #### Inference Output
-8 channel denoised latent features
+1 channel denoised latent features
 
 ### Memory Consumption Warning
 
@@ -78,12 +81,12 @@ If you face memory issues with data loading, you can lower the caching rate `cac
 ## Performance
 
 #### Training Loss
-![A graph showing the autoencoder training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_autoencoder_loss_v2.png)
+![A graph showing the autoencoder training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_autoencoder_loss_v3.png)
 
-![A graph showing the latent diffusion training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_train_diffusion_loss_v2.png)
+![A graph showing the latent diffusion training curve](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_train_diffusion_loss_v3.png)
+
 
 ## MONAI Bundle Commands
-
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
@@ -91,12 +94,11 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 ### Execute Autoencoder Training
 
 #### Execute Autoencoder Training on single GPU
-
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
-Please note that if the default dataset path is not modified with the actual path (it should be the path that contains `Task01_BrainTumour`) in the bundle config files, you can also override it by using `--dataset_dir`:
+Please note that if the default dataset path is not modified with the actual path (it should be the path that contains Task01_BrainTumour) in the bundle config files, you can also override it by using `--dataset_dir`:
 
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir <actual dataset path>
@@ -106,7 +108,7 @@ python -m monai.bundle run --config_file configs/train_autoencoder.json --datase
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 4e-4
 ```
 
 #### Check the Autoencoder Training result
@@ -118,10 +120,9 @@ python -m monai.bundle run --config_file configs/inference_autoencoder.json
 
 An example of reconstructed image from inference is shown below. If the autoencoder is trained correctly, the reconstructed image should look similar to original image.
 
-![Example reconstructed image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm3d_recon_example.jpg)
+![Example reconstructed image](https://developer.download.nvidia.com/assets/Clara/Images/monai_brain_image_gen_ldm2d_recon_example.png)
 
-
-### Execute Latent Diffusion Training
+### Execute Latent Diffusion Model Training
 
 #### Execute Latent Diffusion Model Training on single GPU
 After training the autoencoder, run the following command to train the latent diffusion model. This command will print out the scale factor of the latent feature space. If your autoencoder is well trained, this value should be close to 1.0.
@@ -134,21 +135,12 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 4e-4
 ```
-
-#### Execute inference
+### Execute inference
 The following code generates a synthetic image from a random sampled noise.
 ```
 python -m monai.bundle run --config_file configs/inference.json
-```
-
-#### Export checkpoint to TorchScript file
-
-The Autoencoder can be exported into a TorchScript file.
-
-```
-python -m monai.bundle ckpt_export autoencoder_def --filepath models/model_autoencoder.ts --ckpt_file models/model_autoencoder.pt --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
 # References

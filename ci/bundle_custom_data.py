@@ -18,6 +18,7 @@ exclude_verify_shape_list = [
     "lung_nodule_ct_detection",
     "pathology_nuclei_segmentation_classification",
     "brats_mri_generative_diffusion",
+    "brats_mri_axial_slices_generative_diffusion",
 ]
 
 # This list is used for our CI tests to determine whether a bundle contains the preferred files.
@@ -33,15 +34,13 @@ exclude_verify_torchscript_list = [
     "wholeBrainSeg_Large_UNEST_segmentation",
     "breast_density_classification",
     "mednist_reg",
-    "brats_mri_generative_diffusion",
+    "brats_mri_axial_slices_generative_diffusion",
 ]
 
 # This dict is used for our CI tests to install required dependencies that cannot be installed by `pip install` directly.
 # If a bundle has this kind of dependencies, please add the bundle name (key), and the path of the install script (value)
 # into the dict.
-install_dependency_dict = {
-    "brats_mri_generative_diffusion": "ci/install_scripts/install_brats_mri_generative_diffusion_dependency.sh"
-}
+install_dependency_dict = {}
 
 # This list is used for our CI tests to determine whether a bundle supports TensorRT export. Related
 # test will be employed for bundles in the list.
