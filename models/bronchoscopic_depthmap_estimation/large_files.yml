@@ -6,4 +6,4 @@ large_files:
   - path: "models/model.onnx"
     url: "https://drive.google.com/uc?export=download&id=184YGCmG7kHScBC8Cf5cxrt1qJCcfo9Zh"
     hash_val: "636a469d5fbf72ab568dd232c8aa965c"
-    hash_type: "md5"    
+    hash_type: "md5"
