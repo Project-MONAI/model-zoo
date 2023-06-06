@@ -1106,5 +1106,13 @@
     "brats_mri_segmentation_v0.4.7": {
         "checksum": "61adc42363a946576956d41e7c7caf6598195264",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.4.7.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.4": {
+        "checksum": "2f4df7a01851129161abcbc1dca358c4a277813e",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.4.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.4": {
+        "checksum": "ecdee149f57222b42c85b6a431a22257ac49e520",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.4.zip"
     }
 }
