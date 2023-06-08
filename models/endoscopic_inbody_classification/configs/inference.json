@@ -9,7 +9,6 @@
     "test_json": "$@bundle_root+'/label/test_samples.json'",
     "test_fp": "$open(@test_json,'r', encoding='utf8')",
     "test_dict": "$json.load(@test_fp)",
-    "test_close": "$@test_fp.close()",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "SEResNet50",
@@ -112,6 +111,6 @@
         "$@evaluator.run()"
     ],
     "finalize": [
-        "$@test_close"
+        "$@test_fp.close()"
     ]
 }
