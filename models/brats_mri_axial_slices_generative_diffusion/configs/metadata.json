@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20230507.json",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "changelog": {
+        "1.0.5": "update with new lr scheduler api in inference",
         "1.0.4": "update with new lr scheduler api",
         "1.0.3": "update required packages",
         "1.0.2": "remove unused saver in inference",
