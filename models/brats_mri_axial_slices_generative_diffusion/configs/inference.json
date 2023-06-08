@@ -83,7 +83,7 @@
         "num_train_timesteps": 1000,
         "beta_start": 0.0015,
         "beta_end": 0.0195,
-        "beta_schedule": "scaled_linear",
+        "schedule": "scaled_linear_beta",
         "clip_sample": false
     },
     "noise": "$torch.randn([1]+@latent_shape).to(@device)",
