@@ -39,7 +39,7 @@ TEST_CASE_2 = [  # inference
 ]
 
 
-class TestEndoscopicClf(unittest.TestCase):
+class TestEndoscopicCls(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 10

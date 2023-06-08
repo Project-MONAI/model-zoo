@@ -35,7 +35,7 @@
     ],
     "finalize": [
         "$dist.is_initialized() and dist.destroy_process_group()",
-        "$@train_close",
-        "$@val_close"
+        "$@train_fp.close()",
+        "$@val_fp.close()"
     ]
 }

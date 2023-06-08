@@ -2,7 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
     "version": "0.5.6",
     "changelog": {
-        "0.5.6": "fix multinode issue",
+        "0.5.6": "fix the wrong GPU index issue of multi-node",
         "0.5.5": "modify mgpu logging level",
         "0.5.4": "retrain using an internal pretrained ResNet18",
         "0.5.3": "make the training bundle deterministic",
@@ -27,7 +27,7 @@
         "0.1.1": "fix location variable name change",
         "0.1.0": "initialize release of the bundle"
     },
-    "monai_version": "1.2.0rc6",
+    "monai_version": "1.2.0rc7",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {

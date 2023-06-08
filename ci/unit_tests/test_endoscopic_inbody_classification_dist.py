@@ -32,7 +32,7 @@ TEST_CASE_1 = [
 ]
 
 
-class TestEndoscopicClfMGPU(unittest.TestCase):
+class TestEndoscopicClsMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 10
