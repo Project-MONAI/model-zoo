@@ -38,6 +38,7 @@ TEST_CASE_2 = [  # inference
         "bundle_root": "models/spleen_ct_segmentation",
         "datalist": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
         "handlers#0#_disabled_": True,  # do not load weights
+        "inferer#roi_size": [32, 32, 32],
     }
 ]
 

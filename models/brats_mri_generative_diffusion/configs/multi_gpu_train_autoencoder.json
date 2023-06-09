@@ -1,5 +1,5 @@
 {
-    "device": "$torch.device(f'cuda:{dist.get_rank()}')",
+    "device": "$torch.device('cuda:' + os.environ['LOCAL_RANK'])",
     "gnetwork": {
         "_target_": "torch.nn.parallel.DistributedDataParallel",
         "module": "$@autoencoder_def.to(@device)",
@@ -25,6 +25,7 @@
     "train#trainer#train_handlers": "$@train#handlers[: -2 if dist.get_rank() > 0 else None]",
     "initialize": [
         "$import torch.distributed as dist",
+        "$import os",
         "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
         "$torch.cuda.set_device(@device)",
         "$monai.utils.set_determinism(seed=123)",
