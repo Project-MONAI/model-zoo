@@ -24,3 +24,4 @@ gdown>=4.5.4
 tensorboard
 parameterized
 monai>=1.2.0rc7
+pillow!=8.3.0  # https://github.com/python-pillow/Pillow/issues/5571

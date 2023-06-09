@@ -15,46 +15,48 @@ import subprocess
 import tempfile
 import unittest
 
-import nibabel as nib
 import numpy as np
 from monai.bundle import ConfigWorkflow
+from monai.data import PILWriter
 from parameterized import parameterized
 
 TEST_CASE_1 = [  # train, evaluate
     {
-        "bundle_root": "models/brats_mri_segmentation",
-        "epochs": 1,
+        "bundle_root": "models/endoscopic_inbody_classification",
+        "train#trainer#max_epochs": 2,
         "train#dataloader#num_workers": 1,
         "validate#dataloader#num_workers": 1,
-        "train#random_transforms#0#roi_size": [32, 32, 32],
+        "train#deterministic_transforms#3#spatial_size": [32, 32],
     }
 ]
 
 TEST_CASE_2 = [  # inference
-    {"bundle_root": "models/brats_mri_segmentation", "handlers#0#_disabled_": True, "inferer#roi_size": [64, 64, 64]}
+    {
+        "bundle_root": "models/endoscopic_inbody_classification",
+        "handlers#0#_disabled_": True,
+        "preprocessing#transforms#2#spatial_size": [32, 32],
+    }
 ]
 
 
-class TestBratsSeg(unittest.TestCase):
+class TestEndoscopicCls(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 10
-        shape = (64, 64, 64)
-        for s in range(dataset_size):
-            sample_dir = os.path.join(self.dataset_dir, "training", "HGG", f"sample_{s}")
+        writer = PILWriter(np.uint8)
+        shape = (3, 256, 256)
+        for sub_folder in ["inbody", "outbody"]:
+            sample_dir = os.path.join(self.dataset_dir, sub_folder)
             os.makedirs(sample_dir)
-            for image_suffix in ["t1", "t2", "t1ce", "flair"]:
-                test_image = np.random.randint(low=0, high=2, size=shape).astype(np.int8)
-                image_filename = os.path.join(sample_dir, f"image_{s}_{image_suffix}.nii.gz")
-                nib.save(nib.Nifti1Image(test_image, np.eye(4)), image_filename)
+            for s in range(dataset_size):
+                image = np.random.randint(low=0, high=5, size=shape).astype(np.int8)
+                image_filename = os.path.join(sample_dir, f"{sub_folder}_{s}.jpg")
+                writer.set_data_array(image, channel_dim=0)
+                writer.write(image_filename, verbose=True)
 
-            test_label = np.random.randint(low=0, high=5, size=shape).astype(np.int8)
-            label_filename = os.path.join(sample_dir, f"label_{s}_seg.nii.gz")
-            nib.save(nib.Nifti1Image(test_label, np.eye(4)), label_filename)
-
-        prepare_datalist_file = "models/brats_mri_segmentation/scripts/prepare_datalist.py"
-        datalist_file = "models/brats_mri_segmentation/configs/datalist.json"
-        cmd = f"python {prepare_datalist_file} --path {self.dataset_dir} --output {datalist_file} --train_size 6"
+        prepare_datalist_file = "models/endoscopic_inbody_classification/scripts/data_process.py"
+        outpath = "models/endoscopic_inbody_classification/label"
+        cmd = f"python {prepare_datalist_file} --datapath {self.dataset_dir} --outpath {outpath}"
         call_status = subprocess.run(cmd, shell=True)
         call_status.check_returncode()
 
