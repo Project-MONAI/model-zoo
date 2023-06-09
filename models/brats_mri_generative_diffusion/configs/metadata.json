@@ -9,7 +9,7 @@
         "1.0.1": "update dependency, update trained model weights",
         "1.0.0": "Initial release"
     },
-    "monai_version": "1.2.0rc7",
+    "monai_version": "1.2.0",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
