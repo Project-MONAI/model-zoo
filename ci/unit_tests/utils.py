@@ -15,17 +15,6 @@ import subprocess
 from monai.bundle import ConfigParser
 
 
-def run_command(cmd):
-    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, universal_newlines=True)
-    while process.poll() is None:
-        line = process.stdout.readline()
-        line = line.rstrip()
-        if line:
-            print(line, flush=True)
-    print((f"Return code: {process.returncode}"))
-    process.stdout.close()
-
-
 def export_overrided_config(config_file, override_dict, output_path):
     parser = ConfigParser()
     parser.read_config(config_file)
@@ -65,4 +54,4 @@ def export_config_and_run_mgpu_cmd(
     cmd = produce_mgpu_cmd(
         config_file=output_path, meta_file=meta_file, logging_file=logging_file, nnodes=nnode, nproc_per_node=ngpu
     )
-    run_command(cmd)
+    subprocess.check_call(cmd)
