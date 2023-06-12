@@ -78,7 +78,6 @@ class TestLdm2dMGPU(unittest.TestCase):
         diffusion_file = os.path.join(bundle_root, "configs/train_diffusion.json")
         mgpu_autoencoder_file = os.path.join(bundle_root, "configs/multi_gpu_train_autoencoder.json")
         mgpu_diffusion_file = os.path.join(bundle_root, "configs/multi_gpu_train_diffusion.json")
-        output_path = os.path.join(bundle_root, "configs/train_override.json")
         n_gpu = torch.cuda.device_count()
 
         export_config_and_run_mgpu_cmd(
@@ -86,7 +85,7 @@ class TestLdm2dMGPU(unittest.TestCase):
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             override_dict=override,
-            output_path=output_path,
+            output_path=os.path.join(bundle_root, "configs/autoencoder_override.json"),
             ngpu=n_gpu,
         )
 
@@ -95,7 +94,7 @@ class TestLdm2dMGPU(unittest.TestCase):
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             override_dict=override,
-            output_path=output_path,
+            output_path=os.path.join(bundle_root, "configs/diffusion_override.json"),
             ngpu=n_gpu,
         )
 

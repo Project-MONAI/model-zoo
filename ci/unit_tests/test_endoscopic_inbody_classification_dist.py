@@ -27,6 +27,7 @@ TEST_CASE_1 = [
         "train#trainer#max_epochs": 1,
         "train#dataloader#num_workers": 1,
         "validate#dataloader#num_workers": 1,
+        "train#deterministic_transforms#3#spatial_size": [32, 32],
     }
 ]
 

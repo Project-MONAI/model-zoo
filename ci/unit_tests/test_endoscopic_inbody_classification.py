@@ -26,11 +26,17 @@ TEST_CASE_1 = [  # train, evaluate
         "train#trainer#max_epochs": 2,
         "train#dataloader#num_workers": 1,
         "validate#dataloader#num_workers": 1,
+        "train#deterministic_transforms#3#spatial_size": [32, 32],
     }
 ]
 
-TEST_CASE_2 = [{"bundle_root": "models/endoscopic_inbody_classification", "handlers#0#_disabled_": True}]  # inference
-
+TEST_CASE_2 = [  # inference
+    {
+        "bundle_root": "models/endoscopic_inbody_classification",
+        "handlers#0#_disabled_": True,
+        "preprocessing#transforms#2#spatial_size": [32, 32],
+    }
+]
 
 class TestEndoscopicCls(unittest.TestCase):
     def setUp(self):

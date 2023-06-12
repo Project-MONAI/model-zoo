@@ -30,6 +30,7 @@ TEST_CASE_1 = [  # mgpu train
         "validate#dataset#cache_rate": 0.0,
         "train#dataloader#num_workers": 1,
         "validate#dataloader#num_workers": 1,
+        "train#random_transforms#0#spatial_size": [32, 32, 32],
     }
 ]
 
@@ -38,7 +39,7 @@ class TestSpleenCTSegMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 10
-        input_shape = (256, 256, 192)
+        input_shape = (64, 64, 64)
         for s in range(dataset_size):
             test_image = np.random.randint(low=0, high=2, size=input_shape).astype(np.int8)
             test_label = np.random.randint(low=0, high=2, size=input_shape).astype(np.int8)
