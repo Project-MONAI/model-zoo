@@ -27,7 +27,6 @@ TEST_CASE_1 = [  # mgpu train
         "epochs": 1,
         "train#dataloader#num_workers": 1,
         "validate#dataloader#num_workers": 1,
-        "train#random_transforms#0#roi_size": [32, 32, 32],
     }
 ]
 
@@ -36,7 +35,7 @@ class TestBratsSegMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 10
-        shape = (64, 64, 64)
+        shape = (224, 224, 160)
         for s in range(dataset_size):
             sample_dir = os.path.join(self.dataset_dir, "training", "HGG", f"sample_{s}")
             os.makedirs(sample_dir)
@@ -73,6 +72,7 @@ class TestBratsSegMGPU(unittest.TestCase):
             override_dict=override,
             output_path=output_path,
             ngpu=n_gpu,
+            check_config=True,
         )
 
 

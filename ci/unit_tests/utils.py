@@ -10,9 +10,10 @@
 # limitations under the License.
 
 
+import os
 import subprocess
 
-from monai.bundle import ConfigParser
+from monai.bundle import ConfigParser, ConfigWorkflow
 
 
 def export_overrided_config(config_file, override_dict, output_path):
@@ -43,15 +44,35 @@ def produce_mgpu_cmd(config_file, meta_file, logging_file, nnodes=1, nproc_per_n
 
 
 def export_config_and_run_mgpu_cmd(
-    config_file, meta_file, logging_file, override_dict, output_path, workflow="train", nnode=1, ngpu=2
+    config_file,
+    meta_file,
+    logging_file,
+    override_dict,
+    output_path,
+    workflow="train",
+    nnode=1,
+    ngpu=2,
+    check_config=False,
 ):
     """
     step 1: override the config file and export it
-    step 2: produce multi-gpu running command
-    step 3: run produced command
+    step 2: (optional) check the exported config file
+    step 3: produce multi-gpu running command
+    step 4: run produced command
     """
     export_overrided_config(config_file=config_file, override_dict=override_dict, output_path=output_path)
+    if check_config is True:
+        engine = ConfigWorkflow(
+            workflow=workflow, config_file=output_path, logging_file=logging_file, meta_file=meta_file
+        )
+        engine.initialize()
+        check_result = engine.check_properties()
+        if check_result is not None and len(check_result) > 0:
+            raise ValueError(f"check properties for overrided mgpu configs failed: {check_result}")
     cmd = produce_mgpu_cmd(
         config_file=output_path, meta_file=meta_file, logging_file=logging_file, nnodes=nnode, nproc_per_node=ngpu
     )
-    subprocess.check_call(cmd)
+    env = os.environ.copy()
+    # ensure customized library can be loaded in subprocess
+    env["PYTHONPATH"] = override_dict.get("bundle_root", ".")
+    subprocess.check_call(cmd, env=env)
