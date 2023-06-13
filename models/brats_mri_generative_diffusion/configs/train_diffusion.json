@@ -64,15 +64,15 @@
         "beta_start": 0.0015,
         "beta_end": 0.0195
     },
-    "inferer": {
-        "_target_": "generative.inferers.LatentDiffusionInferer",
-        "scheduler": "@noise_scheduler",
-        "scale_factor": "@scale_factor"
-    },
     "loss": {
         "_target_": "torch.nn.MSELoss"
     },
     "train": {
+        "inferer": {
+            "_target_": "generative.inferers.LatentDiffusionInferer",
+            "scheduler": "@noise_scheduler",
+            "scale_factor": "@scale_factor"
+        },
         "crop_transforms": [
             {
                 "_target_": "CenterSpatialCropd",
@@ -140,7 +140,7 @@
             "optimizer": "@optimizer",
             "loss_function": "@loss",
             "latent_shape": "@latent_shape",
-            "inferer": "@inferer",
+            "inferer": "@train#inferer",
             "key_train_metric": "$None",
             "train_handlers": "@train#handlers"
         }

@@ -72,7 +72,7 @@ verify_bundle() {
                     bash $extra_script
                 fi
                 # do multi gpu based unit tests
-                pipenv run python $(pwd)/ci/unit_tests/runner.py --b "$bundle" --dist True
+                pipenv run torchrun $(pwd)/ci/unit_tests/runner.py --b "$bundle" --dist True
                 remove_pipenv
             done
         else

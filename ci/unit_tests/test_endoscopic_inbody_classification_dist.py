@@ -71,6 +71,7 @@ class TestEndoscopicClsMGPU(unittest.TestCase):
             override_dict=override,
             output_path=output_path,
             ngpu=n_gpu,
+            check_config=True,
         )
 
 
