@@ -1174,5 +1174,13 @@
     "endoscopic_tool_segmentation_v0.5.4": {
         "checksum": "961e7c46a26523c32021810bb8f57b483244e6e9",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.5.4.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.6": {
+        "checksum": "0834554ed19e357578fa978538725f9a16492bc9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.6.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.6": {
+        "checksum": "dbd03eeca8367c0f51fdc5ef225d7b28ce7bc831",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.6.zip"
     }
 }
