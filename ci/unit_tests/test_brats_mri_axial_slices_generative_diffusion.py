@@ -157,9 +157,6 @@ class TestLdm2d(unittest.TestCase):
             **override,
         )
         inferrer.initialize()
-        # check_result = inferrer.check_properties()
-        # if check_result is not None and len(check_result) > 0:
-        #     raise ValueError(f"check properties for overrided train config failed: {check_result}")
         inferrer.run()
         inferrer.finalize()
 

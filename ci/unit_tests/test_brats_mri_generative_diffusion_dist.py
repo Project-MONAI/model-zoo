@@ -12,14 +12,14 @@
 import json
 import os
 import shutil
-import sys
 import tempfile
 import unittest
 
 import nibabel as nib
 import numpy as np
-from monai.bundle import ConfigWorkflow
+import torch
 from parameterized import parameterized
+from utils import export_config_and_run_mgpu_cmd
 
 TEST_CASE_1 = [
     {
@@ -46,8 +46,6 @@ TEST_CASE_2 = [
     }
 ]
 
-TEST_CASE_3 = [{"bundle_root": "models/brats_mri_generative_diffusion", "infer_patch_size": [64, 64, 64]}]
-
 
 def test_order(test_name1, test_name2):
     # specify test order.
@@ -63,7 +61,7 @@ def test_order(test_name1, test_name2):
     return get_order(test_name1) - get_order(test_name2)
 
 
-class TestLdm3d(unittest.TestCase):
+class TestLdm3dMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 5
@@ -100,79 +98,40 @@ class TestLdm3d(unittest.TestCase):
         shutil.rmtree(self.dataset_dir)
 
     @parameterized.expand([TEST_CASE_1])
-    def test_autoencoder_train(self, override):
+    def test_autoencoder_mgpu(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
-        sys.path = [bundle_root] + sys.path
+        autoencoder_file = os.path.join(bundle_root, "configs/train_autoencoder.json")
+        mgpu_autoencoder_file = os.path.join(bundle_root, "configs/multi_gpu_train_autoencoder.json")
+        n_gpu = torch.cuda.device_count()
 
-        trainer = ConfigWorkflow(
-            workflow="train",
-            config_file=os.path.join(bundle_root, "configs/train_autoencoder.json"),
+        export_config_and_run_mgpu_cmd(
+            config_file=[autoencoder_file, mgpu_autoencoder_file],
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
-            **override,
+            override_dict=override,
+            output_path=os.path.join(bundle_root, "configs/autoencoder_override.json"),
+            ngpu=n_gpu,
         )
-        trainer.initialize()
-        trainer.run()
-        trainer.finalize()
-
-    @parameterized.expand([TEST_CASE_3])
-    def test_autoencoder_infer(self, override):
-        override["dataset_dir"] = self.dataset_dir
-        bundle_root = override["bundle_root"]
-        sys.path = [bundle_root] + sys.path
-
-        inferrer = ConfigWorkflow(
-            workflow="infer",
-            config_file=os.path.join(bundle_root, "configs/inference_autoencoder.json"),
-            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
-            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
-            **override,
-        )
-        inferrer.initialize()
-        inferrer.run()
-        inferrer.finalize()
 
     @parameterized.expand([TEST_CASE_2])
-    def test_diffusion_train(self, override):
+    def test_diffusion_mgpu(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
-        sys.path = [bundle_root] + sys.path
         autoencoder_file = os.path.join(bundle_root, "configs/train_autoencoder.json")
         diffusion_file = os.path.join(bundle_root, "configs/train_diffusion.json")
+        mgpu_autoencoder_file = os.path.join(bundle_root, "configs/multi_gpu_train_autoencoder.json")
+        mgpu_diffusion_file = os.path.join(bundle_root, "configs/multi_gpu_train_diffusion.json")
+        n_gpu = torch.cuda.device_count()
 
-        trainer = ConfigWorkflow(
-            workflow="train",
-            config_file=[autoencoder_file, diffusion_file],
+        export_config_and_run_mgpu_cmd(
+            config_file=[autoencoder_file, diffusion_file, mgpu_autoencoder_file, mgpu_diffusion_file],
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
-            **override,
+            override_dict=override,
+            output_path=os.path.join(bundle_root, "configs/diffusion_override.json"),
+            ngpu=n_gpu,
         )
-        trainer.initialize()
-        # TODO: uncomment the following check after we have monai > 1.2.0
-        # https://github.com/Project-MONAI/MONAI/issues/6602
-        # check_result = trainer.check_properties()
-        # if check_result is not None and len(check_result) > 0:
-        #     raise ValueError(f"check properties for overrided train config failed: {check_result}")
-        trainer.run()
-        trainer.finalize()
-
-    @parameterized.expand([TEST_CASE_3])
-    def test_diffusion_infer(self, override):
-        override["dataset_dir"] = self.dataset_dir
-        bundle_root = override["bundle_root"]
-        sys.path = [bundle_root] + sys.path
-
-        inferrer = ConfigWorkflow(
-            workflow="infer",
-            config_file=os.path.join(bundle_root, "configs/inference.json"),
-            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
-            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
-            **override,
-        )
-        inferrer.initialize()
-        inferrer.run()
-        inferrer.finalize()
 
 
 if __name__ == "__main__":
