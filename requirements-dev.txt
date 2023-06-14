@@ -26,3 +26,4 @@ parameterized
 monai>=1.2.0rc7
 pillow!=8.3.0  # https://github.com/python-pillow/Pillow/issues/5571
 itk>=5.2
+scikit-learn
