@@ -64,7 +64,7 @@ def get_searched_arch(path):
             arch_name = f
     if arch_name is None:
         raise ValueError("Cannot find searched architectures file.")
-    print(file_list)
+
     return arch_name
 
 
@@ -90,7 +90,6 @@ class TestDintsMGPU(unittest.TestCase):
         cmd = f"python {prepare_datalist_file} --path {self.dataset_dir} --output {datalist_file} --train_size 12"
         call_status = subprocess.run(cmd, shell=True)
         call_status.check_returncode()
-        subprocess.check_call("df -h /dev/shm/", shell=True)
 
     def tearDown(self):
         shutil.rmtree(self.dataset_dir)

@@ -50,19 +50,9 @@ TEST_CASE_2 = [
     }
 ]
 
-TEST_CASE_3 = [
-    {
-        "bundle_root": "models/pancreas_ct_dints_segmentation",
-        "validate#inferer#roi_size": [32, 32, 32],
-    }
-]
+TEST_CASE_3 = [{"bundle_root": "models/pancreas_ct_dints_segmentation", "validate#inferer#roi_size": [32, 32, 32]}]
 
-TEST_CASE_4 = [
-    {
-        "bundle_root": "models/pancreas_ct_dints_segmentation",
-        "inferer#roi_size": [32, 32, 32],
-    }
-]
+TEST_CASE_4 = [{"bundle_root": "models/pancreas_ct_dints_segmentation", "inferer#roi_size": [32, 32, 32]}]
 
 
 def test_order(test_name1, test_name2):
@@ -86,7 +76,7 @@ def get_searched_arch(path):
             arch_name = f
     if arch_name is None:
         raise ValueError("Cannot find searched architectures file.")
-    print(file_list)
+
     return arch_name
 
 
@@ -112,7 +102,6 @@ class TestDints(unittest.TestCase):
         cmd = f"python {prepare_datalist_file} --path {self.dataset_dir} --output {datalist_file} --train_size 12"
         call_status = subprocess.run(cmd, shell=True)
         call_status.check_returncode()
-        subprocess.check_call("df -h /dev/shm/", shell=True)
 
     def tearDown(self):
         shutil.rmtree(self.dataset_dir)
