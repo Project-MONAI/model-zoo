@@ -24,7 +24,6 @@ from utils import export_config_and_run_mgpu_cmd, export_overrided_config
 TEST_CASE_1 = [
     {
         "bundle_root": "models/pancreas_ct_dints_segmentation",
-        "arch_ckpt_path": "models/pancreas_ct_dints_segmentation/models/",
         "data_list_file_path": "models/pancreas_ct_dints_segmentation/configs/dataset_0.json",
         "num_epochs": 1,
         "num_epochs_per_validation": 1,
@@ -38,7 +37,6 @@ TEST_CASE_1 = [
 TEST_CASE_2 = [
     {
         "bundle_root": "models/pancreas_ct_dints_segmentation",
-        "arch_ckpt_path": "models/pancreas_ct_dints_segmentation/models/search_code_3.pt",
         "train#trainer#max_epochs": 1,
         "train#dataset#cache_rate": 0,
         "validate#dataset#cache_rate": 0,
@@ -58,8 +56,21 @@ def test_order(test_name1, test_name2):
     return get_order(test_name1) - get_order(test_name2)
 
 
+def get_searched_arch(path):
+    file_list = os.listdir(path)
+    arch_name = None
+    for f in file_list:
+        if "search_code" in f:
+            arch_name = f
+    if arch_name is None:
+        raise ValueError("Cannot find searched architectures file.")
+    print("arch_name: ", arch_name)
+    return arch_name
+
+
 class TestDintsMGPU(unittest.TestCase):
     def setUp(self):
+        get_size()
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 20
         input_shape = (64, 64, 64)
@@ -87,6 +98,7 @@ class TestDintsMGPU(unittest.TestCase):
     @parameterized.expand([TEST_CASE_1])
     def test_search(self, override):
         override["data_file_base_dir"] = self.dataset_dir
+        override["arch_ckpt_path"] = os.path.join(override["bundle_root"], "models")
         output_path = "models/pancreas_ct_dints_segmentation/configs/search_override.json"
         export_overrided_config("models/pancreas_ct_dints_segmentation/configs/search.yaml", override, output_path)
         cmd = f"torchrun --standalone --nnodes=1 --nproc_per_node=2 -m scripts.search run {output_path}"
@@ -99,6 +111,8 @@ class TestDintsMGPU(unittest.TestCase):
     def test_train_mgpu_config(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
+        arch_name = get_searched_arch(os.path.join(bundle_root, "models"))
+        override["arch_ckpt_path"] = os.path.join(bundle_root, "models", arch_name)
         train_file = os.path.join(bundle_root, "configs/train.yaml")
         mgpu_train_file = os.path.join(bundle_root, "configs/multi_gpu_train.yaml")
         output_path = os.path.join(bundle_root, "configs/train_override.json")

@@ -24,7 +24,6 @@ from utils import export_overrided_config
 TEST_CASE_1 = [
     {
         "bundle_root": "models/pancreas_ct_dints_segmentation",
-        "arch_ckpt_path": "models/pancreas_ct_dints_segmentation/models/",
         "data_list_file_path": "models/pancreas_ct_dints_segmentation/configs/dataset_0.json",
         "num_epochs": 1,
         "num_epochs_per_validation": 1,
@@ -38,13 +37,14 @@ TEST_CASE_1 = [
 TEST_CASE_2 = [
     {
         "bundle_root": "models/pancreas_ct_dints_segmentation",
-        "arch_ckpt_path": "models/pancreas_ct_dints_segmentation/models/search_code_6.pt",
         "train#trainer#max_epochs": 1,
         "train#dataset#cache_rate": 0,
+        "train#dataloader#num_workers": 1,
         "validate#dataset#cache_rate": 0,
         "validate#inferer#roi_size": [32, 32, 32],
         "validate#inferer#sw_batch_size": 1,
         "validate#inferer#overlap": 0.1,
+        "validate#dataloader#num_workers": 1,
         "train#random_transforms#0#spatial_size": [32, 32, 32],
         "val_interval": 1,
     }
@@ -53,7 +53,6 @@ TEST_CASE_2 = [
 TEST_CASE_3 = [
     {
         "bundle_root": "models/pancreas_ct_dints_segmentation",
-        "arch_ckpt_path": "models/pancreas_ct_dints_segmentation/models/search_code_6.pt",
         "validate#inferer#roi_size": [32, 32, 32],
     }
 ]
@@ -61,7 +60,6 @@ TEST_CASE_3 = [
 TEST_CASE_4 = [
     {
         "bundle_root": "models/pancreas_ct_dints_segmentation",
-        "arch_ckpt_path": "models/pancreas_ct_dints_segmentation/models/search_code_6.pt",
         "inferer#roi_size": [32, 32, 32],
     }
 ]
@@ -80,8 +78,32 @@ def test_order(test_name1, test_name2):
     return get_order(test_name1) - get_order(test_name2)
 
 
+def get_searched_arch(path):
+    file_list = os.listdir(path)
+    arch_name = None
+    for f in file_list:
+        if "search_code" in f:
+            arch_name = f
+    if arch_name is None:
+        raise ValueError("Cannot find searched architectures file.")
+    print("arch_name: ", arch_name)
+    return arch_name
+
+def get_size(start_path = '/dev/shm/'):
+    total_size = 0
+    for dirpath, dirnames, filenames in os.walk(start_path):
+        for f in filenames:
+            fp = os.path.join(dirpath, f)
+            # skip if it is symbolic link
+            if not os.path.islink(fp):
+                total_size += os.path.getsize(fp)
+
+    print("shm size is: ", total_size)
+
+
 class TestDints(unittest.TestCase):
     def setUp(self):
+        get_size()
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 20
         input_shape = (64, 64, 64)
@@ -109,6 +131,7 @@ class TestDints(unittest.TestCase):
     @parameterized.expand([TEST_CASE_1])
     def test_search(self, override):
         override["data_file_base_dir"] = self.dataset_dir
+        override["arch_ckpt_path"] = os.path.join(override["bundle_root"], "models")
         output_path = "models/pancreas_ct_dints_segmentation/configs/search_override.json"
         export_overrided_config("models/pancreas_ct_dints_segmentation/configs/search.yaml", override, output_path)
         cmd = f"python -m scripts.search run --config_file {output_path}"
@@ -121,6 +144,8 @@ class TestDints(unittest.TestCase):
     def test_train(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
+        arch_name = get_searched_arch(os.path.join(bundle_root, "models"))
+        override["arch_ckpt_path"] = os.path.join(bundle_root, "models", arch_name)
         train_file = os.path.join(bundle_root, "configs/train.yaml")
 
         trainer = ConfigWorkflow(
@@ -142,6 +167,8 @@ class TestDints(unittest.TestCase):
     def test_eval(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
+        arch_name = get_searched_arch(os.path.join(bundle_root, "models"))
+        override["arch_ckpt_path"] = os.path.join(bundle_root, "models", arch_name)
         train_file = os.path.join(bundle_root, "configs/train.yaml")
         eval_file = os.path.join(bundle_root, "configs/evaluate.yaml")
 
@@ -164,7 +191,8 @@ class TestDints(unittest.TestCase):
     def test_infer_config(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
-
+        arch_name = get_searched_arch(os.path.join(bundle_root, "models"))
+        override["arch_ckpt_path"] = os.path.join(bundle_root, "models", arch_name)
         inferrer = ConfigWorkflow(
             workflow="infer",
             config_file=os.path.join(bundle_root, "configs/inference.yaml"),
