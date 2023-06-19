@@ -43,6 +43,8 @@ TEST_CASE_2 = [
         "train#dataset#cache_rate": 0,
         "validate#dataset#cache_rate": 0,
         "validate#inferer#roi_size": [32, 32, 32],
+        "validate#inferer#sw_batch_size": 1,
+        "validate#inferer#overlap": 0.1,
         "train#random_transforms#0#spatial_size": [32, 32, 32],
         "val_interval": 1,
     }
