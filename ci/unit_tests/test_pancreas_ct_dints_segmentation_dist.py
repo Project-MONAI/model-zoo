@@ -64,7 +64,7 @@ def get_searched_arch(path):
             arch_name = f
     if arch_name is None:
         raise ValueError("Cannot find searched architectures file.")
-    print("arch_name: ", arch_name)
+    print(file_list)
     return arch_name
 
 
