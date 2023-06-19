@@ -47,18 +47,6 @@ TEST_CASE_2 = [
 ]
 
 
-def get_size(start_path = '/dev/shm/'):
-    total_size = 0
-    for dirpath, dirnames, filenames in os.walk(start_path):
-        for f in filenames:
-            fp = os.path.join(dirpath, f)
-            # skip if it is symbolic link
-            if not os.path.islink(fp):
-                total_size += os.path.getsize(fp)
-
-    print("shm size is: ", total_size)
-
-
 def test_order(test_name1, test_name2):
     def get_order(name):
         if "search" in name:
@@ -82,7 +70,6 @@ def get_searched_arch(path):
 
 class TestDintsMGPU(unittest.TestCase):
     def setUp(self):
-        get_size()
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 20
         input_shape = (64, 64, 64)
@@ -103,6 +90,7 @@ class TestDintsMGPU(unittest.TestCase):
         cmd = f"python {prepare_datalist_file} --path {self.dataset_dir} --output {datalist_file} --train_size 12"
         call_status = subprocess.run(cmd, shell=True)
         call_status.check_returncode()
+        subprocess.check_call("df -h /dev/shm/", shell=True)
 
     def tearDown(self):
         shutil.rmtree(self.dataset_dir)
