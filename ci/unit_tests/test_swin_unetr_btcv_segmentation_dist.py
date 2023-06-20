@@ -20,28 +20,33 @@ from monai.data import ITKWriter
 from parameterized import parameterized
 from utils import export_config_and_run_mgpu_cmd
 
-TEST_CASE_1 = [  # mgpu train
+TEST_CASE_1 = [
     {
-        "bundle_root": "models/spleen_deepedit_annotation",
+        "bundle_root": "models/swin_unetr_btcv_segmentation",
         "images": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
         "labels": "$list(sorted(glob.glob(@dataset_dir + '/label_*.nii.gz')))",
+        "val_interval": 1,
+        "network_def#img_size": 96,
+        "network_def#feature_size": 24,
+        "train#random_transforms#0#num_samples": 1,
+        "train#deterministic_transforms#3#pixdim": [1.0, 1.0, 1.0],
         "train#trainer#max_epochs": 1,
         "train#dataset#cache_rate": 0.0,
+        "train#dataloader#batch_size": 1,
         "validate#dataset#cache_rate": 0.0,
-        "spatial_size": [32, 32, 32],
     }
 ]
 
 
-class TestDeepeditAnnoMGPU(unittest.TestCase):
+class TestSwinUnetrMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
-        dataset_size = 10
-        input_shape = (64, 64, 64)
+        dataset_size = 12
+        input_shape = (96, 96, 96)
         writer = ITKWriter(output_dtype=np.uint8)
         for s in range(dataset_size):
             test_image = np.random.randint(low=0, high=2, size=input_shape).astype(np.int8)
-            test_label = np.random.randint(low=0, high=2, size=input_shape).astype(np.int8)
+            test_label = np.random.randint(low=0, high=14, size=input_shape).astype(np.int8)
             image_filename = os.path.join(self.dataset_dir, f"image_{s}.nii.gz")
             label_filename = os.path.join(self.dataset_dir, f"label_{s}.nii.gz")
             writer.set_data_array(test_image, channel_dim=None)
