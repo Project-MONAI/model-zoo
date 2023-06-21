@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.6",
+    "version": "0.5.7",
     "changelog": {
+        "0.5.7": "update channel_def in metadata",
         "0.5.6": "fix the wrong GPU index issue of multi-node",
         "0.5.5": "modify mgpu logging level",
         "0.5.4": "retrain using an internal pretrained ResNet18",
@@ -70,7 +71,9 @@
                 ],
                 "is_patch_data": true,
                 "channel_def": {
-                    "0": "image"
+                    "0": "R",
+                    "1": "G",
+                    "2": "B"
                 }
             }
         },

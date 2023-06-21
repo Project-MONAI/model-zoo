@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "changelog": {
+        "0.5.1": "check unit test",
         "0.5.0": "fix the wrong GPU index issue of multi-node",
         "0.4.9": "remove error dollar symbol in readme",
         "0.4.8": "add RAM usage with CacheDataset",
