@@ -109,14 +109,12 @@ if __name__ == "__main__":
     test_file = os.path.join(os.path.dirname(__file__), f"{test_file_name}.py")
     if os.path.exists(test_file):
         loader = unittest.TestLoader()
-        try:
-            # if having the "test_order" function, will use it as the load order
-            sys.path.append(os.path.dirname(__file__))
-            module = importlib.import_module(test_file_name)
+        # if having the "test_order" function, will use it as the load order
+        sys.path.append(os.path.dirname(__file__))
+        module = importlib.import_module(test_file_name)
+        if hasattr(module, "test_order"):
             test_order = getattr(module, "test_order")
             loader.sortTestMethodsUsing = test_order
-        except:
-            pass
         tests = loader.loadTestsFromNames([test_file_name])
         test_runner = unittest.runner.TextTestRunner(
             resultclass=TimeLoggingTestResult, verbosity=args.verbosity, failfast=args.failfast
