@@ -113,8 +113,7 @@ if __name__ == "__main__":
         sys.path.append(os.path.dirname(__file__))
         module = importlib.import_module(test_file_name)
         if hasattr(module, "test_order"):
-            test_order = getattr(module, "test_order")
-            loader.sortTestMethodsUsing = test_order
+            loader.sortTestMethodsUsing = module.test_order
         tests = loader.loadTestsFromNames([test_file_name])
         test_runner = unittest.runner.TextTestRunner(
             resultclass=TimeLoggingTestResult, verbosity=args.verbosity, failfast=args.failfast
