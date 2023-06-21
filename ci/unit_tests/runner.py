@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import inspect
 import os
 import sys
@@ -107,7 +108,16 @@ if __name__ == "__main__":
     test_file_name = f"test_{args.bundle}_dist" if args.dist is True else f"test_{args.bundle}"
     test_file = os.path.join(os.path.dirname(__file__), f"{test_file_name}.py")
     if os.path.exists(test_file):
-        tests = unittest.TestLoader().loadTestsFromNames([test_file_name])
+        loader = unittest.TestLoader()
+        try:
+            # if having the "test_order" function, will use it as the load order
+            sys.path.append(os.path.dirname(__file__))
+            module = importlib.import_module(test_file_name)
+            test_order = getattr(module, "test_order")
+            loader.sortTestMethodsUsing = test_order
+        except:
+            pass
+        tests = loader.loadTestsFromNames([test_file_name])
         test_runner = unittest.runner.TextTestRunner(
             resultclass=TimeLoggingTestResult, verbosity=args.verbosity, failfast=args.failfast
         )

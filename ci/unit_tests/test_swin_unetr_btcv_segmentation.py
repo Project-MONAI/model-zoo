@@ -25,8 +25,6 @@ TEST_CASE_1 = [  # train, evaluate
         "images": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
         "labels": "$list(sorted(glob.glob(@dataset_dir + '/label_*.nii.gz')))",
         "val_interval": 1,
-        "network_def#img_size": 96,
-        "network_def#feature_size": 24,
         "train#random_transforms#0#num_samples": 1,
         "train#deterministic_transforms#3#pixdim": [1.0, 1.0, 1.0],
         "train#trainer#max_epochs": 1,
@@ -40,7 +38,6 @@ TEST_CASE_2 = [  # inference
     {
         "bundle_root": "models/swin_unetr_btcv_segmentation",
         "datalist": "$list(sorted(glob.glob(@dataset_dir + '/image_*.nii.gz')))",
-        "network_def#feature_size": 24,
         "preprocessing#transforms#3#pixdim": [1.0, 1.0, 1.0],
     }
 ]
