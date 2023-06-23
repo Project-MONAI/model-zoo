@@ -36,16 +36,54 @@ Two channels
 
 ## Performance
 
-Dice score is used for evaluating the performance of the model. This model achieves a dice score of greater than 0.90, depending on the number of simulated clicks.
+Dice score is used for evaluating the performance of the model. This model achieves a dice score of 0.97, depending on the number of simulated clicks.
 
 #### Training Dice
-![A graph showing the train dice over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_dice.png)
+![A graph showing the train dice over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_dice_v2.png)
 
 #### Training Loss
-![A graph showing the training loss over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_loss.png)
+![A graph showing the training loss over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_train_loss_v2.png)
 
 #### Validation Dice
-![A graph showing the validation dice over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_val_dice.png)
+![A graph showing the validation dice over 90 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_spleen_deepedit_annotation_val_dice_v2.png)
+
+#### TensorRT speedup
+The `spleen_deepedit_annotation` bundle supports acceleration with TensorRT through the ONNX-TensorRT method. The table below displays the speedup ratios observed on an A100 80G GPU.
+
+| method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| model computation | 147.52 | 40.32 | 28.87 | 11.94 | 3.66 | 5.11 | 12.36 | 3.38 |
+| end2end |1292.39 | 1204.62 | 1168.09 | 1149.88 | 1.07 | 1.11 | 1.12 | 1.05 |
+
+Where:
+- `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
+- `end2end` means run the bundle end-to-end with the TensorRT based model.
+- `torch_fp32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
+- `trt_fp32` and `trt_fp16` are for the TensorRT based models converted in corresponding precision.
+- `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
+- `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
+
+Currently, the only available method to accelerate this model is through ONNX-TensorRT. However, the Torch-TensorRT method is under development and will be available in the near future.
+
+This result is benchmarked under:
+ - TensorRT: 8.5.3+cuda11.8
+ - Torch-TensorRT Version: 1.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.8.10
+ - CUDA version: 12.0
+ - GPU models and configuration: A100 80G
+
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 61 3D Volumes
+- Cache Rate: 1.0
+- Single GPU - System RAM Usage: 8.2G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
@@ -55,13 +93,19 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 #### Execute training:
 
 ```
-python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.json
+```
+
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
 ```
 
 #### Override the `train` config to execute multi-GPU training:
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
 ```
 
 Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
@@ -69,13 +113,28 @@ Please note that the distributed training-related options depend on the actual r
 ####  Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
+python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
 ####  Execute inference:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/inference.json
+```
+
+#### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
+
+```bash
+python -m monai.bundle trt_export --net_id network_def \
+--filepath models/model_trt.ts --ckpt_file models/model.pt \
+--meta_file configs/metadata.json --config_file configs/inference.json \
+--precision <fp32/fp16>  --use_onnx "True" --use_trace "True"
+```
+
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
 
 # References

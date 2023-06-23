@@ -15,7 +15,7 @@
     },
     "train#dataloader#sampler": "@train#sampler",
     "train#dataloader#shuffle": false,
-    "train#trainer#train_handlers": "$@train#train_handlers[: -2 if dist.get_rank() > 0 else None]",
+    "train#trainer#train_handlers": "$@train#train_handlers[: -3 if dist.get_rank() > 0 else None]",
     "validate#sampler": {
         "_target_": "DistributedSampler",
         "dataset": "@validate#dataset",
@@ -24,13 +24,17 @@
     },
     "validate#dataloader#sampler": "@validate#sampler",
     "validate#evaluator#val_handlers": "$None if dist.get_rank() > 0 else @validate#handlers",
-    "training": [
+    "initialize": [
         "$import torch.distributed as dist",
-        "$dist.init_process_group(backend='nccl')",
+        "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
         "$torch.cuda.set_device(@device)",
         "$monai.utils.set_determinism(seed=321)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
-        "$@train#trainer.run()",
-        "$dist.destroy_process_group()"
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
+        "$@train#trainer.run()"
+    ],
+    "finalize": [
+        "$dist.is_initialized() and dist.destroy_process_group()"
     ]
 }

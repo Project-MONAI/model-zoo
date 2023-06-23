@@ -3,9 +3,9 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/workspace/MONAI_Bundle/swin_unetr_btcv_segmentation/",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/dataset/dataset0",
+    "dataset_dir": "/workspace/data/RawData/",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
@@ -135,8 +135,10 @@
         "val_handlers": "@handlers",
         "amp": true
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

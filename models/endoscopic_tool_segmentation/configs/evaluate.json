@@ -47,7 +47,8 @@
             "load_path": "$@ckpt_dir + '/model.pt'",
             "load_dict": {
                 "model": "@network"
-            }
+            },
+            "map_location": "@device"
         },
         {
             "_target_": "StatsHandler",
@@ -68,8 +69,7 @@
             "summary_ops": "*"
         }
     ],
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "run": [
         "$@validate#evaluator.run()"
     ]
 }

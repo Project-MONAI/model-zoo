@@ -46,15 +46,36 @@ This model achieves the following Dice score on the validation data (our own spl
 
 Mean Dice = 88.6%
 
-## **commands example**
+## MONAI Bundle Commands
+In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-Execute training:
+For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+
+#### Execute model searching:
+
+```
+python -m scripts.search run --config_file configs/search.yaml
+```
+
+#### Execute multi-GPU model searching (recommended):
+
+```
+torchrun --nnodes=1 --nproc_per_node=8 -m scripts.search run --config_file configs/search.yaml
+```
+
+#### Execute training:
 
 ```
 python -m monai.bundle run --config_file configs/train.yaml
 ```
 
-Execute multi-GPU training with 4 GPUs:
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
+
+```
+python -m monai.bundle run --config_file configs/train.yaml
+```
+
+#### Override the `train` config to execute multi-GPU training:
 
 ```
 torchrun --nnodes=1 --nproc_per_node=8 \
@@ -62,29 +83,30 @@ torchrun --nnodes=1 --nproc_per_node=8 \
      --config_file configs/search.yaml
 ```
 
-Execute inference:
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
 python -m monai.bundle run --config_file configs/inference.yaml
 ```
 
-Override the train config to execute evaluation with the trained model:
+#### Execute inference:
 
 ```
 python -m monai.bundle run \
     --config_file "['configs/train.yaml','configs/evaluate.yaml']"
 ```
 
-Export checkpoint to TorchScript file:
+#### Export checkpoint for TorchScript:
 
 ```
-python -m monai.bundle ckpt_export network_def \
-    --filepath models/model.ts \
-    --ckpt_file models/model.pt \
-    --meta_file configs/metadata.json \
-    --config_file configs/inference.yaml
+python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.yaml
 ```
 
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.yaml', 'configs/inference_trt.yaml']"
+```
 
 
 ## **References**

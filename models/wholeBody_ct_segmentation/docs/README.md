@@ -1,18 +1,17 @@
 # Model Overview
-
 Body CT segmentation models are evolving. Starting from abdominal multi-organ segmentation model [1]. Now the community is developing hundreds of target anatomies. In this bundle, we provide re-trained models for (3D) segmentation of 104 whole-body segments.
 
 This model is trained using the SegResNet [3] network. The model is trained using TotalSegmentator datasets [2].
 
-![structures](https://github.com/wasserth/TotalSegmentator/blob/master/resources/imgs/overview_classes.png)
+![structures](https://raw.githubusercontent.com/wasserth/TotalSegmentator/master/resources/imgs/overview_classes.png)
 
 Figure source from the TotalSegmentator [2].
 
-## MONAI Label Showcase
+### MONAI Label Showcase
 
 - We highlight the use of this bundle to use and visualize in MONAI Label + 3D Slicer integration.
 
-![](./imgs/totalsegmentator_monailabel.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_monailabel.png) <br>
 
 ## Data
 
@@ -25,7 +24,21 @@ The training set is the 104 whole-body structures from the TotalSegmentator rele
 
 ### Preprocessing
 
-To use the bundle, users need to download the data and merge all annotated labels into one NIFTI file. Each file contains 0-104 values, each value represents one anatomy class. A sample set is provided with this [link](https://drive.google.com/file/d/1DtDmERVMjks1HooUhggOKAuDm0YIEunG/view?usp=share_link).
+To use the bundle, users need to download the data and merge all annotated labels into one NIFTI file. Each file contains 0-104 values, each value represents one anatomy class. We provide sample datasets and step-by-step instructions on how to get prepared:
+
+Instruction on how to start with the prepared sample dataset:
+
+1. Download the sample set with this [link](https://drive.google.com/file/d/1DtDmERVMjks1HooUhggOKAuDm0YIEunG/view?usp=share_link).
+2. Unzip the dataset into a workspace folder.
+3. There will be three sub-folders, each with several preprocessed CT volumes:
+      - imagesTr: 20 samples of training scans and validation scans.
+      - labelsTr: 20 samples of pre-processed label files.
+      - imagesTs: 5 samples of sample testing scans.
+4. Usage: users can add `--dataset_dir <totalSegmentator_mergedLabel_samples>` to the bundle run command to specify the data path.
+
+Instruction on how to merge labels with the raw dataset:
+
+- There are 104 binary masks associated with each CT scan, each mask corresponds to anatomy. These pixel-level labels are class-exclusive, users can assign each anatomy a class number then merge to a single NIFTI file as the ground truth label file. The order of anatomies can be found [here](https://github.com/Project-MONAI/model-zoo/blob/dev/models/wholeBody_ct_segmentation/configs/metadata.json).
 
 ## Training Configuration
 
@@ -33,12 +46,39 @@ The segmentation of 104 tissues is formulated as voxel-wise multi-label segmenta
 
 The training was performed with the following:
 
-- GPU: 32 GB of GPU memory
+- GPU: 48 GB of GPU memory
 - Actual Model Input: 96 x 96 x 96
 - AMP: True
 - Optimizer: AdamW
 - Learning Rate: 1e-4
 - Loss: DiceCELoss
+
+## Evaluation Configuration
+
+The model predicts 105 channels output at the same time using softmax and argmax. It requires higher GPU memory when calculating
+ metrics between predicted masked and ground truth. The consumption of hardware requirements, such as GPU memory is dependent on the input CT volume size.
+
+The recommended evaluation configuration and the metrics were acquired with the following hardware:
+
+- GPU: equal to or larger than 48 GB of GPU memory
+- Model: high resolution model pre-trained at a slice thickness of 1.5 mm.
+
+Note: there are two pre-trained models provided. The default is the high resolution model, evaluation pipeline at slice thickness of **1.5mm**,
+users can use the lower resolution model if out of memory (OOM) occurs, which the model is pre-trained with CT scans at a slice thickness of **3.0mm**.
+
+Users can also use the inference pipeline for predicted masks, we provide detailed GPU memory consumption in the following sections.
+
+### Memory Consumption
+
+- Dataset Manager: CacheDataset
+- Data Size: 1000 3D Volumes
+- Cache Rate: 0.4
+- Single GPU - System RAM Usage: 83G
+- Multi GPU (8 GPUs) - System RAM Usage: 666G
+
+### Memory Consumption Warning
+
+If you face memory issues with CacheDataset, you can either switch to a regular Dataset class or lower the caching rate `cache_rate` in the configurations within range [0, 1] to minimize the System RAM requirements.
 
 ### Input
 
@@ -50,6 +90,14 @@ One channel
 105 channels
 - Label 0: Background (everything else)
 - label 1-105: Foreground classes (104)
+
+## Resource Requirements and Latency Benchmarks
+
+### GPU Consumption Warning
+
+The model is trained with 104 classes in single instance, for predicting 104 structures, the GPU consumption can be large.
+
+For inference pipeline, please refer to the following section for benchmarking results. Normally, a CT scans with 300 slices will take about 27G memory, if your CT is larger, please prepare larger GPU memory or use CPU for inference.
 
 ### High-Resolution and Low-Resolution Models
 
@@ -64,13 +112,11 @@ In MONAI Label use case, users can set the parameter in 3D Slicer plugin to cont
   - 1.5 mm model: [Download link](https://drive.google.com/file/d/1PHpFWboimEXmMSe2vBra6T8SaCMC2SHT/view?usp=share_link)
   - 3.0 mm model: [Download link](https://drive.google.com/file/d/1c3osYscnr6710ObqZZS8GkZJQlWlc7rt/view?usp=share_link)
 
-### Resource Requirements and Latency Benchmarks
-
 Latencies and memory performance of using the bundle with MONAI Label:
 
 Tested Image Dimension: **(512, 512, 397)**, the slice thickness is **1.5mm** in this case. After resample to **1.5** isotropic resolution, the dimension is   **(287, 287, 397)**
 
-## 1.5 mm (highres) model (Single Model with 104 foreground classes)
+### 1.5 mm (highres) model (Single Model with 104 foreground classes)
 
 Benchmarking on GPU: Memory: **28.73G**
 
@@ -80,7 +126,7 @@ Benchmarking on CPU: Memory: **26G**
 
 - `++ Latencies => Total: 38.3108; Pre: 1.6643; Inferer: 30.3018; Invert: 0.0000; Post: 6.1656; Write: 0.1786`
 
-## 3.0 mm (lowres) model (single model with 104 foreground classes)
+### 3.0 mm (lowres) model (single model with 104 foreground classes)
 
 GPU: Memory: **5.89G**
 
@@ -92,56 +138,65 @@ CPU: Memory: **2.3G**
 
 ## Performance
 
-- 1.5 mm Model Training
+### 1.5 mm Model Training
 
-  - Training Accuracy
+#### Training Accuracy
 
-![](./imgs/totalsegmentator_train_accuracy.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_train_accuracy.png) <br>
 
-  - Validation Dice
+#### Validation Dice
 
-![](./imgs/totalsegmentator_15mm_validation.png) <br>
+![](https://developer.download.nvidia.com/assets/Clara/Images/monai_wholeBody_ct_segmentation_15mm_validation.png) <br>
+
+Please note that this bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
+Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
 For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
-#### Execute training
+#### Execute training:
 
 ```
-python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.json
 ```
 
-#### Override the `train` config to execute multi-GPU training
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run training --meta_file configs/metadata.json --config_file "['configs/train.json','configs/multi_gpu_train.json']" --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.json --dataset_dir <actual dataset path>
+```
+
+#### Override the `train` config to execute multi-GPU training:
+
+```
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
 ```
 
 Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-#### Override the `train` config to execute evaluation with the trained model
+#### Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json']" --logging_file configs/logging.conf
+python -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json']"
 ```
 
-#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation
+#### Override the `train` config and `evaluate` config to execute multi-GPU evaluation:
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']" --logging_file configs/logging.conf
+torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/evaluate.json','configs/multi_gpu_evaluate.json']"
 ```
 
-#### Execute inference
+#### Execute inference:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/inference.json
 ```
-#### Execute inference with Data Samples
+#### Execute inference with Data Samples:
 
 ```
-python -m monai.bundle run evaluating --meta_file configs/metadata.json --config_file configs/inference.json --logging_file configs/logging.conf --datalist "['sampledata/imagesTr/s0037.nii.gz','sampledata/imagesTr/s0038.nii.gz']"
+python -m monai.bundle run --config_file configs/inference.json --datalist "['sampledata/imagesTr/s0037.nii.gz','sampledata/imagesTr/s0038.nii.gz']"
 ```
 
 

@@ -1,0 +1,16 @@
+{
+    "diffusion": {
+        "_target_": "torch.nn.parallel.DistributedDataParallel",
+        "module": "$@network_def.to(@device)",
+        "device_ids": [
+            "@device"
+        ],
+        "find_unused_parameters": true
+    },
+    "run": [
+        "@load_autoencoder",
+        "$@autoencoder.eval()",
+        "$print('scale factor:',@scale_factor)",
+        "$@train#trainer.run()"
+    ]
+}

@@ -72,8 +72,7 @@
             "summary_ops": "*"
         }
     ],
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "run": [
         "$@validate#evaluator.run()"
     ]
 }

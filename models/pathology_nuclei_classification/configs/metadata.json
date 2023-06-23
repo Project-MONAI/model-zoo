@@ -1,19 +1,28 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.5",
+    "version": "0.1.3",
     "changelog": {
+        "0.1.3": "remove error dollar symbol in readme",
+        "0.1.2": "add RAM warning",
+        "0.1.1": "enable deterministic eval and inference",
+        "0.1.0": "Update deterministic results",
+        "0.0.9": "Update README Formatting",
+        "0.0.8": "enable deterministic training",
+        "0.0.7": "update benchmark on A100",
+        "0.0.6": "adapt to BundleWorkflow interface",
         "0.0.5": "add name tag",
         "0.0.4": "Fix evaluation",
         "0.0.3": "Update to use MONAI 1.1.0",
         "0.0.2": "Update The Torch Vision Transform",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.1.0",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.21.2",
+    "monai_version": "1.2.0rc6",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
         "nibabel": "4.0.1",
-        "pytorch-ignite": "0.4.9"
+        "pytorch-ignite": "0.4.9",
+        "torchvision": "0.14.1"
     },
     "name": "Pathology nuclei classification",
     "task": "Pathology Nuclei classification",
@@ -26,7 +35,7 @@
     "label_classes": "single channel data",
     "pred_classes": "4 channels OneHot data, channel 0 is Other, channel 1 is Inflammatory, channel 2 is Epithelial, channel 3 is Spindle-Shaped",
     "eval_metrics": {
-        "f1_score": 0.85
+        "f1_score": 0.852
     },
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [

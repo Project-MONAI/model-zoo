@@ -3,7 +3,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "./",
+    "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/dataset_fold0.json'",
@@ -11,7 +11,7 @@
     "train_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='training', base_dir=@dataset_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "epochs": 300,
-    "val_interval": 10,
+    "val_interval": 5,
     "learning_rate": 0.01,
     "amp": true,
     "batch_size": 4,
@@ -89,7 +89,7 @@
     "after_scheduler": {
         "_target_": "torch.optim.lr_scheduler.StepLR",
         "optimizer": "@optimizer",
-        "step_size": 150,
+        "step_size": 160,
         "gamma": 0.1
     },
     "lr_scheduler": {
@@ -446,10 +446,10 @@
             "amp": "@amp"
         }
     },
-    "training": [
-        "os.environ['CUDA_LAUNCH_BLOCKING']=1",
-        "$monai.utils.set_determinism(seed=123)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=0)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }

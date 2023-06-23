@@ -3,7 +3,7 @@
         "$import glob",
         "$import os"
     ],
-    "bundle_root": "/workspace/bundle/endoscopic_tool_segmentation",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/endoscopic_tool_dataset",
     "datalist": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'test', '*', '*[!seg].jpg'))))",
@@ -15,7 +15,8 @@
         "backbone": "efficientnet-b2",
         "spatial_dims": 2,
         "pretrained": false,
-        "is_pad": false
+        "is_pad": false,
+        "pre_conv": null
     },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
@@ -113,7 +114,8 @@
             "load_path": "$@bundle_root + '/models/model.pt'",
             "load_dict": {
                 "model": "@network"
-            }
+            },
+            "map_location": "@device"
         },
         {
             "_target_": "StatsHandler",
@@ -129,8 +131,10 @@
         "postprocessing": "@postprocessing",
         "val_handlers": "@handlers"
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }
