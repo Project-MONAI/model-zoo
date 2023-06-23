@@ -42,7 +42,7 @@ train#dataset:
   _target_: CacheDataset
   data: "@train_data_partition"
   transform: "@train#preprocessing"
-  cache_rate: 0.3
+  cache_rate: 0.2
   num_workers: 4
 val_data_partition: "$monai.data.partition_dataset(data=@val_datalist, num_partitions=dist.get_world_size(),
   shuffle=False, even_divisible=False,)[dist.get_rank()]"
@@ -50,5 +50,5 @@ validate#dataset:
   _target_: CacheDataset
   data: "@val_data_partition"
   transform: "@validate#preprocessing"
-  cache_rate: 0.3
+  cache_rate: 0.2
   num_workers: 4

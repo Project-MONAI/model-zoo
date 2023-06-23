@@ -1,16 +1,17 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "changelog": {
-        "0.0.1": "initialize the model package structure"
+        "0.0.1": "initialize the model package structure",
+        "0.0.2": "Retrain with new MONAI"
     },
-    "monai_version": "1.0.1",
-    "pytorch_version": "1.13.0",
-    "numpy_version": "1.21.2",
+    "monai_version": "1.2.0rc7",
+    "pytorch_version": "2.0.0a0+1767026",
+    "numpy_version": "1.22.2",
     "optional_packages_version": {
-        "fire": "0.4.0",
-        "nibabel": "4.0.1",
-        "pytorch-ignite": "0.4.9"
+        "fire": "0.5.0",
+        "nibabel": "5.1.0",
+        "pytorch-ignite": "0.4.11"
     },
     "task": "Multi-organ segmentation in abdominal CT",
     "description": "DiNTS architectures for volumetric (3D) segmentation of the abdominal from CT image",

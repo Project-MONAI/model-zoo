@@ -44,45 +44,35 @@ Here is an example of output.
 
 This model achieves the following Dice score on the validation data (our own split from the whole dataset):
 
-Mean Dice = 0.88
+Mean Dice = 88.6%
 
 ## **commands example**
 
 Execute training:
 
 ```
-python -m monai.bundle run training \
-    --meta_file configs/metadata.json \
-    --config_file configs/train.yaml \
-    --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/train.yaml
 ```
 
 Execute multi-GPU training with 4 GPUs:
 
 ```
-torchrun --nnodes=4 --nproc_per_node=4 \
-    -m monai.bundle run training \
-    --meta_file configs/metadata.json \
-    --config_file "['configs/train.yaml','configs/multi_gpu_train.yaml']" \
-    --logging_file configs/logging.conf
+torchrun --nnodes=1 --nproc_per_node=8 \
+     -m scripts.search run \
+     --config_file configs/search.yaml
 ```
 
 Execute inference:
 
 ```
-python -m monai.bundle run evaluating \
-    --meta_file configs/metadata.json \
-    --config_file configs/inference.yaml \
-    --logging_file configs/logging.conf
+python -m monai.bundle run --config_file configs/inference.yaml
 ```
 
 Override the train config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run evaluating \
-    --meta_file configs/metadata.json \
-    --config_file "['configs/train.yaml','configs/evaluate.yaml']" \
-    --logging_file configs/logging.conf
+python -m monai.bundle run \
+    --config_file "['configs/train.yaml','configs/evaluate.yaml']"
 ```
 
 Export checkpoint to TorchScript file:
