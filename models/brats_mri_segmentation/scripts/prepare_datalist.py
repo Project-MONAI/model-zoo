@@ -26,18 +26,18 @@ def produce_sample_dict(line: str):
     return {"label": seg[0], "image": t1ce + t1 + t2 + flair}
 
 
-def produce_datalist(dataset_dir: str):
+def produce_datalist(dataset_dir: str, train_size: int = 200):
     """
     This function is used to split the dataset.
-    It will produce 200 samples for training, and the other samples are divided equally
-    into val and test sets.
+    It will produce "train_size" number of samples for training, and the other samples
+    are divided equally into val and test sets.
     """
 
     samples = sorted(glob.glob(os.path.join(dataset_dir, "*", "*"), recursive=True))
     datalist = []
     for line in samples:
         datalist.append(produce_sample_dict(line))
-    train_list, other_list = train_test_split(datalist, train_size=200)
+    train_list, other_list = train_test_split(datalist, train_size=train_size)
     val_list, test_list = train_test_split(other_list, train_size=0.5)
 
     return {"training": train_list, "validation": val_list, "testing": test_list}
@@ -48,11 +48,10 @@ def main(args):
     split the dataset and output the data list into a json file.
     """
     data_file_base_dir = os.path.join(os.path.abspath(args.path), "training")
-    output_json = args.output
     # produce deterministic data splits
     monai.utils.set_determinism(seed=123)
-    datalist = produce_datalist(dataset_dir=data_file_base_dir)
-    with open(output_json, "w") as f:
+    datalist = produce_datalist(dataset_dir=data_file_base_dir, train_size=args.train_size)
+    with open(args.output, "w") as f:
         json.dump(datalist, f)
 
 
@@ -67,6 +66,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output", type=str, default="configs/datalist.json", help="relative path of output datalist json file."
     )
+    parser.add_argument("--train_size", type=int, default=200, help="number of training samples.")
     args = parser.parse_args()
 
     main(args)

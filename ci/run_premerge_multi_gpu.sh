@@ -71,10 +71,8 @@ verify_bundle() {
                     echo "install extra libraries with script: $extra_script"
                     bash $extra_script
                 fi
-                # verify bundle
-                pipenv run python $(pwd)/ci/verify_bundle.py --b "$bundle"
-                # do unit tests
-                pipenv run python $(pwd)/ci/unit_tests/runner.py --b "$bundle"
+                # do multi gpu based unit tests
+                pipenv run torchrun $(pwd)/ci/unit_tests/runner.py --b "$bundle" --dist True
                 remove_pipenv
             done
         else

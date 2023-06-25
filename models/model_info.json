@@ -1082,5 +1082,105 @@
     "spleen_deepedit_annotation_v0.4.6": {
         "checksum": "970c83514175297c3a97e060e54c19627500a0f0",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.4.6.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.2": {
+        "checksum": "c1556115275967444291657b55f018857523c417",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.2.zip"
+    },
+    "valve_landmarks_v0.4.3": {
+        "checksum": "09c37134fb572461be439948a8949d4bd77ed725",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/valve_landmarks_v0.4.3.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.3": {
+        "checksum": "41c7598d61bef3cf8501c55ebe1a884fedd138a0",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.3.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.3": {
+        "checksum": "75c208333b6ce4a28aef81c258a5d932c8e52559",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.3.zip"
+    },
+    "breast_density_classification_v0.1.5": {
+        "checksum": "0202660e0ae4fe235d7de02d3fa92ad2040668e9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/breast_density_classification_v0.1.5.zip"
+    },
+    "brats_mri_segmentation_v0.4.7": {
+        "checksum": "61adc42363a946576956d41e7c7caf6598195264",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.4.7.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.4": {
+        "checksum": "2f4df7a01851129161abcbc1dca358c4a277813e",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.4.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.4": {
+        "checksum": "ecdee149f57222b42c85b6a431a22257ac49e520",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.4.zip"
+    },
+    "brats_mri_segmentation_v0.4.8": {
+        "checksum": "e8ebba9ff454754fbda55c7474b54fce39e08a17",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_segmentation_v0.4.8.zip"
+    },
+    "wholeBody_ct_segmentation_v0.1.9": {
+        "checksum": "2641fd20d257e45b442b7ebf2e34f51d486d37a3",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBody_ct_segmentation_v0.1.9.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.5": {
+        "checksum": "ee2d9d737d76174fa792847e78475a87b76967c1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.5.zip"
+    },
+    "pathology_nuclei_classification_v0.1.4": {
+        "checksum": "59beda83475b5f9a89bd9bee57cd773e60a4f9f1",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_classification_v0.1.4.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.4.1": {
+        "checksum": "0d9f562680f7c9eb2119db7abc6633a65c9dcc19",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.4.1.zip"
+    },
+    "endoscopic_inbody_classification_v0.4.4": {
+        "checksum": "164b29a4796a78a12af9f74fe66ef36ce1c977f4",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_inbody_classification_v0.4.4.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.2.1": {
+        "checksum": "be5a45212b7f6f19a8b93ef453770475446ac004",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclei_segmentation_classification_v0.2.1.zip"
+    },
+    "pathology_nuclick_annotation_v0.1.4": {
+        "checksum": "564999c4dac6e05931a34c4d5251b433836277b9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_nuclick_annotation_v0.1.4.zip"
+    },
+    "pathology_tumor_detection_v0.5.6": {
+        "checksum": "cbff5418d222ce28861ef94a7dd6bb6a337bc7ad",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.5.6.zip"
+    },
+    "spleen_ct_segmentation_v0.5.3": {
+        "checksum": "0ef60b444d7cc4c28a828e77a5760b2043e25240",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_ct_segmentation_v0.5.3.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.5.0": {
+        "checksum": "1f04e72dd2e1a431bf67ce664760ae377aea81c8",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/swin_unetr_btcv_segmentation_v0.5.0.zip"
+    },
+    "spleen_deepedit_annotation_v0.4.7": {
+        "checksum": "079c42dd786b9629de67c2d7a1e6dbe65eb87b38",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/spleen_deepedit_annotation_v0.4.7.zip"
+    },
+    "lung_nodule_ct_detection_v0.5.9": {
+        "checksum": "1cc8bfbbfcd7c0bdf641c2edc8e87c728fa5824a",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/lung_nodule_ct_detection_v0.5.9.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.5": {
+        "checksum": "f195f10430f8f07fc441c3f7db3b2fcb20a5262b",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.5.zip"
+    },
+    "endoscopic_tool_segmentation_v0.5.4": {
+        "checksum": "961e7c46a26523c32021810bb8f57b483244e6e9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/endoscopic_tool_segmentation_v0.5.4.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.6": {
+        "checksum": "0834554ed19e357578fa978538725f9a16492bc9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_generative_diffusion_v1.0.6.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.6": {
+        "checksum": "dbd03eeca8367c0f51fdc5ef225d7b28ce7bc831",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.6.zip"
     }
 }
