@@ -18,6 +18,7 @@ import numpy as np
 from monai.bundle import ConfigWorkflow
 from monai.data import ITKWriter
 from parameterized import parameterized
+from utils import check_workflow
 
 TEST_CASE_1 = [  # train, evaluate
     {
@@ -86,13 +87,7 @@ class TestDeepeditAnno(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
-        trainer.initialize()
-        # check required and optional properties
-        check_result = trainer.check_properties()
-        if check_result is not None and len(check_result) > 0:
-            raise ValueError(f"check properties for train config failed: {check_result}")
-        trainer.run()
-        trainer.finalize()
+        check_workflow(trainer, check_properties=True)
 
     @parameterized.expand([TEST_CASE_1])
     def test_eval_config(self, override):
@@ -109,12 +104,7 @@ class TestDeepeditAnno(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
-        validator.initialize()
-        check_result = validator.check_properties()
-        if check_result is not None and len(check_result) > 0:
-            raise ValueError(f"check properties for overrided train config failed: {check_result}")
-        validator.run()
-        validator.finalize()
+        check_workflow(validator, check_properties=True)
 
     @parameterized.expand([TEST_CASE_2])
     def test_infer_config(self, override):
@@ -128,13 +118,7 @@ class TestDeepeditAnno(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
-        inferrer.initialize()
-        # check required and optional properties
-        check_result = inferrer.check_properties()
-        if check_result is not None and len(check_result) > 0:
-            raise ValueError(f"check properties for inference config failed: {check_result}")
-        inferrer.run()
-        inferrer.finalize()
+        check_workflow(inferrer, check_properties=True)
 
 
 if __name__ == "__main__":

@@ -18,6 +18,7 @@ import unittest
 from monai.apps.utils import download_url
 from monai.bundle import ConfigWorkflow
 from parameterized import parameterized
+from utils import check_workflow
 
 TEST_CASE_1 = [  # train
     {
@@ -82,13 +83,7 @@ class TestTumorDetection(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
-        trainer.initialize()
-        # check required and optional properties
-        check_result = trainer.check_properties()
-        if check_result is not None and len(check_result) > 0:
-            raise ValueError(f"check properties for train config failed: {check_result}")
-        trainer.run()
-        trainer.finalize()
+        check_workflow(trainer, check_properties=True)
 
         # run train and infer tests within a single function to avoid duplicating download
         override_infer["dataset_dir"] = self.dataset_dir
@@ -100,13 +95,7 @@ class TestTumorDetection(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override_infer,
         )
-        inferrer.initialize()
-        # check required and optional properties
-        check_result = inferrer.check_properties()
-        if check_result is not None and len(check_result) > 0:
-            raise ValueError(f"check properties for inference config failed: {check_result}")
-        inferrer.run()
-        inferrer.finalize()
+        check_workflow(inferrer, check_properties=True)
 
 
 if __name__ == "__main__":

@@ -20,6 +20,7 @@ import nibabel as nib
 import numpy as np
 from monai.bundle import ConfigWorkflow
 from parameterized import parameterized
+from utils import check_workflow
 
 TEST_CASE_1 = [
     {
@@ -112,9 +113,7 @@ class TestLdm3d(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
-        trainer.initialize()
-        trainer.run()
-        trainer.finalize()
+        check_workflow(trainer, check_properties=False)
 
     @parameterized.expand([TEST_CASE_3])
     def test_autoencoder_infer(self, override):
@@ -129,9 +128,7 @@ class TestLdm3d(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
-        inferrer.initialize()
-        inferrer.run()
-        inferrer.finalize()
+        check_workflow(inferrer, check_properties=False)
 
     @parameterized.expand([TEST_CASE_2])
     def test_diffusion_train(self, override):
@@ -148,14 +145,7 @@ class TestLdm3d(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
-        trainer.initialize()
-        # TODO: uncomment the following check after we have monai > 1.2.0
-        # https://github.com/Project-MONAI/MONAI/issues/6602
-        # check_result = trainer.check_properties()
-        # if check_result is not None and len(check_result) > 0:
-        #     raise ValueError(f"check properties for overrided train config failed: {check_result}")
-        trainer.run()
-        trainer.finalize()
+        check_workflow(trainer, check_properties=False)
 
     @parameterized.expand([TEST_CASE_3])
     def test_diffusion_infer(self, override):
@@ -170,9 +160,7 @@ class TestLdm3d(unittest.TestCase):
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             **override,
         )
-        inferrer.initialize()
-        inferrer.run()
-        inferrer.finalize()
+        check_workflow(inferrer, check_properties=False)
 
 
 if __name__ == "__main__":
