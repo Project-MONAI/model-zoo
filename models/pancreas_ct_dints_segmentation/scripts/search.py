@@ -28,7 +28,7 @@ from monai import transforms
 from monai.bundle import ConfigParser
 from monai.data import ThreadDataLoader, partition_dataset
 from monai.inferers import sliding_window_inference
-from monai.metrics import compute_meandice
+from monai.metrics import compute_dice
 from monai.utils import set_determinism
 from torch.nn.parallel import DistributedDataParallel
 from torch.utils.tensorboard import SummaryWriter
@@ -100,14 +100,12 @@ def run(config_file: Union[str, Sequence[str]]):
         train_files_w = partition_dataset(
             data=train_files_w, shuffle=True, num_partitions=world_size, even_divisible=True
         )[dist.get_rank()]
-    print("train_files_w:", len(train_files_w))
 
     train_files_a = train_files[len(train_files) // 2 :]
     if torch.cuda.device_count() > 1:
         train_files_a = partition_dataset(
             data=train_files_a, shuffle=True, num_partitions=world_size, even_divisible=True
         )[dist.get_rank()]
-    print("train_files_a:", len(train_files_a))
 
     # validation data
     files = []
@@ -125,7 +123,6 @@ def run(config_file: Union[str, Sequence[str]]):
         val_files = partition_dataset(data=val_files, shuffle=False, num_partitions=world_size, even_divisible=False)[
             dist.get_rank()
         ]
-    print("val_files:", len(val_files))
 
     # network architecture
     if torch.cuda.device_count() > 1:
@@ -421,7 +418,7 @@ def run(config_file: Union[str, Sequence[str]]):
                     val_labels = post_label(val_labels[0, ...])
                     val_labels = val_labels[None, ...]
 
-                    value = compute_meandice(y_pred=val_outputs, y=val_labels, include_background=False)
+                    value = compute_dice(y_pred=val_outputs, y=val_labels, include_background=False)
 
                     print(_index + 1, "/", len(val_loader), value)
 
