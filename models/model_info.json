@@ -1182,5 +1182,13 @@
     "brats_mri_axial_slices_generative_diffusion_v1.0.6": {
         "checksum": "dbd03eeca8367c0f51fdc5ef225d7b28ce7bc831",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brats_mri_axial_slices_generative_diffusion_v1.0.6.zip"
+    },
+    "pathology_tumor_detection_v0.5.7": {
+        "checksum": "e57eb948fd83a1fbdda27d1dcd292f542966b311",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pathology_tumor_detection_v0.5.7.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.4.2": {
+        "checksum": "aa8ed1b0aa4a7269e2d732467abab9482d0c2ecb",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.4.2.zip"
     }
 }
