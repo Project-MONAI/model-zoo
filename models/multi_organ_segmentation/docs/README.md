@@ -86,15 +86,15 @@ torchrun --nnodes=1 --nproc_per_node=8 \
 #### Override the `train` config to execute evaluation with the trained model:
 
 ```
-python -m monai.bundle run --config_file configs/inference.yaml
-```
-
-#### Execute inference:
-
-```
 python -m monai.bundle run \
     --config_file "['configs/train.yaml','configs/evaluate.yaml']"
 ```
+
+#### Execute inference:
+```
+python -m monai.bundle run --config_file configs/inference.yaml
+```
+
 
 #### Export checkpoint for TorchScript:
 
