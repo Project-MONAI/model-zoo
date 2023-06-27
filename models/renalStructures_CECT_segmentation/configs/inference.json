@@ -137,7 +137,7 @@
                 "keys": "pred",
                 "softmax": false,
                 "sigmoid": true
-                        },
+            },
             {
                 "_target_": "Invertd",
                 "keys": "pred",

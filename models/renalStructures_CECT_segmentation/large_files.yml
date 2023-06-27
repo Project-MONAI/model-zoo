@@ -3,4 +3,3 @@ large_files:
     url: "https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=https%3A%2F%2Fdisk.yandex.ru%2Fd%2FJL_UJBWVYkexyg"
     hash_val: "164752169d98459d30592d72a3fa86f4"
     hash_type: "md5"
-

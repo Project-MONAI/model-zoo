@@ -2,7 +2,7 @@
 Renal structures CECT segmentation
 
 ### **Authors**
-Ivan Chernenkiy,   Michael Chernenkiy,   Dmitry Fiev,   Evgeny Sirota, Center for Neural Network Technologies / Institute of Urology and Human Reproductive Systems / Sechenov First Moscow State Medical University 
+Ivan Chernenkiy,   Michael Chernenkiy,   Dmitry Fiev,   Evgeny Sirota, Center for Neural Network Technologies / Institute of Urology and Human Reproductive Systems / Sechenov First Moscow State Medical University
 
 ### **Tags**
 Segmentation, CT, CECT, Kidney, Renal, Supervised
@@ -20,7 +20,7 @@ python -m monai.bundle run download_data --meta_file configs/metadata.json --con
 **NB**: underlying data is in LPS orientation. IF! you want to test model on your own data, reorient it from RAS to LPS with `Orientation` transform. You can see example of preprocessing pipeline in `inference.json` file of this bundle.
 
 #### **Preprocessing**
-Images are (1) croped to kidney region, all (artery,vein,excret) phases are (2) [registered](https://simpleitk.readthedocs.io/en/master/registrationOverview.html#lbl-registration-overview) with affine transform, noise removed with (3) median and (4) non-local means filter. After that, images are (5) resampled to (0.8,0.8,0.8) density and intesities are (6) scaled from [-1000,1000] to [0,1] range. 
+Images are (1) croped to kidney region, all (artery,vein,excret) phases are (2) [registered](https://simpleitk.readthedocs.io/en/master/registrationOverview.html#lbl-registration-overview) with affine transform, noise removed with (3) median and (4) non-local means filter. After that, images are (5) resampled to (0.8,0.8,0.8) density and intesities are (6) scaled from [-1000,1000] to [0,1] range.
 
 ## **Performance**
 On the validation subset, the values of the Dice score of the SegResNet architecture were: 0.89 for the normal parenchyma of the kidney, 0.58 for the kidney neoplasms, 0.86 for arteries, 0.80 for veins, 0.80 for ureters.
@@ -48,7 +48,7 @@ Expected result: finished, Training process started, model variables are restore
 
 ##### Download validation data:
 ```
-cd models/renalStructures_CECT_segmantation 
+cd models/renalStructures_CECT_segmantation
 python -m monai.bundle run download_data --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
 Expected result: finished, `data/` folder is created and filled with images.
@@ -64,7 +64,7 @@ The model was trained for 10000 epochs on 2 RTX2080Ti GPUs with [SmartCacheDatas
 Training progress is available on [tensorboard.dev](https://tensorboard.dev/experiment/VlEMjLdURH6SyFp216dFBg)
 
 
-## **Limitations** 
+## **Limitations**
 For developmental purposes only and cannot be used directly for clinical procedures.
 
 ## **Citation Info**

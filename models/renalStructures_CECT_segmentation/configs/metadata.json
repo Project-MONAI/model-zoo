@@ -30,7 +30,7 @@
     },
     "intended_use": "This is  PoC, not to be used for diagnostic purposes",
     "references": [
-        "Chernenkiy I. М. et al. Segmentation of renal structures based on contrast computed tomography scans using a convolutional neural network //Sechenov Medical Journal. – 2023. – Т. 14. – №. 1. – С. 39-49. URL - https://www.sechenovmedj.com/jour/article/view/899"
+        "Chernenkiy I. \u041c. et al. Segmentation of renal structures based on contrast computed tomography scans using a convolutional neural network //Sechenov Medical Journal. \u2013 2023. \u2013 \u0422. 14. \u2013 \u2116. 1. \u2013 \u0421. 39-49. URL - https://www.sechenovmedj.com/jour/article/view/899"
     ],
     "network_data_format": {
         "inputs": {
@@ -75,7 +75,7 @@
                     "0": "background",
                     "1": "artery",
                     "2": "vein",
-                    "3": "ureter", 
+                    "3": "ureter",
                     "4": "neoplasm",
                     "5": "parenchyma"
                 }

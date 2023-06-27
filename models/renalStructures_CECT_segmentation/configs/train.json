@@ -392,16 +392,26 @@
                     "_target_": "Invertd",
                     "transform": "%validate#preprocessing",
                     "device": "@device",
-                    "keys": ["pred","label"],
-                    "orig_keys": ["artery", "label"],
-                    "meta_keys": ["pred_meta_dict", "label_meta_dict"],
-                    "nearest_interp": [false, true],
+                    "keys": [
+                        "pred",
+                        "label"
+                    ],
+                    "orig_keys": [
+                        "artery",
+                        "label"
+                    ],
+                    "meta_keys": [
+                        "pred_meta_dict",
+                        "label_meta_dict"
+                    ],
+                    "nearest_interp": [
+                        false,
+                        true
+                    ],
                     "to_tensor": true
                 },
                 "%train#postprocessing#transforms#0",
                 "%train#postprocessing#transforms#1",
-
-
                 "%train#postprocessing#transforms#2"
             ]
         },
