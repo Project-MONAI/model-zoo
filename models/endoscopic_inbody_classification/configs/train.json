@@ -2,7 +2,8 @@
     "imports": [
         "$import torch",
         "$import json",
-        "$import ignite"
+        "$import ignite",
+        "$import os"
     ],
     "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
@@ -12,11 +13,9 @@
     "val_json": "$@bundle_root+'/label/val_samples.json'",
     "train_fp": "$open(@train_json,'r', encoding='utf8')",
     "train_dict": "$json.load(@train_fp)",
-    "train_close": "$@train_fp.close()",
     "val_fp": "$open(@val_json,'r', encoding='utf8')",
     "val_dict": "$json.load(@val_fp)",
     "val_interval": 1,
-    "val_close": "$@val_fp.close()",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "SEResNet50",
@@ -256,5 +255,9 @@
     ],
     "run": [
         "$@train#trainer.run()"
+    ],
+    "finalize": [
+        "$@train_fp.close()",
+        "$@val_fp.close()"
     ]
 }

@@ -1,5 +1,4 @@
 # Full requirements for developments
--r requirements.txt
 flake8>=3.8.1
 flake8-bugbear
 flake8-comprehensions
@@ -22,3 +21,7 @@ nibabel
 pyyaml
 jsonschema
 gdown>=4.5.4
+tensorboard
+parameterized
+monai>=1.2.0rc7
+pillow!=8.3.0  # https://github.com/python-pillow/Pillow/issues/5571

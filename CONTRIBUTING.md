@@ -80,7 +80,7 @@ In train config file (if exists), please follow the following requirements in or
 1. If `ValidationHandler` is used, please define the key `val_interval` and use it for the argument `interval`.
 
 
-## Verifying the bundle
+## Verifying a bundle
 
 We prepared several premerge CI tests to verify your bundle.
 
@@ -89,7 +89,7 @@ We prepared several premerge CI tests to verify your bundle.
 For dependencies that support `pip install` command, please put them into `optional_packages_version` in `configs/metadata.json` ([click here for instance](https://github.com/Project-MONAI/model-zoo/blob/dev/models/brats_mri_segmentation/configs/metadata.json)), and the CI test program will extract and install all libraries directly before running tests.
 For dependencies that require multiple steps to install, please prepare a install script in `ci/install_scripts`, and put the bundle name and the script path into `install_dependency_dict` in `ci/bundle_custom_data.py` ([click here for instance](https://github.com/Project-MONAI/model-zoo/tree/dev/ci/install_scripts/)).
 
-### Necessary verifications
+### Necessary tests
 
 1. Check if necessary files are existing in your bundle.
 1. Check if keys naming are consistent with our requirements.
@@ -100,7 +100,7 @@ For dependencies that require multiple steps to install, please prepare a instal
 python -m monai.bundle verify_metadata --meta_file configs/metadata.json --filepath eval/schema.json
 ```
 
-### Optional verifications
+### Optional tests
 
 #### Verify data shape and data type
 Check if the input and output data shape and data type of network defined in the metadata are correct. You can also run the following command locally to verify your bundle before submitting a pull request.
@@ -156,11 +156,15 @@ python -m monai.bundle run --config_file "['configs/inference.json', 'configs/in
 
 If your bundle does not support TensorRT compilation, please mention it in `docs/README.md`.
 
+#### Customized unit tests
+It is recommended to prepare unit tests on your bundle. The main purpose is to ensure each config file is runnable.
+Please create a file called `test_<bundle_name>.py` in `ci/unit_tests/` (like this [example](./ci/unit_tests/test_spleen_ct_segmentation.py)), and you can define the testing scope within the file.
+If multi-gpu config files are also need to be tested, please create a separate file called `test_<bundle_name>_dist.py` in the same directory (like this [example](./ci/unit_tests/test_spleen_ct_segmentation_dist.py)).
 
-## Checking the coding style
+### Code format tests
 
-After verifying your bundle, if there are any `.py` files, coding style is checked and enforced by flake8, black, isort, pytype and mypy.
-Before submitting a pull request, we recommend that all checks should pass, by running the following command locally:
+If there are any `.py` files in your bundle, coding style is checked and enforced by `flake8`, `black`, `isort` and `pytype`.
+Before submitting a pull request, we recommend that all checks should pass by running the following command locally:
 
 ```bash
 # optionally update the dependencies and dev tools
@@ -190,6 +194,7 @@ Ideally, the new branch should be based on the latest `dev` branch.
 1. Wait for the pull request to be merged.
 
 [monai model zoo issue list]: https://github.com/Project-MONAI/model-zoo/issues
+
 
 ## Validate and release
 
