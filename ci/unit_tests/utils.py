@@ -76,3 +76,13 @@ def export_config_and_run_mgpu_cmd(
     # ensure customized library can be loaded in subprocess
     env["PYTHONPATH"] = override_dict.get("bundle_root", ".")
     subprocess.check_call(cmd, env=env)
+
+
+def check_workflow(workflow: ConfigWorkflow, check_properties: bool = False):
+    workflow.initialize()
+    if check_properties is True:
+        check_result = workflow.check_properties()
+        if check_result is not None and len(check_result) > 0:
+            raise ValueError(f"check properties for workflow failed: {check_result}")
+    workflow.run()
+    workflow.finalize()
