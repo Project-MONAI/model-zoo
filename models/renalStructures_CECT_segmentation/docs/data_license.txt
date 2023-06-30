@@ -7,15 +7,15 @@ i. Validation dataset of renal structures
 /*********************************************************************/
 
 Data Usage Agreement / Citations
-The data is under a CC BY-NC-SA (Attribution-NonCommercial-ShareAlike) 
+The data is under a CC BY-NC-SA (Attribution-NonCommercial-ShareAlike)
 license.
-You are free to use and/or refer in your own research, provided that 
+You are free to use and/or refer in your own research, provided that
 you always cite the following manuscript:
 
-[1] Chernenkiy, I. М., Chernenkiy, M. M., Fiev, D. N., & Sirota, E. S. 
-"Segmentation of renal structures based on contrast computed tomography 
-scans using a convolutional neural network." Sechenov Medical Journal 
-14.1 (2023): 39-49. 
+[1] Chernenkiy, I. М., Chernenkiy, M. M., Fiev, D. N., & Sirota, E. S.
+"Segmentation of renal structures based on contrast computed tomography
+scans using a convolutional neural network." Sechenov Medical Journal
+14.1 (2023): 39-49.
 DOI: https://doi.org/10.47093/2218-7332.2023.14.1.39-49
 
 /*********************************************************************/
@@ -461,4 +461,3 @@ the avoidance of doubt, this paragraph does not form part of the
 public licenses.
 
 Creative Commons may be contacted at creativecommons.org.
-
