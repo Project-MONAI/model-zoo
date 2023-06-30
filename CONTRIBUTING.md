@@ -193,8 +193,20 @@ Ideally, the new branch should be based on the latest `dev` branch.
 1. Reviewer and contributor may have discussions back and forth until all comments addressed.
 1. Wait for the pull request to be merged.
 
-[monai model zoo issue list]: https://github.com/Project-MONAI/model-zoo/issues
+## Reviewing pull requests
 
+All code review comments should be specific, constructive, and actionable.
+1. Check [the CI/CD status of the pull request][github ci], make sure all CI/CD tests passed before reviewing (contact the branch owner if needed).
+1. Read carefully the descriptions of the pull request and the files changed, write comments if needed.
+1. Make in-line comments to specific code segments, [request for changes](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews) if needed.
+1. Review any further code changes until all comments addressed by the contributors.
+1. Comment to trigger `/black` for optional auto code formatting.
+1. [Maintainers] Review the changes and comment `/build` to trigger internal full tests.
+1. Merge the pull request to the dev branch.
+1. Close the corresponding task ticket on [the issue list][monai model zoo issue list].
+
+[github ci]: https://github.com/Project-MONAI/model-zoo/actions
+[monai model zoo issue list]: https://github.com/Project-MONAI/model-zoo/issues
 
 ## Validate and release
 
