@@ -12,7 +12,7 @@ The model is the SegResNet architecture[1] for volumetric (3D) renal structures 
 
 
 ## **Data**
-DICOM data from 41 patients with kidney neoplasms were used. Data included all phases of contrast-enhanced multispiral computed tomography. We split the data: 32 observations for the training set and 9 – for the validation set. At the labeling stage, the arterial, venous, and excretory phases were taken, affine registration was performed to jointly match the location of the kidneys, and noise was removed using a median filter and a non-local means filter. Validation set ip published to Yandex.Disk. You can download via [link](https://disk.yandex.ru/d/pWEKt6D3qi3-aw) or use following command:
+DICOM data from 41 patients with kidney neoplasms were used [2]. The images and segmentation data are available under a CC BY-NC-SA 4.0 license. Data included all phases of contrast-enhanced multispiral computed tomography. We split the data: 32 observations for the training set and 9 – for the validation set. At the labeling stage, the arterial, venous, and excretory phases were taken, affine registration was performed to jointly match the location of the kidneys, and noise was removed using a median filter and a non-local means filter. Validation set ip published to Yandex.Disk. You can download via [link](https://disk.yandex.ru/d/pWEKt6D3qi3-aw) or use following command:
 ```
 python -m monai.bundle run download_data --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
@@ -83,6 +83,8 @@ For developmental purposes only and cannot be used directly for clinical procedu
 ## **References**
 
 [1] Myronenko, A. (2019). 3D MRI Brain Tumor Segmentation Using Autoencoder Regularization. In: Crimi, A., Bakas, S., Kuijf, H., Keyvan, F., Reyes, M., van Walsum, T. (eds) Brainlesion: Glioma, Multiple Sclerosis, Stroke and Traumatic Brain Injuries. BrainLes 2018. Lecture Notes in Computer Science(), vol 11384. Springer, Cham. https://doi.org/10.1007/978-3-030-11726-9_28
+
+[2] Chernenkiy, I. М., et al. "Segmentation of renal structures based on contrast computed tomography scans using a convolutional neural network." Sechenov Medical Journal 14.1 (2023): 39-49.https://doi.org/10.47093/2218-7332.2023.14.1.39-49
 
 #### **Tests used for bundle checking**
 
