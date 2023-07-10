@@ -123,7 +123,7 @@ python -m monai.bundle run training --dont_finetune false --meta_file configs/me
 ```
 Expected result: finished, Training process started, model variables are restored
 
-Checking inference script 
+Checking inference script
 ```bash
 python -m monai.bundle run inference --meta_file configs/metadata.json --config_file configs/inference.json
 ```
