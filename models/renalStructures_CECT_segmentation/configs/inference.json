@@ -6,7 +6,7 @@
     "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "$@bundle_root + './data'",
+    "dataset_dir": "$@bundle_root + '/data'",
     "images": "$[{'artery':a, 'vein':b, 'excret':c }for a,b,c in  zip(glob.glob(@dataset_dir + '/*/12.nii.gz'), glob.glob(@dataset_dir + '/*/22-.nii.gz'), glob.glob(@dataset_dir + '/*/32-.nii.gz'))]",
     "labels": "$list(glob.glob(@dataset_dir + '/*/merged.nii.gz'))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -39,7 +39,8 @@
                 "keys": [
                     "artery",
                     "vein",
-                    "excret"
+                    "excret",
+                    "label"
                 ]
             },
             {
@@ -139,24 +140,25 @@
                 "sigmoid": true
             },
             {
-                "_target_": "Invertd",
-                "keys": "pred",
-                "transform": "@preprocessing",
-                "orig_keys": "image",
-                "meta_key_postfix": "meta_dict",
-                "nearest_interp": false,
-                "to_tensor": true
-            },
-            {
                 "_target_": "AsDiscreted",
                 "keys": "pred",
-                "argmax": false,
                 "threshold": 0.5
+            },
+            {
+                "_target_": "scripts.my_transforms.MergeClassesd",
+                "keys": "pred"
             },
             {
                 "_target_": "SaveImaged",
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
+                "data_root_dir": "@dataset_dir",
+                "output_dir": "@output_dir"
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "label",
+                "data_root_dir": "@dataset_dir",
                 "output_dir": "@output_dir"
             }
         ]

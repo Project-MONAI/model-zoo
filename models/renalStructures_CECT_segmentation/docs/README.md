@@ -13,7 +13,7 @@ The model is the SegResNet architecture[1] for volumetric (3D) renal structures 
 
 ## **Data**
 DICOM data from 41 patients with kidney neoplasms were used [2]. The images and segmentation data are available under a CC BY-NC-SA 4.0 license. Data included all phases of contrast-enhanced multispiral computed tomography. We split the data: 32 observations for the training set and 9 – for the validation set. At the labeling stage, the arterial, venous, and excretory phases were taken, affine registration was performed to jointly match the location of the kidneys, and noise was removed using a median filter and a non-local means filter. Validation set ip published to Yandex.Disk. You can download via [link](https://disk.yandex.ru/d/pWEKt6D3qi3-aw) or use following command:
-```
+```bash
 python -m monai.bundle run download_data --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
 
@@ -32,14 +32,14 @@ When compared with the nnU-Net model, which was trained on KiTS 21 dataset, the 
 
 #### Execute training:
 
-```
+```bash
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json
 ```
 Expected result: finished, Training process started
 
 
 #### Execute training with finetuning
-```
+```bash
 python -m monai.bundle run training --dont_finetune false --meta_file configs/metadata.json --config_file configs/train.json
 ```
 Expected result: finished, Training process started, model variables are restored
@@ -47,14 +47,14 @@ Expected result: finished, Training process started, model variables are restore
 #### Execute validation:
 
 ##### Download validation data:
-```
+```bash
 cd models/renalStructures_CECT_segmantation
 python -m monai.bundle run download_data --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
 Expected result: finished, `data/` folder is created and filled with images.
 
 #####  Run validation script:
-```
+```bash
 python -m monai.bundle run evaluate --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
 Expected result: finished, `Key metric: val_mean_dice best value: 0.7844631671905518 at epoch: 1` is printed.
@@ -89,36 +89,47 @@ For developmental purposes only and cannot be used directly for clinical procedu
 #### **Tests used for bundle checking**
 
 Checking with ci script file
-```
+```bash
 python ci/verify_bundle.py -b renalStructures_CECT_segmentation -p models
 ```
 Expected result: passed, model.pt file downloaded
 
 
 Checking downloading validation data file
-```
-cd models/renalStructures_CECT_segmantation
+```bash
+cd models/renalStructures_CECT_segmentation
 python -m monai.bundle run download_data --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
 Expected result: finished, `data/` folder is created and filled with images.
 
 
 Checking evaluation script
-```
+```bash
 python -m monai.bundle run evaluate --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
 Expected result: finished, `Key metric: val_mean_dice best value: 0.7844631671905518 at epoch: 1` is printed.
 
 
 Checking train script
-```
+```bash
 python -m monai.bundle run training --meta_file configs/metadata.json --config_file configs/train.json
 ```
 Expected result: finished, Training process started
 
 
 Checking train script with finetuning
-```
+```bash
 python -m monai.bundle run training --dont_finetune false --meta_file configs/metadata.json --config_file configs/train.json
 ```
 Expected result: finished, Training process started, model variables are restored
+
+Checking inference script 
+```bash
+python -m monai.bundle run inference --meta_file configs/metadata.json --config_file configs/inference.json
+```
+Expected result: finished, in `eval` folder masks are created
+
+Check unit test with script:
+```bash
+python ci/unit_tests/runner.py --b renalStructures_CECT_segmentation
+```

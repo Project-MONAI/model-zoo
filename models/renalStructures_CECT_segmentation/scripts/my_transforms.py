@@ -1,4 +1,5 @@
 import numpy as np
+import torch
 from monai.transforms import InvertibleTransform
 from monai.transforms.transform import MapTransform
 
@@ -21,4 +22,28 @@ class ConcatImages(MapTransform, InvertibleTransform):
         return data
 
     def inverse(self, data):
+        return data
+
+
+class MergeClassesd(MapTransform):
+    def __call__(self, data):
+        for key in self.keys:
+            if key in data:
+                num_classes = data[key].size(-4)
+                device = data[key].device
+                merged = None
+                for channel in data[key].squeeze() * torch.tensor(list(range(num_classes)), device=device).view(
+                    -1, 1, 1, 1
+                ):
+                    imgvol = channel
+                    if merged is not None:
+                        merged = merged + imgvol * ~((merged != 0) & (imgvol != 0))
+                    else:
+                        merged = imgvol
+                data[key] = merged.unsqueeze(0)
+            elif not self.allow_missing_keys:
+                raise KeyError(
+                    f"Key `{key}` of transform `{self.__class__.__name__}` was missing in the data"
+                    " and allow_missing_keys==False."
+                )
         return data

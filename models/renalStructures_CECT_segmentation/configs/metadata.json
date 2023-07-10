@@ -4,23 +4,22 @@
     "changelog": {
         "0.1.0": "complete the model package"
     },
-    "monai_version": "1.0.0",
-    "pytorch_version": "1.10.0",
-    "numpy_version": "1.21.2",
+    "monai_version": "1.2.0",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.24.3",
     "optional_packages_version": {
-        "nibabel": "3.2.1",
-        "pytorch-ignite": "0.4.8",
-        "einops": "0.4.1",
-        "fire": "0.4.0",
-        "timm": "0.6.7",
-        "torchvision": "0.11.1"
+        "nibabel": "5.1.0",
+        "pytorch-ignite": "0.4.11",
+        "einops": "0.6.1",
+        "fire": "0.5.0",
+        "torchvision": "0.15.2"
     },
     "name": "Segmentation of renal structures based on contrast computed tomography scans",
     "task": "Renal structures segmentation",
     "description": "A UNET-based model for renal segmentation from contrast enhanced CT image",
     "authors": "Sechenov university",
     "copyright": "Copyright (c) Sechenov university",
-    "data_source": "RawData.zip",
+    "data_source": "AVUCTK_cases.zip",
     "data_type": "nibabel",
     "image_classes": "three channel data, intensity scaled to [0, 1]",
     "label_classes": "1: artery, 2: vein, 3: ureter, 4: cyst, 5: tumor, 6: parenchyma",
@@ -30,7 +29,7 @@
     },
     "intended_use": "This is  PoC, not to be used for diagnostic purposes",
     "references": [
-        "Chernenkiy I. \u041c. et al. Segmentation of renal structures based on contrast computed tomography scans using a convolutional neural network //Sechenov Medical Journal. \u2013 2023. \u2013 \u0422. 14. \u2013 \u2116. 1. \u2013 \u0421. 39-49. URL - https://www.sechenovmedj.com/jour/article/view/899"
+        "Chernenkiy I. M. et al. Segmentation of renal structures based on contrast computed tomography scans using a convolutional neural network //Sechenov Medical Journal. \u2013 2023. \u2013 \u0422. 14. \u2013 \u2116. 1. \u2013 \u0421. 39-49. URL - https://www.sechenovmedj.com/jour/article/view/899"
     ],
     "network_data_format": {
         "inputs": {
