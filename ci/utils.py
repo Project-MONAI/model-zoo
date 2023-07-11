@@ -17,6 +17,7 @@ import shutil
 import subprocess
 from typing import List
 
+from github import Github
 from monai.apps.utils import download_url
 from monai.bundle.config_parser import ConfigParser
 from monai.utils import look_up_option
@@ -120,31 +121,33 @@ def get_latest_version(bundle_name: str, model_info_path: str):
     return sorted(versions)[-1]
 
 
-def push_new_model_info_branch(model_info_path: str):
-    email = os.environ["email"]
-    username = os.environ["username"]
-    github_token = os.environ["GITHUB_TOKEN"]
-
-    # authenticate with Github CLI
-    auth_cmd = "gh auth login --with-token"
-    call_status = subprocess.run(auth_cmd, input=github_token.encode())
-    call_status.check_returncode()
-
+def submit_pull_request(model_info_path: str):
+    # set required info for a pull request
     branch_name = "auto-update-model-info"
-    create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
-    git_config = f"git config user.email {email}; git config user.name {username}"
-    commit_message = "git commit -m 'auto update model_info'"
-    full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
-    call_status = subprocess.run(full_cmd, shell=True)
-    call_status.check_returncode()
-
-    return branch_name
-
-
-def create_pull_request(branch_name: str, pr_title: str = "'auto update model_info [skip ci]'"):
-    create_command = f"gh pr create --fill --title {pr_title} --base dev --head {branch_name}"
-    call_status = subprocess.run(create_command, shell=True)
-    call_status.check_returncode()
+    pr_title = "auto update model_info [skip ci]"
+    pr_description = "This PR is automatically created to update model_info.json"
+    commit_message = "auto update model_info"
+    repo_file_path = "models/model_info.json"
+    # authenticate with Github CLI
+    github_token = os.environ["GITHUB_TOKEN"]
+    repo_name = "Project-MONAI/model-zoo"
+    g = Github(github_token)
+    # create new branch
+    repo = g.get_repo(repo_name)
+    default_branch = repo.default_branch
+    new_branch = repo.create_git_ref(ref=f"refs/heads/{branch_name}", sha=repo.get_branch(default_branch).commit.sha)
+    # push changes
+    model_info = get_json_dict(model_info_path)
+    model_info["test_bundle"] = {"checksum": "", "source": ""}
+    repo.update_file(
+        path=repo_file_path,
+        message=commit_message,
+        content=json.dumps(model_info),
+        sha=repo.get_contents(repo_file_path, ref=default_branch).sha,
+        branch=new_branch.ref,
+    )
+    # create PR
+    repo.create_pull(title=pr_title, body=pr_description, head=new_branch.ref, base=default_branch)
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):

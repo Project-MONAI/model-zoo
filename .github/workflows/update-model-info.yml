@@ -22,5 +22,3 @@ jobs:
         python $(pwd)/ci/update_model_info.py --f ""
       env:
         GITHUB_TOKEN: ${{ secrets.UPDATE_MODEL_TOKEN }}
-        username: ${{ secrets.UPDATE_MODEL_USERNAME }}
-        email: ${{ secrets.UPDATE_MODEL_EMAIL }}
