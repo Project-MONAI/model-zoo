@@ -21,6 +21,6 @@ jobs:
         python -m pip install -r requirements-update-model.txt
         python $(pwd)/ci/update_model_info.py --f ""
       env:
-        GITHUB_TOKEN: ${{ secrets.MONAI_BOT_READ }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         username: ${{ secrets.UPDATE_MODEL_USERNAME }}
         email: ${{ secrets.UPDATE_MODEL_EMAIL }}
