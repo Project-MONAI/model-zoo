@@ -18,9 +18,9 @@ jobs:
         fetch-depth: 2
     - name: update model info
       run: |
-        git config --global user.name "${{ secrets.UPDATE_MODEL_USERNAME }}"
-        git config --global user.email "${{ secrets.UPDATE_MODEL_EMAIL }}"
         python -m pip install -r requirements-update-model.txt
         python $(pwd)/ci/update_model_info.py --f ""
       env:
         GITHUB_TOKEN: ${{ secrets.UPDATE_MODEL_TOKEN }}
+        username: ${{ secrets.UPDATE_MODEL_USERNAME }}
+        email: ${{ secrets.UPDATE_MODEL_EMAIL }}
