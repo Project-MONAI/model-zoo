@@ -23,4 +23,4 @@ jobs:
         python -m pip install -r requirements-update-model.txt
         python $(pwd)/ci/update_model_info.py --f ""
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.UPDATE_MODEL_TOKEN }}
