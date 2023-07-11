@@ -127,7 +127,7 @@ def push_new_model_info_branch(model_info_path: str):
 
     # authenticate with Github CLI
     auth_cmd = "gh auth login --with-token"
-    call_status = subprocess.run(auth_cmd, input=github_token.encode(), shell=True)
+    call_status = subprocess.run(auth_cmd, input=github_token.encode())
     call_status.check_returncode()
 
     branch_name = "auto-update-model-info"
