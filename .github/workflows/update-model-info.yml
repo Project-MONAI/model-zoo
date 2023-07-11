@@ -20,7 +20,7 @@ jobs:
       run: |
         python -m pip install -r requirements-update-model.txt
         git config user.name "${{ env.username }}"
-        git config user.name "${{ env.email }}"
+        git config user.email "${{ env.email }}"
         python $(pwd)/ci/update_model_info.py --f ""
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
