@@ -73,11 +73,11 @@ def update_model_info(
     hash_func = get_hash_func(hash_type="sha1")
     checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
 
-    # step 3
-    try:
-        source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
-    except Exception as e:
-        return (False, f"Upload bundle error: {e}")
+    # # step 3
+    # try:
+    #     source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
+    # except Exception as e:
+    #     return (False, f"Upload bundle error: {e}")
 
     # step 4
     model_info_path = os.path.join(models_path, model_info_file)
@@ -87,7 +87,7 @@ def update_model_info(
         model_info[bundle_name_with_version] = {"checksum": "", "source": ""}
 
     model_info[bundle_name_with_version]["checksum"] = checksum
-    model_info[bundle_name_with_version]["source"] = source
+    model_info[bundle_name_with_version]["source"] = ""
 
     save_model_info(model_info, model_info_path)
     return (True, "update successful")
@@ -102,9 +102,10 @@ def main(changed_dirs):
     3. according to the update results, push changed model_info_file if needed.
 
     """
-    bundle_list = get_changed_bundle_list(changed_dirs)
+    # bundle_list = get_changed_bundle_list(changed_dirs)
     models_path = "models"
     model_info_file = "model_info.json"
+    bundle_list = ["spleen_ct_segmentation"]
     if len(bundle_list) > 0:
         for bundle in bundle_list:
             # create a temporary copy of the bundle for further processing

@@ -23,6 +23,6 @@ jobs:
           python $(pwd)/ci/update_model_info.py --f "$changes"
         fi
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.MONAI_BOT_READ }}
         username: ${{ secrets.UPDATE_MODEL_USERNAME }}
         email: ${{ secrets.UPDATE_MODEL_EMAIL }}
