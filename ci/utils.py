@@ -129,8 +129,7 @@ def push_new_model_info_branch(model_info_path: str):
 
     git_config = f"git config --global user.email {email}; git config --global user.name {username}"
     commit_message = "git commit -m 'auto update model_info'"
-    full_cmd = f"git add {model_info_path}; {commit_message}; {create_push_cmd}"
-    print(email, username)
+    full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
     call_status = subprocess.run(full_cmd, shell=True)
     call_status.check_returncode()
 
