@@ -46,23 +46,22 @@ Expected result: finished, Training process started, model variables are restore
 
 #### Execute validation:
 
-##### Download validation data:
-```bash
-cd models/renalStructures_CECT_segmantation
-python -m monai.bundle run download_data --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
-```
-Expected result: finished, `data/` folder is created and filled with images.
+Download validation data (described in [Data](#data) section).
+
+With provided model weights mean dice score is expected to be ~0.78446.
 
 #####  Run validation script:
 ```bash
 python -m monai.bundle run evaluate --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
-Expected result: finished, `Key metric: val_mean_dice best value: 0.7844631671905518 at epoch: 1` is printed.
+Expected result: finished, `Key metric: val_mean_dice best value: ...` is printed.
 
 ## **System Configuration**
 The model was trained for 10000 epochs on 2 RTX2080Ti GPUs with [SmartCacheDataset](https://docs.monai.io/en/stable/data.html#smartcachedataset). This takes 1 days and 2 hours, with 4 images per GPU.
 Training progress is available on [tensorboard.dev](https://tensorboard.dev/experiment/VlEMjLdURH6SyFp216dFBg)
 
+To perform training in minimal settings, at least one 12GB-memory GPU is required.
+Actual Model Input: 96 x 96 x 96
 
 ## **Limitations**
 For developmental purposes only and cannot be used directly for clinical procedures.
@@ -107,7 +106,7 @@ Checking evaluation script
 ```bash
 python -m monai.bundle run evaluate --meta_file configs/metadata.json --config_file "['configs/train.json', 'configs/evaluate.json']"
 ```
-Expected result: finished, `Key metric: val_mean_dice best value: 0.7844631671905518 at epoch: 1` is printed.
+Expected result: finished, `Key metric: val_mean_dice best value: ...` is printed.
 
 
 Checking train script

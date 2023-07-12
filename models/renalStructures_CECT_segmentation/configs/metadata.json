@@ -12,7 +12,7 @@
         "pytorch-ignite": "0.4.11",
         "einops": "0.6.1",
         "fire": "0.5.0",
-        "torchvision": "0.15.2"
+        "torchvision": "0.14.1"
     },
     "name": "Segmentation of renal structures based on contrast computed tomography scans",
     "task": "Renal structures segmentation",
