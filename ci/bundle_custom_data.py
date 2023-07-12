@@ -31,6 +31,7 @@ exclude_verify_preferred_files_list = []
 exclude_verify_torchscript_list = [
     "swin_unetr_btcv_segmentation",
     "renalStructures_UNEST_segmentation",
+    "renalStructures_CECT_segmentation",
     "wholeBrainSeg_Large_UNEST_segmentation",
     "breast_density_classification",
     "mednist_reg",
