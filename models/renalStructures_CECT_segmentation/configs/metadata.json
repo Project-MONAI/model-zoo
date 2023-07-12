@@ -1,0 +1,84 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "complete the model package"
+    },
+    "monai_version": "1.2.0",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.24.3",
+    "optional_packages_version": {
+        "nibabel": "5.1.0",
+        "pytorch-ignite": "0.4.11",
+        "einops": "0.6.1",
+        "fire": "0.5.0",
+        "torchvision": "0.14.1"
+    },
+    "name": "Segmentation of renal structures based on contrast computed tomography scans",
+    "task": "Renal structures segmentation",
+    "description": "A UNET-based model for renal segmentation from contrast enhanced CT image",
+    "authors": "Sechenov university",
+    "copyright": "Copyright (c) Sechenov university",
+    "data_source": "AVUCTK_cases.zip",
+    "data_type": "nibabel",
+    "image_classes": "three channel data, intensity scaled to [0, 1]",
+    "label_classes": "1: artery, 2: vein, 3: ureter, 4: cyst, 5: tumor, 6: parenchyma",
+    "pred_classes": "1: artery, 2: vein, 3: ureter, 4: neoplasm, 5: parenchyma",
+    "eval_metrics": {
+        "mean_dice": 0.79
+    },
+    "intended_use": "This is  PoC, not to be used for diagnostic purposes",
+    "references": [
+        "Chernenkiy I. M. et al. Segmentation of renal structures based on contrast computed tomography scans using a convolutional neural network //Sechenov Medical Journal. \u2013 2023. \u2013 \u0422. 14. \u2013 \u2116. 1. \u2013 \u0421. 39-49. URL - https://www.sechenovmedj.com/jour/article/view/899"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "hounsfield",
+                "modality": "CT",
+                "num_channels": 3,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 6,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "background",
+                    "1": "artery",
+                    "2": "vein",
+                    "3": "ureter",
+                    "4": "neoplasm",
+                    "5": "parenchyma"
+                }
+            }
+        }
+    }
+}

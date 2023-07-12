@@ -1,0 +1,56 @@
+{
+    "imports": [
+        "$import glob",
+        "$import os",
+        "$import ignite",
+        "$import json",
+        "$import urllib"
+    ],
+    "validate#handlers": [
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false
+        },
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "$@ckpt_dir + '/model.pt'",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "MetricsSaver",
+            "save_dir": "@output_dir",
+            "metrics": [
+                "val_mean_dice",
+                "ar/dice",
+                "ve/dice",
+                "ur/dice",
+                "ki/dice",
+                "tu/dice",
+                "tu/haunsdorff",
+                "tu/surface"
+            ],
+            "metric_details": [
+                "val_mean_dice"
+            ],
+            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "summary_ops": "*"
+        }
+    ],
+    "download_data": [
+        "$import logging",
+        "$import zipfile",
+        "$import os",
+        "$logging.info('Downloading 298Mb data zip archive, please wait... (To see progress bar, download manually from https://disk.yandex.ru/d/pWEKt6D3qi3-aw , and extract data to bundle_root - ' + @bundle_root + ')')",
+        "$urllib.request.urlretrieve(json.loads(urllib.request.urlopen('https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=https%3A%2F%2Fdisk.yandex.ru%2Fd%2FpWEKt6D3qi3-aw').read())['href'], @bundle_root + '/AVUCTK_cases.zip')",
+        "$zipfile.ZipFile(os.path.join(@bundle_root, 'AVUCTK_cases.zip'), 'r').extractall(@bundle_root)",
+        "$os.remove(os.path.join(@bundle_root, 'AVUCTK_cases.zip'))",
+        "$logging.info('Data extracted to ' +  @bundle_root)"
+    ],
+    "evaluate": [
+        "$monai.utils.set_determinism(seed=42)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@validate#evaluator.run()"
+    ]
+}
