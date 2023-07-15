@@ -88,7 +88,7 @@ Download trained checkpoint model to ./model/model.pt:
 Add scripts component:  To run the workflow with customized components, PYTHONPATH should be revised to include the path to the customized component:
 
 ```
-export PYTHONPATH=$PYTHONPATH: '<path to the bundle root dir>/scripts'
+export PYTHONPATH=$PYTHONPATH: '<path to the bundle root dir>/'
 ```
 
 Execute Training:
