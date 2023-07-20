@@ -12,12 +12,14 @@
 import argparse
 import os
 import shutil
+import tempfile
 
 from utils import (
     compress_bundle,
     download_large_files,
     get_changed_bundle_list,
     get_checksum,
+    get_existing_bundle_list,
     get_hash_func,
     get_json_dict,
     save_model_info,
@@ -71,16 +73,26 @@ def update_model_info(
     hash_func = get_hash_func(hash_type="sha1")
     checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
 
-    # # step 3
+    # step 3
+    # check if uploading a new bundle
+    model_info_path = os.path.join(models_path, model_info_file)
+    model_info = get_json_dict(model_info_path)
+    existing_bundle_list = get_existing_bundle_list(model_info)
+    exist_flag = False
+    if bundle_name in existing_bundle_list:
+        exist_flag = True
     try:
-        source = upload_bundle(bundle_zip_file_path=zipfile_path, bundle_zip_filename=bundle_zip_name)
+        source = upload_bundle(
+            bundle_name=bundle_name,
+            version=latest_version,
+            bundle_zip_file_path=zipfile_path,
+            bundle_zip_name=bundle_zip_name,
+            exist_flag=exist_flag,
+        )
     except Exception as e:
         return (False, f"Upload bundle error: {e}")
 
     # step 4
-    model_info_path = os.path.join(models_path, model_info_file)
-    model_info = get_json_dict(model_info_path)
-
     if bundle_name_with_version not in model_info.keys():
         model_info[bundle_name_with_version] = {"checksum": "", "source": ""}
 
@@ -103,20 +115,20 @@ def main(changed_dirs):
     bundle_list = get_changed_bundle_list(changed_dirs)
     models_path = "models"
     model_info_file = "model_info.json"
-    bundle_list = ["spleen_ct_segmentation"]
-    if len(bundle_list) > 0:
-        # for bundle in bundle_list:
-        #     # create a temporary copy of the bundle for further processing
-        #     temp_dir = tempfile.mkdtemp()
-        #     update_state, msg = update_model_info(
-        #         bundle_name=bundle, temp_dir=temp_dir, models_path=models_path, model_info_file=model_info_file
-        #     )
-        #     shutil.rmtree(temp_dir)
 
-        #     if update_state is True:
-        #         print(f"update bundle: {bundle} successful.")
-        #     else:
-        #         raise AssertionError(f"update bundle: {bundle} failed. {msg}")
+    if len(bundle_list) > 0:
+        for bundle in bundle_list:
+            # create a temporary copy of the bundle for further processing
+            temp_dir = tempfile.mkdtemp()
+            update_state, msg = update_model_info(
+                bundle_name=bundle, temp_dir=temp_dir, models_path=models_path, model_info_file=model_info_file
+            )
+            shutil.rmtree(temp_dir)
+
+            if update_state is True:
+                print(f"update bundle: {bundle} successful.")
+            else:
+                raise AssertionError(f"update bundle: {bundle} failed. {msg}")
 
         # push a new branch that contains the updated model_info.json
         submit_pull_request(model_info_path=os.path.join(models_path, model_info_file))

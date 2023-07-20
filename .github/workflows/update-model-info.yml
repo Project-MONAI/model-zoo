@@ -1,15 +1,14 @@
 name: update-model-info
 
 on:
-  # schedule:
-  # - cron: "0 10 * * *"  # 10:00, everyday
-  # # Allows you to run this workflow manually from the Actions tab
-  # workflow_dispatch:
-  pull_request:
+  schedule:
+  - cron: "0 10 * * *"  # 10:00, everyday
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
-    # if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/dev'
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
@@ -19,6 +18,9 @@ jobs:
     - name: update model info
       run: |
         python -m pip install -r requirements-update-model.txt
-        python $(pwd)/ci/update_model_info.py --f ""
+        changes=$(git diff --name-only HEAD^..HEAD -- models)
+        if [ ! -z "$changes" ]; then
+          python $(pwd)/ci/update_model_info.py --f "$changes"
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.UPDATE_MODEL_TOKEN }}

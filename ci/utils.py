@@ -13,6 +13,7 @@
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 from typing import List
@@ -163,15 +164,74 @@ def get_checksum(dst_path: str, hash_func):
     return hash_func.hexdigest()
 
 
-def upload_bundle(
-    bundle_zip_file_path: str,
-    bundle_zip_filename: str,
-    release_tag: str = "hosting_storage_v1",
-    repo_name: str = "Project-MONAI/model-zoo",
-):
-    upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
-    call_status = subprocess.run(upload_command, shell=True)
-    call_status.check_returncode()
-    source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
+def split_bundle_name_version(bundle_name: str):
+    pattern_version = re.compile(r"^(.+)\_v(\d.*)$")
+    matched_result = pattern_version.match(bundle_name)
+    if matched_result is not None:
+        b_name, b_version = matched_result.groups()
+        return b_name, b_version
+    raise ValueError(f"{bundle_name} does not meet the naming format.")
 
-    return source
+
+def get_existing_bundle_list(model_info):
+    all_bundle_names = []
+    for k in model_info.keys():
+        bundle_name, _ = split_bundle_name_version(k)
+        if bundle_name not in all_bundle_names:
+            all_bundle_names.append(bundle_name)
+    return all_bundle_names
+
+
+def create_bundle_to_ngc(bundle_name: str, org_name: str):
+    options = "--short-desc '' --application '' --format '' --framework MONAI --precision ''"
+    # models in NGC need to be lowercase
+    ngc_create_cmd = f"ngc registry model create {org_name}/{bundle_name.lower()} {options}"
+    try:
+        _ = subprocess.run(ngc_create_cmd, shell=True, check=True, stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError as e:
+        msg = e.stderr.decode("utf-8")
+        if "already exists" in msg:
+            print(f"{bundle_name} already exists, skip creating.")
+            pass
+        else:
+            raise e
+
+
+def upload_version_to_ngc(bundle_name: str, version: str, upload_dir: str, upload_file: str, org_name: str):
+    ngc_upload_cmd = (
+        f"ngc registry model upload-version --source {upload_file} {org_name}/{bundle_name.lower()}:{version}"
+    )
+    try:
+        _ = subprocess.run(ngc_upload_cmd, shell=True, cwd=upload_dir, check=True, stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError as e:
+        msg = e.stderr.decode("utf-8")
+        if "already exists" in msg:
+            print(f"{bundle_name} with version {version} already exists, skip uploading.")
+            pass
+        else:
+            raise e
+
+
+def upload_bundle(
+    bundle_name: str,
+    version: str,
+    bundle_zip_file_path: str,
+    bundle_zip_name: str,
+    exist_flag: bool,
+    org_name: str = "nvidia/monaihosting",
+):
+    if exist_flag is False:
+        # need to create bundle first
+        create_bundle_to_ngc(bundle_name=bundle_name, org_name=org_name)
+    # upload version
+    upload_version_to_ngc(
+        bundle_name=bundle_name,
+        version=version,
+        upload_dir=bundle_zip_file_path,
+        upload_file=bundle_zip_name,
+        org_name=org_name,
+    )
+    # access link
+    access_link = f"https://api.ngc.nvidia.com/v2/models/{org_name}/{bundle_name.lower()}versions/{version}/files/{bundle_zip_name}"
+
+    return access_link
