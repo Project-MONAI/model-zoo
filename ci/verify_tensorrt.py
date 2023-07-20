@@ -27,7 +27,7 @@ def verify_tensorrt(export_context):
     bundle_root = export_context["bundle_root"]
     precision = export_context["precision"]
     trt_model_path = os.path.join(bundle_root, f"models/model_trt_{precision}.ts")
-    export_context["filepath"]=trt_model_path
+    export_context["filepath"] = trt_model_path
     try:
         trt_export(**export_context)
     except Exception as e:
@@ -45,16 +45,16 @@ def get_export_required_files(bundle: str, download_path: str, use_onnx: bool = 
     bundle_path = os.path.join(download_path, bundle)
     net_id, inference_file_name = "network_def", _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
     config_file = os.path.join("configs", inference_file_name)
-    ckpt_file=os.path.join(bundle_path, "models/model.pt")
-    meta_file=os.path.join(bundle_path, "configs/metadata.json")
-    config_file=os.path.join(bundle_path, config_file)
+    ckpt_file = os.path.join(bundle_path, "models/model.pt")
+    meta_file = os.path.join(bundle_path, "configs/metadata.json")
+    config_file = os.path.join(bundle_path, config_file)
 
     export_context = {
         "bundle_root": bundle_path,
         "net_id": net_id,
         "config_file": config_file,
-        "ckpt_file":ckpt_file,
-        "meta_file":meta_file,
+        "ckpt_file": ckpt_file,
+        "meta_file": meta_file,
         "use_onnx": use_onnx,
         "use_trace": use_trace,
     }
