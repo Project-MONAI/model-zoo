@@ -85,7 +85,7 @@ def update_model_info(
         source = upload_bundle(
             bundle_name=bundle_name,
             version=latest_version,
-            bundle_zip_file_path=zipfile_path,
+            root_path=temp_dir,
             bundle_zip_name=bundle_zip_name,
             exist_flag=exist_flag,
         )
@@ -132,6 +132,7 @@ def main(changed_dirs):
 
         # push a new branch that contains the updated model_info.json
         submit_pull_request(model_info_path=os.path.join(models_path, model_info_file))
+        print("a pull request with updated model info is submitted.")
     else:
         print(f"all changed files: {changed_dirs} are not related to any existing bundles, skip updating.")
 

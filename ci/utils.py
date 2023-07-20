@@ -197,12 +197,14 @@ def create_bundle_to_ngc(bundle_name: str, org_name: str):
             raise e
 
 
-def upload_version_to_ngc(bundle_name: str, version: str, upload_dir: str, upload_file: str, org_name: str):
+def upload_version_to_ngc(bundle_name: str, version: str, root_path: str, org_name: str):
+    upload_file = f"{bundle_name}_v{version}.zip"
     ngc_upload_cmd = (
         f"ngc registry model upload-version --source {upload_file} {org_name}/{bundle_name.lower()}:{version}"
     )
+
     try:
-        _ = subprocess.run(ngc_upload_cmd, shell=True, cwd=upload_dir, check=True, stderr=subprocess.PIPE)
+        _ = subprocess.run(ngc_upload_cmd, shell=True, cwd=root_path, check=True, stderr=subprocess.PIPE)
     except subprocess.CalledProcessError as e:
         msg = e.stderr.decode("utf-8")
         if "already exists" in msg:
@@ -215,7 +217,7 @@ def upload_version_to_ngc(bundle_name: str, version: str, upload_dir: str, uploa
 def upload_bundle(
     bundle_name: str,
     version: str,
-    bundle_zip_file_path: str,
+    root_path: str,
     bundle_zip_name: str,
     exist_flag: bool,
     org_name: str = "nvidia/monaihosting",
@@ -227,11 +229,10 @@ def upload_bundle(
     upload_version_to_ngc(
         bundle_name=bundle_name,
         version=version,
-        upload_dir=bundle_zip_file_path,
-        upload_file=bundle_zip_name,
+        root_path=root_path,
         org_name=org_name,
     )
     # access link
-    access_link = f"https://api.ngc.nvidia.com/v2/models/{org_name}/{bundle_name.lower()}versions/{version}/files/{bundle_zip_name}"
+    access_link = f"https://api.ngc.nvidia.com/v2/models/{org_name}/{bundle_name.lower()}/versions/{version}/files/{bundle_zip_name}"
 
     return access_link
