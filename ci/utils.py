@@ -139,7 +139,6 @@ def submit_pull_request(model_info_path: str):
     new_branch = repo.create_git_ref(ref=f"refs/heads/{branch_name}", sha=repo.get_branch(default_branch).commit.sha)
     # push changes
     model_info = get_json_dict(model_info_path)
-    model_info["test_bundle"] = {"checksum": "", "source": ""}
     repo.update_file(
         path=repo_file_path,
         message=commit_message,
