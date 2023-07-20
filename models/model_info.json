@@ -1190,5 +1190,13 @@
     "pancreas_ct_dints_segmentation_v0.4.2": {
         "checksum": "aa8ed1b0aa4a7269e2d732467abab9482d0c2ecb",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/pancreas_ct_dints_segmentation_v0.4.2.zip"
+    },
+    "renalStructures_CECT_segmentation_v0.1.0": {
+        "checksum": "6eef84336fb29a09d19c723a8f25f15eb7113fb9",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/renalStructures_CECT_segmentation_v0.1.0.zip"
+    },
+    "wholeBrainSeg_Large_UNEST_segmentation_v0.2.3": {
+        "checksum": "35d1bfd96a09b4ea6a3424a65b8a178a85323617",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBrainSeg_Large_UNEST_segmentation_v0.2.3.zip"
     }
 }
