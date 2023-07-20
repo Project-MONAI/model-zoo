@@ -165,7 +165,7 @@ python -m monai.bundle ckpt_export network_def --filepath models/model.ts --ckpt
 #### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
 
 ```
-python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.yaml  --precision <fp32/fp16> --use_trace "True" --dynamic_batchsize "[1, 4, 8]" --converter_kwargs "{'truncate_long_and_double':True, 'allow_shape_tensors': True, 'torch_executed_ops': ['aten::upsample_trilinear3d']}"
+python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.yaml  --precision <fp32/fp16> --use_trace "True" --dynamic_batchsize "[1, 4, 8]" --converter_kwargs "{'truncate_long_and_double':True, 'torch_executed_ops': ['aten::upsample_trilinear3d']}"
 ```
 
 #### Execute inference with the TensorRT model:
