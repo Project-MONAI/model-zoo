@@ -227,6 +227,7 @@ def upload_bundle(
     # upload version
     upload_version_to_ngc(bundle_name=bundle_name, version=version, root_path=root_path, org_name=org_name)
     # access link
-    access_link = f"https://api.ngc.nvidia.com/v2/models/{org_name}/{bundle_name.lower()}/versions/{version}/files/{bundle_zip_name}"
+    site = "https://api.ngc.nvidia.com/v2/models/"
+    access_link = f"{site}{org_name}/{bundle_name.lower()}/versions/{version}/files/{bundle_zip_name}"
 
     return access_link
