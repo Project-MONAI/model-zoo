@@ -1,7 +1,7 @@
 name: update-model-info
 
 on:
-  schedule:
+  # schedule:
   # - cron: "0 10 * * *"  # 10:00, everyday
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
