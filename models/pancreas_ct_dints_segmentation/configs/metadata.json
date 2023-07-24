@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "changelog": {
+        "0.4.3": "add support for TensorRT conversion and inference",
         "0.4.2": "update search function to match monai 1.2",
         "0.4.1": "fix the wrong GPU index issue of multi-node",
         "0.4.0": "remove error dollar symbol in readme",
