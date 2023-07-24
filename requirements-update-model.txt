@@ -1,0 +1,4 @@
+monai>=1.0.1
+gdown>=4.5.4
+PyGithub
+pyyaml
