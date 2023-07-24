@@ -1198,5 +1198,9 @@
     "wholeBrainSeg_Large_UNEST_segmentation_v0.2.3": {
         "checksum": "35d1bfd96a09b4ea6a3424a65b8a178a85323617",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/wholeBrainSeg_Large_UNEST_segmentation_v0.2.3.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.4.3": {
+        "checksum": "15161eb6fb81d6153856345d94a0ea206a525de6",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pancreas_ct_dints_segmentation/versions/0.4.3/files/pancreas_ct_dints_segmentation_v0.4.3.zip"
     }
 }
