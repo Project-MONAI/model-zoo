@@ -13,12 +13,10 @@
 import hashlib
 import json
 import os
-import re
 import shutil
 import subprocess
 from typing import List
 
-from github import Github
 from monai.apps.utils import download_url
 from monai.bundle.config_parser import ConfigParser
 from monai.utils import look_up_option
@@ -122,32 +120,27 @@ def get_latest_version(bundle_name: str, model_info_path: str):
     return sorted(versions)[-1]
 
 
-def submit_pull_request(model_info_path: str):
-    # set required info for a pull request
+def push_new_model_info_branch(model_info_path: str):
+    email = os.environ["email"]
+    username = os.environ["username"]
+
     branch_name = "auto-update-model-info"
-    pr_title = "auto update model_info [skip ci]"
-    pr_description = "This PR is automatically created to update model_info.json"
-    commit_message = "auto update model_info"
-    repo_file_path = "models/model_info.json"
-    # authenticate with Github CLI
-    github_token = os.environ["GITHUB_TOKEN"]
-    repo_name = "Project-MONAI/model-zoo"
-    g = Github(github_token)
-    # create new branch
-    repo = g.get_repo(repo_name)
-    default_branch = repo.default_branch
-    new_branch = repo.create_git_ref(ref=f"refs/heads/{branch_name}", sha=repo.get_branch(default_branch).commit.sha)
-    # push changes
-    model_info = get_json_dict(model_info_path)
-    repo.update_file(
-        path=repo_file_path,
-        message=commit_message,
-        content=json.dumps(model_info),
-        sha=repo.get_contents(repo_file_path, ref=default_branch).sha,
-        branch=new_branch.ref,
-    )
-    # create PR
-    repo.create_pull(title=pr_title, body=pr_description, head=new_branch.ref, base=default_branch)
+    create_push_cmd = f"git checkout -b {branch_name}; git push --set-upstream origin {branch_name}"
+
+    git_config = f"git config user.email {email}; git config user.name {username}"
+    commit_message = "git commit -m 'auto update model_info'"
+    full_cmd = f"{git_config}; git add {model_info_path}; {commit_message}; {create_push_cmd}"
+
+    call_status = subprocess.run(full_cmd, shell=True)
+    call_status.check_returncode()
+
+    return branch_name
+
+
+def create_pull_request(branch_name: str, pr_title: str = "'auto update model_info [skip ci]'"):
+    create_command = f"gh pr create --fill --title {pr_title} --base dev --head {branch_name}"
+    call_status = subprocess.run(create_command, shell=True)
+    call_status.check_returncode()
 
 
 def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
@@ -163,71 +156,15 @@ def get_checksum(dst_path: str, hash_func):
     return hash_func.hexdigest()
 
 
-def split_bundle_name_version(bundle_name: str):
-    pattern_version = re.compile(r"^(.+)\_v(\d.*)$")
-    matched_result = pattern_version.match(bundle_name)
-    if matched_result is not None:
-        b_name, b_version = matched_result.groups()
-        return b_name, b_version
-    raise ValueError(f"{bundle_name} does not meet the naming format.")
-
-
-def get_existing_bundle_list(model_info):
-    all_bundle_names = []
-    for k in model_info.keys():
-        bundle_name, _ = split_bundle_name_version(k)
-        if bundle_name not in all_bundle_names:
-            all_bundle_names.append(bundle_name)
-    return all_bundle_names
-
-
-def create_bundle_to_ngc(bundle_name: str, org_name: str):
-    options = "--short-desc '' --application '' --format '' --framework MONAI --precision ''"
-    # models in NGC need to be lowercase
-    ngc_create_cmd = f"ngc registry model create {org_name}/{bundle_name.lower()} {options}"
-    try:
-        _ = subprocess.run(ngc_create_cmd, shell=True, check=True, stderr=subprocess.PIPE)
-    except subprocess.CalledProcessError as e:
-        msg = e.stderr.decode("utf-8")
-        if "already exists" in msg:
-            print(f"{bundle_name} already exists, skip creating.")
-            pass
-        else:
-            raise e
-
-
-def upload_version_to_ngc(bundle_name: str, version: str, root_path: str, org_name: str):
-    upload_file = f"{bundle_name}_v{version}.zip"
-    ngc_upload_cmd = (
-        f"ngc registry model upload-version --source {upload_file} {org_name}/{bundle_name.lower()}:{version}"
-    )
-
-    try:
-        _ = subprocess.run(ngc_upload_cmd, shell=True, cwd=root_path, check=True, stderr=subprocess.PIPE)
-    except subprocess.CalledProcessError as e:
-        msg = e.stderr.decode("utf-8")
-        if "already exists" in msg:
-            print(f"{bundle_name} with version {version} already exists, skip uploading.")
-            pass
-        else:
-            raise e
-
-
 def upload_bundle(
-    bundle_name: str,
-    version: str,
-    root_path: str,
-    bundle_zip_name: str,
-    exist_flag: bool,
-    org_name: str = "nvidia/monaihosting",
+    bundle_zip_file_path: str,
+    bundle_zip_filename: str,
+    release_tag: str = "hosting_storage_v1",
+    repo_name: str = "Project-MONAI/model-zoo",
 ):
-    if exist_flag is False:
-        # need to create bundle first
-        create_bundle_to_ngc(bundle_name=bundle_name, org_name=org_name)
-    # upload version
-    upload_version_to_ngc(bundle_name=bundle_name, version=version, root_path=root_path, org_name=org_name)
-    # access link
-    site = "https://api.ngc.nvidia.com/v2/models/"
-    access_link = f"{site}{org_name}/{bundle_name.lower()}/versions/{version}/files/{bundle_zip_name}"
+    upload_command = f"gh release upload {release_tag} {bundle_zip_file_path} -R {repo_name}"
+    call_status = subprocess.run(upload_command, shell=True)
+    call_status.check_returncode()
+    source = f"https://github.com/{repo_name}/releases/download/{release_tag}/{bundle_zip_filename}"
 
-    return access_link
+    return source
