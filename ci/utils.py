@@ -109,7 +109,7 @@ def download_large_files(bundle_path: str, large_file_name: str = "large_file.ym
 
 def save_model_info(model_info_dict, model_info_path: str):
     with open(model_info_path, "w") as f:
-        json.dump(model_info_dict, f)
+        json.dump(model_info_dict, f, indent=4)
 
 
 def get_latest_version(bundle_name: str, model_info_path: str):
