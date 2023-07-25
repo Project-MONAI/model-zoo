@@ -122,8 +122,4 @@ python -m monai.bundle run --config_file "['configs/inference.yaml', 'configs/in
 
 
 ## **License**
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+The Licensee is not allowed to distribute or make the model to any third party, either for free or for a fee. Reverse engineering of the model is not allowed. This includes, but is not limited to, providing the model as part of a commercial offering, sharing the model on a public or private network, or making the model available for download on the Internet.
