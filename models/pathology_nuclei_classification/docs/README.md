@@ -145,7 +145,7 @@ This bundle supports acceleration with TensorRT. The table below displays the sp
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | model computation | 9.99 | 14.14 | 4.62 | 2.37 | 0.71 | 2.16 | 4.22 | 5.97 |
-| end2end | 5310 | 5590 | 580 | 340 | 0.95 | 9.16 | 15.62 | 16.44 |
+| end2end | 412.95 | 408.88 | 351.64 | 286.85 | 1.01 | 1.17 | 1.44 | 1.43 |
 
 Where:
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
