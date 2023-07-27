@@ -151,6 +151,31 @@ CPU: Memory: **2.3G**
 Please note that this bundle is non-deterministic because of the trilinear interpolation used in the network. Therefore, reproducing the training process may not get exactly the same performance.
 Please refer to https://pytorch.org/docs/stable/notes/randomness.html#reproducibility for more details about reproducibility.
 
+#### TensorRT speedup
+This bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU.
+
+| method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| model computation | 88.20 | 37.1 | 39.2 | 36.9 | 2.38 | 2.25 | 2.39 | 1.01 |
+| end2end | 3717.14 | 2596.77 | 2517.29 | 2501.37 | 1.43 | 1.48 | 1.49 | 1.04 |
+
+Where:
+- `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
+- `end2end` means run the bundle end-to-end with the TensorRT based model.
+- `torch_fp32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
+- `trt_fp32` and `trt_fp16` are for the TensorRT based models converted in corresponding precision.
+- `speedup amp`, `speedup fp32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
+- `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
+
+This result is benchmarked under:
+ - TensorRT: 8.6.1+cuda12.0
+ - Torch-TensorRT Version: 1.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.8.10
+ - CUDA version: 12.1
+ - GPU models and configuration: A100 80G
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
@@ -197,6 +222,18 @@ python -m monai.bundle run --config_file configs/inference.json
 
 ```
 python -m monai.bundle run --config_file configs/inference.json --datalist "['sampledata/imagesTr/s0037.nii.gz','sampledata/imagesTr/s0038.nii.gz']"
+```
+
+#### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
+
+```
+python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --use_trace "True"
+```
+
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
 
 
