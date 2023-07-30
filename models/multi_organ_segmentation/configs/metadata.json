@@ -1,0 +1,93 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.0.3",
+    "changelog": {
+        "0.0.1": "initialize the model package structure",
+        "0.0.2": "Retrain with new MONAI",
+        "0.0.3": "Update for stable MONAI version"
+    },
+    "monai_version": "1.2.0",
+    "pytorch_version": "1.13.1",
+    "numpy_version": "1.22.2",
+    "optional_packages_version": {
+        "fire": "0.5.0",
+        "nibabel": "5.1.0",
+        "pytorch-ignite": "0.4.11"
+    },
+    "name": "Abdominal multi-organ segmentation",
+    "task": "Multi-organ segmentation in abdominal CT",
+    "description": "DiNTS architectures for volumetric (3D) segmentation of the abdominal from CT image",
+    "authors": "Chen Shen, Holger R. Roth, Kazunari Misawa, Kensaku Mori",
+    "copyright": "",
+    "data_source": "Aichi Cancer Center, Japan",
+    "data_type": "nibabel",
+    "image_classes": "single channel data, intensity scaled to [0, 1]",
+    "label_classes": "eight channels data, 1 is artery, 2 is portal vein, 3 is liver, 4 is spleen, 5 is stomach, 6 is gallbladder, 7 is pancreas, 0 is everything else",
+    "pred_classes": "8 channels OneHot data, 1 is artery, 2 is portal vein, 3 is liver, 4 is spleen, 5 is stomach, 6 is gallbladder, 7 is pancreas, 0 is background",
+    "eval_metrics": {
+        "mean_dice": 0.88
+    },
+    "references": [
+        "He, Y., Yang, D., Roth, H., Zhao, C. and Xu, D., 2021. Dints: Differentiable neural network topology search for 3d medical image segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5841-5850).",
+        "Roth, H., Shen C, Oda H., Sugino T., Oda M., Hayashi Y., Misawa K., Mori K., 2018. A multi-scale pyramid of 3D fully convolutional networks for abdominal multi-organ segmentation. International conference on medical image computing and computer-assisted intervention",
+        "Shen, C., Roth, H. R., Nath, V., Hayashi, Y., Oda, M., Misawa, K., Mori, K., 2022. Effective hyperparameter optimization with proxy data for multi-organ segmentation. In Medical Imaging 2022: Image Processing (Vol. 12032, pp. 200-206)"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "hounsfield",
+                "modality": "CT",
+                "num_channels": 1,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 8,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "background",
+                    "1": "artery",
+                    "2": "portal vein",
+                    "3": "liver",
+                    "4": "spleen",
+                    "5": "stomach",
+                    "6": "gallbladder",
+                    "7": "pancreas"
+                }
+            }
+        }
+    }
+}

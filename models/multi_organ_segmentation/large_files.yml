@@ -1,0 +1,13 @@
+large_files:
+  - path: "models/search_code_18590.pt"
+    url: "https://drive.google.com/uc?export=download&id=1G2YZo1HKkvf5sMvaaRQeZp_YA9GDlvL-"
+    hash_val: "55dc7fe4bee4a93d25a1dd329dfdd159"
+    hash_type: "md5"
+  - path: "models/model.pt"
+    url: "https://drive.google.com/uc?export=download&id=1kH0yTyiXUNqdYXpnSXI2p5-vFwDYoCzl"
+    hash_val: "e21d663b33d29a8ca4e28d60a14a3d66"
+    hash_type: "md5"
+  - path: "models/model.ts"
+    url: "https://drive.google.com/uc?export=download&id=1qwV99IfYvLzpjsHgfrlciqDp8yQ5uLXs"
+    hash_val: "7c08cb505b719914015d9fae746bea7c"
+    hash_type: "md5"
