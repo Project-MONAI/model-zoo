@@ -139,7 +139,7 @@
             "map_location": {
                 "_target_": "torch.device",
                 "device": "@device"
-        },
+            },
             "load_dict": {
                 "model": "@network"
             }
