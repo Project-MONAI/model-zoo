@@ -14,8 +14,8 @@ import shutil
 import tempfile
 import unittest
 
-import torch
 import numpy as np
+import torch
 from parameterized import parameterized
 from utils import export_config_and_run_mgpu_cmd
 

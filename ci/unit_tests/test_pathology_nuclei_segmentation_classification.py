@@ -18,8 +18,8 @@ import numpy as np
 from monai.bundle import ConfigWorkflow
 from monai.data import create_test_image_2d
 from parameterized import parameterized
-from utils import check_workflow
 from PIL import Image
+from utils import check_workflow
 
 TEST_CASE_1 = [  # train, evaluate
     {
@@ -71,7 +71,7 @@ class TestNucleiSegCls(unittest.TestCase):
         os.makedirs(self.infer_sample_dir)
         for s in range(int(dataset_size / 5)):
             img, _ = create_test_image_2d(1000, 1000)
-            im = Image.fromarray(img).convert('RGB')
+            im = Image.fromarray(img).convert("RGB")
             # img = Image.new("RGB", (1000, 1000))
             image_filename = os.path.join(self.infer_sample_dir, f"image_{s}.png")
             im.save(image_filename, "PNG")
