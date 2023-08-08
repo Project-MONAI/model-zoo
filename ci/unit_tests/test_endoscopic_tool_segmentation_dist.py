@@ -37,14 +37,19 @@ class TestEndoscopicSegMGPU(unittest.TestCase):
         dataset_size = 10
         writer = PILWriter(np.uint8)
         shape = (3, 256, 256)
-        for sub_folder in ["inbody", "outbody"]:
-            sample_dir = os.path.join(self.dataset_dir, f"test/{sub_folder}")
-            os.makedirs(sample_dir)
-            for s in range(dataset_size):
-                image = np.random.randint(low=0, high=5, size=(3, *shape)).astype(np.int8)
-                image_filename = os.path.join(sample_dir, f"{sub_folder}_{s}.jpg")
-                writer.set_data_array(image, channel_dim=0)
-                writer.write(image_filename, verbose=True)
+        for mode in ["train", "val"]:
+            for sub_folder in ["inbody", "outbody"]:
+                sample_dir = os.path.join(self.dataset_dir, f"{mode}/{sub_folder}")
+                os.makedirs(sample_dir)
+                for s in range(dataset_size):
+                    image = np.random.randint(low=0, high=5, size=(3, *shape)).astype(np.int8)
+                    image_filename = os.path.join(sample_dir, f"{sub_folder}_{s}.jpg")
+                    writer.set_data_array(image, channel_dim=0)
+                    writer.write(image_filename, verbose=True)
+                    label = np.random.randint(low=0, high=5, size=shape).astype(np.int8)
+                    label_filename = os.path.join(sample_dir, f"{sub_folder}_{s}_seg.jpg")
+                    writer.set_data_array(label, channel_dim=None)
+                    writer.write(label_filename, verbose=True)
 
     def tearDown(self):
         shutil.rmtree(self.dataset_dir)
