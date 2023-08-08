@@ -30,6 +30,14 @@ TEST_CASE_1 = [
     }
 ]
 
+TEST_CASE_2 = [  # mgpu train
+    {
+        "bundle_root": "models/endoscopic_tool_segmentation",
+        "validate#dataloader#num_workers": 4,
+        "train#deterministic_transforms#3#spatial_size": [32, 32],
+    }
+]
+
 
 class TestEndoscopicSegMGPU(unittest.TestCase):
     def setUp(self):
@@ -64,6 +72,25 @@ class TestEndoscopicSegMGPU(unittest.TestCase):
         n_gpu = torch.cuda.device_count()
         export_config_and_run_mgpu_cmd(
             config_file=[train_file, mgpu_train_file],
+            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+            override_dict=override,
+            output_path=output_path,
+            ngpu=n_gpu,
+            check_config=True,
+        )
+
+    @parameterized.expand([TEST_CASE_2])
+    def test_evaluate_mgpu_config(self, override):
+        override["dataset_dir"] = self.dataset_dir
+        bundle_root = override["bundle_root"]
+        train_file = os.path.join(bundle_root, "configs/train.json")
+        evaluate_file = os.path.join(bundle_root, "configs/evaluate.json")
+        mgpu_evaluate_file = os.path.join(bundle_root, "configs/multi_gpu_evaluate.json")
+        output_path = os.path.join(bundle_root, "configs/evaluate_override.json")
+        n_gpu = torch.cuda.device_count()
+        export_config_and_run_mgpu_cmd(
+            config_file=[train_file, evaluate_file, mgpu_evaluate_file],
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
             override_dict=override,
