@@ -33,7 +33,7 @@ TEST_CASE_1 = [
 ]
 
 
-class TestSwinUnetrMGPU(unittest.TestCase):
+class TestWholeBodyMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 12

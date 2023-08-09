@@ -53,7 +53,7 @@ def test_order(test_name1, test_name2):
     return get_order(test_name1) - get_order(test_name2)
 
 
-class TestSwinUnetr(unittest.TestCase):
+class TestWholeBody(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 12
