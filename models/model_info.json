@@ -1202,5 +1202,9 @@
     "pancreas_ct_dints_segmentation_v0.4.3": {
         "checksum": "15161eb6fb81d6153856345d94a0ea206a525de6",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pancreas_ct_dints_segmentation/versions/0.4.3/files/pancreas_ct_dints_segmentation_v0.4.3.zip"
+    },
+    "multi_organ_segmentation_v0.0.3": {
+        "checksum": "9b2bf624de378353b6682fabcd348a41b10d4700",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/multi_organ_segmentation/versions/0.0.3/files/multi_organ_segmentation_v0.0.3.zip"
     }
 }
