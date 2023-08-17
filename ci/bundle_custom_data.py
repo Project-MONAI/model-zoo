@@ -51,10 +51,7 @@ include_verify_tensorrt_dict = {
     "pathology_tumor_detection": {},
     "pancreas_ct_dints_segmentation": {
         "use_trace": True,
-        "converter_kwargs": {
-            "truncate_long_and_double": True,
-            "torch_executed_ops": ["aten::upsample_trilinear3d"],
-        },
+        "converter_kwargs": {"truncate_long_and_double": True, "torch_executed_ops": ["aten::upsample_trilinear3d"]},
     },
 }
 
@@ -67,14 +64,7 @@ include_verify_onnx_tensorrt_dict = {
     "spleen_ct_segmentation": {},
     "lung_nodule_ct_detection": {
         "input_shape": [1, 1, 512, 512, 192],
-        "onnx_output_names": [
-            "output_0",
-            "output_1",
-            "output_2",
-            "output_3",
-            "output_4",
-            "output_5",
-        ],
+        "onnx_output_names": ["output_0", "output_1", "output_2", "output_3", "output_4", "output_5"],
         "network_def#use_list_output": True,
     },
 }
