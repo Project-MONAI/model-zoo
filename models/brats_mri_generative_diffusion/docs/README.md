@@ -151,6 +151,26 @@ The Autoencoder can be exported into a TorchScript file.
 python -m monai.bundle ckpt_export autoencoder_def --filepath models/model_autoencoder.ts --ckpt_file models/model_autoencoder.pt --meta_file configs/metadata.json --config_file configs/inference.json
 ```
 
+#### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
+
+The Autoencoder can be exported into a TensorRT model.
+
+```
+python -m monai.bundle trt_export --net_id autoencoder_def --filepath models/model_autoencoder_trt.ts --ckpt_file models/model_autoencoder.pt --meta_file configs/metadata.json --config_file configs/inference.json --use_trace "True"  --input_shape "[1, 1, 112, 128, 80]" --precision <fp32/fp16> --converter_kwargs "{'truncate_long_and_double': True}"
+```
+
+The Diffusion model can be exported into a TensorRT model.
+
+```
+ python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --use_trace "True"  --input_shape "[[1, 8, 36, 44, 28], [1,]]" --converter_kwargs "{'truncate_long_and_double': True}"
+```
+
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
+
 # References
 [1] Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf
 

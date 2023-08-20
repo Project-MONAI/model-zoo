@@ -1,0 +1,11 @@
+{
+    "imports": [
+        "$from datetime import datetime",
+        "$from pathlib import Path",
+        "$import torch_tensorrt"
+    ],
+    "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder_trt.ts'",
+    "load_autoencoder": "$torch.jit.load(@load_autoencoder_path)",
+    "load_diffusion_path": "$@bundle_root + '/models/model_trt.ts'",
+    "load_diffusion": "$torch.jit.load(@load_diffusion_path)"
+}

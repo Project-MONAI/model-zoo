@@ -12,13 +12,16 @@
     "hovernet_mode": "fast",
     "patch_size": 256,
     "out_size": 164,
+    "non_trt_inference": true,
+    "use_list_output": "$not @non_trt_inference",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "HoVerNet",
         "mode": "@hovernet_mode",
         "adapt_standard_resnet": true,
         "in_channels": 3,
-        "out_classes": 5
+        "out_classes": 5,
+        "use_list_output": "@use_list_output"
     },
     "network": "$@network_def.to(@device)",
     "preprocessing": {
@@ -77,6 +80,16 @@
     "postprocessing": {
         "_target_": "Compose",
         "transforms": [
+            {
+                "_target_": "ExtendSubKeysd",
+                "_disabled_": "@non_trt_inference",
+                "keys": "pred",
+                "map_names": [
+                    "horizontal_vertical",
+                    "nucleus_prediction",
+                    "type_prediction"
+                ]
+            },
             {
                 "_target_": "FlattenSubKeysd",
                 "keys": "pred",
