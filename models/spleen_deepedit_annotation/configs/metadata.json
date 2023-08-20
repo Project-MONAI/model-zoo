@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.7",
+    "version": "0.4.8",
     "changelog": {
+        "0.4.8": "Add infer transforms to manage clicks from viewer",
         "0.4.7": "fix the wrong GPU index issue of multi-node",
         "0.4.6": "update to use rc7 which solves dynunet issue",
         "0.4.5": "remove error dollar symbol in readme",
