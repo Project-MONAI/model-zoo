@@ -86,7 +86,7 @@
                 "clip": true
             }
         ],
-        "auto_seg_transforms":[
+        "auto_seg_transforms": [
             {
                 "_target_": "Resized",
                 "keys": "image",
@@ -125,21 +125,21 @@
                 "number_intensity_ch": "@number_intensity_ch"
             }
         ],
-        "extra_transforms":[
+        "extra_transforms": [
             {
                 "_target_": "EnsureTyped",
                 "keys": "image"
             }
         ]
-        },
+    },
     "preprocessing": {
-            "_target_": "Compose",
-            "transforms": "$@infer#preprocessing_transforms + @infer#auto_seg_transforms + @infer#extra_transforms"
-        },
+        "_target_": "Compose",
+        "transforms": "$@infer#preprocessing_transforms + @infer#auto_seg_transforms + @infer#extra_transforms"
+    },
     "deepedit_preprocessing": {
-            "_target_": "Compose",
-            "transforms": "$@infer#preprocessing_transforms + @infer#deepedit_transforms + @infer#extra_transforms"
-        },
+        "_target_": "Compose",
+        "transforms": "$@infer#preprocessing_transforms + @infer#deepedit_transforms + @infer#extra_transforms"
+    },
     "dataset": {
         "_target_": "Dataset",
         "data": "$[{'image': i} for i in @datalist]",
