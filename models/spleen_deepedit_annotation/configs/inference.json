@@ -19,6 +19,7 @@
     ],
     "number_intensity_ch": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "use_click": false,
     "network_def": {
         "_target_": "DynUNet",
         "spatial_dims": 3,
@@ -60,85 +61,79 @@
         "res_block": true
     },
     "network": "$@network_def.to(@device)",
-    "infer": {
-        "preprocessing_transforms": [
-            {
-                "_target_": "LoadImaged",
-                "keys": "image",
-                "reader": "ITKReader"
-            },
-            {
-                "_target_": "EnsureChannelFirstd",
-                "keys": "image"
-            },
-            {
-                "_target_": "Orientationd",
-                "keys": "image",
-                "axcodes": "RAS"
-            },
-            {
-                "_target_": "ScaleIntensityRanged",
-                "keys": "image",
-                "a_min": -175,
-                "a_max": 250,
-                "b_min": 0.0,
-                "b_max": 1.0,
-                "clip": true
-            }
-        ],
-        "auto_seg_transforms": [
-            {
-                "_target_": "Resized",
-                "keys": "image",
-                "spatial_size": "@spatial_size",
-                "mode": "area"
-            },
-            {
-                "_target_": "DiscardAddGuidanced",
-                "keys": "image",
-                "label_names": "@label_names",
-                "number_intensity_ch": "@number_intensity_ch"
-            }
-        ],
-        "deepedit_transforms": [
-            {
-                "_target_": "AddGuidanceFromPointsDeepEditd",
-                "ref_image": "image",
-                "guidance": "guidance",
-                "label_names": "@label_names"
-            },
-            {
-                "_target_": "Resized",
-                "keys": "image",
-                "spatial_size": "@spatial_size",
-                "mode": "area"
-            },
-            {
-                "_target_": "ResizeGuidanceMultipleLabelDeepEditd",
-                "guidance": "guidance",
-                "ref_image": "image"
-            },
-            {
-                "_target_": "AddGuidanceSignalDeepEditd",
-                "keys": "image",
-                "guidance": "guidance",
-                "number_intensity_ch": "@number_intensity_ch"
-            }
-        ],
-        "extra_transforms": [
-            {
-                "_target_": "EnsureTyped",
-                "keys": "image"
-            }
-        ]
-    },
+    "preprocessing_transforms": [
+        {
+            "_target_": "LoadImaged",
+            "keys": "image",
+            "reader": "ITKReader"
+        },
+        {
+            "_target_": "EnsureChannelFirstd",
+            "keys": "image"
+        },
+        {
+            "_target_": "Orientationd",
+            "keys": "image",
+            "axcodes": "RAS"
+        },
+        {
+            "_target_": "ScaleIntensityRanged",
+            "keys": "image",
+            "a_min": -175,
+            "a_max": 250,
+            "b_min": 0.0,
+            "b_max": 1.0,
+            "clip": true
+        }
+    ],
+    "auto_seg_transforms": [
+        {
+            "_target_": "Resized",
+            "keys": "image",
+            "spatial_size": "@spatial_size",
+            "mode": "area"
+        },
+        {
+            "_target_": "DiscardAddGuidanced",
+            "keys": "image",
+            "label_names": "@label_names",
+            "number_intensity_ch": "@number_intensity_ch"
+        }
+    ],
+    "deepedit_transforms": [
+        {
+            "_target_": "AddGuidanceFromPointsDeepEditd",
+            "ref_image": "image",
+            "guidance": "guidance",
+            "label_names": "@label_names"
+        },
+        {
+            "_target_": "Resized",
+            "keys": "image",
+            "spatial_size": "@spatial_size",
+            "mode": "area"
+        },
+        {
+            "_target_": "ResizeGuidanceMultipleLabelDeepEditd",
+            "guidance": "guidance",
+            "ref_image": "image"
+        },
+        {
+            "_target_": "AddGuidanceSignalDeepEditd",
+            "keys": "image",
+            "guidance": "guidance",
+            "number_intensity_ch": "@number_intensity_ch"
+        }
+    ],
+    "extra_transforms": [
+        {
+            "_target_": "EnsureTyped",
+            "keys": "image"
+        }
+    ],
     "preprocessing": {
         "_target_": "Compose",
-        "transforms": "$@infer#preprocessing_transforms + @infer#auto_seg_transforms + @infer#extra_transforms"
-    },
-    "deepedit_preprocessing": {
-        "_target_": "Compose",
-        "transforms": "$@infer#preprocessing_transforms + @infer#deepedit_transforms + @infer#extra_transforms"
+        "transforms": "$@preprocessing_transforms + (@deepedit_transforms if @use_click else @auto_seg_transforms) + @extra_transforms"
     },
     "dataset": {
         "_target_": "Dataset",
@@ -171,40 +166,6 @@
                 "_target_": "Invertd",
                 "keys": "pred",
                 "transform": "@preprocessing",
-                "orig_keys": "image",
-                "meta_key_postfix": "meta_dict",
-                "nearest_interp": false,
-                "to_tensor": true
-            },
-            {
-                "_target_": "AsDiscreted",
-                "keys": "pred",
-                "argmax": true
-            },
-            {
-                "_target_": "SaveImaged",
-                "keys": "pred",
-                "meta_keys": "pred_meta_dict",
-                "output_dir": "@output_dir"
-            }
-        ]
-    },
-    "deepedit_postprocessing": {
-        "_target_": "Compose",
-        "transforms": [
-            {
-                "_target_": "EnsureTyped",
-                "keys": "pred"
-            },
-            {
-                "_target_": "Activationsd",
-                "keys": "pred",
-                "softmax": true
-            },
-            {
-                "_target_": "Invertd",
-                "keys": "pred",
-                "transform": "@deepedit_preprocessing",
                 "orig_keys": "image",
                 "meta_key_postfix": "meta_dict",
                 "nearest_interp": false,
