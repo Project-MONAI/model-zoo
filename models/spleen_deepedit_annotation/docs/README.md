@@ -133,7 +133,7 @@ For interactive segmentation mode, in which the user provides clicks, set the **
 python -m monai.bundle run --config_file configs/inference.json --use_click true
 ```
 
-Clicks should be added to the data dictionary that is passed to the preprocessing transforms. Label names are the keys and their values are the clicks coordinates. 
+Clicks should be added to the data dictionary that is passed to the preprocessing transforms. Label names are the keys and their values are the clicks coordinates.
 
 Like the following format:
 
