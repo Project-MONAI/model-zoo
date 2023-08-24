@@ -133,12 +133,12 @@ For interactive segmentation mode, in which the user provides clicks, set the **
 python -m monai.bundle run --config_file configs/inference.json --use_click true
 ```
 
-Clicks should be added to the data dictionary that is passed to the preprocessing transforms. The add keys are defined in `label_names` in `configs/inference.json`, and the corresponding values are the clicks coordinates. The following is an example of a data dictionary:
+Clicks should be added to the data dictionary that is passed to the preprocessing transforms. The add keys are defined in `label_names` in `configs/inference.json`, and the corresponding values are the point coordinates. The following is an example of a data dictionary:
 
 ```
 {"image": "example.nii.gz", "background": [], "spleen": [[I1, J1, K1], [I2, J2, K2]]}
 ```
-where **[I1,J1,K1]** and **[I2,J2,K2]** are the point coordinates
+where **[I1,J1,K1]** and **[I2,J2,K2]** are the point coordinates.
 
 #### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
 
