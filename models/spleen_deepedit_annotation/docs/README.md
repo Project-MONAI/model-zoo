@@ -126,13 +126,20 @@ For automatic inference mode:
 python -m monai.bundle run --config_file configs/inference.json
 ```
 
-For interactive segmentation mode, in which the user provides clicks:
+For interactive segmentation mode, in which the user provides clicks, set the **use_click** flag to true:
 
 
 ```
-python -m monai.bundle run --config_file configs/inference.json --use_click true --guidance "'background': [], 'spleen': [[I1, J1, K1], [I2, J2, K2]]"
+python -m monai.bundle run --config_file configs/inference.json --use_click true
 ```
 
+Clicks should be added to the data dictionary that is passed to the preprocessing transforms. Label names are the keys and their values are the clicks coordinates. 
+
+Like the following format:
+
+```
+data_dict = {'background': [], 'spleen': [[I1, J1, K1], [I2, J2, K2]]}
+```
 where **[I1,J1,K1]** and **[I2,J2,K2]** are the point coordinates
 
 #### Export checkpoint to TensorRT based models with fp32 or fp16 precision:
