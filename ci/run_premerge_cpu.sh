@@ -43,6 +43,7 @@ remove_pipenv() {
 
 verify_bundle() {
     echo 'Run verify bundle...'
+    init_pipenv requirements.txt
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
