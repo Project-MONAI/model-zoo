@@ -10,9 +10,9 @@
 # limitations under the License.
 
 import os
-import sys
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 

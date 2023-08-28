@@ -9,18 +9,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-import sys
 import json
+import os
 import shutil
+import sys
 import tempfile
 import unittest
 
 import nibabel as nib
 import numpy as np
-from monai.utils import set_determinism
-from monai.data import create_test_image_3d
 from monai.bundle import ConfigWorkflow
+from monai.data import create_test_image_3d
+from monai.utils import set_determinism
 from parameterized import parameterized
 from utils import check_workflow
 
@@ -37,9 +37,7 @@ TEST_CASE_1 = [  # train, evaluate
     }
 ]
 
-TEST_CASE_2 = [  # inference
-    {"bundle_root": "models/lung_nodule_ct_detection"}
-]
+TEST_CASE_2 = [{"bundle_root": "models/lung_nodule_ct_detection"}]  # inference
 
 
 def test_order(test_name1, test_name2):

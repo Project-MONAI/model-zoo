@@ -10,9 +10,9 @@
 # limitations under the License.
 
 import os
-import sys
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -38,11 +38,7 @@ TEST_CASE_1 = [  # train, evaluate
     }
 ]
 
-TEST_CASE_2 = [  # inference
-    {
-        "bundle_root": "./models/pathology_nuclick_annotation",
-    }
-]
+TEST_CASE_2 = [{"bundle_root": "./models/pathology_nuclick_annotation"}]  # inference
 
 
 def test_order(test_name1, test_name2):
