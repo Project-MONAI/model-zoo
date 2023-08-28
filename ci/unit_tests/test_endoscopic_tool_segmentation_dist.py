@@ -30,7 +30,7 @@ TEST_CASE_1 = [
     }
 ]
 
-TEST_CASE_2 = [  # mgpu train
+TEST_CASE_2 = [
     {
         "bundle_root": "models/endoscopic_tool_segmentation",
         "validate#dataloader#num_workers": 4,
