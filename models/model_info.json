@@ -1206,5 +1206,9 @@
     "multi_organ_segmentation_v0.0.3": {
         "checksum": "9b2bf624de378353b6682fabcd348a41b10d4700",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/multi_organ_segmentation/versions/0.0.3/files/multi_organ_segmentation_v0.0.3.zip"
+    },
+    "spleen_deepedit_annotation_v0.4.8": {
+        "checksum": "dec1cfc238bb9c362fe10ff0c38d6f05e49fd5bc",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_deepedit_annotation/versions/0.4.8/files/spleen_deepedit_annotation_v0.4.8.zip"
     }
 }
