@@ -58,7 +58,7 @@ def test_order(test_name1, test_name2):
     return get_order(test_name1) - get_order(test_name2)
 
 
-class TestNuclickAnnMGPU(unittest.TestCase):
+class TestNuclickAnnotationMGPU(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
         self.output = os.path.join(self.dataset_dir, "CoNSePNuclei")
