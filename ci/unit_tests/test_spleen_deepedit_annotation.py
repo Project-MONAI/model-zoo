@@ -120,6 +120,25 @@ class TestDeepeditAnno(unittest.TestCase):
         )
         check_workflow(inferrer, check_properties=True)
 
+    @parameterized.expand([TEST_CASE_2])
+    def test_infer_click_config(self, override):
+        override["dataset_dir"] = self.dataset_dir
+        override["use_click"] = True
+        override[
+            "dataset#data"
+        ] = "$[{'image': i, 'background': [], 'spleen': [[6, 6, 6], [8, 8, 8]]} for i in @datalist]"
+        bundle_root = override["bundle_root"]
+        print(override)
+
+        inferrer = ConfigWorkflow(
+            workflow="infer",
+            config_file=os.path.join(bundle_root, "configs/inference.json"),
+            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+            **override,
+        )
+        check_workflow(inferrer, check_properties=True)
+
 
 if __name__ == "__main__":
     loader = unittest.TestLoader()
