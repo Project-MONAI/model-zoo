@@ -12,7 +12,7 @@
     "val_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation', base_dir=@dataset_dir)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "epochs": 300,
-    "val_interval": 2,
+    "val_interval": 1,
     "learning_rate": 0.0001,
     "amp": true,
     "network_def": {
