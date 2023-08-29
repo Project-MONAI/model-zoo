@@ -58,7 +58,7 @@ verify_bundle() {
             echo $bundle_list
             for bundle in $bundle_list;
             do
-                init_pipenv requirements.txt
+                init_pipenv requirements-dev.txt
                 # get required libraries according to the bundle's metadata file
                 requirements=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
                 if [ ! -z "$requirements" ]; then
