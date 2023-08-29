@@ -15,7 +15,7 @@
     "numpy_version": "1.22.3",
     "optional_packages_version": {
         "nibabel": "3.2.2",
-        "itk": "5.2.1",
+        "itk": "5.3",
         "pytorch-ignite": "0.4.9",
         "pandas": "1.4.2"
     },
