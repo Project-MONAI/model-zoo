@@ -21,6 +21,7 @@
     "numpy_version": "1.22.2",
     "optional_packages_version": {
         "scikit-image": "0.19.3",
+        "torchvision": "0.14.1",
         "scipy": "1.8.1",
         "tqdm": "4.64.1",
         "pillow": "9.0.1"
