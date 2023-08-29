@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "changelog": {
+        "0.3.3": "add invertd transformation",
         "0.3.2": "add name tag",
         "0.3.1": "fix license Copyright error",
         "0.3.0": "update license files",
@@ -14,7 +15,7 @@
     "numpy_version": "1.22.3",
     "optional_packages_version": {
         "nibabel": "3.2.2",
-        "itk": "5.2.1",
+        "itk": "5.3",
         "pytorch-ignite": "0.4.9",
         "pandas": "1.4.2"
     },
