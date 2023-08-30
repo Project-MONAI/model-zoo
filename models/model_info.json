@@ -1210,5 +1210,9 @@
     "spleen_deepedit_annotation_v0.4.8": {
         "checksum": "dec1cfc238bb9c362fe10ff0c38d6f05e49fd5bc",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_deepedit_annotation/versions/0.4.8/files/spleen_deepedit_annotation_v0.4.8.zip"
+    },
+    "prostate_mri_anatomy_v0.3.3": {
+        "checksum": "dcefa44bb2ed0e027f6f49ba5ea98e8093c8ef20",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/prostate_mri_anatomy/versions/0.3.3/files/prostate_mri_anatomy_v0.3.3.zip"
     }
 }
