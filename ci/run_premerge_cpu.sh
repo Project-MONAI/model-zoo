@@ -31,6 +31,7 @@ fi
 
 init_pipenv() {
     echo "initializing pip environment: $1"
+    export PIP_NO_CACHE_DIR=true
     pipenv install --python=3.8 -r $1
     export PYTHONPATH=$PWD
 }
