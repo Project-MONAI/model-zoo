@@ -7,13 +7,15 @@ ci:
   autoupdate_schedule: quarterly
   # submodules: true
 
+exclude: '.*\.ipynb$'
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
-        exclude: '.*\.(ts|pt|ipynb)$'
+        exclude: '.*\.(ts|pt)$'
       - id: check-yaml
       - id: check-docstring-first
       - id: check-executables-have-shebangs
