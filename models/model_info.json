@@ -1214,5 +1214,9 @@
     "prostate_mri_anatomy_v0.3.3": {
         "checksum": "dcefa44bb2ed0e027f6f49ba5ea98e8093c8ef20",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/prostate_mri_anatomy/versions/0.3.3/files/prostate_mri_anatomy_v0.3.3.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.2.2": {
+        "checksum": "30b7ac6aafe10f7fffb417b6f4f959a03debee6f",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_segmentation_classification/versions/0.2.2/files/pathology_nuclei_segmentation_classification_v0.2.2.zip"
     }
 }
