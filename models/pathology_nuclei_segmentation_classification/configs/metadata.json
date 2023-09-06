@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "changelog": {
+        "0.2.2": "add requiremnts for torchvision",
         "0.2.1": "fix the wrong GPU index issue of multi-node",
         "0.2.0": "Update README for how to download dataset",
         "0.1.9": "add RAM warning",
