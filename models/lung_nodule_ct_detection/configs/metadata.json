@@ -1,8 +1,7 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.6.0",
+    "version": "0.5.9",
     "changelog": {
-        "0.6.0": "check unit test",
         "0.5.9": "use monai 1.2.0",
         "0.5.8": "update TRT memory requirement in readme",
         "0.5.7": "add dataset dir example",
