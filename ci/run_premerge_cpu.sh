@@ -39,6 +39,8 @@ remove_pipenv() {
     echo "removing pip environment"
     pipenv --rm
     rm Pipfile Pipfile.lock
+    pipenv --clear
+    df -h
 }
 
 verify_bundle() {
