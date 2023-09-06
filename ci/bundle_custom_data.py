@@ -49,6 +49,9 @@ include_verify_tensorrt_dict = {
     "spleen_ct_segmentation": {},
     "endoscopic_tool_segmentation": {},
     "pathology_tumor_detection": {},
+    "pathology_nuclei_classification": {},
+    "pathology_nuclick_annotation": {"use_trace": True},
+    "wholeBody_ct_segmentation": {"use_trace": True},
     "pancreas_ct_dints_segmentation": {
         "use_trace": True,
         "converter_kwargs": {"truncate_long_and_double": True, "torch_executed_ops": ["aten::upsample_trilinear3d"]},
