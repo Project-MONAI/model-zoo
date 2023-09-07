@@ -19,7 +19,7 @@
     ],
     "number_intensity_ch": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "use_click": false,
+    "use_click": true,
     "network_def": {
         "_target_": "DynUNet",
         "spatial_dims": 3,
@@ -101,6 +101,11 @@
         }
     ],
     "deepedit_transforms": [
+        {
+            "_target_": "scripts.transforms.OrientationGuidanceMultipleLabelDeepEditd",
+            "ref_image": "image",
+            "label_names": "@label_names"
+        },
         {
             "_target_": "AddGuidanceFromPointsDeepEditd",
             "ref_image": "image",

@@ -11,6 +11,7 @@
 
 import os
 import shutil
+import sys
 import tempfile
 import unittest
 
@@ -109,6 +110,7 @@ class TestDeepeditAnno(unittest.TestCase):
     @parameterized.expand([TEST_CASE_2])
     def test_infer_config(self, override):
         override["dataset_dir"] = self.dataset_dir
+        override["use_click"] = False
         bundle_root = override["bundle_root"]
 
         inferrer = ConfigWorkflow(
@@ -128,7 +130,7 @@ class TestDeepeditAnno(unittest.TestCase):
             "dataset#data"
         ] = "$[{'image': i, 'background': [], 'spleen': [[6, 6, 6], [8, 8, 8]]} for i in @datalist]"
         bundle_root = override["bundle_root"]
-        print(override)
+        sys.path = [bundle_root] + sys.path
 
         inferrer = ConfigWorkflow(
             workflow="infer",
