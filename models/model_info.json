@@ -1218,5 +1218,21 @@
     "pathology_nuclei_segmentation_classification_v0.2.2": {
         "checksum": "30b7ac6aafe10f7fffb417b6f4f959a03debee6f",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_segmentation_classification/versions/0.2.2/files/pathology_nuclei_segmentation_classification_v0.2.2.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.4.4": {
+        "checksum": "74689c2eb18a026ef721e14946e767dfa495371d",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pancreas_ct_dints_segmentation/versions/0.4.4/files/pancreas_ct_dints_segmentation_v0.4.4.zip"
+    },
+    "pathology_nuclei_classification_v0.1.5": {
+        "checksum": "5ad841243fcb69f711691ff2e674e0a5b244a508",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_classification/versions/0.1.5/files/pathology_nuclei_classification_v0.1.5.zip"
+    },
+    "pathology_nuclick_annotation_v0.1.5": {
+        "checksum": "eb467f647d9b43ad4b1cc384bccf1ed7c57de387",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclick_annotation/versions/0.1.5/files/pathology_nuclick_annotation_v0.1.5.zip"
+    },
+    "wholeBody_ct_segmentation_v0.2.0": {
+        "checksum": "83ccf46e09b048a90b3f36c3a9a26c5f598b3265",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/wholebody_ct_segmentation/versions/0.2.0/files/wholeBody_ct_segmentation_v0.2.0.zip"
     }
 }
