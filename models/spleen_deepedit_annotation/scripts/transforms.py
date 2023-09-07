@@ -17,8 +17,8 @@ class OrientationGuidanceMultipleLabelDeepEditd(Transform):
         """transform point to the coordinates of the transformed image
         point: numpy array [bs, N, 3]
         """
-        bs, N = point.shape[:2]
-        point = np.concatenate((point, np.ones((bs, N, 1))), axis=-1)
+        bs, n = point.shape[:2]
+        point = np.concatenate((point, np.ones((bs, n, 1))), axis=-1)
         point = rearrange(point, "b n d -> d (b n)")
         point = affine @ point
         point = rearrange(point, "d (b n)-> b n d", b=bs)[:, :, :3]
