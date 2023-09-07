@@ -19,7 +19,6 @@
     ],
     "number_intensity_ch": 1,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "use_click": true,
     "network_def": {
         "_target_": "DynUNet",
         "spatial_dims": 3,
@@ -86,20 +85,6 @@
             "clip": true
         }
     ],
-    "auto_seg_transforms": [
-        {
-            "_target_": "Resized",
-            "keys": "image",
-            "spatial_size": "@spatial_size",
-            "mode": "area"
-        },
-        {
-            "_target_": "DiscardAddGuidanced",
-            "keys": "image",
-            "label_names": "@label_names",
-            "number_intensity_ch": "@number_intensity_ch"
-        }
-    ],
     "deepedit_transforms": [
         {
             "_target_": "scripts.transforms.OrientationGuidanceMultipleLabelDeepEditd",
@@ -138,7 +123,7 @@
     ],
     "preprocessing": {
         "_target_": "Compose",
-        "transforms": "$@preprocessing_transforms + (@deepedit_transforms if @use_click else @auto_seg_transforms) + @extra_transforms"
+        "transforms": "$@preprocessing_transforms + @deepedit_transforms + @extra_transforms"
     },
     "dataset": {
         "_target_": "Dataset",
