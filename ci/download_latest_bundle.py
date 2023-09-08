@@ -20,7 +20,8 @@ from utils import get_latest_version
 def download_latest_bundle(bundle_name: str, models_path: str, download_path: str):
     model_info_path = os.path.join(models_path, "model_info.json")
     version = get_latest_version(bundle_name=bundle_name, model_info_path=model_info_path)
-    download(name=bundle_name, source="github", version=version, bundle_dir=download_path)
+    
+    download(name=bundle_name, source="monaihosting", version=version, bundle_dir=download_path)
 
 
 if __name__ == "__main__":
