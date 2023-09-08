@@ -31,7 +31,7 @@ fi
 
 init_pipenv() {
     echo "initializing pip environment: $1"
-    pipenv install --python=3.8 -r $1
+    pipenv install --skip-lock --pre --python=3.8 -r $1
     export PYTHONPATH=$PWD
 }
 
@@ -65,7 +65,7 @@ verify_bundle() {
                 requirements=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
                 if [ ! -z "$requirements" ]; then
                     echo "install required libraries for bundle: $bundle"
-                    pipenv install -r "$requirements"
+                    pipenv install --skip-lock --pre -r "$requirements"
                 fi
                 # verify bundle
                 pipenv run python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
