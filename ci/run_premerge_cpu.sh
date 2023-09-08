@@ -31,7 +31,7 @@ fi
 
 init_pipenv() {
     echo "initializing pip environment: $1"
-    pipenv install --skip-lock --pre --python=3.8 -r $1
+    pipenv install --python=3.8 -r $1
     export PYTHONPATH=$PWD
 }
 
@@ -45,7 +45,7 @@ remove_pipenv() {
 
 verify_bundle() {
     echo 'Run verify bundle...'
-    init_pipenv requirements.txt
+    pip install -r requirements.txt
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
@@ -53,30 +53,30 @@ verify_bundle() {
     if [ ! -z "$changes" ]
     then
         # get all changed bundles
-        bundle_list=$(pipenv run python $(pwd)/ci/get_changed_bundle.py --f "$changes")
+        bundle_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$changes")
         if [ ! -z "$bundle_list" ]
         then
-            pipenv run python $(pwd)/ci/prepare_schema.py --l "$bundle_list"
+            python $(pwd)/ci/prepare_schema.py --l "$bundle_list"
             echo $bundle_list
             for bundle in $bundle_list;
             do
-                init_pipenv requirements-dev.txt
+                pip install -r requirements-dev.txt
                 # get required libraries according to the bundle's metadata file
-                requirements=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
+                requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
                 if [ ! -z "$requirements" ]; then
                     echo "install required libraries for bundle: $bundle"
-                    pipenv install --skip-lock --pre -r "$requirements"
+                    pip install -r "$requirements"
                 fi
                 # verify bundle
-                pipenv run python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
-                remove_pipenv
+                python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
+                # remove_pipenv
             done
         else
             echo "this pull request does not change any bundles, skip verify."
         fi
     else
         echo "this pull request does not change any files in 'models', skip verify."
-        remove_pipenv
+        # remove_pipenv
     fi
 }
 
