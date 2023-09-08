@@ -29,20 +29,6 @@ elif [[ $# -gt 1 ]]; then
     exit 1
 fi
 
-init_pipenv() {
-    echo "initializing pip environment: $1"
-    pipenv install --python=3.8 -r $1
-    export PYTHONPATH=$PWD
-}
-
-remove_pipenv() {
-    echo "removing pip environment"
-    pipenv --rm
-    rm Pipfile Pipfile.lock
-    pipenv --clear
-    df -h
-}
-
 verify_bundle() {
     echo 'Run verify bundle...'
     pip install -r requirements.txt
@@ -69,14 +55,12 @@ verify_bundle() {
                 fi
                 # verify bundle
                 python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
-                # remove_pipenv
             done
         else
             echo "this pull request does not change any bundles, skip verify."
         fi
     else
         echo "this pull request does not change any files in 'models', skip verify."
-        # remove_pipenv
     fi
 }
 
