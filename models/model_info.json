@@ -1234,5 +1234,9 @@
     "wholeBody_ct_segmentation_v0.2.0": {
         "checksum": "83ccf46e09b048a90b3f36c3a9a26c5f598b3265",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/wholebody_ct_segmentation/versions/0.2.0/files/wholeBody_ct_segmentation_v0.2.0.zip"
+    },
+    "spleen_deepedit_annotation_v0.4.9": {
+        "checksum": "c9fdcbb5851b10e9507891ed8e88e8b533ea6958",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_deepedit_annotation/versions/0.4.9/files/spleen_deepedit_annotation_v0.4.9.zip"
     }
 }
