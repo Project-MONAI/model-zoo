@@ -31,6 +31,7 @@
         "$monai.utils.set_determinism(seed=123)"
     ],
     "run": [
+        "$@validate#handlers#0.set_trainer(trainer=@train#trainer) if @early_stop else None",
         "$@train#trainer.run()"
     ],
     "finalize": [

@@ -17,6 +17,7 @@
     "finetune": false,
     "finetune_model_path": "$@bundle_root + '/models/model.pt'",
     "early_stop": false,
+    "epochs": 500,
     "spatial_size": [
         128,
         128,
@@ -353,7 +354,7 @@
         "trainer": {
             "_target_": "SupervisedTrainer",
             "device": "@device",
-            "max_epochs": 500,
+            "max_epochs": "@epochs",
             "train_data_loader": "@train#dataloader",
             "network": "@network",
             "optimizer": "@optimizer",
