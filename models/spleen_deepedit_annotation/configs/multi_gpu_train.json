@@ -23,7 +23,37 @@
         "shuffle": false
     },
     "validate#dataloader#sampler": "@validate#sampler",
-    "validate#evaluator#val_handlers": "$None if dist.get_rank() > 0 else @validate#handlers",
+    "validate#handlers": [
+        {
+            "_target_": "EarlyStopHandler",
+            "_disabled_": "$not @early_stop",
+            "trainer": null,
+            "patience": 1,
+            "score_function": "$scripts.score_function",
+            "min_delta": 0.01
+        },
+        {
+            "_target_": "StatsHandler",
+            "_disabled_": "$dist.get_rank() > 0",
+            "iteration_log": false
+        },
+        {
+            "_target_": "TensorBoardStatsHandler",
+            "_disabled_": "$dist.get_rank() > 0",
+            "log_dir": "@output_dir",
+            "iteration_log": false
+        },
+        {
+            "_target_": "CheckpointSaver",
+            "_disabled_": "$dist.get_rank() > 0",
+            "save_dir": "@ckpt_dir",
+            "save_dict": {
+                "model": "@network"
+            },
+            "save_key_metric": true,
+            "key_metric_filename": "model.pt"
+        }
+    ],
     "initialize": [
         "$import torch.distributed as dist",
         "$dist.is_initialized() or dist.init_process_group(backend='nccl')",

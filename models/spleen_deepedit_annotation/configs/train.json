@@ -2,7 +2,8 @@
     "imports": [
         "$import glob",
         "$import os",
-        "$import ignite"
+        "$import ignite",
+        "$import scripts"
     ],
     "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
@@ -396,7 +397,7 @@
                 "_disabled_": "$not @early_stop",
                 "trainer": null,
                 "patience": 1,
-                "score_function": "$lambda x: x.state.metrics['val_mean_dice']",
+                "score_function": "$scripts.score_function",
                 "min_delta": 0.01
             },
             {
