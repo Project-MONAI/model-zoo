@@ -11,6 +11,7 @@
 
 import os
 import shutil
+import sys
 import tempfile
 import unittest
 
@@ -62,6 +63,7 @@ class TestDeepeditAnnoMGPU(unittest.TestCase):
         mgpu_train_file = os.path.join(bundle_root, "configs/multi_gpu_train.json")
         output_path = os.path.join(bundle_root, "configs/train_override.json")
         n_gpu = torch.cuda.device_count()
+        sys.path = [bundle_root] + sys.path
         export_config_and_run_mgpu_cmd(
             config_file=[train_file, mgpu_train_file],
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
