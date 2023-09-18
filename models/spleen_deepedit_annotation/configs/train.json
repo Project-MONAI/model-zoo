@@ -2,7 +2,8 @@
     "imports": [
         "$import glob",
         "$import os",
-        "$import ignite"
+        "$import ignite",
+        "$import scripts"
     ],
     "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
@@ -14,6 +15,10 @@
         "spleen": 1,
         "background": 0
     },
+    "finetune": false,
+    "finetune_model_path": "$@bundle_root + '/models/model.pt'",
+    "early_stop": false,
+    "epochs": 500,
     "spatial_size": [
         128,
         128,
@@ -303,6 +308,14 @@
         },
         "handlers": [
             {
+                "_target_": "CheckpointLoader",
+                "_disabled_": "$not @finetune",
+                "load_path": "@finetune_model_path",
+                "load_dict": {
+                    "model": "@network"
+                }
+            },
+            {
                 "_target_": "LrScheduleHandler",
                 "lr_scheduler": "@lr_scheduler",
                 "print_lr": true
@@ -342,7 +355,7 @@
         "trainer": {
             "_target_": "SupervisedTrainer",
             "device": "@device",
-            "max_epochs": 500,
+            "max_epochs": "@epochs",
             "train_data_loader": "@train#dataloader",
             "network": "@network",
             "optimizer": "@optimizer",
@@ -379,6 +392,14 @@
         },
         "postprocessing": "%train#postprocessing",
         "handlers": [
+            {
+                "_target_": "EarlyStopHandler",
+                "_disabled_": "$not @early_stop",
+                "trainer": null,
+                "patience": 1,
+                "score_function": "$scripts.score_function",
+                "min_delta": 0.01
+            },
             {
                 "_target_": "StatsHandler",
                 "iteration_log": false
@@ -429,6 +450,7 @@
         "$monai.utils.set_determinism(seed=123)"
     ],
     "run": [
+        "$@validate#handlers#0.set_trainer(trainer=@train#trainer) if @early_stop else None",
         "$@train#trainer.run()"
     ]
 }

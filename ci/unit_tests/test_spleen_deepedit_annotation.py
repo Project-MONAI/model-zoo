@@ -80,7 +80,7 @@ class TestDeepeditAnno(unittest.TestCase):
     def test_train_config(self, override):
         override["dataset_dir"] = self.dataset_dir
         bundle_root = override["bundle_root"]
-
+        sys.path = [bundle_root] + sys.path
         trainer = ConfigWorkflow(
             workflow="train",
             config_file=os.path.join(bundle_root, "configs/train.json"),
@@ -96,7 +96,7 @@ class TestDeepeditAnno(unittest.TestCase):
         bundle_root = override["bundle_root"]
         train_file = os.path.join(bundle_root, "configs/train.json")
         eval_file = os.path.join(bundle_root, "configs/evaluate.json")
-
+        sys.path = [bundle_root] + sys.path
         validator = ConfigWorkflow(
             # override train.json, thus set the workflow to "train" rather than "eval"
             workflow="train",
