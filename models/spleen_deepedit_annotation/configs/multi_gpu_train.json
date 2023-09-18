@@ -23,7 +23,7 @@
         "shuffle": false
     },
     "validate#dataloader#sampler": "@validate#sampler",
-    "validate#evaluator#val_handlers": "$None if dist.get_rank() > 0 else @validate#handlers",
+    "validate#evaluator#val_handlers": "$@validate#handlers[: -3 if dist.get_rank() > 0 else None]",
     "initialize": [
         "$import torch.distributed as dist",
         "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
@@ -31,6 +31,7 @@
         "$monai.utils.set_determinism(seed=123)"
     ],
     "run": [
+        "$@validate#handlers#0.set_trainer(trainer=@train#trainer) if @early_stop else None",
         "$@train#trainer.run()"
     ],
     "finalize": [
