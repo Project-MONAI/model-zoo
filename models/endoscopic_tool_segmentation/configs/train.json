@@ -53,15 +53,18 @@
                 "keys": [
                     "image",
                     "label"
-                ]
+                ],
+                "image_only": false
             },
             {
-                "_target_": "AsChannelFirstd",
-                "keys": "image"
+                "_target_": "EnsureChannelFirstd",
+                "keys": "image",
+                "channel_dim": -1
             },
             {
-                "_target_": "AddChanneld",
-                "keys": "label"
+                "_target_": "EnsureChannelFirstd",
+                "keys": "label",
+                "channel_dim": "no_channel"
             },
             {
                 "_target_": "Resized",
