@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "changelog": {
+        "0.2.3": "update AddChanneld with EnsureChannelFirstd",
         "0.2.2": "add name tag",
         "0.2.1": "fix license Copyright error",
         "0.2.0": "update license files",

@@ -37,15 +37,17 @@
         "deterministic_transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": "image",
+                "image_only": false
             },
             {
                 "_target_": "ToTensord",
                 "keys": "label"
             },
             {
-                "_target_": "AsChannelFirstd",
-                "keys": "image"
+                "_target_": "EnsureChannelFirstd",
+                "keys": "image",
+                "channel_dim": -1
             },
             {
                 "_target_": "Resized",
