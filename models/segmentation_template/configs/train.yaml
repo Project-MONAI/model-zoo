@@ -10,6 +10,10 @@ label: $monai.utils.CommonKeys.LABEL
 pred: $monai.utils.CommonKeys.PRED
 both_keys: ['@image', '@label']
 
+# multi-gpu values, `rank` will be replaced in a separate script implementing multi-gpu changes
+rank: 0  # without multi-gpu support consider the process as rank 0 anyway
+is_not_rank0: '$@rank > 0'  # true if not main process, used to disable handlers for other ranks
+
 # hyperparameters for you to modify on the command line
 val_interval: 1  # how often to perform validation after an epoch
 ckpt_interval: 1  # how often to save a checkpoint after an epoch
@@ -152,6 +156,7 @@ val_handlers:
 - _target_: LogfileHandler  # log outputs from the validation engine
   output_dir: '@output_dir'
 - _target_: CheckpointSaver
+  _disabled_: '@is_not_rank0'  # only need rank 0 to save
   save_dir: '@output_dir'
   save_dict:
     model: '@network'
@@ -200,6 +205,7 @@ handlers:
   epoch_level: true
   interval: '@val_interval'
 - _target_: CheckpointSaver
+  _disabled_: '@is_not_rank0'  # only need rank 0 to save
   save_dir: '@output_dir'
   save_dict:  # every epoch checkpoint saves the network and the metric logger in a dictionary
     model: '@network'
