@@ -122,7 +122,7 @@ val_dataloader:
 # use include_background==True and sigmoid==True instead of these values
 lossfn:
   _target_: DiceLoss
-  include_background: false
+  include_background: true  # if your segmentations are relatively small it might help for this to be false
   to_onehot_y: true
   softmax: true
   
