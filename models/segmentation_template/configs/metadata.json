@@ -1,0 +1,59 @@
+{
+    "version": "0.0.1",
+    "changelog": {
+        "0.0.1": "Initial version"
+    },
+    "monai_version": "1.3.0",
+    "pytorch_version": "2.0.1",
+    "numpy_version": "1.25.2",
+    "optional_packages_version": {},
+    "task": "Segmentation of randomly generated spheres in 3D images",
+    "description": "This is a template bundle for segmenting in 3D, take this as a basis for your own bundles.",
+    "authors": "Eric Kerfoot",
+    "copyright": "Copyright (c) 2023 MONAI Consortium",
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "MR",
+                "num_channels": 1,
+                "spatial_shape": [
+                    128,
+                    128,
+                    128
+                ],
+                "dtype": "float32",
+                "value_range": [],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 4,
+                "spatial_shape": [
+                    128,
+                    128,
+                    128
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    3
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "background",
+                    "1": "category 1",
+                    "2": "category 1",
+                    "3": "category 1"
+                }
+            }
+        }
+    }
+}
