@@ -4,7 +4,7 @@
     "changelog": {
         "0.0.1": "Initial version"
     },
-    "monai_version": "1.3.0",
+    "monai_version": "1.3.0rc2",
     "pytorch_version": "2.0.1",
     "numpy_version": "1.25.2",
     "optional_packages_version": {},
@@ -17,7 +17,7 @@
             "image": {
                 "type": "image",
                 "format": "magnitude",
-                "modality": "MR",
+                "modality": "none",
                 "num_channels": 1,
                 "spatial_shape": [
                     128,
@@ -51,8 +51,8 @@
                 "channel_def": {
                     "0": "background",
                     "1": "category 1",
-                    "2": "category 1",
-                    "3": "category 1"
+                    "2": "category 2",
+                    "3": "category 3"
                 }
             }
         }

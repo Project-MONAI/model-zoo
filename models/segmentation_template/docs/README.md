@@ -66,3 +66,10 @@ for this bundle but if you want to include custom code in a bundle please follow
 
 The `multi_gpu_train.yaml` config is defined as a "mixin" to implement DDP based multi-gpu training. The script
 `train_multigpu.sh` illustrates an example of how to invoke these configs together with `torchrun`.
+
+The `inference.yaml` config is compatible with MONAILabel such that you can load one of the synthetic images and perform
+inference through a label server. This doesn't permit active learning however, that is a later enhancement for this 
+bundle. If you're changing definitions in the `inference.yaml` config file be careful about changing names and consult
+the MONAILabel documentation about required definition names. An example script to start a server is given in 
+`run_monailabel.sh` which will download the bundle application and "install" this bundle using a symlink then start
+the server. Future updates to MONAILabel will improve this process. 
