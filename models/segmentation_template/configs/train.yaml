@@ -1,3 +1,8 @@
+# This config file implements the training workflow. It can be combined with multi_gpu_train.yaml to use DDP for 
+# multi-GPU runs. Many definitions in this file are duplicated across other files for compatibility with MONAI
+# Label, eg. network_def, but ideally these would be in a common.yaml file used in conjunction with this one
+# or the other config files for testing or inference. 
+
 imports:
 - $import os
 - $import datetime

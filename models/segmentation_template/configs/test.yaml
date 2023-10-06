@@ -1,3 +1,5 @@
+# This implements the workflow for applying the network to a directory of images and measuring network performance with metrics.
+
 imports:
 - $import os
 - $import datetime
