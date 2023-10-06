@@ -64,4 +64,5 @@ also be done with the included `inference.sh` script file.
 There is no `scripts` directory containing a valid Python module to be imported in your configs. This wasn't necessary
 for this bundle but if you want to include custom code in a bundle please follow the bundle tutorials on how to do this.
 
-The `multi_gpu_train.yaml` config is defined as a "mixin" to implement DDP based multi-gpu training. 
+The `multi_gpu_train.yaml` config is defined as a "mixin" to implement DDP based multi-gpu training. The script 
+`train_multigpu.sh` illustrates an example of how to invoke these configs together with `torchrun`.

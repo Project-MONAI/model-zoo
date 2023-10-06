@@ -13,16 +13,18 @@ echo "Bundle root: $BUNDLE"
 
 export PYTHONPATH="$BUNDLE"
 
-export CUDA_VISIBLE_DEVICES="0,1,2,3"
+# set this to something else to use different numbered GPUs on your system
+export CUDA_VISIBLE_DEVICES="0,1"
 
+# seems to resolve some multiprocessing issues with certain libraries
 export OMP_NUM_THREADS=1
 
 CKPT=none
 
-PYTHON="torchrun --standalone --nnodes=1 --nproc_per_node=4"
+# need to change this if you have multiple nodes or not 2 GPUs
+PYTHON="torchrun --standalone --nnodes=1 --nproc_per_node=2"
 
 CONFIG="['$BUNDLE/configs/train.yaml','$BUNDLE/configs/multi_gpu_train.yaml']"
-
 
 $PYTHON -m monai.bundle run \
     --meta_file $BUNDLE/configs/metadata.json \
