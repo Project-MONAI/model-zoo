@@ -16,4 +16,3 @@ python -m monai.bundle run \
     --config_file "$BUNDLE/configs/train.yaml" \
     --bundle_root "$BUNDLE" \
     $@
-    

@@ -22,7 +22,7 @@ device: $torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 # define various paths
 bundle_root: .  # root directory of the bundle
 ckpt_path: $@bundle_root + '/models/model.pt'  # checkpoint to load before starting
-dataset_dir: $@bundle_root + '/test_data'  # where data is coming from 
+dataset_dir: $@bundle_root + '/test_data'  # where data is coming from
 output_dir: './outputs'  # directory to store images to if save_pred is true
 
 # network definition, this could be parameterised by pre-defined values or on the command line
@@ -53,11 +53,11 @@ transforms:
   keys: '@both_keys'
 - _target_: ScaleIntensityd
   keys: '@image'
-    
-preprocessing:  
+
+preprocessing:
   _target_: Compose
   transforms: $@transforms
-  
+
 dataset:
   _target_: Dataset
   data: '@data_dicts'
@@ -68,10 +68,10 @@ dataloader:
   dataset: '@dataset'
   batch_size: '@batch_size'
   num_workers: '@num_workers'
-    
+
 # should be replaced with other inferer types if training process is different for your network
 inferer:
-  _target_: SimpleInferer  
+  _target_: SimpleInferer
 
 # transform to apply to data from network to be suitable for loss function and validation
 postprocessing:
@@ -93,8 +93,8 @@ postprocessing:
     output_dtype: $None
     output_postfix: ''
     resample: false
-    separate_folder: true 
-    
+    separate_folder: true
+
 # inference handlers to load checkpoint, gather statistics
 handlers:
 - _target_: CheckpointLoader
@@ -105,7 +105,7 @@ handlers:
 - _target_: StatsHandler
   name: null  # use engine.logger as the Logger object to log to
   output_transform: '$lambda x: None'
-    
+
 # engine for running inference, ties together objects defined above and has metric definitions
 evaluator:
   _target_: SupervisedEvaluator
@@ -119,7 +119,7 @@ evaluator:
       include_background: false
       output_transform: $monai.handlers.from_engine([@pred, @label])
   val_handlers: '@handlers'
-  
-run: 
+
+run:
 - $@evaluator.run()
 - '$print(''Per-image Dice:\n'',@evaluator.state.metric_details[''val_mean_dice''].cpu().numpy())'

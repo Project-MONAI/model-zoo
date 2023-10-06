@@ -16,4 +16,3 @@ python -m monai.bundle run \
     --config_file "$BUNDLE/configs/inference.yaml" \
     --bundle_root "$BUNDLE" \
     $@
-    

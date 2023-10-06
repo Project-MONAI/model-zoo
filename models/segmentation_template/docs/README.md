@@ -1,14 +1,14 @@
 
 # Template Segmentation Bundle
 
-This bundle is meant to be an example of segmentation in 3D which you can copy and modify to create your own bundle. 
+This bundle is meant to be an example of segmentation in 3D which you can copy and modify to create your own bundle.
 It is only roughly trained for the synthetic data you can generate with [this notebook](./generate_data.ipynb)
 so doesn't do anything useful on its own. The purpose is to demonstrate the base line for segmentation network
-bundles compatible with MONAILabel amongst other things. 
+bundles compatible with MONAILabel amongst other things.
 
 To use this bundle, copy the contents of the whole directory and change the definitions for network, data, transforms,
 or whatever else you want for your own new segmentation bundle. Some of the names are critical for MONAILable but
-otherwise you're free to change just about whatever else is defined here to suit your network. 
+otherwise you're free to change just about whatever else is defined here to suit your network.
 
 This bundle should also demonstrate good practice and design, however there is one caveat about definitions being
 copied between config files. Ideally there should be a `common.yaml` file for all the definitions used by every other
@@ -41,8 +41,8 @@ See MONAI installation information about what environment to create for the feat
 
 The training config includes a number of hyperparameters like `learning_rate` and `num_workers`. These control aspects
 of how training operates in terms of how many processes to use, when to perform validation, when to save checkpoints,
-and other things. Other aspects of the script can be modified on the command line so these aren't exhaustive but are a 
-guide to the kind of parameterisation that make sense for a bundle. 
+and other things. Other aspects of the script can be modified on the command line so these aren't exhaustive but are a
+guide to the kind of parameterisation that make sense for a bundle.
 
 ## Testing and Inference
 
@@ -53,7 +53,7 @@ by setting `save_pred` to true but by default it will just run metrics and print
 
 The inference config is for generating new segmentations from images which don't have ground truths, so this is used for
 actually applying the network in practice. This will apply the network to every image in an input directory matching a
-pattern and save the predicted segmentations to an output directory. 
+pattern and save the predicted segmentations to an output directory.
 
 Using inference on the command line is demonstrated in [this notebook](./visualise_inference.ipynb) with visualisation.
 Some explanation of some command line choices are given in the notebook as well, similar command line invocations can
@@ -64,5 +64,5 @@ also be done with the included `inference.sh` script file.
 There is no `scripts` directory containing a valid Python module to be imported in your configs. This wasn't necessary
 for this bundle but if you want to include custom code in a bundle please follow the bundle tutorials on how to do this.
 
-The `multi_gpu_train.yaml` config is defined as a "mixin" to implement DDP based multi-gpu training. The script 
+The `multi_gpu_train.yaml` config is defined as a "mixin" to implement DDP based multi-gpu training. The script
 `train_multigpu.sh` illustrates an example of how to invoke these configs together with `torchrun`.

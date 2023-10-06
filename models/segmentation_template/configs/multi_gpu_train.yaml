@@ -25,10 +25,10 @@ val_sampler:
   dataset: '@val_dataset'
   even_divisible: false
   shuffle: false
-  
+
 val_dataloader#sampler: '@val_sampler'
 
-run: 
+run:
 - $import torch.distributed as dist
 - $dist.init_process_group(backend='nccl')
 - $torch.cuda.set_device(@device)
