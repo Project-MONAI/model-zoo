@@ -11,6 +11,7 @@
         "nibabel": "5.1.0",
         "pytorch-ignite": "0.4.12"
     },
+    "name": "Segmentation Template",
     "task": "Segmentation of randomly generated spheres in 3D images",
     "description": "This is a template bundle for segmenting in 3D, take this as a basis for your own bundles.",
     "authors": "Eric Kerfoot",
