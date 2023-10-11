@@ -12,10 +12,13 @@
 
 import argparse
 import os
+import re
 
 from bundle_custom_data import install_dependency_dict
 from utils import get_json_dict
 
+def is_commit_hash(s):
+    return bool(re.match('^[0-9a-f]{7,40}$', s))
 
 def get_requirements(bundle, models_path):
     """
@@ -29,7 +32,10 @@ def get_requirements(bundle, models_path):
         libs = []
         if "monai_version" in metadata.keys():
             monai_version = metadata["monai_version"]
-            libs.append(f"monai=={monai_version}")
+            if is_commit_hash(monai_version):
+                libs.append(f"git+https://github.com/Project-MONAI/MONAI@${monai_version}#egg=monai")
+            else:
+                libs.append(f"monai=={monai_version}")
         if "pytorch_version" in metadata.keys():
             pytorch_version = metadata["pytorch_version"]
             libs.append(f"torch=={pytorch_version}")
