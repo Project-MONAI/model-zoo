@@ -22,7 +22,7 @@ To get started with the models, please see [the example use cases](https://githu
 
 ## Template Bundles
 
-We aim to provide a number of template bundles in the zoo for you to copy and adapt to your own needs. 
+We aim to provide a number of template bundles in the zoo for you to copy and adapt to your own needs.
 This should help you reduce effort in developing your own bundles and also demonstrate what we feel to be good practice and design.
 We currently have the following:
 
