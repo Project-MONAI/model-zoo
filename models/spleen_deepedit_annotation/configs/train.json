@@ -28,6 +28,7 @@
     "deepgrow_probability_train": 0.4,
     "deepgrow_probability_val": 1.0,
     "val_interval": 1,
+    "val_at_start": false,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "DynUNet",
@@ -324,6 +325,7 @@
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
+                "exec_at_start": "@val_at_start",
                 "interval": "@val_interval"
             },
             {
