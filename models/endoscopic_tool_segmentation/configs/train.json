@@ -53,8 +53,7 @@
                 "keys": [
                     "image",
                     "label"
-                ],
-                "image_only": false
+                ]
             },
             {
                 "_target_": "EnsureChannelFirstd",

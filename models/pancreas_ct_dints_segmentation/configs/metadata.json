@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "changelog": {
+        "0.4.5": "set image_only to False",
         "0.4.4": "update the benchmark results of TensorRT",
         "0.4.3": "add support for TensorRT conversion and inference",
         "0.4.2": "update search function to match monai 1.2",
@@ -22,7 +23,7 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0",
+    "monai_version": "1.3.0rc5",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
