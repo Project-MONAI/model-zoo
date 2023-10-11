@@ -24,7 +24,8 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": "image",
+                "image_only": false
             },
             {
                 "_target_": "EnsureChannelFirstd",
