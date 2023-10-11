@@ -163,7 +163,6 @@
                 "keys": "pred",
                 "transform": "@preprocessing",
                 "orig_keys": "@image_key",
-                "meta_key_postfix": "meta_dict",
                 "nearest_interp": false,
                 "to_tensor": true
             },
@@ -175,7 +174,6 @@
             {
                 "_target_": "SaveImaged",
                 "keys": "pred",
-                "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
                 "output_ext": "@output_ext",
                 "output_dtype": "@output_dtype",
