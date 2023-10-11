@@ -1,6 +1,7 @@
 {
     "imports": [
         "$import glob",
+        "$import numpy",
         "$import os",
         "$import ignite"
     ],
@@ -8,7 +9,7 @@
     "image_key": "image",
     "output_dir": "$@bundle_root + '/eval'",
     "output_ext": ".nii.gz",
-    "output_dtype": "uint8",
+    "output_dtype": "$numpy.float32",
     "output_postfix": "trans",
     "separate_folder": true,
     "dataset_dir": "/workspace/Datasets/MSD_datasets/Task09_Spleen",
