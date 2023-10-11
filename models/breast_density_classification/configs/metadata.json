@@ -14,7 +14,7 @@
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
-        "torchvision": "0.13.1"
+        "torchvision": "0.14.1"
     },
     "name": "Breast density classification",
     "task": "Breast Density Classification",
