@@ -6,7 +6,6 @@
     ],
     "bundle_root": ".",
     "image_key": "image",
-    "label_key": "label",
     "output_dir": "$@bundle_root + '/eval'",
     "output_ext": ".nrrd",
     "output_dtype": "uint8",
