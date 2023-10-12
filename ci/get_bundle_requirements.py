@@ -19,7 +19,7 @@ from utils import get_json_dict
 
 
 def is_commit_hash(s):
-    return bool(re.match('^[0-9a-f]{7,40}$', s))
+    return bool(re.match("^[0-9a-f]{7,40}$", s))
 
 
 def get_requirements(bundle, models_path):
