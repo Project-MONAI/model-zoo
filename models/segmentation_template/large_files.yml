@@ -1,0 +1,5 @@
+large_files:
+  - path: "models/model.pt"
+    url: "https://github.com/KCL-BMEIS/bundle-data/raw/main/segmentation_template/model.pt"
+    hash_val: "b11405475d2d3da1f8a2aec9286f0548"
+    hash_type: "md5"
