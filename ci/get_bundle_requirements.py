@@ -35,7 +35,7 @@ def get_requirements(bundle, models_path):
         if "monai_version" in metadata.keys():
             monai_version = metadata["monai_version"]
             if is_commit_hash(monai_version):
-                libs.append(f"git+https://github.com/Project-MONAI/MONAI@${monai_version}#egg=monai")
+                libs.append(f"git+https://github.com/Project-MONAI/MONAI@{monai_version}#egg=monai")
             else:
                 libs.append(f"monai=={monai_version}")
         if "pytorch_version" in metadata.keys():
