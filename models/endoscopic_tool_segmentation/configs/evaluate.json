@@ -33,8 +33,8 @@
                 "_target_": "SaveImaged",
                 "_disabled_": true,
                 "keys": "pred",
-                "output_dir": "@output_dir",
                 "meta_keys": "pred_meta_dict",
+                "output_dir": "@output_dir",
                 "output_ext": ".png",
                 "resample": false,
                 "squeeze_end_dims": true
