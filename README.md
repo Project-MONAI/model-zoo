@@ -20,6 +20,14 @@ python -m monai.bundle download "wholeBody_ct_segmentation" --bundle_dir "bundle
 
 To get started with the models, please see [the example use cases](https://github.com/Project-MONAI/tutorials/tree/main/model_zoo).
 
+## Template Bundles
+
+We aim to provide a number of template bundles in the zoo for you to copy and adapt to your own needs.
+This should help you reduce effort in developing your own bundles and also demonstrate what we feel to be good practice and design.
+We currently have the following:
+
+ * [Segmentation Template](./models/segmentation_template)
+
 ## License
 
 Bundles released on the MONAI Model Zoo require a license for the software itself comprising the configuration files and model weights. You are required to adhere to the license conditions included with each bundle, as well as any license conditions stated for data bundles may include or use (please check the file `docs/data_license.txt` if it is existing within the bundle directory).
