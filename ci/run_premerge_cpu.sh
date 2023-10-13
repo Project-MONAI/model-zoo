@@ -30,7 +30,6 @@ elif [[ $# -gt 1 ]]; then
 fi
 
 verify_bundle() {
-    rm -rf /opt/hostedtoolcache
     echo 'Run verify bundle...'
     pip install -r requirements.txt
     head_ref=$(git rev-parse HEAD)
