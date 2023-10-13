@@ -28,7 +28,8 @@
                     "image",
                     "label"
                 ],
-                "dtype": "uint8"
+                "dtype": "uint8",
+                "image_only": false
             },
             {
                 "_target_": "EnsureChannelFirstd",

@@ -77,7 +77,7 @@ class TestTumorDetection(unittest.TestCase):
         train_file = os.path.join(bundle_root, "configs/train.json")
 
         trainer = ConfigWorkflow(
-            workflow="train",
+            workflow_type="train",
             config_file=train_file,
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
@@ -89,7 +89,7 @@ class TestTumorDetection(unittest.TestCase):
         override_infer["dataset_dir"] = self.dataset_dir
 
         inferrer = ConfigWorkflow(
-            workflow="infer",
+            workflow_type="infer",
             config_file=os.path.join(bundle_root, "configs/inference.json"),
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),

@@ -49,7 +49,7 @@ def export_config_and_run_mgpu_cmd(
     logging_file,
     override_dict,
     output_path,
-    workflow="train",
+    workflow_type="train",
     nnode=1,
     ngpu=2,
     check_config=False,
@@ -63,7 +63,7 @@ def export_config_and_run_mgpu_cmd(
     export_overrided_config(config_file=config_file, override_dict=override_dict, output_path=output_path)
     if check_config is True:
         engine = ConfigWorkflow(
-            workflow=workflow, config_file=output_path, logging_file=logging_file, meta_file=meta_file
+            workflow_type=workflow_type, config_file=output_path, logging_file=logging_file, meta_file=meta_file
         )
         engine.initialize()
         check_result = engine.check_properties()
