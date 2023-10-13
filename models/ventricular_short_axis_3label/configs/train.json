@@ -62,9 +62,8 @@
                 "keys": "image"
             },
             {
-                "_target_": "EnsureChannelFirstd",
-                "keys": "@both_keys",
-                "channel_dim": "no_channel"
+                "_target_": "AddChanneld",
+                "keys": "@both_keys"
             },
             {
                 "_target_": "RandAxisFlipd",
@@ -99,7 +98,8 @@
                 "translate_range": 50,
                 "scale_range": 0.25,
                 "padding_mode": "$monai.utils.GridSamplePadMode.ZEROS",
-                "mode": "$(monai.utils.GridSampleMode.BILINEAR,monai.utils.GridSampleMode.NEAREST)"
+                "mode": "$(monai.utils.GridSampleMode.BILINEAR,monai.utils.GridSampleMode.NEAREST)",
+                "as_tensor_output": false
             },
             {
                 "_target_": "RandSmoothFieldAdjustContrastd",
@@ -167,9 +167,8 @@
                 "keys": "image"
             },
             {
-                "_target_": "EnsureChannelFirstd",
-                "keys": "@both_keys",
-                "channel_dim": "no_channel"
+                "_target_": "AddChanneld",
+                "keys": "@both_keys"
             },
             {
                 "_target_": "EnsureTyped",

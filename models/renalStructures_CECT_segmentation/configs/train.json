@@ -73,8 +73,7 @@
                 "reader": null,
                 "overwriting": false,
                 "dtype": "float32",
-                "as_closest_canonical": true,
-                "image_only": false
+                "as_closest_canonical": true
             },
             {
                 "_target_": "EnsureChannelFirstd",
@@ -285,7 +284,7 @@
                     ]
                 },
                 {
-                    "_target_": "SplitDimd",
+                    "_target_": "SplitChanneld",
                     "keys": [
                         "pred",
                         "label"

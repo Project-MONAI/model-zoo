@@ -51,8 +51,7 @@
                         "image",
                         "label"
                     ],
-                    "dtype": "uint8",
-                    "image_only": false
+                    "dtype": "uint8"
                 },
                 {
                     "_target_": "EnsureChannelFirstd",
@@ -208,8 +207,7 @@
                         "image",
                         "label"
                     ],
-                    "dtype": "uint8",
-                    "image_only": false
+                    "dtype": "uint8"
                 },
                 {
                     "_target_": "EnsureChannelFirstd",
