@@ -95,7 +95,7 @@
         {
             "_target_": "ClassificationSaver",
             "output_dir": "@output_dir",
-            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "batch_transform": "$lambda x: [xx['image'].meta for xx in x]",
             "output_transform": "$monai.handlers.from_engine(['pred'])"
         }
     ],

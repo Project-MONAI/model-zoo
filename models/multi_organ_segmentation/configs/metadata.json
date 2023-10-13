@@ -1,12 +1,13 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "changelog": {
-        "0.0.1": "initialize the model package structure",
+        "0.0.4": "Set image_only to False",
+        "0.0.3": "Update for stable MONAI version",
         "0.0.2": "Retrain with new MONAI",
-        "0.0.3": "Update for stable MONAI version"
+        "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.2.0",
+    "monai_version": "1.3.0",
     "pytorch_version": "1.13.1",
     "numpy_version": "1.22.2",
     "optional_packages_version": {
