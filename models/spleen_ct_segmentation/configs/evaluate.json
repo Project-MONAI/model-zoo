@@ -68,8 +68,8 @@
             "metric_details": [
                 "val_mean_dice"
             ],
-            "summary_ops": "*",
-            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])"
+            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "summary_ops": "*"
         }
     ],
     "run": [
