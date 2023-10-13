@@ -1258,5 +1258,41 @@
     "spleen_deepedit_annotation_v0.5.2": {
         "checksum": "0662f66bef783eece9d3c08a661cffffe2052d8a",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_deepedit_annotation/versions/0.5.2/files/spleen_deepedit_annotation_v0.5.2.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.4.5": {
+        "checksum": "06e05d344431b1fe0ab25950b35b79afc64df6c8",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pancreas_ct_dints_segmentation/versions/0.4.5/files/pancreas_ct_dints_segmentation_v0.4.5.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.7": {
+        "checksum": "ac8cb0ce6b6a836e5eb9648de311386daf37fc3b",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_axial_slices_generative_diffusion/versions/1.0.7/files/brats_mri_axial_slices_generative_diffusion_v1.0.7.zip"
+    },
+    "pathology_nuclei_classification_v0.1.6": {
+        "checksum": "6d5a7e979d73b645c889a91eb81430d918190eb6",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_classification/versions/0.1.6/files/pathology_nuclei_classification_v0.1.6.zip"
+    },
+    "lung_nodule_ct_detection_v0.6.0": {
+        "checksum": "fbaff871b53fb136a9f583f8dadd6179ff576de5",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/lung_nodule_ct_detection/versions/0.6.0/files/lung_nodule_ct_detection_v0.6.0.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.2.3": {
+        "checksum": "7764aeb0a4e024b5215d5bbbbdc009de2775d9d9",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_segmentation_classification/versions/0.2.3/files/pathology_nuclei_segmentation_classification_v0.2.3.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.7": {
+        "checksum": "f7098b744d586b1032b637c743c90ebf04240df1",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_generative_diffusion/versions/1.0.7/files/brats_mri_generative_diffusion_v1.0.7.zip"
+    },
+    "multi_organ_segmentation_v0.0.4": {
+        "checksum": "97ac0df0cbb547fde7a72b10559bf54bd80f3578",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/multi_organ_segmentation/versions/0.0.4/files/multi_organ_segmentation_v0.0.4.zip"
+    },
+    "breast_density_classification_v0.1.6": {
+        "checksum": "bfaff74dbd6fdbe7326e6dbe53dd874253524f8d",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/breast_density_classification/versions/0.1.6/files/breast_density_classification_v0.1.6.zip"
+    },
+    "endoscopic_inbody_classification_v0.4.5": {
+        "checksum": "ccd3693cd4ddf145ff439c2cb0d28f302f7104c9",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_inbody_classification/versions/0.4.5/files/endoscopic_inbody_classification_v0.4.5.zip"
     }
 }
