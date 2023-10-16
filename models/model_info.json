@@ -1294,5 +1294,37 @@
     "endoscopic_inbody_classification_v0.4.5": {
         "checksum": "ccd3693cd4ddf145ff439c2cb0d28f302f7104c9",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_inbody_classification/versions/0.4.5/files/endoscopic_inbody_classification_v0.4.5.zip"
+    },
+    "renalStructures_CECT_segmentation_v0.2.0": {
+        "checksum": "636c17172c930aefba5a49f8f224988ae4c96ead",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/renalstructures_cect_segmentation/versions/0.2.0/files/renalStructures_CECT_segmentation_v0.2.0.zip"
+    },
+    "pathology_nuclick_annotation_v0.1.6": {
+        "checksum": "b32e4e791a01a7e068958098f74bd7dffccba3b2",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclick_annotation/versions/0.1.6/files/pathology_nuclick_annotation_v0.1.6.zip"
+    },
+    "ventricular_short_axis_3label_v0.3.3": {
+        "checksum": "b0949b4084c7828a6fdc3d3bae518408e0f28de1",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/ventricular_short_axis_3label/versions/0.3.3/files/ventricular_short_axis_3label_v0.3.3.zip"
+    },
+    "wholeBody_ct_segmentation_v0.2.1": {
+        "checksum": "1d6ae1f4129362aea68ae15cab932b2b5da99e15",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/wholebody_ct_segmentation/versions/0.2.1/files/wholeBody_ct_segmentation_v0.2.1.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.5.1": {
+        "checksum": "514ca4815e9fb0668edd830e9ee1a7fcd8dd3baa",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/swin_unetr_btcv_segmentation/versions/0.5.1/files/swin_unetr_btcv_segmentation_v0.5.1.zip"
+    },
+    "renalStructures_UNEST_segmentation_v0.2.3": {
+        "checksum": "b6af7a074be68c1d482f9bcd2a0c7a5a7fa3ddb9",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/renalstructures_unest_segmentation/versions/0.2.3/files/renalStructures_UNEST_segmentation_v0.2.3.zip"
+    },
+    "spleen_deepedit_annotation_v0.5.3": {
+        "checksum": "4e3777cf77546e02ac4a0dc39a4930a810b9706c",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_deepedit_annotation/versions/0.5.3/files/spleen_deepedit_annotation_v0.5.3.zip"
+    },
+    "endoscopic_tool_segmentation_v0.5.6": {
+        "checksum": "8aaba7aa42648bcf343814f80d8023bc3ffb6fc3",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_tool_segmentation/versions/0.5.6/files/endoscopic_tool_segmentation_v0.5.6.zip"
     }
 }
