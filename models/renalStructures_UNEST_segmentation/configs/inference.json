@@ -22,8 +22,9 @@
                 "keys": "image"
             },
             {
-                "_target_": "AddChanneld",
-                "keys": "image"
+                "_target_": "EnsureChannelFirstd",
+                "keys": "image",
+                "channel_dim": "no_channel"
             },
             {
                 "_target_": "Orientationd",
@@ -90,7 +91,6 @@
                 "keys": "pred",
                 "transform": "@preprocessing",
                 "orig_keys": "image",
-                "meta_key_postfix": "meta_dict",
                 "nearest_interp": false,
                 "to_tensor": true
             },
@@ -102,7 +102,6 @@
             {
                 "_target_": "SaveImaged",
                 "keys": "pred",
-                "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir"
             }
         ]
