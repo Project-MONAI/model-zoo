@@ -1326,5 +1326,9 @@
     "endoscopic_tool_segmentation_v0.5.6": {
         "checksum": "8aaba7aa42648bcf343814f80d8023bc3ffb6fc3",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_tool_segmentation/versions/0.5.6/files/endoscopic_tool_segmentation_v0.5.6.zip"
+    },
+    "spleen_ct_segmentation_v0.5.4": {
+        "checksum": "f0d003e806f0d0fc70fe7f356189dd24db2c7f4a",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.4/files/spleen_ct_segmentation_v0.5.4.zip"
     }
 }
