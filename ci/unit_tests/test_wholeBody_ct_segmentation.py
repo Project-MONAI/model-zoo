@@ -80,7 +80,7 @@ class TestWholeBodySeg(unittest.TestCase):
         bundle_root = override["bundle_root"]
 
         trainer = ConfigWorkflow(
-            workflow="train",
+            workflow_type="train",
             config_file=os.path.join(bundle_root, "configs/train.json"),
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
@@ -97,7 +97,7 @@ class TestWholeBodySeg(unittest.TestCase):
 
         validator = ConfigWorkflow(
             # override train.json, thus set the workflow to "train" rather than "eval"
-            workflow="train",
+            workflow_type="train",
             config_file=[train_file, eval_file],
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
@@ -111,7 +111,7 @@ class TestWholeBodySeg(unittest.TestCase):
         bundle_root = override["bundle_root"]
 
         inferrer = ConfigWorkflow(
-            workflow="infer",
+            workflow_type="infer",
             config_file=os.path.join(bundle_root, "configs/inference.json"),
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),

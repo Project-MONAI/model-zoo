@@ -24,7 +24,6 @@
                 "_target_": "SaveImaged",
                 "_disabled_": true,
                 "keys": "pred",
-                "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
                 "resample": false,
                 "squeeze_end_dims": true
@@ -53,7 +52,7 @@
             "metric_details": [
                 "val_mean_dice"
             ],
-            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "batch_transform": "$lambda x: [xx['image'].meta for xx in x]",
             "summary_ops": "*"
         }
     ],

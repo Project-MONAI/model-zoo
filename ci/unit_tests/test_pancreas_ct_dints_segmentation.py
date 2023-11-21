@@ -127,7 +127,7 @@ class TestDints(unittest.TestCase):
         train_file = os.path.join(bundle_root, "configs/train.yaml")
 
         trainer = ConfigWorkflow(
-            workflow="train",
+            workflow_type="train",
             config_file=train_file,
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
@@ -146,7 +146,7 @@ class TestDints(unittest.TestCase):
 
         validator = ConfigWorkflow(
             # override train.json, thus set the workflow to "train" rather than "eval"
-            workflow="train",
+            workflow_type="train",
             config_file=[train_file, eval_file],
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),
@@ -161,7 +161,7 @@ class TestDints(unittest.TestCase):
         arch_name = get_searched_arch(os.path.join(bundle_root, "models"))
         override["arch_ckpt_path"] = os.path.join(bundle_root, "models", arch_name)
         inferrer = ConfigWorkflow(
-            workflow="infer",
+            workflow_type="infer",
             config_file=os.path.join(bundle_root, "configs/inference.yaml"),
             logging_file=os.path.join(bundle_root, "configs/logging.conf"),
             meta_file=os.path.join(bundle_root, "configs/metadata.json"),

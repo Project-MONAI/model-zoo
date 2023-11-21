@@ -1,11 +1,17 @@
 {
     "imports": [
         "$import glob",
+        "$import numpy",
         "$import os",
         "$import ignite"
     ],
     "bundle_root": ".",
+    "image_key": "image",
     "output_dir": "$@bundle_root + '/eval'",
+    "output_ext": ".nii.gz",
+    "output_dtype": "$numpy.float32",
+    "output_postfix": "trans",
+    "separate_folder": true,
     "dataset_dir": "/workspace/Datasets/MSD_datasets/Task09_Spleen",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
     "label_names": {
@@ -63,21 +69,21 @@
     "preprocessing_transforms": [
         {
             "_target_": "LoadImaged",
-            "keys": "image",
+            "keys": "@image_key",
             "reader": "ITKReader"
         },
         {
             "_target_": "EnsureChannelFirstd",
-            "keys": "image"
+            "keys": "@image_key"
         },
         {
             "_target_": "Orientationd",
-            "keys": "image",
+            "keys": "@image_key",
             "axcodes": "RAS"
         },
         {
             "_target_": "ScaleIntensityRanged",
-            "keys": "image",
+            "keys": "@image_key",
             "a_min": -175,
             "a_max": 250,
             "b_min": 0.0,
@@ -88,29 +94,29 @@
     "deepedit_transforms": [
         {
             "_target_": "scripts.transforms.OrientationGuidanceMultipleLabelDeepEditd",
-            "ref_image": "image",
+            "ref_image": "@image_key",
             "label_names": "@label_names"
         },
         {
             "_target_": "AddGuidanceFromPointsDeepEditd",
-            "ref_image": "image",
+            "ref_image": "@image_key",
             "guidance": "guidance",
             "label_names": "@label_names"
         },
         {
             "_target_": "Resized",
-            "keys": "image",
+            "keys": "@image_key",
             "spatial_size": "@spatial_size",
             "mode": "area"
         },
         {
             "_target_": "ResizeGuidanceMultipleLabelDeepEditd",
             "guidance": "guidance",
-            "ref_image": "image"
+            "ref_image": "@image_key"
         },
         {
             "_target_": "AddGuidanceSignalDeepEditd",
-            "keys": "image",
+            "keys": "@image_key",
             "guidance": "guidance",
             "number_intensity_ch": "@number_intensity_ch"
         }
@@ -118,7 +124,7 @@
     "extra_transforms": [
         {
             "_target_": "EnsureTyped",
-            "keys": "image"
+            "keys": "@image_key"
         }
     ],
     "preprocessing": {
@@ -156,8 +162,7 @@
                 "_target_": "Invertd",
                 "keys": "pred",
                 "transform": "@preprocessing",
-                "orig_keys": "image",
-                "meta_key_postfix": "meta_dict",
+                "orig_keys": "@image_key",
                 "nearest_interp": false,
                 "to_tensor": true
             },
@@ -169,19 +174,15 @@
             {
                 "_target_": "SaveImaged",
                 "keys": "pred",
-                "meta_keys": "pred_meta_dict",
-                "output_dir": "@output_dir"
+                "output_dir": "@output_dir",
+                "output_ext": "@output_ext",
+                "output_dtype": "@output_dtype",
+                "output_postfix": "@output_postfix",
+                "separate_folder": "@separate_folder"
             }
         ]
     },
     "handlers": [
-        {
-            "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
-            "load_dict": {
-                "model": "@network"
-            }
-        },
         {
             "_target_": "StatsHandler",
             "iteration_log": false
@@ -197,8 +198,16 @@
         "val_handlers": "@handlers",
         "amp": true
     },
+    "checkpointloader": {
+        "_target_": "CheckpointLoader",
+        "load_path": "$@bundle_root + '/models/model.pt'",
+        "load_dict": {
+            "model": "@network"
+        }
+    },
     "initialize": [
-        "$monai.utils.set_determinism(seed=123)"
+        "$monai.utils.set_determinism(seed=123)",
+        "$@checkpointloader(@evaluator)"
     ],
     "run": [
         "$@evaluator.run()"

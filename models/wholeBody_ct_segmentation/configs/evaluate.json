@@ -67,7 +67,7 @@
             "metric_details": [
                 "val_mean_dice"
             ],
-            "batch_transform": "$monai.handlers.from_engine(['image_meta_dict'])",
+            "batch_transform": "$lambda x: [xx['image'].meta for xx in x]",
             "summary_ops": "*"
         }
     ],
