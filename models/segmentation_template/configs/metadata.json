@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "changelog": {
-        "0.0.1": "Initial version"
+        "0.0.1": "Initial version",
+        "0.0.2": "Minor train.yaml clarifications"
     },
     "monai_version": "1.2.0",
     "pytorch_version": "2.0.1",
