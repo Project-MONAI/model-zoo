@@ -128,8 +128,8 @@ val_dataloader:
 lossfn:
   _target_: DiceLoss
   include_background: true  # if your segmentations are relatively small it might help for this to be false
-  to_onehot_y: true
-  softmax: true
+  to_onehot_y: true  # convert ground truth to one-hot for training
+  softmax: true  # softmax applied to prediction
 
 # hyperparameters could be added for other arguments of this class
 optimizer:
@@ -141,10 +141,10 @@ optimizer:
 inferer:
   _target_: SimpleInferer
 
-# transform to apply to data from network to be suitable for loss function and validation
+# transform to apply to data from network to be suitable for validation
 postprocessing:
   _target_: Compose
-  transforms:
+  transforms: 
   - _target_: Activationsd
     keys: '@pred'
     softmax: true
@@ -235,7 +235,7 @@ trainer:
   inferer: '@inferer'  # unnecessary since SimpleInferer is the default if this isn't provided
   loss_function: '@lossfn'
   optimizer: '@optimizer'
-  postprocessing: '@postprocessing'
+  # postprocessing: '@postprocessing'  # uncomment if you have train metrics that need post-processing
   key_train_metric: null
   train_handlers: '@handlers'
 
