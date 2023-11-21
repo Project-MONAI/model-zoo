@@ -144,7 +144,7 @@ inferer:
 # transform to apply to data from network to be suitable for validation
 postprocessing:
   _target_: Compose
-  transforms: 
+  transforms:
   - _target_: Activationsd
     keys: '@pred'
     softmax: true
