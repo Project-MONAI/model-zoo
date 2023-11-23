@@ -48,6 +48,7 @@ jobs:
       wyli,\
       Nic-Ma,\
       yiheng-wang-nv,\
+      KumoLiu,\
       ', format('{0},', github.actor)) && github.event.comment.body == '/build'
     steps:
       - name: Check if comment is issued by authorized person
