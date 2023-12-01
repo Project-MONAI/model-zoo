@@ -1,0 +1,38 @@
+# This implements the workflow for applying the network to a directory of images and measuring network performance with metrics.
+
+# these transforms are used for inference to load and regularise inputs
+transforms:
+- _target_: AsDiscreted
+  keys: ['@pred', '@label']
+  argmax: [true, false]
+  to_onehot: '@num_classes'
+- _target_: ToTensord
+  keys: ['@pred', '@label']
+  device: '@device'
+
+postprocessing:
+  _target_: Compose
+  transforms: $@transforms
+
+# inference handlers to load checkpoint, gather statistics
+val_handlers:
+- _target_: CheckpointLoader
+  _disabled_: $not os.path.exists(@ckpt_path)
+  load_path: '@ckpt_path'
+  load_dict:
+    model: '@network'
+- _target_: StatsHandler
+  name: null  # use engine.logger as the Logger object to log to
+  output_transform: '$lambda x: None'
+- _target_: MetricsSaver
+  save_dir: '@output_dir'
+  metrics: ['val_accuracy']
+  metric_details: ['val_accuracy']
+  batch_transform: "$lambda x: [xx['image'].meta for xx in x]"
+  summary_ops: "*"
+
+initialize:
+- "$monai.utils.set_determinism(seed=123)"
+- "$setattr(torch.backends.cudnn, 'benchmark', True)"
+run:
+- $@evaluator.run()

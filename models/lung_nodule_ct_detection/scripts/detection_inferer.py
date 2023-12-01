@@ -63,4 +63,4 @@ class RetinaNetInferer(Inferer):
             and not all([data_i[0, ...].numel() < self.sliding_window_size for data_i in inputs])
         )
 
-        return self.detector(inputs, use_inferer=use_inferer, *args, **kwargs)
+        return self.detector(inputs, *args, use_inferer=use_inferer, **kwargs)
