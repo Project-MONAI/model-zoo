@@ -13,7 +13,7 @@
     "spatial_dims": 3,
     "image_channels": 1,
     "latent_channels": 4,
-     "latent_shape": [
+    "latent_shape": [
         "@latent_channels",
         48,
         48,
