@@ -206,7 +206,7 @@
         }
     },
     "validate": {
-        "crop_transforms": [
+        "croppad_transforms": [
             {
                 "_target_": "DivisiblePadd",
                 "keys": "image",
@@ -215,7 +215,7 @@
         ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@preprocessing_transforms + @validate#crop_transforms + @final_transforms"
+            "transforms": "$@preprocessing_transforms + @validate#croppad_transforms + @final_transforms"
         },
         "dataset": {
             "_target_": "Dataset",
