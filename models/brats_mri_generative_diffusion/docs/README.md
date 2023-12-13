@@ -111,7 +111,7 @@ python -m monai.bundle run --config_file configs/train_autoencoder.json --datase
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 8e-5
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 1e-4
 ```
 
 #### Check the Autoencoder Training result
@@ -139,7 +139,7 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 8e-5
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 1e-4
 ```
 
 #### Execute inference
