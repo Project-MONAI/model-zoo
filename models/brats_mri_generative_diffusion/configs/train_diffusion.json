@@ -1,6 +1,7 @@
 {
     "ckpt_dir": "$@bundle_root + '/models'",
     "train_batch_size": 4,
+    "lr": 5e-05,
     "train_patch_size": [
         192,
         192,
@@ -15,7 +16,7 @@
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
     "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
-    "diffusion_def": {
+    "network_def": {
         "_target_": "generative.networks.nets.DiffusionModelUNet",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
@@ -38,11 +39,11 @@
         "num_res_blocks": 2,
         "use_flash_attention": true
     },
-    "diffusion": "$@diffusion_def.to(@device)",
+    "diffusion": "$@network_def.to(@device)",
     "optimizer": {
         "_target_": "torch.optim.Adam",
         "params": "$@diffusion.parameters()",
-        "lr": 0.0001
+        "lr": "@lr"
     },
     "lr_scheduler": {
         "_target_": "torch.optim.lr_scheduler.MultiStepLR",
@@ -63,15 +64,15 @@
         "beta_start": 0.0015,
         "beta_end": 0.0195
     },
-    "inferer": {
-        "_target_": "generative.inferers.LatentDiffusionInferer",
-        "scheduler": "@noise_scheduler",
-        "scale_factor": "@scale_factor"
-    },
     "loss": {
         "_target_": "torch.nn.MSELoss"
     },
     "train": {
+        "inferer": {
+            "_target_": "generative.inferers.LatentDiffusionInferer",
+            "scheduler": "@noise_scheduler",
+            "scale_factor": "@scale_factor"
+        },
         "crop_transforms": [
             {
                 "_target_": "CenterSpatialCropd",
@@ -110,7 +111,7 @@
                 "save_interval": 0,
                 "save_final": true,
                 "epoch_level": true,
-                "final_filename": "model_ldm.pt"
+                "final_filename": "model.pt"
             },
             {
                 "_target_": "StatsHandler",
@@ -121,8 +122,7 @@
                 "_target_": "TensorBoardStatsHandler",
                 "log_dir": "@tf_dir",
                 "tag_name": "train_diffusion_loss",
-                "output_transform": "$lambda x: monai.handlers.from_engine(['loss'], first=True)(x)",
-                "iteration_log": false
+                "output_transform": "$lambda x: monai.handlers.from_engine(['loss'], first=True)(x)"
             }
         ],
         "trainer": {
@@ -135,9 +135,10 @@
             "optimizer": "@optimizer",
             "loss_function": "@loss",
             "latent_shape": "@latent_shape",
-            "inferer": "@inferer",
+            "inferer": "@train#inferer",
             "key_train_metric": "$None",
-            "train_handlers": "@train#handlers"
+            "train_handlers": "@train#handlers",
+            "amp": "@amp"
         }
     },
     "initialize": [
