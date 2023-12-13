@@ -19,11 +19,16 @@
     "val_batch_size": 2,
     "epochs": 4000,
     "val_interval": 10,
-    "lr": 0.0001,
+    "lr": 1e-04,
     "amp": true,
     "train_patch_size": [
         128,
         128,
+        128
+    ],
+    "val_patch_size": [
+        192,
+        192,
         128
     ],
     "channel": 0,
@@ -206,16 +211,16 @@
         }
     },
     "validate": {
-        "croppad_transforms": [
+        "crop_transforms": [
             {
-                "_target_": "DivisiblePadd",
+                "_target_": "CenterSpatialCropd",
                 "keys": "image",
-                "k": 16
+                "roi_size": "@val_patch_size"
             }
         ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@preprocessing_transforms + @validate#croppad_transforms + @final_transforms"
+            "transforms": "$@preprocessing_transforms + @validate#crop_transforms + @final_transforms"
         },
         "dataset": {
             "_target_": "Dataset",
