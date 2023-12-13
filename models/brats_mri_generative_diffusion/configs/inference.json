@@ -77,7 +77,7 @@
         "_requires_": [
             "@load_diffusion",
             "@load_autoencoder"
-        ],        
+        ],
         "num_train_timesteps": 1000,
         "beta_start": 0.0015,
         "beta_end": 0.0195,
