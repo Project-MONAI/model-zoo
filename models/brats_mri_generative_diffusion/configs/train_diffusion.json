@@ -1,7 +1,7 @@
 {
     "ckpt_dir": "$@bundle_root + '/models'",
     "train_batch_size": 4,
-    "lr": 5e-05,
+    "lr": 2e-05,
     "train_patch_size": [
         192,
         192,
