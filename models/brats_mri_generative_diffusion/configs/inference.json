@@ -73,15 +73,15 @@
     "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path))",
     "diffusion": "$@network_def.to(@device)",
     "noise_scheduler": {
-        "_target_": "generative.networks.schedulers.DDPMScheduler",
+        "_target_": "generative.networks.schedulers.DDIMScheduler",
         "_requires_": [
             "@load_diffusion",
             "@load_autoencoder"
-        ],
-        "schedule": "scaled_linear_beta",
+        ],        
         "num_train_timesteps": 1000,
         "beta_start": 0.0015,
         "beta_end": 0.0195,
+        "schedule": "scaled_linear_beta",
         "clip_sample": false
     },
     "noise": "$torch.randn([1]+@latent_shape).to(@device)",
