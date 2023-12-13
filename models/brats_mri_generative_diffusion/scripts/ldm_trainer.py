@@ -11,14 +11,14 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
+from typing import TYPE_CHECKING, Any, Callable, Sequence
 
 import torch
 from monai.config import IgniteInfo
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn, default_prepare_batch
 from monai.inferers import Inferer, SimpleInferer
 from monai.transforms import Transform
-from monai.utils import min_version, optional_import
+from monai.utils import GanKeys, min_version, optional_import
 from monai.utils.enums import CommonKeys, GanKeys
 from torch.optim.optimizer import Optimizer
 from torch.utils.data import DataLoader
@@ -81,6 +81,7 @@ class VaeGanTrainer(Trainer):
             `best_metric` and `best_metric_epoch` with current metric and epoch, default to `greater than`.
         train_handlers: every handler is a set of Ignite Event-Handlers, must have `attach` function, like:
             CheckpointHandler, StatsHandler, etc.
+        amp: whether to enable auto-mixed-precision training, default is False.
         decollate: whether to decollate the batch-first data to a list of data after model computation,
             recommend `decollate=True` when `postprocessing` uses components from `monai.transforms`.
             default to `True`.
@@ -118,6 +119,7 @@ class VaeGanTrainer(Trainer):
         additional_metrics: dict[str, Metric] | None = None,
         metric_cmp_fn: Callable = default_metric_cmp_fn,
         train_handlers: Sequence | None = None,
+        amp: bool = False,
         decollate: bool = True,
         optim_set_to_none: bool = False,
         to_kwargs: dict | None = None,
@@ -139,6 +141,7 @@ class VaeGanTrainer(Trainer):
             additional_metrics=additional_metrics,
             metric_cmp_fn=metric_cmp_fn,
             handlers=train_handlers,
+            amp=amp,
             postprocessing=postprocessing,
             decollate=decollate,
             to_kwargs=to_kwargs,
@@ -173,6 +176,7 @@ class VaeGanTrainer(Trainer):
             raise ValueError("must provide batch data for current iteration.")
 
         d_input = engine.prepare_batch(batchdata, engine.state.device, engine.non_blocking, **engine.to_kwargs)[0]
+        batch_size = engine.data_loader.batch_size  # type: ignore
         g_input = d_input
         g_output, z_mu, z_sigma = engine.g_inferer(g_input, engine.g_network)
 
