@@ -11,14 +11,14 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Callable, Sequence
+from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
 
 import torch
 from monai.config import IgniteInfo
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn, default_prepare_batch
 from monai.inferers import Inferer, SimpleInferer
 from monai.transforms import Transform
-from monai.utils import GanKeys, min_version, optional_import
+from monai.utils import min_version, optional_import
 from monai.utils.enums import CommonKeys, GanKeys
 from torch.optim.optimizer import Optimizer
 from torch.utils.data import DataLoader
@@ -176,7 +176,6 @@ class VaeGanTrainer(Trainer):
             raise ValueError("must provide batch data for current iteration.")
 
         d_input = engine.prepare_batch(batchdata, engine.state.device, engine.non_blocking, **engine.to_kwargs)[0]
-        batch_size = engine.data_loader.batch_size  # type: ignore
         g_input = d_input
         g_output, z_mu, z_sigma = engine.g_inferer(g_input, engine.g_network)
 
