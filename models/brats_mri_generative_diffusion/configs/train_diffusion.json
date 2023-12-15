@@ -1,7 +1,7 @@
 {
     "ckpt_dir": "$@bundle_root + '/models'",
     "train_batch_size": 5,
-    "lr": 2e-05,
+    "lr": 5e-05,
     "latent_shape": [
         "@latent_channels",
         48,
@@ -44,7 +44,7 @@
         "_target_": "torch.optim.lr_scheduler.MultiStepLR",
         "optimizer": "@optimizer",
         "milestones": [
-            5000
+            2000
         ],
         "gamma": 0.1
     },
@@ -117,7 +117,7 @@
         "trainer": {
             "_target_": "scripts.ldm_trainer.LDMTrainer",
             "device": "@device",
-            "max_epochs": 10000,
+            "max_epochs": 5000,
             "train_data_loader": "@train#dataloader",
             "network": "@diffusion",
             "autoencoder_model": "@autoencoder",

@@ -17,9 +17,9 @@
     "perceptual_loss_model_weights_path": null,
     "train_batch_size": 4,
     "val_batch_size": 3,
-    "epochs": 8000,
+    "epochs": 3000,
     "val_interval": 10,
-    "lr": 2e-05,
+    "lr": 5e-05,
     "amp": true,
     "train_patch_size": [
         112,

@@ -53,7 +53,7 @@ The autoencoder was trained using the following configuration:
 - Actual Model Input: 128 x 128 x 128
 - AMP: False
 - Optimizer: Adam
-- Learning Rate: 2e-5
+- Learning Rate: 5e-5
 - Loss: L1 loss, perceptual loss, KL divergence loss, adversarial loss, GAN BCE loss
 
 #### Input
@@ -71,7 +71,7 @@ The latent diffusion model was trained using the following configuration:
 - Actual Model Input: 48 x 48 x 32
 - AMP: False
 - Optimizer: Adam
-- Learning Rate: 2e-5
+- Learning Rate: 5e-5
 - Loss: MSE loss
 
 #### Training Input
@@ -118,7 +118,7 @@ python -m monai.bundle run --config_file configs/train_autoencoder.json --datase
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 1e-4
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/multi_gpu_train_autoencoder.json']" --lr 2e-4
 ```
 
 #### Check the Autoencoder Training result
@@ -146,7 +146,7 @@ python -m monai.bundle run --config_file "['configs/train_autoencoder.json','con
 To train with multiple GPUs, use the following command, which requires scaling up the learning rate according to the number of GPUs.
 
 ```
-torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 1e-4
+torchrun --standalone --nnodes=1 --nproc_per_node=8 -m monai.bundle run --config_file "['configs/train_autoencoder.json','configs/train_diffusion.json','configs/multi_gpu_train_autoencoder.json','configs/multi_gpu_train_diffusion.json']"  --lr 2e-4
 ```
 
 #### Execute inference
