@@ -1,12 +1,7 @@
 {
     "ckpt_dir": "$@bundle_root + '/models'",
-    "train_batch_size": 4,
+    "train_batch_size": 5,
     "lr": 2e-05,
-    "train_patch_size": [
-        192,
-        192,
-        128
-    ],
     "latent_shape": [
         "@latent_channels",
         48,
@@ -73,16 +68,9 @@
             "scheduler": "@noise_scheduler",
             "scale_factor": "@scale_factor"
         },
-        "crop_transforms": [
-            {
-                "_target_": "CenterSpatialCropd",
-                "keys": "image",
-                "roi_size": "@train_patch_size"
-            }
-        ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@preprocessing_transforms + @train#crop_transforms + @final_transforms"
+            "transforms": "$@preprocessing_transforms"
         },
         "dataset": {
             "_target_": "CacheDataset",

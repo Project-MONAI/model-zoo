@@ -15,16 +15,16 @@
     "val_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation', base_dir=@dataset_dir)",
     "pretrained": false,
     "perceptual_loss_model_weights_path": null,
-    "train_batch_size": 2,
-    "val_batch_size": 2,
+    "train_batch_size": 4,
+    "val_batch_size": 3,
     "epochs": 8000,
     "val_interval": 10,
     "lr": 2e-05,
     "amp": true,
     "train_patch_size": [
-        128,
-        128,
-        128
+        112,
+        112,
+        80
     ],
     "val_patch_size": [
         192,
@@ -129,9 +129,12 @@
             "keys": "image",
             "pixdim": "@spacing",
             "mode": "bilinear"
-        }
-    ],
-    "final_transforms": [
+        },
+        {
+            "_target_": "CenterSpatialCropd",
+            "keys": "image",
+            "roi_size": "@val_patch_size"
+        },
         {
             "_target_": "ScaleIntensityRangePercentilesd",
             "keys": "image",
@@ -152,7 +155,7 @@
         ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@preprocessing_transforms + @train#crop_transforms + @final_transforms"
+            "transforms": "$@preprocessing_transforms + @train#crop_transforms"
         },
         "dataset": {
             "_target_": "CacheDataset",
@@ -212,16 +215,9 @@
         }
     },
     "validate": {
-        "crop_transforms": [
-            {
-                "_target_": "CenterSpatialCropd",
-                "keys": "image",
-                "roi_size": "@val_patch_size"
-            }
-        ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@preprocessing_transforms + @validate#crop_transforms + @final_transforms"
+            "transforms": "$@preprocessing_transforms"
         },
         "dataset": {
             "_target_": "CacheDataset",
