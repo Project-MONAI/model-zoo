@@ -50,7 +50,7 @@ If you have a GPU with less than 32G of memory, you may need to decrease the bat
 The autoencoder was trained using the following configuration:
 
 - GPU: at least 32GB GPU memory
-- Actual Model Input: 128 x 128 x 128
+- Actual Model Input: 112 x 112 x 80
 - AMP: False
 - Optimizer: Adam
 - Learning Rate: 5e-5
