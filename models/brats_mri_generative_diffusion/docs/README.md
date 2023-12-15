@@ -37,6 +37,12 @@ python scripts/prepare_datalist.py --path your-brats18-dataset-path
 ```
 
 ## Training Configuration
+We need to install the required packages.
+```
+pip install git+https://github.com/Project-MONAI/GenerativeModels.git 
+pip install lpips
+```
+
 If you have a GPU with less than 32G of memory, you may need to decrease the batch size when training. To do so, modify the `train_batch_size` parameter in the [configs/train_autoencoder.json](../configs/train_autoencoder.json) and [configs/train_diffusion.json](../configs/train_diffusion.json) configuration files.
 
 ### Training Configuration of Autoencoder
