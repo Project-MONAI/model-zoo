@@ -107,7 +107,7 @@ For more details usage instructions, visit the [MONAI Bundle Configuration Page]
 python -m monai.bundle run --config_file configs/train_autoencoder.json
 ```
 
-Please note that if the default dataset path is not modified with the actual path (it should be the path that contains `Task01_BrainTumour`) in the bundle config files, you can also override it by using `--dataset_dir`:
+Please note that if the default dataset path is not modified with the actual path in the bundle config files, you can also override it by using `--dataset_dir`:
 
 ```
 python -m monai.bundle run --config_file configs/train_autoencoder.json --dataset_dir <actual dataset path>
