@@ -39,7 +39,7 @@ python scripts/prepare_datalist.py --path your-brats18-dataset-path
 ## Training Configuration
 We need to install the required packages.
 ```
-pip install git+https://github.com/Project-MONAI/GenerativeModels.git 
+pip install git+https://github.com/Project-MONAI/GenerativeModels.git
 pip install lpips
 ```
 
