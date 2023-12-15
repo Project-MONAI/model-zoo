@@ -113,10 +113,10 @@
         "transforms": "$@preprocessing_transforms + @crop_transforms + @final_transforms"
     },
     "dataset": {
-            "_target_": "Dataset",
-            "data": "@test_datalist",
-            "transform": "@preprocessing"
-        },
+        "_target_": "Dataset",
+        "data": "@test_datalist",
+        "transform": "@preprocessing"
+    },
     "dataloader": {
         "_target_": "DataLoader",
         "dataset": "@dataset",
