@@ -85,9 +85,10 @@
             "transforms": "$@preprocessing_transforms + @train#crop_transforms + @final_transforms"
         },
         "dataset": {
-            "_target_": "Dataset",
+            "_target_": "CacheDataset",
             "data": "@train_datalist",
-            "transform": "@train#preprocessing"
+            "transform": "@train#preprocessing",
+            "cache_rate": 1.0
         },
         "dataloader": {
             "_target_": "DataLoader",
