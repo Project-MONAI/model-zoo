@@ -46,7 +46,7 @@ The MR and landmark images should be 2D with no channel dimension. Within the np
 * trainLMImgs (8574, 256, 256)
 * testLMImgs (930, 256, 256)
 
-This shows a training set of 8574 image pairs and a test set of 930 image pairs. The transforms provided with the bundle assume these dimensions so your own dataset should stick to this format. 
+This shows a training set of 8574 image pairs and a test set of 930 image pairs. The transforms provided with the bundle assume these dimensions so your own dataset should stick to this format.
 
 The following command will train with the default NPZ filename `./valvelandmarks.npz`, assuming the current directory is the bundle directory:
 
