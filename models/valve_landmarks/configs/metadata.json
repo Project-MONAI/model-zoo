@@ -13,7 +13,7 @@
     },
     "monai_version": "1.3.0",
     "pytorch_version": "2.1.1",
-    "numpy_version": "1.26.2",
+    "numpy_version": "1.25.2",
     "optional_packages_version": {},
     "name": "Valve landmarks regression",
     "task": "Given long axis MR images of the heart, identify valve insertion points through the full cardiac cycle",
