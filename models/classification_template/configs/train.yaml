@@ -1,10 +1,9 @@
 # This config file implements the training workflow. It can be combined with multi_gpu_train.yaml to use DDP for
-# multi-GPU runs. Many definitions in this file are duplicated across other files for compatibility with MONAI
-# Label, eg. network_def, but ideally these would be in a common.yaml file used in conjunction with this one
-# or the other config files for testing or inference.
+# multi-GPU runs.
 
 imports:
 - $import os
+- $import json
 - $import datetime
 - $import torch
 - $import glob
@@ -13,7 +12,6 @@ imports:
 image: $monai.utils.CommonKeys.IMAGE
 label: $monai.utils.CommonKeys.LABEL
 pred: $monai.utils.CommonKeys.PRED
-both_keys: ['@image', '@label']
 
 # multi-gpu values, `rank` will be replaced in a separate script implementing multi-gpu changes
 rank: 0  # without multi-gpu support consider the process as rank 0 anyway
@@ -24,7 +22,7 @@ val_interval: 1  # how often to perform validation after an epoch
 ckpt_interval: 1  # how often to save a checkpoint after an epoch
 rand_prob: 0.5  # probability a random transform is applied
 batch_size: 5  # number of images per batch
-num_epochs: 20  # number of epochs to train for
+num_epochs: 10  # number of epochs to train for
 num_substeps: 1  # how many times to repeatly train with the same batch
 num_workers: 4  # number of workers to generate batches with
 learning_rate: 0.001  # initial learning rate
@@ -34,45 +32,41 @@ device: $torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 # define various paths
 bundle_root: .  # root directory of the bundle
 ckpt_path: $@bundle_root + '/models/model.pt'  # checkpoint to load before starting
-dataset_dir: $@bundle_root + '/train_data'  # where data is coming from
+dataset_dir: $@bundle_root + '/data/train_data'  # where data is coming from
 results_dir: $@bundle_root + '/results'  # where results are being stored to
 # a new output directory is chosen using a timestamp for every invocation
 output_dir: '$datetime.datetime.now().strftime(@results_dir + ''/output_%y%m%d_%H%M%S'')'
 
 # network definition, this could be parameterised by pre-defined values or on the command line
 network_def:
-  _target_: UNet
-  spatial_dims: 3
+  _target_: DenseNet121
+  spatial_dims: 2
   in_channels: 1
   out_channels: '@num_classes'
-  channels: [8, 16, 32, 64]
-  strides: [2, 2, 2]
-  num_res_units: 2
 network: $@network_def.to(@device)
 
-# dataset value, this assumes a directory filled with img##.nii.gz and lbl##.nii.gz files
-imgs: '$sorted(glob.glob(@dataset_dir+''/img*.nii.gz''))'
-lbls: '$[i.replace(''img'',''lbl'') for i in @imgs]'
-all_pairs: '$[{@image: i, @label: l} for i, l in zip(@imgs, @lbls)]'
-partitions: '$monai.data.partition_dataset(@all_pairs, (4, 1), shuffle=True, seed=0)'
+# dataset value, this assumes a JOSN file filled with img##.nii.gz file and label
+data_json: $@bundle_root + '/data/train_samples.json'  # where training data is located and label
+data_fp: "$open(@data_json,'r', encoding='utf8')"
+data_dict: "$json.load(@data_fp)"
+partitions: '$monai.data.partition_dataset(@data_dict, (4, 1), shuffle=True, seed=0)'
 train_sub: '$@partitions[0]' # train partition
 val_sub: '$@partitions[1]' # validation partition
 
 # these transforms are used for training and validation transform sequences
 base_transforms:
 - _target_: LoadImaged
-  keys: '@both_keys'
-  image_only: true
+  keys: '@image'
 - _target_: EnsureChannelFirstd
-  keys: '@both_keys'
+  keys: '@image'
 
 # these are the random and regularising transforms used only for training
 train_transforms:
 - _target_: RandAxisFlipd
-  keys: '@both_keys'
+  keys: '@image'
   prob: '@rand_prob'
 - _target_: RandRotate90d
-  keys: '@both_keys'
+  keys: '@image'
   prob: '@rand_prob'
 - _target_: RandGaussianNoised
   keys: '@image'
@@ -87,7 +81,6 @@ val_transforms:
   keys: '@image'
 
 # define the Compose objects for training and validation
-
 preprocessing:
   _target_: Compose
   transforms: $@base_transforms + @train_transforms
@@ -97,7 +90,6 @@ val_preprocessing:
   transforms: $@base_transforms + @val_transforms
 
 # define the datasets for training and validation
-
 train_dataset:
   _target_: Dataset
   data: '@train_sub'
@@ -109,7 +101,6 @@ val_dataset:
   transform: '@val_preprocessing'
 
 # define the dataloaders for training and validation
-
 train_dataloader:
   _target_: ThreadDataLoader  # generate data ansynchronously from training
   dataset: '@train_dataset'
@@ -123,13 +114,10 @@ val_dataloader:
   batch_size: '@batch_size'
   num_workers: '@num_workers'
 
-# Simple Dice loss configured for multi-class segmentation, for binary segmentation
-# use include_background==True and sigmoid==True instead of these values
+# Simple CrossEntropy loss configured for multi-class classification
 lossfn:
-  _target_: DiceLoss
-  include_background: true  # if your segmentations are relatively small it might help for this to be false
-  to_onehot_y: true  # convert ground truth to one-hot for training
-  softmax: true  # softmax applied to prediction
+  _target_: torch.nn.CrossEntropyLoss
+  reduction: sum
 
 # hyperparameters could be added for other arguments of this class
 optimizer:
@@ -152,6 +140,9 @@ postprocessing:
     keys: ['@pred', '@label']
     argmax: [true, false]
     to_onehot: '@num_classes'
+  - _target_: ToTensord
+    keys: ['@pred', '@label']
+    device: '@device'
 
 # validation handlers to gather statistics, log these to a file, and save best checkpoint
 val_handlers:
@@ -169,7 +160,7 @@ val_handlers:
   save_final: false
   epoch_level: false
   save_key_metric: true
-  key_metric_name: val_mean_dice  # save the checkpoint when this value improves
+  key_metric_name: val_accuracy  # save the checkpoint when this value improves
 
 # engine for running validation, ties together objects defined above and has metric definitions
 evaluator:
@@ -179,17 +170,13 @@ evaluator:
   network: '@network'
   postprocessing: '@postprocessing'
   key_val_metric:
-    val_mean_dice:
-      _target_: MeanDice
-      include_background: false
-      output_transform: $monai.handlers.from_engine([@pred, @label])
-    val_mean_iou:
-      _target_: MeanIoUHandler
-      include_background: false
+    val_accuracy:
+      _target_: ignite.metrics.Accuracy
       output_transform: $monai.handlers.from_engine([@pred, @label])
   additional_metrics:
-    val_mae:  # can have other metrics, MAE not great for segmentation tasks so here just to demo
-      _target_: MeanAbsoluteError
+    val_f1:  # can have other metrics
+      _target_: ConfusionMatrix
+      metric_name: 'f1 score'
       output_transform: $monai.handlers.from_engine([@pred, @label])
   val_handlers: '@val_handlers'
 
@@ -239,5 +226,8 @@ trainer:
   key_train_metric: null
   train_handlers: '@handlers'
 
+initialize:
+- "$monai.utils.set_determinism(seed=123)"
+- "$setattr(torch.backends.cudnn, 'benchmark', True)"
 run:
-- $@trainer.run()
+- "$@trainer.run()"

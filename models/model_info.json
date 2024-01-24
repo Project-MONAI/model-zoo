@@ -1326,5 +1326,21 @@
     "endoscopic_tool_segmentation_v0.5.6": {
         "checksum": "8aaba7aa42648bcf343814f80d8023bc3ffb6fc3",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_tool_segmentation/versions/0.5.6/files/endoscopic_tool_segmentation_v0.5.6.zip"
+    },
+    "spleen_ct_segmentation_v0.5.4": {
+        "checksum": "f0d003e806f0d0fc70fe7f356189dd24db2c7f4a",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.4/files/spleen_ct_segmentation_v0.5.4.zip"
+    },
+    "segmentation_template_v0.0.2": {
+        "checksum": "1a4b28d90f4fd7735739ecdece2f2d6ef47c71b9",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/segmentation_template/versions/0.0.2/files/segmentation_template_v0.0.2.zip"
+    },
+    "lung_nodule_ct_detection_v0.6.1": {
+        "checksum": "62885d7693001636c94cb638c6560971c20ad865",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/lung_nodule_ct_detection/versions/0.6.1/files/lung_nodule_ct_detection_v0.6.1.zip"
+    },
+    "classification_template_v0.0.1": {
+        "checksum": "0b5b9515645ff49df4429dc7cc9f383325c9b4e5",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/classification_template/versions/0.0.1/files/classification_template_v0.0.1.zip"
     }
 }
