@@ -1264,7 +1264,7 @@
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pancreas_ct_dints_segmentation/versions/0.4.5/files/pancreas_ct_dints_segmentation_v0.4.5.zip"
     },
     "brats_mri_axial_slices_generative_diffusion_v1.0.7": {
-        "checksum": "ac8cb0ce6b6a836e5eb9648de311386daf37fc3b",
+        "checksum": "3e738008b4d40ad6586aebbe2f54cbb2bf2f9571",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_axial_slices_generative_diffusion/versions/1.0.7/files/brats_mri_axial_slices_generative_diffusion_v1.0.7.zip"
     },
     "pathology_nuclei_classification_v0.1.6": {
