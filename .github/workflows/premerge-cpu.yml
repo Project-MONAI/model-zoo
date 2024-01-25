@@ -13,14 +13,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  premerge-cpu:
+  get-list:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.9
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9
+        python-version: 3.8
+  premerge-cpu:
+    needs: get-list
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
     - name: cache weekly timestamp
       id: pip-cache
       run: |
