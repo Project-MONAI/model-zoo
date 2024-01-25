@@ -1342,5 +1342,9 @@
     "classification_template_v0.0.1": {
         "checksum": "0b5b9515645ff49df4429dc7cc9f383325c9b4e5",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/classification_template/versions/0.0.1/files/classification_template_v0.0.1.zip"
+    },
+    "valve_landmarks_v0.5.0": {
+        "checksum": "8d708d9da5a8fd263d3e6f98c9a8412324893373",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/valve_landmarks/versions/0.5.0/files/valve_landmarks_v0.5.0.zip"
     }
 }
