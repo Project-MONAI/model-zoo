@@ -123,6 +123,11 @@ def get_latest_version(bundle_name: str, model_info_path: str):
     return sorted(versions)[-1]
 
 
+def get_version_checksum(bundle_name: str, version: str, model_info_path: str):
+    model_info_dict = get_json_dict(model_info_path)
+    return model_info_dict[f"{bundle_name}_v{version}"]["checksum"]
+
+
 def submit_pull_request(model_info_path: str):
     # set required info for a pull request
     branch_name = "auto-update-model-info"
