@@ -14,14 +14,22 @@ import argparse
 import os
 
 from monai.bundle import download
-from utils import get_latest_version
+from utils import get_checksum, get_hash_func, get_latest_version, get_version_checksum
 
 
 def download_latest_bundle(bundle_name: str, models_path: str, download_path: str):
     model_info_path = os.path.join(models_path, "model_info.json")
     version = get_latest_version(bundle_name=bundle_name, model_info_path=model_info_path)
-
+    checksum = get_version_checksum(bundle_name=bundle_name, version=version, model_info_path=model_info_path)
     download(name=bundle_name, source="monaihosting", version=version, bundle_dir=download_path)
+
+    # verify checksum
+    hash_func = get_hash_func(hash_type="sha1")
+    bundle_zip_name = f"{bundle_name}_v{version}.zip"
+    downloaded_checksum = get_checksum(dst_path=os.path.join(download_path, bundle_zip_name), hash_func=hash_func)
+    if checksum != downloaded_checksum:
+        raise ValueError(f"Checksum of {bundle_zip_name} is not correct.")
+    print(f"Checksum of downloaded bundle {bundle_name} is correct.")
 
 
 if __name__ == "__main__":
