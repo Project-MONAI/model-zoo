@@ -30,13 +30,19 @@ elif [[ $# -gt 1 ]]; then
 fi
 
 verify_bundle() {
+    echo "Python version before deletion:"
+    python --version
     rm -rf /opt/hostedtoolcache
+    echo "Python version after deletion:"
+    python --version
     # Reinstall Python 3.9
     sudo apt-get update
     sudo apt-get install -y python3.9
 
     # Create a symbolic link to ensure python points to python3.9
-    sudo ln -s /usr/bin/python3.9 /usr/bin/python
+    sudo ln -sf /usr/bin/python3.9 /usr/bin/python
+    echo "Python version after reinstallation:"
+    python --version
     echo 'Run verify bundle...'
     pip install -r requirements.txt
     head_ref=$(git rev-parse HEAD)
