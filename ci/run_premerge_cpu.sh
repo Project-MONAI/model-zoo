@@ -33,8 +33,6 @@ verify_bundle() {
     echo "Python version before deletion:"
     python --version
     rm -rf /opt/hostedtoolcache
-    echo "Python version after deletion:"
-    python --version
     # Reinstall Python 3.9
     sudo apt-get update
     sudo apt-get install -y python3.9
