@@ -31,6 +31,12 @@ fi
 
 verify_bundle() {
     rm -rf /opt/hostedtoolcache
+    # Reinstall Python 3.9
+    sudo apt-get update
+    sudo apt-get install -y python3.9
+
+    # Create a symbolic link to ensure python points to python3.9
+    sudo ln -s /usr/bin/python3.9 /usr/bin/python
     echo 'Run verify bundle...'
     pip install -r requirements.txt
     head_ref=$(git rev-parse HEAD)

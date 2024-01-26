@@ -17,10 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+    - name: Setup Python 3.9
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3.9
+        echo "alias python=python3.9" >> ~/.bashrc
+        source ~/.bashrc
     - name: cache weekly timestamp
       id: pip-cache
       run: |
@@ -34,8 +36,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip wheel
-        python -m pip install -r requirements-dev.txt
-        python -m pip install cffi && python -m pip install pipenv
     - name: check
       run: |
         # clean up temporary files
