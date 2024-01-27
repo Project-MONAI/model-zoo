@@ -30,15 +30,12 @@ elif [[ $# -gt 1 ]]; then
 fi
 
 verify_bundle() {
-    echo "Python version before deletion:"
-    python --version
-    rm -rf /opt/hostedtoolcache
-    # Reinstall Python 3.9
-    sudo apt-get update
-    sudo apt-get install -y python3.9
-
-    echo "Python version after reinstallation:"
-    python3.9 --version
+    for dir in /opt/hostedtoolcache/*; do
+        if [[ $dir != "/opt/hostedtoolcache/Python" ]]; then
+            echo "delete $dir"
+            rm -rf "$dir"
+        fi
+    done
     echo 'Run verify bundle...'
     pip install -r requirements.txt
     head_ref=$(git rev-parse HEAD)
