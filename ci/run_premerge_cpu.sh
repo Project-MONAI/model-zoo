@@ -32,7 +32,6 @@ fi
 verify_bundle() {
     for dir in /opt/hostedtoolcache/*; do
         if [[ $dir != "/opt/hostedtoolcache/Python" ]]; then
-            echo "delete $dir"
             rm -rf "$dir"
         fi
     done
