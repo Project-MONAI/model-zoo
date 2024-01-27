@@ -1,8 +1,7 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220729.json",
-    "version": "0.5.1",
+    "version": "0.5.0",
     "changelog": {
-        "0.5.1": "test",
         "0.5.0": "Fix transform usage",
         "0.4.3": "README.md fix",
         "0.4.2": "add name tag",
