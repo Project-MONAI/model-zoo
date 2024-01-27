@@ -38,7 +38,7 @@ verify_bundle() {
     sudo apt-get install -y python3.9
 
     # Create a symbolic link to ensure python points to python3.9
-    sudo ln -sf /usr/bin/python3.9 /usr/bin/python
+    export PATH=/usr/bin:$PATH
     echo "Python version after reinstallation:"
     python --version
     echo 'Run verify bundle...'
