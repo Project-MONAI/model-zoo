@@ -15,7 +15,7 @@ import argparse
 from utils import get_sub_folders
 
 # new added bundles should temporarily be added to this list, and remove until they can be downloaded successfully
-EXCLUDE_LIST = ["segmentation_template", "classification_template"]
+EXCLUDE_LIST = []
 
 
 def main(models_path):

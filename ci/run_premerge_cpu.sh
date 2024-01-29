@@ -30,7 +30,11 @@ elif [[ $# -gt 1 ]]; then
 fi
 
 verify_bundle() {
-    rm -rf /opt/hostedtoolcache
+    for dir in /opt/hostedtoolcache/*; do
+        if [[ $dir != "/opt/hostedtoolcache/Python" ]]; then
+            rm -rf "$dir"
+        fi
+    done
     echo 'Run verify bundle...'
     pip install -r requirements.txt
     head_ref=$(git rev-parse HEAD)
