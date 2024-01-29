@@ -124,9 +124,9 @@ class TestDeepeditAnno(unittest.TestCase):
     @parameterized.expand([TEST_CASE_2])
     def test_infer_click_config(self, override):
         override["dataset_dir"] = self.dataset_dir
-        override[
-            "dataset#data"
-        ] = "$[{'image': i, 'background': [], 'spleen': [[6, 6, 6], [8, 8, 8]]} for i in @datalist]"
+        override["dataset#data"] = (
+            "$[{'image': i, 'background': [], 'spleen': [[6, 6, 6], [8, 8, 8]]} for i in @datalist]"
+        )
         bundle_root = override["bundle_root"]
         sys.path = [bundle_root] + sys.path
 

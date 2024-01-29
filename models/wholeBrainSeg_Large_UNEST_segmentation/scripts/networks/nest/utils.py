@@ -37,9 +37,7 @@ def drop_block_2d(
     total_size = w * h
     clipped_block_size = min(block_size, min(w, h))
     # seed_drop_rate, the gamma parameter
-    gamma = (
-        gamma_scale * drop_prob * total_size / clipped_block_size**2 / ((w - block_size + 1) * (h - block_size + 1))
-    )
+    gamma = gamma_scale * drop_prob * total_size / clipped_block_size**2 / ((w - block_size + 1) * (h - block_size + 1))
 
     # Forces the block to be inside the feature map.
     w_i, h_i = torch.meshgrid(torch.arange(w).to(x.device), torch.arange(h).to(x.device))
@@ -89,9 +87,7 @@ def drop_block_fast_2d(
     b, c, h, w = x.shape
     total_size = w * h
     clipped_block_size = min(block_size, min(w, h))
-    gamma = (
-        gamma_scale * drop_prob * total_size / clipped_block_size**2 / ((w - block_size + 1) * (h - block_size + 1))
-    )
+    gamma = gamma_scale * drop_prob * total_size / clipped_block_size**2 / ((w - block_size + 1) * (h - block_size + 1))
 
     block_mask = torch.empty_like(x).bernoulli_(gamma)
     block_mask = F.max_pool2d(
