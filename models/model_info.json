@@ -1346,5 +1346,13 @@
     "valve_landmarks_v0.5.0": {
         "checksum": "8d708d9da5a8fd263d3e6f98c9a8412324893373",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/valve_landmarks/versions/0.5.0/files/valve_landmarks_v0.5.0.zip"
+    },
+    "renalStructures_UNEST_segmentation_v0.2.4": {
+        "checksum": "1b17050c3ec8e325b8201d5fb4dd6893cc6d00ca",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/renalstructures_unest_segmentation/versions/0.2.4/files/renalStructures_UNEST_segmentation_v0.2.4.zip"
+    },
+    "wholeBrainSeg_Large_UNEST_segmentation_v0.2.4": {
+        "checksum": "bb76abb958e615b0ba773afc3eb3276a796d3c71",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/wholebrainseg_large_unest_segmentation/versions/0.2.4/files/wholeBrainSeg_Large_UNEST_segmentation_v0.2.4.zip"
     }
 }
