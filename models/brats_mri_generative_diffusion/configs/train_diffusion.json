@@ -1,17 +1,12 @@
 {
     "ckpt_dir": "$@bundle_root + '/models'",
-    "train_batch_size": 4,
-    "lr": 1e-05,
-    "train_patch_size": [
-        144,
-        176,
-        112
-    ],
+    "train_batch_size": 5,
+    "lr": 5e-05,
     "latent_shape": [
         "@latent_channels",
-        36,
-        44,
-        28
+        48,
+        48,
+        32
     ],
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
     "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
@@ -22,7 +17,7 @@
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
         "num_channels": [
-            256,
+            128,
             256,
             512
         ],
@@ -33,10 +28,11 @@
         ],
         "num_head_channels": [
             0,
-            64,
-            64
+            32,
+            32
         ],
-        "num_res_blocks": 2
+        "num_res_blocks": 2,
+        "use_flash_attention": true
     },
     "diffusion": "$@network_def.to(@device)",
     "optimizer": {
@@ -48,8 +44,7 @@
         "_target_": "torch.optim.lr_scheduler.MultiStepLR",
         "optimizer": "@optimizer",
         "milestones": [
-            100,
-            1000
+            2000
         ],
         "gamma": 0.1
     },
@@ -73,26 +68,15 @@
             "scheduler": "@noise_scheduler",
             "scale_factor": "@scale_factor"
         },
-        "crop_transforms": [
-            {
-                "_target_": "CenterSpatialCropd",
-                "keys": "image",
-                "roi_size": "@train_patch_size"
-            }
-        ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@preprocessing_transforms + @train#crop_transforms + @final_transforms"
+            "transforms": "$@preprocessing_transforms"
         },
         "dataset": {
-            "_target_": "monai.apps.DecathlonDataset",
-            "root_dir": "@dataset_dir",
-            "task": "Task01_BrainTumour",
-            "section": "training",
-            "cache_rate": 1.0,
-            "num_workers": 8,
-            "download": false,
-            "transform": "@train#preprocessing"
+            "_target_": "CacheDataset",
+            "data": "@train_datalist",
+            "transform": "@train#preprocessing",
+            "cache_rate": 1.0
         },
         "dataloader": {
             "_target_": "DataLoader",
@@ -142,7 +126,8 @@
             "latent_shape": "@latent_shape",
             "inferer": "@train#inferer",
             "key_train_metric": "$None",
-            "train_handlers": "@train#handlers"
+            "train_handlers": "@train#handlers",
+            "amp": "@amp"
         }
     },
     "initialize": [

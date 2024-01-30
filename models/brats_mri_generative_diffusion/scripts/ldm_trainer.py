@@ -81,6 +81,7 @@ class VaeGanTrainer(Trainer):
             `best_metric` and `best_metric_epoch` with current metric and epoch, default to `greater than`.
         train_handlers: every handler is a set of Ignite Event-Handlers, must have `attach` function, like:
             CheckpointHandler, StatsHandler, etc.
+        amp: whether to enable auto-mixed-precision training, default is False.
         decollate: whether to decollate the batch-first data to a list of data after model computation,
             recommend `decollate=True` when `postprocessing` uses components from `monai.transforms`.
             default to `True`.
@@ -118,6 +119,7 @@ class VaeGanTrainer(Trainer):
         additional_metrics: dict[str, Metric] | None = None,
         metric_cmp_fn: Callable = default_metric_cmp_fn,
         train_handlers: Sequence | None = None,
+        amp: bool = False,
         decollate: bool = True,
         optim_set_to_none: bool = False,
         to_kwargs: dict | None = None,
@@ -139,6 +141,7 @@ class VaeGanTrainer(Trainer):
             additional_metrics=additional_metrics,
             metric_cmp_fn=metric_cmp_fn,
             handlers=train_handlers,
+            amp=amp,
             postprocessing=postprocessing,
             decollate=decollate,
             to_kwargs=to_kwargs,
