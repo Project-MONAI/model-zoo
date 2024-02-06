@@ -1354,5 +1354,9 @@
     "wholeBrainSeg_Large_UNEST_segmentation_v0.2.4": {
         "checksum": "bb76abb958e615b0ba773afc3eb3276a796d3c71",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/wholebrainseg_large_unest_segmentation/versions/0.2.4/files/wholeBrainSeg_Large_UNEST_segmentation_v0.2.4.zip"
+    },
+    "spleen_ct_segmentation_v0.5.5": {
+        "checksum": "59aaa5e4a7b8306b9e6f15caa3092b1202dad250",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.5/files/spleen_ct_segmentation_v0.5.5.zip"
     }
 }
