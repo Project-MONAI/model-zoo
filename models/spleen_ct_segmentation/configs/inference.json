@@ -5,6 +5,10 @@
     ],
     "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
+    "output_ext": ".nii.gz",
+    "output_dtype": "$numpy.float32",
+    "output_postfix": "trans",
+    "separate_folder": true,
     "dataset_dir": "/workspace/data/Task09_Spleen",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -117,18 +121,15 @@
             {
                 "_target_": "SaveImaged",
                 "keys": "pred",
-                "output_dir": "@output_dir"
+                "output_dir": "@output_dir",
+                "output_ext": "@output_ext",
+                "output_dtype": "@output_dtype",
+                "output_postfix": "@output_postfix",
+                "separate_folder": "@separate_folder"
             }
         ]
     },
     "handlers": [
-        {
-            "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
-            "load_dict": {
-                "model": "@network"
-            }
-        },
         {
             "_target_": "StatsHandler",
             "iteration_log": false
@@ -144,8 +145,16 @@
         "val_handlers": "@handlers",
         "amp": true
     },
+    "checkpointloader": {
+        "_target_": "CheckpointLoader",
+        "load_path": "$@bundle_root + '/models/model.pt'",
+        "load_dict": {
+            "model": "@network"
+        }
+    },
     "initialize": [
-        "$monai.utils.set_determinism(seed=123)"
+        "$monai.utils.set_determinism(seed=123)",
+        "$@checkpointloader(@evaluator)"
     ],
     "run": [
         "$@evaluator.run()"
