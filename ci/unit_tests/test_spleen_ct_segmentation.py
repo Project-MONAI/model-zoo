@@ -44,6 +44,19 @@ TEST_CASE_2 = [  # inference
 ]
 
 
+def test_order(test_name1, test_name2):
+    def get_order(name):
+        if "train" in name:
+            return 1
+        if "eval" in name:
+            return 2
+        if "infer" in name:
+            return 3
+        return 4
+
+    return get_order(test_name1) - get_order(test_name2)
+
+
 class TestSpleenCTSeg(unittest.TestCase):
     def setUp(self):
         self.dataset_dir = tempfile.mkdtemp()
@@ -102,4 +115,6 @@ class TestSpleenCTSeg(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    loader = unittest.TestLoader()
+    loader.sortTestMethodsUsing = test_order
+    unittest.main(testLoader=loader)
