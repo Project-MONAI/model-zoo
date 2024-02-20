@@ -1,11 +1,17 @@
 {
     "imports": [
         "$import glob",
+        "$import numpy",
         "$import os"
     ],
     "bundle_root": ".",
+    "image_key": "image",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
+    "output_ext": ".nii.gz",
+    "output_dtype": "uint8",
+    "output_postfix": "seg",
+    "separate_folder": true,
     "data_list_file_path": "$@bundle_root + '/configs/datalist.json'",
     "dataset_dir": "/workspace/data/medical/brats2018challenge",
     "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing', base_dir=@dataset_dir)",
@@ -35,12 +41,12 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image",
+                "keys": "@image_key",
                 "image_only": false
             },
             {
                 "_target_": "NormalizeIntensityd",
-                "keys": "image",
+                "keys": "@image_key",
                 "nonzero": true,
                 "channel_wise": true
             }
@@ -80,7 +86,7 @@
                 "_target_": "Invertd",
                 "keys": "pred",
                 "transform": "@preprocessing",
-                "orig_keys": "image",
+                "orig_keys": "@image_key",
                 "meta_keys": "pred_meta_dict",
                 "nearest_interp": false,
                 "to_tensor": true
@@ -100,21 +106,16 @@
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
-                "output_postfix": "seg",
-                "output_dtype": "uint8",
+                "output_ext": "@output_ext",
+                "output_dtype": "@output_dtype",
+                "output_postfix": "@output_postfix",
+                "separate_folder": "@separate_folder",
                 "resample": false,
                 "squeeze_end_dims": true
             }
         ]
     },
     "handlers": [
-        {
-            "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
-            "load_dict": {
-                "model": "@network"
-            }
-        },
         {
             "_target_": "StatsHandler",
             "iteration_log": false
@@ -130,8 +131,16 @@
         "val_handlers": "@handlers",
         "amp": true
     },
+    "checkpointloader": {
+        "_target_": "CheckpointLoader",
+        "load_path": "$@bundle_root + '/models/model.pt'",
+        "load_dict": {
+            "model": "@network"
+        }
+    },
     "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@checkpointloader(@evaluator)"
     ],
     "run": [
         "$@evaluator.run()"
