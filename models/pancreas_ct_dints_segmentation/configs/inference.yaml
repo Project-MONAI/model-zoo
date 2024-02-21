@@ -1,13 +1,19 @@
 ---
 imports:
 - "$import glob"
+- "$import numpy"
 - "$import os"
 input_channels: 1
 output_classes: 3
 arch_ckpt_path: "$@bundle_root + '/models/search_code_18590.pt'"
 arch_ckpt: "$torch.load(@arch_ckpt_path, map_location=torch.device('cuda'))"
 bundle_root: "."
+image_key: "image"
 output_dir: "$@bundle_root + '/eval'"
+output_ext: ".nii.gz"
+output_dtype: "$numpy.float32"
+output_postfix: "trans"
+separate_folder: true
 dataset_dir: "/workspace/data/msd/Task07_Pancreas"
 data_list_file_path: "$@bundle_root + '/configs/dataset_0.json'"
 datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing',
@@ -35,28 +41,28 @@ preprocessing:
   _target_: Compose
   transforms:
   - _target_: LoadImaged
-    keys: image
+    keys: "@image_key"
   - _target_: EnsureChannelFirstd
-    keys: image
+    keys: "@image_key"
   - _target_: Orientationd
-    keys: image
+    keys: "@image_key"
     axcodes: RAS
   - _target_: Spacingd
-    keys: image
+    keys: "@image_key"
     pixdim:
     - 1
     - 1
     - 1
     mode: bilinear
   - _target_: ScaleIntensityRanged
-    keys: image
+    keys: "@image_key"
     a_min: -87
     a_max: 199
     b_min: 0
     b_max: 1
     clip: true
   - _target_: EnsureTyped
-    keys: image
+    keys: "@image_key"
 dataset:
   _target_: Dataset
   data: "@datalist"
@@ -84,7 +90,7 @@ postprocessing:
   - _target_: Invertd
     keys: pred
     transform: "@preprocessing"
-    orig_keys: image
+    orig_keys: "@image_key"
     meta_key_postfix: meta_dict
     nearest_interp: false
     to_tensor: true
@@ -95,11 +101,11 @@ postprocessing:
     keys: pred
     meta_keys: pred_meta_dict
     output_dir: "@output_dir"
+    output_ext: "@output_ext"
+    output_dtype: "@output_dtype"
+    output_postfix: "@output_postfix"
+    separate_folder: "@separate_folder"
 handlers:
-- _target_: CheckpointLoader
-  load_path: "$@bundle_root + '/models/model.pt'"
-  load_dict:
-    model: "@network"
 - _target_: StatsHandler
   iteration_log: false
 evaluator:
@@ -111,7 +117,13 @@ evaluator:
   postprocessing: "@postprocessing"
   val_handlers: "@handlers"
   amp: true
+checkpointloader:
+  _target_: CheckpointLoader
+  load_path: "$@bundle_root + '/models/model.pt'"
+  load_dict:
+    model: "@network"
 initialize:
 - "$setattr(torch.backends.cudnn, 'benchmark', True)"
+- "$@checkpointloader(@evaluator)"
 run:
 - "$@evaluator.run()"
