@@ -1,10 +1,16 @@
 {
     "imports": [
         "$import glob",
+        "$import numpy",
         "$import os"
     ],
     "bundle_root": ".",
+    "image_key": "image",
     "output_dir": "$@bundle_root + '/eval'",
+    "output_ext": ".png",
+    "output_dtype": "$numpy.float32",
+    "output_postfix": "trans",
+    "separate_folder": true,
     "dataset_dir": "/workspace/data/endoscopic_tool_dataset",
     "datalist": "$list(sorted(glob.glob(os.path.join(@dataset_dir,'test', '*', '*[!seg].jpg'))))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -24,18 +30,18 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image",
+                "keys": "@image_key",
                 "image_only": false
             },
             {
                 "_target_": "EnsureChannelFirstd",
-                "keys": "image",
+                "keys": "@image_key",
                 "channel_dim": -1
             },
             {
                 "_target_": "Resized",
                 "keys": [
-                    "image"
+                    "@image_key"
                 ],
                 "spatial_size": [
                     736,
@@ -48,7 +54,7 @@
             {
                 "_target_": "ScaleIntensityd",
                 "keys": [
-                    "image"
+                    "@image_key"
                 ]
             }
         ]
@@ -75,7 +81,7 @@
                 "_target_": "Invertd",
                 "keys": "pred",
                 "transform": "@preprocessing",
-                "orig_keys": "image",
+                "orig_keys": "@image_key",
                 "meta_key_postfix": "meta_dict",
                 "nearest_interp": false,
                 "to_tensor": true
@@ -100,21 +106,16 @@
                 "keys": "pred",
                 "meta_keys": "pred_meta_dict",
                 "output_dir": "@output_dir",
-                "output_ext": ".png",
+                "output_ext": "@output_ext",
+                "output_dtype": "@output_dtype",
+                "output_postfix": "@output_postfix",
+                "separate_folder": "@separate_folder",
                 "scale": 255,
                 "squeeze_end_dims": true
             }
         ]
     },
     "handlers": [
-        {
-            "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
-            "load_dict": {
-                "model": "@network"
-            },
-            "map_location": "@device"
-        },
         {
             "_target_": "StatsHandler",
             "iteration_log": false
@@ -129,8 +130,17 @@
         "postprocessing": "@postprocessing",
         "val_handlers": "@handlers"
     },
+    "checkpointloader": {
+        "_target_": "CheckpointLoader",
+        "load_path": "$@bundle_root + '/models/model.pt'",
+        "load_dict": {
+            "model": "@network"
+        },
+        "map_location": "@device"
+    },
     "initialize": [
-        "$monai.utils.set_determinism(seed=123)"
+        "$monai.utils.set_determinism(seed=123)",
+        "$@checkpointloader(@evaluator)"
     ],
     "run": [
         "$@evaluator.run()"
