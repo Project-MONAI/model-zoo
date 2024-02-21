@@ -1358,5 +1358,9 @@
     "spleen_ct_segmentation_v0.5.5": {
         "checksum": "59aaa5e4a7b8306b9e6f15caa3092b1202dad250",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.5/files/spleen_ct_segmentation_v0.5.5.zip"
+    },
+    "brats_mri_segmentation_v0.4.9": {
+        "checksum": "2706f2eeaea35283ee6c178c1704d556091deec6",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_segmentation/versions/0.4.9/files/brats_mri_segmentation_v0.4.9.zip"
     }
 }
