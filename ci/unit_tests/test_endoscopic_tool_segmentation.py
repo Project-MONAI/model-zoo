@@ -31,10 +31,7 @@ TEST_CASE_1 = [  # train, evaluate
 ]
 
 TEST_CASE_2 = [  # inference
-    {
-        "bundle_root": "models/endoscopic_tool_segmentation",
-        "preprocessing#transforms#2#spatial_size": [32, 32],
-    }
+    {"bundle_root": "models/endoscopic_tool_segmentation", "preprocessing#transforms#2#spatial_size": [32, 32]}
 ]
 
 
