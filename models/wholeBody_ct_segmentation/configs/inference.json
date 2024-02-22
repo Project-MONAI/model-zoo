@@ -6,10 +6,16 @@
     },
     "imports": [
         "$import glob",
+        "$import numpy",
         "$import os"
     ],
     "bundle_root": ".",
+    "image_key": "image",
     "output_dir": "$@bundle_root + '/eval'",
+    "output_ext": ".nii.gz",
+    "output_dtype": "$numpy.float32",
+    "output_postfix": "trans",
+    "separate_folder": true,
     "dataset_dir": "sampledata",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -40,35 +46,35 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": "@image_key"
             },
             {
                 "_target_": "EnsureTyped",
-                "keys": "image"
+                "keys": "@image_key"
             },
             {
                 "_target_": "EnsureChannelFirstd",
-                "keys": "image"
+                "keys": "@image_key"
             },
             {
                 "_target_": "Orientationd",
-                "keys": "image",
+                "keys": "@image_key",
                 "axcodes": "RAS"
             },
             {
                 "_target_": "Spacingd",
-                "keys": "image",
+                "keys": "@image_key",
                 "pixdim": "@pixdim",
                 "mode": "bilinear"
             },
             {
                 "_target_": "NormalizeIntensityd",
-                "keys": "image",
+                "keys": "@image_key",
                 "nonzero": true
             },
             {
                 "_target_": "ScaleIntensityd",
-                "keys": "image",
+                "keys": "@image_key",
                 "minv": -1.0,
                 "maxv": 1.0
             }
@@ -116,25 +122,22 @@
                 "_target_": "Invertd",
                 "keys": "pred",
                 "transform": "@preprocessing",
-                "orig_keys": "image",
+                "orig_keys": "@image_key",
                 "nearest_interp": true,
                 "to_tensor": true
             },
             {
                 "_target_": "SaveImaged",
                 "keys": "pred",
-                "output_dir": "@output_dir"
+                "output_dir": "@output_dir",
+                "output_ext": "@output_ext",
+                "output_dtype": "@output_dtype",
+                "output_postfix": "@output_postfix",
+                "separate_folder": "@separate_folder"
             }
         ]
     },
     "handlers": [
-        {
-            "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/' + @modelname",
-            "load_dict": {
-                "model": "@network"
-            }
-        },
         {
             "_target_": "StatsHandler",
             "iteration_log": false
@@ -150,8 +153,16 @@
         "val_handlers": "@handlers",
         "amp": true
     },
+    "checkpointloader": {
+        "_target_": "CheckpointLoader",
+        "load_path": "$@bundle_root + '/models/' + @modelname",
+        "load_dict": {
+            "model": "@network"
+        }
+    },
     "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@checkpointloader(@evaluator)"
     ],
     "run": [
         "$@evaluator.run()"
