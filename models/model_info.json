@@ -1362,5 +1362,25 @@
     "brats_mri_segmentation_v0.4.9": {
         "checksum": "2706f2eeaea35283ee6c178c1704d556091deec6",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_segmentation/versions/0.4.9/files/brats_mri_segmentation_v0.4.9.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.5.2": {
+        "checksum": "48cc951e4541cb9550c41e37406c82f1a1403a4c",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/swin_unetr_btcv_segmentation/versions/0.5.2/files/swin_unetr_btcv_segmentation_v0.5.2.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.4.6": {
+        "checksum": "1fc6bc25d9a9322f3470616ed6b9c0b9c84c12c3",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pancreas_ct_dints_segmentation/versions/0.4.6/files/pancreas_ct_dints_segmentation_v0.4.6.zip"
+    },
+    "wholeBody_ct_segmentation_v0.2.2": {
+        "checksum": "97582929df7a7ab7e884149b0b48ba7bbf4b5800",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/wholebody_ct_segmentation/versions/0.2.2/files/wholeBody_ct_segmentation_v0.2.2.zip"
+    },
+    "endoscopic_tool_segmentation_v0.5.7": {
+        "checksum": "8e1a6fd3d06fec86b184d9658685a62d5cd19ef5",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_tool_segmentation/versions/0.5.7/files/endoscopic_tool_segmentation_v0.5.7.zip"
+    },
+    "pathology_nuclick_annotation_v0.1.7": {
+        "checksum": "e897c58fdfbe7de122af0f9fabba7e88341dfc93",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclick_annotation/versions/0.1.7/files/pathology_nuclick_annotation_v0.1.7.zip"
     }
 }
