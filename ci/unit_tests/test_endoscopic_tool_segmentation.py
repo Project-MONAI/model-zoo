@@ -31,12 +31,21 @@ TEST_CASE_1 = [  # train, evaluate
 ]
 
 TEST_CASE_2 = [  # inference
-    {
-        "bundle_root": "models/endoscopic_tool_segmentation",
-        "handlers#0#_disabled_": True,
-        "preprocessing#transforms#2#spatial_size": [32, 32],
-    }
+    {"bundle_root": "models/endoscopic_tool_segmentation", "preprocessing#transforms#2#spatial_size": [32, 32]}
 ]
+
+
+def test_order(test_name1, test_name2):
+    def get_order(name):
+        if "train" in name:
+            return 1
+        if "eval" in name:
+            return 2
+        if "infer" in name:
+            return 3
+        return 4
+
+    return get_order(test_name1) - get_order(test_name2)
 
 
 class TestEndoscopicSeg(unittest.TestCase):
@@ -105,4 +114,6 @@ class TestEndoscopicSeg(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    loader = unittest.TestLoader()
+    loader.sortTestMethodsUsing = test_order
+    unittest.main(testLoader=loader)

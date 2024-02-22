@@ -4,7 +4,9 @@
         "$import os",
         "$import torch_tensorrt"
     ],
-    "handlers#0#_disabled_": true,
     "network_def": "$torch.jit.load(@bundle_root + '/models/model_trt.ts')",
-    "evaluator#amp": false
+    "evaluator#amp": false,
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)"
+    ]
 }

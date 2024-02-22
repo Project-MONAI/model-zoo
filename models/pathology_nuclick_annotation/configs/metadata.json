@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "changelog": {
+        "0.1.7": "add checkpoint loader for infer",
         "0.1.6": "set image_only to False",
         "0.1.5": "add support for TensorRT conversion and inference",
         "0.1.4": "fix the wrong GPU index issue of multi-node",

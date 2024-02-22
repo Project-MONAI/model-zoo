@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "changelog": {
+        "0.5.2": "add checkpoint loader for infer",
         "0.5.1": "remove meta_dict usage",
         "0.5.0": "fix the wrong GPU index issue of multi-node",
         "0.4.9": "remove error dollar symbol in readme",
