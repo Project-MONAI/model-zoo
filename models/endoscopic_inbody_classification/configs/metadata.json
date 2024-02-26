@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.5",
+    "version": "0.4.6",
     "changelog": {
+        "0.4.6": "add checkpoint loader for infer",
         "0.4.5": "update with EnsureChannelFirstd and remove meta dict usage",
         "0.4.4": "fix the wrong GPU index issue of multi-node",
         "0.4.3": "add dataset dir example",

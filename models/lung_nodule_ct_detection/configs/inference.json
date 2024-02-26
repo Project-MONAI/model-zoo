@@ -3,11 +3,14 @@
     "whether_resampled_luna16": "$(not @whether_raw_luna16)",
     "imports": [
         "$import glob",
+        "$import numpy",
         "$import os"
     ],
     "bundle_root": ".",
+    "image_key": "image",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
+    "output_filename": "result_luna16_fold0.json",
     "data_list_file_path": "$@bundle_root + '/LUNA16_datasplit/dataset_fold0.json'",
     "dataset_dir": "/datasets/LUNA16_Images_resample",
     "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, is_segmentation=True, data_list_key='validation', base_dir=@dataset_dir)",
@@ -82,28 +85,28 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image",
+                "keys": "@image_key",
                 "_disabled_": "@whether_raw_luna16"
             },
             {
                 "_target_": "LoadImaged",
-                "keys": "image",
+                "keys": "@image_key",
                 "reader": "itkreader",
                 "affine_lps_to_ras": true,
                 "_disabled_": "@whether_resampled_luna16"
             },
             {
                 "_target_": "EnsureChannelFirstd",
-                "keys": "image"
+                "keys": "@image_key"
             },
             {
                 "_target_": "Orientationd",
-                "keys": "image",
+                "keys": "@image_key",
                 "axcodes": "RAS"
             },
             {
                 "_target_": "Spacingd",
-                "keys": "image",
+                "keys": "@image_key",
                 "pixdim": [
                     0.703125,
                     0.703125,
@@ -113,7 +116,7 @@
             },
             {
                 "_target_": "ScaleIntensityRanged",
-                "keys": "image",
+                "keys": "@image_key",
                 "a_min": -1024.0,
                 "a_max": 300.0,
                 "b_min": 0.0,
@@ -122,7 +125,7 @@
             },
             {
                 "_target_": "EnsureTyped",
-                "keys": "image"
+                "keys": "@image_key"
             }
         ]
     },
@@ -151,13 +154,13 @@
                 "_target_": "ClipBoxToImaged",
                 "box_keys": "box",
                 "label_keys": "label",
-                "box_ref_image_keys": "image",
+                "box_ref_image_keys": "@image_key",
                 "remove_empty": true
             },
             {
                 "_target_": "AffineBoxToWorldCoordinated",
                 "box_keys": "box",
-                "box_ref_image_keys": "image",
+                "box_ref_image_keys": "@image_key",
                 "affine_lps_to_ras": true
             },
             {
@@ -169,19 +172,12 @@
             {
                 "_target_": "DeleteItemsd",
                 "keys": [
-                    "image"
+                    "@image_key"
                 ]
             }
         ]
     },
     "handlers": [
-        {
-            "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
-            "load_dict": {
-                "model": "@network"
-            }
-        },
         {
             "_target_": "StatsHandler",
             "iteration_log": false
@@ -189,7 +185,7 @@
         {
             "_target_": "scripts.detection_saver.DetectionSaver",
             "output_dir": "@output_dir",
-            "filename": "result_luna16_fold0.json",
+            "filename": "@output_filename",
             "batch_transform": "$lambda x: [xx['image'].meta for xx in x]",
             "output_transform": "$lambda x: [@postprocessing({**xx['pred'],'image':xx['image']}) for xx in x]",
             "pred_box_key": "box",
@@ -207,8 +203,16 @@
         "val_handlers": "@handlers",
         "amp": "@amp"
     },
+    "checkpointloader": {
+        "_target_": "CheckpointLoader",
+        "load_path": "$@bundle_root + '/models/model.pt'",
+        "load_dict": {
+            "model": "@network"
+        }
+    },
     "initialize": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+        "$@checkpointloader(@evaluator)"
     ],
     "run": [
         "$@evaluator.run()"
