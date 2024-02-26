@@ -12,6 +12,7 @@
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "output_postfix": "$datetime.now().strftime('sample_%Y%m%d_%H%M%S')",
+    "output_filename": "$'synimg_' + '@output_postfix' + '.png'",
     "channel": 0,
     "spatial_dims": 2,
     "image_channels": 1,
@@ -98,6 +99,6 @@
     "img_pil": "$Image.fromarray(visualize_2d_image(@generated_image_np), 'RGB')",
     "run": [
         "$@create_output_dir",
-        "$@img_pil.save(@output_dir+'/synimg_'+@output_postfix+'.png')"
+        "$@img_pil.save(os.path.join(@output_dir, @output_filename))"
     ]
 }
