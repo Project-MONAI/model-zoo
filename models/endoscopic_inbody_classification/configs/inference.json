@@ -2,9 +2,13 @@
     "imports": [
         "$import json",
         "$import os",
+        "$import numpy",
         "$import torch"
     ],
     "bundle_root": ".",
+    "image_key": "image",
+    "output_dir": "$@bundle_root + '/eval'",
+    "output_filename": "predictions.csv",
     "dataset_dir": "/workspace/data/endoscopic_inbody_classification",
     "test_json": "$@bundle_root+'/label/test_samples.json'",
     "test_fp": "$open(@test_json,'r', encoding='utf8')",
@@ -22,16 +26,17 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "image"
+                "keys": "@image_key",
+                "image_only": false
             },
             {
                 "_target_": "EnsureChannelFirstd",
-                "keys": "image",
+                "keys": "@image_key",
                 "channel_dim": -1
             },
             {
                 "_target_": "Resized",
-                "keys": "image",
+                "keys": "@image_key",
                 "spatial_size": [
                     256,
                     256
@@ -41,17 +46,17 @@
             {
                 "_target_": "CastToTyped",
                 "dtype": "$torch.float32",
-                "keys": "image"
+                "keys": "@image_key"
             },
             {
                 "_target_": "NormalizeIntensityd",
                 "nonzero": true,
                 "channel_wise": true,
-                "keys": "image"
+                "keys": "@image_key"
             },
             {
                 "_target_": "EnsureTyped",
-                "keys": "image"
+                "keys": "@image_key"
             }
         ]
     },
@@ -80,17 +85,17 @@
                 "keys": [
                     "pred"
                 ]
+            },
+            {
+                "_target_": "SaveClassificationd",
+                "keys": "pred",
+                "meta_keys": "$@image_key + '_meta_dict'",
+                "output_dir": "@output_dir",
+                "filename": "@output_filename"
             }
         ]
     },
     "handlers": [
-        {
-            "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
-            "load_dict": {
-                "model": "@network"
-            }
-        },
         {
             "_target_": "StatsHandler",
             "iteration_log": true
@@ -105,8 +110,16 @@
         "postprocessing": "@postprocessing",
         "val_handlers": "@handlers"
     },
+    "checkpointloader": {
+        "_target_": "CheckpointLoader",
+        "load_path": "$@bundle_root + '/models/model.pt'",
+        "load_dict": {
+            "model": "@network"
+        }
+    },
     "initialize": [
-        "$monai.utils.set_determinism(seed=123)"
+        "$monai.utils.set_determinism(seed=123)",
+        "$@checkpointloader(@evaluator)"
     ],
     "run": [
         "$@evaluator.run()"

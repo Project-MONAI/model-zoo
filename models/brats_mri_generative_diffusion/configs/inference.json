@@ -87,15 +87,13 @@
         "_target_": "scripts.ldm_sampler.LDMSampler",
         "_requires_": "@set_timesteps"
     },
-    "sample": "$@inferer.sampling_fn(@noise, @autoencoder, @diffusion, @noise_scheduler)",
     "saver": {
         "_target_": "SaveImage",
         "_requires_": "@create_output_dir",
         "output_dir": "@output_dir",
         "output_postfix": "@output_postfix"
     },
-    "generated_image": "$@sample",
     "run": [
-        "$@saver(@generated_image[0])"
+        "$@inferer.run(@noise, @autoencoder, @diffusion, @noise_scheduler, @saver)"
     ]
 }

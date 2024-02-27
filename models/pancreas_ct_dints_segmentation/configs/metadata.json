@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.6",
+    "version": "0.4.7",
     "changelog": {
+        "0.4.7": "add missing yaml lib requirement in metadata",
         "0.4.6": "add checkpoint loader for infer",
         "0.4.5": "set image_only to False",
         "0.4.4": "update the benchmark results of TensorRT",
@@ -30,7 +31,8 @@
     "optional_packages_version": {
         "fire": "0.4.0",
         "nibabel": "4.0.1",
-        "pytorch-ignite": "0.4.9"
+        "pytorch-ignite": "0.4.9",
+        "PyYAML": "6.0.1"
     },
     "name": "Pancreas CT DiNTS segmentation",
     "task": "Neural architecture search on pancreas CT segmentation",

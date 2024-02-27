@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import torch
 import torch.nn as nn
+from monai.transforms import Transform
 from monai.utils import optional_import
 from torch.cuda.amp import autocast
 
@@ -58,3 +59,15 @@ class LDMSampler:
                 sample = autoencoder_model.decode_stage_2_outputs(image)
 
         return sample
+
+    def run(
+        self,
+        input_noise: torch.Tensor,
+        autoencoder_model: nn.Module,
+        diffusion_model: nn.Module,
+        scheduler: nn.Module,
+        saver: Transform,
+        conditioning: torch.Tensor | None = None,
+    ) -> torch.Tensor:
+        sample = self.sampling_fn(input_noise, autoencoder_model, diffusion_model, scheduler, conditioning)
+        saver(sample[0])
