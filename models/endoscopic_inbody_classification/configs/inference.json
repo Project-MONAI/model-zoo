@@ -7,6 +7,8 @@
     ],
     "bundle_root": ".",
     "image_key": "image",
+    "output_dir": "$@bundle_root + '/eval'",
+    "output_filename": "predictions.csv",
     "dataset_dir": "/workspace/data/endoscopic_inbody_classification",
     "test_json": "$@bundle_root+'/label/test_samples.json'",
     "test_fp": "$open(@test_json,'r', encoding='utf8')",
@@ -24,7 +26,8 @@
         "transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": "@image_key"
+                "keys": "@image_key",
+                "image_only": false
             },
             {
                 "_target_": "EnsureChannelFirstd",
@@ -82,6 +85,13 @@
                 "keys": [
                     "pred"
                 ]
+            },
+            {
+                "_target_": "SaveClassificationd",
+                "keys": "pred",
+                "meta_keys": "$@image_key + '_meta_dict'",
+                "output_dir": "@output_dir",
+                "filename": "@output_filename"
             }
         ]
     },
