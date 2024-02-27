@@ -1382,5 +1382,25 @@
     "pathology_nuclick_annotation_v0.1.7": {
         "checksum": "e897c58fdfbe7de122af0f9fabba7e88341dfc93",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclick_annotation/versions/0.1.7/files/pathology_nuclick_annotation_v0.1.7.zip"
+    },
+    "endoscopic_inbody_classification_v0.4.6": {
+        "checksum": "cf63b8dbc96e2c734edd5b437139045ef697a125",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_inbody_classification/versions/0.4.6/files/endoscopic_inbody_classification_v0.4.6.zip"
+    },
+    "lung_nodule_ct_detection_v0.6.2": {
+        "checksum": "875012a3aef3c5850defac6c43a6196e597cb968",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/lung_nodule_ct_detection/versions/0.6.2/files/lung_nodule_ct_detection_v0.6.2.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.4.7": {
+        "checksum": "be94c1158f18491a97a8a934096b0b4021faf97c",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pancreas_ct_dints_segmentation/versions/0.4.7/files/pancreas_ct_dints_segmentation_v0.4.7.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.8": {
+        "checksum": "55258333fc9c6211c69a5622a085d3f630663b67",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_axial_slices_generative_diffusion/versions/1.0.8/files/brats_mri_axial_slices_generative_diffusion_v1.0.8.zip"
+    },
+    "brats_mri_generative_diffusion_v1.0.8": {
+        "checksum": "d7fe19e0963f6436d96a879b41cbe0ed80cb7095",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_generative_diffusion/versions/1.0.8/files/brats_mri_generative_diffusion_v1.0.8.zip"
     }
 }
