@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20230507.json",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "changelog": {
+        "1.0.8": "define arg for output file and put infer logic into a function",
         "1.0.7": "update AddChanneld with EnsureChannelFirstd",
         "1.0.6": "update with new lr scheduler api in inference",
         "1.0.5": "fix the wrong GPU index issue of multi-node",

@@ -11,10 +11,15 @@
 
 from __future__ import annotations
 
+import os
+
 import torch
 import torch.nn as nn
 from monai.utils import optional_import
+from PIL import Image
 from torch.cuda.amp import autocast
+
+from .utils import visualize_2d_image
 
 tqdm, has_tqdm = optional_import("tqdm", name="tqdm")
 
@@ -58,3 +63,21 @@ class LDMSampler:
                 sample = autoencoder_model.decode_stage_2_outputs(image)
 
         return sample
+
+    def generate_image_np(self, sample) -> torch.Tensor:
+        image_np = sample[0, 0].cpu().numpy().transpose(1, 0)[::-1, ::-1]
+        return image_np
+
+    def run(
+        self,
+        input_noise: torch.Tensor,
+        autoencoder_model: nn.Module,
+        diffusion_model: nn.Module,
+        scheduler: nn.Module,
+        output_file: str,
+        conditioning: torch.Tensor | None = None,
+    ) -> torch.Tensor:
+        sample = self.sampling_fn(input_noise, autoencoder_model, diffusion_model, scheduler, conditioning)
+        image_np = self.generate_image_np(sample)
+        image_pil = Image.fromarray(visualize_2d_image(image_np), "RGB")
+        image_pil.save(output_file)
