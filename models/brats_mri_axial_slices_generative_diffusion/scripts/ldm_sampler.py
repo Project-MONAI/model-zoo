@@ -11,8 +11,6 @@
 
 from __future__ import annotations
 
-import os
-
 import torch
 import torch.nn as nn
 from monai.utils import optional_import
