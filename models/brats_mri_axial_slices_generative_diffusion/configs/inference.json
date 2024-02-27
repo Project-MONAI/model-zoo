@@ -4,7 +4,8 @@
         "$from datetime import datetime",
         "$from pathlib import Path",
         "$from PIL import Image",
-        "$from scripts.utils import visualize_2d_image"
+        "$from scripts.utils import visualize_2d_image",
+        "$import os"
     ],
     "bundle_root": ".",
     "model_dir": "$@bundle_root + '/models'",
@@ -12,6 +13,7 @@
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "output_postfix": "$datetime.now().strftime('sample_%Y%m%d_%H%M%S')",
+    "output_filename": "$'synimg_' + @output_postfix + '.png'",
     "channel": 0,
     "spatial_dims": 2,
     "image_channels": 1,
@@ -92,12 +94,8 @@
         "_target_": "scripts.ldm_sampler.LDMSampler",
         "_requires_": "@set_timesteps"
     },
-    "sample": "$@inferer.sampling_fn(@noise, @autoencoder, @diffusion, @noise_scheduler)",
-    "generated_image": "$@sample",
-    "generated_image_np": "$@generated_image[0,0].cpu().numpy().transpose(1, 0)[::-1, ::-1]",
-    "img_pil": "$Image.fromarray(visualize_2d_image(@generated_image_np), 'RGB')",
     "run": [
         "$@create_output_dir",
-        "$@img_pil.save(@output_dir+'/synimg_'+@output_postfix+'.png')"
+        "$@inferer.run(@noise, @autoencoder, @diffusion, @noise_scheduler, os.path.join(@output_dir, @output_filename))"
     ]
 }
