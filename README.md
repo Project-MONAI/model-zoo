@@ -11,12 +11,12 @@ A basic example to download and extract a bundle is:
 
 ```bash
 pip install "monai[fire]"
-python -m monai.bundle download "wholeBody_ct_segmentation" --bundle_dir "bundles/"
+python -m monai.bundle download "spleen_ct_segmentation" --bundle_dir "bundles/"
 ```
 
-- The commands will download `wholeBody_ct_segmentation` to the current directory's `bundles/` subdirectory.
+- The commands will download `spleen_ct_segmentation` to the current directory's `bundles/` subdirectory.
 - For more downloading options, please run `python -m monai.bundle download -h`
-- For the specific usage of a bundle, please refer to its `docs` folder, for example, `bundles/wholeBody_ct_segmentation/docs`.
+- For the specific usage of a bundle, please refer to its `docs` folder, for example, `bundles/spleen_ct_segmentation/docs`.
 
 To get started with the models, please see [the example use cases](https://github.com/Project-MONAI/tutorials/tree/main/model_zoo).
 
