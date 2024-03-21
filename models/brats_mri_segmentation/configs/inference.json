@@ -12,6 +12,7 @@
     "output_dtype": "uint8",
     "output_postfix": "seg",
     "separate_folder": true,
+    "load_pretrain": true,
     "data_list_file_path": "$@bundle_root + '/configs/datalist.json'",
     "dataset_dir": "/workspace/data/medical/brats2018challenge",
     "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing', base_dir=@dataset_dir)",
@@ -140,7 +141,7 @@
     },
     "initialize": [
         "$setattr(torch.backends.cudnn, 'benchmark', True)",
-        "$@checkpointloader(@evaluator)"
+        "$@checkpointloader(@evaluator) if @load_pretrain else None"
     ],
     "run": [
         "$@evaluator.run()"
