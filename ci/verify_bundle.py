@@ -28,11 +28,7 @@ from utils import download_large_files, get_json_dict
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
 # files that are preferred to be included in a bundle
 preferred_files_list = ["models/model.pt", "configs/inference.json"]
-# keys that must be included in inference config
-infer_keys_list = ["bundle_root", "device", "network_def", "inferer"]
-# keys that must be included in train config
-train_keys_list = ["bundle_root", "device", "dataset_dir"]
-# keys that must be included in metadata
+# keys that must be included in metadata #TODO: should add it into MONAI Label and NVFlare required properties
 metadata_keys_list = ["name"]
 
 
@@ -78,41 +74,6 @@ def _check_missing_keys(file_name: str, bundle_path: str, keys_list: List):
     return config
 
 
-def _check_main_section_necessary_key(necessary_key: str, config: dict, main_section: str = "train"):
-    # `necessary_key` must be in `main_section`
-    if necessary_key not in config[main_section]:
-        raise ValueError(f"'{necessary_key}' is not existing in '{main_section}'.")
-
-
-def _check_sub_section_necessary_key(
-    necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"
-):
-    # `necessary_key` must be in `sub_section`
-    if necessary_key not in config[main_section][sub_section]:
-        raise ValueError(f"'{necessary_key}' is not existing in '{main_section}#{sub_section}'.")
-
-
-def _check_main_section_optional_key(
-    arg_name: str, necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"
-):
-    # if `arg_name` is in `sub_section`, its value must be `necessary_key`
-    if arg_name in config[main_section][sub_section]:
-        if necessary_key not in config[main_section]:
-            actual_key = str(config[main_section][sub_section][arg_name]).split("#")[-1]
-            raise ValueError(f"'{main_section}' should have '{necessary_key}', got '{actual_key}'.")
-
-
-def _check_validation_handler(var_name: str, config: dict):
-    if "handlers" in config:
-        for handler in config["handlers"]:
-            if handler["_target_"] == "ValidationHandler":
-                interval_name = str(handler["interval"]).split("@")[-1]
-                if not interval_name == var_name:
-                    raise ValueError(
-                        f"variable '{var_name}' should be defined for 'ValidationHandler', got '{interval_name}'."
-                    )
-
-
 def verify_bundle_directory(models_path: str, bundle_name: str):
     """
     According to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html),
@@ -154,78 +115,13 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
 
 def verify_bundle_keys(models_path: str, bundle_name: str):
     """
-    This function is used to verify if necessary keys are included in config files.
+    This function is partially replaced by `check_properties` in unit tests.
 
     """
     bundle_path = os.path.join(models_path, bundle_name)
 
     # verify metadata
     _ = _check_missing_keys(file_name="metadata.json", bundle_path=bundle_path, keys_list=metadata_keys_list)
-
-    # verify inference config (if exists)
-    inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
-    if inference_file_name is not None:
-        _ = _check_missing_keys(file_name=inference_file_name, bundle_path=bundle_path, keys_list=infer_keys_list)
-
-    # verify train config (if exists)
-    train_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "train")
-    if train_file_name is not None:
-        train_config = _check_missing_keys(
-            file_name=train_file_name, bundle_path=bundle_path, keys_list=train_keys_list
-        )
-
-        if "train" in train_config:
-            _check_main_section_necessary_key(necessary_key="trainer", config=train_config)
-            _check_main_section_necessary_key(necessary_key="dataset", config=train_config)
-            _check_main_section_necessary_key(necessary_key="handlers", config=train_config)
-            _check_sub_section_necessary_key(necessary_key="max_epochs", config=train_config, sub_section="trainer")
-            _check_sub_section_necessary_key(necessary_key="data", config=train_config, sub_section="dataset")
-            _check_main_section_optional_key(
-                arg_name="postprocessing", necessary_key="postprocessing", config=train_config, sub_section="trainer"
-            )
-            _check_main_section_optional_key(
-                arg_name="transform", necessary_key="preprocessing", config=train_config, sub_section="dataset"
-            )
-            _check_main_section_optional_key(
-                arg_name="key_train_metric", necessary_key="key_metric", config=train_config, sub_section="trainer"
-            )
-            # special requirements: if "ValidationHandler" in "handlers", key "val_interval" should be defined.
-            _check_validation_handler(var_name="val_interval", config=train_config["train"])
-        if "validate" in train_config:
-            _check_main_section_necessary_key(necessary_key="evaluator", config=train_config, main_section="validate")
-            _check_main_section_necessary_key(necessary_key="dataset", config=train_config, main_section="validate")
-            _check_main_section_necessary_key(necessary_key="handlers", config=train_config, main_section="validate")
-            _check_sub_section_necessary_key(
-                necessary_key="data", config=train_config, main_section="validate", sub_section="dataset"
-            )
-            _check_main_section_optional_key(
-                arg_name="postprocessing",
-                necessary_key="postprocessing",
-                config=train_config,
-                main_section="validate",
-                sub_section="evaluator",
-            )
-            _check_main_section_optional_key(
-                arg_name="transform",
-                necessary_key="preprocessing",
-                config=train_config,
-                main_section="validate",
-                sub_section="dataset",
-            )
-            _check_main_section_optional_key(
-                arg_name="inferer",
-                necessary_key="inferer",
-                config=train_config,
-                main_section="validate",
-                sub_section="evaluator",
-            )
-            _check_main_section_optional_key(
-                arg_name="key_val_metric",
-                necessary_key="key_metric",
-                config=train_config,
-                main_section="validate",
-                sub_section="evaluator",
-            )
 
 
 def verify_version_changes(models_path: str, bundle_name: str):
