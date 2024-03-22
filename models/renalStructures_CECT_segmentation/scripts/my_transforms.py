@@ -40,6 +40,7 @@ class MergeClassesd(MapTransform):
                         merged = merged + imgvol * ~((merged != 0) & (imgvol != 0))
                         data[key] = merged.unsqueeze(0)
                     else:
+                        merged = imgvol
                         data[key] = imgvol.unsqueeze(0)
             elif not self.allow_missing_keys:
                 raise KeyError(
