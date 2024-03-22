@@ -11,6 +11,7 @@
     "output_dtype": "$numpy.float32",
     "output_postfix": "trans",
     "separate_folder": true,
+    "load_pretrain": true,
     "dataset_dir": "/workspace/data/RawData/",
     "datalist": "$list(sorted(glob.glob(@dataset_dir + '/imagesTs/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -145,7 +146,7 @@
     },
     "initialize": [
         "$monai.utils.set_determinism(seed=123)",
-        "$@checkpointloader(@evaluator)"
+        "$@checkpointloader(@evaluator) if @load_pretrain else None"
     ],
     "run": [
         "$@evaluator.run()"

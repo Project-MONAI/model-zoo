@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "changelog": {
+        "0.2.3": "add load_pretrain flag for infer",
         "0.2.2": "add checkpoint loader for infer",
         "0.2.1": "remove meta_dict usage",
         "0.2.0": "add support for TensorRT conversion and inference",

@@ -14,6 +14,7 @@ output_ext: ".nii.gz"
 output_dtype: "$numpy.float32"
 output_postfix: "trans"
 separate_folder: true
+load_pretrain: true
 dataset_dir: "/workspace/data/msd/Task07_Pancreas"
 data_list_file_path: "$@bundle_root + '/configs/dataset_0.json'"
 datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing',
@@ -124,6 +125,6 @@ checkpointloader:
     model: "@network"
 initialize:
 - "$setattr(torch.backends.cudnn, 'benchmark', True)"
-- "$@checkpointloader(@evaluator)"
+- "$@checkpointloader(@evaluator) if @load_pretrain else None"
 run:
 - "$@evaluator.run()"
