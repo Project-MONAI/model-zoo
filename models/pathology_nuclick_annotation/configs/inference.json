@@ -13,6 +13,7 @@
     "output_dtype": "$numpy.float32",
     "output_postfix": "trans",
     "separate_folder": true,
+    "load_pretrain": true,
     "dataset_dir": "/workspace/data/CoNSePNuclei",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
     "centroids": "$list(sorted(glob.glob(@dataset_dir + '/Test/Centroids/*.txt')))[:1]",
@@ -137,7 +138,7 @@
         "$import sys",
         "$sys.path.append(@bundle_root)",
         "$monai.utils.set_determinism(seed=123)",
-        "$@checkpointloader(@evaluator)"
+        "$@checkpointloader(@evaluator) if @load_pretrain else None"
     ],
     "run": [
         "$@evaluator.run()"

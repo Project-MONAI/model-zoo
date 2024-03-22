@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.6.2",
+    "version": "0.6.3",
     "changelog": {
+        "0.6.3": "add load_pretrain flag for infer",
         "0.6.2": "add checkpoint loader for infer",
         "0.6.1": "fix format error",
         "0.6.0": "remove meta_dict usage",
