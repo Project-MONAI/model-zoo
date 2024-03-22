@@ -1402,5 +1402,9 @@
     "brats_mri_generative_diffusion_v1.0.8": {
         "checksum": "d7fe19e0963f6436d96a879b41cbe0ed80cb7095",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_generative_diffusion/versions/1.0.8/files/brats_mri_generative_diffusion_v1.0.8.zip"
+    },
+    "renalStructures_CECT_segmentation_v0.2.1": {
+        "checksum": "5638f591903c1e1dce1558435f7a7f6f0c5318ae",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/renalstructures_cect_segmentation/versions/0.2.1/files/renalStructures_CECT_segmentation_v0.2.1.zip"
     }
 }
