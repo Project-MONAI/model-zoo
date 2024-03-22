@@ -38,9 +38,9 @@ class MergeClassesd(MapTransform):
                     imgvol = channel
                     if merged is not None:
                         merged = merged + imgvol * ~((merged != 0) & (imgvol != 0))
+                        data[key] = merged.unsqueeze(0)
                     else:
-                        merged = imgvol
-                data[key] = merged.unsqueeze(0)
+                        data[key] = imgvol.unsqueeze(0)
             elif not self.allow_missing_keys:
                 raise KeyError(
                     f"Key `{key}` of transform `{self.__class__.__name__}` was missing in the data"
