@@ -1406,5 +1406,45 @@
     "renalStructures_CECT_segmentation_v0.2.1": {
         "checksum": "5638f591903c1e1dce1558435f7a7f6f0c5318ae",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/renalstructures_cect_segmentation/versions/0.2.1/files/renalStructures_CECT_segmentation_v0.2.1.zip"
+    },
+    "pathology_nuclick_annotation_v0.1.8": {
+        "checksum": "dfdb61e22a5d9c193b151e543a24e6a1ae5b42d9",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclick_annotation/versions/0.1.8/files/pathology_nuclick_annotation_v0.1.8.zip"
+    },
+    "endoscopic_inbody_classification_v0.4.7": {
+        "checksum": "b4094b2b85da7a8a14238fb1af32280b7729c520",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_inbody_classification/versions/0.4.7/files/endoscopic_inbody_classification_v0.4.7.zip"
+    },
+    "lung_nodule_ct_detection_v0.6.3": {
+        "checksum": "c2290a02fcd7130a803b493075e7c5fb68faf89c",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/lung_nodule_ct_detection/versions/0.6.3/files/lung_nodule_ct_detection_v0.6.3.zip"
+    },
+    "spleen_ct_segmentation_v0.5.6": {
+        "checksum": "f75cad6627617c9ac5c780617dfa125a03a112f3",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.6/files/spleen_ct_segmentation_v0.5.6.zip"
+    },
+    "brats_mri_segmentation_v0.5.0": {
+        "checksum": "62e7f6fbe4bfe19ceaf162a8e82c8d5fa4eebf18",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_segmentation/versions/0.5.0/files/brats_mri_segmentation_v0.5.0.zip"
+    },
+    "wholeBody_ct_segmentation_v0.2.3": {
+        "checksum": "6ca7092c452050382508ddc169c0ee4ca5bc0ce8",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/wholebody_ct_segmentation/versions/0.2.3/files/wholeBody_ct_segmentation_v0.2.3.zip"
+    },
+    "pancreas_ct_dints_segmentation_v0.4.8": {
+        "checksum": "d6248e5eeb98293f4403c4207b52c94b60787417",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pancreas_ct_dints_segmentation/versions/0.4.8/files/pancreas_ct_dints_segmentation_v0.4.8.zip"
+    },
+    "endoscopic_tool_segmentation_v0.5.8": {
+        "checksum": "9d90d4c373b43827aad202b9df1ebba4ab5c59d1",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/endoscopic_tool_segmentation/versions/0.5.8/files/endoscopic_tool_segmentation_v0.5.8.zip"
+    },
+    "spleen_deepedit_annotation_v0.5.4": {
+        "checksum": "aa85995809336a4a436cf78eade2a7f9aff9c591",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_deepedit_annotation/versions/0.5.4/files/spleen_deepedit_annotation_v0.5.4.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.5.3": {
+        "checksum": "45f7adcd5a0168b51a39df4a9b6fc54de0f94aba",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/swin_unetr_btcv_segmentation/versions/0.5.3/files/swin_unetr_btcv_segmentation_v0.5.3.zip"
     }
 }
