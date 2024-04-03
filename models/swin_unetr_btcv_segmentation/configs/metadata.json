@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "changelog": {
+        "0.5.4": "update to use monai 1.3.1",
         "0.5.3": "add load_pretrain flag for infer",
         "0.5.2": "add checkpoint loader for infer",
         "0.5.1": "remove meta_dict usage",
@@ -30,13 +31,13 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.3.0",
-    "pytorch_version": "1.13.1",
-    "numpy_version": "1.22.2",
+    "monai_version": "1.3.1rc1",
+    "pytorch_version": "2.2.1",
+    "numpy_version": "1.24.4",
     "optional_packages_version": {
-        "nibabel": "4.0.1",
-        "pytorch-ignite": "0.4.9",
-        "einops": "0.4.1"
+        "nibabel": "5.2.1",
+        "pytorch-ignite": "0.4.11",
+        "einops": "0.7.0"
     },
     "name": "Swin UNETR BTCV segmentation",
     "task": "BTCV multi-organ segmentation",
