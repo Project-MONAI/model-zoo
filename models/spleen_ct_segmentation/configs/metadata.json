@@ -35,7 +35,7 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.3.1rc1",
+    "monai_version": "1.3.1rc2",
     "pytorch_version": "2.2.1",
     "numpy_version": "1.24.4",
     "optional_packages_version": {
