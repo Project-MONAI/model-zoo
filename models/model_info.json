@@ -1446,5 +1446,9 @@
     "swin_unetr_btcv_segmentation_v0.5.3": {
         "checksum": "45f7adcd5a0168b51a39df4a9b6fc54de0f94aba",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/swin_unetr_btcv_segmentation/versions/0.5.3/files/swin_unetr_btcv_segmentation_v0.5.3.zip"
+    },
+    "lung_nodule_ct_detection_v0.6.4": {
+        "checksum": "c116a69b82f8477039c24353ce185a5451531fcf",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/lung_nodule_ct_detection/versions/0.6.4/files/lung_nodule_ct_detection_v0.6.4.zip"
     }
 }
