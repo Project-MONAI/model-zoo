@@ -130,8 +130,6 @@ It is possible that your inference dataset should set `"affine_lps_to_ras": fals
 python -m monai.bundle trt_export --net_id network_def --filepath models/model_trt.ts --ckpt_file models/model.pt --meta_file configs/metadata.json --config_file configs/inference.json --precision <fp32/fp16> --input_shape "[1, 1, 512, 512, 192]"  --use_onnx "True" --use_trace "True" --onnx_output_names "['output_0', 'output_1', 'output_2', 'output_3', 'output_4', 'output_5']" --network_def#use_list_output "True"
 ```
 
-Note that if you're using a container based on [PyTorch 24.03](nvcr.io/nvidia/pytorch:24.03-py3), and the size of your input exceeds (432, 432, 152), the TensorRT export might fail. In such cases, it would be necessary for users to manually adjust the input_shape downwards. Keep in mind that minimizing the input_shape could potentially impact performance. Hence, always reassess the model's performance after making such adjustments to validate if it continues to meet your requirements.
-
 #### Execute inference with the TensorRT model
 
 ```
