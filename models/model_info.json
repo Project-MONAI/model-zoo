@@ -1454,5 +1454,9 @@
     "lung_nodule_ct_detection_v0.6.5": {
         "checksum": "261dd10da0ff216c092dd2dd552e2a334ac0eb01",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/lung_nodule_ct_detection/versions/0.6.5/files/lung_nodule_ct_detection_v0.6.5.zip"
+    },
+    "pathology_tumor_detection_v0.5.8": {
+        "checksum": "c2bcb7adb467564e715730c944117c3b657d1a91",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_tumor_detection/versions/0.5.8/files/pathology_tumor_detection_v0.5.8.zip"
     }
 }
