@@ -64,7 +64,7 @@ A probability number of the input patch being tumor or normal.
 
 ### Memory Consumption Warning
 
-If you face memory issues in traning, you can lower the `batch_size` of the validation dataloader in the configurations to reduce the System RAM requirements.
+If you face memory issues in traning, you can lower the `batch_size` in the configurations to reduce the System RAM requirements.
 
 ### Inference on a WSI
 
@@ -133,7 +133,7 @@ python -m monai.bundle run --config_file configs/train.json --dataset_dir <actua
 torchrun --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config_file "['configs/train.json','configs/multi_gpu_train.json']"
 ```
 
-Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
+Please note that the distributed training-related options depend on the actual running environment; thus, users may need to add `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
 #### Execute inference
 
