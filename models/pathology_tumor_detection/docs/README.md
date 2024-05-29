@@ -62,6 +62,10 @@ The training pipeline is a json file (dataset.json) which includes path to each 
 
 A probability number of the input patch being tumor or normal.
 
+### Memory Consumption Warning
+
+If you face memory issues in traning, you can lower the `batch_size` in the configurations to reduce the System RAM requirements.
+
 ### Inference on a WSI
 
 Inference is performed on WSI in a sliding window manner with specified stride. A foreground mask is needed to specify the region where the inference will be performed on, given that background region which contains no tissue at all can occupy a significant portion of a WSI. Output of the inference pipeline is a probability map of size 1/stride of original WSI size.
