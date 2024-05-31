@@ -1,0 +1,7 @@
+large_files:
+  - path: "models/dynunet_FT.pt"
+    url: "https://drive.google.com/file/d/1bR9iQjc5Qo_yD-XN6ZYf3eiXhX9SEIyM/view?usp=sharing"
+    hash_val: ""
+    hash_type: ""
+  - path: "models/A100/dynunet_FT_trt_16.ts"
+    url: "https://drive.google.com/file/d/1k44aoW-bXAuG5i9t2nw1qWTidcDsfelQ/view?usp=sharing"
