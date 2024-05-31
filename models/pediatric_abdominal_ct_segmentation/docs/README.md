@@ -1,7 +1,7 @@
 # Model Overview
-A Pediatric 3D Abdominal Organ Segmentation model, pretrained on adult and pediatric public datasets, and fine tuned for institutional pediatric data. 
+A Pediatric 3D Abdominal Organ Segmentation model, pretrained on adult and pediatric public datasets, and fine tuned for institutional pediatric data.
 
-Please cite this manuscript: 
+Please cite this manuscript:
 Somasundaram E, Taylor Z, Alves VV, et al. Deep-Learning Models for Abdominal CT Organ Segmentation in Children: Development and Validation in Internal and Heterogeneous Public Datasets. AJR 2024 May 1 [published online]. Accepted manuscript. doi:10.2214/AJR.24.30931
 
 ## Data
@@ -33,10 +33,10 @@ External dataset licenses can be found in accompanying text file. Internal datas
 ### Model Architectures
 - DynUNet
 - SegResNet
-- SwinUNETR 
+- SwinUNETR
 
 ### Hyper-Parameter Tuning
-Weights and Biases was used to extensively tune each model for learning rate, scheduler and optimizer. For fine-tuning the fraction of trainable layers was also optimized. DynUNet performed overall better on all test datasets. The Total Segmentator model was also compared and the DynUNet model significantly outperformed Total Segmentator on institutional test data while maintaining relatively stable performance on adult and TCIA datasets. 
+Weights and Biases was used to extensively tune each model for learning rate, scheduler and optimizer. For fine-tuning the fraction of trainable layers was also optimized. DynUNet performed overall better on all test datasets. The Total Segmentator model was also compared and the DynUNet model significantly outperformed Total Segmentator on institutional test data while maintaining relatively stable performance on adult and TCIA datasets.
 
 ### Input
 One channel CT image

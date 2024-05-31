@@ -23,7 +23,7 @@ train_datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_
 val_datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation')"
 n_gpu: 0
 device: "$torch.device('cuda:' + str(@n_gpu) if torch.cuda.is_available() else 'cpu')"
-spatial_size: 
+spatial_size:
 - 96
 - 96
 - 96
@@ -51,7 +51,7 @@ network_def:
   - 2
   - 2
   - 2
-  - 
+  -
     - 2
     - 2
     - 1
@@ -64,7 +64,7 @@ network_def:
     - 2
     - 2
     - 1
-  norm_name: "instance" 
+  norm_name: "instance"
   deep_supervision: false
   res_block: true
 network: "$@network_def.to(@device)"
@@ -228,7 +228,7 @@ train:
       argmax:
       - true
       - false
-      to_onehot: 
+      to_onehot:
       - "@output_classes"
       - "@output_classes"
     - _target_: scripts.monai_utils.SplitPredsLabeld
@@ -270,8 +270,8 @@ train:
       output_transform: "$monai.handlers.from_engine(['pred_pancreas', 'label_pancreas'])"
       include_background: false
   trainer:
-    _target_: SupervisedTrainer 
-    device: "@device" 
+    _target_: SupervisedTrainer
+    device: "@device"
     max_epochs: "@max_epochs"
     train_data_loader: "@train#dataloader"
     network: "@network"
@@ -328,7 +328,7 @@ validate:
       output_transform: "$monai.handlers.from_engine(['pred', 'label'])"
       include_background: false
   additional_metrics:
-    val_liver_dice: 
+    val_liver_dice:
       _target_: monai.handlers.MeanDice
       output_transform: "$monai.handlers.from_engine(['pred_liver', 'label_liver'])"
       include_background: false

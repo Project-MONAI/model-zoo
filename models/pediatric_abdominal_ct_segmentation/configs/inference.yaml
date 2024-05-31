@@ -11,11 +11,11 @@ output_channels: 4
 # arch_ckpt: "$torch.load(@arch_ckpt_path, map_location=torch.device('cuda'))"
 bundle_root: "."
 output_dir: "$@bundle_root + '/eval/dynunet_FT'"
-dataset_dir: "/processed/Public/CT_TotalSegmentator/TS_split/test/" 
+dataset_dir: "/processed/Public/CT_TotalSegmentator/TS_split/test/"
 data_list_file_path: "$@bundle_root + '/configs/TS_test.json'"
 datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation')"
 device: "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')"
-spatial_size: 
+spatial_size:
 - 96
 - 96
 - 96
@@ -43,7 +43,7 @@ network_def:
   - 2
   - 2
   - 2
-  - 
+  -
     - 2
     - 2
     - 1
@@ -56,7 +56,7 @@ network_def:
     - 2
     - 2
     - 1
-  norm_name: "instance" 
+  norm_name: "instance"
   deep_supervision: false
   res_block: true
 network: "$@network_def.to(@device)"
