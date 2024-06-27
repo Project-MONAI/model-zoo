@@ -27,7 +27,7 @@
     "optional_packages_version": {
         "fire": "0.4.0",
         "nibabel": "4.0.1",
-        "pytorch-ignite": "0.4.9"
+        "pytorch-ignite": "0.4.11"
     },
     "name": "CT-Ped-Abdominal-Seg",
     "task": "Training and Prediction of 3D Segmentation of Liver, Spleen and Pancreas from Abdominal CT images",
@@ -40,7 +40,7 @@
     "label_classes": "single channel data, 1 is liver, 2 is spleen, 3 is pancreas and 0 is everything else",
     "pred_classes": "single channel data, 1 is liver, 2 is spleen, 3 is pancreas and 0 is everything else",
     "eval_metrics": {
-        "TS_mean_dice": 0.9,
+        "TS_mean_dice": 0.90,
         "TCIA_mean_dice": 0.87,
         "CCHMC_mean_dice": 0.89
     },
