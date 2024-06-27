@@ -40,7 +40,7 @@
     "label_classes": "single channel data, 1 is liver, 2 is spleen, 3 is pancreas and 0 is everything else",
     "pred_classes": "single channel data, 1 is liver, 2 is spleen, 3 is pancreas and 0 is everything else",
     "eval_metrics": {
-        "TS_mean_dice": 0.90,
+        "TS_mean_dice": 0.9,
         "TCIA_mean_dice": 0.87,
         "CCHMC_mean_dice": 0.89
     },
