@@ -70,7 +70,7 @@ verify_bundle() {
                 fi
                 if [ ! -z "$requirements" ]; then
                     echo "install required libraries for bundle: $bundle"
-                    pipenv install "$include_pre_release" -r "$requirements"
+                    pipenv install $include_pre_release -r "$requirements"
                 fi
                 # get extra install script if exists
                 extra_script=$(pipenv run python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --get_script True)

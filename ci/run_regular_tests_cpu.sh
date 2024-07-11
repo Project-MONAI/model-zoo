@@ -48,7 +48,7 @@ verify_release_bundle() {
     fi
     if [ ! -z "$requirements" ]; then
         echo "install required libraries for bundle: $bundle"
-        pip install "$include_pre_release" -r "$requirements"
+        pip install $include_pre_release -r "$requirements"
     fi
     # verify bundle
     python $(pwd)/ci/verify_bundle.py -b "$bundle" -p "$download_path" -m "regular"  # regular tests on cpu

@@ -63,7 +63,7 @@ verify_bundle() {
                 fi
                 if [ ! -z "$requirements" ]; then
                     echo "install required libraries for bundle: $bundle"
-                    pip install "$include_pre_release" -r "$requirements"
+                    pip install $include_pre_release -r "$requirements"
                 fi
                 # verify bundle
                 python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
