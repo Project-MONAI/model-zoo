@@ -20,7 +20,7 @@
 
 set -ex
 BUILD_TYPE=all
-export ALLOW_MONAI_RC=true
+export ALLOW_MONAI_RC=false
 
 if [[ $# -eq 1 ]]; then
     BUILD_TYPE=$1
@@ -58,10 +58,6 @@ verify_bundle() {
                 # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
                 if [ $ALLOW_MONAI_RC = true ]; then
                     include_pre_release="--pre"
-                    # debug info
-                    if [ ! -z "$requirements" ]; then
-                        cat "$requirements" | grep "monai"
-                    fi
                 else
                     include_pre_release=""
                 fi

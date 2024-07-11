@@ -20,7 +20,7 @@
 
 set -ex
 BUILD_TYPE=all
-export ALLOW_MONAI_RC=true
+export ALLOW_MONAI_RC=false
 
 if [[ $# -eq 1 ]]; then
     BUILD_TYPE=$1

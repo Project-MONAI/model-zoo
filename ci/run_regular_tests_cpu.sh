@@ -20,7 +20,7 @@
 
 set -ex
 bundle=""
-export ALLOW_MONAI_RC=true
+export ALLOW_MONAI_RC=false
 
 if [[ $# -eq 1 ]]; then
     bundle=$1
