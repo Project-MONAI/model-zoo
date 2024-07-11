@@ -12,6 +12,7 @@
 
 import argparse
 import os
+import sys
 
 from bundle_custom_data import install_dependency_dict
 from utils import get_json_dict
@@ -66,7 +67,7 @@ def get_requirements(bundle, models_path):
                 lib_monai_req = f"monai=={monai_version}"
             else:
                 lib_monai_req = f"monai>={monai_version}rc1,<{increment_version(monai_version)}"
-                print(f"ALLOW_MONAI_RC is set to true, the version range is {lib_monai_req}")
+                print(f"ALLOW_MONAI_RC is set to true, the version range is {lib_monai_req}", file=sys.stderr)
             libs.append(lib_monai_req)
         if "pytorch_version" in metadata.keys():
             pytorch_version = metadata["pytorch_version"]
