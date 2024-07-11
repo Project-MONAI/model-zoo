@@ -20,6 +20,7 @@
 
 set -ex
 bundle=""
+ALLOW_MONAI_RC=true
 
 if [[ $# -eq 1 ]]; then
     bundle=$1
@@ -39,9 +40,15 @@ verify_release_bundle() {
     python $(pwd)/ci/download_latest_bundle.py --b "$bundle" --models_path $(pwd)/models --p "$download_path"
     # get required libraries according to the bundle's metadata file
     requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --p "$download_path")
+    # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
+    if [ $ALLOW_MONAI_RC = true ]; then
+        include_pre_release="--pre"
+    else
+        include_pre_release=""
+    fi
     if [ ! -z "$requirements" ]; then
         echo "install required libraries for bundle: $bundle"
-        pip install -r "$requirements"
+        pip install "$include_pre_release" -r "$requirements"
     fi
     # verify bundle
     python $(pwd)/ci/verify_bundle.py -b "$bundle" -p "$download_path" -m "regular"  # regular tests on cpu

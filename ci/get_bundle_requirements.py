@@ -16,6 +16,39 @@ import os
 from bundle_custom_data import install_dependency_dict
 from utils import get_json_dict
 
+ALLOW_MONAI_RC = os.environ.get("ALLOW_MONAI_RC", "false").lower() in ("true", "1", "t", "y", "yes")
+
+
+def increment_version(version):
+    """
+    Split the version into components, assume missing parts are '0'.
+
+    Args:
+        version (str): The version string to increment.
+    
+    Examples:
+        print(increment_version("1.3.2"))  # Expected output: 1.3.3
+        print(increment_version("1.4"))    # Expected output: 1.4.1
+        print(increment_version("1"))      # Expected output: 1.0.1
+    """
+    version = str(version)
+    parts = version.split('.')
+    # Extend the list with zeros to handle cases like "1" or "1.4".
+    while len(parts) < 3:
+        parts.append('0')
+    
+    # Convert all parts to integers.
+    parts = list(map(int, parts))
+    
+    # Increment the last part.
+    parts[-1] += 1
+    
+    # Join the parts back into a version string.
+    # This trims trailing '.0's, returning the version in its original format
+    result_version = '.'.join(map(str, parts)).rstrip('.0')
+    
+    return result_version
+
 
 def get_requirements(bundle, models_path):
     """
@@ -29,7 +62,12 @@ def get_requirements(bundle, models_path):
         libs = []
         if "monai_version" in metadata.keys():
             monai_version = metadata["monai_version"]
-            libs.append(f"monai=={monai_version}")
+            if not ALLOW_MONAI_RC:
+                lib_monai_req = f"monai=={monai_version}"
+            else:
+                lib_monai_req = f"monai>={monai_version}rc1,<{increment_version(monai_version)}"
+                print(f"ALLOW_MONAI_RC is set to true, the version range is {lib_monai_req}")
+            libs.append(lib_monai_req)
         if "pytorch_version" in metadata.keys():
             pytorch_version = metadata["pytorch_version"]
             libs.append(f"torch=={pytorch_version}")
