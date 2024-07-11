@@ -25,7 +25,7 @@ def increment_version(version):
 
     Args:
         version (str): The version string to increment.
-    
+
     Examples:
         print(increment_version("1.3.2"))  # Expected output: 1.3.3
         print(increment_version("1.4"))    # Expected output: 1.4.1
@@ -36,17 +36,17 @@ def increment_version(version):
     # Extend the list with zeros to handle cases like "1" or "1.4".
     while len(parts) < 3:
         parts.append('0')
-    
+
     # Convert all parts to integers.
     parts = list(map(int, parts))
-    
+
     # Increment the last part.
     parts[-1] += 1
-    
+
     # Join the parts back into a version string.
     # This trims trailing '.0's, returning the version in its original format
     result_version = '.'.join(map(str, parts)).rstrip('.0')
-    
+
     return result_version
 
 
