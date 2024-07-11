@@ -32,10 +32,10 @@ def increment_version(version):
         print(increment_version("1"))      # Expected output: 1.0.1
     """
     version = str(version)
-    parts = version.split('.')
+    parts = version.split(".")
     # Extend the list with zeros to handle cases like "1" or "1.4".
     while len(parts) < 3:
-        parts.append('0')
+        parts.append("0")
 
     # Convert all parts to integers.
     parts = list(map(int, parts))
@@ -45,7 +45,7 @@ def increment_version(version):
 
     # Join the parts back into a version string.
     # This trims trailing '.0's, returning the version in its original format
-    result_version = '.'.join(map(str, parts)).rstrip('.0')
+    result_version = ".".join(map(str, parts)).rstrip(".0")
 
     return result_version
 
