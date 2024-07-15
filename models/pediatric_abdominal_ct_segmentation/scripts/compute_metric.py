@@ -59,7 +59,6 @@ from monai.transforms import (
     ToTensord,
 )
 from monai.utils import string_list_all_gather
-
 from scripts.monai_utils import CopyFilenamesd
 
 
