@@ -78,9 +78,7 @@ def SupervisedTrainer_multi_gpu(
     net = network
     if distributed:
         if len(devices_) > 1:
-            raise ValueError(
-                f"for distributed training, `devices` must contain only 1 GPU or CPU, but got {devices_}."
-            )
+            raise ValueError(f"for distributed training, `devices` must contain only 1 GPU or CPU, but got {devices_}.")
         net = DistributedDataParallel(net, device_ids=devices_)
     elif len(devices_) > 1:
         net = DataParallel(net, device_ids=devices_)  # ,output_device=devices_[0])
@@ -143,9 +141,7 @@ class SupervisedTrainer_m_gpu(SupervisedTrainer):
                 )
             self.net = DistributedDataParallel(self.net, device_ids=self.devices_)
         elif len(self.devices_) > 1:
-            self.net = DataParallel(
-                self.net, device_ids=self.devices_
-            )  # ,output_device=devices_[0])
+            self.net = DataParallel(self.net, device_ids=self.devices_)  # ,output_device=devices_[0])
 
         super().__init__(
             device=self.devices_[0],
@@ -168,10 +164,7 @@ class SupervisedTrainer_m_gpu(SupervisedTrainer):
 
 class AddLabelNamesd(MapTransform):
     def __init__(
-        self,
-        keys: KeysCollection,
-        label_names: dict[str, int] | None = None,
-        allow_missing_keys: bool = False,
+        self, keys: KeysCollection, label_names: dict[str, int] | None = None, allow_missing_keys: bool = False
     ):
         """
         Normalize label values according to label names dictionary
@@ -184,9 +177,7 @@ class AddLabelNamesd(MapTransform):
 
         self.label_names = label_names or {}
 
-    def __call__(
-        self, data: Mapping[Hashable, np.ndarray]
-    ) -> dict[Hashable, np.ndarray]:
+    def __call__(self, data: Mapping[Hashable, np.ndarray]) -> dict[Hashable, np.ndarray]:
         d: dict = dict(data)
         d["label_names"] = self.label_names
         return d
@@ -202,9 +193,7 @@ class CopyFilenamesd(MapTransform):
         """
         super().__init__(keys, allow_missing_keys)
 
-    def __call__(
-        self, data: Mapping[Hashable, np.ndarray]
-    ) -> dict[Hashable, np.ndarray]:
+    def __call__(self, data: Mapping[Hashable, np.ndarray]) -> dict[Hashable, np.ndarray]:
         d: dict = dict(data)
         d["filename"] = os.path.basename(d["label"])
         return d
@@ -216,9 +205,7 @@ class SplitPredsLabeld(MapTransform):
 
     """
 
-    def __call__(
-        self, data: Mapping[Hashable, np.ndarray]
-    ) -> dict[Hashable, np.ndarray]:
+    def __call__(self, data: Mapping[Hashable, np.ndarray]) -> dict[Hashable, np.ndarray]:
         d: dict = dict(data)
         for key in self.key_iterator(d):
             if key == "pred":

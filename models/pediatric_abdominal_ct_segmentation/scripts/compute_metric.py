@@ -70,10 +70,7 @@ def compute(datalist, output_dir):
 
     # split data for every subprocess, for example, 16 processes compute in parallel
     data_part = partition_dataset(
-        data=datalist,
-        num_partitions=dist.get_world_size(),
-        shuffle=False,
-        even_divisible=False,
+        data=datalist, num_partitions=dist.get_world_size(), shuffle=False, even_divisible=False
     )[dist.get_rank()]
 
     device = torch.device(f"cuda:{local_rank}")
@@ -87,9 +84,7 @@ def compute(datalist, output_dir):
             ToDeviced(keys=["pred", "label"], device=device),
             EnsureChannelFirstd(keys=["pred", "label"]),
             Orientationd(keys=("pred", "label"), axcodes="RAS"),
-            AsDiscreted(
-                keys=("pred", "label"), argmax=(False, False), to_onehot=(4, 4)
-            ),
+            AsDiscreted(keys=("pred", "label"), argmax=(False, False), to_onehot=(4, 4)),
         ]
     )
 
@@ -135,9 +130,7 @@ def compute_single_node(datalist, output_dir):
             EnsureChannelFirstd(keys=["pred", "label"]),
             Orientationd(keys=("pred", "label"), axcodes="RAS"),
             AddLabelNamesd(keys=("pred", "label"), label_names=labels),
-            AsDiscreted(
-                keys=("pred", "label"), argmax=(False, False), to_onehot=(4, 4)
-            ),
+            AsDiscreted(keys=("pred", "label"), argmax=(False, False), to_onehot=(4, 4)),
         ]
     )
     data_part = [transforms(item) for item in data_part]
