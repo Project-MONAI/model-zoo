@@ -1518,5 +1518,9 @@
     "spleen_ct_segmentation_v0.5.7": {
         "checksum": "fec5b037b8ee396d95ade5b867558f2e8d4c2a90",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.7/files/spleen_ct_segmentation_v0.5.7.zip"
+    },
+    "spleen_ct_segmentation_v0.5.8": {
+        "checksum": "3e43f860ba08cb3d121d521cadde0e5b59f72526",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.8/files/spleen_ct_segmentation_v0.5.8.zip"
     }
 }
