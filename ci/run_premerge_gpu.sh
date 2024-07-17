@@ -33,7 +33,7 @@ fi
 init_pipenv() {
     echo "initializing pip environment: $1"
     pipenv install update pip wheel
-    pipenv install --python=3.8 -r $1
+    pipenv install --python=3.9 -r $1
     export PYTHONPATH=$PWD
 }
 
