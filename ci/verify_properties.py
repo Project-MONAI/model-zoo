@@ -1,12 +1,14 @@
-import os
-import json
-import sys
-import shutil
 import argparse
+import json
+import os
+import shutil
 import subprocess
-from monai.bundle import create_workflow, ConfigParser
-from monai.bundle.scripts import verify_metadata
+import sys
+
 from download_latest_bundle import download_latest_bundle
+from monai.bundle import ConfigParser, create_workflow
+from monai.bundle.scripts import verify_metadata
+
 
 def find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
     # find bundle file with possible suffix
@@ -18,8 +20,9 @@ def find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
 
     return file_name
 
+
 def download_properties(url, repopath):
-    """Download properties from url to filepath."""
+    """Download apps properties from url to filepath."""
     if url is None:
         raise ValueError("URL is required to download apps repo.")
     # clean the repo path
@@ -35,6 +38,7 @@ def download_properties(url, repopath):
     except subprocess.CalledProcessError as e:
         print(f"Failed to clone {url}: {e}")
 
+
 def check_apps_bundle_properties(bundle_root):
     """Check apps bundle properties"""
     inference_file = find_bundle_file(os.path.join(bundle_root, "configs"), "inference")
@@ -42,28 +46,31 @@ def check_apps_bundle_properties(bundle_root):
     override = {"bundle_root": bundle_root}
 
     workflow = create_workflow(
-    workflow_type="infer",
-    config_file=os.path.join(bundle_root, "configs", inference_file),
-    meta_file=os.path.join(bundle_root, "configs/metadata.json"),
-    logging_file=os.path.join(bundle_root, "configs/logging.conf"),
-    **override,
+        workflow_type="infer",
+        config_file=os.path.join(bundle_root, "configs", inference_file),
+        meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+        logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+        **override,
     )
     # update apps bundle properties to workflow properties
     from properties import InferProperties, MetaProperties
+
     workflow.properties = {**MetaProperties, **InferProperties}
 
     ret = workflow.check_properties()
-    if len(ret)>0:
+    if len(ret) > 0:
         raise ValueError(f"config file does not contain {ret}")
+
 
 def get_apps_url(filepath):
     """get apps properties url"""
     if not os.path.isfile(filepath):
         raise FileExistsError(f"{filepath} is not a file.")
     else:
-        with open(filepath, 'r') as file:
+        with open(filepath, "r") as file:
             apps_url_data = json.load(file)
         return apps_url_data
+
 
 def verify(models_path="models", bundle="", download_path="download"):
     print(f"start verifying {bundle}:")
@@ -92,7 +99,6 @@ def verify(models_path="models", bundle="", download_path="download"):
     # now just a test properties url
     apps_properties_url = get_apps_url(os.path.join(model_root, "ci/apps.json"))
 
-
     for app, version in support_apps.items():
         if app in apps_properties_url.keys():
             url = apps_properties_url[app][version]
@@ -105,9 +111,10 @@ def verify(models_path="models", bundle="", download_path="download"):
 
     shutil.rmtree(download_path)
 
-if __name__=="__main__":
-    parser = argparse.ArgumentParser(description='test bundle prooerties')
-    parser.add_argument('--models', type=str, help='path of models', default="models")
-    parser.add_argument('--bundle_name', type=str, help='bundle name', default="spleen_ct_segmentation")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="test bundle prooerties")
+    parser.add_argument("--models", type=str, help="path of models", default="models")
+    parser.add_argument("--bundle_name", type=str, help="bundle name", default="spleen_ct_segmentation")
     args = parser.parse_args()
     verify(args.models, args.bundle_name)
