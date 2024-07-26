@@ -1522,5 +1522,9 @@
     "spleen_ct_segmentation_v0.5.8": {
         "checksum": "3e43f860ba08cb3d121d521cadde0e5b59f72526",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.8/files/spleen_ct_segmentation_v0.5.8.zip"
+    },
+    "vista3d_v0.4.1": {
+        "checksum": "b7d9f7be09dcaa62a06a532feda50fea16cc7958",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.1/files/vista3d_v0.4.1.zip"
     }
 }
