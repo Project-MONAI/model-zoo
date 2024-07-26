@@ -1,0 +1,109 @@
+{
+    "data_list_file_path": "$@bundle_root + '/msd_task09_spleen_folds.json'",
+    "dataset_dir": "/data/Task09_Spleen",
+    "finetune": true,
+    "val_at_start": true,
+    "finetune_model_path": "$@bundle_root + '/models/model.pt'",
+    "n_train_samples": 10,
+    "n_val_samples": 10,
+    "val_interval": 40,
+    "learning_rate": 0.0001,
+    "lr_schedule#activate": false,
+    "loss#smooth_dr": 0.01,
+    "loss#smooth_nr": 0.0001,
+    "train_dataset_cache_rate": 1.0,
+    "val_dataset_cache_rate": 1.0,
+    "num_cache_workers": 4,
+    "label_mappings": {
+        "default": [
+            [
+                1,
+                2
+            ],
+            [
+                2,
+                254
+            ]
+        ]
+    },
+    "patch_size": [
+        160,
+        160,
+        160
+    ],
+    "label_set": "$[0] + list(x[1] for x in @label_mappings#default)",
+    "val_label_set": "$[0] + list(x[0] for x in @label_mappings#default)",
+    "num_classes": 255,
+    "output_classes": "$len(@label_set)",
+    "optimizer": {
+        "_target_": "Novograd",
+        "lr": "@learning_rate",
+        "params": "$@network.parameters()"
+    },
+    "show_cache_progress": true,
+    "resample_to_spacing": [
+        1.5,
+        1.5,
+        1.5
+    ],
+    "cache_cls_idx": {
+        "activate": true,
+        "indices_key": "$'label_cls_indices' if @cache_cls_idx#activate else None"
+    },
+    "train#random_transforms": [
+        {
+            "_target_": "ClassesToIndicesd",
+            "_disabled_": "$not @cache_cls_idx#activate",
+            "keys": "label",
+            "num_classes": "@num_classes",
+            "indices_postfix": "_cls_indices",
+            "max_samples_per_class": "$int(10 * @epochs)"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "image",
+                "label"
+            ],
+            "label_key": "label",
+            "num_classes": "@num_classes",
+            "spatial_size": "@patch_size",
+            "num_samples": "@num_patches_per_image",
+            "ratios": "$tuple(float(i>=0) for i in range(@num_classes))",
+            "indices_key": "$@cache_cls_idx#indices_key",
+            "warn": false
+        },
+        {
+            "_target_": "scripts.monai_trans_utils.RelabelD",
+            "keys": "label",
+            "label_mappings": "@label_mappings",
+            "dtype": "$torch.uint8"
+        }
+    ],
+    "train#handlers#0#strict": false,
+    "train#dataset": {
+        "_target_": "CacheDataset",
+        "data": "$@train_datalist[:@n_train_samples]",
+        "transform": "@train#preprocessing",
+        "cache_rate": "@train_dataset_cache_rate",
+        "hash_as_key": true,
+        "num_workers": "@num_cache_workers",
+        "progress": "@show_cache_progress"
+    },
+    "validate#dataset": {
+        "_target_": "CacheDataset",
+        "data": "$@val_datalist[:@n_val_samples]",
+        "transform": "@validate#preprocessing",
+        "cache_rate": "@val_dataset_cache_rate",
+        "hash_as_key": true,
+        "num_workers": "@num_cache_workers",
+        "progress": "@show_cache_progress"
+    },
+    "validate#preprocessing#transforms": "$@train#deterministic_transforms + [@valid_remap]",
+    "valid_remap": {
+        "_target_": "scripts.monai_trans_utils.RelabelD",
+        "keys": "label",
+        "label_mappings": "${'default': [[c, i] for i, c in enumerate(@val_label_set)]}",
+        "dtype": "$torch.uint8"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "device": "$torch.device('cuda:' + os.environ['LOCAL_RANK'])",
+    "network": {
+        "_target_": "torch.nn.parallel.DistributedDataParallel",
+        "module": "$@network_def.to(@device)",
+        "device_ids": [
+            "@device"
+        ]
+    },
+    "validate#sampler": {
+        "_target_": "DistributedSampler",
+        "dataset": "@validate#dataset",
+        "even_divisible": false,
+        "shuffle": false
+    },
+    "validate#dataloader#sampler": "@validate#sampler",
+    "validate#handlers#1#_disabled_": "$dist.get_rank() > 0",
+    "initialize": [
+        "$import torch.distributed as dist",
+        "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
+        "$torch.cuda.set_device(@device)"
+    ],
+    "run": [
+        "$@validate#evaluator.run()"
+    ],
+    "finalize": [
+        "$dist.is_initialized() and dist.destroy_process_group()"
+    ]
+}
