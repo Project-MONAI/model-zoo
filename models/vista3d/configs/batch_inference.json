@@ -1,0 +1,7 @@
+{
+    "input_dir": "@bundle_root",
+    "input_suffix": "*.nii.gz",
+    "input_list": "$sorted(glob.glob(os.path.join(@input_dir, @input_suffix)))",
+    "input_dicts": "$[{'image': x, 'label_prompt': @everything_labels} for x in @input_list]",
+    "dataset#data": "@input_dicts"
+}

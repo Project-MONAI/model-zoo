@@ -36,6 +36,7 @@ exclude_verify_torchscript_list = [
     "breast_density_classification",
     "mednist_reg",
     "brats_mri_axial_slices_generative_diffusion",
+    "vista3d",
 ]
 
 # This dict is used for our CI tests to install required dependencies that cannot be installed by `pip install` directly.
