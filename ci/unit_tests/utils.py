@@ -20,7 +20,6 @@ def export_overrided_config(config_file, override_dict, output_path):
     parser = ConfigParser()
     parser.read_config(config_file)
     parser.update(pairs=override_dict)
-
     ConfigParser.export_config_file(parser.config, output_path, indent=4)
 
 
