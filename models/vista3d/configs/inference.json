@@ -173,7 +173,8 @@
         "load_path": "$@bundle_root + '/models/model.pt'",
         "load_dict": {
             "model": "@network"
-        }
+        },
+        "map_location": "@device"
     },
     "evaluator": {
         "_target_": "scripts.evaluator.Vista3dEvaluator",

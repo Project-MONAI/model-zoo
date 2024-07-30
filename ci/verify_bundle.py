@@ -193,9 +193,32 @@ def verify_torchscript(
         print("Provided TorchScript module is verified correctly.")
 
 
+def get_app_properties(app: str, version: str):
+    """
+    This function is used to get the properties file of the app.
+
+    """
+    if app in ["monai-deploy", "monai-label", "nvflare"]:
+        # TODO: so far these apps use default properties, need to grab the properties from the app instead.
+        return None
+    return None
+
+
+def check_properties(**kwargs):
+    """
+    This function is used to check the properties of the workflow.
+
+    """
+    workflow = create_workflow(**kwargs)
+    check_result = workflow.check_properties()
+    if check_result is not None and len(check_result) > 0:
+        raise ValueError(f"check properties for workflow failed: {check_result}")
+
+
 def verify_bundle_properties(model_path: str, bundle: str):
     """
     This function is used to verify the bundle properties.
+    If a bundle supports multiple apps, the properties of each app should be checked.
 
     """
     bundle_path = os.path.join(model_path, bundle)
@@ -208,23 +231,28 @@ def verify_bundle_properties(model_path: str, bundle: str):
         if config_name is not None:
             config_file = os.path.join(bundle_path, f"configs/{config_name}")
             meta_file = os.path.join(bundle_path, "configs/metadata.json")
+            check_property_args = {
+                "workflow_type": workflow_type,
+                "bundle_root": bundle_path,
+                "config_file": config_file,
+                "logging_file": os.path.join(bundle_path, "configs/logging.conf"),
+                "meta_file": meta_file,
+            }
             if "supported_apps" in metadata:
-                # TODO: get properties for each app.
-                properties_path = None
-            properties_path = None
-            # if not specified, use the default properties
-            print("workflow_type: ", workflow_type)
-            workflow = create_workflow(
-                workflow_type=workflow_type,
-                bundle_root=bundle_path,
-                config_file=config_file,
-                logging_file=os.path.join(bundle_path, "configs/logging.conf"),
-                meta_file=meta_file,
-                properties_path=properties_path,
-            )
-            check_result = workflow.check_properties()
-            if check_result is not None and len(check_result) > 0:
-                raise ValueError(f"check properties for workflow failed: {check_result}")
+                supported_apps = metadata["supported_apps"]
+                all_properties = []
+                for app, version in supported_apps.items():
+                    if app in ["vista3d-nim"]:
+                        # skip check
+                        continue
+                    properties_path = get_app_properties(app, version)
+                    all_properties.append(properties_path)
+                all_properties = list(set(all_properties))
+                for properties_path in all_properties:
+                    check_property_args["properties_path"] = properties_path
+                    check_properties(**check_property_args)
+            else:
+                check_properties(**check_property_args)
 
 
 def verify(bundle, models_path="models", mode="full"):
