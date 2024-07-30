@@ -19,11 +19,12 @@ exclude_verify_shape_list = [
     "pathology_nuclei_segmentation_classification",
     "brats_mri_generative_diffusion",
     "brats_mri_axial_slices_generative_diffusion",
+    "maisi_ct_generative",
 ]
 
 # This list is used for our CI tests to determine whether a bundle contains the preferred files.
 # If a bundle does not have any of the preferred files, please add the bundle name into the list.
-exclude_verify_preferred_files_list = []
+exclude_verify_preferred_files_list = ["maisi_ct_generative"]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested with
 # the `verify_export_torchscript` function in `verify_bundle.py`.
@@ -37,6 +38,7 @@ exclude_verify_torchscript_list = [
     "mednist_reg",
     "brats_mri_axial_slices_generative_diffusion",
     "vista3d",
+    "maisi_ct_generative",
 ]
 
 # This dict is used for our CI tests to install required dependencies that cannot be installed by `pip install` directly.

@@ -242,7 +242,7 @@ def verify_bundle_properties(model_path: str, bundle: str):
                 supported_apps = metadata["supported_apps"]
                 all_properties = []
                 for app, version in supported_apps.items():
-                    if app in ["vista3d-nim"]:
+                    if app in ["vista3d-nim", "maisi-nim"]:
                         # skip check
                         continue
                     properties_path = get_app_properties(app, version)
