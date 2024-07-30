@@ -72,7 +72,7 @@ The JSON file has the following structure:
         {
             "image": "*/*arterial_emb*.nii.gz",  # relative path to the image embedding file
             "label": "*/mask_combined_label*.nii.gz",  # relative path to the combined label file
-            "dim": [512, 512, 512],  # the dimension of image 
+            "dim": [512, 512, 512],  # the dimension of image
             "spacing": [1.0, 1.0, 1.0],  # the spacing of image
             "top_region_index": [0, 1, 0, 0],  # the top region index of the image
             "bottom_region_index": [0, 0, 0, 1],  # the bottom region index of the image

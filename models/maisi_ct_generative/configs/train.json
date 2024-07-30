@@ -20,7 +20,9 @@
     "batch_size": 1,
     "val_at_start": false,
     "learning_rate": 0.0001,
-    "weighted_loss_label": [129],
+    "weighted_loss_label": [
+        129
+    ],
     "weighted_loss": 100,
     "amp": true,
     "train_datalist": "$scripts.utils.maisi_datafold_read(json_list=@data_list_file_path, data_base_dir=@dataset_dir, fold=@fold)[0]",
@@ -81,7 +83,11 @@
         "num_res_blocks": 2,
         "use_flash_attention": true,
         "conditioning_embedding_in_channels": 8,
-        "conditioning_embedding_num_channels": [8, 32, 64]
+        "conditioning_embedding_num_channels": [
+            8,
+            32,
+            64
+        ]
     },
     "noise_scheduler": {
         "_target_": "generative.networks.schedulers.DDPMScheduler",
@@ -90,22 +96,25 @@
         "beta_end": 0.0195,
         "schedule": "scaled_linear_beta",
         "clip_sample": false
-    },   
-    "unzip_dataset" : "scripts.utils.unzip_dataset(@dataset_dir)",
+    },
+    "unzip_dataset": "scripts.utils.unzip_dataset(@dataset_dir)",
     "difusion_unet": "$@difusion_unet_def.to(@device)",
     "checkpoint_difusion_unet": "$torch.load(@trained_diffusion_path)",
     "load_diffusion": "$@difusion_unet.load_state_dict(@checkpoint_difusion_unet['unet_state_dict'])",
-    "controlnet": "$@controlnet_def.to(@device)",    
+    "controlnet": "$@controlnet_def.to(@device)",
     "copy_controlnet_state": "$monai.networks.utils.copy_model_state(@controlnet, @difusion_unet.state_dict())",
     "checkpoint_controlnet": "$torch.load(@trained_controlnet_path)",
     "load_controlnet": "$@controlnet.load_state_dict(@checkpoint_controlnet['controlnet_state_dict'], strict=True)",
     "scale_factor": "$@checkpoint_controlnet['scale_factor'].to(@device)",
-    "loss": {"_target_": "torch.nn.L1Loss", "reduction": "none"},
+    "loss": {
+        "_target_": "torch.nn.L1Loss",
+        "reduction": "none"
+    },
     "optimizer": {
         "_target_": "torch.optim.AdamW",
         "params": "$@controlnet.parameters()",
         "lr": "@learning_rate",
-        "weight_decay": 1.0e-05
+        "weight_decay": 1e-05
     },
     "lr_schedule": {
         "activate": true,
@@ -120,18 +129,25 @@
         "deterministic_transforms": [
             {
                 "_target_": "LoadImaged",
-                "keys": ["image", "label"],
+                "keys": [
+                    "image",
+                    "label"
+                ],
                 "image_only": true,
                 "ensure_channel_first": true
             },
             {
                 "_target_": "Orientationd",
-                "keys": ["label"],
+                "keys": [
+                    "label"
+                ],
                 "axcodes": "RAS"
             },
             {
                 "_target_": "EnsureTyped",
-                "keys": ["label"],
+                "keys": [
+                    "label"
+                ],
                 "dtype": "$torch.uint8",
                 "track_meta": true
             },
@@ -165,7 +181,6 @@
                 "keys": "spacing",
                 "func": "$lambda x: x * 1e2"
             }
-           
         ],
         "inferer": {
             "_target_": "SimpleInferer"
@@ -222,10 +237,10 @@
         "trainer": {
             "_target_": "scripts.trainer.MAISIControlNetTrainer",
             "_requires_": [
-            "@load_diffusion",
-            "@copy_controlnet_state",
-            "@load_controlnet",
-            "@unzip_dataset"
+                "@load_diffusion",
+                "@copy_controlnet_state",
+                "@load_controlnet",
+                "@unzip_dataset"
             ],
             "max_epochs": "@epochs",
             "device": "@device",
