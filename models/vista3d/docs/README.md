@@ -200,6 +200,16 @@ If no point click exists, this function will not be used. Notice if "use_point_w
 
 
 # License
-The code is released under Apache 2.0.
 
-The model weight is released under NCLSv1.
+## Code License
+
+This project includes code licensed under the Apache License 2.0.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+## Model Weights License
+
+The model weights included in this project are licensed under the NCLS v1 License.
+
+Both licenses' full texts have been combined into a single `LICENSE` file. Please refer to this `LICENSE` file for more details about the terms and conditions of both licenses.

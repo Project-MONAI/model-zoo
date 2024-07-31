@@ -10,7 +10,6 @@
 # limitations under the License.
 
 import argparse
-import fnmatch
 import os
 import sys
 
@@ -82,11 +81,6 @@ def _find_license_file(bundle_path: str):
     license_exact_path = os.path.join(bundle_path, "LICENSE")
     if os.path.exists(license_exact_path):
         return license_exact_path
-
-    # Check for files starting with LICENSE. and having any extension
-    for file in os.listdir(bundle_path):
-        if fnmatch.fnmatch(file, "LICENSE.*"):
-            return os.path.join(bundle_path, file)
 
     # Return None if no license file is found
     return None
