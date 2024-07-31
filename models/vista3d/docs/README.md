@@ -15,7 +15,7 @@ Note that VISTA3D is trained from a huge collection of datasets and cannot be si
 
 The spleen Task from the Medical Segmentation Decathalon is selected as an example to show how to do train, continuous learning and evaluate. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
-To train with other datasets, users need to provide a json data split for training and continuous learning (`msd_task09_spleen_folds.json` is an example for reference). The data split should meet the following format with a 5-fold split ('testing' labels are optional):
+To train with other datasets, users need to provide a json data split for training and continuous learning (`configs/msd_task09_spleen_folds.json` is an example for reference). The data split should meet the following format with a 5-fold split ('testing' labels are optional):
 ```
 {
     "training": [
