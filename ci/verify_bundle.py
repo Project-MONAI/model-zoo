@@ -10,6 +10,7 @@
 # limitations under the License.
 
 import argparse
+import fnmatch
 import os
 import sys
 
@@ -72,6 +73,25 @@ def _produce_fake_weights(config_file: str, meta_file: str, bundle: str, device:
     torch.save(network.state_dict(), output_file)
 
 
+def _find_license_file(bundle_path: str):
+    """
+    Searches for a LICENSE file or a file starting with LICENSE. with any extension in the bundle path.
+    Returns the path to the license file if found, otherwise None.
+    """
+    # Check for a file exactly named LICENSE
+    license_exact_path = os.path.join(bundle_path, "LICENSE")
+    if os.path.exists(license_exact_path):
+        return license_exact_path
+
+    # Check for files starting with LICENSE. and having any extension
+    for file in os.listdir(bundle_path):
+        if fnmatch.fnmatch(file, "LICENSE.*"):
+            return os.path.join(bundle_path, file)
+
+    # Return None if no license file is found
+    return None
+
+
 def verify_bundle_directory(models_path: str, bundle_name: str):
     """
     According to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html),
@@ -95,8 +115,14 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
 
     # verify necessary files are included
     for file in necessary_files_list:
-        if not os.path.exists(os.path.join(bundle_path, file)):
-            raise ValueError(f"necessary file {file} is not existing.")
+        if file == "LICENSE":
+            # check if LICENSE file exists
+            license_file_path = _find_license_file(bundle_path)
+            if license_file_path is None:
+                raise ValueError(f"necessary file {file} is not existing.")
+        else:
+            if not os.path.exists(os.path.join(bundle_path, file)):
+                raise ValueError(f"necessary file {file} is not existing.")
 
     # verify preferred files are included
     if bundle_name not in exclude_verify_preferred_files_list:
