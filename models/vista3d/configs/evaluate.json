@@ -1,5 +1,5 @@
 {
-    "data_list_file_path": "$@bundle_root + '/msd_task09_spleen_folds.json'",
+    "data_list_file_path": "$@bundle_root + '/configs/msd_task09_spleen_folds.json'",
     "dataset_dir": "/data/Task09_Spleen",
     "output_dir": "$@bundle_root + '/eval'",
     "ckpt_path": "$@bundle_root + '/models/model.pt'",
