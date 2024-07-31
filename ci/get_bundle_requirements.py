@@ -19,6 +19,8 @@ from utils import get_json_dict
 
 ALLOW_MONAI_RC = os.environ.get("ALLOW_MONAI_RC", "false").lower() in ("true", "1", "t", "y", "yes")
 
+SPECIAL_LIB_LIST = ["xformers"]
+
 
 def increment_version(version):
     """
@@ -75,10 +77,12 @@ def get_requirements(bundle, models_path):
         if "numpy_version" in metadata.keys():
             numpy_version = metadata["numpy_version"]
             libs.append(f"numpy=={numpy_version}")
-        if "optional_packages_version" in metadata.keys():
-            optional_dict = metadata["optional_packages_version"]
-            for name, version in optional_dict.items():
-                libs.append(f"{name}=={version}")
+        for package_key in ["optional_packages_version", "required_packages_version"]:
+            if package_key in metadata.keys():
+                optional_dict = metadata[package_key]
+                for name, version in optional_dict.items():
+                    if name not in SPECIAL_LIB_LIST:
+                        libs.append(f"{name}=={version}")
 
         if len(libs) > 0:
             requirements_file_name = f"requirements_{bundle}.txt"

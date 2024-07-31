@@ -88,6 +88,16 @@ The JSON file has the following structure:
 [1] Rombach, Robin, et al. "High-resolution image synthesis with latent diffusion models." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf
 
 # License
-The code is released under Apache 2.0.
 
-The model weight is released under NCLSv1.
+## Code License
+
+This project includes code licensed under the Apache License 2.0.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+## Model Weights License
+
+The model weights included in this project are licensed under the NCLS v1 License.
+
+Both licenses' full texts have been combined into a single `LICENSE` file. Please refer to this `LICENSE` file for more details about the terms and conditions of both licenses.
