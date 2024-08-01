@@ -213,11 +213,11 @@ class TestMAISI(unittest.TestCase):
     def test_train_config(self, override):
         self.create_train_dataset()
         train_size = self.dataset_size // 2
-        train_datalist = [{"image": os.path.join(self.dataset_dir, f"image_{i}.nii.gz"), 
+        train_datalist = [{"image": os.path.join(self.dataset_dir, f"image_{i}.nii.gz"),
                            "label": os.path.join(self.dataset_dir, f"label_{i}.nii.gz"),
-                           "dim": [128, 128, 128], 
+                           "dim": [128, 128, 128],
                             "spacing": [1.0, 1.0, 1.0],
-                            "top_region_index": [0, 1, 0, 0], 
+                            "top_region_index": [0, 1, 0, 0],
                             "bottom_region_index": [0, 0, 0, 1],
                             "fold": 0
                            } for i in range(train_size)]
@@ -240,7 +240,7 @@ class TestMAISI(unittest.TestCase):
             TEST_CASE_INFER_1,
             TEST_CASE_INFER_2,
             TEST_CASE_INFER_3,
-            TEST_CASE_INFER_WITH_MASK_GENERATION,         
+            TEST_CASE_INFER_WITH_MASK_GENERATION,
             TEST_CASE_INFER_DIFFERENT_OUTPUT_TYPE,
         ])
     def test_infer_config(self, override):
