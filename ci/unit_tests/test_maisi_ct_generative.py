@@ -11,17 +11,15 @@
 
 import os
 import shutil
+import sys
 import tempfile
 import unittest
-import sys
-import nibabel as nib
-import numpy as np
+
 import nibabel as nib
 import numpy as np
 from monai.bundle import create_workflow
 from monai.transforms import LoadImage
 from parameterized import parameterized
-
 
 TEST_CASE_INFER_1 = [
     {
@@ -156,26 +154,18 @@ TEST_CASE_INFER_ERROR_7 = [
         "num_output_samples": 1,
         "output_size": [256, 256, 256],
         "body_region": ["chest"],
-        "anatomy_list": ["colon","spleen","trachea","left humerus","sacrum","heart"],
+        "anatomy_list": ["colon", "spleen", "trachea", "left humerus", "sacrum", "heart"],
     },
     "Cannot find body region with given organ list.",
 ]
 
 TEST_CASE_TRAIN = [
-    {
-        "bundle_root": "models/maisi_ct_generative",
-        "epochs": 2,
-        "initialize": ["$monai.utils.set_determinism(seed=123)"],
-    }
+    {"bundle_root": "models/maisi_ct_generative", "epochs": 2, "initialize": ["$monai.utils.set_determinism(seed=123)"]}
 ]
 
 
 TEST_CASE_TRAIN = [
-    {
-        "bundle_root": "models/maisi_ct_generative",
-        "epochs": 2,
-        "initialize": ["$monai.utils.set_determinism(seed=123)"],
-    }
+    {"bundle_root": "models/maisi_ct_generative", "epochs": 2, "initialize": ["$monai.utils.set_determinism(seed=123)"]}
 ]
 
 
@@ -213,14 +203,18 @@ class TestMAISI(unittest.TestCase):
     def test_train_config(self, override):
         self.create_train_dataset()
         train_size = self.dataset_size // 2
-        train_datalist = [{"image": os.path.join(self.dataset_dir, f"image_{i}.nii.gz"),
-                           "label": os.path.join(self.dataset_dir, f"label_{i}.nii.gz"),
-                           "dim": [128, 128, 128],
-                            "spacing": [1.0, 1.0, 1.0],
-                            "top_region_index": [0, 1, 0, 0],
-                            "bottom_region_index": [0, 0, 0, 1],
-                            "fold": 0
-                           } for i in range(train_size)]
+        train_datalist = [
+            {
+                "image": os.path.join(self.dataset_dir, f"image_{i}.nii.gz"),
+                "label": os.path.join(self.dataset_dir, f"label_{i}.nii.gz"),
+                "dim": [128, 128, 128],
+                "spacing": [1.0, 1.0, 1.0],
+                "top_region_index": [0, 1, 0, 0],
+                "bottom_region_index": [0, 0, 0, 1],
+                "fold": 0,
+            }
+            for i in range(train_size)
+        ]
         override["train_datalist"] = train_datalist
 
         bundle_root = override["bundle_root"]
@@ -242,7 +236,8 @@ class TestMAISI(unittest.TestCase):
             TEST_CASE_INFER_3,
             TEST_CASE_INFER_WITH_MASK_GENERATION,
             TEST_CASE_INFER_DIFFERENT_OUTPUT_TYPE,
-        ])
+        ]
+    )
     def test_infer_config(self, override):
         # update override
         override["output_dir"] = self.output_dir

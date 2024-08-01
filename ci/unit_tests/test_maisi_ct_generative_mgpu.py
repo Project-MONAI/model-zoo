@@ -14,20 +14,14 @@ import shutil
 import sys
 import tempfile
 import unittest
-import torch
 
 import nibabel as nib
 import numpy as np
+import torch
 from parameterized import parameterized
-
 from utils import export_config_and_run_mgpu_cmd
 
-TEST_CASE_TRAIN_MGPU = [
-    {
-        "bundle_root": "models/maisi_ct_generative",
-        "epochs": 2,
-    }
-]
+TEST_CASE_TRAIN_MGPU = [{"bundle_root": "models/maisi_ct_generative", "epochs": 2}]
 
 
 class TestMAISI(unittest.TestCase):
@@ -51,19 +45,22 @@ class TestMAISI(unittest.TestCase):
             nib.save(nib.Nifti1Image(test_image, np.eye(4)), image_filename)
             nib.save(nib.Nifti1Image(test_label, np.eye(4)), label_filename)
 
-
     @parameterized.expand([TEST_CASE_TRAIN_MGPU])
     def test_train_mgpu_config(self, override):
         self.create_train_dataset()
         train_size = self.dataset_size // 2
-        train_datalist = [{"image": os.path.join(self.dataset_dir, f"image_{i}.nii.gz"),
-                           "label": os.path.join(self.dataset_dir, f"label_{i}.nii.gz"),
-                           "dim": [128, 128, 128],
-                            "spacing": [1.0, 1.0, 1.0],
-                            "top_region_index": [0, 1, 0, 0],
-                            "bottom_region_index": [0, 0, 0, 1],
-                            "fold": 0
-                           } for i in range(train_size)]
+        train_datalist = [
+            {
+                "image": os.path.join(self.dataset_dir, f"image_{i}.nii.gz"),
+                "label": os.path.join(self.dataset_dir, f"label_{i}.nii.gz"),
+                "dim": [128, 128, 128],
+                "spacing": [1.0, 1.0, 1.0],
+                "top_region_index": [0, 1, 0, 0],
+                "bottom_region_index": [0, 0, 0, 1],
+                "fold": 0,
+            }
+            for i in range(train_size)
+        ]
         override["train_datalist"] = train_datalist
 
         bundle_root = override["bundle_root"]
