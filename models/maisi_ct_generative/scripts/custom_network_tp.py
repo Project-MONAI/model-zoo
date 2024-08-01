@@ -335,62 +335,6 @@ class SplitConvolutionV1(nn.Module):
         return x
 
 
-'''class SplitUpsample(nn.Module):
-    """
-    Convolution-based upsampling layer.
-
-    Args:
-        spatial_dims: number of spatial dimensions (1D, 2D, 3D).
-        in_channels: number of input channels to the layer.
-        use_convtranspose: if True, use ConvTranspose to upsample feature maps in decoder.
-    """
-
-    def __init__(self, spatial_dims: int, in_channels: int, use_convtranspose: bool) -> None:
-        super().__init__()
-        if use_convtranspose:
-            self.conv = SplitConvolutionV1(
-                spatial_dims=spatial_dims,
-                in_channels=in_channels,
-                out_channels=in_channels,
-                strides=2,
-                kernel_size=3,
-                padding=1,
-                conv_only=True,
-                is_transposed=True,
-            )
-        else:
-            self.conv = SplitConvolutionV1(
-                spatial_dims=spatial_dims,
-                in_channels=in_channels,
-                out_channels=in_channels,
-                strides=1,
-                kernel_size=3,
-                padding=1,
-                conv_only=True,
-            )
-        self.use_convtranspose = use_convtranspose
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        if self.use_convtranspose:
-            return self.conv(x)
-
-        # Cast to float32 to as 'upsample_nearest2d_out_frame' op does not support bfloat16
-        # https://github.com/pytorch/pytorch/issues/86679
-        dtype = x.dtype
-        if dtype == torch.bfloat16:
-            x = x.to(torch.float32)
-
-        x = F.interpolate(x, scale_factor=2.0, mode="nearest")
-
-        # If the input is bfloat16, we cast back to bfloat16
-        if dtype == torch.bfloat16:
-            x = x.to(dtype)
-
-        x = self.conv(x)
-        return x
-'''
-
-
 class SplitUpsample1(nn.Module):
     """
     Convolution-based upsampling layer.
