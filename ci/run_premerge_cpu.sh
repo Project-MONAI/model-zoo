@@ -52,21 +52,26 @@ verify_bundle() {
             echo $bundle_list
             for bundle in $bundle_list;
             do
-                pip install -r requirements-dev.txt
-                # get required libraries according to the bundle's metadata file
-                requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
-                # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
-                if [ $ALLOW_MONAI_RC = true ]; then
-                    include_pre_release="--pre"
+                if [ "$bundle" != "maisi_ct_generative" ]; then
+                    pip install -r requirements-dev.txt
+                    # get required libraries according to the bundle's metadata file
+                    requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
+                    # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
+                    if [ $ALLOW_MONAI_RC = true ]; then
+                        include_pre_release="--pre"
+                    else
+                        include_pre_release=""
+                    fi
+                    if [ ! -z "$requirements" ]; then
+                        echo "install required libraries for bundle: $bundle"
+                        pip install $include_pre_release -r "$requirements"
+                    fi
+                    # verify bundle
+                    python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
                 else
-                    include_pre_release=""
+                    # maisi_ct_generative requires large memory, skip it and use gpu test to ensure quality
+                    echo "skip maisi_ct_generative test verify."
                 fi
-                if [ ! -z "$requirements" ]; then
-                    echo "install required libraries for bundle: $bundle"
-                    pip install $include_pre_release -r "$requirements"
-                fi
-                # verify bundle
-                python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
             done
         else
             echo "this pull request does not change any bundles, skip verify."
