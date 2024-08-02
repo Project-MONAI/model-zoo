@@ -16,20 +16,15 @@
 #
 
 # Argument(s):
-#   BUILD_TYPE:   all/specific_test_name, tests to execute
-
-# $1 - Dist flag (True/False)
+#   $1 - Dist flag (True/False)
 
 dist_flag=$1
 
 set -ex
-BUILD_TYPE=all
+
 export ALLOW_MONAI_RC=true
 
-if [[ $# -eq 1 ]]; then
-    BUILD_TYPE=$1
-
-elif [[ $# -gt 1 ]]; then
+if [[ $# -gt 1 ]]; then
     echo "ERROR: too many parameters are provided"
     exit 1
 fi
@@ -127,18 +122,4 @@ verify_bundle() {
     fi
 }
 
-case $BUILD_TYPE in
-
-    all)
-        echo "Run all tests..."
-        verify_bundle
-        ;;
-
-    verify_bundle)
-        verify_bundle
-        ;;
-
-    *)
-        echo "ERROR: unknown parameter: $BUILD_TYPE"
-        ;;
-esac
+verify_bundle
