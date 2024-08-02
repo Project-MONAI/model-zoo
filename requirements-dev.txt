@@ -11,7 +11,7 @@ pyflakes
 black
 isort
 pytype>=2020.6.1; platform_system != "Windows"
-types-pkg_resources
+types-setuptools
 mypy>=0.790
 pre-commit
 fire
