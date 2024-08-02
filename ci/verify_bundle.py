@@ -12,7 +12,6 @@
 import argparse
 import os
 import sys
-from typing import List
 
 import torch
 from bundle_custom_data import (
@@ -20,7 +19,7 @@ from bundle_custom_data import (
     exclude_verify_shape_list,
     exclude_verify_torchscript_list,
 )
-from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
+from monai.bundle import ckpt_export, create_workflow, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
 from utils import download_large_files, get_json_dict
 
@@ -28,12 +27,6 @@ from utils import download_large_files, get_json_dict
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
 # files that are preferred to be included in a bundle
 preferred_files_list = ["models/model.pt", "configs/inference.json"]
-# keys that must be included in inference config
-infer_keys_list = ["bundle_root", "device", "network_def", "inferer"]
-# keys that must be included in train config
-train_keys_list = ["bundle_root", "device", "dataset_dir"]
-# keys that must be included in metadata
-metadata_keys_list = ["name"]
 
 
 def _find_bundle_file(root_dir: str, file: str, suffix=("json", "yaml", "yml")):
@@ -65,52 +58,32 @@ def _get_net_id(bundle: str):
     return "network_def"
 
 
-def _check_missing_keys(file_name: str, bundle_path: str, keys_list: List):
-    config = ConfigParser.load_config_file(os.path.join(bundle_path, "configs", file_name))
-    missing_keys = []
-    for key in keys_list:
-        if key not in config:
-            missing_keys.append(key)
+def _produce_fake_weights(config_file: str, meta_file: str, bundle: str, device: str):
+    """
+    This function is used to produce fake weights for a network.
 
-    if len(missing_keys) > 0:
-        raise ValueError(f"missing key(s): {str(missing_keys)} in {file_name}.")
-
-    return config
-
-
-def _check_main_section_necessary_key(necessary_key: str, config: dict, main_section: str = "train"):
-    # `necessary_key` must be in `main_section`
-    if necessary_key not in config[main_section]:
-        raise ValueError(f"'{necessary_key}' is not existing in '{main_section}'.")
+    """
+    parser = ConfigParser()
+    parser.read_config(f=config_file)
+    parser.read_meta(f=meta_file)
+    net_id = _get_net_id(bundle)
+    output_file = _get_weights_names(bundle)[0]
+    network = parser.get_parsed_content(net_id).to(device)
+    torch.save(network.state_dict(), output_file)
 
 
-def _check_sub_section_necessary_key(
-    necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"
-):
-    # `necessary_key` must be in `sub_section`
-    if necessary_key not in config[main_section][sub_section]:
-        raise ValueError(f"'{necessary_key}' is not existing in '{main_section}#{sub_section}'.")
+def _find_license_file(bundle_path: str):
+    """
+    Searches for a LICENSE file or a file starting with LICENSE. with any extension in the bundle path.
+    Returns the path to the license file if found, otherwise None.
+    """
+    # Check for a file exactly named LICENSE
+    license_exact_path = os.path.join(bundle_path, "LICENSE")
+    if os.path.exists(license_exact_path):
+        return license_exact_path
 
-
-def _check_main_section_optional_key(
-    arg_name: str, necessary_key: str, config: dict, main_section: str = "train", sub_section: str = "trainer"
-):
-    # if `arg_name` is in `sub_section`, its value must be `necessary_key`
-    if arg_name in config[main_section][sub_section]:
-        if necessary_key not in config[main_section]:
-            actual_key = str(config[main_section][sub_section][arg_name]).split("#")[-1]
-            raise ValueError(f"'{main_section}' should have '{necessary_key}', got '{actual_key}'.")
-
-
-def _check_validation_handler(var_name: str, config: dict):
-    if "handlers" in config:
-        for handler in config["handlers"]:
-            if handler["_target_"] == "ValidationHandler":
-                interval_name = str(handler["interval"]).split("@")[-1]
-                if not interval_name == var_name:
-                    raise ValueError(
-                        f"variable '{var_name}' should be defined for 'ValidationHandler', got '{interval_name}'."
-                    )
+    # Return None if no license file is found
+    return None
 
 
 def verify_bundle_directory(models_path: str, bundle_name: str):
@@ -136,8 +109,14 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
 
     # verify necessary files are included
     for file in necessary_files_list:
-        if not os.path.exists(os.path.join(bundle_path, file)):
-            raise ValueError(f"necessary file {file} is not existing.")
+        if file == "LICENSE":
+            # check if LICENSE file exists
+            license_file_path = _find_license_file(bundle_path)
+            if license_file_path is None:
+                raise ValueError(f"necessary file {file} is not existing.")
+        else:
+            if not os.path.exists(os.path.join(bundle_path, file)):
+                raise ValueError(f"necessary file {file} is not existing.")
 
     # verify preferred files are included
     if bundle_name not in exclude_verify_preferred_files_list:
@@ -150,82 +129,6 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
             else:
                 if not os.path.exists(os.path.join(bundle_path, file)):
                     raise ValueError(f"necessary file {file} is not existing.")
-
-
-def verify_bundle_keys(models_path: str, bundle_name: str):
-    """
-    This function is used to verify if necessary keys are included in config files.
-
-    """
-    bundle_path = os.path.join(models_path, bundle_name)
-
-    # verify metadata
-    _ = _check_missing_keys(file_name="metadata.json", bundle_path=bundle_path, keys_list=metadata_keys_list)
-
-    # verify inference config (if exists)
-    inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
-    if inference_file_name is not None:
-        _ = _check_missing_keys(file_name=inference_file_name, bundle_path=bundle_path, keys_list=infer_keys_list)
-
-    # verify train config (if exists)
-    train_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "train")
-    if train_file_name is not None:
-        train_config = _check_missing_keys(
-            file_name=train_file_name, bundle_path=bundle_path, keys_list=train_keys_list
-        )
-
-        if "train" in train_config:
-            _check_main_section_necessary_key(necessary_key="trainer", config=train_config)
-            _check_main_section_necessary_key(necessary_key="dataset", config=train_config)
-            _check_main_section_necessary_key(necessary_key="handlers", config=train_config)
-            _check_sub_section_necessary_key(necessary_key="max_epochs", config=train_config, sub_section="trainer")
-            _check_sub_section_necessary_key(necessary_key="data", config=train_config, sub_section="dataset")
-            _check_main_section_optional_key(
-                arg_name="postprocessing", necessary_key="postprocessing", config=train_config, sub_section="trainer"
-            )
-            _check_main_section_optional_key(
-                arg_name="transform", necessary_key="preprocessing", config=train_config, sub_section="dataset"
-            )
-            _check_main_section_optional_key(
-                arg_name="key_train_metric", necessary_key="key_metric", config=train_config, sub_section="trainer"
-            )
-            # special requirements: if "ValidationHandler" in "handlers", key "val_interval" should be defined.
-            _check_validation_handler(var_name="val_interval", config=train_config["train"])
-        if "validate" in train_config:
-            _check_main_section_necessary_key(necessary_key="evaluator", config=train_config, main_section="validate")
-            _check_main_section_necessary_key(necessary_key="dataset", config=train_config, main_section="validate")
-            _check_main_section_necessary_key(necessary_key="handlers", config=train_config, main_section="validate")
-            _check_sub_section_necessary_key(
-                necessary_key="data", config=train_config, main_section="validate", sub_section="dataset"
-            )
-            _check_main_section_optional_key(
-                arg_name="postprocessing",
-                necessary_key="postprocessing",
-                config=train_config,
-                main_section="validate",
-                sub_section="evaluator",
-            )
-            _check_main_section_optional_key(
-                arg_name="transform",
-                necessary_key="preprocessing",
-                config=train_config,
-                main_section="validate",
-                sub_section="dataset",
-            )
-            _check_main_section_optional_key(
-                arg_name="inferer",
-                necessary_key="inferer",
-                config=train_config,
-                main_section="validate",
-                sub_section="evaluator",
-            )
-            _check_main_section_optional_key(
-                arg_name="key_val_metric",
-                necessary_key="key_metric",
-                config=train_config,
-                main_section="validate",
-                sub_section="evaluator",
-            )
 
 
 def verify_version_changes(models_path: str, bundle_name: str):
@@ -310,6 +213,68 @@ def verify_torchscript(
         print("Provided TorchScript module is verified correctly.")
 
 
+def get_app_properties(app: str, version: str):
+    """
+    This function is used to get the properties file of the app.
+
+    """
+    if app in ["monai-deploy", "monai-label", "nvflare"]:
+        # TODO: so far these apps use default properties, need to grab the properties from the app instead.
+        return None
+    return None
+
+
+def check_properties(**kwargs):
+    """
+    This function is used to check the properties of the workflow.
+
+    """
+    workflow = create_workflow(**kwargs)
+    check_result = workflow.check_properties()
+    if check_result is not None and len(check_result) > 0:
+        raise ValueError(f"check properties for workflow failed: {check_result}")
+
+
+def verify_bundle_properties(model_path: str, bundle: str):
+    """
+    This function is used to verify the bundle properties.
+    If a bundle supports multiple apps, the properties of each app should be checked.
+
+    """
+    bundle_path = os.path.join(model_path, bundle)
+    meta_file = os.path.join(bundle_path, "configs/metadata.json")
+    metadata = get_json_dict(meta_file)
+    # Since lack of data, train and evaluate config properties can checked in unit tests
+    # In this file, only inference config properties will be checked
+    for workflow_type in ["inference"]:
+        config_name = _find_bundle_file(os.path.join(bundle_path, "configs"), workflow_type)
+        if config_name is not None:
+            config_file = os.path.join(bundle_path, f"configs/{config_name}")
+            meta_file = os.path.join(bundle_path, "configs/metadata.json")
+            check_property_args = {
+                "workflow_type": workflow_type,
+                "bundle_root": bundle_path,
+                "config_file": config_file,
+                "logging_file": os.path.join(bundle_path, "configs/logging.conf"),
+                "meta_file": meta_file,
+            }
+            if "supported_apps" in metadata:
+                supported_apps = metadata["supported_apps"]
+                all_properties = []
+                for app, version in supported_apps.items():
+                    if app in ["vista3d-nim"]:
+                        # skip check
+                        continue
+                    properties_path = get_app_properties(app, version)
+                    all_properties.append(properties_path)
+                all_properties = list(set(all_properties))
+                for properties_path in all_properties:
+                    check_property_args["properties_path"] = properties_path
+                    check_properties(**check_property_args)
+            else:
+                check_properties(**check_property_args)
+
+
 def verify(bundle, models_path="models", mode="full"):
     print(f"start verifying {bundle}:")
     # add bundle path to ensure custom code can be used
@@ -317,9 +282,9 @@ def verify(bundle, models_path="models", mode="full"):
     # verify bundle directory
     verify_bundle_directory(models_path, bundle)
     print("directory is verified correctly.")
-    # verify bundle keys
-    verify_bundle_keys(models_path, bundle)
-    print("keys are verified correctly.")
+    # verify bundle properties
+    verify_bundle_properties(models_path, bundle)
+    print("properties are verified correctly.")
     if mode != "regular":
         # verify version, changelog
         verify_version_changes(models_path, bundle)
