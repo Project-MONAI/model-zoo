@@ -81,6 +81,7 @@ case $BUILD_TYPE in
 
     all)
         echo "Run all tests..."
+        verify_bundle
         ;;
     changed)
         echo "Run changed tests..."
