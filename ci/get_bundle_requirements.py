@@ -87,7 +87,7 @@ def get_requirements(bundle, models_path):
                         if "pytorch_version" in metadata.keys():
                             # remove torch from libs
                             libs = [lib for lib in libs if "torch" not in lib]
-                        
+
 
         if len(libs) > 0:
             requirements_file_name = f"requirements_{bundle}.txt"
