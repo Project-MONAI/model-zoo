@@ -88,7 +88,6 @@ def get_requirements(bundle, models_path):
                             # remove torch from libs
                             libs = [lib for lib in libs if "torch" not in lib]
 
-
         if len(libs) > 0:
             requirements_file_name = f"requirements_{bundle}.txt"
             with open(requirements_file_name, "w") as f:
