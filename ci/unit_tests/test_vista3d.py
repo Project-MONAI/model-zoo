@@ -275,12 +275,8 @@ class TestVista3d(unittest.TestCase):
         override["val_datalist"] = val_datalist
 
         bundle_root = override["bundle_root"]
-<<<<<<< HEAD
         if bundle_root not in sys.path:
             sys.path = [bundle_root] + sys.path
-=======
-        sys.path = [bundle_root] + sys.path
->>>>>>> dev
         trainer = ConfigWorkflow(
             workflow_type="train",
             config_file=os.path.join(bundle_root, "configs/train.json"),
@@ -310,12 +306,8 @@ class TestVista3d(unittest.TestCase):
         override["train_datalist"] = train_datalist
         override["val_datalist"] = val_datalist
         bundle_root = override["bundle_root"]
-<<<<<<< HEAD
         if bundle_root not in sys.path:
             sys.path = [bundle_root] + sys.path
-=======
-        sys.path = [bundle_root] + sys.path
->>>>>>> dev
         config_files = [
             os.path.join(bundle_root, "configs/train.json"),
             os.path.join(bundle_root, "configs/train_continual.json"),
@@ -352,12 +344,8 @@ class TestVista3d(unittest.TestCase):
         override["val_datalist"] = val_datalist
 
         bundle_root = override["bundle_root"]
-<<<<<<< HEAD
         if bundle_root not in sys.path:
             sys.path = [bundle_root] + sys.path
-=======
-        sys.path = [bundle_root] + sys.path
->>>>>>> dev
         trainer = ConfigWorkflow(
             workflow_type="train",
             config_file=[
@@ -388,12 +376,8 @@ class TestVista3d(unittest.TestCase):
         override["input_dict"] = input_dict
 
         bundle_root = override["bundle_root"]
-<<<<<<< HEAD
         if bundle_root not in sys.path:
             sys.path = [bundle_root] + sys.path
-=======
-        sys.path = [bundle_root] + sys.path
->>>>>>> dev
 
         inferrer = ConfigWorkflow(
             workflow_type="infer",
@@ -416,12 +400,8 @@ class TestVista3d(unittest.TestCase):
         params["input_suffix"] = "image_*.nii.gz"
 
         bundle_root = override["bundle_root"]
-<<<<<<< HEAD
         if bundle_root not in sys.path:
             sys.path = [bundle_root] + sys.path
-=======
-        sys.path = [bundle_root] + sys.path
->>>>>>> dev
         config_files = [
             os.path.join(bundle_root, "configs/inference.json"),
             os.path.join(bundle_root, "configs/batch_inference.json"),
@@ -444,12 +424,8 @@ class TestVista3d(unittest.TestCase):
         override["input_dict"] = input_dict
 
         bundle_root = override["bundle_root"]
-<<<<<<< HEAD
         if bundle_root not in sys.path:
             sys.path = [bundle_root] + sys.path
-=======
-        sys.path = [bundle_root] + sys.path
->>>>>>> dev
 
         inferrer = ConfigWorkflow(
             workflow_type="infer",
