@@ -30,6 +30,17 @@ elif [[ $# -gt 1 ]]; then
     exit 1
 fi
 
+# Usually, CPU test is required, but for some bundles that are too large to run in Github Actions, we can exclude them.
+exclude_test_list=("maisi_ct_generative")
+is_excluded() {
+    for item in "${exclude_list[@]}"; do
+        if [ "$1" == "$item" ]; then
+            return 0 # Return true (0) if excluded
+        fi
+    done
+    return 1 # Return false (1) if not excluded
+}
+
 verify_bundle() {
     for dir in /opt/hostedtoolcache/*; do
         if [[ $dir != "/opt/hostedtoolcache/Python" ]]; then
@@ -52,7 +63,9 @@ verify_bundle() {
             echo $bundle_list
             for bundle in $bundle_list;
             do
-                if [ "$bundle" != "maisi_ct_generative" ]; then
+                if is_excluded "$bundle"; then
+                    echo "skip '$bundle' cpu premerge tests."
+                else
                     pip install -r requirements-dev.txt
                     # get required libraries according to the bundle's metadata file
                     requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
@@ -68,9 +81,6 @@ verify_bundle() {
                     fi
                     # verify bundle
                     python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
-                else
-                    # maisi_ct_generative requires large memory, skip it and use gpu test to ensure quality
-                    echo "skip maisi_ct_generative test verify."
                 fi
             done
         else
