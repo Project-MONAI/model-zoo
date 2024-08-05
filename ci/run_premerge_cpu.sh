@@ -30,6 +30,17 @@ elif [[ $# -gt 1 ]]; then
     exit 1
 fi
 
+# Usually, CPU test is required, but for some bundles that are too large to run in Github Actions, we can exclude them.
+exclude_test_list=("maisi_ct_generative")
+is_excluded() {
+    for item in "${exclude_list[@]}"; do
+        if [ "$1" == "$item" ]; then
+            return 0 # Return true (0) if excluded
+        fi
+    done
+    return 1 # Return false (1) if not excluded
+}
+
 verify_bundle() {
     for dir in /opt/hostedtoolcache/*; do
         if [[ $dir != "/opt/hostedtoolcache/Python" ]]; then
@@ -52,21 +63,25 @@ verify_bundle() {
             echo $bundle_list
             for bundle in $bundle_list;
             do
-                pip install -r requirements-dev.txt
-                # get required libraries according to the bundle's metadata file
-                requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
-                # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
-                if [ $ALLOW_MONAI_RC = true ]; then
-                    include_pre_release="--pre"
+                if is_excluded "$bundle"; then
+                    echo "skip '$bundle' cpu premerge tests."
                 else
-                    include_pre_release=""
+                    pip install -r requirements-dev.txt
+                    # get required libraries according to the bundle's metadata file
+                    requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
+                    # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
+                    if [ $ALLOW_MONAI_RC = true ]; then
+                        include_pre_release="--pre"
+                    else
+                        include_pre_release=""
+                    fi
+                    if [ ! -z "$requirements" ]; then
+                        echo "install required libraries for bundle: $bundle"
+                        pip install $include_pre_release -r "$requirements"
+                    fi
+                    # verify bundle
+                    python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
                 fi
-                if [ ! -z "$requirements" ]; then
-                    echo "install required libraries for bundle: $bundle"
-                    pip install $include_pre_release -r "$requirements"
-                fi
-                # verify bundle
-                python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
             done
         else
             echo "this pull request does not change any bundles, skip verify."
@@ -81,6 +96,7 @@ case $BUILD_TYPE in
 
     all)
         echo "Run all tests..."
+        verify_bundle
         ;;
     changed)
         echo "Run changed tests..."

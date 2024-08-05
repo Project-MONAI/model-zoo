@@ -262,7 +262,7 @@ def verify_bundle_properties(model_path: str, bundle: str):
                 supported_apps = metadata["supported_apps"]
                 all_properties = []
                 for app, version in supported_apps.items():
-                    if app in ["vista3d-nim"]:
+                    if app in ["vista3d-nim", "maisi-nim"]:
                         # skip check
                         continue
                     properties_path = get_app_properties(app, version)
@@ -282,9 +282,6 @@ def verify(bundle, models_path="models", mode="full"):
     # verify bundle directory
     verify_bundle_directory(models_path, bundle)
     print("directory is verified correctly.")
-    # verify bundle properties
-    verify_bundle_properties(models_path, bundle)
-    print("properties are verified correctly.")
     if mode != "regular":
         # verify version, changelog
         verify_version_changes(models_path, bundle)
@@ -298,6 +295,11 @@ def verify(bundle, models_path="models", mode="full"):
         return
 
     # The following are optional tests and require GPU
+
+    # verify bundle properties
+    verify_bundle_properties(models_path, bundle)
+    print("properties are verified correctly.")
+
     net_id = _get_net_id(bundle)
     inference_file_name = _find_bundle_file(os.path.join(bundle_path, "configs"), "inference")
     config_file = os.path.join("configs", inference_file_name)
