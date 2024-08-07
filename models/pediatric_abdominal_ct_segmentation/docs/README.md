@@ -46,7 +46,7 @@ Ensure data folder structure is as follows, with scan files in the primary datas
     │  │  ├─ exam_001.nii.gz
     │  │  ├─ exam_002.nii.gz
     │  │  ├─ ...
-    
+
 Configuration defaults are currently set to the external TotalSegmentator CT dataset.
 
 ### Model Architectures
