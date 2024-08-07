@@ -36,27 +36,21 @@ Referring to: https://pytorch.org/tutorials/intermediate/ddp_tutorial.html
 
 """
 
-import argparse
 import os
-from glob import glob
 
-import nibabel as nib
-import numpy as np
 import torch
 import torch.distributed as dist
-from monai.data import create_test_image_3d, partition_dataset
+from monai.data import partition_dataset
 from monai.handlers import write_metrics_reports
 from monai.metrics import DiceMetric
 from monai.transforms import (
+    AddLabelNamesd,
     AsDiscreted,
     Compose,
     EnsureChannelFirstd,
-    KeepLargestConnectedComponentd,
     LoadImaged,
     Orientationd,
-    ScaleIntensityd,
     ToDeviced,
-    ToTensord,
 )
 from monai.utils import string_list_all_gather
 from scripts.monai_utils import CopyFilenamesd
@@ -115,6 +109,8 @@ def compute(datalist, output_dir):
 
 
 def compute_single_node(datalist, output_dir):
+    local_rank = int(os.environ["LOCAL_RANK"])
+
     filenames = [d["label"].split("/")[-1] for d in datalist]
 
     data_part = datalist

@@ -30,6 +30,25 @@ Testing data:
 
 External dataset licenses can be found in accompanying text file. Internal datasets currently not publicly available.
 
+To load data for training / inference / evaluate:
+
+Ensure that the "image" and "label" parameters within the "training" and "validation" sections in configs/TS_test.json (or a new dataset json), as well as the "datalist" and "dataset_dir" in configs/train.yaml, configs/inference.yaml, and configs/evaluate-standalone.yaml files (or the according yaml if using multigpu / parallel or different model inferencing) are each changed to match the intended dataset's values.
+
+One may make separate .json files detailing which exam images / masks are to be used in the same format as configs/TS_test.json with "training" and "validation" under root, as long as the "datalist_file_path" and "dataset_dir" values is changed accordingly in configs/train.yaml and configs/inference.yaml, and configs/evaluate-standalone.yaml (or the according yaml in different circumstances).
+
+Ensure data folder structure is as follows, with scan files in the primary dataset folder, and mask files in the /labels/final subfolder:
+    dataset/
+    ├─ exam_001.nii.gz
+    ├─ exam_002.nii.gz
+    ├─ ...
+    ├─ labels/
+    │  ├─ final/
+    │  │  ├─ exam_001.nii.gz
+    │  │  ├─ exam_002.nii.gz
+    │  │  ├─ ...
+    
+Configuration defaults are currently set to the external TotalSegmentator CT dataset.
+
 ### Model Architectures
 - DynUNet
 - SegResNet

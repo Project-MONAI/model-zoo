@@ -278,7 +278,7 @@ train:
       output_transform: "$monai.handlers.from_engine(['pred_pancreas', 'label_pancreas'])"
       include_background: false
   trainer:
-    _target_: scripts.monai_utils.SupervisedTrainer_m_gpu # SupervisedTrainer
+    _target_: scripts.monai_utils.SupervisedTrainerMGPU # SupervisedTrainer
     device: "@device_list" # "@device"
     max_epochs: "@max_epochs"
     train_data_loader: "@train#dataloader"

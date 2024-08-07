@@ -1,33 +1,28 @@
 from __future__ import annotations
 
-import json
 import logging
-import random
-import warnings
-from collections.abc import Hashable, Mapping, Sequence, Sized
+import os
+from collections.abc import Hashable, Mapping
+from typing import Any, Callable, Sequence
 
 import numpy as np
 import torch
+import torch.nn
+from ignite.engine import Engine
+from ignite.metrics import Metric
 from monai.config import KeysCollection
-from monai.data import MetaTensor
-from monai.networks.layers import GaussianFilter
-from monai.transforms.transform import MapTransform, Randomizable, Transform
-from monai.utils import min_version, optional_import
+from monai.engines import SupervisedTrainer
+from monai.engines.utils import get_devices_spec
+from monai.inferers import Inferer
+from monai.transforms.transform import MapTransform, Transform
+from torch.nn.parallel import DataParallel, DistributedDataParallel
+from torch.optim.optimizer import Optimizer
 
 # measure, _ = optional_import("skimage.measure", "0.14.2", min_version)
 
 logger = logging.getLogger(__name__)
 
 # distance_transform_cdt, _ = optional_import("scipy.ndimage.morphology", name="distance_transform_cdt")
-
-import os
-from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
-
-import torch.nn
-from monai.engines import SupervisedTrainer
-from monai.engines.utils import get_devices_spec
-from torch.nn.parallel import DataParallel, DistributedDataParallel
-from torch.optim.optimizer import Optimizer
 
 
 def get_device_list(n_gpu):
@@ -38,15 +33,16 @@ def get_device_list(n_gpu):
         device_list = [d for d in device_list if d in n_gpu]
     else:
         logging.info(
-            "Highest GPU ID provided in 'n_gpu' is larger than number of GPUs available, assigning GPUs starting from 0 to match n_gpu length of {}".format(
+            """Highest GPU ID provided in 'n_gpu' is larger than number of GPUs available, assigning GPUs starting from 0
+                 to match n_gpu length of {}""".format(
                 len(n_gpu)
             )
         )
-        device_list = [d for d in device_list][: len(n_gpu)]
+        device_list = device_list[: len(n_gpu)]
     return device_list
 
 
-def SupervisedTrainer_multi_gpu(
+def supervised_trainer_multi_gpu(
     max_epochs: int,
     train_data_loader,
     network: torch.nn.Module,
@@ -102,7 +98,7 @@ def SupervisedTrainer_multi_gpu(
     )
 
 
-class SupervisedTrainer_m_gpu(SupervisedTrainer):
+class SupervisedTrainerMGPU(SupervisedTrainer):
     def __init__(
         self,
         max_epochs: int,

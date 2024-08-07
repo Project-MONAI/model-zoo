@@ -9,13 +9,13 @@ import monai
 from sklearn.model_selection import train_test_split
 
 
-def produce_datalist_splits(
-    datalist, splits: list = ["test"], train_split: float = 0.80, valid_test_split: float = 0.50
-):
+def produce_datalist_splits(datalist, splits: list = None, train_split: float = 0.80, valid_test_split: float = 0.50):
     """
     This function is used to split the dataset.
     It will produce "train_size" number of samples for training.
     """
+    if splits is None:
+        splits = ["test"]
     if "train" in splits:
         train_list, other_list = train_test_split(datalist, train_size=train_split)
         if "valid" in splits:
@@ -34,17 +34,17 @@ def keep_image_label_pairs_only(a_images, a_labels, i_folder, l_folder):
     image_names = [a.split("/")[-1] for a in a_images]
     label_names = [a.split("/")[-1] for a in a_labels]
     # Check if all_labels == all_images, if all_images < all_labels, truncate all_labels
-    image_set = set(image_names)
-    label_set = set(label_names)
-    labelmissing = image_set.difference(label_set)
+    # image_set = set(image_names)
+    # label_set = set(label_names)
+    # labelmissing = image_set.difference(label_set)
     # Find names labels not in images
-    imagemissing = label_set.difference(image_set)
+    # imagemissing = label_set.difference(image_set)
     # print('Data_path: ', a_images[0])
     # print('Data folder: ',a_images[0].split('/')[-2])
     # print('Labels missing for: ', len(labelmissing))
     # print('Images missing for: ', len(imagemissing))
     a_images = sorted([os.path.join(i_folder, a) for a in image_names if a in label_names])
-    ## Keep only labels that have a scan
+    # Keep only labels that have a scan
     image_names = [a.split("/")[-1] for a in a_images]
     a_labels = sorted([os.path.join(l_folder, a) for a in label_names if a in image_names])
     return a_images, a_labels
