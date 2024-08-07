@@ -1,0 +1,177 @@
+{
+    "data_list_file_path": "$@bundle_root + '/configs/msd_task09_spleen_folds.json'",
+    "dataset_dir": "/data/Task09_Spleen",
+    "output_dir": "$@bundle_root + '/eval'",
+    "ckpt_path": "$@bundle_root + '/models/model.pt'",
+    "val_dataset_cache_rate": 0.0,
+    "patch_size": [
+        128,
+        128,
+        128
+    ],
+    "resample_to_spacing": [
+        1.5,
+        1.5,
+        1.5
+    ],
+    "cache_cls_idx#activate": false,
+    "label_mappings": {
+        "default": [
+            [
+                1,
+                25
+            ]
+        ]
+    },
+    "label_set": "$[0] + list(x[1] for x in @label_mappings#default)",
+    "val_label_set": "$[0] + list(x[0] for x in @label_mappings#default)",
+    "num_classes": 118,
+    "output_classes": 118,
+    "validate#preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "image_only": true,
+                "ensure_channel_first": true
+            },
+            {
+                "_target_": "CropForegroundd",
+                "keys": [
+                    "image"
+                ],
+                "source_key": "image",
+                "margin": 10,
+                "allow_smaller": true,
+                "start_coord_key": null,
+                "end_coord_key": null
+            },
+            {
+                "_target_": "ScaleIntensityRanged",
+                "keys": "image",
+                "a_min": -963.8247715525971,
+                "a_max": 1053.678477684517,
+                "b_min": 0.0,
+                "b_max": 1.0,
+                "clip": true
+            },
+            {
+                "_target_": "Orientationd",
+                "keys": [
+                    "image"
+                ],
+                "axcodes": "RAS"
+            },
+            {
+                "_target_": "Spacingd",
+                "keys": [
+                    "image"
+                ],
+                "pixdim": "$@resample_to_spacing",
+                "mode": [
+                    "bilinear"
+                ]
+            },
+            {
+                "_target_": "CastToTyped",
+                "keys": [
+                    "image",
+                    "label"
+                ],
+                "dtype": [
+                    "$torch.float32",
+                    "$torch.uint8"
+                ]
+            },
+            {
+                "_target_": "scripts.monai_trans_utils.RelabelD",
+                "keys": "label",
+                "label_mappings": "@label_mappings",
+                "dtype": "$torch.uint8"
+            }
+        ]
+    },
+    "validate#postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "EnsureTyped",
+                "keys": [
+                    "pred",
+                    "label"
+                ],
+                "device": "cpu",
+                "_disabled_": true
+            },
+            {
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "sigmoid": true
+            },
+            {
+                "_target_": "scripts.monai_trans_utils.VistaPostTransform",
+                "keys": "pred"
+            },
+            {
+                "_target_": "Invertd",
+                "keys": "pred",
+                "transform": "@validate#preprocessing",
+                "orig_keys": "image",
+                "nearest_interp": true,
+                "to_tensor": true
+            },
+            {
+                "_target_": "Lambdad",
+                "func": "$lambda x: torch.nan_to_num(x, nan=255)",
+                "keys": "pred"
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "pred",
+                "resample": false,
+                "output_dir": "@output_dir"
+            }
+        ]
+    },
+    "validate#handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_path": "@ckpt_path",
+            "load_dict": {
+                "model": "@network"
+            }
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": true,
+            "name": "validate_stats"
+        },
+        {
+            "_target_": "MetricsSaver",
+            "_disabled_": false,
+            "save_dir": "@output_dir",
+            "metrics": [
+                "val_mean_dice"
+            ],
+            "batch_transform": "$lambda x: [xx['image'].meta for xx in x]",
+            "metric_details": "*",
+            "summary_ops": "*"
+        }
+    ],
+    "validate#dataset": {
+        "_target_": "CacheDataset",
+        "data": "$list(@val_datalist)+list(@train_datalist)",
+        "transform": "@validate#preprocessing",
+        "cache_rate": "@val_dataset_cache_rate",
+        "hash_as_key": true,
+        "num_workers": "@num_cache_workers",
+        "progress": "@show_cache_progress"
+    },
+    "run": [
+        "$@validate#evaluator.run()"
+    ]
+}

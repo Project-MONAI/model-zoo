@@ -1,0 +1,42 @@
+{
+    "device": "$torch.device('cuda:' + os.environ['LOCAL_RANK'])",
+    "use_tensorboard": "$dist.get_rank() == 0",
+    "network": {
+        "_target_": "torch.nn.parallel.DistributedDataParallel",
+        "module": "$@network_def.to(@device)",
+        "find_unused_parameters": true,
+        "device_ids": [
+            "@device"
+        ]
+    },
+    "train#sampler": {
+        "_target_": "DistributedSampler",
+        "dataset": "@train#dataset",
+        "even_divisible": true,
+        "shuffle": true
+    },
+    "train#dataloader#sampler": "@train#sampler",
+    "train#dataloader#shuffle": false,
+    "train#trainer#train_handlers": "$@train#handlers[: -1 if dist.get_rank() > 0 else None]",
+    "validate#sampler": {
+        "_target_": "DistributedSampler",
+        "dataset": "@validate#dataset",
+        "even_divisible": false,
+        "shuffle": false
+    },
+    "validate#dataloader#sampler": "@validate#sampler",
+    "validate#evaluator#val_handlers": "$@validate#handlers[: -2 if dist.get_rank() > 0 else None]",
+    "initialize": [
+        "$import torch.distributed as dist",
+        "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
+        "$torch.cuda.set_device(@device)",
+        "$monai.utils.set_determinism(seed=123)"
+    ],
+    "run": [
+        "$@validate#handlers#0.set_trainer(trainer=@train#trainer) if @early_stop else None",
+        "$@train#trainer.run()"
+    ],
+    "finalize": [
+        "$dist.is_initialized() and dist.destroy_process_group()"
+    ]
+}

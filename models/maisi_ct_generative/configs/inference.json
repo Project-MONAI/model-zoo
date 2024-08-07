@@ -1,0 +1,292 @@
+{
+    "imports": [
+        "$import torch",
+        "$from pathlib import Path",
+        "$import scripts"
+    ],
+    "bundle_root": ".",
+    "model_dir": "$@bundle_root + '/models'",
+    "output_dir": "$@bundle_root + '/output'",
+    "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "trained_autoencoder_path": "$@model_dir + '/autoencoder_epoch273.pt'",
+    "trained_diffusion_path": "$@model_dir + '/input_unet3d_data-all_steps1000size512ddpm_random_current_inputx_v1.pt'",
+    "trained_controlnet_path": "$@model_dir + '/controlnet-20datasets-e20wl100fold0bc_noi_dia_fsize_current.pt'",
+    "trained_mask_generation_autoencoder_path": "$@model_dir + '/mask_generation_autoencoder.pt'",
+    "trained_mask_generation_diffusion_path": "$@model_dir + '/mask_generation_diffusion_unet.pt'",
+    "all_mask_files_base_dir": "$@bundle_root + '/datasets/all_masks_flexible_size_and_spacing_3000'",
+    "all_mask_files_json": "$@bundle_root + '/configs/candidate_masks_flexible_size_and_spacing_3000.json'",
+    "all_anatomy_size_condtions_json": "$@bundle_root + '/configs/all_anatomy_size_condtions.json'",
+    "label_dict_json": "$@bundle_root + '/configs/label_dict.json'",
+    "label_dict_remap_json": "$@bundle_root + '/configs/label_dict_124_to_132.json'",
+    "quality_check_args": null,
+    "num_output_samples": 1,
+    "body_region": [
+        "abdomen"
+    ],
+    "anatomy_list": [
+        "liver"
+    ],
+    "controllable_anatomy_size": [],
+    "num_inference_steps": 1000,
+    "mask_generation_num_inference_steps": 1000,
+    "random_seed": null,
+    "spatial_dims": 3,
+    "image_channels": 1,
+    "latent_channels": 4,
+    "output_size_xy": 512,
+    "output_size_z": 512,
+    "output_size": [
+        "@output_size_xy",
+        "@output_size_xy",
+        "@output_size_z"
+    ],
+    "image_output_ext": ".nii.gz",
+    "label_output_ext": ".nii.gz",
+    "spacing_xy": 1.0,
+    "spacing_z": 1.0,
+    "spacing": [
+        "@spacing_xy",
+        "@spacing_xy",
+        "@spacing_z"
+    ],
+    "latent_shape": [
+        "@latent_channels",
+        "$@output_size[0]//4",
+        "$@output_size[1]//4",
+        "$@output_size[2]//4"
+    ],
+    "mask_generation_latent_shape": [
+        4,
+        64,
+        64,
+        64
+    ],
+    "autoencoder_def": {
+        "_target_": "scripts.custom_network_tp.AutoencoderKlckModifiedTp",
+        "spatial_dims": "@spatial_dims",
+        "in_channels": "@image_channels",
+        "out_channels": "@image_channels",
+        "latent_channels": "@latent_channels",
+        "num_channels": [
+            64,
+            128,
+            256
+        ],
+        "num_res_blocks": [
+            2,
+            2,
+            2
+        ],
+        "norm_num_groups": 32,
+        "norm_eps": 1e-06,
+        "attention_levels": [
+            false,
+            false,
+            false
+        ],
+        "with_encoder_nonlocal_attn": false,
+        "with_decoder_nonlocal_attn": false,
+        "use_checkpointing": false,
+        "use_convtranspose": false
+    },
+    "difusion_unet_def": {
+        "_target_": "scripts.custom_network_diffusion.CustomDiffusionModelUNet",
+        "spatial_dims": "@spatial_dims",
+        "in_channels": "@latent_channels",
+        "out_channels": "@latent_channels",
+        "num_channels": [
+            64,
+            128,
+            256,
+            512
+        ],
+        "attention_levels": [
+            false,
+            false,
+            true,
+            true
+        ],
+        "num_head_channels": [
+            0,
+            0,
+            32,
+            32
+        ],
+        "num_res_blocks": 2,
+        "use_flash_attention": true,
+        "input_top_region_index": true,
+        "input_bottom_region_index": true,
+        "input_spacing": true
+    },
+    "controlnet_def": {
+        "_target_": "scripts.custom_network_controlnet.CustomControlNet",
+        "spatial_dims": "@spatial_dims",
+        "in_channels": "@latent_channels",
+        "num_channels": [
+            64,
+            128,
+            256,
+            512
+        ],
+        "attention_levels": [
+            false,
+            false,
+            true,
+            true
+        ],
+        "num_head_channels": [
+            0,
+            0,
+            32,
+            32
+        ],
+        "num_res_blocks": 2,
+        "use_flash_attention": true,
+        "conditioning_embedding_in_channels": 8,
+        "conditioning_embedding_num_channels": [
+            8,
+            32,
+            64
+        ]
+    },
+    "mask_generation_autoencoder_def": {
+        "_target_": "generative.networks.nets.AutoencoderKL",
+        "spatial_dims": 3,
+        "in_channels": 8,
+        "out_channels": 125,
+        "latent_channels": 4,
+        "num_channels": [
+            32,
+            64,
+            128
+        ],
+        "num_res_blocks": [
+            1,
+            2,
+            2
+        ],
+        "norm_num_groups": 32,
+        "norm_eps": 1e-06,
+        "attention_levels": [
+            false,
+            false,
+            false
+        ],
+        "with_encoder_nonlocal_attn": false,
+        "with_decoder_nonlocal_attn": false,
+        "use_flash_attention": false,
+        "use_checkpointing": true,
+        "use_convtranspose": true
+    },
+    "mask_generation_diffusion_def": {
+        "_target_": "generative.networks.nets.DiffusionModelUNet",
+        "spatial_dims": 3,
+        "in_channels": 4,
+        "out_channels": 4,
+        "num_channels": [
+            64,
+            128,
+            256,
+            512
+        ],
+        "attention_levels": [
+            false,
+            false,
+            true,
+            true
+        ],
+        "num_head_channels": [
+            0,
+            0,
+            32,
+            32
+        ],
+        "num_res_blocks": 2,
+        "use_flash_attention": true,
+        "with_conditioning": true,
+        "upcast_attention": true,
+        "cross_attention_dim": 10
+    },
+    "autoencoder": "$@autoencoder_def.to(@device)",
+    "checkpoint_autoencoder": "$scripts.utils.load_autoencoder_ckpt(@trained_autoencoder_path)",
+    "load_autoencoder": "$@autoencoder.load_state_dict(@checkpoint_autoencoder)",
+    "difusion_unet": "$@difusion_unet_def.to(@device)",
+    "checkpoint_difusion_unet": "$torch.load(@trained_diffusion_path)",
+    "load_diffusion": "$@difusion_unet.load_state_dict(@checkpoint_difusion_unet['unet_state_dict'])",
+    "controlnet": "$@controlnet_def.to(@device)",
+    "copy_controlnet_state": "$monai.networks.utils.copy_model_state(@controlnet, @difusion_unet.state_dict())",
+    "checkpoint_controlnet": "$torch.load(@trained_controlnet_path)",
+    "load_controlnet": "$@controlnet.load_state_dict(@checkpoint_controlnet['controlnet_state_dict'], strict=True)",
+    "scale_factor": "$@checkpoint_difusion_unet['scale_factor'].to(@device)",
+    "mask_generation_autoencoder": "$@mask_generation_autoencoder_def.to(@device)",
+    "checkpoint_mask_generation_autoencoder": "$torch.load(@trained_mask_generation_autoencoder_path)",
+    "load_mask_generation_autoencoder": "$@mask_generation_autoencoder.load_state_dict(@checkpoint_mask_generation_autoencoder, strict=True)",
+    "mask_generation_difusion_unet": "$@mask_generation_diffusion_def.to(@device)",
+    "checkpoint_mask_generation_difusion_unet": "$torch.load(@trained_mask_generation_diffusion_path)",
+    "load_mask_generation_diffusion": "$@mask_generation_difusion_unet.load_state_dict(@checkpoint_mask_generation_difusion_unet, strict=True)",
+    "mask_generation_scale_factor": 1.0055984258651733,
+    "noise_scheduler": {
+        "_target_": "generative.networks.schedulers.DDPMScheduler",
+        "num_train_timesteps": 1000,
+        "beta_start": 0.0015,
+        "beta_end": 0.0195,
+        "schedule": "scaled_linear_beta",
+        "clip_sample": false
+    },
+    "mask_generation_noise_scheduler": {
+        "_target_": "generative.networks.schedulers.DDPMScheduler",
+        "num_train_timesteps": 1000,
+        "beta_start": 0.0015,
+        "beta_end": 0.0195,
+        "schedule": "scaled_linear_beta",
+        "clip_sample": false
+    },
+    "check_input": "$scripts.sample.check_input(@body_region,@anatomy_list,@label_dict_json,@output_size,@spacing,@controllable_anatomy_size)",
+    "ldm_sampler": {
+        "_target_": "scripts.sample.LDMSampler",
+        "_requires_": [
+            "@create_output_dir",
+            "@load_diffusion",
+            "@load_autoencoder",
+            "@copy_controlnet_state",
+            "@load_controlnet",
+            "@load_mask_generation_autoencoder",
+            "@load_mask_generation_diffusion",
+            "@check_input"
+        ],
+        "body_region": "@body_region",
+        "anatomy_list": "@anatomy_list",
+        "all_mask_files_json": "@all_mask_files_json",
+        "all_anatomy_size_condtions_json": "@all_anatomy_size_condtions_json",
+        "all_mask_files_base_dir": "@all_mask_files_base_dir",
+        "label_dict_json": "@label_dict_json",
+        "label_dict_remap_json": "@label_dict_remap_json",
+        "autoencoder": "@autoencoder",
+        "difusion_unet": "@difusion_unet",
+        "controlnet": "@controlnet",
+        "scale_factor": "@scale_factor",
+        "noise_scheduler": "@noise_scheduler",
+        "mask_generation_autoencoder": "@mask_generation_autoencoder",
+        "mask_generation_difusion_unet": "@mask_generation_difusion_unet",
+        "mask_generation_scale_factor": "@mask_generation_scale_factor",
+        "mask_generation_noise_scheduler": "@mask_generation_noise_scheduler",
+        "controllable_anatomy_size": "@controllable_anatomy_size",
+        "image_output_ext": "@image_output_ext",
+        "label_output_ext": "@label_output_ext",
+        "device": "@device",
+        "latent_shape": "@latent_shape",
+        "mask_generation_latent_shape": "@mask_generation_latent_shape",
+        "output_size": "@output_size",
+        "quality_check_args": "@quality_check_args",
+        "spacing": "@spacing",
+        "output_dir": "@output_dir",
+        "num_inference_steps": "@num_inference_steps",
+        "mask_generation_num_inference_steps": "@mask_generation_num_inference_steps",
+        "random_seed": "@random_seed"
+    },
+    "run": [
+        "$@ldm_sampler.sample_multiple_images(@num_output_samples)"
+    ],
+    "evaluator": null
+}

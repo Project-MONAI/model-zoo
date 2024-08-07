@@ -1522,5 +1522,13 @@
     "spleen_ct_segmentation_v0.5.8": {
         "checksum": "3e43f860ba08cb3d121d521cadde0e5b59f72526",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.8/files/spleen_ct_segmentation_v0.5.8.zip"
+    },
+    "vista3d_v0.4.1": {
+        "checksum": "499d6b79d351bdd611ded0a7780d7803096e5f62",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.1/files/vista3d_v0.4.1.zip"
+    },
+    "maisi_ct_generative_v0.3.6": {
+        "checksum": "3ce46e90e78e5bda1eac9db54adf4ccfcbc895a9",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.3.6/files/maisi_ct_generative_v0.3.6.zip"
     }
 }
