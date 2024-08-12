@@ -19,7 +19,11 @@
             128,
             256
         ],
-        "num_res_blocks": [2,2,2],
+        "num_res_blocks": [
+            2,
+            2,
+            2
+        ],
         "norm_num_groups": 32,
         "norm_eps": 1e-06,
         "attention_levels": [
@@ -89,7 +93,11 @@
         "num_res_blocks": 2,
         "use_flash_attention": true,
         "conditioning_embedding_in_channels": 8,
-        "conditioning_embedding_num_channels": [8, 32, 64]
+        "conditioning_embedding_num_channels": [
+            8,
+            32,
+            64
+        ]
     },
     "mask_generation_autoencoder_def": {
         "_target_": "monai.apps.generation.maisi.networks.autoencoderkl_maisi.AutoencoderKlMaisi",
@@ -102,7 +110,11 @@
             64,
             128
         ],
-        "num_res_blocks": [1, 2, 2],
+        "num_res_blocks": [
+            1,
+            2,
+            2
+        ],
         "norm_num_groups": 32,
         "norm_eps": 1e-06,
         "attention_levels": [
@@ -124,9 +136,24 @@
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
-        "num_channels":[64, 128, 256, 512],
-        "attention_levels":[false, false, true, true],
-        "num_head_channels":[0, 0, 32, 32],
+        "num_channels": [
+            64,
+            128,
+            256,
+            512
+        ],
+        "attention_levels": [
+            false,
+            false,
+            true,
+            true
+        ],
+        "num_head_channels": [
+            0,
+            0,
+            32,
+            32
+        ],
         "num_res_blocks": 2,
         "use_flash_attention": true,
         "with_conditioning": true,
