@@ -12,6 +12,7 @@
 import argparse
 import os
 import sys
+import shutil
 
 import torch
 from bundle_custom_data import (
@@ -218,22 +219,30 @@ def get_app_properties(app: str, version: str):
     This function is used to get the properties file of the app.
 
     """
-    if app in ["monai-deploy", "monai-label", "nvflare"]:
-        # TODO: so far these apps use default properties, need to grab the properties from the app instead.
+    # dir structure: model-zoo/app/
+    for root, dirs, files in os.walk(os.path.join(os.getcwd(), app)):
+        if "bundle_properties.py" in files and os.path.isfile(os.path.join(root, "bundle_properties.py")):
+            return os.path.join(root, "bundle_properties.py")
+    else:
         return None
-    return None
 
 
 def check_properties(**kwargs):
     """
     This function is used to check the properties of the workflow.
-
     """
+    app_properties_path = kwargs.get("properties_path", "")
+    kwargs.pop("properties_path", None)
     workflow = create_workflow(**kwargs)
-    check_result = workflow.check_properties()
-    if check_result is not None and len(check_result) > 0:
-        raise ValueError(f"check properties for workflow failed: {check_result}")
-
+    if app_properties_path is not None and os.path.isfile(app_properties_path):
+        shutil.copy(app_properties_path, "ci/bundle_properties.py")
+        from bundle_properties import InferProperties, MetaProperties
+        workflow.properties = {**MetaProperties, **InferProperties}
+        check_result = workflow.check_properties()
+        if check_result is not None and len(check_result) > 0:
+            raise ValueError(f"check properties for workflow failed: {check_result}, app_properties_path: {app_properties_path}")
+        else:
+            print(f"check properties for workflow successfully {check_result}.")
 
 def verify_bundle_properties(model_path: str, bundle: str):
     """
@@ -262,15 +271,14 @@ def verify_bundle_properties(model_path: str, bundle: str):
                 supported_apps = metadata["supported_apps"]
                 all_properties = []
                 for app, version in supported_apps.items():
-                    if app in ["vista3d-nim", "maisi-nim"]:
-                        # skip check
-                        continue
                     properties_path = get_app_properties(app, version)
-                    all_properties.append(properties_path)
+                    if properties_path is not None:
+                       all_properties.append(properties_path)
                 all_properties = list(set(all_properties))
                 for properties_path in all_properties:
                     check_property_args["properties_path"] = properties_path
                     check_properties(**check_property_args)
+                    print("successfully checked properties.")
             else:
                 check_properties(**check_property_args)
 
