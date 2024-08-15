@@ -11,8 +11,8 @@
 
 import argparse
 import os
-import sys
 import shutil
+import sys
 
 import torch
 from bundle_custom_data import (
@@ -237,12 +237,16 @@ def check_properties(**kwargs):
     if app_properties_path is not None and os.path.isfile(app_properties_path):
         shutil.copy(app_properties_path, "ci/bundle_properties.py")
         from bundle_properties import InferProperties, MetaProperties
+
         workflow.properties = {**MetaProperties, **InferProperties}
         check_result = workflow.check_properties()
         if check_result is not None and len(check_result) > 0:
-            raise ValueError(f"check properties for workflow failed: {check_result}, app_properties_path: {app_properties_path}")
+            raise ValueError(
+                f"check properties for workflow failed: {check_result}, app_properties_path: {app_properties_path}"
+            )
         else:
             print(f"check properties for workflow successfully {check_result}.")
+
 
 def verify_bundle_properties(model_path: str, bundle: str):
     """
@@ -273,7 +277,7 @@ def verify_bundle_properties(model_path: str, bundle: str):
                 for app, version in supported_apps.items():
                     properties_path = get_app_properties(app, version)
                     if properties_path is not None:
-                       all_properties.append(properties_path)
+                        all_properties.append(properties_path)
                 all_properties = list(set(all_properties))
                 for properties_path in all_properties:
                     check_property_args["properties_path"] = properties_path
