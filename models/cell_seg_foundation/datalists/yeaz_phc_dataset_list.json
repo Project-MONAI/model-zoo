@@ -1,0 +1,213 @@
+{
+    "testing": [
+        {
+            "image": "gold-standard-PhC-plus-2/m_reexport1_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/m_reexport1_crop_1_mask.tif"
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/d_reexport2_crop_3_im.tif",
+            "label": "gold-standard-PhC-plus-2/d_reexport2_crop_3_mask.tif"
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV4_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV4_20p_PhC_present_crop_1_mask.tif"
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/d_reexport2_crop_2_im.tif",
+            "label": "gold-standard-PhC-plus-2/d_reexport2_crop_2_mask.tif"
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV10_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV10_20p_PhC_present_crop_1_mask.tif"
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/d_reexport1_crop_3_im.tif",
+            "label": "gold-standard-PhC-plus-2/d_reexport1_crop_3_mask.tif"
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/d_reexport1_crop_2_im.tif",
+            "label": "gold-standard-PhC-plus-2/d_reexport1_crop_2_mask.tif"
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/d_reexport2_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/d_reexport2_crop_1_mask.tif"
+        }
+    ],
+    "training": [
+        {
+            "image": "gold-standard-PhC-plus-2/d_reexport1_crop_4_im.tif",
+            "label": "gold-standard-PhC-plus-2/d_reexport1_crop_4_mask.tif",
+            "fold": 0
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV11_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV11_20p_PhC_present_crop_1_mask.tif",
+            "fold": 0
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV13_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV13_20p_PhC_present_crop_1_mask.tif",
+            "fold": 0
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/Ahmad_frame_19_crop_2_im.tif",
+            "label": "gold-standard-PhC-plus-2/Ahmad_frame_19_crop_2_mask.tif",
+            "fold": 0
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/V11032020_p3_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/V11032020_p3_crop_1_mask.tif",
+            "fold": 0
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV14_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV14_20p_PhC_present_crop_1_mask.tif",
+            "fold": 0
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/Ahmad_frame_16_crop_4_im.tif",
+            "label": "gold-standard-PhC-plus-2/Ahmad_frame_16_crop_4_mask.tif",
+            "fold": 0
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV1_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV1_20p_PhC_present_crop_1_mask.tif",
+            "fold": 1
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/a_reexport3_crop_2_im.tif",
+            "label": "gold-standard-PhC-plus-2/a_reexport3_crop_2_mask.tif",
+            "fold": 1
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/v_clnnull_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/v_clnnull_crop_1_mask.tif",
+            "fold": 1
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/Ahmad_frame_19_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/Ahmad_frame_19_crop_1_mask.tif",
+            "fold": 1
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV8_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV8_20p_PhC_present_crop_1_mask.tif",
+            "fold": 1
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/Ahmad_frame_16_crop_2_im.tif",
+            "label": "gold-standard-PhC-plus-2/Ahmad_frame_16_crop_2_mask.tif",
+            "fold": 1
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/Ahmad_frame_16_crop_3_im.tif",
+            "label": "gold-standard-PhC-plus-2/Ahmad_frame_16_crop_3_mask.tif",
+            "fold": 1
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/2020_3_24_AS20_1_AS18_Pos11_crop_2_im.tif",
+            "label": "gold-standard-PhC-plus-2/2020_3_24_AS20_1_AS18_Pos11_crop_2_mask.tif",
+            "fold": 2
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/2020_3_24_AS20_1_AS18_Pos11_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/2020_3_24_AS20_1_AS18_Pos11_crop_1_mask.tif",
+            "fold": 2
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV10_20p_PhC_present_crop_2_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV10_20p_PhC_present_crop_2_mask.tif",
+            "fold": 2
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV9_20p_PhC_present_crop_2_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV9_20p_PhC_present_crop_2_mask.tif",
+            "fold": 2
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV5_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV5_20p_PhC_present_crop_1_mask.tif",
+            "fold": 2
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV12_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV12_20p_PhC_present_crop_1_mask.tif",
+            "fold": 2
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV9_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV9_20p_PhC_present_crop_1_mask.tif",
+            "fold": 2
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV15_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV15_20p_PhC_present_crop_1_mask.tif",
+            "fold": 3
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV7_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV7_20p_PhC_present_crop_1_mask.tif",
+            "fold": 3
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV2_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV2_20p_PhC_present_crop_1_mask.tif",
+            "fold": 3
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/V11032020_p1_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/V11032020_p1_crop_1_mask.tif",
+            "fold": 3
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/v_cdc20null_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/v_cdc20null_crop_1_mask.tif",
+            "fold": 3
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV3_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV3_20p_PhC_present_crop_1_mask.tif",
+            "fold": 3
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/Ahmad_frame_16_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/Ahmad_frame_16_crop_1_mask.tif",
+            "fold": 3
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/d_reexport1_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/d_reexport1_crop_1_mask.tif",
+            "fold": 4
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/FOV6_20p_PhC_present_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/FOV6_20p_PhC_present_crop_1_mask.tif",
+            "fold": 4
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/V11032020_p2_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/V11032020_p2_crop_1_mask.tif",
+            "fold": 4
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/a_reexport3_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/a_reexport3_crop_1_mask.tif",
+            "fold": 4
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/a_reexport1_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/a_reexport1_crop_1_mask.tif",
+            "fold": 4
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/Ahmad_frame_19_crop_3_im.tif",
+            "label": "gold-standard-PhC-plus-2/Ahmad_frame_19_crop_3_mask.tif",
+            "fold": 4
+        },
+        {
+            "image": "gold-standard-PhC-plus-2/a_reexport2_crop_1_im.tif",
+            "label": "gold-standard-PhC-plus-2/a_reexport2_crop_1_mask.tif",
+            "fold": 4
+        }
+    ]
+}

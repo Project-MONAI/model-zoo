@@ -1,0 +1,2884 @@
+{
+    "training": [
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d12h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d16h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d16h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d12h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d08h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d08h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d16h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d00h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d12h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d12h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d04h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d20h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d16h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d00h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_03d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_03d00h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d04h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d12h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d20h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d12h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d04h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d20h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d08h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d12h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d12h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_03d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_03d00h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d12h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d16h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d16h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d20h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d00h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d16h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d20h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d04h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d04h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d08h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d20h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d08h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d12h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d04h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d00h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d20h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d20h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d08h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d16h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d04h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d00h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d16h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d04h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d16h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d00h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d12h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d16h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d20h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d12h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d20h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d08h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d08h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d00h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d04h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d16h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d04h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d00h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d20h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d00h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d12h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d16h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d00h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d16h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d12h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d04h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d12h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d04h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d08h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d00h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d12h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d04h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d12h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d08h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d12h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d04h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d08h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d12h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_03d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_03d00h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d16h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d20h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d00h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d16h00m_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d08h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d20h00m_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d20h00m_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d20h00m_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_03d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_03d00h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d00h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d00h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d16h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d00h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d04h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d00h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d08h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d16h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d12h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d08h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d00h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d20h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d00h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d16h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d12h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d08h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d08h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d12h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d08h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d12h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d20h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d20h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d16h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d08h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d16h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d20h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d00h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d00h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d04h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d20h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d04h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d16h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d04h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d20h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d04h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d16h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d12h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d00h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d20h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d08h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d08h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d00h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d08h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d16h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d00h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d08h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d16h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d20h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d16h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d00h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d12h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d12h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d00h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d20h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_03d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_03d00h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d12h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d12h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d12h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d12h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d20h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d16h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d00h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d08h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d20h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d00h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d12h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d12h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d12h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d00h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d20h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d08h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d00h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d04h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d08h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d16h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d12h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d20h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d04h00m_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d04h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d20h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d20h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d12h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d12h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d08h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d12h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d00h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d16h00m_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d12h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d20h00m_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d08h00m_4_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d08h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d20h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d16h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d00h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d08h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d08h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d12h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d16h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d08h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d04h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d16h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_03d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_03d00h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d04h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d04h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d00h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d20h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d04h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d04h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d12h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d00h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d08h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d20h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d20h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d04h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d08h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d08h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d20h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d08h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d00h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d08h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d04h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d04h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d16h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d12h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d20h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d20h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d00h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d16h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d00h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_03d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_03d00h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d16h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d08h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_03d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_03d00h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d08h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d00h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d04h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d16h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d16h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d04h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d00h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d20h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d16h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d16h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d08h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d20h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d04h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d12h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d16h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d04h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d08h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d04h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d20h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d00h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d08h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d12h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d08h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d00h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d00h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d12h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d12h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d12h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d08h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d20h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d04h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d00h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_03d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_03d00h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d20h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d16h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d08h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d16h00m_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d16h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d08h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d04h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d08h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d08h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d04h00m_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d20h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d08h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d04h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d12h00m_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d12h00m_4_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d16h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_03d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_03d00h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d16h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d08h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d08h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d16h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d12h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d20h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d12h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d16h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d16h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d12h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d08h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d16h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d16h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_03d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_03d00h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d08h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d12h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d00h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d16h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d00h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d20h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d04h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d00h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d08h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d16h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d04h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d16h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d08h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d20h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d04h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d00h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d12h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d04h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d04h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d12h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d20h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d20h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d04h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d08h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d12h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d00h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d00h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d04h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d12h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d00h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d08h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d12h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_03d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_03d00h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d16h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d12h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d04h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d00h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d16h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d00h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d00h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d12h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d16h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_03d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_03d00h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d12h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d16h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d20h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d04h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d08h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d16h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d04h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d20h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d20h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d04h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d12h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d08h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d16h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d08h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d00h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d00h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d04h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d00h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d16h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d20h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d16h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d20h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d12h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d20h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d12h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d04h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d04h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d08h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_03d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_03d00h00m_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d20h00m_4_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d12h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d12h00m_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d04h00m_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d00h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d00h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_03d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_03d00h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d04h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d16h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d16h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d20h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d04h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d20h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d08h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d12h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d20h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d12h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_03d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_03d00h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_03d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_03d00h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d04h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d16h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d00h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d04h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d16h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d08h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_03d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_03d00h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_03d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_03d00h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d04h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d20h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d08h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d20h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d08h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d08h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d04h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d20h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d20h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d16h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d20h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d04h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d12h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d20h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d04h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d04h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_00d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_00d04h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d20h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_01d12h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_01d12h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d08h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d12h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d12h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d04h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d00h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_03d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_03d00h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d04h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d04h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d12h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d12h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d20h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d20h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d04h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d04h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d00h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d20h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d08h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d00h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d04h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d00h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_03d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_03d00h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d08h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d08h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d04h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_03d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_03d00h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d00h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d00h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_02d08h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_02d08h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d20h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d08h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d08h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d00h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d16h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_00d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_00d16h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_00d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_00d00h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d08h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_01d20h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_01d20h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d00h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d16h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d04h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_02d04h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_02d04h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d16h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d16h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_01d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_01d00h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_02d12h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_02d12h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_2_00d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_2_00d00h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_1_00d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_1_00d00h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_02d20h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_02d20h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_1_01d16h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_1_01d16h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_00d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_00d16h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d00h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d00h00m_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d16h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d16h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d00h00m_2.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d00h00m_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_01d00h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_01d00h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_C4_1_01d04h00m_1.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_C4_1_01d04h00m_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_D4_2_02d08h00m_4.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_D4_2_02d08h00m_4_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "livecell_train_val_images/BV2/BV2_Phase_B4_2_02d20h00m_3.tif",
+            "label": "livecell_train_val_images/BV2_masks/BV2_Phase_B4_2_02d20h00m_3_masks.tif",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d16h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d16h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d20h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d20h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_03d00h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_03d00h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d12h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d12h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d12h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d12h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d12h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d12h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d00h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d00h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d08h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d08h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d04h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d04h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d20h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d20h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d12h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d12h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_03d00h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_03d00h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d08h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d08h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d04h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d04h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d08h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d08h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d04h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d04h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d08h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d08h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d00h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d00h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d04h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d04h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d12h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d12h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d12h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d12h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d20h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d20h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d00h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d00h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d00h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d00h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d08h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d08h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d08h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d08h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d20h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d20h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d04h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d04h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d08h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d08h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d04h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d04h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d08h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d08h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_03d00h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_03d00h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d08h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d08h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d00h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d00h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_03d00h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_03d00h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_03d00h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_03d00h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d00h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d00h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d12h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d12h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d00h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d00h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d16h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d16h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d04h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d04h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d12h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d12h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d00h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d00h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_03d00h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_03d00h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d00h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d00h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d20h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d20h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d04h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d04h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d20h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d20h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d04h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d04h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d20h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d20h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d16h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d16h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d16h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d16h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d04h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d04h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d12h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d12h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d04h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d04h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d04h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d04h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d20h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d20h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d16h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d16h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d08h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d08h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d20h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d20h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d08h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d08h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d00h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d00h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d20h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d20h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d08h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d08h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d20h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d20h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d08h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d08h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d08h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d08h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d16h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d16h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d16h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d16h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d04h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d04h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d04h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d04h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d12h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d12h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d08h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d08h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d16h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d16h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d00h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d00h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d12h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d12h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d16h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d16h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d20h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d20h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d04h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d04h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d20h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d20h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d00h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d00h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d16h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d16h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d08h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d08h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d00h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d00h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d12h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d12h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d00h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d00h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d16h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d16h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d16h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d16h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d20h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d20h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d08h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d08h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d16h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d16h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d04h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d04h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d00h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d00h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d12h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d12h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d20h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d20h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d12h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d12h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d16h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d16h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d20h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d20h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d16h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d16h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d04h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d04h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d04h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d04h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d20h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d20h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d08h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d08h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d12h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d12h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d16h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d16h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d08h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d08h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d16h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d16h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d08h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d08h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d08h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d08h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d08h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d08h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_03d00h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_03d00h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d04h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d04h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d16h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d16h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d12h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d12h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d16h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d16h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d04h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d04h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d00h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d00h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d12h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d12h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d20h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d20h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d16h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d16h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d20h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d20h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d12h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d12h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d16h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d16h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d00h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d00h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d20h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d20h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d20h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d20h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d08h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d08h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d08h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d08h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d00h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d00h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d12h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d12h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d00h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d00h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d00h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d00h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_03d00h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_03d00h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d04h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d04h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d04h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d04h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d16h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d16h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d16h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d16h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d04h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d04h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d04h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d04h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_01d00h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_01d00h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d00h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d00h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d20h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d20h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d12h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d12h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d20h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d20h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d12h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d12h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_02d12h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_02d12h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d00h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d00h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_2_00d12h00m_3.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_2_00d12h00m_3_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_02d12h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_02d12h00m_4_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_01d16h00m_2.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_01d16h00m_2_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d00h00m_1.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d00h00m_1_masks.tif"
+        },
+        {
+            "image": "livecell_test_images/BV2/BV2_Phase_A4_1_00d20h00m_4.tif",
+            "label": "livecell_test_images/BV2_masks/BV2_Phase_A4_1_00d20h00m_4_masks.tif"
+        }
+    ]
+}

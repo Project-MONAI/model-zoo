@@ -1,0 +1,2092 @@
+{
+    "training": [
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_31.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_31_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_31_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_33.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_33_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_33_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_3.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_3_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_3_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_15.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_15_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_15_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_47.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_47_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_47_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_23.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_23_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_23_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_29.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_29_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_29_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_17.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_17_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_17_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_0.tif",
+            "label": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_0_masks.tif",
+            "flows": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_0_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_10.tif",
+            "label": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_10_masks.tif",
+            "flows": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_10_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_0.tif",
+            "label": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_0_masks.tif",
+            "flows": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_0_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_1.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_1_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_1_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_6.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_6_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_6_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_10.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_10_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_10_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile5.tif",
+            "label": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile5_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile5_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile9.tif",
+            "label": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile9_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile9_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_15.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_15_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_15_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_7.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_7_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_7_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_19.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_19_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_19_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_5.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_5_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_5_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_3.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_3_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_3_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_4.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_4_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_4_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_3.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_3_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_3_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile7.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile7_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile7_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_1.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_1_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_1_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_2.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_2_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_2_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_1.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_1_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_1_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_1.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_1_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_1_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_18.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_18_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_18_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_24.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_24_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_24_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_22.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_22_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_22_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_17.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_17_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_17_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/img_000000005.tif",
+            "label": "bact_phase/train_sorted/wiggins/img_000000005_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/img_000000005_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_22.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_22_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_22_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_10.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_10_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_10_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_14.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_14_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_14_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_6.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_6_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_6_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/img_000000000.tif",
+            "label": "bact_phase/train_sorted/wiggins/img_000000000_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/img_000000000_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_0.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_0_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_0_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_6.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_6_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_6_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_3.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_3_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_3_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_13.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_13_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_13_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_10.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_10_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_10_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_4.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_4_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_4_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_8.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_8_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_8_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_11.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_11_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_11_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile10_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile10_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile10_phase_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile3.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile3_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile3_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY16_1.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY16_1_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY16_1_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_4.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_4_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_4_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_7.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_7_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_7_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_21.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_21_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_21_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_27.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_27_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_27_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_12.tif",
+            "label": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_12_masks.tif",
+            "flows": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_12_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_4.tif",
+            "label": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_4_masks.tif",
+            "flows": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_4_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_6.tif",
+            "label": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_6_masks.tif",
+            "flows": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_6_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_6.tif",
+            "label": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_6_masks.tif",
+            "flows": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_6_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile2.tif",
+            "label": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile2_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_t1xy2c1_Tile2_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_16.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_16_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_16_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_9.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_9_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_9_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_1.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_1_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_1_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_10.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_10_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_10_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_12.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_12_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_12_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_2.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_2_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_2_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_13.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_13_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_13_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_0.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_0_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_0_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_8.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_8_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_8_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_21.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_21_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_21_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_11.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_11_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_11_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/xy5_001.tif",
+            "label": "bact_phase/train_sorted/bthai/xy5_001_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/xy5_001_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_3.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_3_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_3_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_2.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_2_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_2_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/xy5_008.tif",
+            "label": "bact_phase/train_sorted/bthai/xy5_008_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/xy5_008_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/murA/murA_ensemble_4.tif",
+            "label": "bact_phase/train_sorted/murA/murA_ensemble_4_masks.tif",
+            "flows": "bact_phase/train_sorted/murA/murA_ensemble_4_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/murA/murA_ensemble_1.tif",
+            "label": "bact_phase/train_sorted/murA/murA_ensemble_1_masks.tif",
+            "flows": "bact_phase/train_sorted/murA/murA_ensemble_1_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/murA/murA_ensemble_3.tif",
+            "label": "bact_phase/train_sorted/murA/murA_ensemble_3_masks.tif",
+            "flows": "bact_phase/train_sorted/murA/murA_ensemble_3_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_5.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_5_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_5_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_19.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_19_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_19_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_29.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_29_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_29_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_9.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_9_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_9_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_28.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_28_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_28_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_12.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_12_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_12_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_4.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_4_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_4_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_27.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_27_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_27_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_26.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_26_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_26_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile9.tif",
+            "label": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile9_masks.tif",
+            "flows": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile9_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_24.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_24_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_24_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/img_000000015.tif",
+            "label": "bact_phase/train_sorted/wiggins/img_000000015_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/img_000000015_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_4.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_4_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_4_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_2.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_2_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_2_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile12_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile12_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile12_phase_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile15_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile15_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile15_phase_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile3_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile3_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile3_phase_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile8_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile8_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile8_phase_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_7.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_7_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_7_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_4.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_4_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_4_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_3.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_3_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_3_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_2.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_2_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_2_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_2.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_2_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_2_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_4.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_4_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_4_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_41.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_41_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_41_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_25.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_25_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_25_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_43.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_43_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_43_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_1.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_1_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_1_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_2.tif",
+            "label": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_2_masks.tif",
+            "flows": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_2_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_8.tif",
+            "label": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_8_masks.tif",
+            "flows": "bact_phase/train_sorted/dnaA/dnaA_xy1_ensemble_8_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_4.tif",
+            "label": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_4_masks.tif",
+            "flows": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_4_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_2.tif",
+            "label": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_2_masks.tif",
+            "flows": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_2_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_2.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_2_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_2_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_11.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_11_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_11_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_10.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_10_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_10_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_14.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_14_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_14_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_13.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_13_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_13_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_12.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_12_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_12_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_7.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_7_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_7_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_1.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_1_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_1_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_16.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_16_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_16_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_3.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_3_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_3_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_17.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_17_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_17_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_13.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_13_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_13_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_25.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_25_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_25_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_7.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_7_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_7_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_9.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_9_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_9_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/xy5_009.tif",
+            "label": "bact_phase/train_sorted/bthai/xy5_009_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/xy5_009_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_a_t001xy1_tile1.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_a_t001xy1_tile1_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_a_t001xy1_tile1_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/murA/murA_ensemble_5.tif",
+            "label": "bact_phase/train_sorted/murA/murA_ensemble_5_masks.tif",
+            "flows": "bact_phase/train_sorted/murA/murA_ensemble_5_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/murA/murA_ensemble_2.tif",
+            "label": "bact_phase/train_sorted/murA/murA_ensemble_2_masks.tif",
+            "flows": "bact_phase/train_sorted/murA/murA_ensemble_2_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_7.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_7_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_7_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile10.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile10_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile10_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_16.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_16_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_16_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_2.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_2_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_2_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_23.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_23_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_23_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_13.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_13_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_13_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_8.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_8_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_8_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_25.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_25_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_25_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile8.tif",
+            "label": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile8_masks.tif",
+            "flows": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile8_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile7.tif",
+            "label": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile7_masks.tif",
+            "flows": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile7_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/img_000000030.tif",
+            "label": "bact_phase/train_sorted/wiggins/img_000000030_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/img_000000030_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_0.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_0_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_0_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/img_000000023.tif",
+            "label": "bact_phase/train_sorted/wiggins/img_000000023_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/img_000000023_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_7.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_7_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_7_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_6.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_6_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_6_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_0.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_0_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_0_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile7.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile7_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile7_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy4_tile1.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy4_tile1_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy4_tile1_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY13_1.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY13_1_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY13_1_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY1_2.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY1_2_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY1_2_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY2_2.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY2_2_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY2_2_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_3.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_3_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY15_3_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_5.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_5_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY17_5_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_9.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_9_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_9_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_37.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_37_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_37_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_35.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_35_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_35_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_19.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_19_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_19_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_11.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_11_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_11_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_13.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_13_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_13_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_8.tif",
+            "label": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_8_masks.tif",
+            "flows": "bact_phase/train_sorted/5I_crop/5I_crop_ensemble_8_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_8.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_8_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_8_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_14.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_14_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_14_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_15.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_15_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_15_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_12.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_12_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_12_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_3.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_3_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_3_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_5.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_5_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_5_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_4.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_4_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_4_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_3.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_3_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_3_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_5.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_5_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_5_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_7.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_7_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_7_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_6.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_6_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_6_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_11.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_11_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_11_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_23.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_23_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_23_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_3.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_3_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_3_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_15.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_15_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_15_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_4.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_4_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t010xy3_tile_4_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile10.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile10_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile10_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/murA/murA_ensemble_0.tif",
+            "label": "bact_phase/train_sorted/murA/murA_ensemble_0_masks.tif",
+            "flows": "bact_phase/train_sorted/murA/murA_ensemble_0_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile4.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile4_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile4_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile8.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile8_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile8_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile15.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile15_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile15_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_20.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_20_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_20_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_1.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_1_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_1_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_11.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_11_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_11_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_7.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_7_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_7_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile6.tif",
+            "label": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile6_masks.tif",
+            "flows": "bact_phase/train_sorted/serratia/Serratia_Ecoli_T14XY2C1_tile6_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_2.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_2_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_2_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_16.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_16_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_16_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_12.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_12_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_12_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_20.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_20_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_20_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_9.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_9_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_9_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile16_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile16_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile16_phase_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile2_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile2_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile2_phase_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile11_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile11_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile11_phase_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile7_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile7_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile7_phase_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile16.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile16_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile16_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_3.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_3_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_3_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_1.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_1_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_1_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile10.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile10_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile10_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_2.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_2_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_2_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile8.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile8_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile8_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_5.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_5_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_ensemble_a_5_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY2_1.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY2_1_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY2_1_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_45.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_45_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_45_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_5.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_5_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_5_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_39.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_39_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_39_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/ftsN/ftsN_ensemble_49.tif",
+            "label": "bact_phase/train_sorted/ftsN/ftsN_ensemble_49_masks.tif",
+            "flows": "bact_phase/train_sorted/ftsN/ftsN_ensemble_49_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_11.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_11_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_11_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_5.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_5_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_5_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_2.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_2_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_2_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_13.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_13_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_13_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_16.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_16_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_16_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_4.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_4_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_4_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_9.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_9_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_9_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy6c1_tile_6.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy6c1_tile_6_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy6c1_tile_6_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/cex/cex_xy3c1_tile_8.tif",
+            "label": "bact_phase/train_sorted/cex/cex_xy3c1_tile_8_masks.tif",
+            "flows": "bact_phase/train_sorted/cex/cex_xy3c1_tile_8_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_4.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_4_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_4_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_9.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_9_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_9_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_14.tif",
+            "label": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_14_masks.tif",
+            "flows": "bact_phase/train_sorted/vibrio/vibrio_ensemble_2_14_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_1.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_1_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_1_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_17.tif",
+            "label": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_17_masks.tif",
+            "flows": "bact_phase/train_sorted/ecoli_mut/Az_branch_ec_17_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/francisella/francisella_xy3_tile3.tif",
+            "label": "bact_phase/train_sorted/francisella/francisella_xy3_tile3_masks.tif",
+            "flows": "bact_phase/train_sorted/francisella/francisella_xy3_tile3_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/francisella/francisella_xy3_tile7.tif",
+            "label": "bact_phase/train_sorted/francisella/francisella_xy3_tile7_masks.tif",
+            "flows": "bact_phase/train_sorted/francisella/francisella_xy3_tile7_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_2.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_2_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_2_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/xy5_007.tif",
+            "label": "bact_phase/train_sorted/bthai/xy5_007_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/xy5_007_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_4.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_4_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t010xy1_tile_4_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_1.tif",
+            "label": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_1_masks.tif",
+            "flows": "bact_phase/train_sorted/bthai/bthai_f_t001xy1_tile_1_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_3.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_3_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1_Staph_ensemble_3_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile1.tif",
+            "label": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile1_masks.tif",
+            "flows": "bact_phase/train_sorted/PAO1_staph/PAO1andStaphXY4_tile1_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_21.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_21_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_21_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_5.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_5_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_5_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_3.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_3_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_3_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/caulo/caulo_10.tif",
+            "label": "bact_phase/train_sorted/caulo/caulo_10_masks.tif",
+            "flows": "bact_phase/train_sorted/caulo/caulo_10_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/img_000000047.tif",
+            "label": "bact_phase/train_sorted/wiggins/img_000000047_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/img_000000047_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/img_000000035.tif",
+            "label": "bact_phase/train_sorted/wiggins/img_000000035_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/img_000000035_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_8.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_8_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_8_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/wiggins/wiggins_ensemble_18.tif",
+            "label": "bact_phase/train_sorted/wiggins/wiggins_ensemble_18_masks.tif",
+            "flows": "bact_phase/train_sorted/wiggins/wiggins_ensemble_18_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_1.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_1_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_1_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_14.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_14_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_14_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_12.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_12_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_12_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_5.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_5_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_5_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_15.tif",
+            "label": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_15_masks.tif",
+            "flows": "bact_phase/train_sorted/hpylori/Hpylori_ensemble_15_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile13_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile13_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile13_phase_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile4_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile4_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile4_phase_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile6_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile6_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile6_phase_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile5_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile5_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile5_phase_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile9_phase.tif",
+            "label": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile9_phase_masks.tif",
+            "flows": "bact_phase/train_sorted/A22/s_flex_a22_t12xy5c1_tile9_phase_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile14.tif",
+            "label": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile14_masks.tif",
+            "flows": "bact_phase/train_sorted/PSVB/PSVB_b_t-1xy1_tile14_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY14_2.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY14_2_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY14_2_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY1_1.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY1_1_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY1_1_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY16_2.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY16_2_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY16_2_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "bact_phase/train_sorted/streptomyces/streptomyces_XY14_1.tif",
+            "label": "bact_phase/train_sorted/streptomyces/streptomyces_XY14_1_masks.tif",
+            "flows": "bact_phase/train_sorted/streptomyces/streptomyces_XY14_1_flows.tif",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_38.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_38_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_30.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_30_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_24.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_24_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_32.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_32_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_26.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_26_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_4.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_16.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_16_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_28.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_28_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_44.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_44_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_2.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_6.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_8.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_8_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_48.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_48_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_0.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_0_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_46.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_46_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_20.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_20_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_22.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_22_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_14.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_14_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_36.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_36_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_10.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_10_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_40.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_40_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_42.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_42_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_34.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_34_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_18.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_18_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_12.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_12_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ftsN/ftsN_ensemble_50.tif",
+            "label": "bact_phase/test_sorted/ftsN/ftsN_ensemble_50_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_9.tif",
+            "label": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_9_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_7.tif",
+            "label": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_7_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_13.tif",
+            "label": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_13_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_1.tif",
+            "label": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_11.tif",
+            "label": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_11_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_3.tif",
+            "label": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_5.tif",
+            "label": "bact_phase/test_sorted/dnaA/dnaA_xy1_ensemble_5_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_9.tif",
+            "label": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_9_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_1.tif",
+            "label": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_5.tif",
+            "label": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_5_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_3.tif",
+            "label": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_7.tif",
+            "label": "bact_phase/test_sorted/5I_crop/5I_crop_ensemble_7_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/cex/cex_xy4c1.tif",
+            "label": "bact_phase/test_sorted/cex/cex_xy4c1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/cex/cex_xy5c1.tif",
+            "label": "bact_phase/test_sorted/cex/cex_xy5c1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/cex/cex_xy1c1.tif",
+            "label": "bact_phase/test_sorted/cex/cex_xy1c1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/vibrio/vibrio_ensemble_2_15.tif",
+            "label": "bact_phase/test_sorted/vibrio/vibrio_ensemble_2_15_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/vibrio/vibrio_ensemble_2_19.tif",
+            "label": "bact_phase/test_sorted/vibrio/vibrio_ensemble_2_19_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/vibrio/vibrio_ensemble_2_18.tif",
+            "label": "bact_phase/test_sorted/vibrio/vibrio_ensemble_2_18_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_22.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_22_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_26.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_26_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_6.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_27.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_27_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_24.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_24_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_0.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_0_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_10.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_10_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_16.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_16_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_4.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_8.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_8_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_20.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_20_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_2.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_12.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_12_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_14.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_14_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_18.tif",
+            "label": "bact_phase/test_sorted/ecoli_mut/Az_branch_ec_18_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/bthai/bthai_f_t001xy2_tile1.tif",
+            "label": "bact_phase/test_sorted/bthai/bthai_f_t001xy2_tile1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/bthai/bthai_f_t010xy2_tile4.tif",
+            "label": "bact_phase/test_sorted/bthai/bthai_f_t010xy2_tile4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/bthai/bthai_f_t001xy3_tile1.tif",
+            "label": "bact_phase/test_sorted/bthai/bthai_f_t001xy3_tile1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/murA/murA_ensemble_6.tif",
+            "label": "bact_phase/test_sorted/murA/murA_ensemble_6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/murA/murA_ensemble_0.tif",
+            "label": "bact_phase/test_sorted/murA/murA_ensemble_0_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/murA/murA_ensemble_4.tif",
+            "label": "bact_phase/test_sorted/murA/murA_ensemble_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/murA/murA_ensemble_2.tif",
+            "label": "bact_phase/test_sorted/murA/murA_ensemble_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PAO1_staph/PAO1_Staph_ensemble_6.tif",
+            "label": "bact_phase/test_sorted/PAO1_staph/PAO1_Staph_ensemble_6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PAO1_staph/PAO1_Staph_ensemble_0.tif",
+            "label": "bact_phase/test_sorted/PAO1_staph/PAO1_Staph_ensemble_0_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PAO1_staph/PAO1_Staph_ensemble_2.tif",
+            "label": "bact_phase/test_sorted/PAO1_staph/PAO1_Staph_ensemble_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PAO1_staph/PAO1_Staph_ensemble_4.tif",
+            "label": "bact_phase/test_sorted/PAO1_staph/PAO1_Staph_ensemble_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/caulo/caulo_14.tif",
+            "label": "bact_phase/test_sorted/caulo/caulo_14_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/caulo/caulo_15.tif",
+            "label": "bact_phase/test_sorted/caulo/caulo_15_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/caulo/caulo_6.tif",
+            "label": "bact_phase/test_sorted/caulo/caulo_6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/serratia/Serratia_Ecoli_T13XY3_tile10.tif",
+            "label": "bact_phase/test_sorted/serratia/Serratia_Ecoli_T13XY3_tile10_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/serratia/Serratia_Ecoli_T13XY3_tile6.tif",
+            "label": "bact_phase/test_sorted/serratia/Serratia_Ecoli_T13XY3_tile6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/serratia/Serratia_Ecoli_T13XY3_tile7.tif",
+            "label": "bact_phase/test_sorted/serratia/Serratia_Ecoli_T13XY3_tile7_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_15.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_15_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_13.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_13_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_25.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_25_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_1.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_19.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_19_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_26.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_26_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_5.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_5_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_7.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_7_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_9.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_9_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_23.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_23_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_11.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_11_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_17.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_17_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_3.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/wiggins/wiggins_ensemble_21.tif",
+            "label": "bact_phase/test_sorted/wiggins/wiggins_ensemble_21_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori2_5.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori2_5_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori2_7.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori2_7_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori2_6.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori2_6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori2_3.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori2_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori2_1.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori2_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori2_4.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori2_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori2_2.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori2_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori2_8.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori2_8_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/hpylori/Hpylori_ensemble_17.tif",
+            "label": "bact_phase/test_sorted/hpylori/Hpylori_ensemble_17_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/A22/s_flex_a22_t12xy5c1_tile14_phase.tif",
+            "label": "bact_phase/test_sorted/A22/s_flex_a22_t12xy5c1_tile14_phase_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/A22/s_flex_a22_t12xy5c1_tile1_phase.tif",
+            "label": "bact_phase/test_sorted/A22/s_flex_a22_t12xy5c1_tile1_phase_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_11.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_11_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_4.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_7.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_7_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_3.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_5.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_5_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_9.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_9_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_10.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_10_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_8.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_8_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_1.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_0.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_0_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_12.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_12_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_6.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_a_8.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_a_8_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_2.tif",
+            "label": "bact_phase/test_sorted/PSVB/PSVB_ensemble_c_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY3_2.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY3_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY4_4.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY4_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_5.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_5_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_4.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY8_2.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY8_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY8_4.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY8_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY2_3.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY2_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY4_2.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY4_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY4_5.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY4_5_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_5.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_5_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_6.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_6_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY8_3.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY8_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY6_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY6_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY10_2.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY10_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY4_3.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY4_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY9_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY9_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY6_4.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY6_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_3.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY8_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY8_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_2.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY5_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY5_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY3_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY3_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_3.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY11_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY7_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY7_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY6_2.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY6_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_2.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY15_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY15_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY7_2.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY7_2_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY6_3.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY6_3_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_4.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_4_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY17_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY17_1_masks.tif"
+        },
+        {
+            "image": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_1.tif",
+            "label": "bact_phase/test_sorted/streptomyces/streptomyces_XY12_1_masks.tif"
+        }
+    ]
+}

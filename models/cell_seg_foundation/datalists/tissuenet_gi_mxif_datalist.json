@@ -1,0 +1,5204 @@
+{
+    "training": [
+        {
+            "image": "val/gi_mxif_0.tif",
+            "label": "val/gi_mxif_0_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_4.tif",
+            "label": "val/gi_mxif_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_11.tif",
+            "label": "val/gi_mxif_11_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_18.tif",
+            "label": "val/gi_mxif_18_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_19.tif",
+            "label": "val/gi_mxif_19_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_29.tif",
+            "label": "val/gi_mxif_29_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_31.tif",
+            "label": "val/gi_mxif_31_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_33.tif",
+            "label": "val/gi_mxif_33_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_34.tif",
+            "label": "val/gi_mxif_34_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_35.tif",
+            "label": "val/gi_mxif_35_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_38.tif",
+            "label": "val/gi_mxif_38_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_39.tif",
+            "label": "val/gi_mxif_39_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_44.tif",
+            "label": "val/gi_mxif_44_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_51.tif",
+            "label": "val/gi_mxif_51_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_58.tif",
+            "label": "val/gi_mxif_58_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_67.tif",
+            "label": "val/gi_mxif_67_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_69.tif",
+            "label": "val/gi_mxif_69_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_73.tif",
+            "label": "val/gi_mxif_73_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_85.tif",
+            "label": "val/gi_mxif_85_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_89.tif",
+            "label": "val/gi_mxif_89_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_90.tif",
+            "label": "val/gi_mxif_90_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_99.tif",
+            "label": "val/gi_mxif_99_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_102.tif",
+            "label": "val/gi_mxif_102_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_106.tif",
+            "label": "val/gi_mxif_106_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_114.tif",
+            "label": "val/gi_mxif_114_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_117.tif",
+            "label": "val/gi_mxif_117_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_119.tif",
+            "label": "val/gi_mxif_119_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_120.tif",
+            "label": "val/gi_mxif_120_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_127.tif",
+            "label": "val/gi_mxif_127_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_138.tif",
+            "label": "val/gi_mxif_138_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_147.tif",
+            "label": "val/gi_mxif_147_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_169.tif",
+            "label": "val/gi_mxif_169_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_170.tif",
+            "label": "val/gi_mxif_170_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_172.tif",
+            "label": "val/gi_mxif_172_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_174.tif",
+            "label": "val/gi_mxif_174_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_176.tif",
+            "label": "val/gi_mxif_176_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_179.tif",
+            "label": "val/gi_mxif_179_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_188.tif",
+            "label": "val/gi_mxif_188_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_196.tif",
+            "label": "val/gi_mxif_196_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_199.tif",
+            "label": "val/gi_mxif_199_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_209.tif",
+            "label": "val/gi_mxif_209_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_210.tif",
+            "label": "val/gi_mxif_210_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_211.tif",
+            "label": "val/gi_mxif_211_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_225.tif",
+            "label": "val/gi_mxif_225_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_228.tif",
+            "label": "val/gi_mxif_228_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_231.tif",
+            "label": "val/gi_mxif_231_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_233.tif",
+            "label": "val/gi_mxif_233_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_5.tif",
+            "label": "val/gi_mxif_5_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_14.tif",
+            "label": "val/gi_mxif_14_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_16.tif",
+            "label": "val/gi_mxif_16_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_17.tif",
+            "label": "val/gi_mxif_17_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_21.tif",
+            "label": "val/gi_mxif_21_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_27.tif",
+            "label": "val/gi_mxif_27_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_28.tif",
+            "label": "val/gi_mxif_28_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_40.tif",
+            "label": "val/gi_mxif_40_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_42.tif",
+            "label": "val/gi_mxif_42_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_47.tif",
+            "label": "val/gi_mxif_47_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_48.tif",
+            "label": "val/gi_mxif_48_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_53.tif",
+            "label": "val/gi_mxif_53_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_55.tif",
+            "label": "val/gi_mxif_55_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_56.tif",
+            "label": "val/gi_mxif_56_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_59.tif",
+            "label": "val/gi_mxif_59_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_62.tif",
+            "label": "val/gi_mxif_62_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_78.tif",
+            "label": "val/gi_mxif_78_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_84.tif",
+            "label": "val/gi_mxif_84_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_88.tif",
+            "label": "val/gi_mxif_88_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_91.tif",
+            "label": "val/gi_mxif_91_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_93.tif",
+            "label": "val/gi_mxif_93_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_95.tif",
+            "label": "val/gi_mxif_95_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_108.tif",
+            "label": "val/gi_mxif_108_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_110.tif",
+            "label": "val/gi_mxif_110_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_123.tif",
+            "label": "val/gi_mxif_123_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_132.tif",
+            "label": "val/gi_mxif_132_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_145.tif",
+            "label": "val/gi_mxif_145_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_152.tif",
+            "label": "val/gi_mxif_152_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_154.tif",
+            "label": "val/gi_mxif_154_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_158.tif",
+            "label": "val/gi_mxif_158_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_159.tif",
+            "label": "val/gi_mxif_159_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_162.tif",
+            "label": "val/gi_mxif_162_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_166.tif",
+            "label": "val/gi_mxif_166_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_167.tif",
+            "label": "val/gi_mxif_167_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_168.tif",
+            "label": "val/gi_mxif_168_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_171.tif",
+            "label": "val/gi_mxif_171_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_177.tif",
+            "label": "val/gi_mxif_177_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_187.tif",
+            "label": "val/gi_mxif_187_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_193.tif",
+            "label": "val/gi_mxif_193_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_202.tif",
+            "label": "val/gi_mxif_202_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_205.tif",
+            "label": "val/gi_mxif_205_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_217.tif",
+            "label": "val/gi_mxif_217_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_219.tif",
+            "label": "val/gi_mxif_219_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_224.tif",
+            "label": "val/gi_mxif_224_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_226.tif",
+            "label": "val/gi_mxif_226_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_227.tif",
+            "label": "val/gi_mxif_227_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_229.tif",
+            "label": "val/gi_mxif_229_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_12.tif",
+            "label": "val/gi_mxif_12_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_13.tif",
+            "label": "val/gi_mxif_13_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_36.tif",
+            "label": "val/gi_mxif_36_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_45.tif",
+            "label": "val/gi_mxif_45_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_54.tif",
+            "label": "val/gi_mxif_54_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_66.tif",
+            "label": "val/gi_mxif_66_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_70.tif",
+            "label": "val/gi_mxif_70_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_75.tif",
+            "label": "val/gi_mxif_75_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_81.tif",
+            "label": "val/gi_mxif_81_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_82.tif",
+            "label": "val/gi_mxif_82_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_94.tif",
+            "label": "val/gi_mxif_94_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_97.tif",
+            "label": "val/gi_mxif_97_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_98.tif",
+            "label": "val/gi_mxif_98_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_103.tif",
+            "label": "val/gi_mxif_103_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_105.tif",
+            "label": "val/gi_mxif_105_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_107.tif",
+            "label": "val/gi_mxif_107_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_112.tif",
+            "label": "val/gi_mxif_112_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_116.tif",
+            "label": "val/gi_mxif_116_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_118.tif",
+            "label": "val/gi_mxif_118_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_122.tif",
+            "label": "val/gi_mxif_122_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_124.tif",
+            "label": "val/gi_mxif_124_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_130.tif",
+            "label": "val/gi_mxif_130_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_148.tif",
+            "label": "val/gi_mxif_148_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_150.tif",
+            "label": "val/gi_mxif_150_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_151.tif",
+            "label": "val/gi_mxif_151_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_160.tif",
+            "label": "val/gi_mxif_160_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_161.tif",
+            "label": "val/gi_mxif_161_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_163.tif",
+            "label": "val/gi_mxif_163_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_165.tif",
+            "label": "val/gi_mxif_165_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_182.tif",
+            "label": "val/gi_mxif_182_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_183.tif",
+            "label": "val/gi_mxif_183_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_184.tif",
+            "label": "val/gi_mxif_184_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_189.tif",
+            "label": "val/gi_mxif_189_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_190.tif",
+            "label": "val/gi_mxif_190_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_191.tif",
+            "label": "val/gi_mxif_191_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_195.tif",
+            "label": "val/gi_mxif_195_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_197.tif",
+            "label": "val/gi_mxif_197_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_207.tif",
+            "label": "val/gi_mxif_207_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_208.tif",
+            "label": "val/gi_mxif_208_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_213.tif",
+            "label": "val/gi_mxif_213_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_214.tif",
+            "label": "val/gi_mxif_214_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_215.tif",
+            "label": "val/gi_mxif_215_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_216.tif",
+            "label": "val/gi_mxif_216_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_218.tif",
+            "label": "val/gi_mxif_218_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_221.tif",
+            "label": "val/gi_mxif_221_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_223.tif",
+            "label": "val/gi_mxif_223_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_232.tif",
+            "label": "val/gi_mxif_232_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_2.tif",
+            "label": "val/gi_mxif_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_3.tif",
+            "label": "val/gi_mxif_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_6.tif",
+            "label": "val/gi_mxif_6_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_9.tif",
+            "label": "val/gi_mxif_9_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_10.tif",
+            "label": "val/gi_mxif_10_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_15.tif",
+            "label": "val/gi_mxif_15_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_23.tif",
+            "label": "val/gi_mxif_23_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_24.tif",
+            "label": "val/gi_mxif_24_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_26.tif",
+            "label": "val/gi_mxif_26_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_32.tif",
+            "label": "val/gi_mxif_32_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_41.tif",
+            "label": "val/gi_mxif_41_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_43.tif",
+            "label": "val/gi_mxif_43_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_46.tif",
+            "label": "val/gi_mxif_46_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_49.tif",
+            "label": "val/gi_mxif_49_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_52.tif",
+            "label": "val/gi_mxif_52_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_64.tif",
+            "label": "val/gi_mxif_64_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_65.tif",
+            "label": "val/gi_mxif_65_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_74.tif",
+            "label": "val/gi_mxif_74_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_76.tif",
+            "label": "val/gi_mxif_76_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_77.tif",
+            "label": "val/gi_mxif_77_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_80.tif",
+            "label": "val/gi_mxif_80_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_83.tif",
+            "label": "val/gi_mxif_83_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_87.tif",
+            "label": "val/gi_mxif_87_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_92.tif",
+            "label": "val/gi_mxif_92_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_100.tif",
+            "label": "val/gi_mxif_100_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_104.tif",
+            "label": "val/gi_mxif_104_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_109.tif",
+            "label": "val/gi_mxif_109_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_111.tif",
+            "label": "val/gi_mxif_111_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_113.tif",
+            "label": "val/gi_mxif_113_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_125.tif",
+            "label": "val/gi_mxif_125_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_126.tif",
+            "label": "val/gi_mxif_126_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_135.tif",
+            "label": "val/gi_mxif_135_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_136.tif",
+            "label": "val/gi_mxif_136_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_143.tif",
+            "label": "val/gi_mxif_143_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_153.tif",
+            "label": "val/gi_mxif_153_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_155.tif",
+            "label": "val/gi_mxif_155_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_164.tif",
+            "label": "val/gi_mxif_164_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_173.tif",
+            "label": "val/gi_mxif_173_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_180.tif",
+            "label": "val/gi_mxif_180_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_181.tif",
+            "label": "val/gi_mxif_181_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_185.tif",
+            "label": "val/gi_mxif_185_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_186.tif",
+            "label": "val/gi_mxif_186_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_194.tif",
+            "label": "val/gi_mxif_194_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_198.tif",
+            "label": "val/gi_mxif_198_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_200.tif",
+            "label": "val/gi_mxif_200_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_201.tif",
+            "label": "val/gi_mxif_201_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_220.tif",
+            "label": "val/gi_mxif_220_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_1.tif",
+            "label": "val/gi_mxif_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_7.tif",
+            "label": "val/gi_mxif_7_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_8.tif",
+            "label": "val/gi_mxif_8_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_20.tif",
+            "label": "val/gi_mxif_20_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_22.tif",
+            "label": "val/gi_mxif_22_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_25.tif",
+            "label": "val/gi_mxif_25_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_30.tif",
+            "label": "val/gi_mxif_30_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_37.tif",
+            "label": "val/gi_mxif_37_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_50.tif",
+            "label": "val/gi_mxif_50_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_57.tif",
+            "label": "val/gi_mxif_57_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_60.tif",
+            "label": "val/gi_mxif_60_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_61.tif",
+            "label": "val/gi_mxif_61_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_63.tif",
+            "label": "val/gi_mxif_63_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_68.tif",
+            "label": "val/gi_mxif_68_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_71.tif",
+            "label": "val/gi_mxif_71_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_72.tif",
+            "label": "val/gi_mxif_72_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_79.tif",
+            "label": "val/gi_mxif_79_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_86.tif",
+            "label": "val/gi_mxif_86_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_96.tif",
+            "label": "val/gi_mxif_96_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_101.tif",
+            "label": "val/gi_mxif_101_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_115.tif",
+            "label": "val/gi_mxif_115_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_121.tif",
+            "label": "val/gi_mxif_121_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_128.tif",
+            "label": "val/gi_mxif_128_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_129.tif",
+            "label": "val/gi_mxif_129_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_131.tif",
+            "label": "val/gi_mxif_131_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_133.tif",
+            "label": "val/gi_mxif_133_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_134.tif",
+            "label": "val/gi_mxif_134_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_137.tif",
+            "label": "val/gi_mxif_137_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_139.tif",
+            "label": "val/gi_mxif_139_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_140.tif",
+            "label": "val/gi_mxif_140_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_141.tif",
+            "label": "val/gi_mxif_141_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_142.tif",
+            "label": "val/gi_mxif_142_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_144.tif",
+            "label": "val/gi_mxif_144_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_146.tif",
+            "label": "val/gi_mxif_146_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_149.tif",
+            "label": "val/gi_mxif_149_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_156.tif",
+            "label": "val/gi_mxif_156_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_157.tif",
+            "label": "val/gi_mxif_157_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_175.tif",
+            "label": "val/gi_mxif_175_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_178.tif",
+            "label": "val/gi_mxif_178_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_192.tif",
+            "label": "val/gi_mxif_192_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_203.tif",
+            "label": "val/gi_mxif_203_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_204.tif",
+            "label": "val/gi_mxif_204_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_206.tif",
+            "label": "val/gi_mxif_206_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_212.tif",
+            "label": "val/gi_mxif_212_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_222.tif",
+            "label": "val/gi_mxif_222_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/gi_mxif_230.tif",
+            "label": "val/gi_mxif_230_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "train/gi_mxif_0_0.tif",
+            "label": "train/gi_mxif_0_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_0_3.tif",
+            "label": "train/gi_mxif_0_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_2_0.tif",
+            "label": "train/gi_mxif_2_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_3_1.tif",
+            "label": "train/gi_mxif_3_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_4_0.tif",
+            "label": "train/gi_mxif_4_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_4_3.tif",
+            "label": "train/gi_mxif_4_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_5_3.tif",
+            "label": "train/gi_mxif_5_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_8_3.tif",
+            "label": "train/gi_mxif_8_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_10_1.tif",
+            "label": "train/gi_mxif_10_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_11_3.tif",
+            "label": "train/gi_mxif_11_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_12_2.tif",
+            "label": "train/gi_mxif_12_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_14_0.tif",
+            "label": "train/gi_mxif_14_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_14_1.tif",
+            "label": "train/gi_mxif_14_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_14_3.tif",
+            "label": "train/gi_mxif_14_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_15_0.tif",
+            "label": "train/gi_mxif_15_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_15_1.tif",
+            "label": "train/gi_mxif_15_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_16_1.tif",
+            "label": "train/gi_mxif_16_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_16_2.tif",
+            "label": "train/gi_mxif_16_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_17_1.tif",
+            "label": "train/gi_mxif_17_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_18_2.tif",
+            "label": "train/gi_mxif_18_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_20_1.tif",
+            "label": "train/gi_mxif_20_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_21_0.tif",
+            "label": "train/gi_mxif_21_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_21_1.tif",
+            "label": "train/gi_mxif_21_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_23_0.tif",
+            "label": "train/gi_mxif_23_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_25_1.tif",
+            "label": "train/gi_mxif_25_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_26_0.tif",
+            "label": "train/gi_mxif_26_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_27_0.tif",
+            "label": "train/gi_mxif_27_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_27_3.tif",
+            "label": "train/gi_mxif_27_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_29_1.tif",
+            "label": "train/gi_mxif_29_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_30_0.tif",
+            "label": "train/gi_mxif_30_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_33_0.tif",
+            "label": "train/gi_mxif_33_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_33_2.tif",
+            "label": "train/gi_mxif_33_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_37_0.tif",
+            "label": "train/gi_mxif_37_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_38_2.tif",
+            "label": "train/gi_mxif_38_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_39_3.tif",
+            "label": "train/gi_mxif_39_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_40_1.tif",
+            "label": "train/gi_mxif_40_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_43_3.tif",
+            "label": "train/gi_mxif_43_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_45_0.tif",
+            "label": "train/gi_mxif_45_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_45_1.tif",
+            "label": "train/gi_mxif_45_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_46_1.tif",
+            "label": "train/gi_mxif_46_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_46_3.tif",
+            "label": "train/gi_mxif_46_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_47_1.tif",
+            "label": "train/gi_mxif_47_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_48_2.tif",
+            "label": "train/gi_mxif_48_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_48_3.tif",
+            "label": "train/gi_mxif_48_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_50_1.tif",
+            "label": "train/gi_mxif_50_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_51_3.tif",
+            "label": "train/gi_mxif_51_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_54_0.tif",
+            "label": "train/gi_mxif_54_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_56_0.tif",
+            "label": "train/gi_mxif_56_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_58_1.tif",
+            "label": "train/gi_mxif_58_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_60_1.tif",
+            "label": "train/gi_mxif_60_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_60_2.tif",
+            "label": "train/gi_mxif_60_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_61_1.tif",
+            "label": "train/gi_mxif_61_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_61_3.tif",
+            "label": "train/gi_mxif_61_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_63_3.tif",
+            "label": "train/gi_mxif_63_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_65_2.tif",
+            "label": "train/gi_mxif_65_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_68_2.tif",
+            "label": "train/gi_mxif_68_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_71_2.tif",
+            "label": "train/gi_mxif_71_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_72_1.tif",
+            "label": "train/gi_mxif_72_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_73_1.tif",
+            "label": "train/gi_mxif_73_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_74_2.tif",
+            "label": "train/gi_mxif_74_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_74_3.tif",
+            "label": "train/gi_mxif_74_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_75_1.tif",
+            "label": "train/gi_mxif_75_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_76_1.tif",
+            "label": "train/gi_mxif_76_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_77_2.tif",
+            "label": "train/gi_mxif_77_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_80_0.tif",
+            "label": "train/gi_mxif_80_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_83_1.tif",
+            "label": "train/gi_mxif_83_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_86_1.tif",
+            "label": "train/gi_mxif_86_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_86_3.tif",
+            "label": "train/gi_mxif_86_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_87_1.tif",
+            "label": "train/gi_mxif_87_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_88_1.tif",
+            "label": "train/gi_mxif_88_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_88_2.tif",
+            "label": "train/gi_mxif_88_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_88_3.tif",
+            "label": "train/gi_mxif_88_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_90_3.tif",
+            "label": "train/gi_mxif_90_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_91_0.tif",
+            "label": "train/gi_mxif_91_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_91_2.tif",
+            "label": "train/gi_mxif_91_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_92_3.tif",
+            "label": "train/gi_mxif_92_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_93_2.tif",
+            "label": "train/gi_mxif_93_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_97_0.tif",
+            "label": "train/gi_mxif_97_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_97_1.tif",
+            "label": "train/gi_mxif_97_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_99_0.tif",
+            "label": "train/gi_mxif_99_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_102_3.tif",
+            "label": "train/gi_mxif_102_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_103_2.tif",
+            "label": "train/gi_mxif_103_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_104_3.tif",
+            "label": "train/gi_mxif_104_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_107_1.tif",
+            "label": "train/gi_mxif_107_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_108_1.tif",
+            "label": "train/gi_mxif_108_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_108_3.tif",
+            "label": "train/gi_mxif_108_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_109_1.tif",
+            "label": "train/gi_mxif_109_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_111_1.tif",
+            "label": "train/gi_mxif_111_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_113_1.tif",
+            "label": "train/gi_mxif_113_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_115_0.tif",
+            "label": "train/gi_mxif_115_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_116_3.tif",
+            "label": "train/gi_mxif_116_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_118_0.tif",
+            "label": "train/gi_mxif_118_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_120_0.tif",
+            "label": "train/gi_mxif_120_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_120_3.tif",
+            "label": "train/gi_mxif_120_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_123_1.tif",
+            "label": "train/gi_mxif_123_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_123_3.tif",
+            "label": "train/gi_mxif_123_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_126_0.tif",
+            "label": "train/gi_mxif_126_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_126_3.tif",
+            "label": "train/gi_mxif_126_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_127_1.tif",
+            "label": "train/gi_mxif_127_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_127_2.tif",
+            "label": "train/gi_mxif_127_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_127_3.tif",
+            "label": "train/gi_mxif_127_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_129_0.tif",
+            "label": "train/gi_mxif_129_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_129_1.tif",
+            "label": "train/gi_mxif_129_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_131_0.tif",
+            "label": "train/gi_mxif_131_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_131_3.tif",
+            "label": "train/gi_mxif_131_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_132_3.tif",
+            "label": "train/gi_mxif_132_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_134_2.tif",
+            "label": "train/gi_mxif_134_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_135_0.tif",
+            "label": "train/gi_mxif_135_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_135_1.tif",
+            "label": "train/gi_mxif_135_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_135_3.tif",
+            "label": "train/gi_mxif_135_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_136_0.tif",
+            "label": "train/gi_mxif_136_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_138_3.tif",
+            "label": "train/gi_mxif_138_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_139_3.tif",
+            "label": "train/gi_mxif_139_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_143_3.tif",
+            "label": "train/gi_mxif_143_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_144_0.tif",
+            "label": "train/gi_mxif_144_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_144_3.tif",
+            "label": "train/gi_mxif_144_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_145_1.tif",
+            "label": "train/gi_mxif_145_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_146_1.tif",
+            "label": "train/gi_mxif_146_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_147_2.tif",
+            "label": "train/gi_mxif_147_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_147_3.tif",
+            "label": "train/gi_mxif_147_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_148_2.tif",
+            "label": "train/gi_mxif_148_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_150_1.tif",
+            "label": "train/gi_mxif_150_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_150_2.tif",
+            "label": "train/gi_mxif_150_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_152_1.tif",
+            "label": "train/gi_mxif_152_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_152_2.tif",
+            "label": "train/gi_mxif_152_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_153_1.tif",
+            "label": "train/gi_mxif_153_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_155_3.tif",
+            "label": "train/gi_mxif_155_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_159_1.tif",
+            "label": "train/gi_mxif_159_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_160_0.tif",
+            "label": "train/gi_mxif_160_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_160_1.tif",
+            "label": "train/gi_mxif_160_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_160_2.tif",
+            "label": "train/gi_mxif_160_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_162_1.tif",
+            "label": "train/gi_mxif_162_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_163_0.tif",
+            "label": "train/gi_mxif_163_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_163_2.tif",
+            "label": "train/gi_mxif_163_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_164_1.tif",
+            "label": "train/gi_mxif_164_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_167_1.tif",
+            "label": "train/gi_mxif_167_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_167_3.tif",
+            "label": "train/gi_mxif_167_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_168_2.tif",
+            "label": "train/gi_mxif_168_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_169_1.tif",
+            "label": "train/gi_mxif_169_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_172_2.tif",
+            "label": "train/gi_mxif_172_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_173_0.tif",
+            "label": "train/gi_mxif_173_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_175_2.tif",
+            "label": "train/gi_mxif_175_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_178_0.tif",
+            "label": "train/gi_mxif_178_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_180_2.tif",
+            "label": "train/gi_mxif_180_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_181_1.tif",
+            "label": "train/gi_mxif_181_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_181_2.tif",
+            "label": "train/gi_mxif_181_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_183_0.tif",
+            "label": "train/gi_mxif_183_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_183_1.tif",
+            "label": "train/gi_mxif_183_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_1_0.tif",
+            "label": "train/gi_mxif_1_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_1_1.tif",
+            "label": "train/gi_mxif_1_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_2_1.tif",
+            "label": "train/gi_mxif_2_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_2_3.tif",
+            "label": "train/gi_mxif_2_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_4_1.tif",
+            "label": "train/gi_mxif_4_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_7_1.tif",
+            "label": "train/gi_mxif_7_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_7_3.tif",
+            "label": "train/gi_mxif_7_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_8_1.tif",
+            "label": "train/gi_mxif_8_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_8_2.tif",
+            "label": "train/gi_mxif_8_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_9_2.tif",
+            "label": "train/gi_mxif_9_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_9_3.tif",
+            "label": "train/gi_mxif_9_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_10_0.tif",
+            "label": "train/gi_mxif_10_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_11_1.tif",
+            "label": "train/gi_mxif_11_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_12_1.tif",
+            "label": "train/gi_mxif_12_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_15_2.tif",
+            "label": "train/gi_mxif_15_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_16_3.tif",
+            "label": "train/gi_mxif_16_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_17_0.tif",
+            "label": "train/gi_mxif_17_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_19_0.tif",
+            "label": "train/gi_mxif_19_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_20_0.tif",
+            "label": "train/gi_mxif_20_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_20_2.tif",
+            "label": "train/gi_mxif_20_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_22_0.tif",
+            "label": "train/gi_mxif_22_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_22_2.tif",
+            "label": "train/gi_mxif_22_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_23_3.tif",
+            "label": "train/gi_mxif_23_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_24_3.tif",
+            "label": "train/gi_mxif_24_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_25_3.tif",
+            "label": "train/gi_mxif_25_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_26_3.tif",
+            "label": "train/gi_mxif_26_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_29_0.tif",
+            "label": "train/gi_mxif_29_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_29_2.tif",
+            "label": "train/gi_mxif_29_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_29_3.tif",
+            "label": "train/gi_mxif_29_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_30_1.tif",
+            "label": "train/gi_mxif_30_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_31_0.tif",
+            "label": "train/gi_mxif_31_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_33_3.tif",
+            "label": "train/gi_mxif_33_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_34_3.tif",
+            "label": "train/gi_mxif_34_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_36_2.tif",
+            "label": "train/gi_mxif_36_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_36_3.tif",
+            "label": "train/gi_mxif_36_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_40_0.tif",
+            "label": "train/gi_mxif_40_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_40_2.tif",
+            "label": "train/gi_mxif_40_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_41_1.tif",
+            "label": "train/gi_mxif_41_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_43_0.tif",
+            "label": "train/gi_mxif_43_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_43_1.tif",
+            "label": "train/gi_mxif_43_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_44_3.tif",
+            "label": "train/gi_mxif_44_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_49_1.tif",
+            "label": "train/gi_mxif_49_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_50_2.tif",
+            "label": "train/gi_mxif_50_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_53_2.tif",
+            "label": "train/gi_mxif_53_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_54_2.tif",
+            "label": "train/gi_mxif_54_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_55_3.tif",
+            "label": "train/gi_mxif_55_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_59_0.tif",
+            "label": "train/gi_mxif_59_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_62_0.tif",
+            "label": "train/gi_mxif_62_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_64_1.tif",
+            "label": "train/gi_mxif_64_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_64_3.tif",
+            "label": "train/gi_mxif_64_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_65_1.tif",
+            "label": "train/gi_mxif_65_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_67_0.tif",
+            "label": "train/gi_mxif_67_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_68_1.tif",
+            "label": "train/gi_mxif_68_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_69_1.tif",
+            "label": "train/gi_mxif_69_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_70_0.tif",
+            "label": "train/gi_mxif_70_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_71_1.tif",
+            "label": "train/gi_mxif_71_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_76_3.tif",
+            "label": "train/gi_mxif_76_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_77_3.tif",
+            "label": "train/gi_mxif_77_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_78_0.tif",
+            "label": "train/gi_mxif_78_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_78_2.tif",
+            "label": "train/gi_mxif_78_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_79_2.tif",
+            "label": "train/gi_mxif_79_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_80_3.tif",
+            "label": "train/gi_mxif_80_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_82_3.tif",
+            "label": "train/gi_mxif_82_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_83_2.tif",
+            "label": "train/gi_mxif_83_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_83_3.tif",
+            "label": "train/gi_mxif_83_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_84_3.tif",
+            "label": "train/gi_mxif_84_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_85_1.tif",
+            "label": "train/gi_mxif_85_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_86_2.tif",
+            "label": "train/gi_mxif_86_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_87_2.tif",
+            "label": "train/gi_mxif_87_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_88_0.tif",
+            "label": "train/gi_mxif_88_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_89_2.tif",
+            "label": "train/gi_mxif_89_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_90_1.tif",
+            "label": "train/gi_mxif_90_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_93_0.tif",
+            "label": "train/gi_mxif_93_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_93_3.tif",
+            "label": "train/gi_mxif_93_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_95_3.tif",
+            "label": "train/gi_mxif_95_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_96_1.tif",
+            "label": "train/gi_mxif_96_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_96_2.tif",
+            "label": "train/gi_mxif_96_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_98_0.tif",
+            "label": "train/gi_mxif_98_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_99_1.tif",
+            "label": "train/gi_mxif_99_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_99_3.tif",
+            "label": "train/gi_mxif_99_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_100_0.tif",
+            "label": "train/gi_mxif_100_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_100_2.tif",
+            "label": "train/gi_mxif_100_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_100_3.tif",
+            "label": "train/gi_mxif_100_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_101_0.tif",
+            "label": "train/gi_mxif_101_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_103_0.tif",
+            "label": "train/gi_mxif_103_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_105_1.tif",
+            "label": "train/gi_mxif_105_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_105_2.tif",
+            "label": "train/gi_mxif_105_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_106_2.tif",
+            "label": "train/gi_mxif_106_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_108_0.tif",
+            "label": "train/gi_mxif_108_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_108_2.tif",
+            "label": "train/gi_mxif_108_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_109_3.tif",
+            "label": "train/gi_mxif_109_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_110_3.tif",
+            "label": "train/gi_mxif_110_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_111_3.tif",
+            "label": "train/gi_mxif_111_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_112_0.tif",
+            "label": "train/gi_mxif_112_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_112_1.tif",
+            "label": "train/gi_mxif_112_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_113_0.tif",
+            "label": "train/gi_mxif_113_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_114_1.tif",
+            "label": "train/gi_mxif_114_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_116_0.tif",
+            "label": "train/gi_mxif_116_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_118_2.tif",
+            "label": "train/gi_mxif_118_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_119_3.tif",
+            "label": "train/gi_mxif_119_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_120_1.tif",
+            "label": "train/gi_mxif_120_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_120_2.tif",
+            "label": "train/gi_mxif_120_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_122_0.tif",
+            "label": "train/gi_mxif_122_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_123_2.tif",
+            "label": "train/gi_mxif_123_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_124_0.tif",
+            "label": "train/gi_mxif_124_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_130_1.tif",
+            "label": "train/gi_mxif_130_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_130_3.tif",
+            "label": "train/gi_mxif_130_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_131_1.tif",
+            "label": "train/gi_mxif_131_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_132_0.tif",
+            "label": "train/gi_mxif_132_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_132_1.tif",
+            "label": "train/gi_mxif_132_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_133_3.tif",
+            "label": "train/gi_mxif_133_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_134_1.tif",
+            "label": "train/gi_mxif_134_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_137_3.tif",
+            "label": "train/gi_mxif_137_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_138_2.tif",
+            "label": "train/gi_mxif_138_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_140_0.tif",
+            "label": "train/gi_mxif_140_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_140_3.tif",
+            "label": "train/gi_mxif_140_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_143_1.tif",
+            "label": "train/gi_mxif_143_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_143_2.tif",
+            "label": "train/gi_mxif_143_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_144_1.tif",
+            "label": "train/gi_mxif_144_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_144_2.tif",
+            "label": "train/gi_mxif_144_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_147_1.tif",
+            "label": "train/gi_mxif_147_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_149_1.tif",
+            "label": "train/gi_mxif_149_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_150_0.tif",
+            "label": "train/gi_mxif_150_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_151_0.tif",
+            "label": "train/gi_mxif_151_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_151_1.tif",
+            "label": "train/gi_mxif_151_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_152_0.tif",
+            "label": "train/gi_mxif_152_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_152_3.tif",
+            "label": "train/gi_mxif_152_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_153_0.tif",
+            "label": "train/gi_mxif_153_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_155_0.tif",
+            "label": "train/gi_mxif_155_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_157_1.tif",
+            "label": "train/gi_mxif_157_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_157_2.tif",
+            "label": "train/gi_mxif_157_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_157_3.tif",
+            "label": "train/gi_mxif_157_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_159_3.tif",
+            "label": "train/gi_mxif_159_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_162_2.tif",
+            "label": "train/gi_mxif_162_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_164_3.tif",
+            "label": "train/gi_mxif_164_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_166_2.tif",
+            "label": "train/gi_mxif_166_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_166_3.tif",
+            "label": "train/gi_mxif_166_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_167_2.tif",
+            "label": "train/gi_mxif_167_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_170_1.tif",
+            "label": "train/gi_mxif_170_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_171_0.tif",
+            "label": "train/gi_mxif_171_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_175_0.tif",
+            "label": "train/gi_mxif_175_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_175_3.tif",
+            "label": "train/gi_mxif_175_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_177_3.tif",
+            "label": "train/gi_mxif_177_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_179_3.tif",
+            "label": "train/gi_mxif_179_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_180_3.tif",
+            "label": "train/gi_mxif_180_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_182_0.tif",
+            "label": "train/gi_mxif_182_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_182_1.tif",
+            "label": "train/gi_mxif_182_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_0_1.tif",
+            "label": "train/gi_mxif_0_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_0_2.tif",
+            "label": "train/gi_mxif_0_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_1_2.tif",
+            "label": "train/gi_mxif_1_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_4_2.tif",
+            "label": "train/gi_mxif_4_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_6_3.tif",
+            "label": "train/gi_mxif_6_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_7_2.tif",
+            "label": "train/gi_mxif_7_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_9_0.tif",
+            "label": "train/gi_mxif_9_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_10_2.tif",
+            "label": "train/gi_mxif_10_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_11_2.tif",
+            "label": "train/gi_mxif_11_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_13_0.tif",
+            "label": "train/gi_mxif_13_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_14_2.tif",
+            "label": "train/gi_mxif_14_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_17_2.tif",
+            "label": "train/gi_mxif_17_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_19_2.tif",
+            "label": "train/gi_mxif_19_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_20_3.tif",
+            "label": "train/gi_mxif_20_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_22_1.tif",
+            "label": "train/gi_mxif_22_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_23_1.tif",
+            "label": "train/gi_mxif_23_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_23_2.tif",
+            "label": "train/gi_mxif_23_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_24_1.tif",
+            "label": "train/gi_mxif_24_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_24_2.tif",
+            "label": "train/gi_mxif_24_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_25_2.tif",
+            "label": "train/gi_mxif_25_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_26_2.tif",
+            "label": "train/gi_mxif_26_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_27_2.tif",
+            "label": "train/gi_mxif_27_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_28_3.tif",
+            "label": "train/gi_mxif_28_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_30_2.tif",
+            "label": "train/gi_mxif_30_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_31_3.tif",
+            "label": "train/gi_mxif_31_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_32_0.tif",
+            "label": "train/gi_mxif_32_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_33_1.tif",
+            "label": "train/gi_mxif_33_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_35_2.tif",
+            "label": "train/gi_mxif_35_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_38_1.tif",
+            "label": "train/gi_mxif_38_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_39_0.tif",
+            "label": "train/gi_mxif_39_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_39_1.tif",
+            "label": "train/gi_mxif_39_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_39_2.tif",
+            "label": "train/gi_mxif_39_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_41_0.tif",
+            "label": "train/gi_mxif_41_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_42_0.tif",
+            "label": "train/gi_mxif_42_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_44_1.tif",
+            "label": "train/gi_mxif_44_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_46_2.tif",
+            "label": "train/gi_mxif_46_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_48_0.tif",
+            "label": "train/gi_mxif_48_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_50_0.tif",
+            "label": "train/gi_mxif_50_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_50_3.tif",
+            "label": "train/gi_mxif_50_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_51_0.tif",
+            "label": "train/gi_mxif_51_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_53_1.tif",
+            "label": "train/gi_mxif_53_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_54_1.tif",
+            "label": "train/gi_mxif_54_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_55_1.tif",
+            "label": "train/gi_mxif_55_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_56_1.tif",
+            "label": "train/gi_mxif_56_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_56_3.tif",
+            "label": "train/gi_mxif_56_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_57_0.tif",
+            "label": "train/gi_mxif_57_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_58_0.tif",
+            "label": "train/gi_mxif_58_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_59_1.tif",
+            "label": "train/gi_mxif_59_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_59_3.tif",
+            "label": "train/gi_mxif_59_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_61_0.tif",
+            "label": "train/gi_mxif_61_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_61_2.tif",
+            "label": "train/gi_mxif_61_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_62_1.tif",
+            "label": "train/gi_mxif_62_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_62_2.tif",
+            "label": "train/gi_mxif_62_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_64_2.tif",
+            "label": "train/gi_mxif_64_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_65_0.tif",
+            "label": "train/gi_mxif_65_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_66_3.tif",
+            "label": "train/gi_mxif_66_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_70_3.tif",
+            "label": "train/gi_mxif_70_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_71_0.tif",
+            "label": "train/gi_mxif_71_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_72_3.tif",
+            "label": "train/gi_mxif_72_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_73_0.tif",
+            "label": "train/gi_mxif_73_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_73_3.tif",
+            "label": "train/gi_mxif_73_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_76_0.tif",
+            "label": "train/gi_mxif_76_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_76_2.tif",
+            "label": "train/gi_mxif_76_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_77_0.tif",
+            "label": "train/gi_mxif_77_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_82_0.tif",
+            "label": "train/gi_mxif_82_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_82_1.tif",
+            "label": "train/gi_mxif_82_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_84_1.tif",
+            "label": "train/gi_mxif_84_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_85_0.tif",
+            "label": "train/gi_mxif_85_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_85_3.tif",
+            "label": "train/gi_mxif_85_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_87_3.tif",
+            "label": "train/gi_mxif_87_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_89_3.tif",
+            "label": "train/gi_mxif_89_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_90_0.tif",
+            "label": "train/gi_mxif_90_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_90_2.tif",
+            "label": "train/gi_mxif_90_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_91_1.tif",
+            "label": "train/gi_mxif_91_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_92_0.tif",
+            "label": "train/gi_mxif_92_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_93_1.tif",
+            "label": "train/gi_mxif_93_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_94_1.tif",
+            "label": "train/gi_mxif_94_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_94_2.tif",
+            "label": "train/gi_mxif_94_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_94_3.tif",
+            "label": "train/gi_mxif_94_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_95_2.tif",
+            "label": "train/gi_mxif_95_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_98_2.tif",
+            "label": "train/gi_mxif_98_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_98_3.tif",
+            "label": "train/gi_mxif_98_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_101_2.tif",
+            "label": "train/gi_mxif_101_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_102_0.tif",
+            "label": "train/gi_mxif_102_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_103_3.tif",
+            "label": "train/gi_mxif_103_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_106_1.tif",
+            "label": "train/gi_mxif_106_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_106_3.tif",
+            "label": "train/gi_mxif_106_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_107_0.tif",
+            "label": "train/gi_mxif_107_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_109_0.tif",
+            "label": "train/gi_mxif_109_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_110_1.tif",
+            "label": "train/gi_mxif_110_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_118_1.tif",
+            "label": "train/gi_mxif_118_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_121_0.tif",
+            "label": "train/gi_mxif_121_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_121_2.tif",
+            "label": "train/gi_mxif_121_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_121_3.tif",
+            "label": "train/gi_mxif_121_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_122_3.tif",
+            "label": "train/gi_mxif_122_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_124_2.tif",
+            "label": "train/gi_mxif_124_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_125_1.tif",
+            "label": "train/gi_mxif_125_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_125_2.tif",
+            "label": "train/gi_mxif_125_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_126_2.tif",
+            "label": "train/gi_mxif_126_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_128_0.tif",
+            "label": "train/gi_mxif_128_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_129_2.tif",
+            "label": "train/gi_mxif_129_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_129_3.tif",
+            "label": "train/gi_mxif_129_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_131_2.tif",
+            "label": "train/gi_mxif_131_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_132_2.tif",
+            "label": "train/gi_mxif_132_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_133_1.tif",
+            "label": "train/gi_mxif_133_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_136_2.tif",
+            "label": "train/gi_mxif_136_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_137_1.tif",
+            "label": "train/gi_mxif_137_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_137_2.tif",
+            "label": "train/gi_mxif_137_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_138_0.tif",
+            "label": "train/gi_mxif_138_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_138_1.tif",
+            "label": "train/gi_mxif_138_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_141_1.tif",
+            "label": "train/gi_mxif_141_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_141_3.tif",
+            "label": "train/gi_mxif_141_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_142_2.tif",
+            "label": "train/gi_mxif_142_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_146_0.tif",
+            "label": "train/gi_mxif_146_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_148_0.tif",
+            "label": "train/gi_mxif_148_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_149_0.tif",
+            "label": "train/gi_mxif_149_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_149_3.tif",
+            "label": "train/gi_mxif_149_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_150_3.tif",
+            "label": "train/gi_mxif_150_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_151_3.tif",
+            "label": "train/gi_mxif_151_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_153_2.tif",
+            "label": "train/gi_mxif_153_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_153_3.tif",
+            "label": "train/gi_mxif_153_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_154_2.tif",
+            "label": "train/gi_mxif_154_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_154_3.tif",
+            "label": "train/gi_mxif_154_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_156_1.tif",
+            "label": "train/gi_mxif_156_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_158_0.tif",
+            "label": "train/gi_mxif_158_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_158_2.tif",
+            "label": "train/gi_mxif_158_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_160_3.tif",
+            "label": "train/gi_mxif_160_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_166_0.tif",
+            "label": "train/gi_mxif_166_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_168_0.tif",
+            "label": "train/gi_mxif_168_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_168_1.tif",
+            "label": "train/gi_mxif_168_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_169_2.tif",
+            "label": "train/gi_mxif_169_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_170_0.tif",
+            "label": "train/gi_mxif_170_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_170_2.tif",
+            "label": "train/gi_mxif_170_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_170_3.tif",
+            "label": "train/gi_mxif_170_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_172_0.tif",
+            "label": "train/gi_mxif_172_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_173_3.tif",
+            "label": "train/gi_mxif_173_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_174_2.tif",
+            "label": "train/gi_mxif_174_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_174_3.tif",
+            "label": "train/gi_mxif_174_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_175_1.tif",
+            "label": "train/gi_mxif_175_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_176_1.tif",
+            "label": "train/gi_mxif_176_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_176_2.tif",
+            "label": "train/gi_mxif_176_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_176_3.tif",
+            "label": "train/gi_mxif_176_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_177_0.tif",
+            "label": "train/gi_mxif_177_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_179_0.tif",
+            "label": "train/gi_mxif_179_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_179_2.tif",
+            "label": "train/gi_mxif_179_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_180_1.tif",
+            "label": "train/gi_mxif_180_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_182_2.tif",
+            "label": "train/gi_mxif_182_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_3_0.tif",
+            "label": "train/gi_mxif_3_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_3_2.tif",
+            "label": "train/gi_mxif_3_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_5_1.tif",
+            "label": "train/gi_mxif_5_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_6_0.tif",
+            "label": "train/gi_mxif_6_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_7_0.tif",
+            "label": "train/gi_mxif_7_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_8_0.tif",
+            "label": "train/gi_mxif_8_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_11_0.tif",
+            "label": "train/gi_mxif_11_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_12_0.tif",
+            "label": "train/gi_mxif_12_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_12_3.tif",
+            "label": "train/gi_mxif_12_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_13_1.tif",
+            "label": "train/gi_mxif_13_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_13_2.tif",
+            "label": "train/gi_mxif_13_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_13_3.tif",
+            "label": "train/gi_mxif_13_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_15_3.tif",
+            "label": "train/gi_mxif_15_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_18_1.tif",
+            "label": "train/gi_mxif_18_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_19_3.tif",
+            "label": "train/gi_mxif_19_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_22_3.tif",
+            "label": "train/gi_mxif_22_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_25_0.tif",
+            "label": "train/gi_mxif_25_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_26_1.tif",
+            "label": "train/gi_mxif_26_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_27_1.tif",
+            "label": "train/gi_mxif_27_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_28_0.tif",
+            "label": "train/gi_mxif_28_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_28_1.tif",
+            "label": "train/gi_mxif_28_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_28_2.tif",
+            "label": "train/gi_mxif_28_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_30_3.tif",
+            "label": "train/gi_mxif_30_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_31_1.tif",
+            "label": "train/gi_mxif_31_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_32_3.tif",
+            "label": "train/gi_mxif_32_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_34_0.tif",
+            "label": "train/gi_mxif_34_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_34_1.tif",
+            "label": "train/gi_mxif_34_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_34_2.tif",
+            "label": "train/gi_mxif_34_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_35_3.tif",
+            "label": "train/gi_mxif_35_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_36_1.tif",
+            "label": "train/gi_mxif_36_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_37_2.tif",
+            "label": "train/gi_mxif_37_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_40_3.tif",
+            "label": "train/gi_mxif_40_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_41_3.tif",
+            "label": "train/gi_mxif_41_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_42_1.tif",
+            "label": "train/gi_mxif_42_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_42_3.tif",
+            "label": "train/gi_mxif_42_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_43_2.tif",
+            "label": "train/gi_mxif_43_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_45_2.tif",
+            "label": "train/gi_mxif_45_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_46_0.tif",
+            "label": "train/gi_mxif_46_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_47_0.tif",
+            "label": "train/gi_mxif_47_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_47_3.tif",
+            "label": "train/gi_mxif_47_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_49_3.tif",
+            "label": "train/gi_mxif_49_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_51_1.tif",
+            "label": "train/gi_mxif_51_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_51_2.tif",
+            "label": "train/gi_mxif_51_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_52_0.tif",
+            "label": "train/gi_mxif_52_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_52_3.tif",
+            "label": "train/gi_mxif_52_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_53_0.tif",
+            "label": "train/gi_mxif_53_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_54_3.tif",
+            "label": "train/gi_mxif_54_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_55_0.tif",
+            "label": "train/gi_mxif_55_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_55_2.tif",
+            "label": "train/gi_mxif_55_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_56_2.tif",
+            "label": "train/gi_mxif_56_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_57_1.tif",
+            "label": "train/gi_mxif_57_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_57_2.tif",
+            "label": "train/gi_mxif_57_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_58_2.tif",
+            "label": "train/gi_mxif_58_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_59_2.tif",
+            "label": "train/gi_mxif_59_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_60_0.tif",
+            "label": "train/gi_mxif_60_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_62_3.tif",
+            "label": "train/gi_mxif_62_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_64_0.tif",
+            "label": "train/gi_mxif_64_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_66_1.tif",
+            "label": "train/gi_mxif_66_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_67_2.tif",
+            "label": "train/gi_mxif_67_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_67_3.tif",
+            "label": "train/gi_mxif_67_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_68_0.tif",
+            "label": "train/gi_mxif_68_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_68_3.tif",
+            "label": "train/gi_mxif_68_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_71_3.tif",
+            "label": "train/gi_mxif_71_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_72_2.tif",
+            "label": "train/gi_mxif_72_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_73_2.tif",
+            "label": "train/gi_mxif_73_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_74_0.tif",
+            "label": "train/gi_mxif_74_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_75_0.tif",
+            "label": "train/gi_mxif_75_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_75_3.tif",
+            "label": "train/gi_mxif_75_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_77_1.tif",
+            "label": "train/gi_mxif_77_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_78_3.tif",
+            "label": "train/gi_mxif_78_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_80_2.tif",
+            "label": "train/gi_mxif_80_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_81_0.tif",
+            "label": "train/gi_mxif_81_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_81_1.tif",
+            "label": "train/gi_mxif_81_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_81_2.tif",
+            "label": "train/gi_mxif_81_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_82_2.tif",
+            "label": "train/gi_mxif_82_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_85_2.tif",
+            "label": "train/gi_mxif_85_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_86_0.tif",
+            "label": "train/gi_mxif_86_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_92_2.tif",
+            "label": "train/gi_mxif_92_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_94_0.tif",
+            "label": "train/gi_mxif_94_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_95_0.tif",
+            "label": "train/gi_mxif_95_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_96_0.tif",
+            "label": "train/gi_mxif_96_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_97_3.tif",
+            "label": "train/gi_mxif_97_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_101_3.tif",
+            "label": "train/gi_mxif_101_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_102_1.tif",
+            "label": "train/gi_mxif_102_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_102_2.tif",
+            "label": "train/gi_mxif_102_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_103_1.tif",
+            "label": "train/gi_mxif_103_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_104_1.tif",
+            "label": "train/gi_mxif_104_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_105_0.tif",
+            "label": "train/gi_mxif_105_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_105_3.tif",
+            "label": "train/gi_mxif_105_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_106_0.tif",
+            "label": "train/gi_mxif_106_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_107_2.tif",
+            "label": "train/gi_mxif_107_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_109_2.tif",
+            "label": "train/gi_mxif_109_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_110_0.tif",
+            "label": "train/gi_mxif_110_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_110_2.tif",
+            "label": "train/gi_mxif_110_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_111_0.tif",
+            "label": "train/gi_mxif_111_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_111_2.tif",
+            "label": "train/gi_mxif_111_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_112_2.tif",
+            "label": "train/gi_mxif_112_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_112_3.tif",
+            "label": "train/gi_mxif_112_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_113_3.tif",
+            "label": "train/gi_mxif_113_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_114_2.tif",
+            "label": "train/gi_mxif_114_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_114_3.tif",
+            "label": "train/gi_mxif_114_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_115_2.tif",
+            "label": "train/gi_mxif_115_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_115_3.tif",
+            "label": "train/gi_mxif_115_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_116_1.tif",
+            "label": "train/gi_mxif_116_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_118_3.tif",
+            "label": "train/gi_mxif_118_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_119_1.tif",
+            "label": "train/gi_mxif_119_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_124_3.tif",
+            "label": "train/gi_mxif_124_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_125_0.tif",
+            "label": "train/gi_mxif_125_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_130_0.tif",
+            "label": "train/gi_mxif_130_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_130_2.tif",
+            "label": "train/gi_mxif_130_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_134_0.tif",
+            "label": "train/gi_mxif_134_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_134_3.tif",
+            "label": "train/gi_mxif_134_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_136_1.tif",
+            "label": "train/gi_mxif_136_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_136_3.tif",
+            "label": "train/gi_mxif_136_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_139_0.tif",
+            "label": "train/gi_mxif_139_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_139_1.tif",
+            "label": "train/gi_mxif_139_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_139_2.tif",
+            "label": "train/gi_mxif_139_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_142_3.tif",
+            "label": "train/gi_mxif_142_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_145_2.tif",
+            "label": "train/gi_mxif_145_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_146_3.tif",
+            "label": "train/gi_mxif_146_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_148_1.tif",
+            "label": "train/gi_mxif_148_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_155_2.tif",
+            "label": "train/gi_mxif_155_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_158_3.tif",
+            "label": "train/gi_mxif_158_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_159_0.tif",
+            "label": "train/gi_mxif_159_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_159_2.tif",
+            "label": "train/gi_mxif_159_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_161_0.tif",
+            "label": "train/gi_mxif_161_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_161_2.tif",
+            "label": "train/gi_mxif_161_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_161_3.tif",
+            "label": "train/gi_mxif_161_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_162_3.tif",
+            "label": "train/gi_mxif_162_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_164_0.tif",
+            "label": "train/gi_mxif_164_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_165_0.tif",
+            "label": "train/gi_mxif_165_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_165_1.tif",
+            "label": "train/gi_mxif_165_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_165_2.tif",
+            "label": "train/gi_mxif_165_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_165_3.tif",
+            "label": "train/gi_mxif_165_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_168_3.tif",
+            "label": "train/gi_mxif_168_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_173_1.tif",
+            "label": "train/gi_mxif_173_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_174_0.tif",
+            "label": "train/gi_mxif_174_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_174_1.tif",
+            "label": "train/gi_mxif_174_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_177_1.tif",
+            "label": "train/gi_mxif_177_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_177_2.tif",
+            "label": "train/gi_mxif_177_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_178_1.tif",
+            "label": "train/gi_mxif_178_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_178_2.tif",
+            "label": "train/gi_mxif_178_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_180_0.tif",
+            "label": "train/gi_mxif_180_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_181_0.tif",
+            "label": "train/gi_mxif_181_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_182_3.tif",
+            "label": "train/gi_mxif_182_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_183_2.tif",
+            "label": "train/gi_mxif_183_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_183_3.tif",
+            "label": "train/gi_mxif_183_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_1_3.tif",
+            "label": "train/gi_mxif_1_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_2_2.tif",
+            "label": "train/gi_mxif_2_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_3_3.tif",
+            "label": "train/gi_mxif_3_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_5_0.tif",
+            "label": "train/gi_mxif_5_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_5_2.tif",
+            "label": "train/gi_mxif_5_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_6_1.tif",
+            "label": "train/gi_mxif_6_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_6_2.tif",
+            "label": "train/gi_mxif_6_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_9_1.tif",
+            "label": "train/gi_mxif_9_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_10_3.tif",
+            "label": "train/gi_mxif_10_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_16_0.tif",
+            "label": "train/gi_mxif_16_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_17_3.tif",
+            "label": "train/gi_mxif_17_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_18_0.tif",
+            "label": "train/gi_mxif_18_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_18_3.tif",
+            "label": "train/gi_mxif_18_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_19_1.tif",
+            "label": "train/gi_mxif_19_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_21_2.tif",
+            "label": "train/gi_mxif_21_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_21_3.tif",
+            "label": "train/gi_mxif_21_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_24_0.tif",
+            "label": "train/gi_mxif_24_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_31_2.tif",
+            "label": "train/gi_mxif_31_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_32_1.tif",
+            "label": "train/gi_mxif_32_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_32_2.tif",
+            "label": "train/gi_mxif_32_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_35_0.tif",
+            "label": "train/gi_mxif_35_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_35_1.tif",
+            "label": "train/gi_mxif_35_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_36_0.tif",
+            "label": "train/gi_mxif_36_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_37_1.tif",
+            "label": "train/gi_mxif_37_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_37_3.tif",
+            "label": "train/gi_mxif_37_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_38_0.tif",
+            "label": "train/gi_mxif_38_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_38_3.tif",
+            "label": "train/gi_mxif_38_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_41_2.tif",
+            "label": "train/gi_mxif_41_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_42_2.tif",
+            "label": "train/gi_mxif_42_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_44_0.tif",
+            "label": "train/gi_mxif_44_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_44_2.tif",
+            "label": "train/gi_mxif_44_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_45_3.tif",
+            "label": "train/gi_mxif_45_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_47_2.tif",
+            "label": "train/gi_mxif_47_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_48_1.tif",
+            "label": "train/gi_mxif_48_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_49_0.tif",
+            "label": "train/gi_mxif_49_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_49_2.tif",
+            "label": "train/gi_mxif_49_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_52_1.tif",
+            "label": "train/gi_mxif_52_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_52_2.tif",
+            "label": "train/gi_mxif_52_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_53_3.tif",
+            "label": "train/gi_mxif_53_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_57_3.tif",
+            "label": "train/gi_mxif_57_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_58_3.tif",
+            "label": "train/gi_mxif_58_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_60_3.tif",
+            "label": "train/gi_mxif_60_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_63_0.tif",
+            "label": "train/gi_mxif_63_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_63_1.tif",
+            "label": "train/gi_mxif_63_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_63_2.tif",
+            "label": "train/gi_mxif_63_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_65_3.tif",
+            "label": "train/gi_mxif_65_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_66_0.tif",
+            "label": "train/gi_mxif_66_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_66_2.tif",
+            "label": "train/gi_mxif_66_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_67_1.tif",
+            "label": "train/gi_mxif_67_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_69_0.tif",
+            "label": "train/gi_mxif_69_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_69_2.tif",
+            "label": "train/gi_mxif_69_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_69_3.tif",
+            "label": "train/gi_mxif_69_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_70_1.tif",
+            "label": "train/gi_mxif_70_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_70_2.tif",
+            "label": "train/gi_mxif_70_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_72_0.tif",
+            "label": "train/gi_mxif_72_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_74_1.tif",
+            "label": "train/gi_mxif_74_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_75_2.tif",
+            "label": "train/gi_mxif_75_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_78_1.tif",
+            "label": "train/gi_mxif_78_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_79_0.tif",
+            "label": "train/gi_mxif_79_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_79_1.tif",
+            "label": "train/gi_mxif_79_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_79_3.tif",
+            "label": "train/gi_mxif_79_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_80_1.tif",
+            "label": "train/gi_mxif_80_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_81_3.tif",
+            "label": "train/gi_mxif_81_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_83_0.tif",
+            "label": "train/gi_mxif_83_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_84_0.tif",
+            "label": "train/gi_mxif_84_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_84_2.tif",
+            "label": "train/gi_mxif_84_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_87_0.tif",
+            "label": "train/gi_mxif_87_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_89_0.tif",
+            "label": "train/gi_mxif_89_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_89_1.tif",
+            "label": "train/gi_mxif_89_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_91_3.tif",
+            "label": "train/gi_mxif_91_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_92_1.tif",
+            "label": "train/gi_mxif_92_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_95_1.tif",
+            "label": "train/gi_mxif_95_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_96_3.tif",
+            "label": "train/gi_mxif_96_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_97_2.tif",
+            "label": "train/gi_mxif_97_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_98_1.tif",
+            "label": "train/gi_mxif_98_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_99_2.tif",
+            "label": "train/gi_mxif_99_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_100_1.tif",
+            "label": "train/gi_mxif_100_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_101_1.tif",
+            "label": "train/gi_mxif_101_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_104_0.tif",
+            "label": "train/gi_mxif_104_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_104_2.tif",
+            "label": "train/gi_mxif_104_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_107_3.tif",
+            "label": "train/gi_mxif_107_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_113_2.tif",
+            "label": "train/gi_mxif_113_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_114_0.tif",
+            "label": "train/gi_mxif_114_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_115_1.tif",
+            "label": "train/gi_mxif_115_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_116_2.tif",
+            "label": "train/gi_mxif_116_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_117_0.tif",
+            "label": "train/gi_mxif_117_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_117_1.tif",
+            "label": "train/gi_mxif_117_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_117_2.tif",
+            "label": "train/gi_mxif_117_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_117_3.tif",
+            "label": "train/gi_mxif_117_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_119_0.tif",
+            "label": "train/gi_mxif_119_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_119_2.tif",
+            "label": "train/gi_mxif_119_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_121_1.tif",
+            "label": "train/gi_mxif_121_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_122_1.tif",
+            "label": "train/gi_mxif_122_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_122_2.tif",
+            "label": "train/gi_mxif_122_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_123_0.tif",
+            "label": "train/gi_mxif_123_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_124_1.tif",
+            "label": "train/gi_mxif_124_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_125_3.tif",
+            "label": "train/gi_mxif_125_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_126_1.tif",
+            "label": "train/gi_mxif_126_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_127_0.tif",
+            "label": "train/gi_mxif_127_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_128_1.tif",
+            "label": "train/gi_mxif_128_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_128_2.tif",
+            "label": "train/gi_mxif_128_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_128_3.tif",
+            "label": "train/gi_mxif_128_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_133_0.tif",
+            "label": "train/gi_mxif_133_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_133_2.tif",
+            "label": "train/gi_mxif_133_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_135_2.tif",
+            "label": "train/gi_mxif_135_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_137_0.tif",
+            "label": "train/gi_mxif_137_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_140_1.tif",
+            "label": "train/gi_mxif_140_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_140_2.tif",
+            "label": "train/gi_mxif_140_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_141_0.tif",
+            "label": "train/gi_mxif_141_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_141_2.tif",
+            "label": "train/gi_mxif_141_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_142_0.tif",
+            "label": "train/gi_mxif_142_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_142_1.tif",
+            "label": "train/gi_mxif_142_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_143_0.tif",
+            "label": "train/gi_mxif_143_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_145_0.tif",
+            "label": "train/gi_mxif_145_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_145_3.tif",
+            "label": "train/gi_mxif_145_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_146_2.tif",
+            "label": "train/gi_mxif_146_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_147_0.tif",
+            "label": "train/gi_mxif_147_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_148_3.tif",
+            "label": "train/gi_mxif_148_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_149_2.tif",
+            "label": "train/gi_mxif_149_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_151_2.tif",
+            "label": "train/gi_mxif_151_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_154_0.tif",
+            "label": "train/gi_mxif_154_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_154_1.tif",
+            "label": "train/gi_mxif_154_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_155_1.tif",
+            "label": "train/gi_mxif_155_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_156_0.tif",
+            "label": "train/gi_mxif_156_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_156_2.tif",
+            "label": "train/gi_mxif_156_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_156_3.tif",
+            "label": "train/gi_mxif_156_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_157_0.tif",
+            "label": "train/gi_mxif_157_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_158_1.tif",
+            "label": "train/gi_mxif_158_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_161_1.tif",
+            "label": "train/gi_mxif_161_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_162_0.tif",
+            "label": "train/gi_mxif_162_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_163_1.tif",
+            "label": "train/gi_mxif_163_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_163_3.tif",
+            "label": "train/gi_mxif_163_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_164_2.tif",
+            "label": "train/gi_mxif_164_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_166_1.tif",
+            "label": "train/gi_mxif_166_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_167_0.tif",
+            "label": "train/gi_mxif_167_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_169_0.tif",
+            "label": "train/gi_mxif_169_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_169_3.tif",
+            "label": "train/gi_mxif_169_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_171_1.tif",
+            "label": "train/gi_mxif_171_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_171_2.tif",
+            "label": "train/gi_mxif_171_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/gi_mxif_171_3.tif",
+            "label": "train/gi_mxif_171_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/gi_mxif_172_1.tif",
+            "label": "train/gi_mxif_172_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_172_3.tif",
+            "label": "train/gi_mxif_172_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_173_2.tif",
+            "label": "train/gi_mxif_173_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_176_0.tif",
+            "label": "train/gi_mxif_176_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_178_3.tif",
+            "label": "train/gi_mxif_178_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/gi_mxif_179_1.tif",
+            "label": "train/gi_mxif_179_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/gi_mxif_181_3.tif",
+            "label": "train/gi_mxif_181_3_masks.tif",
+            "fold": 3
+        }
+    ],
+    "testing": [
+        {
+            "image": "test/gi_mxif_2.tif",
+            "label": "test/gi_mxif_2_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_10.tif",
+            "label": "test/gi_mxif_10_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_27.tif",
+            "label": "test/gi_mxif_27_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_35.tif",
+            "label": "test/gi_mxif_35_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_36.tif",
+            "label": "test/gi_mxif_36_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_38.tif",
+            "label": "test/gi_mxif_38_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_40.tif",
+            "label": "test/gi_mxif_40_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_44.tif",
+            "label": "test/gi_mxif_44_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_48.tif",
+            "label": "test/gi_mxif_48_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_53.tif",
+            "label": "test/gi_mxif_53_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_56.tif",
+            "label": "test/gi_mxif_56_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_58.tif",
+            "label": "test/gi_mxif_58_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_63.tif",
+            "label": "test/gi_mxif_63_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_66.tif",
+            "label": "test/gi_mxif_66_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_67.tif",
+            "label": "test/gi_mxif_67_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_69.tif",
+            "label": "test/gi_mxif_69_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_82.tif",
+            "label": "test/gi_mxif_82_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_86.tif",
+            "label": "test/gi_mxif_86_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_19.tif",
+            "label": "test/gi_mxif_19_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_23.tif",
+            "label": "test/gi_mxif_23_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_31.tif",
+            "label": "test/gi_mxif_31_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_32.tif",
+            "label": "test/gi_mxif_32_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_33.tif",
+            "label": "test/gi_mxif_33_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_34.tif",
+            "label": "test/gi_mxif_34_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_39.tif",
+            "label": "test/gi_mxif_39_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_43.tif",
+            "label": "test/gi_mxif_43_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_45.tif",
+            "label": "test/gi_mxif_45_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_49.tif",
+            "label": "test/gi_mxif_49_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_52.tif",
+            "label": "test/gi_mxif_52_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_59.tif",
+            "label": "test/gi_mxif_59_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_60.tif",
+            "label": "test/gi_mxif_60_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_62.tif",
+            "label": "test/gi_mxif_62_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_65.tif",
+            "label": "test/gi_mxif_65_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_68.tif",
+            "label": "test/gi_mxif_68_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_73.tif",
+            "label": "test/gi_mxif_73_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_81.tif",
+            "label": "test/gi_mxif_81_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_3.tif",
+            "label": "test/gi_mxif_3_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_4.tif",
+            "label": "test/gi_mxif_4_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_15.tif",
+            "label": "test/gi_mxif_15_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_21.tif",
+            "label": "test/gi_mxif_21_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_26.tif",
+            "label": "test/gi_mxif_26_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_30.tif",
+            "label": "test/gi_mxif_30_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_42.tif",
+            "label": "test/gi_mxif_42_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_46.tif",
+            "label": "test/gi_mxif_46_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_47.tif",
+            "label": "test/gi_mxif_47_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_51.tif",
+            "label": "test/gi_mxif_51_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_54.tif",
+            "label": "test/gi_mxif_54_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_55.tif",
+            "label": "test/gi_mxif_55_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_61.tif",
+            "label": "test/gi_mxif_61_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_70.tif",
+            "label": "test/gi_mxif_70_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_74.tif",
+            "label": "test/gi_mxif_74_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_78.tif",
+            "label": "test/gi_mxif_78_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_85.tif",
+            "label": "test/gi_mxif_85_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_0.tif",
+            "label": "test/gi_mxif_0_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_7.tif",
+            "label": "test/gi_mxif_7_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_8.tif",
+            "label": "test/gi_mxif_8_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_11.tif",
+            "label": "test/gi_mxif_11_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_13.tif",
+            "label": "test/gi_mxif_13_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_14.tif",
+            "label": "test/gi_mxif_14_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_17.tif",
+            "label": "test/gi_mxif_17_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_22.tif",
+            "label": "test/gi_mxif_22_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_24.tif",
+            "label": "test/gi_mxif_24_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_28.tif",
+            "label": "test/gi_mxif_28_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_29.tif",
+            "label": "test/gi_mxif_29_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_41.tif",
+            "label": "test/gi_mxif_41_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_57.tif",
+            "label": "test/gi_mxif_57_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_77.tif",
+            "label": "test/gi_mxif_77_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_80.tif",
+            "label": "test/gi_mxif_80_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_83.tif",
+            "label": "test/gi_mxif_83_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_84.tif",
+            "label": "test/gi_mxif_84_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_1.tif",
+            "label": "test/gi_mxif_1_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_5.tif",
+            "label": "test/gi_mxif_5_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_6.tif",
+            "label": "test/gi_mxif_6_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_9.tif",
+            "label": "test/gi_mxif_9_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_12.tif",
+            "label": "test/gi_mxif_12_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_16.tif",
+            "label": "test/gi_mxif_16_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_18.tif",
+            "label": "test/gi_mxif_18_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_20.tif",
+            "label": "test/gi_mxif_20_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_25.tif",
+            "label": "test/gi_mxif_25_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_37.tif",
+            "label": "test/gi_mxif_37_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_50.tif",
+            "label": "test/gi_mxif_50_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_64.tif",
+            "label": "test/gi_mxif_64_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_71.tif",
+            "label": "test/gi_mxif_71_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_72.tif",
+            "label": "test/gi_mxif_72_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_75.tif",
+            "label": "test/gi_mxif_75_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_76.tif",
+            "label": "test/gi_mxif_76_masks.tif"
+        },
+        {
+            "image": "test/gi_mxif_79.tif",
+            "label": "test/gi_mxif_79_masks.tif"
+        }
+    ]
+}

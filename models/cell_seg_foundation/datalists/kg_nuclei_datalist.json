@@ -1,0 +1,3287 @@
+{
+    "training": [
+        {
+            "image": "instance_processed_data/kg_bowl_193_img.png",
+            "label": "instance_processed_data/kg_bowl_193_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_426_img.png",
+            "label": "instance_processed_data/kg_bowl_426_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_362_img.png",
+            "label": "instance_processed_data/kg_bowl_362_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_266_img.png",
+            "label": "instance_processed_data/kg_bowl_266_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_397_img.png",
+            "label": "instance_processed_data/kg_bowl_397_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_328_img.png",
+            "label": "instance_processed_data/kg_bowl_328_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_364_img.png",
+            "label": "instance_processed_data/kg_bowl_364_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_42_img.png",
+            "label": "instance_processed_data/kg_bowl_42_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_392_img.png",
+            "label": "instance_processed_data/kg_bowl_392_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_296_img.png",
+            "label": "instance_processed_data/kg_bowl_296_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_419_img.png",
+            "label": "instance_processed_data/kg_bowl_419_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_436_img.png",
+            "label": "instance_processed_data/kg_bowl_436_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_213_img.png",
+            "label": "instance_processed_data/kg_bowl_213_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_271_img.png",
+            "label": "instance_processed_data/kg_bowl_271_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_384_img.png",
+            "label": "instance_processed_data/kg_bowl_384_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_493_img.png",
+            "label": "instance_processed_data/kg_bowl_493_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_492_img.png",
+            "label": "instance_processed_data/kg_bowl_492_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_489_img.png",
+            "label": "instance_processed_data/kg_bowl_489_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_474_img.png",
+            "label": "instance_processed_data/kg_bowl_474_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_215_img.png",
+            "label": "instance_processed_data/kg_bowl_215_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_595_img.png",
+            "label": "instance_processed_data/kg_bowl_595_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_518_img.png",
+            "label": "instance_processed_data/kg_bowl_518_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_560_img.png",
+            "label": "instance_processed_data/kg_bowl_560_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_409_img.png",
+            "label": "instance_processed_data/kg_bowl_409_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_396_img.png",
+            "label": "instance_processed_data/kg_bowl_396_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_1_img.png",
+            "label": "instance_processed_data/kg_bowl_1_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_164_img.png",
+            "label": "instance_processed_data/kg_bowl_164_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_148_img.png",
+            "label": "instance_processed_data/kg_bowl_148_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_119_img.png",
+            "label": "instance_processed_data/kg_bowl_119_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_526_img.png",
+            "label": "instance_processed_data/kg_bowl_526_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_144_img.png",
+            "label": "instance_processed_data/kg_bowl_144_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_469_img.png",
+            "label": "instance_processed_data/kg_bowl_469_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_248_img.png",
+            "label": "instance_processed_data/kg_bowl_248_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_347_img.png",
+            "label": "instance_processed_data/kg_bowl_347_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_60_img.png",
+            "label": "instance_processed_data/kg_bowl_60_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_349_img.png",
+            "label": "instance_processed_data/kg_bowl_349_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_342_img.png",
+            "label": "instance_processed_data/kg_bowl_342_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_577_img.png",
+            "label": "instance_processed_data/kg_bowl_577_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_444_img.png",
+            "label": "instance_processed_data/kg_bowl_444_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_240_img.png",
+            "label": "instance_processed_data/kg_bowl_240_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_95_img.png",
+            "label": "instance_processed_data/kg_bowl_95_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_121_img.png",
+            "label": "instance_processed_data/kg_bowl_121_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_373_img.png",
+            "label": "instance_processed_data/kg_bowl_373_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_185_img.png",
+            "label": "instance_processed_data/kg_bowl_185_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_232_img.png",
+            "label": "instance_processed_data/kg_bowl_232_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_345_img.png",
+            "label": "instance_processed_data/kg_bowl_345_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_557_img.png",
+            "label": "instance_processed_data/kg_bowl_557_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_187_img.png",
+            "label": "instance_processed_data/kg_bowl_187_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_429_img.png",
+            "label": "instance_processed_data/kg_bowl_429_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_582_img.png",
+            "label": "instance_processed_data/kg_bowl_582_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_543_img.png",
+            "label": "instance_processed_data/kg_bowl_543_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_490_img.png",
+            "label": "instance_processed_data/kg_bowl_490_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_134_img.png",
+            "label": "instance_processed_data/kg_bowl_134_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_229_img.png",
+            "label": "instance_processed_data/kg_bowl_229_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_585_img.png",
+            "label": "instance_processed_data/kg_bowl_585_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_33_img.png",
+            "label": "instance_processed_data/kg_bowl_33_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_222_img.png",
+            "label": "instance_processed_data/kg_bowl_222_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_24_img.png",
+            "label": "instance_processed_data/kg_bowl_24_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_458_img.png",
+            "label": "instance_processed_data/kg_bowl_458_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_506_img.png",
+            "label": "instance_processed_data/kg_bowl_506_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_324_img.png",
+            "label": "instance_processed_data/kg_bowl_324_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_200_img.png",
+            "label": "instance_processed_data/kg_bowl_200_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_350_img.png",
+            "label": "instance_processed_data/kg_bowl_350_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_282_img.png",
+            "label": "instance_processed_data/kg_bowl_282_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_247_img.png",
+            "label": "instance_processed_data/kg_bowl_247_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_463_img.png",
+            "label": "instance_processed_data/kg_bowl_463_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_235_img.png",
+            "label": "instance_processed_data/kg_bowl_235_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_383_img.png",
+            "label": "instance_processed_data/kg_bowl_383_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_496_img.png",
+            "label": "instance_processed_data/kg_bowl_496_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_440_img.png",
+            "label": "instance_processed_data/kg_bowl_440_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_468_img.png",
+            "label": "instance_processed_data/kg_bowl_468_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_174_img.png",
+            "label": "instance_processed_data/kg_bowl_174_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_491_img.png",
+            "label": "instance_processed_data/kg_bowl_491_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_524_img.png",
+            "label": "instance_processed_data/kg_bowl_524_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_487_img.png",
+            "label": "instance_processed_data/kg_bowl_487_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_359_img.png",
+            "label": "instance_processed_data/kg_bowl_359_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_406_img.png",
+            "label": "instance_processed_data/kg_bowl_406_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_78_img.png",
+            "label": "instance_processed_data/kg_bowl_78_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_302_img.png",
+            "label": "instance_processed_data/kg_bowl_302_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_184_img.png",
+            "label": "instance_processed_data/kg_bowl_184_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_435_img.png",
+            "label": "instance_processed_data/kg_bowl_435_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_597_img.png",
+            "label": "instance_processed_data/kg_bowl_597_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_170_img.png",
+            "label": "instance_processed_data/kg_bowl_170_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_63_img.png",
+            "label": "instance_processed_data/kg_bowl_63_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_22_img.png",
+            "label": "instance_processed_data/kg_bowl_22_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_231_img.png",
+            "label": "instance_processed_data/kg_bowl_231_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_41_img.png",
+            "label": "instance_processed_data/kg_bowl_41_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_352_img.png",
+            "label": "instance_processed_data/kg_bowl_352_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_44_img.png",
+            "label": "instance_processed_data/kg_bowl_44_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_48_img.png",
+            "label": "instance_processed_data/kg_bowl_48_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_537_img.png",
+            "label": "instance_processed_data/kg_bowl_537_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_357_img.png",
+            "label": "instance_processed_data/kg_bowl_357_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_27_img.png",
+            "label": "instance_processed_data/kg_bowl_27_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_230_img.png",
+            "label": "instance_processed_data/kg_bowl_230_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_386_img.png",
+            "label": "instance_processed_data/kg_bowl_386_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_448_img.png",
+            "label": "instance_processed_data/kg_bowl_448_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_476_img.png",
+            "label": "instance_processed_data/kg_bowl_476_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_92_img.png",
+            "label": "instance_processed_data/kg_bowl_92_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_344_img.png",
+            "label": "instance_processed_data/kg_bowl_344_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_528_img.png",
+            "label": "instance_processed_data/kg_bowl_528_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_26_img.png",
+            "label": "instance_processed_data/kg_bowl_26_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_330_img.png",
+            "label": "instance_processed_data/kg_bowl_330_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_513_img.png",
+            "label": "instance_processed_data/kg_bowl_513_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_385_img.png",
+            "label": "instance_processed_data/kg_bowl_385_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_511_img.png",
+            "label": "instance_processed_data/kg_bowl_511_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_21_img.png",
+            "label": "instance_processed_data/kg_bowl_21_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_194_img.png",
+            "label": "instance_processed_data/kg_bowl_194_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_395_img.png",
+            "label": "instance_processed_data/kg_bowl_395_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_132_img.png",
+            "label": "instance_processed_data/kg_bowl_132_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_510_img.png",
+            "label": "instance_processed_data/kg_bowl_510_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_516_img.png",
+            "label": "instance_processed_data/kg_bowl_516_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_517_img.png",
+            "label": "instance_processed_data/kg_bowl_517_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_130_img.png",
+            "label": "instance_processed_data/kg_bowl_130_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_195_img.png",
+            "label": "instance_processed_data/kg_bowl_195_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_508_img.png",
+            "label": "instance_processed_data/kg_bowl_508_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_219_img.png",
+            "label": "instance_processed_data/kg_bowl_219_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_28_img.png",
+            "label": "instance_processed_data/kg_bowl_28_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_105_img.png",
+            "label": "instance_processed_data/kg_bowl_105_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_580_img.png",
+            "label": "instance_processed_data/kg_bowl_580_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_321_img.png",
+            "label": "instance_processed_data/kg_bowl_321_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_556_img.png",
+            "label": "instance_processed_data/kg_bowl_556_img_masks.tiff",
+            "fold": 0
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_423_img.png",
+            "label": "instance_processed_data/kg_bowl_423_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_379_img.png",
+            "label": "instance_processed_data/kg_bowl_379_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_576_img.png",
+            "label": "instance_processed_data/kg_bowl_576_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_188_img.png",
+            "label": "instance_processed_data/kg_bowl_188_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_292_img.png",
+            "label": "instance_processed_data/kg_bowl_292_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_253_img.png",
+            "label": "instance_processed_data/kg_bowl_253_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_281_img.png",
+            "label": "instance_processed_data/kg_bowl_281_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_590_img.png",
+            "label": "instance_processed_data/kg_bowl_590_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_175_img.png",
+            "label": "instance_processed_data/kg_bowl_175_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_67_img.png",
+            "label": "instance_processed_data/kg_bowl_67_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_59_img.png",
+            "label": "instance_processed_data/kg_bowl_59_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_520_img.png",
+            "label": "instance_processed_data/kg_bowl_520_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_572_img.png",
+            "label": "instance_processed_data/kg_bowl_572_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_76_img.png",
+            "label": "instance_processed_data/kg_bowl_76_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_114_img.png",
+            "label": "instance_processed_data/kg_bowl_114_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_99_img.png",
+            "label": "instance_processed_data/kg_bowl_99_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_549_img.png",
+            "label": "instance_processed_data/kg_bowl_549_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_30_img.png",
+            "label": "instance_processed_data/kg_bowl_30_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_288_img.png",
+            "label": "instance_processed_data/kg_bowl_288_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_246_img.png",
+            "label": "instance_processed_data/kg_bowl_246_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_49_img.png",
+            "label": "instance_processed_data/kg_bowl_49_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_558_img.png",
+            "label": "instance_processed_data/kg_bowl_558_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_338_img.png",
+            "label": "instance_processed_data/kg_bowl_338_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_87_img.png",
+            "label": "instance_processed_data/kg_bowl_87_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_439_img.png",
+            "label": "instance_processed_data/kg_bowl_439_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_96_img.png",
+            "label": "instance_processed_data/kg_bowl_96_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_403_img.png",
+            "label": "instance_processed_data/kg_bowl_403_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_154_img.png",
+            "label": "instance_processed_data/kg_bowl_154_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_404_img.png",
+            "label": "instance_processed_data/kg_bowl_404_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_449_img.png",
+            "label": "instance_processed_data/kg_bowl_449_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_205_img.png",
+            "label": "instance_processed_data/kg_bowl_205_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_417_img.png",
+            "label": "instance_processed_data/kg_bowl_417_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_2_img.png",
+            "label": "instance_processed_data/kg_bowl_2_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_166_img.png",
+            "label": "instance_processed_data/kg_bowl_166_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_196_img.png",
+            "label": "instance_processed_data/kg_bowl_196_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_0_img.png",
+            "label": "instance_processed_data/kg_bowl_0_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_318_img.png",
+            "label": "instance_processed_data/kg_bowl_318_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_25_img.png",
+            "label": "instance_processed_data/kg_bowl_25_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_471_img.png",
+            "label": "instance_processed_data/kg_bowl_471_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_124_img.png",
+            "label": "instance_processed_data/kg_bowl_124_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_162_img.png",
+            "label": "instance_processed_data/kg_bowl_162_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_52_img.png",
+            "label": "instance_processed_data/kg_bowl_52_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_12_img.png",
+            "label": "instance_processed_data/kg_bowl_12_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_107_img.png",
+            "label": "instance_processed_data/kg_bowl_107_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_457_img.png",
+            "label": "instance_processed_data/kg_bowl_457_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_486_img.png",
+            "label": "instance_processed_data/kg_bowl_486_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_103_img.png",
+            "label": "instance_processed_data/kg_bowl_103_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_104_img.png",
+            "label": "instance_processed_data/kg_bowl_104_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_34_img.png",
+            "label": "instance_processed_data/kg_bowl_34_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_54_img.png",
+            "label": "instance_processed_data/kg_bowl_54_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_69_img.png",
+            "label": "instance_processed_data/kg_bowl_69_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_279_img.png",
+            "label": "instance_processed_data/kg_bowl_279_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_536_img.png",
+            "label": "instance_processed_data/kg_bowl_536_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_113_img.png",
+            "label": "instance_processed_data/kg_bowl_113_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_38_img.png",
+            "label": "instance_processed_data/kg_bowl_38_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_548_img.png",
+            "label": "instance_processed_data/kg_bowl_548_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_478_img.png",
+            "label": "instance_processed_data/kg_bowl_478_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_316_img.png",
+            "label": "instance_processed_data/kg_bowl_316_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_542_img.png",
+            "label": "instance_processed_data/kg_bowl_542_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_447_img.png",
+            "label": "instance_processed_data/kg_bowl_447_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_405_img.png",
+            "label": "instance_processed_data/kg_bowl_405_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_191_img.png",
+            "label": "instance_processed_data/kg_bowl_191_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_598_img.png",
+            "label": "instance_processed_data/kg_bowl_598_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_137_img.png",
+            "label": "instance_processed_data/kg_bowl_137_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_97_img.png",
+            "label": "instance_processed_data/kg_bowl_97_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_289_img.png",
+            "label": "instance_processed_data/kg_bowl_289_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_255_img.png",
+            "label": "instance_processed_data/kg_bowl_255_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_574_img.png",
+            "label": "instance_processed_data/kg_bowl_574_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_334_img.png",
+            "label": "instance_processed_data/kg_bowl_334_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_72_img.png",
+            "label": "instance_processed_data/kg_bowl_72_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_236_img.png",
+            "label": "instance_processed_data/kg_bowl_236_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_532_img.png",
+            "label": "instance_processed_data/kg_bowl_532_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_307_img.png",
+            "label": "instance_processed_data/kg_bowl_307_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_592_img.png",
+            "label": "instance_processed_data/kg_bowl_592_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_454_img.png",
+            "label": "instance_processed_data/kg_bowl_454_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_566_img.png",
+            "label": "instance_processed_data/kg_bowl_566_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_514_img.png",
+            "label": "instance_processed_data/kg_bowl_514_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_356_img.png",
+            "label": "instance_processed_data/kg_bowl_356_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_589_img.png",
+            "label": "instance_processed_data/kg_bowl_589_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_456_img.png",
+            "label": "instance_processed_data/kg_bowl_456_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_479_img.png",
+            "label": "instance_processed_data/kg_bowl_479_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_313_img.png",
+            "label": "instance_processed_data/kg_bowl_313_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_249_img.png",
+            "label": "instance_processed_data/kg_bowl_249_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_505_img.png",
+            "label": "instance_processed_data/kg_bowl_505_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_220_img.png",
+            "label": "instance_processed_data/kg_bowl_220_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_581_img.png",
+            "label": "instance_processed_data/kg_bowl_581_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_106_img.png",
+            "label": "instance_processed_data/kg_bowl_106_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_470_img.png",
+            "label": "instance_processed_data/kg_bowl_470_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_272_img.png",
+            "label": "instance_processed_data/kg_bowl_272_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_522_img.png",
+            "label": "instance_processed_data/kg_bowl_522_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_202_img.png",
+            "label": "instance_processed_data/kg_bowl_202_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_280_img.png",
+            "label": "instance_processed_data/kg_bowl_280_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_375_img.png",
+            "label": "instance_processed_data/kg_bowl_375_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_81_img.png",
+            "label": "instance_processed_data/kg_bowl_81_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_552_img.png",
+            "label": "instance_processed_data/kg_bowl_552_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_35_img.png",
+            "label": "instance_processed_data/kg_bowl_35_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_365_img.png",
+            "label": "instance_processed_data/kg_bowl_365_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_420_img.png",
+            "label": "instance_processed_data/kg_bowl_420_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_481_img.png",
+            "label": "instance_processed_data/kg_bowl_481_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_355_img.png",
+            "label": "instance_processed_data/kg_bowl_355_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_495_img.png",
+            "label": "instance_processed_data/kg_bowl_495_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_167_img.png",
+            "label": "instance_processed_data/kg_bowl_167_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_204_img.png",
+            "label": "instance_processed_data/kg_bowl_204_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_424_img.png",
+            "label": "instance_processed_data/kg_bowl_424_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_199_img.png",
+            "label": "instance_processed_data/kg_bowl_199_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_82_img.png",
+            "label": "instance_processed_data/kg_bowl_82_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_256_img.png",
+            "label": "instance_processed_data/kg_bowl_256_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_480_img.png",
+            "label": "instance_processed_data/kg_bowl_480_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_123_img.png",
+            "label": "instance_processed_data/kg_bowl_123_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_346_img.png",
+            "label": "instance_processed_data/kg_bowl_346_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_325_img.png",
+            "label": "instance_processed_data/kg_bowl_325_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_85_img.png",
+            "label": "instance_processed_data/kg_bowl_85_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_499_img.png",
+            "label": "instance_processed_data/kg_bowl_499_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_142_img.png",
+            "label": "instance_processed_data/kg_bowl_142_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_515_img.png",
+            "label": "instance_processed_data/kg_bowl_515_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_411_img.png",
+            "label": "instance_processed_data/kg_bowl_411_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_101_img.png",
+            "label": "instance_processed_data/kg_bowl_101_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_208_img.png",
+            "label": "instance_processed_data/kg_bowl_208_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_143_img.png",
+            "label": "instance_processed_data/kg_bowl_143_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_402_img.png",
+            "label": "instance_processed_data/kg_bowl_402_img_masks.tiff",
+            "fold": 1
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_157_img.png",
+            "label": "instance_processed_data/kg_bowl_157_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_341_img.png",
+            "label": "instance_processed_data/kg_bowl_341_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_370_img.png",
+            "label": "instance_processed_data/kg_bowl_370_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_129_img.png",
+            "label": "instance_processed_data/kg_bowl_129_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_485_img.png",
+            "label": "instance_processed_data/kg_bowl_485_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_465_img.png",
+            "label": "instance_processed_data/kg_bowl_465_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_182_img.png",
+            "label": "instance_processed_data/kg_bowl_182_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_546_img.png",
+            "label": "instance_processed_data/kg_bowl_546_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_308_img.png",
+            "label": "instance_processed_data/kg_bowl_308_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_300_img.png",
+            "label": "instance_processed_data/kg_bowl_300_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_51_img.png",
+            "label": "instance_processed_data/kg_bowl_51_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_181_img.png",
+            "label": "instance_processed_data/kg_bowl_181_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_254_img.png",
+            "label": "instance_processed_data/kg_bowl_254_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_451_img.png",
+            "label": "instance_processed_data/kg_bowl_451_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_65_img.png",
+            "label": "instance_processed_data/kg_bowl_65_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_55_img.png",
+            "label": "instance_processed_data/kg_bowl_55_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_331_img.png",
+            "label": "instance_processed_data/kg_bowl_331_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_29_img.png",
+            "label": "instance_processed_data/kg_bowl_29_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_206_img.png",
+            "label": "instance_processed_data/kg_bowl_206_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_438_img.png",
+            "label": "instance_processed_data/kg_bowl_438_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_268_img.png",
+            "label": "instance_processed_data/kg_bowl_268_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_75_img.png",
+            "label": "instance_processed_data/kg_bowl_75_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_374_img.png",
+            "label": "instance_processed_data/kg_bowl_374_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_425_img.png",
+            "label": "instance_processed_data/kg_bowl_425_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_131_img.png",
+            "label": "instance_processed_data/kg_bowl_131_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_336_img.png",
+            "label": "instance_processed_data/kg_bowl_336_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_7_img.png",
+            "label": "instance_processed_data/kg_bowl_7_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_172_img.png",
+            "label": "instance_processed_data/kg_bowl_172_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_259_img.png",
+            "label": "instance_processed_data/kg_bowl_259_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_521_img.png",
+            "label": "instance_processed_data/kg_bowl_521_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_40_img.png",
+            "label": "instance_processed_data/kg_bowl_40_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_319_img.png",
+            "label": "instance_processed_data/kg_bowl_319_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_149_img.png",
+            "label": "instance_processed_data/kg_bowl_149_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_472_img.png",
+            "label": "instance_processed_data/kg_bowl_472_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_366_img.png",
+            "label": "instance_processed_data/kg_bowl_366_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_393_img.png",
+            "label": "instance_processed_data/kg_bowl_393_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_322_img.png",
+            "label": "instance_processed_data/kg_bowl_322_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_138_img.png",
+            "label": "instance_processed_data/kg_bowl_138_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_311_img.png",
+            "label": "instance_processed_data/kg_bowl_311_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_525_img.png",
+            "label": "instance_processed_data/kg_bowl_525_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_442_img.png",
+            "label": "instance_processed_data/kg_bowl_442_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_161_img.png",
+            "label": "instance_processed_data/kg_bowl_161_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_127_img.png",
+            "label": "instance_processed_data/kg_bowl_127_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_428_img.png",
+            "label": "instance_processed_data/kg_bowl_428_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_541_img.png",
+            "label": "instance_processed_data/kg_bowl_541_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_66_img.png",
+            "label": "instance_processed_data/kg_bowl_66_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_408_img.png",
+            "label": "instance_processed_data/kg_bowl_408_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_335_img.png",
+            "label": "instance_processed_data/kg_bowl_335_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_152_img.png",
+            "label": "instance_processed_data/kg_bowl_152_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_315_img.png",
+            "label": "instance_processed_data/kg_bowl_315_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_382_img.png",
+            "label": "instance_processed_data/kg_bowl_382_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_380_img.png",
+            "label": "instance_processed_data/kg_bowl_380_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_180_img.png",
+            "label": "instance_processed_data/kg_bowl_180_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_116_img.png",
+            "label": "instance_processed_data/kg_bowl_116_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_4_img.png",
+            "label": "instance_processed_data/kg_bowl_4_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_278_img.png",
+            "label": "instance_processed_data/kg_bowl_278_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_276_img.png",
+            "label": "instance_processed_data/kg_bowl_276_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_262_img.png",
+            "label": "instance_processed_data/kg_bowl_262_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_210_img.png",
+            "label": "instance_processed_data/kg_bowl_210_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_133_img.png",
+            "label": "instance_processed_data/kg_bowl_133_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_136_img.png",
+            "label": "instance_processed_data/kg_bowl_136_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_89_img.png",
+            "label": "instance_processed_data/kg_bowl_89_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_309_img.png",
+            "label": "instance_processed_data/kg_bowl_309_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_312_img.png",
+            "label": "instance_processed_data/kg_bowl_312_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_297_img.png",
+            "label": "instance_processed_data/kg_bowl_297_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_100_img.png",
+            "label": "instance_processed_data/kg_bowl_100_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_455_img.png",
+            "label": "instance_processed_data/kg_bowl_455_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_163_img.png",
+            "label": "instance_processed_data/kg_bowl_163_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_265_img.png",
+            "label": "instance_processed_data/kg_bowl_265_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_109_img.png",
+            "label": "instance_processed_data/kg_bowl_109_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_545_img.png",
+            "label": "instance_processed_data/kg_bowl_545_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_241_img.png",
+            "label": "instance_processed_data/kg_bowl_241_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_211_img.png",
+            "label": "instance_processed_data/kg_bowl_211_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_553_img.png",
+            "label": "instance_processed_data/kg_bowl_553_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_488_img.png",
+            "label": "instance_processed_data/kg_bowl_488_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_251_img.png",
+            "label": "instance_processed_data/kg_bowl_251_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_431_img.png",
+            "label": "instance_processed_data/kg_bowl_431_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_190_img.png",
+            "label": "instance_processed_data/kg_bowl_190_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_290_img.png",
+            "label": "instance_processed_data/kg_bowl_290_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_155_img.png",
+            "label": "instance_processed_data/kg_bowl_155_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_361_img.png",
+            "label": "instance_processed_data/kg_bowl_361_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_139_img.png",
+            "label": "instance_processed_data/kg_bowl_139_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_39_img.png",
+            "label": "instance_processed_data/kg_bowl_39_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_500_img.png",
+            "label": "instance_processed_data/kg_bowl_500_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_367_img.png",
+            "label": "instance_processed_data/kg_bowl_367_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_20_img.png",
+            "label": "instance_processed_data/kg_bowl_20_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_153_img.png",
+            "label": "instance_processed_data/kg_bowl_153_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_146_img.png",
+            "label": "instance_processed_data/kg_bowl_146_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_340_img.png",
+            "label": "instance_processed_data/kg_bowl_340_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_591_img.png",
+            "label": "instance_processed_data/kg_bowl_591_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_432_img.png",
+            "label": "instance_processed_data/kg_bowl_432_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_583_img.png",
+            "label": "instance_processed_data/kg_bowl_583_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_252_img.png",
+            "label": "instance_processed_data/kg_bowl_252_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_228_img.png",
+            "label": "instance_processed_data/kg_bowl_228_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_267_img.png",
+            "label": "instance_processed_data/kg_bowl_267_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_599_img.png",
+            "label": "instance_processed_data/kg_bowl_599_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_244_img.png",
+            "label": "instance_processed_data/kg_bowl_244_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_314_img.png",
+            "label": "instance_processed_data/kg_bowl_314_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_214_img.png",
+            "label": "instance_processed_data/kg_bowl_214_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_473_img.png",
+            "label": "instance_processed_data/kg_bowl_473_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_37_img.png",
+            "label": "instance_processed_data/kg_bowl_37_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_270_img.png",
+            "label": "instance_processed_data/kg_bowl_270_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_102_img.png",
+            "label": "instance_processed_data/kg_bowl_102_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_418_img.png",
+            "label": "instance_processed_data/kg_bowl_418_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_459_img.png",
+            "label": "instance_processed_data/kg_bowl_459_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_84_img.png",
+            "label": "instance_processed_data/kg_bowl_84_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_226_img.png",
+            "label": "instance_processed_data/kg_bowl_226_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_8_img.png",
+            "label": "instance_processed_data/kg_bowl_8_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_23_img.png",
+            "label": "instance_processed_data/kg_bowl_23_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_257_img.png",
+            "label": "instance_processed_data/kg_bowl_257_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_36_img.png",
+            "label": "instance_processed_data/kg_bowl_36_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_274_img.png",
+            "label": "instance_processed_data/kg_bowl_274_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_329_img.png",
+            "label": "instance_processed_data/kg_bowl_329_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_564_img.png",
+            "label": "instance_processed_data/kg_bowl_564_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_593_img.png",
+            "label": "instance_processed_data/kg_bowl_593_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_171_img.png",
+            "label": "instance_processed_data/kg_bowl_171_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_14_img.png",
+            "label": "instance_processed_data/kg_bowl_14_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_70_img.png",
+            "label": "instance_processed_data/kg_bowl_70_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_135_img.png",
+            "label": "instance_processed_data/kg_bowl_135_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_179_img.png",
+            "label": "instance_processed_data/kg_bowl_179_img_masks.tiff",
+            "fold": 2
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_512_img.png",
+            "label": "instance_processed_data/kg_bowl_512_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_77_img.png",
+            "label": "instance_processed_data/kg_bowl_77_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_394_img.png",
+            "label": "instance_processed_data/kg_bowl_394_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_326_img.png",
+            "label": "instance_processed_data/kg_bowl_326_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_588_img.png",
+            "label": "instance_processed_data/kg_bowl_588_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_73_img.png",
+            "label": "instance_processed_data/kg_bowl_73_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_434_img.png",
+            "label": "instance_processed_data/kg_bowl_434_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_320_img.png",
+            "label": "instance_processed_data/kg_bowl_320_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_503_img.png",
+            "label": "instance_processed_data/kg_bowl_503_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_192_img.png",
+            "label": "instance_processed_data/kg_bowl_192_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_234_img.png",
+            "label": "instance_processed_data/kg_bowl_234_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_368_img.png",
+            "label": "instance_processed_data/kg_bowl_368_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_507_img.png",
+            "label": "instance_processed_data/kg_bowl_507_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_64_img.png",
+            "label": "instance_processed_data/kg_bowl_64_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_120_img.png",
+            "label": "instance_processed_data/kg_bowl_120_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_372_img.png",
+            "label": "instance_processed_data/kg_bowl_372_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_401_img.png",
+            "label": "instance_processed_data/kg_bowl_401_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_354_img.png",
+            "label": "instance_processed_data/kg_bowl_354_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_50_img.png",
+            "label": "instance_processed_data/kg_bowl_50_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_9_img.png",
+            "label": "instance_processed_data/kg_bowl_9_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_169_img.png",
+            "label": "instance_processed_data/kg_bowl_169_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_145_img.png",
+            "label": "instance_processed_data/kg_bowl_145_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_391_img.png",
+            "label": "instance_processed_data/kg_bowl_391_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_388_img.png",
+            "label": "instance_processed_data/kg_bowl_388_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_410_img.png",
+            "label": "instance_processed_data/kg_bowl_410_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_453_img.png",
+            "label": "instance_processed_data/kg_bowl_453_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_317_img.png",
+            "label": "instance_processed_data/kg_bowl_317_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_305_img.png",
+            "label": "instance_processed_data/kg_bowl_305_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_573_img.png",
+            "label": "instance_processed_data/kg_bowl_573_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_399_img.png",
+            "label": "instance_processed_data/kg_bowl_399_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_413_img.png",
+            "label": "instance_processed_data/kg_bowl_413_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_207_img.png",
+            "label": "instance_processed_data/kg_bowl_207_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_11_img.png",
+            "label": "instance_processed_data/kg_bowl_11_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_565_img.png",
+            "label": "instance_processed_data/kg_bowl_565_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_91_img.png",
+            "label": "instance_processed_data/kg_bowl_91_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_273_img.png",
+            "label": "instance_processed_data/kg_bowl_273_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_531_img.png",
+            "label": "instance_processed_data/kg_bowl_531_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_571_img.png",
+            "label": "instance_processed_data/kg_bowl_571_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_115_img.png",
+            "label": "instance_processed_data/kg_bowl_115_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_509_img.png",
+            "label": "instance_processed_data/kg_bowl_509_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_377_img.png",
+            "label": "instance_processed_data/kg_bowl_377_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_284_img.png",
+            "label": "instance_processed_data/kg_bowl_284_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_535_img.png",
+            "label": "instance_processed_data/kg_bowl_535_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_568_img.png",
+            "label": "instance_processed_data/kg_bowl_568_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_111_img.png",
+            "label": "instance_processed_data/kg_bowl_111_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_16_img.png",
+            "label": "instance_processed_data/kg_bowl_16_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_567_img.png",
+            "label": "instance_processed_data/kg_bowl_567_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_243_img.png",
+            "label": "instance_processed_data/kg_bowl_243_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_90_img.png",
+            "label": "instance_processed_data/kg_bowl_90_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_427_img.png",
+            "label": "instance_processed_data/kg_bowl_427_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_233_img.png",
+            "label": "instance_processed_data/kg_bowl_233_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_86_img.png",
+            "label": "instance_processed_data/kg_bowl_86_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_245_img.png",
+            "label": "instance_processed_data/kg_bowl_245_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_371_img.png",
+            "label": "instance_processed_data/kg_bowl_371_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_443_img.png",
+            "label": "instance_processed_data/kg_bowl_443_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_482_img.png",
+            "label": "instance_processed_data/kg_bowl_482_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_584_img.png",
+            "label": "instance_processed_data/kg_bowl_584_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_498_img.png",
+            "label": "instance_processed_data/kg_bowl_498_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_547_img.png",
+            "label": "instance_processed_data/kg_bowl_547_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_112_img.png",
+            "label": "instance_processed_data/kg_bowl_112_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_450_img.png",
+            "label": "instance_processed_data/kg_bowl_450_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_407_img.png",
+            "label": "instance_processed_data/kg_bowl_407_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_242_img.png",
+            "label": "instance_processed_data/kg_bowl_242_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_225_img.png",
+            "label": "instance_processed_data/kg_bowl_225_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_74_img.png",
+            "label": "instance_processed_data/kg_bowl_74_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_594_img.png",
+            "label": "instance_processed_data/kg_bowl_594_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_519_img.png",
+            "label": "instance_processed_data/kg_bowl_519_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_237_img.png",
+            "label": "instance_processed_data/kg_bowl_237_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_46_img.png",
+            "label": "instance_processed_data/kg_bowl_46_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_529_img.png",
+            "label": "instance_processed_data/kg_bowl_529_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_466_img.png",
+            "label": "instance_processed_data/kg_bowl_466_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_570_img.png",
+            "label": "instance_processed_data/kg_bowl_570_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_43_img.png",
+            "label": "instance_processed_data/kg_bowl_43_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_538_img.png",
+            "label": "instance_processed_data/kg_bowl_538_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_93_img.png",
+            "label": "instance_processed_data/kg_bowl_93_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_501_img.png",
+            "label": "instance_processed_data/kg_bowl_501_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_351_img.png",
+            "label": "instance_processed_data/kg_bowl_351_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_275_img.png",
+            "label": "instance_processed_data/kg_bowl_275_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_445_img.png",
+            "label": "instance_processed_data/kg_bowl_445_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_348_img.png",
+            "label": "instance_processed_data/kg_bowl_348_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_19_img.png",
+            "label": "instance_processed_data/kg_bowl_19_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_544_img.png",
+            "label": "instance_processed_data/kg_bowl_544_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_31_img.png",
+            "label": "instance_processed_data/kg_bowl_31_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_10_img.png",
+            "label": "instance_processed_data/kg_bowl_10_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_464_img.png",
+            "label": "instance_processed_data/kg_bowl_464_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_422_img.png",
+            "label": "instance_processed_data/kg_bowl_422_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_555_img.png",
+            "label": "instance_processed_data/kg_bowl_555_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_216_img.png",
+            "label": "instance_processed_data/kg_bowl_216_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_32_img.png",
+            "label": "instance_processed_data/kg_bowl_32_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_110_img.png",
+            "label": "instance_processed_data/kg_bowl_110_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_462_img.png",
+            "label": "instance_processed_data/kg_bowl_462_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_261_img.png",
+            "label": "instance_processed_data/kg_bowl_261_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_398_img.png",
+            "label": "instance_processed_data/kg_bowl_398_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_502_img.png",
+            "label": "instance_processed_data/kg_bowl_502_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_433_img.png",
+            "label": "instance_processed_data/kg_bowl_433_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_587_img.png",
+            "label": "instance_processed_data/kg_bowl_587_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_158_img.png",
+            "label": "instance_processed_data/kg_bowl_158_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_551_img.png",
+            "label": "instance_processed_data/kg_bowl_551_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_151_img.png",
+            "label": "instance_processed_data/kg_bowl_151_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_539_img.png",
+            "label": "instance_processed_data/kg_bowl_539_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_126_img.png",
+            "label": "instance_processed_data/kg_bowl_126_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_310_img.png",
+            "label": "instance_processed_data/kg_bowl_310_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_600_img.png",
+            "label": "instance_processed_data/kg_bowl_600_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_264_img.png",
+            "label": "instance_processed_data/kg_bowl_264_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_150_img.png",
+            "label": "instance_processed_data/kg_bowl_150_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_45_img.png",
+            "label": "instance_processed_data/kg_bowl_45_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_80_img.png",
+            "label": "instance_processed_data/kg_bowl_80_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_227_img.png",
+            "label": "instance_processed_data/kg_bowl_227_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_540_img.png",
+            "label": "instance_processed_data/kg_bowl_540_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_523_img.png",
+            "label": "instance_processed_data/kg_bowl_523_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_353_img.png",
+            "label": "instance_processed_data/kg_bowl_353_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_301_img.png",
+            "label": "instance_processed_data/kg_bowl_301_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_460_img.png",
+            "label": "instance_processed_data/kg_bowl_460_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_98_img.png",
+            "label": "instance_processed_data/kg_bowl_98_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_183_img.png",
+            "label": "instance_processed_data/kg_bowl_183_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_260_img.png",
+            "label": "instance_processed_data/kg_bowl_260_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_389_img.png",
+            "label": "instance_processed_data/kg_bowl_389_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_186_img.png",
+            "label": "instance_processed_data/kg_bowl_186_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_461_img.png",
+            "label": "instance_processed_data/kg_bowl_461_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_504_img.png",
+            "label": "instance_processed_data/kg_bowl_504_img_masks.tiff",
+            "fold": 3
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_57_img.png",
+            "label": "instance_processed_data/kg_bowl_57_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_578_img.png",
+            "label": "instance_processed_data/kg_bowl_578_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_452_img.png",
+            "label": "instance_processed_data/kg_bowl_452_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_369_img.png",
+            "label": "instance_processed_data/kg_bowl_369_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_122_img.png",
+            "label": "instance_processed_data/kg_bowl_122_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_333_img.png",
+            "label": "instance_processed_data/kg_bowl_333_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_421_img.png",
+            "label": "instance_processed_data/kg_bowl_421_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_269_img.png",
+            "label": "instance_processed_data/kg_bowl_269_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_6_img.png",
+            "label": "instance_processed_data/kg_bowl_6_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_47_img.png",
+            "label": "instance_processed_data/kg_bowl_47_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_177_img.png",
+            "label": "instance_processed_data/kg_bowl_177_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_263_img.png",
+            "label": "instance_processed_data/kg_bowl_263_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_484_img.png",
+            "label": "instance_processed_data/kg_bowl_484_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_283_img.png",
+            "label": "instance_processed_data/kg_bowl_283_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_79_img.png",
+            "label": "instance_processed_data/kg_bowl_79_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_189_img.png",
+            "label": "instance_processed_data/kg_bowl_189_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_277_img.png",
+            "label": "instance_processed_data/kg_bowl_277_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_387_img.png",
+            "label": "instance_processed_data/kg_bowl_387_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_323_img.png",
+            "label": "instance_processed_data/kg_bowl_323_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_224_img.png",
+            "label": "instance_processed_data/kg_bowl_224_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_430_img.png",
+            "label": "instance_processed_data/kg_bowl_430_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_332_img.png",
+            "label": "instance_processed_data/kg_bowl_332_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_285_img.png",
+            "label": "instance_processed_data/kg_bowl_285_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_18_img.png",
+            "label": "instance_processed_data/kg_bowl_18_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_53_img.png",
+            "label": "instance_processed_data/kg_bowl_53_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_217_img.png",
+            "label": "instance_processed_data/kg_bowl_217_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_561_img.png",
+            "label": "instance_processed_data/kg_bowl_561_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_108_img.png",
+            "label": "instance_processed_data/kg_bowl_108_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_140_img.png",
+            "label": "instance_processed_data/kg_bowl_140_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_13_img.png",
+            "label": "instance_processed_data/kg_bowl_13_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_534_img.png",
+            "label": "instance_processed_data/kg_bowl_534_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_295_img.png",
+            "label": "instance_processed_data/kg_bowl_295_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_530_img.png",
+            "label": "instance_processed_data/kg_bowl_530_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_575_img.png",
+            "label": "instance_processed_data/kg_bowl_575_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_294_img.png",
+            "label": "instance_processed_data/kg_bowl_294_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_203_img.png",
+            "label": "instance_processed_data/kg_bowl_203_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_128_img.png",
+            "label": "instance_processed_data/kg_bowl_128_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_360_img.png",
+            "label": "instance_processed_data/kg_bowl_360_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_168_img.png",
+            "label": "instance_processed_data/kg_bowl_168_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_569_img.png",
+            "label": "instance_processed_data/kg_bowl_569_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_306_img.png",
+            "label": "instance_processed_data/kg_bowl_306_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_415_img.png",
+            "label": "instance_processed_data/kg_bowl_415_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_437_img.png",
+            "label": "instance_processed_data/kg_bowl_437_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_197_img.png",
+            "label": "instance_processed_data/kg_bowl_197_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_15_img.png",
+            "label": "instance_processed_data/kg_bowl_15_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_250_img.png",
+            "label": "instance_processed_data/kg_bowl_250_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_376_img.png",
+            "label": "instance_processed_data/kg_bowl_376_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_117_img.png",
+            "label": "instance_processed_data/kg_bowl_117_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_94_img.png",
+            "label": "instance_processed_data/kg_bowl_94_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_239_img.png",
+            "label": "instance_processed_data/kg_bowl_239_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_209_img.png",
+            "label": "instance_processed_data/kg_bowl_209_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_287_img.png",
+            "label": "instance_processed_data/kg_bowl_287_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_62_img.png",
+            "label": "instance_processed_data/kg_bowl_62_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_159_img.png",
+            "label": "instance_processed_data/kg_bowl_159_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_475_img.png",
+            "label": "instance_processed_data/kg_bowl_475_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_343_img.png",
+            "label": "instance_processed_data/kg_bowl_343_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_58_img.png",
+            "label": "instance_processed_data/kg_bowl_58_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_563_img.png",
+            "label": "instance_processed_data/kg_bowl_563_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_147_img.png",
+            "label": "instance_processed_data/kg_bowl_147_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_579_img.png",
+            "label": "instance_processed_data/kg_bowl_579_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_494_img.png",
+            "label": "instance_processed_data/kg_bowl_494_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_178_img.png",
+            "label": "instance_processed_data/kg_bowl_178_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_201_img.png",
+            "label": "instance_processed_data/kg_bowl_201_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_562_img.png",
+            "label": "instance_processed_data/kg_bowl_562_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_68_img.png",
+            "label": "instance_processed_data/kg_bowl_68_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_218_img.png",
+            "label": "instance_processed_data/kg_bowl_218_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_358_img.png",
+            "label": "instance_processed_data/kg_bowl_358_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_5_img.png",
+            "label": "instance_processed_data/kg_bowl_5_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_221_img.png",
+            "label": "instance_processed_data/kg_bowl_221_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_156_img.png",
+            "label": "instance_processed_data/kg_bowl_156_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_533_img.png",
+            "label": "instance_processed_data/kg_bowl_533_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_125_img.png",
+            "label": "instance_processed_data/kg_bowl_125_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_550_img.png",
+            "label": "instance_processed_data/kg_bowl_550_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_416_img.png",
+            "label": "instance_processed_data/kg_bowl_416_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_441_img.png",
+            "label": "instance_processed_data/kg_bowl_441_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_412_img.png",
+            "label": "instance_processed_data/kg_bowl_412_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_304_img.png",
+            "label": "instance_processed_data/kg_bowl_304_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_446_img.png",
+            "label": "instance_processed_data/kg_bowl_446_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_378_img.png",
+            "label": "instance_processed_data/kg_bowl_378_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_327_img.png",
+            "label": "instance_processed_data/kg_bowl_327_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_118_img.png",
+            "label": "instance_processed_data/kg_bowl_118_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_400_img.png",
+            "label": "instance_processed_data/kg_bowl_400_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_554_img.png",
+            "label": "instance_processed_data/kg_bowl_554_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_363_img.png",
+            "label": "instance_processed_data/kg_bowl_363_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_559_img.png",
+            "label": "instance_processed_data/kg_bowl_559_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_88_img.png",
+            "label": "instance_processed_data/kg_bowl_88_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_298_img.png",
+            "label": "instance_processed_data/kg_bowl_298_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_497_img.png",
+            "label": "instance_processed_data/kg_bowl_497_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_337_img.png",
+            "label": "instance_processed_data/kg_bowl_337_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_303_img.png",
+            "label": "instance_processed_data/kg_bowl_303_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_414_img.png",
+            "label": "instance_processed_data/kg_bowl_414_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_586_img.png",
+            "label": "instance_processed_data/kg_bowl_586_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_339_img.png",
+            "label": "instance_processed_data/kg_bowl_339_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_258_img.png",
+            "label": "instance_processed_data/kg_bowl_258_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_390_img.png",
+            "label": "instance_processed_data/kg_bowl_390_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_467_img.png",
+            "label": "instance_processed_data/kg_bowl_467_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_141_img.png",
+            "label": "instance_processed_data/kg_bowl_141_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_527_img.png",
+            "label": "instance_processed_data/kg_bowl_527_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_176_img.png",
+            "label": "instance_processed_data/kg_bowl_176_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_286_img.png",
+            "label": "instance_processed_data/kg_bowl_286_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_291_img.png",
+            "label": "instance_processed_data/kg_bowl_291_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_173_img.png",
+            "label": "instance_processed_data/kg_bowl_173_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_299_img.png",
+            "label": "instance_processed_data/kg_bowl_299_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_165_img.png",
+            "label": "instance_processed_data/kg_bowl_165_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_596_img.png",
+            "label": "instance_processed_data/kg_bowl_596_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_17_img.png",
+            "label": "instance_processed_data/kg_bowl_17_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_160_img.png",
+            "label": "instance_processed_data/kg_bowl_160_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_212_img.png",
+            "label": "instance_processed_data/kg_bowl_212_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_381_img.png",
+            "label": "instance_processed_data/kg_bowl_381_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_293_img.png",
+            "label": "instance_processed_data/kg_bowl_293_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_198_img.png",
+            "label": "instance_processed_data/kg_bowl_198_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_56_img.png",
+            "label": "instance_processed_data/kg_bowl_56_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_3_img.png",
+            "label": "instance_processed_data/kg_bowl_3_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_483_img.png",
+            "label": "instance_processed_data/kg_bowl_483_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_223_img.png",
+            "label": "instance_processed_data/kg_bowl_223_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_83_img.png",
+            "label": "instance_processed_data/kg_bowl_83_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_61_img.png",
+            "label": "instance_processed_data/kg_bowl_61_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_238_img.png",
+            "label": "instance_processed_data/kg_bowl_238_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_71_img.png",
+            "label": "instance_processed_data/kg_bowl_71_img_masks.tiff",
+            "fold": 4
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_477_img.png",
+            "label": "instance_processed_data/kg_bowl_477_img_masks.tiff",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "instance_processed_data/kg_bowl_653_img.png",
+            "label": "instance_processed_data/kg_bowl_653_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_662_img.png",
+            "label": "instance_processed_data/kg_bowl_662_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_615_img.png",
+            "label": "instance_processed_data/kg_bowl_615_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_651_img.png",
+            "label": "instance_processed_data/kg_bowl_651_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_658_img.png",
+            "label": "instance_processed_data/kg_bowl_658_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_650_img.png",
+            "label": "instance_processed_data/kg_bowl_650_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_646_img.png",
+            "label": "instance_processed_data/kg_bowl_646_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_663_img.png",
+            "label": "instance_processed_data/kg_bowl_663_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_624_img.png",
+            "label": "instance_processed_data/kg_bowl_624_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_613_img.png",
+            "label": "instance_processed_data/kg_bowl_613_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_623_img.png",
+            "label": "instance_processed_data/kg_bowl_623_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_659_img.png",
+            "label": "instance_processed_data/kg_bowl_659_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_627_img.png",
+            "label": "instance_processed_data/kg_bowl_627_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_667_img.png",
+            "label": "instance_processed_data/kg_bowl_667_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_645_img.png",
+            "label": "instance_processed_data/kg_bowl_645_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_639_img.png",
+            "label": "instance_processed_data/kg_bowl_639_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_605_img.png",
+            "label": "instance_processed_data/kg_bowl_605_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_644_img.png",
+            "label": "instance_processed_data/kg_bowl_644_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_656_img.png",
+            "label": "instance_processed_data/kg_bowl_656_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_642_img.png",
+            "label": "instance_processed_data/kg_bowl_642_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_647_img.png",
+            "label": "instance_processed_data/kg_bowl_647_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_602_img.png",
+            "label": "instance_processed_data/kg_bowl_602_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_654_img.png",
+            "label": "instance_processed_data/kg_bowl_654_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_620_img.png",
+            "label": "instance_processed_data/kg_bowl_620_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_655_img.png",
+            "label": "instance_processed_data/kg_bowl_655_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_641_img.png",
+            "label": "instance_processed_data/kg_bowl_641_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_612_img.png",
+            "label": "instance_processed_data/kg_bowl_612_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_607_img.png",
+            "label": "instance_processed_data/kg_bowl_607_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_622_img.png",
+            "label": "instance_processed_data/kg_bowl_622_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_634_img.png",
+            "label": "instance_processed_data/kg_bowl_634_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_609_img.png",
+            "label": "instance_processed_data/kg_bowl_609_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_643_img.png",
+            "label": "instance_processed_data/kg_bowl_643_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_660_img.png",
+            "label": "instance_processed_data/kg_bowl_660_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_603_img.png",
+            "label": "instance_processed_data/kg_bowl_603_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_665_img.png",
+            "label": "instance_processed_data/kg_bowl_665_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_616_img.png",
+            "label": "instance_processed_data/kg_bowl_616_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_628_img.png",
+            "label": "instance_processed_data/kg_bowl_628_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_610_img.png",
+            "label": "instance_processed_data/kg_bowl_610_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_629_img.png",
+            "label": "instance_processed_data/kg_bowl_629_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_635_img.png",
+            "label": "instance_processed_data/kg_bowl_635_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_619_img.png",
+            "label": "instance_processed_data/kg_bowl_619_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_664_img.png",
+            "label": "instance_processed_data/kg_bowl_664_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_668_img.png",
+            "label": "instance_processed_data/kg_bowl_668_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_606_img.png",
+            "label": "instance_processed_data/kg_bowl_606_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_618_img.png",
+            "label": "instance_processed_data/kg_bowl_618_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_626_img.png",
+            "label": "instance_processed_data/kg_bowl_626_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_661_img.png",
+            "label": "instance_processed_data/kg_bowl_661_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_637_img.png",
+            "label": "instance_processed_data/kg_bowl_637_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_630_img.png",
+            "label": "instance_processed_data/kg_bowl_630_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_652_img.png",
+            "label": "instance_processed_data/kg_bowl_652_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_632_img.png",
+            "label": "instance_processed_data/kg_bowl_632_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_625_img.png",
+            "label": "instance_processed_data/kg_bowl_625_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_638_img.png",
+            "label": "instance_processed_data/kg_bowl_638_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_611_img.png",
+            "label": "instance_processed_data/kg_bowl_611_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_648_img.png",
+            "label": "instance_processed_data/kg_bowl_648_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_621_img.png",
+            "label": "instance_processed_data/kg_bowl_621_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_617_img.png",
+            "label": "instance_processed_data/kg_bowl_617_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_608_img.png",
+            "label": "instance_processed_data/kg_bowl_608_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_604_img.png",
+            "label": "instance_processed_data/kg_bowl_604_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_601_img.png",
+            "label": "instance_processed_data/kg_bowl_601_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_669_img.png",
+            "label": "instance_processed_data/kg_bowl_669_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_614_img.png",
+            "label": "instance_processed_data/kg_bowl_614_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_657_img.png",
+            "label": "instance_processed_data/kg_bowl_657_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_666_img.png",
+            "label": "instance_processed_data/kg_bowl_666_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_631_img.png",
+            "label": "instance_processed_data/kg_bowl_631_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_649_img.png",
+            "label": "instance_processed_data/kg_bowl_649_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_633_img.png",
+            "label": "instance_processed_data/kg_bowl_633_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_636_img.png",
+            "label": "instance_processed_data/kg_bowl_636_img_masks.tiff"
+        },
+        {
+            "image": "instance_processed_data/kg_bowl_640_img.png",
+            "label": "instance_processed_data/kg_bowl_640_img_masks.tiff"
+        }
+    ]
+}

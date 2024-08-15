@@ -1,0 +1,891 @@
+{
+    "training": [
+        {
+            "image": "val/immune_mibi_2.tif",
+            "label": "val/immune_mibi_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_3.tif",
+            "label": "val/immune_mibi_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_19.tif",
+            "label": "val/immune_mibi_19_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_21.tif",
+            "label": "val/immune_mibi_21_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_22.tif",
+            "label": "val/immune_mibi_22_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_30.tif",
+            "label": "val/immune_mibi_30_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_34.tif",
+            "label": "val/immune_mibi_34_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_35.tif",
+            "label": "val/immune_mibi_35_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_41.tif",
+            "label": "val/immune_mibi_41_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_17.tif",
+            "label": "val/immune_mibi_17_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_23.tif",
+            "label": "val/immune_mibi_23_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_29.tif",
+            "label": "val/immune_mibi_29_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_31.tif",
+            "label": "val/immune_mibi_31_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_32.tif",
+            "label": "val/immune_mibi_32_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_33.tif",
+            "label": "val/immune_mibi_33_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_36.tif",
+            "label": "val/immune_mibi_36_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_40.tif",
+            "label": "val/immune_mibi_40_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_44.tif",
+            "label": "val/immune_mibi_44_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_4.tif",
+            "label": "val/immune_mibi_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_10.tif",
+            "label": "val/immune_mibi_10_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_14.tif",
+            "label": "val/immune_mibi_14_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_20.tif",
+            "label": "val/immune_mibi_20_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_24.tif",
+            "label": "val/immune_mibi_24_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_26.tif",
+            "label": "val/immune_mibi_26_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_27.tif",
+            "label": "val/immune_mibi_27_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_38.tif",
+            "label": "val/immune_mibi_38_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_39.tif",
+            "label": "val/immune_mibi_39_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_1.tif",
+            "label": "val/immune_mibi_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_6.tif",
+            "label": "val/immune_mibi_6_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_7.tif",
+            "label": "val/immune_mibi_7_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_13.tif",
+            "label": "val/immune_mibi_13_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_16.tif",
+            "label": "val/immune_mibi_16_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_18.tif",
+            "label": "val/immune_mibi_18_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_25.tif",
+            "label": "val/immune_mibi_25_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_28.tif",
+            "label": "val/immune_mibi_28_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_42.tif",
+            "label": "val/immune_mibi_42_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_0.tif",
+            "label": "val/immune_mibi_0_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_5.tif",
+            "label": "val/immune_mibi_5_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_8.tif",
+            "label": "val/immune_mibi_8_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_9.tif",
+            "label": "val/immune_mibi_9_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_11.tif",
+            "label": "val/immune_mibi_11_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_12.tif",
+            "label": "val/immune_mibi_12_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_15.tif",
+            "label": "val/immune_mibi_15_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_37.tif",
+            "label": "val/immune_mibi_37_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/immune_mibi_43.tif",
+            "label": "val/immune_mibi_43_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "train/immune_mibi_0_2.tif",
+            "label": "train/immune_mibi_0_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_4_1.tif",
+            "label": "train/immune_mibi_4_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_8_3.tif",
+            "label": "train/immune_mibi_8_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_9_2.tif",
+            "label": "train/immune_mibi_9_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_10_2.tif",
+            "label": "train/immune_mibi_10_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_11_0.tif",
+            "label": "train/immune_mibi_11_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_13_1.tif",
+            "label": "train/immune_mibi_13_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_13_2.tif",
+            "label": "train/immune_mibi_13_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_14_0.tif",
+            "label": "train/immune_mibi_14_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_14_2.tif",
+            "label": "train/immune_mibi_14_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_16_1.tif",
+            "label": "train/immune_mibi_16_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_17_1.tif",
+            "label": "train/immune_mibi_17_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_18_1.tif",
+            "label": "train/immune_mibi_18_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_19_2.tif",
+            "label": "train/immune_mibi_19_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_20_0.tif",
+            "label": "train/immune_mibi_20_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_23_2.tif",
+            "label": "train/immune_mibi_23_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_23_3.tif",
+            "label": "train/immune_mibi_23_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_24_0.tif",
+            "label": "train/immune_mibi_24_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_24_1.tif",
+            "label": "train/immune_mibi_24_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_24_3.tif",
+            "label": "train/immune_mibi_24_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_25_2.tif",
+            "label": "train/immune_mibi_25_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_26_0.tif",
+            "label": "train/immune_mibi_26_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_27_1.tif",
+            "label": "train/immune_mibi_27_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_28_2.tif",
+            "label": "train/immune_mibi_28_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_2_2.tif",
+            "label": "train/immune_mibi_2_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_4_3.tif",
+            "label": "train/immune_mibi_4_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_6_3.tif",
+            "label": "train/immune_mibi_6_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_7_3.tif",
+            "label": "train/immune_mibi_7_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_8_0.tif",
+            "label": "train/immune_mibi_8_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_8_1.tif",
+            "label": "train/immune_mibi_8_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_9_0.tif",
+            "label": "train/immune_mibi_9_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_9_3.tif",
+            "label": "train/immune_mibi_9_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_10_0.tif",
+            "label": "train/immune_mibi_10_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_11_2.tif",
+            "label": "train/immune_mibi_11_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_12_0.tif",
+            "label": "train/immune_mibi_12_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_13_3.tif",
+            "label": "train/immune_mibi_13_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_14_3.tif",
+            "label": "train/immune_mibi_14_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_16_2.tif",
+            "label": "train/immune_mibi_16_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_16_3.tif",
+            "label": "train/immune_mibi_16_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_19_1.tif",
+            "label": "train/immune_mibi_19_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_20_2.tif",
+            "label": "train/immune_mibi_20_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_20_3.tif",
+            "label": "train/immune_mibi_20_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_22_0.tif",
+            "label": "train/immune_mibi_22_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_22_3.tif",
+            "label": "train/immune_mibi_22_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_23_0.tif",
+            "label": "train/immune_mibi_23_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_23_1.tif",
+            "label": "train/immune_mibi_23_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_28_3.tif",
+            "label": "train/immune_mibi_28_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_1_0.tif",
+            "label": "train/immune_mibi_1_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_3_3.tif",
+            "label": "train/immune_mibi_3_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_5_1.tif",
+            "label": "train/immune_mibi_5_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_5_3.tif",
+            "label": "train/immune_mibi_5_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_6_0.tif",
+            "label": "train/immune_mibi_6_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_6_2.tif",
+            "label": "train/immune_mibi_6_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_8_2.tif",
+            "label": "train/immune_mibi_8_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_10_1.tif",
+            "label": "train/immune_mibi_10_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_10_3.tif",
+            "label": "train/immune_mibi_10_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_11_1.tif",
+            "label": "train/immune_mibi_11_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_12_1.tif",
+            "label": "train/immune_mibi_12_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_12_3.tif",
+            "label": "train/immune_mibi_12_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_13_0.tif",
+            "label": "train/immune_mibi_13_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_15_2.tif",
+            "label": "train/immune_mibi_15_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_18_2.tif",
+            "label": "train/immune_mibi_18_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_20_1.tif",
+            "label": "train/immune_mibi_20_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_21_1.tif",
+            "label": "train/immune_mibi_21_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_24_2.tif",
+            "label": "train/immune_mibi_24_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_25_1.tif",
+            "label": "train/immune_mibi_25_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_26_2.tif",
+            "label": "train/immune_mibi_26_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_27_0.tif",
+            "label": "train/immune_mibi_27_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_27_2.tif",
+            "label": "train/immune_mibi_27_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_28_1.tif",
+            "label": "train/immune_mibi_28_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_0_0.tif",
+            "label": "train/immune_mibi_0_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_0_3.tif",
+            "label": "train/immune_mibi_0_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_1_3.tif",
+            "label": "train/immune_mibi_1_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_2_0.tif",
+            "label": "train/immune_mibi_2_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_3_1.tif",
+            "label": "train/immune_mibi_3_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_5_2.tif",
+            "label": "train/immune_mibi_5_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_7_2.tif",
+            "label": "train/immune_mibi_7_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_11_3.tif",
+            "label": "train/immune_mibi_11_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_14_1.tif",
+            "label": "train/immune_mibi_14_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_15_0.tif",
+            "label": "train/immune_mibi_15_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_15_1.tif",
+            "label": "train/immune_mibi_15_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_15_3.tif",
+            "label": "train/immune_mibi_15_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_17_0.tif",
+            "label": "train/immune_mibi_17_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_17_2.tif",
+            "label": "train/immune_mibi_17_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_21_2.tif",
+            "label": "train/immune_mibi_21_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_21_3.tif",
+            "label": "train/immune_mibi_21_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_22_1.tif",
+            "label": "train/immune_mibi_22_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_22_2.tif",
+            "label": "train/immune_mibi_22_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_25_0.tif",
+            "label": "train/immune_mibi_25_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_25_3.tif",
+            "label": "train/immune_mibi_25_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_26_1.tif",
+            "label": "train/immune_mibi_26_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_27_3.tif",
+            "label": "train/immune_mibi_27_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_28_0.tif",
+            "label": "train/immune_mibi_28_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_0_1.tif",
+            "label": "train/immune_mibi_0_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_1_1.tif",
+            "label": "train/immune_mibi_1_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_1_2.tif",
+            "label": "train/immune_mibi_1_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_2_1.tif",
+            "label": "train/immune_mibi_2_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_2_3.tif",
+            "label": "train/immune_mibi_2_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_3_0.tif",
+            "label": "train/immune_mibi_3_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_3_2.tif",
+            "label": "train/immune_mibi_3_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_4_0.tif",
+            "label": "train/immune_mibi_4_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_4_2.tif",
+            "label": "train/immune_mibi_4_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_5_0.tif",
+            "label": "train/immune_mibi_5_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_6_1.tif",
+            "label": "train/immune_mibi_6_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_7_0.tif",
+            "label": "train/immune_mibi_7_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_7_1.tif",
+            "label": "train/immune_mibi_7_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_9_1.tif",
+            "label": "train/immune_mibi_9_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_12_2.tif",
+            "label": "train/immune_mibi_12_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/immune_mibi_16_0.tif",
+            "label": "train/immune_mibi_16_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_17_3.tif",
+            "label": "train/immune_mibi_17_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_18_0.tif",
+            "label": "train/immune_mibi_18_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/immune_mibi_18_3.tif",
+            "label": "train/immune_mibi_18_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_19_0.tif",
+            "label": "train/immune_mibi_19_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_19_3.tif",
+            "label": "train/immune_mibi_19_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/immune_mibi_21_0.tif",
+            "label": "train/immune_mibi_21_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/immune_mibi_26_3.tif",
+            "label": "train/immune_mibi_26_3_masks.tif",
+            "fold": 2
+        }
+    ],
+    "testing": [
+        {
+            "image": "test/immune_mibi_3.tif",
+            "label": "test/immune_mibi_3_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_6.tif",
+            "label": "test/immune_mibi_6_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_10.tif",
+            "label": "test/immune_mibi_10_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_16.tif",
+            "label": "test/immune_mibi_16_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_2.tif",
+            "label": "test/immune_mibi_2_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_4.tif",
+            "label": "test/immune_mibi_4_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_14.tif",
+            "label": "test/immune_mibi_14_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_17.tif",
+            "label": "test/immune_mibi_17_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_0.tif",
+            "label": "test/immune_mibi_0_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_1.tif",
+            "label": "test/immune_mibi_1_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_7.tif",
+            "label": "test/immune_mibi_7_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_13.tif",
+            "label": "test/immune_mibi_13_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_9.tif",
+            "label": "test/immune_mibi_9_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_15.tif",
+            "label": "test/immune_mibi_15_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_18.tif",
+            "label": "test/immune_mibi_18_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_19.tif",
+            "label": "test/immune_mibi_19_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_5.tif",
+            "label": "test/immune_mibi_5_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_8.tif",
+            "label": "test/immune_mibi_8_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_11.tif",
+            "label": "test/immune_mibi_11_masks.tif"
+        },
+        {
+            "image": "test/immune_mibi_12.tif",
+            "label": "test/immune_mibi_12_masks.tif"
+        }
+    ]
+}

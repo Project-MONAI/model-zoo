@@ -1,0 +1,3 @@
+large_files:
+- path: "models/sam_vit_b_01ec64.pth"
+  url: "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth"

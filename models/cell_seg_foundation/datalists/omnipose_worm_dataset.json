@@ -1,0 +1,606 @@
+{
+    "training": [
+        {
+            "image": "worm/train/c_elegans_wormpose_38.tif",
+            "label": "worm/train/c_elegans_wormpose_38_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_38_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_45.tif",
+            "label": "worm/train/celegans_bbc010_45_masks.tif",
+            "flows": "worm/train/celegans_bbc010_45_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_34.tif",
+            "label": "worm/train/celegans_bbc010_34_masks.tif",
+            "flows": "worm/train/celegans_bbc010_34_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_61.tif",
+            "label": "worm/train/celegans_bbc010_61_masks.tif",
+            "flows": "worm/train/celegans_bbc010_61_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_27.tif",
+            "label": "worm/train/celegans_bbc010_27_masks.tif",
+            "flows": "worm/train/celegans_bbc010_27_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_49.tif",
+            "label": "worm/train/celegans_bbc010_49_masks.tif",
+            "flows": "worm/train/celegans_bbc010_49_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_56.tif",
+            "label": "worm/train/celegans_bbc010_56_masks.tif",
+            "flows": "worm/train/celegans_bbc010_56_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_22.tif",
+            "label": "worm/train/c_elegans_wormpose_22_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_22_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_44.tif",
+            "label": "worm/train/c_elegans_wormpose_44_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_44_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_63.tif",
+            "label": "worm/train/celegans_bbc010_63_masks.tif",
+            "flows": "worm/train/celegans_bbc010_63_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_30.tif",
+            "label": "worm/train/celegans_bbc010_30_masks.tif",
+            "flows": "worm/train/celegans_bbc010_30_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/celegans_bbc010_72.tif",
+            "label": "worm/train/celegans_bbc010_72_masks.tif",
+            "flows": "worm/train/celegans_bbc010_72_flows.tif",
+            "fold": 0
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_26.tif",
+            "label": "worm/train/c_elegans_wormpose_26_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_26_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_10.tif",
+            "label": "worm/train/celegans_bbc010_10_masks.tif",
+            "flows": "worm/train/celegans_bbc010_10_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_25.tif",
+            "label": "worm/train/celegans_bbc010_25_masks.tif",
+            "flows": "worm/train/celegans_bbc010_25_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_4.tif",
+            "label": "worm/train/c_elegans_wormpose_4_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_4_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_67.tif",
+            "label": "worm/train/celegans_bbc010_67_masks.tif",
+            "flows": "worm/train/celegans_bbc010_67_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_30.tif",
+            "label": "worm/train/c_elegans_wormpose_30_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_30_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_6.tif",
+            "label": "worm/train/c_elegans_wormpose_6_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_6_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_16.tif",
+            "label": "worm/train/celegans_bbc010_16_masks.tif",
+            "flows": "worm/train/celegans_bbc010_16_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_2.tif",
+            "label": "worm/train/celegans_bbc010_2_masks.tif",
+            "flows": "worm/train/celegans_bbc010_2_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_0.tif",
+            "label": "worm/train/celegans_bbc010_0_masks.tif",
+            "flows": "worm/train/celegans_bbc010_0_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_4.tif",
+            "label": "worm/train/celegans_bbc010_4_masks.tif",
+            "flows": "worm/train/celegans_bbc010_4_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_18.tif",
+            "label": "worm/train/celegans_bbc010_18_masks.tif",
+            "flows": "worm/train/celegans_bbc010_18_flows.tif",
+            "fold": 1
+        },
+        {
+            "image": "worm/train/celegans_bbc010_69.tif",
+            "label": "worm/train/celegans_bbc010_69_masks.tif",
+            "flows": "worm/train/celegans_bbc010_69_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_42.tif",
+            "label": "worm/train/c_elegans_wormpose_42_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_42_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/celegans_bbc010_58.tif",
+            "label": "worm/train/celegans_bbc010_58_masks.tif",
+            "flows": "worm/train/celegans_bbc010_58_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/celegans_bbc010_70.tif",
+            "label": "worm/train/celegans_bbc010_70_masks.tif",
+            "flows": "worm/train/celegans_bbc010_70_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_20.tif",
+            "label": "worm/train/c_elegans_wormpose_20_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_20_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_16.tif",
+            "label": "worm/train/c_elegans_wormpose_16_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_16_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/celegans_bbc010_54.tif",
+            "label": "worm/train/celegans_bbc010_54_masks.tif",
+            "flows": "worm/train/celegans_bbc010_54_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_14.tif",
+            "label": "worm/train/c_elegans_wormpose_14_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_14_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_2.tif",
+            "label": "worm/train/c_elegans_wormpose_2_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_2_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_0.tif",
+            "label": "worm/train/c_elegans_wormpose_0_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_0_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_10.tif",
+            "label": "worm/train/c_elegans_wormpose_10_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_10_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/celegans_bbc010_23.tif",
+            "label": "worm/train/celegans_bbc010_23_masks.tif",
+            "flows": "worm/train/celegans_bbc010_23_flows.tif",
+            "fold": 2
+        },
+        {
+            "image": "worm/train/celegans_bbc010_52.tif",
+            "label": "worm/train/celegans_bbc010_52_masks.tif",
+            "flows": "worm/train/celegans_bbc010_52_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_18.tif",
+            "label": "worm/train/c_elegans_wormpose_18_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_18_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/celegans_bbc010_47.tif",
+            "label": "worm/train/celegans_bbc010_47_masks.tif",
+            "flows": "worm/train/celegans_bbc010_47_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/celegans_bbc010_50.tif",
+            "label": "worm/train/celegans_bbc010_50_masks.tif",
+            "flows": "worm/train/celegans_bbc010_50_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_32.tif",
+            "label": "worm/train/c_elegans_wormpose_32_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_32_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/celegans_bbc010_29.tif",
+            "label": "worm/train/celegans_bbc010_29_masks.tif",
+            "flows": "worm/train/celegans_bbc010_29_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_8.tif",
+            "label": "worm/train/c_elegans_wormpose_8_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_8_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/celegans_bbc010_6.tif",
+            "label": "worm/train/celegans_bbc010_6_masks.tif",
+            "flows": "worm/train/celegans_bbc010_6_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/celegans_bbc010_8.tif",
+            "label": "worm/train/celegans_bbc010_8_masks.tif",
+            "flows": "worm/train/celegans_bbc010_8_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_40.tif",
+            "label": "worm/train/c_elegans_wormpose_40_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_40_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/celegans_bbc010_36.tif",
+            "label": "worm/train/celegans_bbc010_36_masks.tif",
+            "flows": "worm/train/celegans_bbc010_36_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/celegans_bbc010_65.tif",
+            "label": "worm/train/celegans_bbc010_65_masks.tif",
+            "flows": "worm/train/celegans_bbc010_65_flows.tif",
+            "fold": 3
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_34.tif",
+            "label": "worm/train/c_elegans_wormpose_34_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_34_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_12.tif",
+            "label": "worm/train/c_elegans_wormpose_12_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_12_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/celegans_bbc010_32.tif",
+            "label": "worm/train/celegans_bbc010_32_masks.tif",
+            "flows": "worm/train/celegans_bbc010_32_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/celegans_bbc010_38.tif",
+            "label": "worm/train/celegans_bbc010_38_masks.tif",
+            "flows": "worm/train/celegans_bbc010_38_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/celegans_bbc010_12.tif",
+            "label": "worm/train/celegans_bbc010_12_masks.tif",
+            "flows": "worm/train/celegans_bbc010_12_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_28.tif",
+            "label": "worm/train/c_elegans_wormpose_28_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_28_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_24.tif",
+            "label": "worm/train/c_elegans_wormpose_24_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_24_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/celegans_bbc010_21.tif",
+            "label": "worm/train/celegans_bbc010_21_masks.tif",
+            "flows": "worm/train/celegans_bbc010_21_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/celegans_bbc010_14.tif",
+            "label": "worm/train/celegans_bbc010_14_masks.tif",
+            "flows": "worm/train/celegans_bbc010_14_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/celegans_bbc010_43.tif",
+            "label": "worm/train/celegans_bbc010_43_masks.tif",
+            "flows": "worm/train/celegans_bbc010_43_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/celegans_bbc010_41.tif",
+            "label": "worm/train/celegans_bbc010_41_masks.tif",
+            "flows": "worm/train/celegans_bbc010_41_flows.tif",
+            "fold": 4
+        },
+        {
+            "image": "worm/train/c_elegans_wormpose_36.tif",
+            "label": "worm/train/c_elegans_wormpose_36_masks.tif",
+            "flows": "worm/train/c_elegans_wormpose_36_flows.tif",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "worm/test/c_elegans_wormpose_19.tif",
+            "label": "worm/test/c_elegans_wormpose_19_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_5.tif",
+            "label": "worm/test/celegans_bbc010_5_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_51.tif",
+            "label": "worm/test/celegans_bbc010_51_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_55.tif",
+            "label": "worm/test/celegans_bbc010_55_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_28.tif",
+            "label": "worm/test/celegans_bbc010_28_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_37.tif",
+            "label": "worm/test/celegans_bbc010_37_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_39.tif",
+            "label": "worm/test/c_elegans_wormpose_39_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_9.tif",
+            "label": "worm/test/c_elegans_wormpose_9_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_15.tif",
+            "label": "worm/test/celegans_bbc010_15_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_41.tif",
+            "label": "worm/test/c_elegans_wormpose_41_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_31.tif",
+            "label": "worm/test/celegans_bbc010_31_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_17.tif",
+            "label": "worm/test/celegans_bbc010_17_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_35.tif",
+            "label": "worm/test/celegans_bbc010_35_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_24.tif",
+            "label": "worm/test/celegans_bbc010_24_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_46.tif",
+            "label": "worm/test/celegans_bbc010_46_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_37.tif",
+            "label": "worm/test/c_elegans_wormpose_37_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_23.tif",
+            "label": "worm/test/c_elegans_wormpose_23_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_25.tif",
+            "label": "worm/test/c_elegans_wormpose_25_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_60.tif",
+            "label": "worm/test/celegans_bbc010_60_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_1.tif",
+            "label": "worm/test/celegans_bbc010_1_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_5.tif",
+            "label": "worm/test/c_elegans_wormpose_5_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_3.tif",
+            "label": "worm/test/c_elegans_wormpose_3_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_17.tif",
+            "label": "worm/test/c_elegans_wormpose_17_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_1.tif",
+            "label": "worm/test/c_elegans_wormpose_1_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_73.tif",
+            "label": "worm/test/celegans_bbc010_73_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_29.tif",
+            "label": "worm/test/c_elegans_wormpose_29_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_27.tif",
+            "label": "worm/test/c_elegans_wormpose_27_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_57.tif",
+            "label": "worm/test/celegans_bbc010_57_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_40.tif",
+            "label": "worm/test/celegans_bbc010_40_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_26.tif",
+            "label": "worm/test/celegans_bbc010_26_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_21.tif",
+            "label": "worm/test/c_elegans_wormpose_21_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_33.tif",
+            "label": "worm/test/celegans_bbc010_33_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_35.tif",
+            "label": "worm/test/c_elegans_wormpose_35_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_64.tif",
+            "label": "worm/test/celegans_bbc010_64_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_62.tif",
+            "label": "worm/test/celegans_bbc010_62_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_45.tif",
+            "label": "worm/test/c_elegans_wormpose_45_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_71.tif",
+            "label": "worm/test/celegans_bbc010_71_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_13.tif",
+            "label": "worm/test/celegans_bbc010_13_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_15.tif",
+            "label": "worm/test/c_elegans_wormpose_15_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_68.tif",
+            "label": "worm/test/celegans_bbc010_68_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_19.tif",
+            "label": "worm/test/celegans_bbc010_19_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_9.tif",
+            "label": "worm/test/celegans_bbc010_9_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_33.tif",
+            "label": "worm/test/c_elegans_wormpose_33_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_59.tif",
+            "label": "worm/test/celegans_bbc010_59_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_43.tif",
+            "label": "worm/test/c_elegans_wormpose_43_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_13.tif",
+            "label": "worm/test/c_elegans_wormpose_13_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_11.tif",
+            "label": "worm/test/c_elegans_wormpose_11_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_7.tif",
+            "label": "worm/test/c_elegans_wormpose_7_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_53.tif",
+            "label": "worm/test/celegans_bbc010_53_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_20.tif",
+            "label": "worm/test/celegans_bbc010_20_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_7.tif",
+            "label": "worm/test/celegans_bbc010_7_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_3.tif",
+            "label": "worm/test/celegans_bbc010_3_masks.tif"
+        },
+        {
+            "image": "worm/test/c_elegans_wormpose_31.tif",
+            "label": "worm/test/c_elegans_wormpose_31_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_66.tif",
+            "label": "worm/test/celegans_bbc010_66_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_39.tif",
+            "label": "worm/test/celegans_bbc010_39_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_48.tif",
+            "label": "worm/test/celegans_bbc010_48_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_22.tif",
+            "label": "worm/test/celegans_bbc010_22_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_42.tif",
+            "label": "worm/test/celegans_bbc010_42_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_11.tif",
+            "label": "worm/test/celegans_bbc010_11_masks.tif"
+        },
+        {
+            "image": "worm/test/celegans_bbc010_44.tif",
+            "label": "worm/test/celegans_bbc010_44_masks.tif"
+        }
+    ]
+}

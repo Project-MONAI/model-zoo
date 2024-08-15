@@ -1,0 +1,133 @@
+{
+    "imports": [
+        "$import numpy as np"
+    ],
+    "bundle_root": ".",
+    "ckpt_dir": "$@bundle_root + '/models'",
+    "output_dir": "$@bundle_root + '/eval'",
+    "output_ext": ".tif",
+    "output_postfix": "trans",
+    "roi_size": [
+        256,
+        256
+    ],
+    "input_dict": "${'image': '/cellpose_dataset/test/001_img.png'}",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "sam_ckpt_path": "$@ckpt_dir + '/sam_vit_b_01ec64.pth'",
+    "pretrained_ckpt_path": "$@ckpt_dir + '/model.pt'",
+    "image_key": "image",
+    "channels_last": true,
+    "use_amp": true,
+    "amp_dtype": "$torch.float",
+    "network_def": {
+        "_target_": "scripts.cell_sam_wrapper.CellSamWrapper",
+        "checkpoint": "@sam_ckpt_path"
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing_transforms": [
+        {
+            "_target_": "scripts.components.LoadTiffd",
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "EnsureTyped",
+            "keys": "@image_key",
+            "data_type": "tensor",
+            "dtype": "$torch.float"
+        },
+        {
+            "_target_": "ScaleIntensityd",
+            "keys": "@image_key",
+            "minv": 0,
+            "maxv": 1,
+            "channel_wise": true
+        },
+        {
+            "_target_": "ScaleIntensityRangePercentilesd",
+            "keys": "image",
+            "lower": 1,
+            "upper": 99,
+            "b_min": 0.0,
+            "b_max": 1.0,
+            "channel_wise": true,
+            "clip": true
+        }
+    ],
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": "$@preprocessing_transforms "
+    },
+    "dataset": {
+        "_target_": "Dataset",
+        "data": "$[@input_dict]",
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "ThreadDataLoader",
+        "dataset": "@dataset",
+        "batch_size": 1,
+        "shuffle": false,
+        "num_workers": 0
+    },
+    "inferer": {
+        "_target_": "SlidingWindowInfererAdapt",
+        "roi_size": "@roi_size",
+        "sw_batch_size": 1,
+        "overlap": 0.625,
+        "mode": "gaussian",
+        "cache_roi_weight_map": true,
+        "progress": false
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "ToDeviced",
+                "keys": "pred",
+                "device": "cpu"
+            },
+            {
+                "_target_": "scripts.components.LogitsToLabelsd",
+                "keys": "pred"
+            },
+            {
+                "_target_": "scripts.components.SaveTiffExd",
+                "keys": "pred",
+                "output_dir": "@output_dir",
+                "output_ext": "@output_ext",
+                "output_postfix": "@output_postfix"
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false
+        }
+    ],
+    "checkpointloader": {
+        "_target_": "CheckpointLoader",
+        "load_path": "@pretrained_ckpt_path",
+        "map_location": "cpu",
+        "load_dict": {
+            "state_dict": "@network"
+        }
+    },
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "network": "@network",
+        "inferer": "@inferer",
+        "postprocessing": "@postprocessing",
+        "val_handlers": "@handlers",
+        "amp": true
+    },
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)",
+        "$@checkpointloader(@evaluator)"
+    ],
+    "run": [
+        "$@evaluator.run()"
+    ]
+}

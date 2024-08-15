@@ -1,0 +1,80 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.2.1",
+    "changelog": {
+        "0.2.1": "initial OSS version"
+    },
+    "monai_version": "1.3.1",
+    "pytorch_version": "2.2.2",
+    "numpy_version": "1.24.4",
+    "einops": "0.7.0",
+    "required_packages_version": {
+        "scikit-image": "0.22.0",
+        "fastremap": "1.14.1",
+        "cucim-cu12": "24.2.0",
+        "gdown": "5.1.0",
+        "fire": "0.6.0",
+        "pyyaml": "6.0.1",
+        "tensorboard": "2.16.2",
+        "opencv-python": "4.7.0.68",
+        "numba": "0.59.0",
+        "torchvision": "0.17.2",
+        "cellpose": "3.0.8",
+        "segment_anything": "1.0",
+        "mlflow": "2.13.1",
+        "pynvml": "11.5.0"
+    },
+    "supported_apps": {},
+    "name": "VISTA-Cell",
+    "task": "cell image segmentation",
+    "description": "VISTA2D bundle for cell image analysis",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_type": "tiff",
+    "image_classes": "1 channel data, intensity scaled to [0, 1]",
+    "label_classes": "3-channel data",
+    "pred_classes": "3 channels",
+    "eval_metrics": {
+        "mean_dice": 0.0
+    },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "num_channels": 3,
+                "spatial_shape": [
+                    256,
+                    256
+                ],
+                "format": "RGB",
+                "value_range": [
+                    0,
+                    255
+                ],
+                "dtype": "float32",
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 3,
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "spatial_shape": [
+                    256,
+                    256
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,2466 @@
+{
+    "training": [
+        {
+            "image": "val/skin_mibi_2.tif",
+            "label": "val/skin_mibi_2_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_17.tif",
+            "label": "val/skin_mibi_17_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_35.tif",
+            "label": "val/skin_mibi_35_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_38.tif",
+            "label": "val/skin_mibi_38_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_42.tif",
+            "label": "val/skin_mibi_42_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_44.tif",
+            "label": "val/skin_mibi_44_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_53.tif",
+            "label": "val/skin_mibi_53_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_56.tif",
+            "label": "val/skin_mibi_56_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_58.tif",
+            "label": "val/skin_mibi_58_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_65.tif",
+            "label": "val/skin_mibi_65_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_69.tif",
+            "label": "val/skin_mibi_69_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_74.tif",
+            "label": "val/skin_mibi_74_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_78.tif",
+            "label": "val/skin_mibi_78_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_82.tif",
+            "label": "val/skin_mibi_82_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_90.tif",
+            "label": "val/skin_mibi_90_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_91.tif",
+            "label": "val/skin_mibi_91_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_92.tif",
+            "label": "val/skin_mibi_92_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_95.tif",
+            "label": "val/skin_mibi_95_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_98.tif",
+            "label": "val/skin_mibi_98_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_99.tif",
+            "label": "val/skin_mibi_99_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_100.tif",
+            "label": "val/skin_mibi_100_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_103.tif",
+            "label": "val/skin_mibi_103_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_105.tif",
+            "label": "val/skin_mibi_105_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_10.tif",
+            "label": "val/skin_mibi_10_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_19.tif",
+            "label": "val/skin_mibi_19_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_27.tif",
+            "label": "val/skin_mibi_27_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_31.tif",
+            "label": "val/skin_mibi_31_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_32.tif",
+            "label": "val/skin_mibi_32_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_33.tif",
+            "label": "val/skin_mibi_33_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_36.tif",
+            "label": "val/skin_mibi_36_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_39.tif",
+            "label": "val/skin_mibi_39_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_40.tif",
+            "label": "val/skin_mibi_40_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_46.tif",
+            "label": "val/skin_mibi_46_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_48.tif",
+            "label": "val/skin_mibi_48_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_54.tif",
+            "label": "val/skin_mibi_54_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_55.tif",
+            "label": "val/skin_mibi_55_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_59.tif",
+            "label": "val/skin_mibi_59_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_66.tif",
+            "label": "val/skin_mibi_66_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_67.tif",
+            "label": "val/skin_mibi_67_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_80.tif",
+            "label": "val/skin_mibi_80_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_87.tif",
+            "label": "val/skin_mibi_87_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_88.tif",
+            "label": "val/skin_mibi_88_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_89.tif",
+            "label": "val/skin_mibi_89_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_93.tif",
+            "label": "val/skin_mibi_93_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_106.tif",
+            "label": "val/skin_mibi_106_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_111.tif",
+            "label": "val/skin_mibi_111_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_4.tif",
+            "label": "val/skin_mibi_4_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_15.tif",
+            "label": "val/skin_mibi_15_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_23.tif",
+            "label": "val/skin_mibi_23_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_24.tif",
+            "label": "val/skin_mibi_24_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_26.tif",
+            "label": "val/skin_mibi_26_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_34.tif",
+            "label": "val/skin_mibi_34_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_41.tif",
+            "label": "val/skin_mibi_41_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_43.tif",
+            "label": "val/skin_mibi_43_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_45.tif",
+            "label": "val/skin_mibi_45_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_51.tif",
+            "label": "val/skin_mibi_51_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_52.tif",
+            "label": "val/skin_mibi_52_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_62.tif",
+            "label": "val/skin_mibi_62_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_70.tif",
+            "label": "val/skin_mibi_70_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_73.tif",
+            "label": "val/skin_mibi_73_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_77.tif",
+            "label": "val/skin_mibi_77_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_81.tif",
+            "label": "val/skin_mibi_81_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_83.tif",
+            "label": "val/skin_mibi_83_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_94.tif",
+            "label": "val/skin_mibi_94_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_97.tif",
+            "label": "val/skin_mibi_97_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_102.tif",
+            "label": "val/skin_mibi_102_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_104.tif",
+            "label": "val/skin_mibi_104_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_109.tif",
+            "label": "val/skin_mibi_109_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_0.tif",
+            "label": "val/skin_mibi_0_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_3.tif",
+            "label": "val/skin_mibi_3_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_7.tif",
+            "label": "val/skin_mibi_7_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_8.tif",
+            "label": "val/skin_mibi_8_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_13.tif",
+            "label": "val/skin_mibi_13_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_14.tif",
+            "label": "val/skin_mibi_14_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_21.tif",
+            "label": "val/skin_mibi_21_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_22.tif",
+            "label": "val/skin_mibi_22_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_30.tif",
+            "label": "val/skin_mibi_30_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_47.tif",
+            "label": "val/skin_mibi_47_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_49.tif",
+            "label": "val/skin_mibi_49_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_57.tif",
+            "label": "val/skin_mibi_57_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_60.tif",
+            "label": "val/skin_mibi_60_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_61.tif",
+            "label": "val/skin_mibi_61_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_63.tif",
+            "label": "val/skin_mibi_63_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_68.tif",
+            "label": "val/skin_mibi_68_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_85.tif",
+            "label": "val/skin_mibi_85_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_86.tif",
+            "label": "val/skin_mibi_86_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_96.tif",
+            "label": "val/skin_mibi_96_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_101.tif",
+            "label": "val/skin_mibi_101_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_108.tif",
+            "label": "val/skin_mibi_108_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_110.tif",
+            "label": "val/skin_mibi_110_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_1.tif",
+            "label": "val/skin_mibi_1_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_5.tif",
+            "label": "val/skin_mibi_5_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_6.tif",
+            "label": "val/skin_mibi_6_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_9.tif",
+            "label": "val/skin_mibi_9_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_11.tif",
+            "label": "val/skin_mibi_11_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_12.tif",
+            "label": "val/skin_mibi_12_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_16.tif",
+            "label": "val/skin_mibi_16_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_18.tif",
+            "label": "val/skin_mibi_18_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_20.tif",
+            "label": "val/skin_mibi_20_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_25.tif",
+            "label": "val/skin_mibi_25_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_28.tif",
+            "label": "val/skin_mibi_28_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_29.tif",
+            "label": "val/skin_mibi_29_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_37.tif",
+            "label": "val/skin_mibi_37_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_50.tif",
+            "label": "val/skin_mibi_50_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_64.tif",
+            "label": "val/skin_mibi_64_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_71.tif",
+            "label": "val/skin_mibi_71_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_72.tif",
+            "label": "val/skin_mibi_72_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_75.tif",
+            "label": "val/skin_mibi_75_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_76.tif",
+            "label": "val/skin_mibi_76_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_79.tif",
+            "label": "val/skin_mibi_79_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_84.tif",
+            "label": "val/skin_mibi_84_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "val/skin_mibi_107.tif",
+            "label": "val/skin_mibi_107_masks.tif",
+            "fold": 0
+        },
+        {
+            "image": "train/skin_mibi_1_0.tif",
+            "label": "train/skin_mibi_1_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_1_2.tif",
+            "label": "train/skin_mibi_1_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_2_3.tif",
+            "label": "train/skin_mibi_2_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_3_0.tif",
+            "label": "train/skin_mibi_3_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_4_2.tif",
+            "label": "train/skin_mibi_4_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_6_3.tif",
+            "label": "train/skin_mibi_6_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_7_1.tif",
+            "label": "train/skin_mibi_7_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_14_2.tif",
+            "label": "train/skin_mibi_14_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_14_3.tif",
+            "label": "train/skin_mibi_14_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_16_1.tif",
+            "label": "train/skin_mibi_16_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_16_3.tif",
+            "label": "train/skin_mibi_16_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_18_1.tif",
+            "label": "train/skin_mibi_18_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_20_0.tif",
+            "label": "train/skin_mibi_20_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_21_1.tif",
+            "label": "train/skin_mibi_21_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_22_1.tif",
+            "label": "train/skin_mibi_22_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_22_2.tif",
+            "label": "train/skin_mibi_22_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_22_3.tif",
+            "label": "train/skin_mibi_22_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_23_0.tif",
+            "label": "train/skin_mibi_23_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_23_1.tif",
+            "label": "train/skin_mibi_23_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_23_3.tif",
+            "label": "train/skin_mibi_23_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_25_2.tif",
+            "label": "train/skin_mibi_25_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_26_2.tif",
+            "label": "train/skin_mibi_26_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_26_3.tif",
+            "label": "train/skin_mibi_26_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_27_3.tif",
+            "label": "train/skin_mibi_27_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_29_1.tif",
+            "label": "train/skin_mibi_29_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_30_0.tif",
+            "label": "train/skin_mibi_30_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_30_2.tif",
+            "label": "train/skin_mibi_30_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_30_3.tif",
+            "label": "train/skin_mibi_30_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_31_1.tif",
+            "label": "train/skin_mibi_31_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_31_3.tif",
+            "label": "train/skin_mibi_31_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_32_3.tif",
+            "label": "train/skin_mibi_32_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_33_0.tif",
+            "label": "train/skin_mibi_33_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_34_2.tif",
+            "label": "train/skin_mibi_34_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_36_2.tif",
+            "label": "train/skin_mibi_36_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_38_2.tif",
+            "label": "train/skin_mibi_38_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_39_3.tif",
+            "label": "train/skin_mibi_39_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_41_1.tif",
+            "label": "train/skin_mibi_41_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_42_1.tif",
+            "label": "train/skin_mibi_42_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_43_2.tif",
+            "label": "train/skin_mibi_43_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_47_1.tif",
+            "label": "train/skin_mibi_47_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_49_1.tif",
+            "label": "train/skin_mibi_49_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_52_0.tif",
+            "label": "train/skin_mibi_52_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_52_3.tif",
+            "label": "train/skin_mibi_52_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_53_0.tif",
+            "label": "train/skin_mibi_53_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_54_1.tif",
+            "label": "train/skin_mibi_54_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_55_2.tif",
+            "label": "train/skin_mibi_55_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_57_1.tif",
+            "label": "train/skin_mibi_57_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_59_0.tif",
+            "label": "train/skin_mibi_59_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_61_3.tif",
+            "label": "train/skin_mibi_61_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_62_3.tif",
+            "label": "train/skin_mibi_62_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_64_0.tif",
+            "label": "train/skin_mibi_64_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_65_3.tif",
+            "label": "train/skin_mibi_65_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_66_3.tif",
+            "label": "train/skin_mibi_66_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_68_1.tif",
+            "label": "train/skin_mibi_68_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_71_3.tif",
+            "label": "train/skin_mibi_71_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_72_1.tif",
+            "label": "train/skin_mibi_72_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_72_3.tif",
+            "label": "train/skin_mibi_72_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_73_0.tif",
+            "label": "train/skin_mibi_73_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_73_2.tif",
+            "label": "train/skin_mibi_73_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_75_1.tif",
+            "label": "train/skin_mibi_75_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_76_2.tif",
+            "label": "train/skin_mibi_76_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_78_3.tif",
+            "label": "train/skin_mibi_78_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_80_3.tif",
+            "label": "train/skin_mibi_80_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_82_1.tif",
+            "label": "train/skin_mibi_82_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_82_3.tif",
+            "label": "train/skin_mibi_82_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_83_0.tif",
+            "label": "train/skin_mibi_83_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_83_1.tif",
+            "label": "train/skin_mibi_83_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_85_1.tif",
+            "label": "train/skin_mibi_85_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_85_3.tif",
+            "label": "train/skin_mibi_85_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_0_0.tif",
+            "label": "train/skin_mibi_0_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_1_1.tif",
+            "label": "train/skin_mibi_1_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_2_1.tif",
+            "label": "train/skin_mibi_2_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_3_2.tif",
+            "label": "train/skin_mibi_3_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_4_0.tif",
+            "label": "train/skin_mibi_4_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_4_1.tif",
+            "label": "train/skin_mibi_4_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_4_3.tif",
+            "label": "train/skin_mibi_4_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_8_2.tif",
+            "label": "train/skin_mibi_8_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_9_2.tif",
+            "label": "train/skin_mibi_9_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_9_3.tif",
+            "label": "train/skin_mibi_9_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_10_1.tif",
+            "label": "train/skin_mibi_10_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_10_2.tif",
+            "label": "train/skin_mibi_10_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_11_0.tif",
+            "label": "train/skin_mibi_11_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_12_3.tif",
+            "label": "train/skin_mibi_12_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_15_2.tif",
+            "label": "train/skin_mibi_15_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_17_2.tif",
+            "label": "train/skin_mibi_17_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_19_2.tif",
+            "label": "train/skin_mibi_19_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_22_0.tif",
+            "label": "train/skin_mibi_22_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_25_0.tif",
+            "label": "train/skin_mibi_25_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_26_1.tif",
+            "label": "train/skin_mibi_26_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_27_2.tif",
+            "label": "train/skin_mibi_27_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_28_0.tif",
+            "label": "train/skin_mibi_28_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_29_3.tif",
+            "label": "train/skin_mibi_29_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_34_3.tif",
+            "label": "train/skin_mibi_34_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_36_3.tif",
+            "label": "train/skin_mibi_36_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_37_2.tif",
+            "label": "train/skin_mibi_37_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_39_2.tif",
+            "label": "train/skin_mibi_39_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_40_1.tif",
+            "label": "train/skin_mibi_40_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_40_2.tif",
+            "label": "train/skin_mibi_40_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_40_3.tif",
+            "label": "train/skin_mibi_40_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_41_3.tif",
+            "label": "train/skin_mibi_41_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_42_3.tif",
+            "label": "train/skin_mibi_42_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_43_0.tif",
+            "label": "train/skin_mibi_43_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_43_3.tif",
+            "label": "train/skin_mibi_43_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_44_1.tif",
+            "label": "train/skin_mibi_44_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_44_3.tif",
+            "label": "train/skin_mibi_44_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_45_0.tif",
+            "label": "train/skin_mibi_45_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_46_2.tif",
+            "label": "train/skin_mibi_46_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_46_3.tif",
+            "label": "train/skin_mibi_46_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_47_0.tif",
+            "label": "train/skin_mibi_47_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_47_3.tif",
+            "label": "train/skin_mibi_47_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_48_0.tif",
+            "label": "train/skin_mibi_48_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_51_0.tif",
+            "label": "train/skin_mibi_51_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_51_2.tif",
+            "label": "train/skin_mibi_51_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_53_1.tif",
+            "label": "train/skin_mibi_53_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_54_2.tif",
+            "label": "train/skin_mibi_54_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_56_0.tif",
+            "label": "train/skin_mibi_56_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_56_1.tif",
+            "label": "train/skin_mibi_56_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_57_3.tif",
+            "label": "train/skin_mibi_57_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_58_0.tif",
+            "label": "train/skin_mibi_58_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_58_1.tif",
+            "label": "train/skin_mibi_58_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_58_2.tif",
+            "label": "train/skin_mibi_58_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_60_2.tif",
+            "label": "train/skin_mibi_60_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_61_0.tif",
+            "label": "train/skin_mibi_61_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_61_1.tif",
+            "label": "train/skin_mibi_61_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_62_1.tif",
+            "label": "train/skin_mibi_62_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_64_1.tif",
+            "label": "train/skin_mibi_64_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_65_1.tif",
+            "label": "train/skin_mibi_65_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_68_0.tif",
+            "label": "train/skin_mibi_68_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_69_2.tif",
+            "label": "train/skin_mibi_69_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_70_3.tif",
+            "label": "train/skin_mibi_70_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_72_0.tif",
+            "label": "train/skin_mibi_72_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_76_1.tif",
+            "label": "train/skin_mibi_76_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_80_2.tif",
+            "label": "train/skin_mibi_80_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_81_1.tif",
+            "label": "train/skin_mibi_81_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_82_0.tif",
+            "label": "train/skin_mibi_82_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_82_2.tif",
+            "label": "train/skin_mibi_82_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_84_1.tif",
+            "label": "train/skin_mibi_84_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_85_2.tif",
+            "label": "train/skin_mibi_85_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_2_0.tif",
+            "label": "train/skin_mibi_2_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_5_1.tif",
+            "label": "train/skin_mibi_5_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_6_0.tif",
+            "label": "train/skin_mibi_6_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_7_0.tif",
+            "label": "train/skin_mibi_7_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_7_3.tif",
+            "label": "train/skin_mibi_7_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_8_0.tif",
+            "label": "train/skin_mibi_8_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_8_1.tif",
+            "label": "train/skin_mibi_8_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_8_3.tif",
+            "label": "train/skin_mibi_8_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_10_0.tif",
+            "label": "train/skin_mibi_10_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_11_2.tif",
+            "label": "train/skin_mibi_11_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_11_3.tif",
+            "label": "train/skin_mibi_11_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_12_0.tif",
+            "label": "train/skin_mibi_12_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_13_1.tif",
+            "label": "train/skin_mibi_13_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_13_3.tif",
+            "label": "train/skin_mibi_13_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_14_0.tif",
+            "label": "train/skin_mibi_14_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_15_1.tif",
+            "label": "train/skin_mibi_15_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_15_3.tif",
+            "label": "train/skin_mibi_15_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_16_2.tif",
+            "label": "train/skin_mibi_16_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_17_1.tif",
+            "label": "train/skin_mibi_17_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_19_3.tif",
+            "label": "train/skin_mibi_19_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_21_0.tif",
+            "label": "train/skin_mibi_21_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_24_3.tif",
+            "label": "train/skin_mibi_24_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_25_1.tif",
+            "label": "train/skin_mibi_25_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_27_0.tif",
+            "label": "train/skin_mibi_27_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_28_1.tif",
+            "label": "train/skin_mibi_28_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_28_2.tif",
+            "label": "train/skin_mibi_28_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_29_0.tif",
+            "label": "train/skin_mibi_29_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_32_0.tif",
+            "label": "train/skin_mibi_32_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_33_2.tif",
+            "label": "train/skin_mibi_33_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_34_1.tif",
+            "label": "train/skin_mibi_34_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_35_2.tif",
+            "label": "train/skin_mibi_35_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_39_1.tif",
+            "label": "train/skin_mibi_39_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_41_0.tif",
+            "label": "train/skin_mibi_41_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_42_0.tif",
+            "label": "train/skin_mibi_42_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_43_1.tif",
+            "label": "train/skin_mibi_43_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_45_1.tif",
+            "label": "train/skin_mibi_45_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_46_0.tif",
+            "label": "train/skin_mibi_46_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_46_1.tif",
+            "label": "train/skin_mibi_46_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_49_3.tif",
+            "label": "train/skin_mibi_49_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_50_1.tif",
+            "label": "train/skin_mibi_50_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_51_1.tif",
+            "label": "train/skin_mibi_51_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_51_3.tif",
+            "label": "train/skin_mibi_51_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_54_3.tif",
+            "label": "train/skin_mibi_54_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_55_1.tif",
+            "label": "train/skin_mibi_55_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_55_3.tif",
+            "label": "train/skin_mibi_55_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_56_3.tif",
+            "label": "train/skin_mibi_56_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_57_0.tif",
+            "label": "train/skin_mibi_57_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_65_0.tif",
+            "label": "train/skin_mibi_65_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_67_0.tif",
+            "label": "train/skin_mibi_67_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_67_1.tif",
+            "label": "train/skin_mibi_67_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_67_2.tif",
+            "label": "train/skin_mibi_67_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_67_3.tif",
+            "label": "train/skin_mibi_67_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_68_2.tif",
+            "label": "train/skin_mibi_68_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_68_3.tif",
+            "label": "train/skin_mibi_68_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_69_1.tif",
+            "label": "train/skin_mibi_69_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_71_0.tif",
+            "label": "train/skin_mibi_71_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_71_1.tif",
+            "label": "train/skin_mibi_71_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_72_2.tif",
+            "label": "train/skin_mibi_72_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_73_1.tif",
+            "label": "train/skin_mibi_73_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_73_3.tif",
+            "label": "train/skin_mibi_73_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_74_3.tif",
+            "label": "train/skin_mibi_74_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_75_0.tif",
+            "label": "train/skin_mibi_75_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_76_0.tif",
+            "label": "train/skin_mibi_76_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_77_3.tif",
+            "label": "train/skin_mibi_77_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_78_2.tif",
+            "label": "train/skin_mibi_78_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_79_0.tif",
+            "label": "train/skin_mibi_79_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_81_2.tif",
+            "label": "train/skin_mibi_81_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_81_3.tif",
+            "label": "train/skin_mibi_81_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_84_0.tif",
+            "label": "train/skin_mibi_84_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_0_2.tif",
+            "label": "train/skin_mibi_0_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_2_2.tif",
+            "label": "train/skin_mibi_2_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_3_1.tif",
+            "label": "train/skin_mibi_3_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_5_0.tif",
+            "label": "train/skin_mibi_5_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_5_3.tif",
+            "label": "train/skin_mibi_5_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_9_0.tif",
+            "label": "train/skin_mibi_9_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_11_1.tif",
+            "label": "train/skin_mibi_11_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_13_0.tif",
+            "label": "train/skin_mibi_13_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_13_2.tif",
+            "label": "train/skin_mibi_13_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_14_1.tif",
+            "label": "train/skin_mibi_14_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_15_0.tif",
+            "label": "train/skin_mibi_15_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_18_2.tif",
+            "label": "train/skin_mibi_18_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_18_3.tif",
+            "label": "train/skin_mibi_18_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_19_1.tif",
+            "label": "train/skin_mibi_19_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_20_1.tif",
+            "label": "train/skin_mibi_20_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_20_2.tif",
+            "label": "train/skin_mibi_20_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_23_2.tif",
+            "label": "train/skin_mibi_23_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_24_0.tif",
+            "label": "train/skin_mibi_24_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_24_1.tif",
+            "label": "train/skin_mibi_24_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_24_2.tif",
+            "label": "train/skin_mibi_24_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_25_3.tif",
+            "label": "train/skin_mibi_25_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_29_2.tif",
+            "label": "train/skin_mibi_29_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_31_0.tif",
+            "label": "train/skin_mibi_31_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_32_2.tif",
+            "label": "train/skin_mibi_32_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_33_3.tif",
+            "label": "train/skin_mibi_33_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_35_0.tif",
+            "label": "train/skin_mibi_35_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_36_1.tif",
+            "label": "train/skin_mibi_36_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_37_0.tif",
+            "label": "train/skin_mibi_37_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_37_1.tif",
+            "label": "train/skin_mibi_37_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_37_3.tif",
+            "label": "train/skin_mibi_37_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_38_0.tif",
+            "label": "train/skin_mibi_38_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_40_0.tif",
+            "label": "train/skin_mibi_40_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_42_2.tif",
+            "label": "train/skin_mibi_42_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_44_0.tif",
+            "label": "train/skin_mibi_44_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_45_2.tif",
+            "label": "train/skin_mibi_45_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_45_3.tif",
+            "label": "train/skin_mibi_45_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_47_2.tif",
+            "label": "train/skin_mibi_47_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_48_1.tif",
+            "label": "train/skin_mibi_48_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_48_2.tif",
+            "label": "train/skin_mibi_48_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_49_2.tif",
+            "label": "train/skin_mibi_49_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_50_0.tif",
+            "label": "train/skin_mibi_50_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_50_2.tif",
+            "label": "train/skin_mibi_50_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_52_2.tif",
+            "label": "train/skin_mibi_52_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_53_2.tif",
+            "label": "train/skin_mibi_53_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_55_0.tif",
+            "label": "train/skin_mibi_55_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_57_2.tif",
+            "label": "train/skin_mibi_57_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_59_2.tif",
+            "label": "train/skin_mibi_59_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_60_0.tif",
+            "label": "train/skin_mibi_60_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_61_2.tif",
+            "label": "train/skin_mibi_61_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_62_0.tif",
+            "label": "train/skin_mibi_62_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_62_2.tif",
+            "label": "train/skin_mibi_62_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_63_1.tif",
+            "label": "train/skin_mibi_63_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_64_2.tif",
+            "label": "train/skin_mibi_64_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_64_3.tif",
+            "label": "train/skin_mibi_64_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_65_2.tif",
+            "label": "train/skin_mibi_65_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_74_0.tif",
+            "label": "train/skin_mibi_74_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_74_2.tif",
+            "label": "train/skin_mibi_74_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_75_2.tif",
+            "label": "train/skin_mibi_75_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_75_3.tif",
+            "label": "train/skin_mibi_75_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_76_3.tif",
+            "label": "train/skin_mibi_76_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_77_0.tif",
+            "label": "train/skin_mibi_77_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_77_1.tif",
+            "label": "train/skin_mibi_77_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_77_2.tif",
+            "label": "train/skin_mibi_77_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_78_0.tif",
+            "label": "train/skin_mibi_78_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_80_0.tif",
+            "label": "train/skin_mibi_80_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_81_0.tif",
+            "label": "train/skin_mibi_81_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_84_2.tif",
+            "label": "train/skin_mibi_84_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_84_3.tif",
+            "label": "train/skin_mibi_84_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_85_0.tif",
+            "label": "train/skin_mibi_85_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_0_1.tif",
+            "label": "train/skin_mibi_0_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_0_3.tif",
+            "label": "train/skin_mibi_0_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_1_3.tif",
+            "label": "train/skin_mibi_1_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_3_3.tif",
+            "label": "train/skin_mibi_3_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_5_2.tif",
+            "label": "train/skin_mibi_5_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_6_1.tif",
+            "label": "train/skin_mibi_6_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_6_2.tif",
+            "label": "train/skin_mibi_6_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_7_2.tif",
+            "label": "train/skin_mibi_7_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_9_1.tif",
+            "label": "train/skin_mibi_9_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_10_3.tif",
+            "label": "train/skin_mibi_10_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_12_1.tif",
+            "label": "train/skin_mibi_12_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_12_2.tif",
+            "label": "train/skin_mibi_12_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_16_0.tif",
+            "label": "train/skin_mibi_16_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_17_0.tif",
+            "label": "train/skin_mibi_17_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_17_3.tif",
+            "label": "train/skin_mibi_17_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_18_0.tif",
+            "label": "train/skin_mibi_18_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_19_0.tif",
+            "label": "train/skin_mibi_19_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_20_3.tif",
+            "label": "train/skin_mibi_20_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_21_2.tif",
+            "label": "train/skin_mibi_21_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_21_3.tif",
+            "label": "train/skin_mibi_21_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_26_0.tif",
+            "label": "train/skin_mibi_26_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_27_1.tif",
+            "label": "train/skin_mibi_27_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_28_3.tif",
+            "label": "train/skin_mibi_28_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_30_1.tif",
+            "label": "train/skin_mibi_30_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_31_2.tif",
+            "label": "train/skin_mibi_31_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_32_1.tif",
+            "label": "train/skin_mibi_32_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_33_1.tif",
+            "label": "train/skin_mibi_33_1_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_34_0.tif",
+            "label": "train/skin_mibi_34_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_35_1.tif",
+            "label": "train/skin_mibi_35_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_35_3.tif",
+            "label": "train/skin_mibi_35_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_36_0.tif",
+            "label": "train/skin_mibi_36_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_38_1.tif",
+            "label": "train/skin_mibi_38_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_38_3.tif",
+            "label": "train/skin_mibi_38_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_39_0.tif",
+            "label": "train/skin_mibi_39_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_41_2.tif",
+            "label": "train/skin_mibi_41_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_44_2.tif",
+            "label": "train/skin_mibi_44_2_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_48_3.tif",
+            "label": "train/skin_mibi_48_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_49_0.tif",
+            "label": "train/skin_mibi_49_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_50_3.tif",
+            "label": "train/skin_mibi_50_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_52_1.tif",
+            "label": "train/skin_mibi_52_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_53_3.tif",
+            "label": "train/skin_mibi_53_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_54_0.tif",
+            "label": "train/skin_mibi_54_0_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_56_2.tif",
+            "label": "train/skin_mibi_56_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_58_3.tif",
+            "label": "train/skin_mibi_58_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_59_1.tif",
+            "label": "train/skin_mibi_59_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_59_3.tif",
+            "label": "train/skin_mibi_59_3_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_60_1.tif",
+            "label": "train/skin_mibi_60_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_60_3.tif",
+            "label": "train/skin_mibi_60_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_63_0.tif",
+            "label": "train/skin_mibi_63_0_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_63_2.tif",
+            "label": "train/skin_mibi_63_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_63_3.tif",
+            "label": "train/skin_mibi_63_3_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_66_0.tif",
+            "label": "train/skin_mibi_66_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_66_1.tif",
+            "label": "train/skin_mibi_66_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_66_2.tif",
+            "label": "train/skin_mibi_66_2_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_69_0.tif",
+            "label": "train/skin_mibi_69_0_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_69_3.tif",
+            "label": "train/skin_mibi_69_3_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_70_0.tif",
+            "label": "train/skin_mibi_70_0_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_70_1.tif",
+            "label": "train/skin_mibi_70_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_70_2.tif",
+            "label": "train/skin_mibi_70_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_71_2.tif",
+            "label": "train/skin_mibi_71_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_74_1.tif",
+            "label": "train/skin_mibi_74_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_78_1.tif",
+            "label": "train/skin_mibi_78_1_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_79_1.tif",
+            "label": "train/skin_mibi_79_1_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_79_2.tif",
+            "label": "train/skin_mibi_79_2_masks.tif",
+            "fold": 4
+        },
+        {
+            "image": "train/skin_mibi_79_3.tif",
+            "label": "train/skin_mibi_79_3_masks.tif",
+            "fold": 3
+        },
+        {
+            "image": "train/skin_mibi_80_1.tif",
+            "label": "train/skin_mibi_80_1_masks.tif",
+            "fold": 1
+        },
+        {
+            "image": "train/skin_mibi_83_2.tif",
+            "label": "train/skin_mibi_83_2_masks.tif",
+            "fold": 2
+        },
+        {
+            "image": "train/skin_mibi_83_3.tif",
+            "label": "train/skin_mibi_83_3_masks.tif",
+            "fold": 1
+        }
+    ],
+    "testing": [
+        {
+            "image": "test/skin_mibi_2.tif",
+            "label": "test/skin_mibi_2_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_3.tif",
+            "label": "test/skin_mibi_3_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_19.tif",
+            "label": "test/skin_mibi_19_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_21.tif",
+            "label": "test/skin_mibi_21_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_22.tif",
+            "label": "test/skin_mibi_22_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_30.tif",
+            "label": "test/skin_mibi_30_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_34.tif",
+            "label": "test/skin_mibi_34_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_35.tif",
+            "label": "test/skin_mibi_35_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_41.tif",
+            "label": "test/skin_mibi_41_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_17.tif",
+            "label": "test/skin_mibi_17_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_23.tif",
+            "label": "test/skin_mibi_23_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_29.tif",
+            "label": "test/skin_mibi_29_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_31.tif",
+            "label": "test/skin_mibi_31_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_32.tif",
+            "label": "test/skin_mibi_32_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_33.tif",
+            "label": "test/skin_mibi_33_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_36.tif",
+            "label": "test/skin_mibi_36_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_40.tif",
+            "label": "test/skin_mibi_40_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_44.tif",
+            "label": "test/skin_mibi_44_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_4.tif",
+            "label": "test/skin_mibi_4_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_10.tif",
+            "label": "test/skin_mibi_10_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_14.tif",
+            "label": "test/skin_mibi_14_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_20.tif",
+            "label": "test/skin_mibi_20_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_24.tif",
+            "label": "test/skin_mibi_24_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_26.tif",
+            "label": "test/skin_mibi_26_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_27.tif",
+            "label": "test/skin_mibi_27_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_38.tif",
+            "label": "test/skin_mibi_38_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_39.tif",
+            "label": "test/skin_mibi_39_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_1.tif",
+            "label": "test/skin_mibi_1_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_6.tif",
+            "label": "test/skin_mibi_6_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_7.tif",
+            "label": "test/skin_mibi_7_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_13.tif",
+            "label": "test/skin_mibi_13_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_16.tif",
+            "label": "test/skin_mibi_16_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_18.tif",
+            "label": "test/skin_mibi_18_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_25.tif",
+            "label": "test/skin_mibi_25_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_28.tif",
+            "label": "test/skin_mibi_28_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_42.tif",
+            "label": "test/skin_mibi_42_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_0.tif",
+            "label": "test/skin_mibi_0_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_5.tif",
+            "label": "test/skin_mibi_5_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_8.tif",
+            "label": "test/skin_mibi_8_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_9.tif",
+            "label": "test/skin_mibi_9_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_11.tif",
+            "label": "test/skin_mibi_11_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_12.tif",
+            "label": "test/skin_mibi_12_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_15.tif",
+            "label": "test/skin_mibi_15_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_37.tif",
+            "label": "test/skin_mibi_37_masks.tif"
+        },
+        {
+            "image": "test/skin_mibi_43.tif",
+            "label": "test/skin_mibi_43_masks.tif"
+        }
+    ]
+}

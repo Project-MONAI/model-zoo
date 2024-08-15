@@ -1,0 +1,30 @@
+  - {datalist: datalists2/tissuenet_skin_mibi_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_breast_mibi_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_breast_vectra_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_breast_imc_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_gi_codex_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_gi_mibi_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_gi_mxif_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_immune_cycif_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_immune_mibi_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_immune_vectra_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_lung_cycif_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_pancreas_codex_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+  - {datalist: datalists2/tissuenet_pancreas_vectra_datalist.json, basedir: /data/vista2d_combined/tissuenet_dataset/tissuenet_1.0}
+
+  - {datalist: datalists2/cellpose_datalist.json, basedir: /data/vista2d_combined/cellpose_dataset}
+
+  - {datalist: datalists2/omnipose_bact_f_dataset.json, basedir: /data/vista2d_combined/omnipose_dataset}
+  - {datalist: datalists2/omnipose_bact_p_dataset.json, basedir: /data/vista2d_combined/omnipose_dataset}
+
+  - {datalist: datalists2/livecell_A172_datalist.json, basedir: /data/vista2d_combined/livecell_dataset/images}
+  - {datalist: datalists2/livecell_BT474_datalist.json, basedir: /data/vista2d_combined/livecell_dataset/images}
+  - {datalist: datalists2/livecell_Huh7_datalist.json, basedir: /data/vista2d_combined/livecell_dataset/images}
+  - {datalist: datalists2/livecell_MCF7_datalist.json, basedir: /data/vista2d_combined/livecell_dataset/images}
+  - {datalist: datalists2/livecell_SHSY5Y_datalist.json, basedir: /data/vista2d_combined/livecell_dataset/images}
+  - {datalist: datalists2/livecell_SkBr3_datalist.json, basedir: /data/vista2d_combined/livecell_dataset/images}
+  - {datalist: datalists2/livecell_SKOV3_datalist.json, basedir: /data/vista2d_combined/livecell_dataset/images}
+
+  - {datalist: datalists2/deepbacs_datalist.json, basedir: /data/vista2d_combined/deepbacs_dataset}
+  - {datalist: datalists2/nips_data_list.json, basedir: /data/vista2d_combined/nips_dataset}
+  - {datalist: datalists2/kg_nuclei_datalist.json, basedir: /data/vista2d_combined/kaggle_dataset}

@@ -1,0 +1,921 @@
+{
+    "training": [
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_002_4_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_002_4_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_50.tif",
+            "label": "training/target/train_50.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/pos1_frame_30.tif",
+            "label": "training/target/pos1_frame_30.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_29.tif",
+            "label": "training/target/train_29.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_4.tif",
+            "label": "training/target/train_4.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_003_2.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_003_2.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_001_2_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_001_2_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_65.tif",
+            "label": "training/target/train_65.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/pos4_frame_1.tif",
+            "label": "training/target/pos4_frame_1.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220__2_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220__2_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_42.tif",
+            "label": "training/target/train_42.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/pos0_frame_26.tif",
+            "label": "training/target/pos0_frame_26.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_48.tif",
+            "label": "training/target/train_48.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_003_1_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_003_1_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_58.tif",
+            "label": "training/target/train_58.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/pos4_frame_25.tif",
+            "label": "training/target/pos4_frame_25.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_28.tif",
+            "label": "training/target/train_28.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_005_1_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_005_1_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_52.tif",
+            "label": "training/target/train_52.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_004_2.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_004_2.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220__3_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220__3_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_63.tif",
+            "label": "training/target/train_63.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_005_2_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_005_2_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_66.tif",
+            "label": "training/target/train_66.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_59.tif",
+            "label": "training/target/train_59.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_005_4_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_005_4_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_005_4.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_005_4.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_002_2_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_002_2_NR.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_003_3.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_003_3.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_004_3.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_004_3.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/pos1_frame_52.tif",
+            "label": "training/target/pos1_frame_52.tif",
+            "fold": 0
+        },
+        {
+            "image": "training/source/train_37.tif",
+            "label": "training/target/train_37.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/pos8_frame_32.tif",
+            "label": "training/target/pos8_frame_32.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_10.tif",
+            "label": "training/target/train_10.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_9.tif",
+            "label": "training/target/train_9.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_12.tif",
+            "label": "training/target/train_12.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_001_1_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_001_1_NR.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/pos0_frame_56.tif",
+            "label": "training/target/pos0_frame_56.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_71.tif",
+            "label": "training/target/train_71.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_6.tif",
+            "label": "training/target/train_6.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/pos1_frame_2.tif",
+            "label": "training/target/pos1_frame_2.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_006_4_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_006_4_NR.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_001_3_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_001_3_NR.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_006_3.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_006_3.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_003_4_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_003_4_NR.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220__4.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220__4.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/pos8_frame_5.tif",
+            "label": "training/target/pos8_frame_5.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_44.tif",
+            "label": "training/target/train_44.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_005_1.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_005_1.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_25.tif",
+            "label": "training/target/train_25.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_005_3_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_005_3_NR.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_11.tif",
+            "label": "training/target/train_11.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220__2.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220__2.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_005_3.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_005_3.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_55.tif",
+            "label": "training/target/train_55.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_75.tif",
+            "label": "training/target/train_75.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_60.tif",
+            "label": "training/target/train_60.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_56.tif",
+            "label": "training/target/train_56.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_40.tif",
+            "label": "training/target/train_40.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/pos8_frame_58.tif",
+            "label": "training/target/pos8_frame_58.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_006_4.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_006_4.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/train_38.tif",
+            "label": "training/target/train_38.tif",
+            "fold": 1
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_001_4_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_001_4_NR.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_006_2.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_006_2.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_78.tif",
+            "label": "training/target/train_78.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220__1_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220__1_NR.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_7.tif",
+            "label": "training/target/train_7.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_67.tif",
+            "label": "training/target/train_67.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_006_2_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_006_2_NR.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_41.tif",
+            "label": "training/target/train_41.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_004_1_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_004_1_NR.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_24.tif",
+            "label": "training/target/train_24.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_001_3.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_001_3.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_003_3_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_003_3_NR.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_49.tif",
+            "label": "training/target/train_49.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_35.tif",
+            "label": "training/target/train_35.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_27.tif",
+            "label": "training/target/train_27.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_19.tif",
+            "label": "training/target/train_19.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_002_2.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_002_2.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_23.tif",
+            "label": "training/target/train_23.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_002_3.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_002_3.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_57.tif",
+            "label": "training/target/train_57.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_64.tif",
+            "label": "training/target/train_64.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_43.tif",
+            "label": "training/target/train_43.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_33.tif",
+            "label": "training/target/train_33.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_72.tif",
+            "label": "training/target/train_72.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_77.tif",
+            "label": "training/target/train_77.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_79.tif",
+            "label": "training/target/train_79.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_004_4_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_004_4_NR.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_39.tif",
+            "label": "training/target/train_39.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_2.tif",
+            "label": "training/target/train_2.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_1.tif",
+            "label": "training/target/train_1.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/train_74.tif",
+            "label": "training/target/train_74.tif",
+            "fold": 2
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_004_2_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_004_2_NR.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/pos1_frame_23.tif",
+            "label": "training/target/pos1_frame_23.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/pos1_frame_79.tif",
+            "label": "training/target/pos1_frame_79.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_002_1_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_002_1_NR.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_53.tif",
+            "label": "training/target/train_53.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_18.tif",
+            "label": "training/target/train_18.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_17.tif",
+            "label": "training/target/train_17.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_3.tif",
+            "label": "training/target/train_3.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_80.tif",
+            "label": "training/target/train_80.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_006_1_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_006_1_NR.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_61.tif",
+            "label": "training/target/train_61.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/pos4_frame_80.tif",
+            "label": "training/target/pos4_frame_80.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220__4_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220__4_NR.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_54.tif",
+            "label": "training/target/train_54.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_006_1.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_006_1.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_16.tif",
+            "label": "training/target/train_16.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_003_1.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_003_1.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/pos0_frame_76.tif",
+            "label": "training/target/pos0_frame_76.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_30.tif",
+            "label": "training/target/train_30.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_34.tif",
+            "label": "training/target/train_34.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_21.tif",
+            "label": "training/target/train_21.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_15.tif",
+            "label": "training/target/train_15.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_45.tif",
+            "label": "training/target/train_45.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_73.tif",
+            "label": "training/target/train_73.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/pos8_frame_70.tif",
+            "label": "training/target/pos8_frame_70.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_002_4.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_002_4.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_69.tif",
+            "label": "training/target/train_69.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_004_1.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_004_1.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_001_1.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_001_1.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_68.tif",
+            "label": "training/target/train_68.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/pos1_frame_68.tif",
+            "label": "training/target/pos1_frame_68.tif",
+            "fold": 3
+        },
+        {
+            "image": "training/source/train_8.tif",
+            "label": "training/target/train_8.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_26.tif",
+            "label": "training/target/train_26.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_004_3_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_004_3_NR.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_31.tif",
+            "label": "training/target/train_31.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_62.tif",
+            "label": "training/target/train_62.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_36.tif",
+            "label": "training/target/train_36.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_70.tif",
+            "label": "training/target/train_70.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_5.tif",
+            "label": "training/target/train_5.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_003_4.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_003_4.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_46.tif",
+            "label": "training/target/train_46.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_47.tif",
+            "label": "training/target/train_47.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_002_3_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_002_3_NR.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_20.tif",
+            "label": "training/target/train_20.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/pos0_frame_6.tif",
+            "label": "training/target/pos0_frame_6.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_006_3_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_006_3_NR.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_13.tif",
+            "label": "training/target/train_13.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_002_1.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_002_1.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_005_2.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_005_2.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/pos1_frame_15.tif",
+            "label": "training/target/pos1_frame_15.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_14.tif",
+            "label": "training/target/train_14.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220__1.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220__1.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_22.tif",
+            "label": "training/target/train_22.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_001_2.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_001_2.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_004_4.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_004_4.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_76.tif",
+            "label": "training/target/train_76.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/pos4_frame_64.tif",
+            "label": "training/target/pos4_frame_64.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_001_4.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_001_4.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220_003_2_NR.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220_003_2_NR.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_32.tif",
+            "label": "training/target/train_32.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/JE2NileRed_oilp22_PMP_101220__3.tif",
+            "label": "training/target/JE2NileRed_oilp22_PMP_101220__3.tif",
+            "fold": 4
+        },
+        {
+            "image": "training/source/train_51.tif",
+            "label": "training/target/train_51.tif",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "test/source/test_4.tif",
+            "label": "test/target/test_4.tif"
+        },
+        {
+            "image": "test/source/test_7.tif",
+            "label": "test/target/test_7.tif"
+        },
+        {
+            "image": "test/source/pos5_fr_20.tif",
+            "label": "test/target/pos5_fr_20.tif"
+        },
+        {
+            "image": "test/source/pos7_fr_80.tif",
+            "label": "test/target/pos7_fr_80.tif"
+        },
+        {
+            "image": "test/source/test_10.tif",
+            "label": "test/target/test_10.tif"
+        },
+        {
+            "image": "test/source/test_8.tif",
+            "label": "test/target/test_8.tif"
+        },
+        {
+            "image": "test/source/pos7_fr_60.tif",
+            "label": "test/target/pos7_fr_60.tif"
+        },
+        {
+            "image": "test/source/pos5_fr_80.tif",
+            "label": "test/target/pos5_fr_80.tif"
+        },
+        {
+            "image": "test/source/pos5_fr_60.tif",
+            "label": "test/target/pos5_fr_60.tif"
+        },
+        {
+            "image": "test/source/pos7_fr_1.tif",
+            "label": "test/target/pos7_fr_1.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_011_NR.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_011_NR.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_007.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_007.tif"
+        },
+        {
+            "image": "test/source/test_2.tif",
+            "label": "test/target/test_2.tif"
+        },
+        {
+            "image": "test/source/pos5_fr_40.tif",
+            "label": "test/target/pos5_fr_40.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_009_NR.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_009_NR.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_009.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_009.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_010.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_010.tif"
+        },
+        {
+            "image": "test/source/pos7_fr_20.tif",
+            "label": "test/target/pos7_fr_20.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_011.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_011.tif"
+        },
+        {
+            "image": "test/source/pos7_fr_40.tif",
+            "label": "test/target/pos7_fr_40.tif"
+        },
+        {
+            "image": "test/source/test_1.tif",
+            "label": "test/target/test_1.tif"
+        },
+        {
+            "image": "test/source/pos2_fr_60.tif",
+            "label": "test/target/pos2_fr_60.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_007_NR.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_007_NR.tif"
+        },
+        {
+            "image": "test/source/test_3.tif",
+            "label": "test/target/test_3.tif"
+        },
+        {
+            "image": "test/source/pos2_fr_80.tif",
+            "label": "test/target/pos2_fr_80.tif"
+        },
+        {
+            "image": "test/source/pos2_fr_40.tif",
+            "label": "test/target/pos2_fr_40.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_008.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_008.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_008_NR.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_008_NR.tif"
+        },
+        {
+            "image": "test/source/JE2NileRed_oilp22_PMP_101220_010_NR.tif",
+            "label": "test/target/JE2NileRed_oilp22_PMP_101220_010_NR.tif"
+        },
+        {
+            "image": "test/source/test_5.tif",
+            "label": "test/target/test_5.tif"
+        },
+        {
+            "image": "test/source/test_6.tif",
+            "label": "test/target/test_6.tif"
+        },
+        {
+            "image": "test/source/test_9.tif",
+            "label": "test/target/test_9.tif"
+        },
+        {
+            "image": "test/source/pos5_fr_1.tif",
+            "label": "test/target/pos5_fr_1.tif"
+        },
+        {
+            "image": "test/source/pos2_fr_1.tif",
+            "label": "test/target/pos2_fr_1.tif"
+        },
+        {
+            "image": "test/source/pos2_fr_20.tif",
+            "label": "test/target/pos2_fr_20.tif"
+        }
+    ]
+}

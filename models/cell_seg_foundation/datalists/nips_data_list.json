@@ -1,0 +1,5206 @@
+{
+    "training": [
+        {
+            "image": "Training-labeled/images/cell_00799.png",
+            "label": "Training-labeled/labels/cell_00799_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00754.png",
+            "label": "Training-labeled/labels/cell_00754_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00153.png",
+            "label": "Training-labeled/labels/cell_00153_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00761.png",
+            "label": "Training-labeled/labels/cell_00761_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00734.png",
+            "label": "Training-labeled/labels/cell_00734_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00403.tif",
+            "label": "Training-labeled/labels/cell_00403_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00328.tif",
+            "label": "Training-labeled/labels/cell_00328_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00307.tiff",
+            "label": "Training-labeled/labels/cell_00307_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00354.tif",
+            "label": "Training-labeled/labels/cell_00354_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00791.png",
+            "label": "Training-labeled/labels/cell_00791_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00953.png",
+            "label": "Training-labeled/labels/cell_00953_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00314.tiff",
+            "label": "Training-labeled/labels/cell_00314_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00601.tif",
+            "label": "Training-labeled/labels/cell_00601_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00527.tif",
+            "label": "Training-labeled/labels/cell_00527_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00614.tif",
+            "label": "Training-labeled/labels/cell_00614_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00861.png",
+            "label": "Training-labeled/labels/cell_00861_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00129.bmp",
+            "label": "Training-labeled/labels/cell_00129_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00451.tif",
+            "label": "Training-labeled/labels/cell_00451_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00306.tiff",
+            "label": "Training-labeled/labels/cell_00306_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00006.bmp",
+            "label": "Training-labeled/labels/cell_00006_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00988.png",
+            "label": "Training-labeled/labels/cell_00988_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00948.png",
+            "label": "Training-labeled/labels/cell_00948_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00559.tif",
+            "label": "Training-labeled/labels/cell_00559_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00961.png",
+            "label": "Training-labeled/labels/cell_00961_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00887.png",
+            "label": "Training-labeled/labels/cell_00887_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00329.tif",
+            "label": "Training-labeled/labels/cell_00329_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00343.tif",
+            "label": "Training-labeled/labels/cell_00343_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00050.bmp",
+            "label": "Training-labeled/labels/cell_00050_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00254.tif",
+            "label": "Training-labeled/labels/cell_00254_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00255.tif",
+            "label": "Training-labeled/labels/cell_00255_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00700.tif",
+            "label": "Training-labeled/labels/cell_00700_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00165.png",
+            "label": "Training-labeled/labels/cell_00165_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00802.png",
+            "label": "Training-labeled/labels/cell_00802_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00711.tiff",
+            "label": "Training-labeled/labels/cell_00711_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00564.tif",
+            "label": "Training-labeled/labels/cell_00564_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00246.tif",
+            "label": "Training-labeled/labels/cell_00246_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00659.tif",
+            "label": "Training-labeled/labels/cell_00659_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00532.tif",
+            "label": "Training-labeled/labels/cell_00532_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00372.tif",
+            "label": "Training-labeled/labels/cell_00372_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00323.tif",
+            "label": "Training-labeled/labels/cell_00323_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00877.png",
+            "label": "Training-labeled/labels/cell_00877_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00586.tif",
+            "label": "Training-labeled/labels/cell_00586_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00489.tif",
+            "label": "Training-labeled/labels/cell_00489_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00271.tif",
+            "label": "Training-labeled/labels/cell_00271_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00957.png",
+            "label": "Training-labeled/labels/cell_00957_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00569.tif",
+            "label": "Training-labeled/labels/cell_00569_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00083.bmp",
+            "label": "Training-labeled/labels/cell_00083_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00269.tif",
+            "label": "Training-labeled/labels/cell_00269_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00628.tif",
+            "label": "Training-labeled/labels/cell_00628_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00457.tif",
+            "label": "Training-labeled/labels/cell_00457_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00358.tif",
+            "label": "Training-labeled/labels/cell_00358_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00560.tif",
+            "label": "Training-labeled/labels/cell_00560_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00577.tif",
+            "label": "Training-labeled/labels/cell_00577_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00248.tif",
+            "label": "Training-labeled/labels/cell_00248_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00340.tif",
+            "label": "Training-labeled/labels/cell_00340_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00578.tif",
+            "label": "Training-labeled/labels/cell_00578_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00067.bmp",
+            "label": "Training-labeled/labels/cell_00067_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00268.tif",
+            "label": "Training-labeled/labels/cell_00268_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00443.tif",
+            "label": "Training-labeled/labels/cell_00443_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00333.tif",
+            "label": "Training-labeled/labels/cell_00333_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00579.tif",
+            "label": "Training-labeled/labels/cell_00579_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00575.tif",
+            "label": "Training-labeled/labels/cell_00575_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00394.tif",
+            "label": "Training-labeled/labels/cell_00394_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00855.png",
+            "label": "Training-labeled/labels/cell_00855_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00202.png",
+            "label": "Training-labeled/labels/cell_00202_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00087.bmp",
+            "label": "Training-labeled/labels/cell_00087_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00295.tif",
+            "label": "Training-labeled/labels/cell_00295_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00290.tif",
+            "label": "Training-labeled/labels/cell_00290_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00493.tif",
+            "label": "Training-labeled/labels/cell_00493_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00113.bmp",
+            "label": "Training-labeled/labels/cell_00113_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00304.tiff",
+            "label": "Training-labeled/labels/cell_00304_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00736.png",
+            "label": "Training-labeled/labels/cell_00736_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00837.png",
+            "label": "Training-labeled/labels/cell_00837_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00831.png",
+            "label": "Training-labeled/labels/cell_00831_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00297.tif",
+            "label": "Training-labeled/labels/cell_00297_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00852.png",
+            "label": "Training-labeled/labels/cell_00852_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00484.tif",
+            "label": "Training-labeled/labels/cell_00484_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00696.tif",
+            "label": "Training-labeled/labels/cell_00696_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00972.png",
+            "label": "Training-labeled/labels/cell_00972_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00771.png",
+            "label": "Training-labeled/labels/cell_00771_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00346.tif",
+            "label": "Training-labeled/labels/cell_00346_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00459.tif",
+            "label": "Training-labeled/labels/cell_00459_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00798.png",
+            "label": "Training-labeled/labels/cell_00798_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00273.tif",
+            "label": "Training-labeled/labels/cell_00273_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00159.png",
+            "label": "Training-labeled/labels/cell_00159_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00654.tif",
+            "label": "Training-labeled/labels/cell_00654_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00800.png",
+            "label": "Training-labeled/labels/cell_00800_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00488.tif",
+            "label": "Training-labeled/labels/cell_00488_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00752.png",
+            "label": "Training-labeled/labels/cell_00752_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00520.tif",
+            "label": "Training-labeled/labels/cell_00520_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00090.bmp",
+            "label": "Training-labeled/labels/cell_00090_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00467.tif",
+            "label": "Training-labeled/labels/cell_00467_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00940.png",
+            "label": "Training-labeled/labels/cell_00940_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00339.tif",
+            "label": "Training-labeled/labels/cell_00339_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00910.png",
+            "label": "Training-labeled/labels/cell_00910_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00470.tif",
+            "label": "Training-labeled/labels/cell_00470_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00435.tif",
+            "label": "Training-labeled/labels/cell_00435_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00587.tif",
+            "label": "Training-labeled/labels/cell_00587_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00137.bmp",
+            "label": "Training-labeled/labels/cell_00137_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00613.tif",
+            "label": "Training-labeled/labels/cell_00613_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00722.png",
+            "label": "Training-labeled/labels/cell_00722_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00014.png",
+            "label": "Training-labeled/labels/cell_00014_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00593.tif",
+            "label": "Training-labeled/labels/cell_00593_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00065.bmp",
+            "label": "Training-labeled/labels/cell_00065_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00741.png",
+            "label": "Training-labeled/labels/cell_00741_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00227.png",
+            "label": "Training-labeled/labels/cell_00227_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00146.png",
+            "label": "Training-labeled/labels/cell_00146_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00428.tif",
+            "label": "Training-labeled/labels/cell_00428_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00194.png",
+            "label": "Training-labeled/labels/cell_00194_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00764.png",
+            "label": "Training-labeled/labels/cell_00764_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00592.tif",
+            "label": "Training-labeled/labels/cell_00592_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00100.bmp",
+            "label": "Training-labeled/labels/cell_00100_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00717.tiff",
+            "label": "Training-labeled/labels/cell_00717_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00648.tif",
+            "label": "Training-labeled/labels/cell_00648_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00416.tif",
+            "label": "Training-labeled/labels/cell_00416_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00687.tif",
+            "label": "Training-labeled/labels/cell_00687_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00872.png",
+            "label": "Training-labeled/labels/cell_00872_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00052.bmp",
+            "label": "Training-labeled/labels/cell_00052_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00693.tif",
+            "label": "Training-labeled/labels/cell_00693_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00652.tif",
+            "label": "Training-labeled/labels/cell_00652_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00266.tif",
+            "label": "Training-labeled/labels/cell_00266_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00475.tif",
+            "label": "Training-labeled/labels/cell_00475_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00905.png",
+            "label": "Training-labeled/labels/cell_00905_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00653.tif",
+            "label": "Training-labeled/labels/cell_00653_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00959.png",
+            "label": "Training-labeled/labels/cell_00959_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00478.tif",
+            "label": "Training-labeled/labels/cell_00478_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00325.tif",
+            "label": "Training-labeled/labels/cell_00325_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00902.png",
+            "label": "Training-labeled/labels/cell_00902_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00289.tif",
+            "label": "Training-labeled/labels/cell_00289_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00657.tif",
+            "label": "Training-labeled/labels/cell_00657_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00119.bmp",
+            "label": "Training-labeled/labels/cell_00119_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00426.tif",
+            "label": "Training-labeled/labels/cell_00426_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00570.tif",
+            "label": "Training-labeled/labels/cell_00570_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00775.png",
+            "label": "Training-labeled/labels/cell_00775_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00217.png",
+            "label": "Training-labeled/labels/cell_00217_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00685.tif",
+            "label": "Training-labeled/labels/cell_00685_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00615.tif",
+            "label": "Training-labeled/labels/cell_00615_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00433.tif",
+            "label": "Training-labeled/labels/cell_00433_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00836.png",
+            "label": "Training-labeled/labels/cell_00836_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00436.tif",
+            "label": "Training-labeled/labels/cell_00436_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00950.png",
+            "label": "Training-labeled/labels/cell_00950_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00124.bmp",
+            "label": "Training-labeled/labels/cell_00124_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00665.tif",
+            "label": "Training-labeled/labels/cell_00665_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00818.png",
+            "label": "Training-labeled/labels/cell_00818_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00925.png",
+            "label": "Training-labeled/labels/cell_00925_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00504.tif",
+            "label": "Training-labeled/labels/cell_00504_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00857.png",
+            "label": "Training-labeled/labels/cell_00857_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00909.png",
+            "label": "Training-labeled/labels/cell_00909_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00539.tif",
+            "label": "Training-labeled/labels/cell_00539_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00389.tif",
+            "label": "Training-labeled/labels/cell_00389_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00367.tif",
+            "label": "Training-labeled/labels/cell_00367_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00327.tif",
+            "label": "Training-labeled/labels/cell_00327_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00135.bmp",
+            "label": "Training-labeled/labels/cell_00135_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00487.tif",
+            "label": "Training-labeled/labels/cell_00487_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00980.png",
+            "label": "Training-labeled/labels/cell_00980_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00618.tif",
+            "label": "Training-labeled/labels/cell_00618_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00792.png",
+            "label": "Training-labeled/labels/cell_00792_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00805.png",
+            "label": "Training-labeled/labels/cell_00805_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00040.bmp",
+            "label": "Training-labeled/labels/cell_00040_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00030.bmp",
+            "label": "Training-labeled/labels/cell_00030_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00730.png",
+            "label": "Training-labeled/labels/cell_00730_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00332.tif",
+            "label": "Training-labeled/labels/cell_00332_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00765.png",
+            "label": "Training-labeled/labels/cell_00765_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00810.png",
+            "label": "Training-labeled/labels/cell_00810_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00219.png",
+            "label": "Training-labeled/labels/cell_00219_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00834.png",
+            "label": "Training-labeled/labels/cell_00834_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00720.png",
+            "label": "Training-labeled/labels/cell_00720_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00442.tif",
+            "label": "Training-labeled/labels/cell_00442_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00632.tif",
+            "label": "Training-labeled/labels/cell_00632_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00641.tif",
+            "label": "Training-labeled/labels/cell_00641_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00513.tif",
+            "label": "Training-labeled/labels/cell_00513_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00650.tif",
+            "label": "Training-labeled/labels/cell_00650_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00167.png",
+            "label": "Training-labeled/labels/cell_00167_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00312.tiff",
+            "label": "Training-labeled/labels/cell_00312_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00710.tiff",
+            "label": "Training-labeled/labels/cell_00710_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00232.tif",
+            "label": "Training-labeled/labels/cell_00232_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00229.png",
+            "label": "Training-labeled/labels/cell_00229_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00200.png",
+            "label": "Training-labeled/labels/cell_00200_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00674.tif",
+            "label": "Training-labeled/labels/cell_00674_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00682.tif",
+            "label": "Training-labeled/labels/cell_00682_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00594.tif",
+            "label": "Training-labeled/labels/cell_00594_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00565.tif",
+            "label": "Training-labeled/labels/cell_00565_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00807.png",
+            "label": "Training-labeled/labels/cell_00807_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00866.png",
+            "label": "Training-labeled/labels/cell_00866_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00781.png",
+            "label": "Training-labeled/labels/cell_00781_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00992.png",
+            "label": "Training-labeled/labels/cell_00992_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00824.png",
+            "label": "Training-labeled/labels/cell_00824_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00373.tif",
+            "label": "Training-labeled/labels/cell_00373_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00839.png",
+            "label": "Training-labeled/labels/cell_00839_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00865.png",
+            "label": "Training-labeled/labels/cell_00865_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00922.png",
+            "label": "Training-labeled/labels/cell_00922_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00946.png",
+            "label": "Training-labeled/labels/cell_00946_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00598.tif",
+            "label": "Training-labeled/labels/cell_00598_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00534.tif",
+            "label": "Training-labeled/labels/cell_00534_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00345.tif",
+            "label": "Training-labeled/labels/cell_00345_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00477.tif",
+            "label": "Training-labeled/labels/cell_00477_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00402.tif",
+            "label": "Training-labeled/labels/cell_00402_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00550.tiff",
+            "label": "Training-labeled/labels/cell_00550_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00335.tif",
+            "label": "Training-labeled/labels/cell_00335_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00174.png",
+            "label": "Training-labeled/labels/cell_00174_label.tiff",
+            "fold": 0
+        },
+        {
+            "image": "Training-labeled/images/cell_00651.tif",
+            "label": "Training-labeled/labels/cell_00651_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00853.png",
+            "label": "Training-labeled/labels/cell_00853_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00318.tif",
+            "label": "Training-labeled/labels/cell_00318_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00897.png",
+            "label": "Training-labeled/labels/cell_00897_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00920.png",
+            "label": "Training-labeled/labels/cell_00920_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00823.png",
+            "label": "Training-labeled/labels/cell_00823_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00913.png",
+            "label": "Training-labeled/labels/cell_00913_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00990.png",
+            "label": "Training-labeled/labels/cell_00990_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00715.tiff",
+            "label": "Training-labeled/labels/cell_00715_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00024.bmp",
+            "label": "Training-labeled/labels/cell_00024_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00405.tif",
+            "label": "Training-labeled/labels/cell_00405_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00515.tif",
+            "label": "Training-labeled/labels/cell_00515_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00093.bmp",
+            "label": "Training-labeled/labels/cell_00093_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00830.png",
+            "label": "Training-labeled/labels/cell_00830_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00847.png",
+            "label": "Training-labeled/labels/cell_00847_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00954.png",
+            "label": "Training-labeled/labels/cell_00954_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00059.bmp",
+            "label": "Training-labeled/labels/cell_00059_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00424.tif",
+            "label": "Training-labeled/labels/cell_00424_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00235.tif",
+            "label": "Training-labeled/labels/cell_00235_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00027.bmp",
+            "label": "Training-labeled/labels/cell_00027_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00131.bmp",
+            "label": "Training-labeled/labels/cell_00131_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00931.png",
+            "label": "Training-labeled/labels/cell_00931_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00806.png",
+            "label": "Training-labeled/labels/cell_00806_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00240.tif",
+            "label": "Training-labeled/labels/cell_00240_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00999.png",
+            "label": "Training-labeled/labels/cell_00999_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00640.tif",
+            "label": "Training-labeled/labels/cell_00640_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00858.png",
+            "label": "Training-labeled/labels/cell_00858_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00995.png",
+            "label": "Training-labeled/labels/cell_00995_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00732.png",
+            "label": "Training-labeled/labels/cell_00732_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00718.tiff",
+            "label": "Training-labeled/labels/cell_00718_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00445.tif",
+            "label": "Training-labeled/labels/cell_00445_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00766.png",
+            "label": "Training-labeled/labels/cell_00766_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00425.tif",
+            "label": "Training-labeled/labels/cell_00425_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00509.tif",
+            "label": "Training-labeled/labels/cell_00509_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00132.bmp",
+            "label": "Training-labeled/labels/cell_00132_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00022.bmp",
+            "label": "Training-labeled/labels/cell_00022_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00936.png",
+            "label": "Training-labeled/labels/cell_00936_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00098.bmp",
+            "label": "Training-labeled/labels/cell_00098_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00220.png",
+            "label": "Training-labeled/labels/cell_00220_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00884.png",
+            "label": "Training-labeled/labels/cell_00884_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00967.png",
+            "label": "Training-labeled/labels/cell_00967_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00978.png",
+            "label": "Training-labeled/labels/cell_00978_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00209.png",
+            "label": "Training-labeled/labels/cell_00209_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00173.png",
+            "label": "Training-labeled/labels/cell_00173_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00623.tif",
+            "label": "Training-labeled/labels/cell_00623_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00605.tif",
+            "label": "Training-labeled/labels/cell_00605_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00070.bmp",
+            "label": "Training-labeled/labels/cell_00070_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00968.png",
+            "label": "Training-labeled/labels/cell_00968_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00199.png",
+            "label": "Training-labeled/labels/cell_00199_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00552.tiff",
+            "label": "Training-labeled/labels/cell_00552_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00885.png",
+            "label": "Training-labeled/labels/cell_00885_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00125.bmp",
+            "label": "Training-labeled/labels/cell_00125_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00337.tif",
+            "label": "Training-labeled/labels/cell_00337_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00353.tif",
+            "label": "Training-labeled/labels/cell_00353_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00555.tiff",
+            "label": "Training-labeled/labels/cell_00555_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00976.png",
+            "label": "Training-labeled/labels/cell_00976_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00466.tif",
+            "label": "Training-labeled/labels/cell_00466_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00192.png",
+            "label": "Training-labeled/labels/cell_00192_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00533.tif",
+            "label": "Training-labeled/labels/cell_00533_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00690.tif",
+            "label": "Training-labeled/labels/cell_00690_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00708.tiff",
+            "label": "Training-labeled/labels/cell_00708_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00316.tiff",
+            "label": "Training-labeled/labels/cell_00316_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00804.png",
+            "label": "Training-labeled/labels/cell_00804_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00523.tif",
+            "label": "Training-labeled/labels/cell_00523_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00016.bmp",
+            "label": "Training-labeled/labels/cell_00016_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00444.tif",
+            "label": "Training-labeled/labels/cell_00444_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00511.tif",
+            "label": "Training-labeled/labels/cell_00511_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00360.tif",
+            "label": "Training-labeled/labels/cell_00360_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00419.tif",
+            "label": "Training-labeled/labels/cell_00419_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00794.png",
+            "label": "Training-labeled/labels/cell_00794_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00127.bmp",
+            "label": "Training-labeled/labels/cell_00127_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00545.tif",
+            "label": "Training-labeled/labels/cell_00545_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00036.bmp",
+            "label": "Training-labeled/labels/cell_00036_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00066.bmp",
+            "label": "Training-labeled/labels/cell_00066_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00739.png",
+            "label": "Training-labeled/labels/cell_00739_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00538.tif",
+            "label": "Training-labeled/labels/cell_00538_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00514.tif",
+            "label": "Training-labeled/labels/cell_00514_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00726.png",
+            "label": "Training-labeled/labels/cell_00726_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00826.png",
+            "label": "Training-labeled/labels/cell_00826_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00051.bmp",
+            "label": "Training-labeled/labels/cell_00051_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00951.png",
+            "label": "Training-labeled/labels/cell_00951_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00828.png",
+            "label": "Training-labeled/labels/cell_00828_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00055.bmp",
+            "label": "Training-labeled/labels/cell_00055_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00301.tiff",
+            "label": "Training-labeled/labels/cell_00301_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00155.png",
+            "label": "Training-labeled/labels/cell_00155_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00774.png",
+            "label": "Training-labeled/labels/cell_00774_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00790.png",
+            "label": "Training-labeled/labels/cell_00790_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00567.tif",
+            "label": "Training-labeled/labels/cell_00567_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00047.bmp",
+            "label": "Training-labeled/labels/cell_00047_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00172.png",
+            "label": "Training-labeled/labels/cell_00172_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00184.png",
+            "label": "Training-labeled/labels/cell_00184_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00779.png",
+            "label": "Training-labeled/labels/cell_00779_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00921.png",
+            "label": "Training-labeled/labels/cell_00921_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00526.tif",
+            "label": "Training-labeled/labels/cell_00526_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00676.tif",
+            "label": "Training-labeled/labels/cell_00676_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00355.tif",
+            "label": "Training-labeled/labels/cell_00355_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00561.tif",
+            "label": "Training-labeled/labels/cell_00561_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00829.png",
+            "label": "Training-labeled/labels/cell_00829_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00973.png",
+            "label": "Training-labeled/labels/cell_00973_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00557.tiff",
+            "label": "Training-labeled/labels/cell_00557_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00522.tif",
+            "label": "Training-labeled/labels/cell_00522_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00646.tif",
+            "label": "Training-labeled/labels/cell_00646_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00455.tif",
+            "label": "Training-labeled/labels/cell_00455_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00553.tiff",
+            "label": "Training-labeled/labels/cell_00553_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00813.png",
+            "label": "Training-labeled/labels/cell_00813_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00279.tif",
+            "label": "Training-labeled/labels/cell_00279_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00415.tif",
+            "label": "Training-labeled/labels/cell_00415_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00748.png",
+            "label": "Training-labeled/labels/cell_00748_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00753.png",
+            "label": "Training-labeled/labels/cell_00753_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00011.bmp",
+            "label": "Training-labeled/labels/cell_00011_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00151.png",
+            "label": "Training-labeled/labels/cell_00151_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00525.tif",
+            "label": "Training-labeled/labels/cell_00525_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00537.tif",
+            "label": "Training-labeled/labels/cell_00537_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00163.png",
+            "label": "Training-labeled/labels/cell_00163_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00185.png",
+            "label": "Training-labeled/labels/cell_00185_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00352.tif",
+            "label": "Training-labeled/labels/cell_00352_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00439.tif",
+            "label": "Training-labeled/labels/cell_00439_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00152.png",
+            "label": "Training-labeled/labels/cell_00152_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00108.bmp",
+            "label": "Training-labeled/labels/cell_00108_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00480.tif",
+            "label": "Training-labeled/labels/cell_00480_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00785.png",
+            "label": "Training-labeled/labels/cell_00785_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00762.png",
+            "label": "Training-labeled/labels/cell_00762_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00458.tif",
+            "label": "Training-labeled/labels/cell_00458_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00588.tif",
+            "label": "Training-labeled/labels/cell_00588_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00243.tif",
+            "label": "Training-labeled/labels/cell_00243_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00441.tif",
+            "label": "Training-labeled/labels/cell_00441_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00351.tif",
+            "label": "Training-labeled/labels/cell_00351_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00989.png",
+            "label": "Training-labeled/labels/cell_00989_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00873.png",
+            "label": "Training-labeled/labels/cell_00873_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00359.tif",
+            "label": "Training-labeled/labels/cell_00359_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00919.png",
+            "label": "Training-labeled/labels/cell_00919_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00757.png",
+            "label": "Training-labeled/labels/cell_00757_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00253.tif",
+            "label": "Training-labeled/labels/cell_00253_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00782.png",
+            "label": "Training-labeled/labels/cell_00782_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00895.png",
+            "label": "Training-labeled/labels/cell_00895_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00943.png",
+            "label": "Training-labeled/labels/cell_00943_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00471.tif",
+            "label": "Training-labeled/labels/cell_00471_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00670.tif",
+            "label": "Training-labeled/labels/cell_00670_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00374.tif",
+            "label": "Training-labeled/labels/cell_00374_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00102.bmp",
+            "label": "Training-labeled/labels/cell_00102_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00109.bmp",
+            "label": "Training-labeled/labels/cell_00109_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00751.png",
+            "label": "Training-labeled/labels/cell_00751_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00434.tif",
+            "label": "Training-labeled/labels/cell_00434_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00338.tif",
+            "label": "Training-labeled/labels/cell_00338_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00893.png",
+            "label": "Training-labeled/labels/cell_00893_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00460.tif",
+            "label": "Training-labeled/labels/cell_00460_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00494.tif",
+            "label": "Training-labeled/labels/cell_00494_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00241.tif",
+            "label": "Training-labeled/labels/cell_00241_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00908.png",
+            "label": "Training-labeled/labels/cell_00908_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00987.png",
+            "label": "Training-labeled/labels/cell_00987_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00882.png",
+            "label": "Training-labeled/labels/cell_00882_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00038.bmp",
+            "label": "Training-labeled/labels/cell_00038_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00391.tif",
+            "label": "Training-labeled/labels/cell_00391_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00627.tif",
+            "label": "Training-labeled/labels/cell_00627_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00390.tif",
+            "label": "Training-labeled/labels/cell_00390_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00126.bmp",
+            "label": "Training-labeled/labels/cell_00126_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00472.tif",
+            "label": "Training-labeled/labels/cell_00472_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00364.tif",
+            "label": "Training-labeled/labels/cell_00364_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00021.bmp",
+            "label": "Training-labeled/labels/cell_00021_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00175.png",
+            "label": "Training-labeled/labels/cell_00175_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00750.png",
+            "label": "Training-labeled/labels/cell_00750_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00723.png",
+            "label": "Training-labeled/labels/cell_00723_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00904.png",
+            "label": "Training-labeled/labels/cell_00904_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00204.png",
+            "label": "Training-labeled/labels/cell_00204_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00542.tif",
+            "label": "Training-labeled/labels/cell_00542_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00322.tif",
+            "label": "Training-labeled/labels/cell_00322_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00334.tif",
+            "label": "Training-labeled/labels/cell_00334_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00719.png",
+            "label": "Training-labeled/labels/cell_00719_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00673.tif",
+            "label": "Training-labeled/labels/cell_00673_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00549.tiff",
+            "label": "Training-labeled/labels/cell_00549_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00468.tif",
+            "label": "Training-labeled/labels/cell_00468_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00704.tiff",
+            "label": "Training-labeled/labels/cell_00704_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00420.tif",
+            "label": "Training-labeled/labels/cell_00420_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00482.tif",
+            "label": "Training-labeled/labels/cell_00482_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00607.tif",
+            "label": "Training-labeled/labels/cell_00607_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00162.png",
+            "label": "Training-labeled/labels/cell_00162_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00002.bmp",
+            "label": "Training-labeled/labels/cell_00002_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00190.png",
+            "label": "Training-labeled/labels/cell_00190_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00081.bmp",
+            "label": "Training-labeled/labels/cell_00081_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00796.png",
+            "label": "Training-labeled/labels/cell_00796_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00234.tif",
+            "label": "Training-labeled/labels/cell_00234_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00624.tif",
+            "label": "Training-labeled/labels/cell_00624_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00955.png",
+            "label": "Training-labeled/labels/cell_00955_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00767.png",
+            "label": "Training-labeled/labels/cell_00767_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00049.bmp",
+            "label": "Training-labeled/labels/cell_00049_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00911.png",
+            "label": "Training-labeled/labels/cell_00911_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00026.bmp",
+            "label": "Training-labeled/labels/cell_00026_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00285.tif",
+            "label": "Training-labeled/labels/cell_00285_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00500.tif",
+            "label": "Training-labeled/labels/cell_00500_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00854.png",
+            "label": "Training-labeled/labels/cell_00854_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00801.png",
+            "label": "Training-labeled/labels/cell_00801_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00033.bmp",
+            "label": "Training-labeled/labels/cell_00033_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00383.tif",
+            "label": "Training-labeled/labels/cell_00383_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00189.png",
+            "label": "Training-labeled/labels/cell_00189_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00903.png",
+            "label": "Training-labeled/labels/cell_00903_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00580.tif",
+            "label": "Training-labeled/labels/cell_00580_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00814.png",
+            "label": "Training-labeled/labels/cell_00814_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00150.png",
+            "label": "Training-labeled/labels/cell_00150_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00643.tif",
+            "label": "Training-labeled/labels/cell_00643_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00261.tif",
+            "label": "Training-labeled/labels/cell_00261_label.tiff",
+            "fold": 1
+        },
+        {
+            "image": "Training-labeled/images/cell_00412.tif",
+            "label": "Training-labeled/labels/cell_00412_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00901.png",
+            "label": "Training-labeled/labels/cell_00901_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00197.png",
+            "label": "Training-labeled/labels/cell_00197_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00060.bmp",
+            "label": "Training-labeled/labels/cell_00060_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00099.bmp",
+            "label": "Training-labeled/labels/cell_00099_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00396.tif",
+            "label": "Training-labeled/labels/cell_00396_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00655.tif",
+            "label": "Training-labeled/labels/cell_00655_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00840.png",
+            "label": "Training-labeled/labels/cell_00840_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00056.bmp",
+            "label": "Training-labeled/labels/cell_00056_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00198.png",
+            "label": "Training-labeled/labels/cell_00198_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00144.tif",
+            "label": "Training-labeled/labels/cell_00144_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00078.bmp",
+            "label": "Training-labeled/labels/cell_00078_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00486.tif",
+            "label": "Training-labeled/labels/cell_00486_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00236.tif",
+            "label": "Training-labeled/labels/cell_00236_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00727.png",
+            "label": "Training-labeled/labels/cell_00727_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00740.png",
+            "label": "Training-labeled/labels/cell_00740_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00384.tif",
+            "label": "Training-labeled/labels/cell_00384_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00611.tif",
+            "label": "Training-labeled/labels/cell_00611_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00291.tif",
+            "label": "Training-labeled/labels/cell_00291_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00742.png",
+            "label": "Training-labeled/labels/cell_00742_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00205.png",
+            "label": "Training-labeled/labels/cell_00205_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00712.tiff",
+            "label": "Training-labeled/labels/cell_00712_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00421.tif",
+            "label": "Training-labeled/labels/cell_00421_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00385.tif",
+            "label": "Training-labeled/labels/cell_00385_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00262.tif",
+            "label": "Training-labeled/labels/cell_00262_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00233.tif",
+            "label": "Training-labeled/labels/cell_00233_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00667.tif",
+            "label": "Training-labeled/labels/cell_00667_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00247.tif",
+            "label": "Training-labeled/labels/cell_00247_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00610.tif",
+            "label": "Training-labeled/labels/cell_00610_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00952.png",
+            "label": "Training-labeled/labels/cell_00952_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00074.bmp",
+            "label": "Training-labeled/labels/cell_00074_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00697.tif",
+            "label": "Training-labeled/labels/cell_00697_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00265.tif",
+            "label": "Training-labeled/labels/cell_00265_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00698.tif",
+            "label": "Training-labeled/labels/cell_00698_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00406.tif",
+            "label": "Training-labeled/labels/cell_00406_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00249.tif",
+            "label": "Training-labeled/labels/cell_00249_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00336.tif",
+            "label": "Training-labeled/labels/cell_00336_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00169.png",
+            "label": "Training-labeled/labels/cell_00169_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00963.png",
+            "label": "Training-labeled/labels/cell_00963_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00568.tif",
+            "label": "Training-labeled/labels/cell_00568_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00069.bmp",
+            "label": "Training-labeled/labels/cell_00069_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00571.tif",
+            "label": "Training-labeled/labels/cell_00571_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00004.bmp",
+            "label": "Training-labeled/labels/cell_00004_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00259.tif",
+            "label": "Training-labeled/labels/cell_00259_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00104.bmp",
+            "label": "Training-labeled/labels/cell_00104_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00755.png",
+            "label": "Training-labeled/labels/cell_00755_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00679.tif",
+            "label": "Training-labeled/labels/cell_00679_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00945.png",
+            "label": "Training-labeled/labels/cell_00945_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00357.tif",
+            "label": "Training-labeled/labels/cell_00357_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00518.tif",
+            "label": "Training-labeled/labels/cell_00518_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00039.bmp",
+            "label": "Training-labeled/labels/cell_00039_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00929.png",
+            "label": "Training-labeled/labels/cell_00929_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00437.tif",
+            "label": "Training-labeled/labels/cell_00437_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00013.png",
+            "label": "Training-labeled/labels/cell_00013_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00293.tif",
+            "label": "Training-labeled/labels/cell_00293_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00103.bmp",
+            "label": "Training-labeled/labels/cell_00103_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00821.png",
+            "label": "Training-labeled/labels/cell_00821_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00635.tif",
+            "label": "Training-labeled/labels/cell_00635_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00143.tif",
+            "label": "Training-labeled/labels/cell_00143_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00201.png",
+            "label": "Training-labeled/labels/cell_00201_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00743.png",
+            "label": "Training-labeled/labels/cell_00743_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00264.tif",
+            "label": "Training-labeled/labels/cell_00264_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00825.png",
+            "label": "Training-labeled/labels/cell_00825_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00997.png",
+            "label": "Training-labeled/labels/cell_00997_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00015.bmp",
+            "label": "Training-labeled/labels/cell_00015_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00495.tif",
+            "label": "Training-labeled/labels/cell_00495_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00983.png",
+            "label": "Training-labeled/labels/cell_00983_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00186.png",
+            "label": "Training-labeled/labels/cell_00186_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00085.bmp",
+            "label": "Training-labeled/labels/cell_00085_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00401.tif",
+            "label": "Training-labeled/labels/cell_00401_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00191.png",
+            "label": "Training-labeled/labels/cell_00191_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00479.tif",
+            "label": "Training-labeled/labels/cell_00479_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00250.tif",
+            "label": "Training-labeled/labels/cell_00250_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00188.png",
+            "label": "Training-labeled/labels/cell_00188_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00196.png",
+            "label": "Training-labeled/labels/cell_00196_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00787.png",
+            "label": "Training-labeled/labels/cell_00787_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00612.tif",
+            "label": "Training-labeled/labels/cell_00612_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00221.png",
+            "label": "Training-labeled/labels/cell_00221_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00642.tif",
+            "label": "Training-labeled/labels/cell_00642_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00089.bmp",
+            "label": "Training-labeled/labels/cell_00089_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00278.tif",
+            "label": "Training-labeled/labels/cell_00278_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00591.tif",
+            "label": "Training-labeled/labels/cell_00591_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00860.png",
+            "label": "Training-labeled/labels/cell_00860_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00464.tif",
+            "label": "Training-labeled/labels/cell_00464_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00705.tiff",
+            "label": "Training-labeled/labels/cell_00705_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00106.bmp",
+            "label": "Training-labeled/labels/cell_00106_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00077.bmp",
+            "label": "Training-labeled/labels/cell_00077_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00361.tif",
+            "label": "Training-labeled/labels/cell_00361_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00244.tif",
+            "label": "Training-labeled/labels/cell_00244_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00600.tif",
+            "label": "Training-labeled/labels/cell_00600_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00179.png",
+            "label": "Training-labeled/labels/cell_00179_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00604.tif",
+            "label": "Training-labeled/labels/cell_00604_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00491.tif",
+            "label": "Training-labeled/labels/cell_00491_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00678.tif",
+            "label": "Training-labeled/labels/cell_00678_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00315.tiff",
+            "label": "Training-labeled/labels/cell_00315_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00780.png",
+            "label": "Training-labeled/labels/cell_00780_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00031.bmp",
+            "label": "Training-labeled/labels/cell_00031_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00669.tif",
+            "label": "Training-labeled/labels/cell_00669_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00048.bmp",
+            "label": "Training-labeled/labels/cell_00048_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00310.tiff",
+            "label": "Training-labeled/labels/cell_00310_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00706.tiff",
+            "label": "Training-labeled/labels/cell_00706_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00835.png",
+            "label": "Training-labeled/labels/cell_00835_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00369.tif",
+            "label": "Training-labeled/labels/cell_00369_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00386.tif",
+            "label": "Training-labeled/labels/cell_00386_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00395.tif",
+            "label": "Training-labeled/labels/cell_00395_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00880.png",
+            "label": "Training-labeled/labels/cell_00880_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00331.tif",
+            "label": "Training-labeled/labels/cell_00331_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00347.tif",
+            "label": "Training-labeled/labels/cell_00347_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00543.tif",
+            "label": "Training-labeled/labels/cell_00543_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00815.png",
+            "label": "Training-labeled/labels/cell_00815_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00744.png",
+            "label": "Training-labeled/labels/cell_00744_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00871.png",
+            "label": "Training-labeled/labels/cell_00871_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00629.tif",
+            "label": "Training-labeled/labels/cell_00629_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00647.tif",
+            "label": "Training-labeled/labels/cell_00647_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00876.png",
+            "label": "Training-labeled/labels/cell_00876_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00664.tif",
+            "label": "Training-labeled/labels/cell_00664_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00213.png",
+            "label": "Training-labeled/labels/cell_00213_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00117.bmp",
+            "label": "Training-labeled/labels/cell_00117_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00773.png",
+            "label": "Training-labeled/labels/cell_00773_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00492.tif",
+            "label": "Training-labeled/labels/cell_00492_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00207.png",
+            "label": "Training-labeled/labels/cell_00207_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00684.tif",
+            "label": "Training-labeled/labels/cell_00684_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00096.bmp",
+            "label": "Training-labeled/labels/cell_00096_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00418.tif",
+            "label": "Training-labeled/labels/cell_00418_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00583.tif",
+            "label": "Training-labeled/labels/cell_00583_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00505.tif",
+            "label": "Training-labeled/labels/cell_00505_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00540.tif",
+            "label": "Training-labeled/labels/cell_00540_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00210.png",
+            "label": "Training-labeled/labels/cell_00210_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00827.png",
+            "label": "Training-labeled/labels/cell_00827_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00692.tif",
+            "label": "Training-labeled/labels/cell_00692_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00454.tif",
+            "label": "Training-labeled/labels/cell_00454_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00875.png",
+            "label": "Training-labeled/labels/cell_00875_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00311.tiff",
+            "label": "Training-labeled/labels/cell_00311_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00584.tif",
+            "label": "Training-labeled/labels/cell_00584_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00928.png",
+            "label": "Training-labeled/labels/cell_00928_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00397.tif",
+            "label": "Training-labeled/labels/cell_00397_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00005.bmp",
+            "label": "Training-labeled/labels/cell_00005_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00900.png",
+            "label": "Training-labeled/labels/cell_00900_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00797.png",
+            "label": "Training-labeled/labels/cell_00797_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00721.png",
+            "label": "Training-labeled/labels/cell_00721_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00082.bmp",
+            "label": "Training-labeled/labels/cell_00082_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00288.tif",
+            "label": "Training-labeled/labels/cell_00288_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00490.tif",
+            "label": "Training-labeled/labels/cell_00490_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00991.png",
+            "label": "Training-labeled/labels/cell_00991_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00531.tif",
+            "label": "Training-labeled/labels/cell_00531_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00832.png",
+            "label": "Training-labeled/labels/cell_00832_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00260.tif",
+            "label": "Training-labeled/labels/cell_00260_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00699.tif",
+            "label": "Training-labeled/labels/cell_00699_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00407.tif",
+            "label": "Training-labeled/labels/cell_00407_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00431.tif",
+            "label": "Training-labeled/labels/cell_00431_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00018.bmp",
+            "label": "Training-labeled/labels/cell_00018_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00891.png",
+            "label": "Training-labeled/labels/cell_00891_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00378.tif",
+            "label": "Training-labeled/labels/cell_00378_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00916.png",
+            "label": "Training-labeled/labels/cell_00916_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00677.tif",
+            "label": "Training-labeled/labels/cell_00677_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00414.tif",
+            "label": "Training-labeled/labels/cell_00414_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00556.tiff",
+            "label": "Training-labeled/labels/cell_00556_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00158.png",
+            "label": "Training-labeled/labels/cell_00158_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00020.bmp",
+            "label": "Training-labeled/labels/cell_00020_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00731.png",
+            "label": "Training-labeled/labels/cell_00731_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00044.bmp",
+            "label": "Training-labeled/labels/cell_00044_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00786.png",
+            "label": "Training-labeled/labels/cell_00786_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00964.png",
+            "label": "Training-labeled/labels/cell_00964_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00485.tif",
+            "label": "Training-labeled/labels/cell_00485_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00619.tif",
+            "label": "Training-labeled/labels/cell_00619_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00896.png",
+            "label": "Training-labeled/labels/cell_00896_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00695.tif",
+            "label": "Training-labeled/labels/cell_00695_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00319.tif",
+            "label": "Training-labeled/labels/cell_00319_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00649.tif",
+            "label": "Training-labeled/labels/cell_00649_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00595.tif",
+            "label": "Training-labeled/labels/cell_00595_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00149.png",
+            "label": "Training-labeled/labels/cell_00149_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00177.png",
+            "label": "Training-labeled/labels/cell_00177_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00608.tif",
+            "label": "Training-labeled/labels/cell_00608_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00926.png",
+            "label": "Training-labeled/labels/cell_00926_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00387.tif",
+            "label": "Training-labeled/labels/cell_00387_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00399.tif",
+            "label": "Training-labeled/labels/cell_00399_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00914.png",
+            "label": "Training-labeled/labels/cell_00914_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00130.bmp",
+            "label": "Training-labeled/labels/cell_00130_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00427.tif",
+            "label": "Training-labeled/labels/cell_00427_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00075.bmp",
+            "label": "Training-labeled/labels/cell_00075_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00849.png",
+            "label": "Training-labeled/labels/cell_00849_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00977.png",
+            "label": "Training-labeled/labels/cell_00977_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00010.bmp",
+            "label": "Training-labeled/labels/cell_00010_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00879.png",
+            "label": "Training-labeled/labels/cell_00879_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00094.bmp",
+            "label": "Training-labeled/labels/cell_00094_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00728.png",
+            "label": "Training-labeled/labels/cell_00728_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00270.tif",
+            "label": "Training-labeled/labels/cell_00270_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00224.png",
+            "label": "Training-labeled/labels/cell_00224_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00633.tif",
+            "label": "Training-labeled/labels/cell_00633_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00844.png",
+            "label": "Training-labeled/labels/cell_00844_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00042.bmp",
+            "label": "Training-labeled/labels/cell_00042_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00745.png",
+            "label": "Training-labeled/labels/cell_00745_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00469.tif",
+            "label": "Training-labeled/labels/cell_00469_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00863.png",
+            "label": "Training-labeled/labels/cell_00863_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00675.tif",
+            "label": "Training-labeled/labels/cell_00675_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00112.bmp",
+            "label": "Training-labeled/labels/cell_00112_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00898.png",
+            "label": "Training-labeled/labels/cell_00898_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00716.tiff",
+            "label": "Training-labeled/labels/cell_00716_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00850.png",
+            "label": "Training-labeled/labels/cell_00850_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00303.tiff",
+            "label": "Training-labeled/labels/cell_00303_label.tiff",
+            "fold": 2
+        },
+        {
+            "image": "Training-labeled/images/cell_00758.png",
+            "label": "Training-labeled/labels/cell_00758_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00023.bmp",
+            "label": "Training-labeled/labels/cell_00023_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00609.tif",
+            "label": "Training-labeled/labels/cell_00609_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00212.png",
+            "label": "Training-labeled/labels/cell_00212_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00938.png",
+            "label": "Training-labeled/labels/cell_00938_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00226.png",
+            "label": "Training-labeled/labels/cell_00226_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00590.tif",
+            "label": "Training-labeled/labels/cell_00590_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00187.png",
+            "label": "Training-labeled/labels/cell_00187_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00239.tif",
+            "label": "Training-labeled/labels/cell_00239_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00280.tif",
+            "label": "Training-labeled/labels/cell_00280_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00114.bmp",
+            "label": "Training-labeled/labels/cell_00114_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00994.png",
+            "label": "Training-labeled/labels/cell_00994_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00309.tiff",
+            "label": "Training-labeled/labels/cell_00309_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00686.tif",
+            "label": "Training-labeled/labels/cell_00686_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00634.tif",
+            "label": "Training-labeled/labels/cell_00634_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00984.png",
+            "label": "Training-labeled/labels/cell_00984_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00566.tif",
+            "label": "Training-labeled/labels/cell_00566_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00778.png",
+            "label": "Training-labeled/labels/cell_00778_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00138.bmp",
+            "label": "Training-labeled/labels/cell_00138_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00631.tif",
+            "label": "Training-labeled/labels/cell_00631_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00302.tiff",
+            "label": "Training-labeled/labels/cell_00302_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00851.png",
+            "label": "Training-labeled/labels/cell_00851_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00760.png",
+            "label": "Training-labeled/labels/cell_00760_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00890.png",
+            "label": "Training-labeled/labels/cell_00890_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00498.tif",
+            "label": "Training-labeled/labels/cell_00498_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00001.bmp",
+            "label": "Training-labeled/labels/cell_00001_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00907.png",
+            "label": "Training-labeled/labels/cell_00907_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00841.png",
+            "label": "Training-labeled/labels/cell_00841_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00776.png",
+            "label": "Training-labeled/labels/cell_00776_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00746.png",
+            "label": "Training-labeled/labels/cell_00746_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00388.tif",
+            "label": "Training-labeled/labels/cell_00388_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00816.png",
+            "label": "Training-labeled/labels/cell_00816_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00507.tif",
+            "label": "Training-labeled/labels/cell_00507_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00166.png",
+            "label": "Training-labeled/labels/cell_00166_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00256.tif",
+            "label": "Training-labeled/labels/cell_00256_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00375.tif",
+            "label": "Training-labeled/labels/cell_00375_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00809.png",
+            "label": "Training-labeled/labels/cell_00809_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00906.png",
+            "label": "Training-labeled/labels/cell_00906_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00363.tif",
+            "label": "Training-labeled/labels/cell_00363_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00562.tif",
+            "label": "Training-labeled/labels/cell_00562_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00145.png",
+            "label": "Training-labeled/labels/cell_00145_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00450.tif",
+            "label": "Training-labeled/labels/cell_00450_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00211.png",
+            "label": "Training-labeled/labels/cell_00211_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00170.png",
+            "label": "Training-labeled/labels/cell_00170_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00581.tif",
+            "label": "Training-labeled/labels/cell_00581_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00483.tif",
+            "label": "Training-labeled/labels/cell_00483_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00037.bmp",
+            "label": "Training-labeled/labels/cell_00037_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00658.tif",
+            "label": "Training-labeled/labels/cell_00658_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00133.bmp",
+            "label": "Training-labeled/labels/cell_00133_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00606.tif",
+            "label": "Training-labeled/labels/cell_00606_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00274.tif",
+            "label": "Training-labeled/labels/cell_00274_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00949.png",
+            "label": "Training-labeled/labels/cell_00949_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00422.tif",
+            "label": "Training-labeled/labels/cell_00422_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00707.tiff",
+            "label": "Training-labeled/labels/cell_00707_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00382.tif",
+            "label": "Training-labeled/labels/cell_00382_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00284.tif",
+            "label": "Training-labeled/labels/cell_00284_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00501.tif",
+            "label": "Training-labeled/labels/cell_00501_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00969.png",
+            "label": "Training-labeled/labels/cell_00969_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00622.tif",
+            "label": "Training-labeled/labels/cell_00622_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00506.tif",
+            "label": "Training-labeled/labels/cell_00506_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00028.bmp",
+            "label": "Training-labeled/labels/cell_00028_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00671.tif",
+            "label": "Training-labeled/labels/cell_00671_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00276.tif",
+            "label": "Training-labeled/labels/cell_00276_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00548.tif",
+            "label": "Training-labeled/labels/cell_00548_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00282.tif",
+            "label": "Training-labeled/labels/cell_00282_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00918.png",
+            "label": "Training-labeled/labels/cell_00918_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00258.tif",
+            "label": "Training-labeled/labels/cell_00258_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00934.png",
+            "label": "Training-labeled/labels/cell_00934_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00986.png",
+            "label": "Training-labeled/labels/cell_00986_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00298.tif",
+            "label": "Training-labeled/labels/cell_00298_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00681.tif",
+            "label": "Training-labeled/labels/cell_00681_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00447.tif",
+            "label": "Training-labeled/labels/cell_00447_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00245.tif",
+            "label": "Training-labeled/labels/cell_00245_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00820.png",
+            "label": "Training-labeled/labels/cell_00820_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00215.png",
+            "label": "Training-labeled/labels/cell_00215_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00554.tiff",
+            "label": "Training-labeled/labels/cell_00554_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00178.png",
+            "label": "Training-labeled/labels/cell_00178_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00713.tiff",
+            "label": "Training-labeled/labels/cell_00713_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00942.png",
+            "label": "Training-labeled/labels/cell_00942_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00164.png",
+            "label": "Training-labeled/labels/cell_00164_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00738.png",
+            "label": "Training-labeled/labels/cell_00738_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00350.tif",
+            "label": "Training-labeled/labels/cell_00350_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00370.tif",
+            "label": "Training-labeled/labels/cell_00370_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00381.tif",
+            "label": "Training-labeled/labels/cell_00381_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00602.tif",
+            "label": "Training-labeled/labels/cell_00602_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00883.png",
+            "label": "Training-labeled/labels/cell_00883_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00064.bmp",
+            "label": "Training-labeled/labels/cell_00064_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00626.tif",
+            "label": "Training-labeled/labels/cell_00626_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00341.tif",
+            "label": "Training-labeled/labels/cell_00341_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00474.tif",
+            "label": "Training-labeled/labels/cell_00474_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00263.tif",
+            "label": "Training-labeled/labels/cell_00263_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00161.png",
+            "label": "Training-labeled/labels/cell_00161_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00463.tif",
+            "label": "Training-labeled/labels/cell_00463_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00237.tif",
+            "label": "Training-labeled/labels/cell_00237_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00971.png",
+            "label": "Training-labeled/labels/cell_00971_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00899.png",
+            "label": "Training-labeled/labels/cell_00899_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00193.png",
+            "label": "Training-labeled/labels/cell_00193_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00576.tif",
+            "label": "Training-labeled/labels/cell_00576_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00546.tif",
+            "label": "Training-labeled/labels/cell_00546_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00283.tif",
+            "label": "Training-labeled/labels/cell_00283_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00789.png",
+            "label": "Training-labeled/labels/cell_00789_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00930.png",
+            "label": "Training-labeled/labels/cell_00930_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00368.tif",
+            "label": "Training-labeled/labels/cell_00368_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00572.tif",
+            "label": "Training-labeled/labels/cell_00572_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00223.png",
+            "label": "Training-labeled/labels/cell_00223_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00574.tif",
+            "label": "Training-labeled/labels/cell_00574_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00061.bmp",
+            "label": "Training-labeled/labels/cell_00061_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00714.tiff",
+            "label": "Training-labeled/labels/cell_00714_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00300.tif",
+            "label": "Training-labeled/labels/cell_00300_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00408.tif",
+            "label": "Training-labeled/labels/cell_00408_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00770.png",
+            "label": "Training-labeled/labels/cell_00770_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00838.png",
+            "label": "Training-labeled/labels/cell_00838_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00296.tif",
+            "label": "Training-labeled/labels/cell_00296_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00054.bmp",
+            "label": "Training-labeled/labels/cell_00054_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00267.tif",
+            "label": "Training-labeled/labels/cell_00267_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00046.bmp",
+            "label": "Training-labeled/labels/cell_00046_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00045.bmp",
+            "label": "Training-labeled/labels/cell_00045_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00878.png",
+            "label": "Training-labeled/labels/cell_00878_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00663.tif",
+            "label": "Training-labeled/labels/cell_00663_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00845.png",
+            "label": "Training-labeled/labels/cell_00845_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00195.png",
+            "label": "Training-labeled/labels/cell_00195_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00409.tif",
+            "label": "Training-labeled/labels/cell_00409_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00148.png",
+            "label": "Training-labeled/labels/cell_00148_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00516.tif",
+            "label": "Training-labeled/labels/cell_00516_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00238.tif",
+            "label": "Training-labeled/labels/cell_00238_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00808.png",
+            "label": "Training-labeled/labels/cell_00808_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00342.tif",
+            "label": "Training-labeled/labels/cell_00342_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00097.bmp",
+            "label": "Training-labeled/labels/cell_00097_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00597.tif",
+            "label": "Training-labeled/labels/cell_00597_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00376.tif",
+            "label": "Training-labeled/labels/cell_00376_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00182.png",
+            "label": "Training-labeled/labels/cell_00182_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00856.png",
+            "label": "Training-labeled/labels/cell_00856_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00410.tif",
+            "label": "Training-labeled/labels/cell_00410_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00502.tif",
+            "label": "Training-labeled/labels/cell_00502_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00843.png",
+            "label": "Training-labeled/labels/cell_00843_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00380.tif",
+            "label": "Training-labeled/labels/cell_00380_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00120.bmp",
+            "label": "Training-labeled/labels/cell_00120_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00080.bmp",
+            "label": "Training-labeled/labels/cell_00080_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00639.tif",
+            "label": "Training-labeled/labels/cell_00639_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00286.tif",
+            "label": "Training-labeled/labels/cell_00286_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00344.tif",
+            "label": "Training-labeled/labels/cell_00344_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00448.tif",
+            "label": "Training-labeled/labels/cell_00448_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00981.png",
+            "label": "Training-labeled/labels/cell_00981_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00147.png",
+            "label": "Training-labeled/labels/cell_00147_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00691.tif",
+            "label": "Training-labeled/labels/cell_00691_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00620.tif",
+            "label": "Training-labeled/labels/cell_00620_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00958.png",
+            "label": "Training-labeled/labels/cell_00958_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00551.tiff",
+            "label": "Training-labeled/labels/cell_00551_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00476.tif",
+            "label": "Training-labeled/labels/cell_00476_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00176.png",
+            "label": "Training-labeled/labels/cell_00176_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00737.png",
+            "label": "Training-labeled/labels/cell_00737_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00084.bmp",
+            "label": "Training-labeled/labels/cell_00084_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00668.tif",
+            "label": "Training-labeled/labels/cell_00668_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00222.png",
+            "label": "Training-labeled/labels/cell_00222_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00966.png",
+            "label": "Training-labeled/labels/cell_00966_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00326.tif",
+            "label": "Training-labeled/labels/cell_00326_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00937.png",
+            "label": "Training-labeled/labels/cell_00937_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00998.png",
+            "label": "Training-labeled/labels/cell_00998_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00777.png",
+            "label": "Training-labeled/labels/cell_00777_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00735.png",
+            "label": "Training-labeled/labels/cell_00735_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00053.bmp",
+            "label": "Training-labeled/labels/cell_00053_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00812.png",
+            "label": "Training-labeled/labels/cell_00812_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00817.png",
+            "label": "Training-labeled/labels/cell_00817_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00128.bmp",
+            "label": "Training-labeled/labels/cell_00128_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00392.tif",
+            "label": "Training-labeled/labels/cell_00392_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00888.png",
+            "label": "Training-labeled/labels/cell_00888_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00057.bmp",
+            "label": "Training-labeled/labels/cell_00057_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00019.bmp",
+            "label": "Training-labeled/labels/cell_00019_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00656.tif",
+            "label": "Training-labeled/labels/cell_00656_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00095.bmp",
+            "label": "Training-labeled/labels/cell_00095_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00573.tif",
+            "label": "Training-labeled/labels/cell_00573_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00923.png",
+            "label": "Training-labeled/labels/cell_00923_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00008.bmp",
+            "label": "Training-labeled/labels/cell_00008_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00101.bmp",
+            "label": "Training-labeled/labels/cell_00101_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00003.bmp",
+            "label": "Training-labeled/labels/cell_00003_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00638.tif",
+            "label": "Training-labeled/labels/cell_00638_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00793.png",
+            "label": "Training-labeled/labels/cell_00793_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00672.tif",
+            "label": "Training-labeled/labels/cell_00672_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00747.png",
+            "label": "Training-labeled/labels/cell_00747_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00941.png",
+            "label": "Training-labeled/labels/cell_00941_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00272.tif",
+            "label": "Training-labeled/labels/cell_00272_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00982.png",
+            "label": "Training-labeled/labels/cell_00982_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00400.tif",
+            "label": "Training-labeled/labels/cell_00400_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00116.bmp",
+            "label": "Training-labeled/labels/cell_00116_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00848.png",
+            "label": "Training-labeled/labels/cell_00848_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00962.png",
+            "label": "Training-labeled/labels/cell_00962_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00110.bmp",
+            "label": "Training-labeled/labels/cell_00110_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00423.tif",
+            "label": "Training-labeled/labels/cell_00423_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00275.tif",
+            "label": "Training-labeled/labels/cell_00275_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00939.png",
+            "label": "Training-labeled/labels/cell_00939_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00088.bmp",
+            "label": "Training-labeled/labels/cell_00088_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00544.tif",
+            "label": "Training-labeled/labels/cell_00544_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00645.tif",
+            "label": "Training-labeled/labels/cell_00645_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00846.png",
+            "label": "Training-labeled/labels/cell_00846_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00160.png",
+            "label": "Training-labeled/labels/cell_00160_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00115.bmp",
+            "label": "Training-labeled/labels/cell_00115_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00933.png",
+            "label": "Training-labeled/labels/cell_00933_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00788.png",
+            "label": "Training-labeled/labels/cell_00788_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00356.tif",
+            "label": "Training-labeled/labels/cell_00356_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00007.bmp",
+            "label": "Training-labeled/labels/cell_00007_label.tiff",
+            "fold": 3
+        },
+        {
+            "image": "Training-labeled/images/cell_00141.bmp",
+            "label": "Training-labeled/labels/cell_00141_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00134.bmp",
+            "label": "Training-labeled/labels/cell_00134_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00379.tif",
+            "label": "Training-labeled/labels/cell_00379_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00404.tif",
+            "label": "Training-labeled/labels/cell_00404_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00438.tif",
+            "label": "Training-labeled/labels/cell_00438_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00452.tif",
+            "label": "Training-labeled/labels/cell_00452_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00915.png",
+            "label": "Training-labeled/labels/cell_00915_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00287.tif",
+            "label": "Training-labeled/labels/cell_00287_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00694.tif",
+            "label": "Training-labeled/labels/cell_00694_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00947.png",
+            "label": "Training-labeled/labels/cell_00947_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00366.tif",
+            "label": "Training-labeled/labels/cell_00366_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00660.tif",
+            "label": "Training-labeled/labels/cell_00660_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_01000.png",
+            "label": "Training-labeled/labels/cell_01000_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00496.tif",
+            "label": "Training-labeled/labels/cell_00496_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00371.tif",
+            "label": "Training-labeled/labels/cell_00371_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00886.png",
+            "label": "Training-labeled/labels/cell_00886_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00912.png",
+            "label": "Training-labeled/labels/cell_00912_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00393.tif",
+            "label": "Training-labeled/labels/cell_00393_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00123.bmp",
+            "label": "Training-labeled/labels/cell_00123_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00974.png",
+            "label": "Training-labeled/labels/cell_00974_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00413.tif",
+            "label": "Training-labeled/labels/cell_00413_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00230.png",
+            "label": "Training-labeled/labels/cell_00230_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00636.tif",
+            "label": "Training-labeled/labels/cell_00636_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00076.bmp",
+            "label": "Training-labeled/labels/cell_00076_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00630.tif",
+            "label": "Training-labeled/labels/cell_00630_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00251.tif",
+            "label": "Training-labeled/labels/cell_00251_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00035.bmp",
+            "label": "Training-labeled/labels/cell_00035_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00970.png",
+            "label": "Training-labeled/labels/cell_00970_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00563.tif",
+            "label": "Training-labeled/labels/cell_00563_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00063.bmp",
+            "label": "Training-labeled/labels/cell_00063_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00749.png",
+            "label": "Training-labeled/labels/cell_00749_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00589.tif",
+            "label": "Training-labeled/labels/cell_00589_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00517.tif",
+            "label": "Training-labeled/labels/cell_00517_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00156.png",
+            "label": "Training-labeled/labels/cell_00156_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00524.tif",
+            "label": "Training-labeled/labels/cell_00524_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00811.png",
+            "label": "Training-labeled/labels/cell_00811_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00171.png",
+            "label": "Training-labeled/labels/cell_00171_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00294.tif",
+            "label": "Training-labeled/labels/cell_00294_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00803.png",
+            "label": "Training-labeled/labels/cell_00803_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00449.tif",
+            "label": "Training-labeled/labels/cell_00449_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00231.tif",
+            "label": "Training-labeled/labels/cell_00231_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00869.png",
+            "label": "Training-labeled/labels/cell_00869_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00924.png",
+            "label": "Training-labeled/labels/cell_00924_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00979.png",
+            "label": "Training-labeled/labels/cell_00979_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00079.bmp",
+            "label": "Training-labeled/labels/cell_00079_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00535.tif",
+            "label": "Training-labeled/labels/cell_00535_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00867.png",
+            "label": "Training-labeled/labels/cell_00867_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00180.png",
+            "label": "Training-labeled/labels/cell_00180_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00181.png",
+            "label": "Training-labeled/labels/cell_00181_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00313.tiff",
+            "label": "Training-labeled/labels/cell_00313_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00864.png",
+            "label": "Training-labeled/labels/cell_00864_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00068.bmp",
+            "label": "Training-labeled/labels/cell_00068_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00661.tif",
+            "label": "Training-labeled/labels/cell_00661_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00616.tif",
+            "label": "Training-labeled/labels/cell_00616_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00530.tif",
+            "label": "Training-labeled/labels/cell_00530_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00009.bmp",
+            "label": "Training-labeled/labels/cell_00009_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00317.tif",
+            "label": "Training-labeled/labels/cell_00317_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00585.tif",
+            "label": "Training-labeled/labels/cell_00585_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00819.png",
+            "label": "Training-labeled/labels/cell_00819_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00206.png",
+            "label": "Training-labeled/labels/cell_00206_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00541.tif",
+            "label": "Training-labeled/labels/cell_00541_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00183.png",
+            "label": "Training-labeled/labels/cell_00183_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00960.png",
+            "label": "Training-labeled/labels/cell_00960_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00432.tif",
+            "label": "Training-labeled/labels/cell_00432_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00058.bmp",
+            "label": "Training-labeled/labels/cell_00058_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00430.tif",
+            "label": "Training-labeled/labels/cell_00430_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00157.png",
+            "label": "Training-labeled/labels/cell_00157_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00242.tif",
+            "label": "Training-labeled/labels/cell_00242_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00547.tif",
+            "label": "Training-labeled/labels/cell_00547_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00299.tif",
+            "label": "Training-labeled/labels/cell_00299_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00756.png",
+            "label": "Training-labeled/labels/cell_00756_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00892.png",
+            "label": "Training-labeled/labels/cell_00892_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00168.png",
+            "label": "Training-labeled/labels/cell_00168_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00073.bmp",
+            "label": "Training-labeled/labels/cell_00073_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00324.tif",
+            "label": "Training-labeled/labels/cell_00324_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00529.tif",
+            "label": "Training-labeled/labels/cell_00529_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00868.png",
+            "label": "Training-labeled/labels/cell_00868_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00139.bmp",
+            "label": "Training-labeled/labels/cell_00139_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00029.bmp",
+            "label": "Training-labeled/labels/cell_00029_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00140.bmp",
+            "label": "Training-labeled/labels/cell_00140_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00429.tif",
+            "label": "Training-labeled/labels/cell_00429_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00784.png",
+            "label": "Training-labeled/labels/cell_00784_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00599.tif",
+            "label": "Training-labeled/labels/cell_00599_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00725.png",
+            "label": "Training-labeled/labels/cell_00725_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00689.tif",
+            "label": "Training-labeled/labels/cell_00689_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00688.tif",
+            "label": "Training-labeled/labels/cell_00688_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00281.tif",
+            "label": "Training-labeled/labels/cell_00281_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00703.tiff",
+            "label": "Training-labeled/labels/cell_00703_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00043.bmp",
+            "label": "Training-labeled/labels/cell_00043_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00092.bmp",
+            "label": "Training-labeled/labels/cell_00092_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00012.bmp",
+            "label": "Training-labeled/labels/cell_00012_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00666.tif",
+            "label": "Training-labeled/labels/cell_00666_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00528.tif",
+            "label": "Training-labeled/labels/cell_00528_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00536.tif",
+            "label": "Training-labeled/labels/cell_00536_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00440.tif",
+            "label": "Training-labeled/labels/cell_00440_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00582.tif",
+            "label": "Training-labeled/labels/cell_00582_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00617.tif",
+            "label": "Training-labeled/labels/cell_00617_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00257.tif",
+            "label": "Training-labeled/labels/cell_00257_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00497.tif",
+            "label": "Training-labeled/labels/cell_00497_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00637.tif",
+            "label": "Training-labeled/labels/cell_00637_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00763.png",
+            "label": "Training-labeled/labels/cell_00763_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00917.png",
+            "label": "Training-labeled/labels/cell_00917_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00889.png",
+            "label": "Training-labeled/labels/cell_00889_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00154.png",
+            "label": "Training-labeled/labels/cell_00154_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00510.tif",
+            "label": "Training-labeled/labels/cell_00510_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00503.tif",
+            "label": "Training-labeled/labels/cell_00503_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00859.png",
+            "label": "Training-labeled/labels/cell_00859_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00603.tif",
+            "label": "Training-labeled/labels/cell_00603_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00362.tif",
+            "label": "Training-labeled/labels/cell_00362_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00228.png",
+            "label": "Training-labeled/labels/cell_00228_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00644.tif",
+            "label": "Training-labeled/labels/cell_00644_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00768.png",
+            "label": "Training-labeled/labels/cell_00768_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00446.tif",
+            "label": "Training-labeled/labels/cell_00446_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00625.tif",
+            "label": "Training-labeled/labels/cell_00625_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00935.png",
+            "label": "Training-labeled/labels/cell_00935_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00071.bmp",
+            "label": "Training-labeled/labels/cell_00071_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00453.tif",
+            "label": "Training-labeled/labels/cell_00453_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00365.tif",
+            "label": "Training-labeled/labels/cell_00365_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00417.tif",
+            "label": "Training-labeled/labels/cell_00417_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00348.tif",
+            "label": "Training-labeled/labels/cell_00348_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00759.png",
+            "label": "Training-labeled/labels/cell_00759_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00795.png",
+            "label": "Training-labeled/labels/cell_00795_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00769.png",
+            "label": "Training-labeled/labels/cell_00769_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00932.png",
+            "label": "Training-labeled/labels/cell_00932_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00321.tif",
+            "label": "Training-labeled/labels/cell_00321_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00216.png",
+            "label": "Training-labeled/labels/cell_00216_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00111.bmp",
+            "label": "Training-labeled/labels/cell_00111_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00292.tif",
+            "label": "Training-labeled/labels/cell_00292_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00783.png",
+            "label": "Training-labeled/labels/cell_00783_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00822.png",
+            "label": "Training-labeled/labels/cell_00822_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00122.bmp",
+            "label": "Training-labeled/labels/cell_00122_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00308.tiff",
+            "label": "Training-labeled/labels/cell_00308_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00729.png",
+            "label": "Training-labeled/labels/cell_00729_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00894.png",
+            "label": "Training-labeled/labels/cell_00894_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00473.tif",
+            "label": "Training-labeled/labels/cell_00473_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00481.tif",
+            "label": "Training-labeled/labels/cell_00481_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00702.tiff",
+            "label": "Training-labeled/labels/cell_00702_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00680.tif",
+            "label": "Training-labeled/labels/cell_00680_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00456.tif",
+            "label": "Training-labeled/labels/cell_00456_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00305.tiff",
+            "label": "Training-labeled/labels/cell_00305_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00956.png",
+            "label": "Training-labeled/labels/cell_00956_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00944.png",
+            "label": "Training-labeled/labels/cell_00944_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00208.png",
+            "label": "Training-labeled/labels/cell_00208_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00218.png",
+            "label": "Training-labeled/labels/cell_00218_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00701.tiff",
+            "label": "Training-labeled/labels/cell_00701_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00107.bmp",
+            "label": "Training-labeled/labels/cell_00107_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00465.tif",
+            "label": "Training-labeled/labels/cell_00465_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00121.bmp",
+            "label": "Training-labeled/labels/cell_00121_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00558.tiff",
+            "label": "Training-labeled/labels/cell_00558_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00596.tif",
+            "label": "Training-labeled/labels/cell_00596_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00252.tif",
+            "label": "Training-labeled/labels/cell_00252_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00842.png",
+            "label": "Training-labeled/labels/cell_00842_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00017.bmp",
+            "label": "Training-labeled/labels/cell_00017_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00927.png",
+            "label": "Training-labeled/labels/cell_00927_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00091.bmp",
+            "label": "Training-labeled/labels/cell_00091_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00118.bmp",
+            "label": "Training-labeled/labels/cell_00118_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00993.png",
+            "label": "Training-labeled/labels/cell_00993_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00377.tif",
+            "label": "Training-labeled/labels/cell_00377_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00975.png",
+            "label": "Training-labeled/labels/cell_00975_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00508.tif",
+            "label": "Training-labeled/labels/cell_00508_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00214.png",
+            "label": "Training-labeled/labels/cell_00214_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00136.bmp",
+            "label": "Training-labeled/labels/cell_00136_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00034.bmp",
+            "label": "Training-labeled/labels/cell_00034_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00277.tif",
+            "label": "Training-labeled/labels/cell_00277_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00724.png",
+            "label": "Training-labeled/labels/cell_00724_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00349.tif",
+            "label": "Training-labeled/labels/cell_00349_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00521.tif",
+            "label": "Training-labeled/labels/cell_00521_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00225.png",
+            "label": "Training-labeled/labels/cell_00225_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00709.tiff",
+            "label": "Training-labeled/labels/cell_00709_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00462.tif",
+            "label": "Training-labeled/labels/cell_00462_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00398.tif",
+            "label": "Training-labeled/labels/cell_00398_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00683.tif",
+            "label": "Training-labeled/labels/cell_00683_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00330.tif",
+            "label": "Training-labeled/labels/cell_00330_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00032.bmp",
+            "label": "Training-labeled/labels/cell_00032_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00072.bmp",
+            "label": "Training-labeled/labels/cell_00072_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00881.png",
+            "label": "Training-labeled/labels/cell_00881_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00965.png",
+            "label": "Training-labeled/labels/cell_00965_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00874.png",
+            "label": "Training-labeled/labels/cell_00874_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00662.tif",
+            "label": "Training-labeled/labels/cell_00662_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00411.tif",
+            "label": "Training-labeled/labels/cell_00411_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00025.bmp",
+            "label": "Training-labeled/labels/cell_00025_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00499.tif",
+            "label": "Training-labeled/labels/cell_00499_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00621.tif",
+            "label": "Training-labeled/labels/cell_00621_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00142.tif",
+            "label": "Training-labeled/labels/cell_00142_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00733.png",
+            "label": "Training-labeled/labels/cell_00733_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00833.png",
+            "label": "Training-labeled/labels/cell_00833_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00062.bmp",
+            "label": "Training-labeled/labels/cell_00062_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00203.png",
+            "label": "Training-labeled/labels/cell_00203_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00985.png",
+            "label": "Training-labeled/labels/cell_00985_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00041.bmp",
+            "label": "Training-labeled/labels/cell_00041_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00461.tif",
+            "label": "Training-labeled/labels/cell_00461_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00996.png",
+            "label": "Training-labeled/labels/cell_00996_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00086.bmp",
+            "label": "Training-labeled/labels/cell_00086_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00512.tif",
+            "label": "Training-labeled/labels/cell_00512_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00320.tif",
+            "label": "Training-labeled/labels/cell_00320_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00772.png",
+            "label": "Training-labeled/labels/cell_00772_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00105.bmp",
+            "label": "Training-labeled/labels/cell_00105_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00862.png",
+            "label": "Training-labeled/labels/cell_00862_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00870.png",
+            "label": "Training-labeled/labels/cell_00870_label.tiff",
+            "fold": 4
+        },
+        {
+            "image": "Training-labeled/images/cell_00519.tif",
+            "label": "Training-labeled/labels/cell_00519_label.tiff",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "Testing/Public/images/OpenTest_029.bmp",
+            "label": "Testing/Public/labels/OpenTest_029_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_049.tif",
+            "label": "Testing/Public/labels/OpenTest_049_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_013.png",
+            "label": "Testing/Public/labels/OpenTest_013_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_045.png",
+            "label": "Testing/Public/labels/OpenTest_045_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_003.bmp",
+            "label": "Testing/Public/labels/OpenTest_003_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_021.png",
+            "label": "Testing/Public/labels/OpenTest_021_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_019.tif",
+            "label": "Testing/Public/labels/OpenTest_019_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_007.tif",
+            "label": "Testing/Public/labels/OpenTest_007_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_002.tif",
+            "label": "Testing/Public/labels/OpenTest_002_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_028.tif",
+            "label": "Testing/Public/labels/OpenTest_028_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_042.tiff",
+            "label": "Testing/Public/labels/OpenTest_042_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_032.tiff",
+            "label": "Testing/Public/labels/OpenTest_032_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_035.tif",
+            "label": "Testing/Public/labels/OpenTest_035_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_014.png",
+            "label": "Testing/Public/labels/OpenTest_014_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_050.tiff",
+            "label": "Testing/Public/labels/OpenTest_050_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_016.png",
+            "label": "Testing/Public/labels/OpenTest_016_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_025.tif",
+            "label": "Testing/Public/labels/OpenTest_025_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_033.tif",
+            "label": "Testing/Public/labels/OpenTest_033_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_006.png",
+            "label": "Testing/Public/labels/OpenTest_006_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_038.bmp",
+            "label": "Testing/Public/labels/OpenTest_038_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_037.tif",
+            "label": "Testing/Public/labels/OpenTest_037_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_036.bmp",
+            "label": "Testing/Public/labels/OpenTest_036_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_044.png",
+            "label": "Testing/Public/labels/OpenTest_044_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_005.tif",
+            "label": "Testing/Public/labels/OpenTest_005_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_030.tif",
+            "label": "Testing/Public/labels/OpenTest_030_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_022.tif",
+            "label": "Testing/Public/labels/OpenTest_022_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_012.bmp",
+            "label": "Testing/Public/labels/OpenTest_012_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_041.png",
+            "label": "Testing/Public/labels/OpenTest_041_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_023.png",
+            "label": "Testing/Public/labels/OpenTest_023_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_040.bmp",
+            "label": "Testing/Public/labels/OpenTest_040_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_031.png",
+            "label": "Testing/Public/labels/OpenTest_031_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_027.tif",
+            "label": "Testing/Public/labels/OpenTest_027_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_043.tiff",
+            "label": "Testing/Public/labels/OpenTest_043_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_011.tif",
+            "label": "Testing/Public/labels/OpenTest_011_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_018.bmp",
+            "label": "Testing/Public/labels/OpenTest_018_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_046.tif",
+            "label": "Testing/Public/labels/OpenTest_046_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_047.tif",
+            "label": "Testing/Public/labels/OpenTest_047_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_020.tif",
+            "label": "Testing/Public/labels/OpenTest_020_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_015.tif",
+            "label": "Testing/Public/labels/OpenTest_015_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_039.tif",
+            "label": "Testing/Public/labels/OpenTest_039_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_017.png",
+            "label": "Testing/Public/labels/OpenTest_017_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_026.tif",
+            "label": "Testing/Public/labels/OpenTest_026_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_009.tif",
+            "label": "Testing/Public/labels/OpenTest_009_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_008.tif",
+            "label": "Testing/Public/labels/OpenTest_008_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_001.png",
+            "label": "Testing/Public/labels/OpenTest_001_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_024.bmp",
+            "label": "Testing/Public/labels/OpenTest_024_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_004.tif",
+            "label": "Testing/Public/labels/OpenTest_004_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_048.tiff",
+            "label": "Testing/Public/labels/OpenTest_048_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_034.tif",
+            "label": "Testing/Public/labels/OpenTest_034_label.tiff"
+        },
+        {
+            "image": "Testing/Public/images/OpenTest_010.tif",
+            "label": "Testing/Public/labels/OpenTest_010_label.tiff"
+        }
+    ]
+}
