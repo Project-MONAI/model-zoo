@@ -25,13 +25,13 @@ A pretrained model was trained on collection of 15K public microscopy images. Th
 - Robust deep learning algorithm based on transformers
 - Generalist model as compared to specialist models
 - Multiple dataset sources and file formats supported
-- Multiple modalities of imaging data collectively supported 
+- Multiple modalities of imaging data collectively supported
 - Multi-GPU and multinode training support
 
 
 ### Generalization performance
 
-Evaluation was performed for the VISTA2D model with multiple public datasets, such as TissueNet, LIVECell, Omnipose, DeepBacs, Cellpose, and [more](./docs/data_license.txt). A total of ~15K annotated cell images were collected to train the generalist VISTA2D model. This ensured broad coverage of many different types of cells, which were acquired by various imaging acquisition types. The benchmark results of the experiment were performed on held-out test sets for each public dataset that were already defined by the dataset contributors. Average precision at an IoU threshold of 0.5 was used for evaluating performance. The benchmark results are reported in comparison with the best numbers found in the literature, in addition to a specialist VISTA2D model trained only on a particular dataset or a subset of data. 
+Evaluation was performed for the VISTA2D model with multiple public datasets, such as TissueNet, LIVECell, Omnipose, DeepBacs, Cellpose, and [more](./docs/data_license.txt). A total of ~15K annotated cell images were collected to train the generalist VISTA2D model. This ensured broad coverage of many different types of cells, which were acquired by various imaging acquisition types. The benchmark results of the experiment were performed on held-out test sets for each public dataset that were already defined by the dataset contributors. Average precision at an IoU threshold of 0.5 was used for evaluating performance. The benchmark results are reported in comparison with the best numbers found in the literature, in addition to a specialist VISTA2D model trained only on a particular dataset or a subset of data.
 
 <div align="center"> <img src="https://developer-blogs.nvidia.com/wp-content/uploads/2024/04/vista-2d-model-precision-versus-specialist-model-baseline-performance.png" width="800"/> </div>
 
