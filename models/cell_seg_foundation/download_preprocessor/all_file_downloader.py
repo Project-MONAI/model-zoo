@@ -37,11 +37,7 @@ def download_files(url_dict, directory):
 
             # Write the content to a file in the specified directory with progress
             with open(file_path, "wb") as file, tqdm(
-                desc=filename,
-                total=total_size,
-                unit="iB",
-                unit_scale=True,
-                unit_divisor=1024,
+                desc=filename, total=total_size, unit="iB", unit_scale=True, unit_divisor=1024
             ) as bar:
                 for data in response.iter_content(chunk_size=1024):
                     size = file.write(data)
@@ -63,7 +59,7 @@ def main():
         "deepbacs.zip": "https://zenodo.org/records/5551009/files/DeepBacs_Data_Segmentation_StarDist_MIXED_dataset.zip?download=1",
         "nips_test.zip": "https://zenodo.org/records/10719375/files/Testing.zip?download=1",
         "nips_train.zip": "https://zenodo.org/records/10719375/files/Training-labeled.zip?download=1",
-        "livecell": "wget --recursive --no-parent --cut-dirs=0 --timestamping -i urls.txt --directory-prefix="
+        "livecell": "wget --recursive --no-parent --cut-dirs=0 --timestamping -i urls.txt --directory-prefix=",
         # Add URLs with keys here
     }
     download_files(url_dict, directory)

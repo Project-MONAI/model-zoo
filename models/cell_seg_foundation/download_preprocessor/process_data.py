@@ -29,8 +29,10 @@ def guess_convert_to_uint16(img, margin=30):
     """
     Guess a multiplier that makes all pixels integers.
     The input img (each channel) is already in the range 0..1, they must have been converted from uint16 integers as image / scale,
-    where scale was the unknown max intensity. We could guess the scale by looking at unique values: 1/np.min(np.diff(np.unique(im)).
-    the hypothesis is that it will be more accurate recovery of the original image, instead of doing a simple (img*65535).astype(np.uint16)
+    where scale was the unknown max intensity.
+    We could guess the scale by looking at unique values: 1/np.min(np.diff(np.unique(im)).
+    the hypothesis is that it will be more accurate recovery of the original image,
+    instead of doing a simple (img*65535).astype(np.uint16)
     """
 
     for i in range(img.shape[0]):
@@ -46,13 +48,8 @@ def guess_convert_to_uint16(img, margin=30):
                 (np.sum((imsmall * k) % 1)) for k in range(scale - margin, scale + margin)
             ]  # finetune, guess a multiplier that makes all pixels integers
             sid = np.argmin(test)  # fine tune scale
-            # print('guessing scale', scale, test[margin], 'fine tuning scale', scale - margin + sid, 'dif', test[sid], 'time', time.time()-start)
 
             if scale < 16000 or scale > 16400:
-                # print(imsmall.shape)
-                # print(np.unique(imsmall))
-                # print(np.diff(np.unique(imsmall)))
-                # print(np.min(np.diff(np.unique(imsmall))))
                 warnings.warn("scale not in expected range")
                 print(
                     "guessing scale",
@@ -69,10 +66,9 @@ def guess_convert_to_uint16(img, margin=30):
                 scale = 16384
             else:
                 scale = scale - margin + sid
-
-            scale = min(
-                65535, scale * 4
-            )  # all the recovered scale values seems to be up to 16384, we can stretch to 65535 (for better visualization, most tiff viewers expect that range)
+            # all the recovered scale values seems to be up to 16384,
+            # we can stretch to 65535 (for better visualization, most tiff viewers expect that range)
+            scale = min(65535, scale * 4)
             img[i] = im * scale
 
     img = img.astype(np.uint16)
@@ -188,8 +184,8 @@ def livecell_process_files(dataset_dir):
                 width.append(img.size[1])
 
                 # load and display instance annotations
-                annIds = annotation.getAnnIds(imgIds=im["id"], iscrowd=None)
-                anns = annotation.loadAnns(annIds)
+                annids = annotation.getAnnIds(imgIds=im["id"], iscrowd=None)
+                anns = annotation.loadAnns(annids)
 
                 medians = []
                 masks = []
@@ -267,8 +263,6 @@ def tissuenet_process_files(dataset_dir):
                             new_array = np.concatenate([img, zero_channel], axis=0)
                             # reshaped_array = np.transpose(new_array, (1, 2, 3, 0))
                             for j in range(4):
-                                # imwrite(f'/scratch_2/cell_imaging_2023/tissuenet/tissuenet_v1.0/tissuenet_1_cellpose_way/{folder}/{t}_{p}_{k}_{j}.tif', img[:,j])
-                                # imwrite(f'/scratch_2/cell_imaging_2023/tissuenet/tissuenet_v1.0/tissuenet_1_cellpose_way/{folder}/{t}_{p}_{k}_{j}_masks.tif', label[j])
                                 img_name = f"{folder}/{t}_{p}_{k}_{j}.tif"
                                 mask_name = f"{folder}/{t}_{p}_{k}_{j}_masks.tif"
                                 imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", img_name), new_array[:, j])
@@ -356,7 +350,7 @@ def main():
             try:
                 if os.path.exists(in_path):
                     print(f"File exists at: {in_path}")
-            except Exception as err:
+            except Exception:
                 print(f"File: {in_path} was not found")
             out_path = os.path.join(dataset_path)
             extract_zip(in_path, out_path)
@@ -364,7 +358,7 @@ def main():
     print("If we reached here, that means all zip files got extracted ... Working on pre-processing")
 
     # Looping over all datasets again, Cellpose & Deepbacs have a similar directory structure
-    for key, value in dataset_dict.items():
+    for key, _value in dataset_dict.items():
         if key == "kaggle_dataset":
             print("Needs additional extraction")
             train_zip_path = os.path.join(data_root_path, key, "stage1_train.zip")

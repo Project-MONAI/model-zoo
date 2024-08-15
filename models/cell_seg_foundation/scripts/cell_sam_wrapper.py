@@ -19,7 +19,7 @@ class CellSamWrapper(torch.nn.Module):
     def __init__(
         self,
         auto_resize_inputs=True,
-        network_resize_roi=[1024, 1024],
+        network_resize_roi=(1024, 1024),
         checkpoint="sam_vit_b_01ec64.pth",
         return_features=False,
         *args,
@@ -28,7 +28,9 @@ class CellSamWrapper(torch.nn.Module):
         super().__init__(*args, **kwargs)
 
         print(
-            f"CellSamWrapper auto_resize_inputs {auto_resize_inputs} network_resize_roi {network_resize_roi} checkpoint {checkpoint}"
+            f"CellSamWrapper auto_resize_inputs {auto_resize_inputs} "
+            f"network_resize_roi {network_resize_roi} "
+            f"checkpoint {checkpoint}"
         )
         self.network_resize_roi = network_resize_roi
         self.auto_resize_inputs = auto_resize_inputs

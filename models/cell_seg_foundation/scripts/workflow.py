@@ -66,14 +66,7 @@ class VistaCell(BundleWorkflow):
     monai.bundle.BundleWorkflow for cell segmentation.
     """
 
-    def __init__(
-        self,
-        config_file=None,
-        meta_file=None,
-        logging_file=None,
-        workflow_type="train",
-        **override,
-    ):
+    def __init__(self, config_file=None, meta_file=None, logging_file=None, workflow_type="train", **override):
         """
         config_file can be one or a list of config files.
         the rest key-values in the `override` are to override config content.
@@ -169,13 +162,13 @@ class VistaCell(BundleWorkflow):
             return self._props[name]
         try:
             value = getattr(self, f"get_{name}")()
-        except AttributeError:
+        except AttributeError as err:
             if property[BundleProperty.REQUIRED]:
                 raise ValueError(
-                    f"Property '{name}' is required by the bundle format,"
+                    f"Property '{name}' is required by the bundle format, "
                     f"but the method 'get_{name}' is not implemented."
-                )
-            raise AttributeError
+                ) from err
+            raise AttributeError from err
         self._props[name] = value
         return value
 
@@ -1144,9 +1137,6 @@ class VistaCell(BundleWorkflow):
             logger.warning("Invalid checkpoint file: " + str(ckpt))
             return
         checkpoint = torch.load(ckpt, map_location="cpu")
-
-        # if self.config("compile", False):
-        #     checkpoint["state_dict"] = OrderedDict((k[len("_orig_mod."):] if k.startswith("_orig_mod.") else k, v) for k, v in checkpoint["state_dict"].items())
 
         model.load_state_dict(checkpoint["state_dict"], strict=True)
         epoch = checkpoint.get("epoch", 0)

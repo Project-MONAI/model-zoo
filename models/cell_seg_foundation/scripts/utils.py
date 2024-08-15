@@ -31,9 +31,7 @@ LOGGING_CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {"monai_default": {"format": DEFAULT_FMT}},
-    "loggers": {
-        "VistaCell": {"handlers": ["file", "console"], "level": "DEBUG", "propagate": False},
-    },
+    "loggers": {"VistaCell": {"handlers": ["file", "console"], "level": "DEBUG", "propagate": False}},
     "filters": {"rank_filter": {"()": RankFilter}},
     "handlers": {
         "file": {

@@ -157,29 +157,17 @@ class LogitsToLabels:
     def __call__(self, logits, filename=None):
         device = logits.device
         logits = logits.float().cpu().numpy()
-        dP = logits[1:]  # vectors
+        dp = logits[1:]  # vectors
         cellprob = logits[0]  # foreground prob (logit)
 
         try:
             pred_mask, p = compute_masks(
-                dP,
-                cellprob,
-                niter=200,
-                cellprob_threshold=0.4,
-                flow_threshold=0.4,
-                interp=True,
-                device=device,
+                dp, cellprob, niter=200, cellprob_threshold=0.4, flow_threshold=0.4, interp=True, device=device
             )
         except RuntimeError as e:
             logger.warning(f"compute_masks failed on GPU retrying on CPU {logits.shape} file {filename} {e}")
             pred_mask, p = compute_masks(
-                dP,
-                cellprob,
-                niter=200,
-                cellprob_threshold=0.4,
-                flow_threshold=0.4,
-                interp=True,
-                device=None,
+                dp, cellprob, niter=200, cellprob_threshold=0.4, flow_threshold=0.4, interp=True, device=None
             )
 
         return pred_mask, p
