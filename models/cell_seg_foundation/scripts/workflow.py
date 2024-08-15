@@ -110,8 +110,9 @@ class VistaCell(BundleWorkflow):
         if self.rank == 0:
             # make sure the log file exists, as a workaround for mult-gpu logging race condition
             _log_file = self.config("log_output_file", "vista_cell.log")
-            if _log_file is not None:
-                open(_log_file, "a").close()
+            _log_file_dir = os.path.dirname(_log_file)
+            if _log_file_dir and not os.path.exists(_log_file_dir):
+                os.makedirs(_log_file_dir, exist_ok=True)
 
             print_config()
 
