@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20240318.json",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "changelog": {
+        "0.3.7": "test properties",
         "0.3.6": "first oss version"
     },
     "monai_version": "1.3.1",
@@ -15,7 +16,7 @@
         "xformers": "0.0.26"
     },
     "supported_apps": {
-        "maisi-nim": ""
+        "maisi-nim": "0.0.7"
     },
     "name": "CT image latent diffusion generation",
     "task": "CT image synthesis",
