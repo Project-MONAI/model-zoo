@@ -82,7 +82,7 @@
     "diffusion": "$@network_def.to(@device)",
     "noise_scheduler": {
         "_target_": "monai.networks.schedulers.ddim.DDIMScheduler",
-        "_requires_": [            
+        "_requires_": [
             "@load_diffusion",
             "@load_autoencoder"
         ],
