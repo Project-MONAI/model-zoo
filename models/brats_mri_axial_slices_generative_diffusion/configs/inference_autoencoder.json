@@ -8,7 +8,7 @@
     ],
     "bundle_root": ".",
     "model_dir": "$@bundle_root + '/models'",
-    "dataset_dir": "/localhome/xyz/oss_data",
+    "dataset_dir": "/workspace/data/medical",
     "output_dir": "$@bundle_root + '/output'",
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
