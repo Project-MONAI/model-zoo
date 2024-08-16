@@ -220,7 +220,7 @@ def get_app_properties(app: str, version: str):
 
     """
     # dir structure: model-zoo/app/
-    for root, dirs, files in os.walk(os.path.join(os.getcwd(), app)):
+    for root, _dirs, files in os.walk(os.path.join(os.getcwd(), app)):
         if "bundle_properties.py" in files and os.path.isfile(os.path.join(root, "bundle_properties.py")):
             return os.path.join(root, "bundle_properties.py")
     else:
