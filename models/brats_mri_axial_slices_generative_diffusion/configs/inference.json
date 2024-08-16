@@ -5,7 +5,8 @@
         "$from pathlib import Path",
         "$from PIL import Image",
         "$from scripts.utils import visualize_2d_image",
-        "$import os"
+        "$import os",
+        "$from scripts.load_old_models import load_diffusion_ckpt"
     ],
     "bundle_root": ".",
     "model_dir": "$@bundle_root + '/models'",
@@ -24,12 +25,12 @@
         64
     ],
     "autoencoder_def": {
-        "_target_": "generative.networks.nets.AutoencoderKL",
+        "_target_": "monai.networks.nets.autoencoderkl.AutoencoderKL",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@image_channels",
         "out_channels": "@image_channels",
         "latent_channels": "@latent_channels",
-        "num_channels": [
+        "channels": [
             64,
             128,
             256
@@ -46,11 +47,11 @@
         "with_decoder_nonlocal_attn": true
     },
     "network_def": {
-        "_target_": "generative.networks.nets.DiffusionModelUNet",
+        "_target_": "monai.networks.nets.diffusion_model_unet.DiffusionModelUNet",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
-        "num_channels": [
+        "channels": [
             32,
             64,
             128,
@@ -68,17 +69,20 @@
             32,
             32
         ],
-        "num_res_blocks": 2
+        "num_res_blocks": 2,
+        "include_fc": false,
+        "use_combined_linear": false
     },
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
-    "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
+    "load_autoencoder": "$@autoencoder_def.load_old_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
-    "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path))",
+    "diffusion_state_dict": "$load_diffusion_ckpt(@network_def.state_dict(), torch.load(@load_diffusion_path))",
+    "load_diffusion": "$@network_def.load_state_dict(@diffusion_state_dict)",
     "diffusion": "$@network_def.to(@device)",
     "noise_scheduler": {
-        "_target_": "generative.networks.schedulers.DDIMScheduler",
-        "_requires_": [
+        "_target_": "monai.networks.schedulers.ddim.DDIMScheduler",
+        "_requires_": [            
             "@load_diffusion",
             "@load_autoencoder"
         ],

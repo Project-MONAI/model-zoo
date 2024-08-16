@@ -8,7 +8,7 @@
     ],
     "bundle_root": ".",
     "model_dir": "$@bundle_root + '/models'",
-    "dataset_dir": "/workspace/data/medical",
+    "dataset_dir": "/localhome/xyz/oss_data",
     "output_dir": "$@bundle_root + '/output'",
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -24,12 +24,12 @@
     "infer_batch_size_img": 1,
     "infer_batch_size_slice": 1,
     "autoencoder_def": {
-        "_target_": "generative.networks.nets.AutoencoderKL",
+        "_target_": "monai.networks.nets.autoencoderkl.AutoencoderKL",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@image_channels",
         "out_channels": "@image_channels",
         "latent_channels": "@latent_channels",
-        "num_channels": [
+        "channels": [
             64,
             128,
             256
@@ -46,7 +46,7 @@
         "with_decoder_nonlocal_attn": true
     },
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
-    "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
+    "load_autoencoder": "$@autoencoder_def.load_old_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
     "preprocessing_transforms": [
         {
