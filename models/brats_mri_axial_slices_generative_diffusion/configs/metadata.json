@@ -14,7 +14,7 @@
         "1.0.1": "fix inference folder error",
         "1.0.0": "Initial release"
     },
-    "monai_version": "1.4.0rc1",
+    "monai_version": "1.4.0",
     "pytorch_version": "2.2.2",
     "numpy_version": "1.24.4",
     "optional_packages_version": {
