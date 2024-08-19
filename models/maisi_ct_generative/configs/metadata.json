@@ -16,7 +16,7 @@
         "xformers": "0.0.26"
     },
     "supported_apps": {
-        "maisi-nim": "0.0.7"
+        "maisi-nim": ""
     },
     "name": "CT image latent diffusion generation",
     "task": "CT image synthesis",

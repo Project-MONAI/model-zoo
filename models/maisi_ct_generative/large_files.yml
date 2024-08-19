@@ -8,7 +8,7 @@ large_files:
   - path: "models/mask_generation_autoencoder.pt"
     url: "https://drive.google.com/file/d/1FzWrpv6ornYUaPiAWGOOxhRx2P9Wnynm/view?usp=drive_link"
   - path: "models/mask_generation_diffusion_unet.pt"
-    url: "https://drive.google.com/file/d/11SA9RUZ6XmCOJr5v6w6UW1kDzr6hlymw/view?usp=drive_link"
+    url: "https://drive.google.com/file/d/1tsJ3Hdn7ZWJYMHzifSuRcwtIDGI1wMqD/view?usp=share_link"
   - path: "configs/candidate_masks_flexible_size_and_spacing_3000.json"
     url: "https://drive.google.com/file/d/1yMkH-lrAsn2YUGoTuVKNMpicziUmU-1J/view?usp=sharing"
   - path: "configs/all_anatomy_size_condtions.json"

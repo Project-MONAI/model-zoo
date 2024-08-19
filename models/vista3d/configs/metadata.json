@@ -17,7 +17,7 @@
         "cucim": "23.08.00"
     },
     "supported_apps": {
-        "vista3d-nim": "0.0.6"
+        "vista3d-nim": ""
     },
     "name": "VISTA3D",
     "task": "Decathlon Spleen segmentation",
