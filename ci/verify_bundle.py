@@ -16,6 +16,7 @@ import sys
 
 import torch
 from bundle_custom_data import (
+    exclude_download_large_file_list,
     exclude_verify_preferred_files_list,
     exclude_verify_shape_list,
     exclude_verify_torchscript_list,
@@ -87,7 +88,7 @@ def _find_license_file(bundle_path: str):
     return None
 
 
-def verify_bundle_directory(models_path: str, bundle_name: str):
+def verify_bundle_directory(models_path: str, bundle_name: str, mode: str):
     """
     According to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html),
     as well as the requirements of model zoo, some files are necessary with the bundle. For example:
@@ -101,12 +102,15 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
     bundle_path = os.path.join(models_path, bundle_name)
 
     # download large files (if exist) first
-    large_file_name = _find_bundle_file(bundle_path, "large_files")
-    if large_file_name is not None:
-        try:
-            download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
-        except Exception as e:
-            raise ValueError(f"Download large files in {bundle_path} error.") from e
+    if bundle_name in exclude_download_large_file_list and mode == "min":
+        print(f"skip downloading large files for bundle: {bundle_name}.")
+    else:
+        large_file_name = _find_bundle_file(bundle_path, "large_files")
+        if large_file_name is not None:
+            try:
+                download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
+            except Exception as e:
+                raise ValueError(f"Download large files in {bundle_path} error.") from e
 
     # verify necessary files are included
     for file in necessary_files_list:
@@ -292,7 +296,7 @@ def verify(bundle, models_path="models", mode="full"):
     # add bundle path to ensure custom code can be used
     sys.path = [os.path.join(models_path, bundle)] + sys.path
     # verify bundle directory
-    verify_bundle_directory(models_path, bundle)
+    verify_bundle_directory(models_path, bundle, mode)
     print("directory is verified correctly.")
     if mode != "regular":
         # verify version, changelog
