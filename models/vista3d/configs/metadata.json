@@ -19,7 +19,6 @@
     "supported_apps": {
         "vista3d-nim": ""
     },
-    "name": "VISTA3D",
     "task": "Decathlon Spleen segmentation",
     "description": "VISTA3D bundle",
     "authors": "MONAI team",
