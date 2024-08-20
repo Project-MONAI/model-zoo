@@ -223,9 +223,13 @@ def get_app_properties(app: str, version: str):
     This function is used to get the properties file of the app.
 
     """
-    # dir structure: model-zoo/app/
-    for root, _dirs, files in os.walk(os.path.join(os.getcwd(), app)):
+    # dir structure: ./app/
+    cur_dir = os.path.dirname(os.path.abspath(__file__))
+    if "ci" in cur_dir:
+        cur_dir = os.path.dirname(cur_dir)
+    for root, _dirs, files in os.walk(os.path.join(cur_dir, app)):
         if "bundle_properties.py" in files and os.path.isfile(os.path.join(root, "bundle_properties.py")):
+            print(root)
             return os.path.join(root, "bundle_properties.py")
     else:
         return None
