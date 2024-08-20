@@ -278,11 +278,13 @@ def verify_bundle_properties(model_path: str, bundle: str):
             if "supported_apps" in metadata:
                 supported_apps = metadata["supported_apps"]
                 all_properties = []
+                print("vista3d sopperted apps: ", supported_apps)
                 for app, version in supported_apps.items():
                     properties_path = get_app_properties(app, version)
                     if properties_path is not None:
                         all_properties.append(properties_path)
                 all_properties = list(set(all_properties))
+                print("all properties: ", all_properties)
                 for properties_path in all_properties:
                     check_property_args["properties_path"] = properties_path
                     check_properties(**check_property_args)
