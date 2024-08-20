@@ -69,7 +69,7 @@
         "precision": "fp16",
         "build_args": {
             "builder_optimization_level": 5,
-            "precision_constraints": "prefer"
+            "precision_constraints": "obey"
         }
     },
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
@@ -77,8 +77,8 @@
     "autoencoder": "$@autoencoder_def.to(@device)",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
     "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path, weights_only=True))",
-    "diffusion_dev": "$@network_def.to(@device)",
-    "diffusion": "$trt_wrap(@diffusion_dev, @load_diffusion_path, args=@trt_args) if @trt else @diffusion_dev",
+    "diffusion": "$@network_def.to(@device)",
+    "diffusion_trt": "$trt_wrap(@diffusion, @load_diffusion_path, args=@trt_args) if @trt else None",
     "noise_scheduler": {
         "_target_": "generative.networks.schedulers.DDIMScheduler",
         "_requires_": [
@@ -95,7 +95,10 @@
     "set_timesteps": "$@noise_scheduler.set_timesteps(num_inference_steps=50)",
     "inferer": {
         "_target_": "scripts.ldm_sampler.LDMSampler",
-        "_requires_": "@set_timesteps"
+        "_requires_": [
+	    "@set_timesteps",
+	    "@diffusion_trt"
+	    ]
     },
     "saver": {
         "_target_": "SaveImage",

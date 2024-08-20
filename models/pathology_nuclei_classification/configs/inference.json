@@ -3,9 +3,11 @@
         "$import glob",
         "$import json",
         "$import pathlib",
-        "$import os"
+        "$import os",
+	"$import monai.networks as mn"	
     ],
     "bundle_root": ".",
+    "checkpoint": "$@bundle_root + '/models/model.pt'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/CoNSePNuclei",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
@@ -18,7 +20,17 @@
         "in_channels": 4,
         "out_channels": 4
     },
-    "network": "$@network_def.to(@device)",
+    "network_dev": "$@network_def.to(@device)",
+    "trt": "$False",
+    "trt_args": {
+	"export_method": "onnx",
+        "precision": "fp16",
+        "build_args": {
+            "builder_optimization_level": 5,
+            "precision_constraints": "obey"
+        }
+    },
+    "network": "$mn.trt_wrap(@network_dev, @checkpoint, args=@trt_args) if @trt else @network_dev",
     "preprocessing": {
         "_target_": "Compose",
         "transforms": [
@@ -88,7 +100,7 @@
     "handlers": [
         {
             "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_path": "$@checkpoint",
             "load_dict": {
                 "model": "@network"
             }
