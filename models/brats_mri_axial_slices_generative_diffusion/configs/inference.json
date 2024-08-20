@@ -5,8 +5,7 @@
         "$from pathlib import Path",
         "$from PIL import Image",
         "$from scripts.utils import visualize_2d_image",
-        "$import os",
-        "$from scripts.load_old_models import load_diffusion_ckpt"
+        "$import os"
     ],
     "bundle_root": ".",
     "model_dir": "$@bundle_root + '/models'",
@@ -44,7 +43,8 @@
             false
         ],
         "with_encoder_nonlocal_attn": true,
-        "with_decoder_nonlocal_attn": true
+        "with_decoder_nonlocal_attn": true,
+        "include_fc": false
     },
     "network_def": {
         "_target_": "monai.networks.nets.diffusion_model_unet.DiffusionModelUNet",
@@ -77,8 +77,7 @@
     "load_autoencoder": "$@autoencoder_def.load_old_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
-    "diffusion_state_dict": "$load_diffusion_ckpt(@network_def.state_dict(), torch.load(@load_diffusion_path))",
-    "load_diffusion": "$@network_def.load_state_dict(@diffusion_state_dict)",
+    "load_diffusion": "$@network_def.load_old_state_dict(torch.load(@load_diffusion_path))",
     "diffusion": "$@network_def.to(@device)",
     "noise_scheduler": {
         "_target_": "monai.networks.schedulers.ddim.DDIMScheduler",

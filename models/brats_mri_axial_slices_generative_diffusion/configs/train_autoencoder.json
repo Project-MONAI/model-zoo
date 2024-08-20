@@ -51,7 +51,8 @@
             false
         ],
         "with_encoder_nonlocal_attn": true,
-        "with_decoder_nonlocal_attn": true
+        "with_decoder_nonlocal_attn": true,
+        "include_fc": false
     },
     "perceptual_loss_def": {
         "_target_": "monai.losses.perceptual.PerceptualLoss",
