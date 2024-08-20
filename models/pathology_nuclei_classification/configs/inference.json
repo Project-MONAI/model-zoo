@@ -4,7 +4,7 @@
         "$import json",
         "$import pathlib",
         "$import os",
-	"$import monai.networks as mn"	
+        "$import monai.networks as mn"
     ],
     "bundle_root": ".",
     "checkpoint": "$@bundle_root + '/models/model.pt'",
@@ -23,7 +23,7 @@
     "network_dev": "$@network_def.to(@device)",
     "trt": "$False",
     "trt_args": {
-	"export_method": "onnx",
+        "export_method": "onnx",
         "precision": "fp16",
         "build_args": {
             "builder_optimization_level": 5,

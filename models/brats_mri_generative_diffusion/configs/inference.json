@@ -96,9 +96,9 @@
     "inferer": {
         "_target_": "scripts.ldm_sampler.LDMSampler",
         "_requires_": [
-	    "@set_timesteps",
-	    "@diffusion_trt"
-	    ]
+            "@set_timesteps",
+            "@diffusion_trt"
+        ]
     },
     "saver": {
         "_target_": "SaveImage",
