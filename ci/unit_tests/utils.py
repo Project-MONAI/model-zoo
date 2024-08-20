@@ -23,7 +23,7 @@ def export_overrided_config(config_file, override_dict, output_path):
     ConfigParser.export_config_file(parser.config, output_path, indent=4)
 
 
-def produce_mgpu_cmd(config_file, meta_file, logging_file, nnodes=1, nproc_per_node=2):
+def produce_mgpu_cmd(config_file, meta_file, logging_file=None, nnodes=1, nproc_per_node=2):
     cmd = [
         "torchrun",
         "--standalone",
@@ -34,20 +34,43 @@ def produce_mgpu_cmd(config_file, meta_file, logging_file, nnodes=1, nproc_per_n
         "run",
         "--config_file",
         config_file,
-        "--logging_file",
-        logging_file,
         "--meta_file",
         meta_file,
     ]
+    if logging_file is not None:
+        cmd.extend(["--logging_file", logging_file])
+    return cmd
+
+
+def produce_custom_workflow_mgpu_cmd(
+    custom_workflow, config_file, meta_file, logging_file=None, nnodes=1, nproc_per_node=2
+):
+    cmd = [
+        "torchrun",
+        "--standalone",
+        f"--nnodes={nnodes}",
+        f"--nproc_per_node={nproc_per_node}",
+        "-m",
+        "monai.bundle",
+        "run_workflow",
+        custom_workflow,
+        "--config_file",
+        config_file,
+        "--meta_file",
+        meta_file,
+    ]
+    if logging_file is not None:
+        cmd.extend(["--logging_file", logging_file])
     return cmd
 
 
 def export_config_and_run_mgpu_cmd(
     config_file,
     meta_file,
-    logging_file,
     override_dict,
     output_path,
+    custom_workflow=None,
+    logging_file=None,
     workflow_type="train",
     nnode=1,
     ngpu=2,
@@ -68,9 +91,19 @@ def export_config_and_run_mgpu_cmd(
         check_result = engine.check_properties()
         if check_result is not None and len(check_result) > 0:
             raise ValueError(f"check properties for overrided mgpu configs failed: {check_result}")
-    cmd = produce_mgpu_cmd(
-        config_file=output_path, meta_file=meta_file, logging_file=logging_file, nnodes=nnode, nproc_per_node=ngpu
-    )
+    if custom_workflow is None:
+        cmd = produce_mgpu_cmd(
+            config_file=output_path, meta_file=meta_file, logging_file=logging_file, nnodes=nnode, nproc_per_node=ngpu
+        )
+    else:
+        cmd = produce_custom_workflow_mgpu_cmd(
+            custom_workflow=custom_workflow,
+            config_file=output_path,
+            meta_file=meta_file,
+            logging_file=logging_file,
+            nnodes=nnode,
+            nproc_per_node=ngpu,
+        )
     env = os.environ.copy()
     # ensure customized library can be loaded in subprocess
     env["PYTHONPATH"] = override_dict.get("bundle_root", ".")
