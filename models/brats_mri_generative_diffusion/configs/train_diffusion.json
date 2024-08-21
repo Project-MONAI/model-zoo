@@ -17,7 +17,7 @@
     "load_autoencoder": "$@autoencoder_def.load_old_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
     "network_def": {
-        "_target_": "generative.networks.nets.DiffusionModelUNet",
+        "_target_": "monai.networks.nets.diffusion_model_unet.DiffusionModelUNet",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
