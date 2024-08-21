@@ -14,14 +14,14 @@
         28
     ],
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
-    "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
+    "load_autoencoder": "$@autoencoder_def.load_old_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
     "network_def": {
         "_target_": "generative.networks.nets.DiffusionModelUNet",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
-        "num_channels": [
+        "channels": [
             256,
             256,
             512
@@ -36,7 +36,9 @@
             64,
             64
         ],
-        "num_res_blocks": 2
+        "num_res_blocks": 2,
+        "include_fc": false,
+        "use_combined_linear": false
     },
     "diffusion": "$@network_def.to(@device)",
     "optimizer": {
@@ -55,7 +57,7 @@
     },
     "scale_factor": "$scripts.utils.compute_scale_factor(@autoencoder,@train#dataloader,@device)",
     "noise_scheduler": {
-        "_target_": "generative.networks.schedulers.DDPMScheduler",
+        "_target_": "monai.networks.schedulers.ddpm.DDPMScheduler",
         "_requires_": [
             "@load_autoencoder"
         ],
@@ -69,7 +71,7 @@
     },
     "train": {
         "inferer": {
-            "_target_": "generative.inferers.LatentDiffusionInferer",
+            "_target_": "monai.inferers.LatentDiffusionInferer",
             "scheduler": "@noise_scheduler",
             "scale_factor": "@scale_factor"
         },
