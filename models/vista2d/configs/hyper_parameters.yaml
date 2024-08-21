@@ -27,8 +27,8 @@ pretrained_ckpt_name: null
 pretrained_ckpt_path: null
 
 # for commandline setting of a single dataset
-datalist: datalists/tissuenet_skin_mibi_datalist.json
-basedir: /data/tissuenet
+datalist: datalists/cellpose_datalist.json
+basedir: /cellpose_dataset
 data_list_files:
   - {datalist: "@datalist", basedir: "@basedir"}
 

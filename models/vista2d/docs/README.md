@@ -33,9 +33,21 @@ pip install git+https://github.com/facebookresearch/segment-anything.git
 pip install mlflow psutil pynvml #optional for MLFlow support
 ```
 
+### Prepare Data Lists and Datasets
+
+The default dataset for training, validation, and inference is the [Cellpose](https://www.cellpose.org/) dataset. Please follow the [tutorial](../download_preprocessor/) to prepare the dataset before executing any commands below.
+
+Additionally, all data lists are available in the `datalists.zip` file located in the root directory of the bundle. Extract the contents of the `.zip` file to access the data lists.
+
 ### Execute training
 ```bash
 python -m monai.bundle run_workflow "scripts.workflow.VistaCell" --config_file configs/hyper_parameters.yaml
+```
+
+You can override the `basedir` to specify a different dataset directory by using the following command:
+
+```bash
+python -m monai.bundle run_workflow "scripts.workflow.VistaCell" --config_file configs/hyper_parameters.yaml --basedir <actual dataset ditectory>
 ```
 
 #### Quick run with a few data points
@@ -63,6 +75,8 @@ torchrun --nproc_per_node=gpu -m monai.bundle run_workflow "scripts.workflow.Vis
 ```bash
 python -m monai.bundle run --config_file configs/inference.json
 ```
+
+Please note that the data used in the config file is: "/cellpose_dataset/test/001_img.png", if the dataset path is different or you want to do inference on another file, please modify in `configs/inference.json` accordingly.
 
 ### Execute multi-GPU inference
 ```bash
