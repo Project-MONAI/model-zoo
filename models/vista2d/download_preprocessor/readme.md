@@ -1,7 +1,7 @@
 ## Tutorial: VISTA2D Model Creation
 
 This tutorial will guide the users to setting up all the datasets, running pre-processing, creation of organized json file lists which can be provided to VISTA-2D training pipeline.
-Some dataset need to be manually downloaded, others will be downloaded by a provided script. Please do not manually unzip any of the downloaded files, it will be automatically handled in the final step.
+Some datasets need to be manually downloaded, others will be downloaded by a provided script. Please do not manually unzip any of the downloaded files, it will be automatically handled in the final step.
 
 ### List of Datasets
 1.) [Cellpose](https://www.cellpose.org/dataset)
@@ -66,6 +66,7 @@ To execute VISTA-2D training pipeline, some datasets require label conversion. P
 `python generate_json.py --data_root provide_the_same_root_data_path`
 
 ### Generation of Json data lists (Optional)
+All data lists are provided in the `datalists.zip` file located in the root directory of the bundle. Please extract the contents of the `.zip` file to access the data lists.
 If one desires to generate JSON files from scratch, `generate_json.py` script performs both processing and creation of JSON files.
 To execute VISTA-2D training pipeline, some datasets require label conversion and then a json file list which the VISTA-2D training uses a format.
 Creating the json lists from the raw dataset sources, please use the `root_data_path` as the input to the script, example command to execute the script is given below:
