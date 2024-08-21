@@ -1530,5 +1530,9 @@
     "maisi_ct_generative_v0.3.6": {
         "checksum": "3ce46e90e78e5bda1eac9db54adf4ccfcbc895a9",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.3.6/files/maisi_ct_generative_v0.3.6.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.0.10": {
+        "checksum": "5eb72eb8d4b2b560baf51badf2255ce9a07dc2a7",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_axial_slices_generative_diffusion/versions/1.0.10/files/brats_mri_axial_slices_generative_diffusion_v1.0.10.zip"
     }
 }
