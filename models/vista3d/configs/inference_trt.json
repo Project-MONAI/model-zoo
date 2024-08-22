@@ -6,7 +6,7 @@
         "$import os",
         "$import scripts",
         "$import numpy as np",
-	"$from monai.networks import trt_wrap"	
+        "$from monai.networks import trt_wrap"
     ],
     "network": "$trt_wrap(@network_def.to(@device), @bundle_root + '/models/model.pt', submodule=['image_encoder.encoder', 'class_head'])"
 }
