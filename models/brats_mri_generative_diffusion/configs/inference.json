@@ -10,7 +10,6 @@
     "output_dir": "$@bundle_root + '/output'",
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "trt": "$True",
     "output_postfix": "$datetime.now().strftime('sample_%Y%m%d_%H%M%S')",
     "spatial_dims": 3,
     "image_channels": 1,
@@ -65,20 +64,13 @@
         ],
         "num_res_blocks": 2
     },
-    "trt_args": {
-        "precision": "fp16",
-        "build_args": {
-            "builder_optimization_level": 5,
-            "precision_constraints": "obey"
-        }
-    },
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
     "load_autoencoder": "$@autoencoder_def.to(@device).load_state_dict(torch.load(@load_autoencoder_path, weights_only=True))",
     "autoencoder": "$@autoencoder_def.to(@device)",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
     "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path, weights_only=True))",
-    "diffusion": "$@network_def.to(@device)",
-    "diffusion_trt": "$trt_wrap(@diffusion, @load_diffusion_path, args=@trt_args) if @trt else None",
+    "trt": "$True",
+    "diffusion": "$trt_wrap(@network_def.to(@device), @load_diffusion_path) if @trt else @network_def.to(@device)",
     "noise_scheduler": {
         "_target_": "generative.networks.schedulers.DDIMScheduler",
         "_requires_": [
@@ -95,10 +87,7 @@
     "set_timesteps": "$@noise_scheduler.set_timesteps(num_inference_steps=50)",
     "inferer": {
         "_target_": "scripts.ldm_sampler.LDMSampler",
-        "_requires_": [
-	    "@set_timesteps",
-	    "@diffusion_trt"
-	    ]
+        "_requires_": "@set_timesteps"
     },
     "saver": {
         "_target_": "SaveImage",

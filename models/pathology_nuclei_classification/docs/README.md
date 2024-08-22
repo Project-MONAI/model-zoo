@@ -210,7 +210,7 @@ python -m monai.bundle run --config_file configs/inference.json
 #### Execute inference with the TensorRT model:
 
 ```
-python -m monai.bundle run --config_file configs/inference.json --trt=True
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
 
 # References

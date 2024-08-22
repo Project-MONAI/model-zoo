@@ -1,0 +1,10 @@
+{
+    "imports": [
+        "$import glob",
+        "$import json",
+        "$import pathlib",
+        "$import os",
+	"$import monai.networks as mn"	
+    ],
+    "network": "$mn.trt_wrap(@network_def.to(@device), @checkpoint)"
+}
