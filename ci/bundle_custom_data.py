@@ -42,6 +42,12 @@ exclude_verify_torchscript_list = [
     "vista2d",
 ]
 
+# This list is used for our CI tests to determine whether a bundle needs to be tested after downloading
+# the large files.
+# If a bundle contains large files that are too lage (like > 10GB), please add the bundle name into the list.
+# For bundles in this list, related tests will be skipped in Github Actions, but they will still be tested in blossom CI.
+exclude_download_large_file_list = ["maisi_ct_generative"]
+
 # This dict is used for our CI tests to install required dependencies that cannot be installed by `pip install` directly.
 # If a bundle has this kind of dependencies, please add the bundle name (key), and the path of the install script (value)
 # into the dict.

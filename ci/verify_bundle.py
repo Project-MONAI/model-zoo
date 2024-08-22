@@ -11,10 +11,12 @@
 
 import argparse
 import os
+import shutil
 import sys
 
 import torch
 from bundle_custom_data import (
+    exclude_download_large_file_list,
     exclude_verify_preferred_files_list,
     exclude_verify_shape_list,
     exclude_verify_torchscript_list,
@@ -86,7 +88,7 @@ def _find_license_file(bundle_path: str):
     return None
 
 
-def verify_bundle_directory(models_path: str, bundle_name: str):
+def verify_bundle_directory(models_path: str, bundle_name: str, mode: str):
     """
     According to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html),
     as well as the requirements of model zoo, some files are necessary with the bundle. For example:
@@ -100,12 +102,15 @@ def verify_bundle_directory(models_path: str, bundle_name: str):
     bundle_path = os.path.join(models_path, bundle_name)
 
     # download large files (if exist) first
-    large_file_name = _find_bundle_file(bundle_path, "large_files")
-    if large_file_name is not None:
-        try:
-            download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
-        except Exception as e:
-            raise ValueError(f"Download large files in {bundle_path} error.") from e
+    if bundle_name in exclude_download_large_file_list and mode == "min":
+        print(f"skip downloading large files for bundle: {bundle_name}.")
+    else:
+        large_file_name = _find_bundle_file(bundle_path, "large_files")
+        if large_file_name is not None:
+            try:
+                download_large_files(bundle_path=bundle_path, large_file_name=large_file_name)
+            except Exception as e:
+                raise ValueError(f"Download large files in {bundle_path} error.") from e
 
     # verify necessary files are included
     for file in necessary_files_list:
@@ -218,21 +223,37 @@ def get_app_properties(app: str, version: str):
     This function is used to get the properties file of the app.
 
     """
-    if app in ["monai-deploy", "monai-label", "nvflare"]:
-        # TODO: so far these apps use default properties, need to grab the properties from the app instead.
+    # dir structure: ./app/
+    cur_dir = os.path.dirname(os.path.abspath(__file__))
+    if "ci" in cur_dir:
+        cur_dir = os.path.dirname(cur_dir)
+    for root, _dirs, files in os.walk(os.path.join(cur_dir, app)):
+        if "bundle_properties.py" in files and os.path.isfile(os.path.join(root, "bundle_properties.py")):
+            print(root)
+            return os.path.join(root, "bundle_properties.py")
+    else:
         return None
-    return None
 
 
 def check_properties(**kwargs):
     """
     This function is used to check the properties of the workflow.
-
     """
+    app_properties_path = kwargs.get("properties_path", "")
+    kwargs.pop("properties_path", None)
     workflow = create_workflow(**kwargs)
-    check_result = workflow.check_properties()
-    if check_result is not None and len(check_result) > 0:
-        raise ValueError(f"check properties for workflow failed: {check_result}")
+    if app_properties_path is not None and os.path.isfile(app_properties_path):
+        shutil.copy(app_properties_path, "ci/bundle_properties.py")
+        from bundle_properties import InferProperties, MetaProperties
+
+        workflow.properties = {**MetaProperties, **InferProperties}
+        check_result = workflow.check_properties()
+        if check_result is not None and len(check_result) > 0:
+            raise ValueError(
+                f"check properties for workflow failed: {check_result}, app_properties_path: {app_properties_path}"
+            )
+        else:
+            print(f"check properties for workflow successfully {check_result}.")
 
 
 def verify_bundle_properties(model_path: str, bundle: str):
@@ -261,16 +282,17 @@ def verify_bundle_properties(model_path: str, bundle: str):
             if "supported_apps" in metadata:
                 supported_apps = metadata["supported_apps"]
                 all_properties = []
+                print("vista3d sopperted apps: ", supported_apps)
                 for app, version in supported_apps.items():
-                    if app in ["vista3d-nim", "maisi-nim"]:
-                        # skip check
-                        continue
                     properties_path = get_app_properties(app, version)
-                    all_properties.append(properties_path)
+                    if properties_path is not None:
+                        all_properties.append(properties_path)
                 all_properties = list(set(all_properties))
+                print("all properties: ", all_properties)
                 for properties_path in all_properties:
                     check_property_args["properties_path"] = properties_path
                     check_properties(**check_property_args)
+                    print("successfully checked properties.")
             else:
                 check_properties(**check_property_args)
 
@@ -280,7 +302,7 @@ def verify(bundle, models_path="models", mode="full"):
     # add bundle path to ensure custom code can be used
     sys.path = [os.path.join(models_path, bundle)] + sys.path
     # verify bundle directory
-    verify_bundle_directory(models_path, bundle)
+    verify_bundle_directory(models_path, bundle, mode)
     print("directory is verified correctly.")
     if mode != "regular":
         # verify version, changelog
