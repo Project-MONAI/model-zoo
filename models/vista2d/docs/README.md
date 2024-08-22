@@ -23,16 +23,6 @@ Evaluation was performed for the VISTA2D model with multiple public datasets, su
 <div align="center"> <img src="https://developer-blogs.nvidia.com/wp-content/uploads/2024/04/vista-2d-model-precision-versus-specialist-model-baseline-performance.png" width="800"/> </div>
 
 
-
-### Install dependencies
-
-```
-pip install monai fire tifffile imagecodecs pillow fastremap
-pip install --no-deps cellpose natsort roifile
-pip install git+https://github.com/facebookresearch/segment-anything.git
-pip install mlflow psutil pynvml #optional for MLFlow support
-```
-
 ### Prepare Data Lists and Datasets
 
 The default dataset for training, validation, and inference is the [Cellpose](https://www.cellpose.org/) dataset. Please follow the [tutorial](../download_preprocessor/) to prepare the dataset before executing any commands below.
