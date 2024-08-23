@@ -143,6 +143,12 @@ The following code generates a synthetic image from a random sampled noise.
 python -m monai.bundle run --config_file configs/inference.json
 ```
 
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
+
 #### Export checkpoint to TorchScript file
 
 The Autoencoder can be exported into a TorchScript file.

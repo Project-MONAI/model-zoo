@@ -4,7 +4,6 @@
         "$from datetime import datetime",
         "$from pathlib import Path",
         "$from PIL import Image",
-        "$from monai.networks import trt_wrap",
         "$from scripts.utils import visualize_2d_image",
         "$import os"
     ],
@@ -79,8 +78,6 @@
     "autoencoder": "$@autoencoder_def.to(@device)",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
     "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path))",
-    "trt": "$False",
-    "diffusion": "$trt_wrap(@network_def.to(@device), @load_diffusion_path) if @trt else @network_def.to(@device)",
     "noise_scheduler": {
         "_target_": "monai.networks.schedulers.ddim.DDIMScheduler",
         "_requires_": [

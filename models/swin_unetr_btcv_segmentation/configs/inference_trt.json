@@ -1,9 +1,8 @@
 {
     "imports": [
         "$import glob",
-        "$import json",
-        "$import pathlib",
         "$import os",
+        "$import numpy",
 	"$from monai.networks import trt_compile"	
     ],
     "network": "$trt_compile(@network_def.to(@device), @checkpoint)"

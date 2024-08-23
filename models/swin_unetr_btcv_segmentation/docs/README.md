@@ -108,9 +108,12 @@ python -m monai.bundle run --config_file "['configs/train.json','configs/evaluat
 python -m monai.bundle run --config_file configs/inference.json
 ```
 
-#### Export checkpoint to TorchScript file:
+#### Execute inference with the TensorRT model:
 
-TorchScript conversion is currently not supported.
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
+
 
 # References
 [1] Hatamizadeh, Ali, et al. "Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images." arXiv preprint arXiv:2201.01266 (2022). https://arxiv.org/abs/2201.01266.

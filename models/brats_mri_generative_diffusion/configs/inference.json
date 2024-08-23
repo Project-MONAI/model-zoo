@@ -2,8 +2,7 @@
     "imports": [
         "$import torch",
         "$from datetime import datetime",
-        "$from pathlib import Path",
-        "$from monai.networks import trt_wrap"
+        "$from pathlib import Path"
     ],
     "bundle_root": ".",
     "model_dir": "$@bundle_root + '/models'",
@@ -69,8 +68,6 @@
     "autoencoder": "$@autoencoder_def.to(@device)",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
     "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path, weights_only=True))",
-    "trt": "$True",
-    "diffusion": "$trt_wrap(@network_def.to(@device), @load_diffusion_path) if @trt else @network_def.to(@device)",
     "noise_scheduler": {
         "_target_": "generative.networks.schedulers.DDIMScheduler",
         "_requires_": [
