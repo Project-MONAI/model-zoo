@@ -1534,5 +1534,9 @@
     "brats_mri_axial_slices_generative_diffusion_v1.0.10": {
         "checksum": "5eb72eb8d4b2b560baf51badf2255ce9a07dc2a7",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_axial_slices_generative_diffusion/versions/1.0.10/files/brats_mri_axial_slices_generative_diffusion_v1.0.10.zip"
+    },
+    "vista2d_v0.2.1": {
+        "checksum": "95fa4680a8e1dc5bc6f1dc7f01557c27c970178c",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.1/files/vista2d_v0.2.1.zip"
     }
 }
