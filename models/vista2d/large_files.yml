@@ -1,5 +1,7 @@
 large_files:
 - path: "models/sam_vit_b_01ec64.pth"
   url: "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth"
+- path: "models/model.pt"
+  url: "https://drive.google.com/file/d/1odLhoOtlxxbEyRq-gvenP8bC0-mw63ng/view?usp=drive_link"
 - path: "datalists.zip"
   url: "https://github.com/Project-MONAI/model-zoo/releases/download/model_zoo_bundle_data/vista2d_datalists.zip"
