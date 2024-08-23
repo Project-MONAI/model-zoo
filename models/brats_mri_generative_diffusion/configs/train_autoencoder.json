@@ -2,21 +2,34 @@
     "imports": [
         "$import functools",
         "$import glob",
-        "$import scripts"
+        "$import scripts",
+        "$import generative"
     ],
     "bundle_root": ".",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "ckpt_dir": "$@bundle_root + '/models'",
     "tf_dir": "$@bundle_root + '/eval'",
-    "dataset_dir": "/workspace/data/medical",
+    "data_list_file_path": "$@bundle_root + '/configs/datalist.json'",
+    "dataset_dir": "/datasets/brats18",
+    "train_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='training', base_dir=@dataset_dir)",
+    "val_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation', base_dir=@dataset_dir)",
     "pretrained": false,
     "perceptual_loss_model_weights_path": null,
-    "train_batch_size": 2,
-    "lr": 1e-05,
+    "train_batch_size": 4,
+    "val_batch_size": 3,
+    "epochs": 3000,
+    "val_interval": 10,
+    "lr": 5e-05,
+    "amp": true,
     "train_patch_size": [
         112,
-        128,
+        112,
         80
+    ],
+    "val_patch_size": [
+        192,
+        192,
+        128
     ],
     "channel": 0,
     "spacing": [
@@ -26,7 +39,7 @@
     ],
     "spatial_dims": 3,
     "image_channels": 1,
-    "latent_channels": 8,
+    "latent_channels": 4,
     "discriminator_def": {
         "_target_": "generative.networks.nets.PatchDiscriminator",
         "spatial_dims": "@spatial_dims",
@@ -56,7 +69,9 @@
             false
         ],
         "with_encoder_nonlocal_attn": false,
-        "with_decoder_nonlocal_attn": false
+        "with_decoder_nonlocal_attn": false,
+        "use_checkpointing": true,
+        "use_convtranspose": false
     },
     "perceptual_loss_def": {
         "_target_": "generative.losses.PerceptualLoss",
@@ -114,9 +129,12 @@
             "keys": "image",
             "pixdim": "@spacing",
             "mode": "bilinear"
-        }
-    ],
-    "final_transforms": [
+        },
+        {
+            "_target_": "CenterSpatialCropd",
+            "keys": "image",
+            "roi_size": "@val_patch_size"
+        },
         {
             "_target_": "ScaleIntensityRangePercentilesd",
             "keys": "image",
@@ -137,17 +155,13 @@
         ],
         "preprocessing": {
             "_target_": "Compose",
-            "transforms": "$@preprocessing_transforms + @train#crop_transforms + @final_transforms"
+            "transforms": "$@preprocessing_transforms + @train#crop_transforms"
         },
         "dataset": {
-            "_target_": "monai.apps.DecathlonDataset",
-            "root_dir": "@dataset_dir",
-            "task": "Task01_BrainTumour",
-            "section": "training",
-            "cache_rate": 1.0,
-            "num_workers": 8,
-            "download": false,
-            "transform": "@train#preprocessing"
+            "_target_": "CacheDataset",
+            "data": "@train_datalist",
+            "transform": "@train#preprocessing",
+            "cache_rate": 1.0
         },
         "dataloader": {
             "_target_": "DataLoader",
@@ -158,32 +172,33 @@
         },
         "handlers": [
             {
-                "_target_": "CheckpointSaver",
-                "save_dir": "@ckpt_dir",
-                "save_dict": {
-                    "model": "@gnetwork"
-                },
-                "save_interval": 0,
-                "save_final": true,
+                "_target_": "ValidationHandler",
+                "validator": "@validate#evaluator",
                 "epoch_level": true,
-                "final_filename": "model_autoencoder.pt"
+                "interval": "@val_interval"
             },
             {
                 "_target_": "StatsHandler",
                 "tag_name": "train_loss",
+                "output_transform": "$lambda x: monai.handlers.from_engine(['g_loss'], first=True)(x)[0]+monai.handlers.from_engine(['d_loss'], first=True)(x)[0]"
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@tf_dir",
+                "tag_name": "train_generator_loss",
                 "output_transform": "$lambda x: monai.handlers.from_engine(['g_loss'], first=True)(x)[0]"
             },
             {
                 "_target_": "TensorBoardStatsHandler",
                 "log_dir": "@tf_dir",
-                "tag_name": "train_loss",
-                "output_transform": "$lambda x: monai.handlers.from_engine(['g_loss'], first=True)(x)[0]"
+                "tag_name": "train_discriminator_loss",
+                "output_transform": "$lambda x: monai.handlers.from_engine(['d_loss'], first=True)(x)[0]"
             }
         ],
         "trainer": {
             "_target_": "scripts.ldm_trainer.VaeGanTrainer",
             "device": "@device",
-            "max_epochs": 1500,
+            "max_epochs": "@epochs",
             "train_data_loader": "@train#dataloader",
             "g_network": "@gnetwork",
             "g_optimizer": "@goptimizer",
@@ -195,7 +210,76 @@
             "g_update_latents": true,
             "latent_shape": "@latent_channels",
             "key_train_metric": "$None",
-            "train_handlers": "@train#handlers"
+            "train_handlers": "@train#handlers",
+            "amp": "@amp"
+        }
+    },
+    "validate": {
+        "preprocessing": {
+            "_target_": "Compose",
+            "transforms": "$@preprocessing_transforms"
+        },
+        "dataset": {
+            "_target_": "CacheDataset",
+            "data": "@val_datalist",
+            "transform": "@validate#preprocessing",
+            "cache_rate": 1.0
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "dataset": "@validate#dataset",
+            "batch_size": "@val_batch_size",
+            "shuffle": false,
+            "num_workers": 4
+        },
+        "postprocessing": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "Lambdad",
+                    "keys": "pred",
+                    "func": "$lambda x: x[0]"
+                }
+            ]
+        },
+        "handlers": [
+            {
+                "_target_": "StatsHandler",
+                "iteration_log": false
+            },
+            {
+                "_target_": "TensorBoardStatsHandler",
+                "log_dir": "@tf_dir",
+                "iteration_log": false
+            },
+            {
+                "_target_": "CheckpointSaver",
+                "save_dir": "@ckpt_dir",
+                "save_dict": {
+                    "model": "@gnetwork"
+                },
+                "save_interval": 0,
+                "save_final": true,
+                "epoch_level": true,
+                "final_filename": "model_autoencoder.pt"
+            }
+        ],
+        "key_metric": {
+            "val_mean_l2": {
+                "_target_": "MeanSquaredError",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'image'])"
+            }
+        },
+        "evaluator": {
+            "_target_": "SupervisedEvaluator",
+            "device": "@device",
+            "val_data_loader": "@validate#dataloader",
+            "network": "@gnetwork",
+            "postprocessing": "@validate#postprocessing",
+            "key_val_metric": "$@validate#key_metric",
+            "metric_cmp_fn": "$lambda current_metric,prev_best: current_metric < prev_best",
+            "val_handlers": "@validate#handlers",
+            "amp": "@amp"
         }
     },
     "initialize": [

@@ -2,11 +2,14 @@
     "imports": [
         "$import torch",
         "$from datetime import datetime",
-        "$from pathlib import Path"
+        "$from pathlib import Path",
+        "$import generative"
     ],
     "bundle_root": ".",
     "model_dir": "$@bundle_root + '/models'",
-    "dataset_dir": "/workspace/data/medical",
+    "data_list_file_path": "$@bundle_root + '/configs/datalist.json'",
+    "dataset_dir": "/datasets/brats18",
+    "test_datalist": "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='testing', base_dir=@dataset_dir)",
     "output_dir": "$@bundle_root + '/output'",
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
@@ -20,11 +23,11 @@
     ],
     "spatial_dims": 3,
     "image_channels": 1,
-    "latent_channels": 8,
+    "latent_channels": 4,
     "infer_patch_size": [
-        144,
-        176,
-        112
+        192,
+        192,
+        128
     ],
     "autoencoder_def": {
         "_target_": "generative.networks.nets.AutoencoderKL",
@@ -46,7 +49,9 @@
             false
         ],
         "with_encoder_nonlocal_attn": false,
-        "with_decoder_nonlocal_attn": false
+        "with_decoder_nonlocal_attn": false,
+        "use_checkpointing": true,
+        "use_convtranspose": false
     },
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
     "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
@@ -108,13 +113,8 @@
         "transforms": "$@preprocessing_transforms + @crop_transforms + @final_transforms"
     },
     "dataset": {
-        "_target_": "monai.apps.DecathlonDataset",
-        "root_dir": "@dataset_dir",
-        "task": "Task01_BrainTumour",
-        "section": "validation",
-        "cache_rate": 0.0,
-        "num_workers": 8,
-        "download": false,
+        "_target_": "Dataset",
+        "data": "@test_datalist",
         "transform": "@preprocessing"
     },
     "dataloader": {
