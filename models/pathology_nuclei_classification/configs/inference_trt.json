@@ -4,7 +4,7 @@
         "$import json",
         "$import pathlib",
         "$import os",
-	"$from monai.networks import trt_compile"	
+        "$from monai.networks import trt_compile"
     ],
     "network": "$trt_compile(@network_def.to(@device), @checkpoint)"
 }
