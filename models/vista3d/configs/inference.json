@@ -43,7 +43,7 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "use_cfp": false,
     "use_point_window": true,
-    "network_def": "$scripts.vista3d.vista_model_registry['vista3d_segresnet_d'](in_channels=@input_channels, image_size=@patch_size)",
+    "network_def": "$monai.networks.nets.vista3d132(in_channels=@input_channels)",
     "network": "$@network_def.to(@device)",
     "preprocessing_transforms": [
         {
