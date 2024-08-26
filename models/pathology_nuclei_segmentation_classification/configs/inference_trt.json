@@ -1,8 +1,5 @@
 {
-    "imports": [
-        "$import glob",
-        "$import json",
-        "$import os",
+    "+imports": [
 	"$from monai.networks import trt_compile"	
     ],
     "trt_args": {
