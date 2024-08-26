@@ -6,7 +6,7 @@
         "$import os",
         "$import scripts",
         "$import numpy as np",
-	"$from monai.networks import trt_compile"	
+        "$from monai.networks import trt_compile"
     ],
     "network": "$trt_compile(@network_def.to(@device), @bundle_root + '/models/model.pt', submodule=['image_encoder.encoder', 'class_head'])"
 }
