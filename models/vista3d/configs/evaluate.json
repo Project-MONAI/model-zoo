@@ -88,7 +88,7 @@
                 ]
             },
             {
-                "_target_": "scripts.monai_trans_utils.RelabelD",
+                "_target_": "monai.apps.vista3d.transforms.Relabeld",
                 "keys": "label",
                 "label_mappings": "@label_mappings",
                 "dtype": "$torch.uint8"
@@ -113,7 +113,7 @@
                 "sigmoid": true
             },
             {
-                "_target_": "scripts.monai_trans_utils.VistaPostTransform",
+                "_target_": "monai.apps.vista3d.transforms.VistaPostTransformd",
                 "keys": "pred"
             },
             {

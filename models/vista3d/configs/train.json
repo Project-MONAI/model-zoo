@@ -43,7 +43,7 @@
         128
     ],
     "patch_size_valid": "$@patch_size",
-    "network_def": "$scripts.vista3d.vista_model_registry['vista3d_segresnet_d'](in_channels=@input_channels, image_size=@patch_size)",
+    "network_def": "$monai.networks.nets.vista3d132(in_channels=@input_channels)",
     "network": "$@network_def.to(@device)",
     "loss": {
         "_target_": "DiceCELoss",
