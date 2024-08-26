@@ -11,7 +11,7 @@
         256,
         256
     ],
-    "input_dict": "${'image': '/home/venn/Desktop/data/medical/cellpose_dataset/test/001_img.png'}",
+    "input_dict": "${'image': '/cellpose_dataset/test/001_img.png'}",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "sam_ckpt_path": "$@ckpt_dir + '/sam_vit_b_01ec64.pth'",
     "pretrained_ckpt_path": "$@ckpt_dir + '/model.pt'",

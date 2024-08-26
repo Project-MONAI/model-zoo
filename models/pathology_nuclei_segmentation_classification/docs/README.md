@@ -135,6 +135,12 @@ python -m monai.bundle run --config_file "['configs/train.json','configs/evaluat
 python -m monai.bundle run --config_file configs/inference.json
 ```
 
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
+
 # References
 [1] Simon Graham, Quoc Dang Vu, Shan E Ahmed Raza, Ayesha Azam, Yee Wah Tsang, Jin Tae Kwak, Nasir Rajpoot, Hover-Net: Simultaneous segmentation and classification of nuclei in multi-tissue histology images, Medical Image Analysis, 2019 https://doi.org/10.1016/j.media.2019.101563
 
