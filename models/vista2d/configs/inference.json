@@ -20,7 +20,7 @@
     "use_amp": true,
     "amp_dtype": "$torch.float",
     "network_def": {
-        "_target_": "scripts.cell_sam_wrapper.CellSamWrapper",
+        "_target_": "monai.networks.nets.cell_sam_wrapper.CellSamWrapper",
         "checkpoint": "@sam_ckpt_path"
     },
     "network": "$@network_def.to(@device)",
