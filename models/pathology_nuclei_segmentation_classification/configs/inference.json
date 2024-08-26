@@ -85,7 +85,7 @@
             {
                 "_target_": "FlattenSubKeysd",
                 "keys": "pred",
-		"sub_keys": "$@sub_keys",
+                "sub_keys": "$@sub_keys",
                 "delete_keys": true
             },
             {
