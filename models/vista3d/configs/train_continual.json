@@ -74,7 +74,7 @@
             "warn": false
         },
         {
-            "_target_": "scripts.monai_trans_utils.RelabelD",
+            "_target_": "monai.apps.vista3d.transforms.Relabeld",
             "keys": "label",
             "label_mappings": "@label_mappings",
             "dtype": "$torch.uint8"
@@ -101,7 +101,7 @@
     },
     "validate#preprocessing#transforms": "$@train#deterministic_transforms + [@valid_remap]",
     "valid_remap": {
-        "_target_": "scripts.monai_trans_utils.RelabelD",
+        "_target_": "monai.apps.vista3d.transforms.Relabeld",
         "keys": "label",
         "label_mappings": "${'default': [[c, i] for i, c in enumerate(@val_label_set)]}",
         "dtype": "$torch.uint8"

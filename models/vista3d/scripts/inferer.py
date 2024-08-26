@@ -13,11 +13,9 @@ import copy
 from typing import List, Union
 
 import torch
-from monai.inferers.inferer import Inferer
+from monai.apps.vista3d.inferer import point_based_window_inferer
+from monai.inferers import Inferer, sliding_window_inference
 from torch import Tensor
-
-from .monai_utils import sliding_window_inference
-from .utils import point_based_window_inferer
 
 
 class Vista3dInferer(Inferer):
