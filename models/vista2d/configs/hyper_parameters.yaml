@@ -83,7 +83,7 @@ infer:
 
 device: "$torch.device(('cuda:' + os.environ.get('LOCAL_RANK', '0')) if torch.cuda.is_available() else 'cpu')"
 network_def:
-  _target_: scripts.cell_sam_wrapper.CellSamWrapper
+  _target_: monai.networks.nets.cell_sam_wrapper.CellSamWrapper
   checkpoint: $os.path.join(@ckpt_path, "sam_vit_b_01ec64.pth")
 network: $@network_def.to(@device)
 

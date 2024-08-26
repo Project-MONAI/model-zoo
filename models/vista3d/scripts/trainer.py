@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
 
 import numpy as np
 import torch
+from monai.apps.vista3d.sampler import sample_prompt_pairs
 from monai.config import IgniteInfo
 from monai.engines.trainer import Trainer
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn, default_prepare_batch
@@ -24,8 +25,6 @@ from monai.utils import RankFilter, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
 from torch.optim.optimizer import Optimizer
 from torch.utils.data import DataLoader
-
-from .utils import generate_prompt_pairs
 
 if TYPE_CHECKING:
     from ignite.engine import Engine, EventEnum
@@ -165,7 +164,7 @@ class Vista3dTrainer(Trainer):
         output_classes = engine.hyper_kwargs["output_classes"]
         if label_set is None:
             label_set = np.arange(output_classes).tolist()
-        label_prompt, point, point_label, prompt_class, _ = generate_prompt_pairs(
+        label_prompt, point, point_label, prompt_class = sample_prompt_pairs(
             labels,
             label_set,
             image_size=engine.hyper_kwargs["patch_size"],
