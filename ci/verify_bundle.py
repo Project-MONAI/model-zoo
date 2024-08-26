@@ -241,6 +241,8 @@ def check_properties(**kwargs):
     """
     app_properties_path = kwargs.get("properties_path", "")
     kwargs.pop("properties_path", None)
+    print(kwargs)
+
     workflow = create_workflow(**kwargs)
     if app_properties_path is not None and os.path.isfile(app_properties_path):
         shutil.copy(app_properties_path, "ci/bundle_properties.py")

@@ -39,6 +39,7 @@ exclude_verify_torchscript_list = [
     "brats_mri_axial_slices_generative_diffusion",
     "vista3d",
     "maisi_ct_generative",
+    "vista2d",
 ]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested after downloading
