@@ -12,5 +12,4 @@
 # from .evaluator import EnsembleEvaluator, Evaluator, SupervisedEvaluator
 # from .multi_gpu_supervised_trainer import create_multigpu_supervised_evaluator, create_multigpu_supervised_trainer
 
-from . import vista3d
 from .early_stop_score_function import score_function

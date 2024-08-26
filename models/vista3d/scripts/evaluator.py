@@ -243,8 +243,8 @@ class Vista3dEvaluator(SupervisedEvaluator):
                 label_set = np.arange(output_classes).tolist()
             label_prompt = torch.tensor(label_set).to(engine.state.device).unsqueeze(-1)
             # point prompt is generated withing vista3d,provide empty points
-            points = torch.zeros(label_prompt.shape[0], 1, 3)
-            point_labels = -1 + torch.zeros(label_prompt.shape[0], 1)
+            points = torch.zeros(label_prompt.shape[0], 1, 3).to(inputs.device)
+            point_labels = -1 + torch.zeros(label_prompt.shape[0], 1).to(inputs.device)
             if engine.hyper_kwargs["drop_point_prob"] > 0.99:
                 # automatic only validation
                 points = None
