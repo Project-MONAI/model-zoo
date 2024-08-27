@@ -16,7 +16,7 @@
     "early_stop": false,
     "fold": 0,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "epochs": 100,
+    "epochs": 5,
     "val_interval": 1,
     "val_at_start": false,
     "sw_overlap": 0.625,
@@ -28,8 +28,8 @@
     "max_prompt": null,
     "max_backprompt": null,
     "max_foreprompt": null,
-    "drop_label_prob": 0.5,
-    "drop_point_prob": 0.5,
+    "drop_label_prob": 0.25,
+    "drop_point_prob": 0.25,
     "exclude_background": true,
     "use_cfp": true,
     "label_set": null,
@@ -379,6 +379,7 @@
                 "exclude_background": "@exclude_background",
                 "use_cfp": "@use_cfp",
                 "label_set": "@label_set",
+                "val_head": "auto",
                 "user_prompt": false
             }
         }

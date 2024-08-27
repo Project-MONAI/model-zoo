@@ -25,7 +25,7 @@ class Vista3dInferer(Inferer):
     Args:
         roi_size: the sliding window patch size.
         overlap: sliding window overlap ratio.
-        use_cfp: use class prompt for point head.
+        use_cfp: use class prompt for point head. Deprecated.
     """
 
     def __init__(self, roi_size, overlap, use_cfp, use_point_window=False, sw_batch_size=1) -> None:
@@ -91,6 +91,7 @@ class Vista3dInferer(Inferer):
                 roi_size=self.roi_size,
                 sw_batch_size=self.sw_batch_size,
                 transpose=True,
+                with_coord=True,
                 predictor=network,
                 mode="gaussian",
                 sw_device=device,
@@ -113,6 +114,7 @@ class Vista3dInferer(Inferer):
                 roi_size=self.roi_size,
                 sw_batch_size=self.sw_batch_size,
                 transpose=True,
+                with_coord=True,
                 predictor=network,
                 mode="gaussian",
                 sw_device=device,

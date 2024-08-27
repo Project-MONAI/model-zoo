@@ -207,6 +207,8 @@ class Vista3dEvaluator(SupervisedEvaluator):
         if batchdata is None:
             raise ValueError("Must provide batch data for current iteration.")
         label_set = engine.hyper_kwargs.get("label_set", None)
+        # this validation label set should be consistent with 'labels.unique()', used to generate fg/bg points
+        val_label_set = engine.hyper_kwargs.get("val_label_set", label_set)
         # If user provide prompts in the inference, input image must contain original affine.
         # the point coordinates are from the original_affine space, while image here is after preprocess transforms.
         if engine.hyper_kwargs["user_prompt"]:
@@ -242,18 +244,17 @@ class Vista3dEvaluator(SupervisedEvaluator):
                 output_classes = engine.hyper_kwargs["output_classes"]
                 label_set = np.arange(output_classes).tolist()
             label_prompt = torch.tensor(label_set).to(engine.state.device).unsqueeze(-1)
-            # point prompt is generated withing vista3d,provide empty points
+            # point prompt is generated withing vista3d, provide empty points
             points = torch.zeros(label_prompt.shape[0], 1, 3).to(inputs.device)
             point_labels = -1 + torch.zeros(label_prompt.shape[0], 1).to(inputs.device)
-            if engine.hyper_kwargs["drop_point_prob"] > 0.99:
+            # validation for either auto or point.
+            if engine.hyper_kwargs.get("val_head", "auto") == 'auto':
                 # automatic only validation
-                points = None
-                point_labels = None
-            if engine.hyper_kwargs["drop_label_prob"] > 0.99:
+                # remove val_label_set, vista3d will not sample points from gt labels.
+                val_label_set = None
+            else:
                 # point only validation
                 label_prompt = None
-        # this validation label set should be consistent with 'labels.unique()', used to generate fg/bg points
-        val_label_set = engine.hyper_kwargs.get("val_label_set", label_set)
 
         # put iteration outputs into engine.state
         engine.state.output = {Keys.IMAGE: inputs, Keys.LABEL: labels}
