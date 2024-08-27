@@ -4,6 +4,7 @@
         "$import os",
         "$import scripts",
         "$import numpy as np",
+        "$import copy",
         "$import json"
     ],
     "bundle_root": "./",
@@ -146,7 +147,7 @@
             {
                 "_target_": "Invertd",
                 "keys": "pred",
-                "transform": "@preprocessing",
+                "transform": "$copy.deepcopy(@preprocessing)",
                 "orig_keys": "@image_key",
                 "nearest_interp": true,
                 "to_tensor": true

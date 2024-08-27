@@ -19,7 +19,7 @@ from monai.config import IgniteInfo
 from monai.engines.evaluator import SupervisedEvaluator
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn, default_prepare_batch
 from monai.inferers import Inferer, SimpleInferer
-from monai.transforms import Transform
+from monai.transforms import Transform, reset_ops_id
 from monai.utils import ForwardMode, RankFilter, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
 from torch.utils.data import DataLoader
@@ -281,6 +281,7 @@ class Vista3dEvaluator(SupervisedEvaluator):
                     labels=labels,
                     label_set=val_label_set,
                 )
+        inputs = reset_ops_id(inputs)
         # Add dim 0 for decollate batch
         engine.state.output["label_prompt"] = label_prompt.unsqueeze(0) if label_prompt is not None else None
         engine.state.output["points"] = points.unsqueeze(0) if points is not None else None
