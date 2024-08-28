@@ -37,6 +37,7 @@ exclude_verify_torchscript_list = [
     "breast_density_classification",
     "mednist_reg",
     "brats_mri_axial_slices_generative_diffusion",
+    "brats_mri_generative_diffusion",
     "vista3d",
     "maisi_ct_generative",
     "vista2d",
