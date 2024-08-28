@@ -27,12 +27,12 @@
         112
     ],
     "autoencoder_def": {
-        "_target_": "generative.networks.nets.AutoencoderKL",
+        "_target_": "monai.networks.nets.autoencoderkl.AutoencoderKL",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@image_channels",
         "out_channels": "@image_channels",
         "latent_channels": "@latent_channels",
-        "num_channels": [
+        "channels": [
             64,
             128,
             256
@@ -46,10 +46,11 @@
             false
         ],
         "with_encoder_nonlocal_attn": false,
-        "with_decoder_nonlocal_attn": false
+        "with_decoder_nonlocal_attn": false,
+        "include_fc": false
     },
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
-    "load_autoencoder": "$@autoencoder_def.load_state_dict(torch.load(@load_autoencoder_path))",
+    "load_autoencoder": "$@autoencoder_def.load_old_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
     "preprocessing_transforms": [
         {
