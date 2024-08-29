@@ -5,15 +5,13 @@
         "0.4.0": "update to use monai 1.4, model ckpt updated, rm GenerativeAI repo, add quality check",
         "0.3.6": "first oss version"
     },
-    "monai_version": "1.3.1",
+    "monai_version": "1.4.0",
     "pytorch_version": "2.2.2",
     "numpy_version": "1.24.4",
     "optional_packages_version": {
         "fire": "0.6.0",
         "nibabel": "5.2.1",
-        "monai-generative": "0.2.3",
         "tqdm": "4.66.2",
-        "xformers": "0.0.26"
     },
     "supported_apps": {
         "maisi-nim": ""
