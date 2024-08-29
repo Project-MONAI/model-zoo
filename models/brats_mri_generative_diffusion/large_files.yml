@@ -7,7 +7,3 @@ large_files:
     url: "https://drive.google.com/uc?id=1m2pcbj8NMoxEIAOmD9dgYBN4gNcrMx6e"
     hash_val: "35258b1112f701f3d485676d33141a55"
     hash_type: "md5"
-  - path: "models/model_autoencoder.ts"
-    url: "https://drive.google.com/uc?id=17WybvJHfxL-jc5toFFHxCfgVmFun-5ul"
-    hash_val: "197d82bb7777d3d301760271643aae0e"
-    hash_type: "md5"

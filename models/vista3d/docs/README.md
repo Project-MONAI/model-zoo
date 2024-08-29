@@ -105,7 +105,7 @@ The default configs for both variables are derived from the `label_mappings` con
 `drop_label_prob` and `drop_point_prob` means percentage to remove class prompts and point prompts respectively. If `drop_point_prob=1`, the
 model is only finetuning for automatic segmentation, while `drop_label_prob=1` means only finetuning for interactive segmentation. The VISTA3D foundation
 model is trained with interactive only (drop_label_prob=1) and then froze the point branch and trained with fully automatic segmentation (`drop_point_prob=1`).
-In this bundle, the training is simplified by jointly training with class prompts and point prompts. 
+In this bundle, the training is simplified by jointly training with class prompts and point prompts.
 
 Single-GPU:
 ```
@@ -125,15 +125,15 @@ multi-stage training processes.
 
 Changing `patch_size` to a smaller value such as `"patch_size": [96, 96, 96]` used in `configs/train.json` would reduce the training memory footprint.
 
-In `train_continual.json`, only subset of training and validation data are used, change `n_train_samples` and `n_val_samples` to use full dataset. 
+In `train_continual.json`, only subset of training and validation data are used, change `n_train_samples` and `n_val_samples` to use full dataset.
 
 In `train.json`, `validate[evaluator][val_head]` can be `auto` and `point`. If `auto`, the validation results will be automatic segmentation. If `point`,
-the validation results will be sampling one positive point per object per patch. The validation scheme of combining auto and point is deprecated due to 
-speed issue. 
+the validation results will be sampling one positive point per object per patch. The validation scheme of combining auto and point is deprecated due to
+speed issue.
 
 Note: `valid_remap` is a transform that maps the groundtruth label indexes, e.g. [0,2,3,5,6] to sequential and continuous labels [0,1,2,3,4]. This is
 required by monai dice calculation. It is not related to mapping label index to VISTA3D defined global class index. The validation data is not mapped
-to the VISTA3D global class index. 
+to the VISTA3D global class index.
 
 #### Execute evaluation
 `n_train_samples` and `n_val_samples` are used to specify the number of samples to use for training and validation respectively.
