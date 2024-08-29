@@ -11,7 +11,7 @@
     "optional_packages_version": {
         "fire": "0.6.0",
         "nibabel": "5.2.1",
-        "tqdm": "4.66.2",
+        "tqdm": "4.66.2"
     },
     "supported_apps": {
         "maisi-nim": ""
