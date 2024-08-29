@@ -102,8 +102,8 @@ The default configs for both variables are derived from the `label_mappings` con
 "label_set": "$[0] + list(x[1] for x in @label_mappings#default)"
 "val_label_set": "$[0] + list(x[0] for x in @label_mappings#default)"
 ```
-`drop_label_prob` and `drop_point_prob` means percentage to remove class prompts and point prompts respectively. If `drop_point_prob`=1, the
-model is only finetuning for automatic segmentation, while `drop_label_prob`=1 means only finetuning for interactive segmentation. The VISTA3D foundation
+`drop_label_prob` and `drop_point_prob` means percentage to remove class prompts and point prompts respectively. If `drop_point_prob=1`, the
+model is only finetuning for automatic segmentation, while `drop_label_prob=1` means only finetuning for interactive segmentation. The VISTA3D foundation
 model is trained with interactive only (drop_label_prob=1) and then froze the point branch and trained with fully automatic segmentation (`drop_point_prob=1`).
 In this bundle, the training is simplified by jointly training with class prompts and point prompts. 
 

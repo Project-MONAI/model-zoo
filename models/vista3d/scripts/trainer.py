@@ -182,8 +182,7 @@ class Vista3dTrainer(Trainer):
                 input_images=inputs,
                 point_coords=point,
                 point_labels=point_label,
-                class_vector=label_prompt,
-                use_cfp=engine.hyper_kwargs["use_cfp"],
+                class_vector=label_prompt
             )
             # engine.state.output[Keys.PRED] = outputs
             engine.fire_event(IterationEvents.FORWARD_COMPLETED)

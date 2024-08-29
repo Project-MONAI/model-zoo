@@ -48,7 +48,6 @@
         128
     ],
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "use_cfp": false,
     "use_point_window": true,
     "network_def": "$monai.networks.nets.vista3d132(in_channels=@input_channels)",
     "network": "$@network_def.to(@device)",
@@ -128,7 +127,6 @@
         "roi_size": "@patch_size",
         "overlap": 0.5,
         "sw_batch_size": "@sw_batch_size",
-        "use_cfp": "@use_cfp",
         "use_point_window": "@use_point_window"
     },
     "postprocessing": {
@@ -193,7 +191,6 @@
         "val_handlers": "@handlers",
         "amp": true,
         "hyper_kwargs": {
-            "use_cfp": "@use_cfp",
             "user_prompt": true,
             "everything_labels": "@everything_labels"
         }

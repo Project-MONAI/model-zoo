@@ -31,7 +31,6 @@
     "drop_label_prob": 0.25,
     "drop_point_prob": 0.25,
     "exclude_background": true,
-    "use_cfp": true,
     "label_set": null,
     "val_label_set": "@label_set",
     "amp": true,
@@ -277,7 +276,6 @@
                 "drop_label_prob": "@drop_label_prob",
                 "drop_point_prob": "@drop_point_prob",
                 "exclude_background": "@exclude_background",
-                "use_cfp": "@use_cfp",
                 "label_set": "@label_set",
                 "patch_size": "@patch_size",
                 "user_prompt": false
@@ -315,7 +313,6 @@
             "_target_": "scripts.inferer.Vista3dInferer",
             "roi_size": "@patch_size_valid",
             "overlap": "@sw_overlap",
-            "use_cfp": "@use_cfp"
         },
         "handlers": [
             {
@@ -377,7 +374,6 @@
                 "drop_label_prob": "@drop_label_prob",
                 "drop_point_prob": "@drop_point_prob",
                 "exclude_background": "@exclude_background",
-                "use_cfp": "@use_cfp",
                 "label_set": "@label_set",
                 "val_head": "auto",
                 "user_prompt": false
