@@ -82,7 +82,11 @@
         "num_res_blocks": 2,
         "use_flash_attention": true,
         "conditioning_embedding_in_channels": 8,
-        "conditioning_embedding_num_channels": [8, 32, 64]
+        "conditioning_embedding_num_channels": [
+            8,
+            32,
+            64
+        ]
     },
     "noise_scheduler": {
         "_target_": "monai.networks.schedulers.ddpm.DDPMScheduler",
