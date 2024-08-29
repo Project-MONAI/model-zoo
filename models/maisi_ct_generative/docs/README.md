@@ -23,6 +23,10 @@ The inference requires:
 - Disk Memory: at least 21GB disk memory
 
 ### Execute inference
+The model weights can be downloaded with 
+```
+python -m scripts.download_files
+```
 The following code generates a synthetic image from a random sampled noise.
 ```
 python -m monai.bundle run --config_file configs/inference.json
