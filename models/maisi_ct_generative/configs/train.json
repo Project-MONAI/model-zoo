@@ -28,8 +28,8 @@
     "spatial_dims": 3,
     "image_channels": 1,
     "latent_channels": 4,
-    "difusion_unet_def": {
-        "_target_": "scripts.custom_network_diffusion.CustomDiffusionModelUNet",
+    "diffusion_unet_def": {
+        "_target_": "monai.apps.generation.maisi.networks.diffusion_model_unet_maisi.DiffusionModelUNetMaisi",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
@@ -53,12 +53,12 @@
         ],
         "num_res_blocks": 2,
         "use_flash_attention": true,
-        "input_top_region_index": true,
-        "input_bottom_region_index": true,
-        "input_spacing": true
+        "include_top_region_index_input": true,
+        "include_bottom_region_index_input": true,
+        "include_spacing_input": true
     },
     "controlnet_def": {
-        "_target_": "scripts.custom_network_controlnet.CustomControlNet",
+        "_target_": "monai.apps.generation.maisi.networks.controlnet_maisi.ControlNetMaisi",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "num_channels": [
@@ -82,26 +82,22 @@
         "num_res_blocks": 2,
         "use_flash_attention": true,
         "conditioning_embedding_in_channels": 8,
-        "conditioning_embedding_num_channels": [
-            8,
-            32,
-            64
-        ]
+        "conditioning_embedding_num_channels": [8, 32, 64]
     },
     "noise_scheduler": {
-        "_target_": "generative.networks.schedulers.DDPMScheduler",
+        "_target_": "monai.networks.schedulers.ddpm.DDPMScheduler",
         "num_train_timesteps": 1000,
         "beta_start": 0.0015,
         "beta_end": 0.0195,
         "schedule": "scaled_linear_beta",
         "clip_sample": false
     },
-    "unzip_dataset": "scripts.utils.unzip_dataset(@dataset_dir)",
-    "difusion_unet": "$@difusion_unet_def.to(@device)",
-    "checkpoint_difusion_unet": "$torch.load(@trained_diffusion_path)",
-    "load_diffusion": "$@difusion_unet.load_state_dict(@checkpoint_difusion_unet['unet_state_dict'])",
+    "unzip_dataset": "$scripts.utils.unzip_dataset(@dataset_dir)",
+    "diffusion_unet": "$@diffusion_unet_def.to(@device)",
+    "checkpoint_diffusion_unet": "$torch.load(@trained_diffusion_path)",
+    "load_diffusion": "$@diffusion_unet.load_state_dict(@checkpoint_diffusion_unet['unet_state_dict'])",
     "controlnet": "$@controlnet_def.to(@device)",
-    "copy_controlnet_state": "$monai.networks.utils.copy_model_state(@controlnet, @difusion_unet.state_dict())",
+    "copy_controlnet_state": "$monai.networks.utils.copy_model_state(@controlnet, @diffusion_unet.state_dict())",
     "checkpoint_controlnet": "$torch.load(@trained_controlnet_path)",
     "load_controlnet": "$@controlnet.load_state_dict(@checkpoint_controlnet['controlnet_state_dict'], strict=True)",
     "scale_factor": "$@checkpoint_controlnet['scale_factor'].to(@device)",
@@ -244,7 +240,7 @@
             "max_epochs": "@epochs",
             "device": "@device",
             "train_data_loader": "@train#dataloader",
-            "difusion_unet": "@difusion_unet",
+            "diffusion_unet": "@diffusion_unet",
             "controlnet": "@controlnet",
             "noise_scheduler": "@noise_scheduler",
             "loss_function": "@loss",

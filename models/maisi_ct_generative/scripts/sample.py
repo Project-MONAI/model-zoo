@@ -10,12 +10,16 @@
 # limitations under the License.
 
 import json
+import logging
+import math
+import os
 import random
+import time
 from datetime import datetime
 
 import monai
 import torch
-from generative.inferers import LatentDiffusionInferer
+from monai.inferers.inferer import DiffusionInferer
 from monai.data import MetaTensor
 from monai.inferers import sliding_window_inference
 from monai.transforms import Compose, SaveImage
@@ -24,23 +28,64 @@ from tqdm import tqdm
 
 from .augmentation import augmentation
 from .find_masks import find_masks
-from .utils import MapLabelValue, binarize_labels, general_mask_generation_post_process, get_body_region_index_from_mask
+from .utils import binarize_labels, general_mask_generation_post_process, get_body_region_index_from_mask, remap_labels
+from .quality_check import is_outlier
 
 
 class ReconModel(torch.nn.Module):
+    """
+    A PyTorch module for reconstructing images from latent representations.
+
+    Attributes:
+        autoencoder: The autoencoder model used for decoding.
+        scale_factor: Scaling factor applied to the input before decoding.
+    """
+
     def __init__(self, autoencoder, scale_factor):
         super().__init__()
         self.autoencoder = autoencoder
         self.scale_factor = scale_factor
 
     def forward(self, z):
+        """
+        Decode the input latent representation to an image.
+
+        Args:
+            z (torch.Tensor): The input latent representation.
+
+        Returns:
+            torch.Tensor: The reconstructed image.
+        """
         recon_pt_nda = self.autoencoder.decode_stage_2_outputs(z / self.scale_factor)
         return recon_pt_nda
 
 
+def initialize_noise_latents(latent_shape, device):
+    """
+    Initialize random noise latents for image generation with float16.
+
+    Args:
+        latent_shape (tuple): The shape of the latent space.
+        device (torch.device): The device to create the tensor on.
+
+    Returns:
+        torch.Tensor: Initialized noise latents.
+    """
+    return (
+        torch.randn(
+            [
+                1,
+            ]
+            + list(latent_shape)
+        )
+        .half()
+        .to(device)
+    )
+
+
 def ldm_conditional_sample_one_mask(
     autoencoder,
-    difusion_unet,
+    diffusion_unet,
     noise_scheduler,
     scale_factor,
     anatomy_size,
@@ -48,67 +93,96 @@ def ldm_conditional_sample_one_mask(
     latent_shape,
     label_dict_remap_json,
     num_inference_steps=1000,
+    autoencoder_sliding_window_infer_size=[96, 96, 96],
+    autoencoder_sliding_window_infer_overlap=0.6667,
 ):
-    with torch.no_grad():
-        with torch.cuda.amp.autocast():
+    """
+    Generate a single synthetic mask using a latent diffusion model.
 
-            # Generate random noise
-            latents = torch.randn([1] + list(latent_shape)).half().to(device)
-            anatomy_size = torch.FloatTensor(anatomy_size).unsqueeze(0).unsqueeze(0).half().to(device)
-            # synthesize masks
-            noise_scheduler.set_timesteps(num_inference_steps=num_inference_steps)
-            inferer_ddpm = LatentDiffusionInferer(noise_scheduler, scale_factor=scale_factor)
-            synthetic_mask = inferer_ddpm.sample(
-                input_noise=latents,
-                autoencoder_model=autoencoder,
-                diffusion_model=difusion_unet,
-                scheduler=noise_scheduler,
-                verbose=True,
-                conditioning=anatomy_size.to(device),
+    Args:
+        autoencoder (nn.Module): The autoencoder model.
+        diffusion_unet (nn.Module): The diffusion U-Net model.
+        noise_scheduler: The noise scheduler for the diffusion process.
+        scale_factor (float): Scaling factor for the latent space.
+        anatomy_size (torch.Tensor): Tensor specifying the desired anatomy sizes.
+        device (torch.device): The device to run the computation on.
+        latent_shape (tuple): The shape of the latent space.
+        label_dict_remap_json (str): Path to the JSON file for label remapping.
+        num_inference_steps (int): Number of inference steps for the diffusion process.
+        autoencoder_sliding_window_infer_size (list, optional): Size of the sliding window for inference. Defaults to [96, 96, 96].
+        autoencoder_sliding_window_infer_overlap (float, optional): Overlap ratio for sliding window inference. Defaults to 0.6667.
+
+    Returns:
+        torch.Tensor: The generated synthetic mask.
+    """
+    recon_model = ReconModel(autoencoder=autoencoder, scale_factor=scale_factor).to(device)
+
+    with torch.no_grad(), torch.cuda.amp.autocast():
+        # Generate random noise
+        latents = initialize_noise_latents(latent_shape, device)
+        anatomy_size = torch.FloatTensor(anatomy_size).unsqueeze(0).unsqueeze(0).half().to(device)
+        # synthesize latents
+        noise_scheduler.set_timesteps(num_inference_steps=num_inference_steps)
+        inferer_ddpm = DiffusionInferer(noise_scheduler)
+        latents = inferer_ddpm.sample(
+            input_noise=latents,
+            diffusion_model=diffusion_unet,
+            scheduler=noise_scheduler,
+            verbose=True,
+            conditioning=anatomy_size.to(device),
+        )
+        # decode latents to synthesized masks
+        if math.prod(latent_shape[1:]) < math.prod(autoencoder_sliding_window_infer_size):
+            synthetic_mask = recon_model(latents).cpu().detach()
+        else:
+            synthetic_mask = (
+                sliding_window_inference(
+                    inputs=latents,
+                    roi_size=(
+                        autoencoder_sliding_window_infer_size[0],
+                        autoencoder_sliding_window_infer_size[1],
+                        autoencoder_sliding_window_infer_size[2],
+                    ),
+                    sw_batch_size=1,
+                    predictor=recon_model,
+                    mode="gaussian",
+                    overlap=autoencoder_sliding_window_infer_overlap,
+                    sw_device=device,
+                    device=torch.device("cpu"),
+                    progress=True,
+                )
+                .cpu()
+                .detach()
             )
-            synthetic_mask = torch.softmax(synthetic_mask, dim=1)
-            synthetic_mask = torch.argmax(synthetic_mask, dim=1, keepdim=True)
-            # mapping raw index to 132 labels
-            with open(label_dict_remap_json, "r") as f:
-                mapping_dict = json.load(f)
-            mapping = [v for _, v in mapping_dict.items()]
-            mapper = MapLabelValue(
-                orig_labels=[pair[0] for pair in mapping],
-                target_labels=[pair[1] for pair in mapping],
-                dtype=torch.uint8,
-            )
-            synthetic_mask = mapper(synthetic_mask[0, ...])[None, ...].to(device)
+        synthetic_mask = torch.softmax(synthetic_mask, dim=1)
+        synthetic_mask = torch.argmax(synthetic_mask, dim=1, keepdim=True)
+        # mapping raw index to 132 labels
+        synthetic_mask = remap_labels(synthetic_mask, label_dict_remap_json)
 
-            # post process
-            data = synthetic_mask.squeeze().cpu().detach().numpy()
-            if anatomy_size[0, 0, 5].item() != -1.0:
-                target_tumor_label = 23
-            elif anatomy_size[0, 0, 6].item() != -1.0:
-                target_tumor_label = 24
-            elif anatomy_size[0, 0, 7].item() != -1.0:
-                target_tumor_label = 26
-            elif anatomy_size[0, 0, 8].item() != -1.0:
-                target_tumor_label = 27
-            elif anatomy_size[0, 0, 9].item() != -1.0:
-                target_tumor_label = 128
-            else:
-                target_tumor_label = None
+        ###### post process #####
+        data = synthetic_mask.squeeze().cpu().detach().numpy()
 
-            print("target_tumor_label for postprocess:", target_tumor_label)
-            data = general_mask_generation_post_process(data, target_tumor_label=target_tumor_label, device=device)
-            synthetic_mask = torch.from_numpy(data).unsqueeze(0).unsqueeze(0).to(device)
+        labels = [23, 24, 26, 27, 128]
+        target_tumor_label = None
+        for index, size in enumerate(anatomy_size[0, 0, 5:10]):
+            if size.item() != -1.0:
+                target_tumor_label = labels[index]
+
+        logging.info(f"target_tumor_label for postprocess:{target_tumor_label}")
+        data = general_mask_generation_post_process(data, target_tumor_label=target_tumor_label, device=device)
+        synthetic_mask = torch.from_numpy(data).unsqueeze(0).unsqueeze(0).to(device)
 
     return synthetic_mask
 
 
 def ldm_conditional_sample_one_image(
     autoencoder,
-    difusion_unet,
+    diffusion_unet,
     controlnet,
     noise_scheduler,
     scale_factor,
     device,
-    comebine_label_or,
+    combine_label_or,
     top_region_index_tensor,
     bottom_region_index_tensor,
     spacing_tensor,
@@ -116,7 +190,33 @@ def ldm_conditional_sample_one_image(
     output_size,
     noise_factor,
     num_inference_steps=1000,
+    autoencoder_sliding_window_infer_size=[96, 96, 96],
+    autoencoder_sliding_window_infer_overlap=0.6667,
 ):
+    """
+    Generate a single synthetic image using a latent diffusion model with controlnet.
+
+    Args:
+        autoencoder (nn.Module): The autoencoder model.
+        diffusion_unet (nn.Module): The diffusion U-Net model.
+        controlnet (nn.Module): The controlnet model.
+        noise_scheduler: The noise scheduler for the diffusion process.
+        scale_factor (float): Scaling factor for the latent space.
+        device (torch.device): The device to run the computation on.
+        combine_label_or (torch.Tensor): The combined label tensor.
+        top_region_index_tensor (torch.Tensor): Tensor specifying the top region index.
+        bottom_region_index_tensor (torch.Tensor): Tensor specifying the bottom region index.
+        spacing_tensor (torch.Tensor): Tensor specifying the spacing.
+        latent_shape (tuple): The shape of the latent space.
+        output_size (tuple): The desired output size of the image.
+        noise_factor (float): Factor to scale the initial noise.
+        num_inference_steps (int): Number of inference steps for the diffusion process.
+        autoencoder_sliding_window_infer_size (list, optional): Size of the sliding window for inference. Defaults to [96, 96, 96].
+        autoencoder_sliding_window_infer_overlap (float, optional): Overlap ratio for sliding window inference. Defaults to 0.6667.
+
+    Returns:
+        tuple: A tuple containing the synthetic image and its corresponding label.
+    """
     # CT image intensity range
     a_min = -1000
     a_max = 1000
@@ -126,104 +226,157 @@ def ldm_conditional_sample_one_image(
 
     recon_model = ReconModel(autoencoder=autoencoder, scale_factor=scale_factor).to(device)
 
-    with torch.no_grad():
-        with torch.cuda.amp.autocast():
-            # generate segmentation mask
-            comebine_label = comebine_label_or.to(device)
-            if (
-                output_size[0] != comebine_label.shape[2]
-                or output_size[1] != comebine_label.shape[3]
-                or output_size[2] != comebine_label.shape[4]
-            ):
-                print(
-                    "output_size is not a desired value. Need to interpolate the mask to "
-                    "match with output_size. The result image will be very low quality."
-                )
-                comebine_label = torch.nn.functional.interpolate(comebine_label, size=output_size, mode="nearest")
+    with torch.no_grad(), torch.cuda.amp.autocast():
+        logging.info("---- Start generating latent features... ----")
+        start_time = time.time()
+        # generate segmentation mask
+        combine_label = combine_label_or.to(device)
+        if (
+            output_size[0] != combine_label.shape[2]
+            or output_size[1] != combine_label.shape[3]
+            or output_size[2] != combine_label.shape[4]
+        ):
+            logging.info(
+                "output_size is not a desired value. Need to interpolate the mask to match with output_size. The result image will be very low quality."
+            )
+            combine_label = torch.nn.functional.interpolate(combine_label, size=output_size, mode="nearest")
 
-            controlnet_cond_vis = binarize_labels(comebine_label.as_tensor().long()).half()
+        controlnet_cond_vis = binarize_labels(combine_label.as_tensor().long()).half()
 
-            # Generate random noise
-            latents = torch.randn([1] + list(latent_shape)).half().to(device) * noise_factor
+        # Generate random noise
+        latents = initialize_noise_latents(latent_shape, device) * noise_factor
 
-            # synthesize latents
-            noise_scheduler.set_timesteps(num_inference_steps=num_inference_steps)
-            for t in tqdm(noise_scheduler.timesteps, ncols=110):
-                # Get controlnet output
-                down_block_res_samples, mid_block_res_sample = controlnet(
-                    x=latents, timesteps=torch.Tensor((t,)).to(device), controlnet_cond=controlnet_cond_vis
-                )
-                latent_model_input = latents
-                noise_pred = difusion_unet(
-                    x=latent_model_input,
-                    timesteps=torch.Tensor((t,)).to(device),
-                    top_region_index_tensor=top_region_index_tensor,
-                    bottom_region_index_tensor=bottom_region_index_tensor,
-                    spacing_tensor=spacing_tensor,
-                    down_block_additional_residuals=down_block_res_samples,
-                    mid_block_additional_residual=mid_block_res_sample,
-                )
-                latents, _ = noise_scheduler.step(noise_pred, t, latents)
+        # synthesize latents
+        noise_scheduler.set_timesteps(num_inference_steps=num_inference_steps)
+        for t in tqdm(noise_scheduler.timesteps, ncols=110):
+            # Get controlnet output
+            down_block_res_samples, mid_block_res_sample = controlnet(
+                x=latents,
+                timesteps=torch.Tensor((t,)).to(device),
+                controlnet_cond=controlnet_cond_vis,
+            )
+            latent_model_input = latents
+            noise_pred = diffusion_unet(
+                x=latent_model_input,
+                timesteps=torch.Tensor((t,)).to(device),
+                top_region_index_tensor=top_region_index_tensor,
+                bottom_region_index_tensor=bottom_region_index_tensor,
+                spacing_tensor=spacing_tensor,
+                down_block_additional_residuals=down_block_res_samples,
+                mid_block_additional_residual=mid_block_res_sample,
+            )
+            latents, _ = noise_scheduler.step(noise_pred, t, latents)
+        end_time = time.time()
+        logging.info(f"---- Latent features generation time: {end_time - start_time} seconds ----")
+        del noise_pred
+        torch.cuda.empty_cache()
 
-            # decode latents to synthesized images
+        # decode latents to synthesized images
+        logging.info("---- Start decoding latent features into images... ----")
+        start_time = time.time()
+        if math.prod(latent_shape[1:]) < math.prod(autoencoder_sliding_window_infer_size):
+            synthetic_images = recon_model(latents)
+        else:
             synthetic_images = sliding_window_inference(
                 inputs=latents,
                 roi_size=(
-                    min(output_size[0] // 4 // 4 * 3, 96),
-                    min(output_size[1] // 4 // 4 * 3, 96),
-                    min(output_size[2] // 4 // 4 * 3, 96),
+                    min(output_size[0] // 4 // 4 * 3, autoencoder_sliding_window_infer_size[0]),
+                    min(output_size[1] // 4 // 4 * 3, autoencoder_sliding_window_infer_size[1]),
+                    min(output_size[2] // 4 // 4 * 3, autoencoder_sliding_window_infer_size[2]),
                 ),
                 sw_batch_size=1,
                 predictor=recon_model,
                 mode="gaussian",
-                overlap=2.0 / 3.0,
+                overlap=autoencoder_sliding_window_infer_overlap,
                 sw_device=device,
-                device=device,
+                device=torch.device("cpu"),
+                progress=True,
             )
-
         synthetic_images = torch.clip(synthetic_images, b_min, b_max).cpu()
+        end_time = time.time()
+        logging.info(f"---- Image decoding time: {end_time - start_time} seconds ----")
 
-        # post processing:
+        ## post processing:
         # project output to [0, 1]
         synthetic_images = (synthetic_images - b_min) / (b_max - b_min)
         # project output to [-1000, 1000]
         synthetic_images = synthetic_images * (a_max - a_min) + a_min
         # regularize background intensities
-        synthetic_images = crop_img_body_mask(synthetic_images, comebine_label)
+        synthetic_images = crop_img_body_mask(synthetic_images, combine_label)
+        torch.cuda.empty_cache()
 
-    return synthetic_images, comebine_label
+    return synthetic_images, combine_label
 
 
-def filter_mask_with_organs(comebine_label, anatomy_list):
-    # final output mask file has shape of output_size, contaisn labels in anatomy_list
+def filter_mask_with_organs(combine_label, anatomy_list):
+    """
+    Filter a mask to only include specified organs.
+
+    Args:
+        combine_label (torch.Tensor): The input mask.
+        anatomy_list (list): List of organ labels to keep.
+
+    Returns:
+        torch.Tensor: The filtered mask.
+    """
+    # final output mask file has shape of output_size, contains labels in anatomy_list
     # it is already interpolated to target size
-    comebine_label = comebine_label.long()
+    combine_label = combine_label.long()
     # filter out the organs that are not in anatomy_list
     for i in range(len(anatomy_list)):
         organ = anatomy_list[i]
         # replace it with a negative value so it will get mixed
-        comebine_label[comebine_label == organ] = -(i + 1)
+        combine_label[combine_label == organ] = -(i + 1)
     # zero-out voxels with value not in anatomy_list
-    comebine_label[comebine_label > 0] = 0
+    combine_label[combine_label > 0] = 0
     # output positive values
-    comebine_label = -comebine_label
-    return comebine_label
+    combine_label = -combine_label
+    return combine_label
 
 
-def crop_img_body_mask(synthetic_images, comebine_label):
-    synthetic_images[comebine_label == 0] = -1000
+def crop_img_body_mask(synthetic_images, combine_label):
+    """
+    Crop the synthetic image using a body mask.
+
+    Args:
+        synthetic_images (torch.Tensor): The synthetic images.
+        combine_label (torch.Tensor): The body mask.
+
+    Returns:
+        torch.Tensor: The cropped synthetic images.
+    """
+    synthetic_images[combine_label == 0] = -1000
     return synthetic_images
 
 
-def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing, controllable_anatomy_size):
+def check_input(
+    body_region,
+    anatomy_list,
+    label_dict_json,
+    output_size,
+    spacing,
+    controllable_anatomy_size=[("pancreas", 0.5)],
+):
+    """
+    Validate input parameters for image generation.
+
+    Args:
+        body_region (list): List of body regions.
+        anatomy_list (list): List of anatomical structures.
+        label_dict_json (str): Path to the label dictionary JSON file.
+        output_size (tuple): Desired output size of the image.
+        spacing (tuple): Desired voxel spacing.
+        controllable_anatomy_size (list): List of tuples specifying controllable anatomy sizes.
+
+    Raises:
+        ValueError: If any input parameter is invalid.
+    """
     # check output_size and spacing format
     if output_size[0] != output_size[1]:
         raise ValueError(f"The first two components of output_size need to be equal, yet got {output_size}.")
     if (output_size[0] not in [256, 384, 512]) or (output_size[2] not in [128, 256, 384, 512, 640, 768]):
         raise ValueError(
-            "The output_size[0] have to be chosen from [256, 384, 512], and "
-            "output_size[2] have to be chosen from [128, 256, 384, 512, 640, 768], "
-            f"yet got {output_size}."
+            f"The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
         )
 
     if spacing[0] != spacing[1]:
@@ -233,13 +386,24 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
             f"spacing[0] have to be between 0.5 and 3.0 mm, spacing[2] have to be between 0.5 and 5.0 mm, yet got {spacing}."
         )
 
+    if output_size[0] * spacing[0] < 256:
+        FOV = [output_size[axis] * spacing[axis] for axis in range(3)]
+        raise ValueError(
+            f"`'spacing'({spacing}mm) and 'output_size'({output_size}) together decide the output field of view (FOV). The FOV will be {FOV}mm. We recommend the FOV in x and y axis to be at least 256mm for head, and at least 384mm for other body regions like abdomen. There is no such restriction for z-axis."
+        )
+
     # check controllable_anatomy_size format
     if len(controllable_anatomy_size) > 10:
         raise ValueError(
-            f"The length of list controllable_anatomy_size has to be less than 10. "
-            f"Yet got length equal to {len(controllable_anatomy_size)}."
+            f"The length of list controllable_anatomy_size has to be less than 10. Yet got length equal to {len(controllable_anatomy_size)}."
         )
-    available_controllable_organ = ["liver", "gallbladder", "stomach", "pancreas", "colon"]
+    available_controllable_organ = [
+        "liver",
+        "gallbladder",
+        "stomach",
+        "pancreas",
+        "colon",
+    ]
     available_controllable_tumor = [
         "hepatic tumor",
         "bone lesion",
@@ -253,9 +417,7 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
     for controllable_anatomy_size_pair in controllable_anatomy_size:
         if controllable_anatomy_size_pair[0] not in available_controllable_anatomy:
             raise ValueError(
-                f"The controllable_anatomy have to be chosen from "
-                f"{available_controllable_anatomy}, yet got "
-                f"{controllable_anatomy_size_pair[0]}."
+                f"The controllable_anatomy have to be chosen from {available_controllable_anatomy}, yet got {controllable_anatomy_size_pair[0]}."
             )
         if controllable_anatomy_size_pair[0] in available_controllable_tumor:
             controllable_tumor += [controllable_anatomy_size_pair[0]]
@@ -265,8 +427,7 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
             continue
         if controllable_anatomy_size_pair[1] < 0 or controllable_anatomy_size_pair[1] > 1.0:
             raise ValueError(
-                f"The controllable size scale have to be between 0 and 1,0, or equal to -1, "
-                f"yet got {controllable_anatomy_size_pair[1]}."
+                f"The controllable size scale have to be between 0 and 1,0, or equal to -1, yet got {controllable_anatomy_size_pair[1]}."
             )
     if len(controllable_tumor + controllable_organ) != len(list(set(controllable_tumor + controllable_organ))):
         raise ValueError(f"Please do not repeat controllable_anatomy. Got {controllable_tumor + controllable_organ}.")
@@ -274,14 +435,22 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
         raise ValueError(f"Only one controllable tumor is supported. Yet got {controllable_tumor}.")
 
     if len(controllable_anatomy_size) > 0:
-        print(
-            "controllable_anatomy_size is not empty. We will ignore body_region and "
-            "anatomy_list and synthesize based on controllable_anatomy_size."
+        logging.info(
+            f"`controllable_anatomy_size` is not empty.\nWe will ignore `body_region` and `anatomy_list` and synthesize based on `controllable_anatomy_size`: ({controllable_anatomy_size})."
         )
     else:
-        print("controllable_anatomy_size is empty. We will synthesize based on body_region and anatomy_list.")
+        logging.info(
+            f"`controllable_anatomy_size` is empty.\nWe will synthesize based on `body_region`: ({body_region}) and `anatomy_list`: ({anatomy_list})."
+        )
         # check body_region format
-        available_body_region = ["head", "chest", "thorax", "abdomen", "pelvis", "lower"]
+        available_body_region = [
+            "head",
+            "chest",
+            "thorax",
+            "abdomen",
+            "pelvis",
+            "lower",
+        ]
         for region in body_region:
             if region not in available_body_region:
                 raise ValueError(
@@ -296,11 +465,19 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
                 raise ValueError(
                     f"The components in anatomy_list have to be chosen from {label_dict.keys()}, yet got {anatomy}."
                 )
+    logging.info(f"The generate results will have voxel size to be {spacing}mm, volume size to be {output_size}.")
 
     return
 
 
 class LDMSampler:
+    """
+    A sampler class for generating synthetic medical images and masks using latent diffusion models.
+
+    Attributes:
+        Various attributes related to model configuration, input parameters, and generation settings.
+    """
+
     def __init__(
         self,
         body_region,
@@ -311,12 +488,12 @@ class LDMSampler:
         label_dict_json,
         label_dict_remap_json,
         autoencoder,
-        difusion_unet,
+        diffusion_unet,
         controlnet,
         noise_scheduler,
         scale_factor,
         mask_generation_autoencoder,
-        mask_generation_difusion_unet,
+        mask_generation_diffusion_unet,
         mask_generation_scale_factor,
         mask_generation_noise_scheduler,
         device,
@@ -327,13 +504,20 @@ class LDMSampler:
         controllable_anatomy_size,
         image_output_ext=".nii.gz",
         label_output_ext=".nii.gz",
-        quality_check_args=None,
-        spacing=(1, 1, 1),
+        real_img_median_statistics="./configs/image_median_statistics.json",
+        spacing=[1, 1, 1],
         num_inference_steps=None,
         mask_generation_num_inference_steps=None,
         random_seed=None,
+        autoencoder_sliding_window_infer_size=[96, 96, 96],
+        autoencoder_sliding_window_infer_overlap=0.6667,
     ) -> None:
+        """
+        Initialize the LDMSampler with various parameters and models.
 
+        Args:
+            Various parameters related to model configuration, input settings, and output specifications.
+        """
         if random_seed is not None:
             set_determinism(seed=random_seed)
 
@@ -348,12 +532,12 @@ class LDMSampler:
         self.data_root = all_mask_files_base_dir
         self.label_dict_remap_json = label_dict_remap_json
         self.autoencoder = autoencoder
-        self.difusion_unet = difusion_unet
+        self.diffusion_unet = diffusion_unet
         self.controlnet = controlnet
         self.noise_scheduler = noise_scheduler
         self.scale_factor = scale_factor
         self.mask_generation_autoencoder = mask_generation_autoencoder
-        self.mask_generation_difusion_unet = mask_generation_difusion_unet
+        self.mask_generation_diffusion_unet = mask_generation_diffusion_unet
         self.mask_generation_scale_factor = mask_generation_scale_factor
         self.mask_generation_noise_scheduler = mask_generation_noise_scheduler
         self.device = device
@@ -364,7 +548,7 @@ class LDMSampler:
         self.noise_factor = 1.0
         self.controllable_anatomy_size = controllable_anatomy_size
         if len(self.controllable_anatomy_size):
-            print("controllable_anatomy_size is given, mask generation is triggered!")
+            logging.info("controllable_anatomy_size is given, mask generation is triggered!")
             # overwrite the anatomy_list by given organs in self.controllable_anatomy_size
             self.anatomy_list = [label_dict[organ_and_size[0]] for organ_and_size in self.controllable_anatomy_size]
         self.image_output_ext = image_output_ext
@@ -375,14 +559,42 @@ class LDMSampler:
             mask_generation_num_inference_steps if mask_generation_num_inference_steps is not None else 1000
         )
 
-        # quality check disabled for this version
-        self.quality_check_args = quality_check_args
+        if any(size % 16 != 0 for size in autoencoder_sliding_window_infer_size):
+            raise ValueError(
+                f"autoencoder_sliding_window_infer_size must be divisible by 16.\n Got {autoencoder_sliding_window_infer_size}"
+            )
+        if not (0 <= autoencoder_sliding_window_infer_overlap <= 1):
+            raise ValueError(
+                f"Value of autoencoder_sliding_window_infer_overlap must be between 0 and 1.\n Got {autoencoder_sliding_window_infer_overlap}"
+            )
+        self.autoencoder_sliding_window_infer_size = autoencoder_sliding_window_infer_size
+        self.autoencoder_sliding_window_infer_overlap = autoencoder_sliding_window_infer_overlap
 
+        # quality check args
+        self.max_try_time = 5  # if not pass quality check, will try self.max_try_time times
+        with open(real_img_median_statistics, "r") as json_file:
+            self.median_statistics = json.load(json_file)
+        self.label_int_dict = {
+            "liver": [1],
+            "spleen": [3],
+            "pancreas": [4],
+            "kidney": [5, 14],
+            "lung": [28, 29, 30, 31, 31],
+            "brain": [22],
+            "hepatic tumor": [26],
+            "bone lesion": [128],
+            "lung tumor": [23],
+            "colon cancer primaries": [27],
+            "pancreatic tumor": [24],
+            "bone": list(range(33, 57)) + list(range(63, 98)) + [120, 122, 127],
+        }
+
+        # networks
         self.autoencoder.eval()
-        self.difusion_unet.eval()
+        self.diffusion_unet.eval()
         self.controlnet.eval()
         self.mask_generation_autoencoder.eval()
-        self.mask_generation_difusion_unet.eval()
+        self.mask_generation_diffusion_unet.eval()
 
         self.spacing = spacing
 
@@ -400,9 +612,16 @@ class LDMSampler:
                 monai.transforms.Lambdad(keys="spacing", func=lambda x: x * 1e2),
             ]
         )
-        print("LDM sampler initialized.")
+        logging.info("LDM sampler initialized.")
 
     def sample_multiple_images(self, num_img):
+        """
+        Generate multiple synthetic images and masks.
+
+        Args:
+            num_img (int): Number of images to generate.
+        """
+        output_filenames = []
         if len(self.controllable_anatomy_size) > 0:
             # we will use mask generation instead of finding candidate masks
             # create a dummy selected_mask_files for placeholder
@@ -424,47 +643,60 @@ class LDMSampler:
             if len(candidate_mask_files) < num_img:
                 # if we cannot find enough masks based on the exact match of anatomy list, spacing, and output size,
                 # then we will try to find the closest mask in terms of  spacing, and output size.
-                print("Resample to get desired output size and spacing")
+                logging.info("Resample mask file to get desired output size and spacing")
                 candidate_mask_files = self.find_closest_masks(num_img)
                 need_resample = True
 
             selected_mask_files = self.select_mask(candidate_mask_files, num_img)
-            print(selected_mask_files)
+            logging.info(f"Images will be generated based on {selected_mask_files}.")
             if len(selected_mask_files) != num_img:
                 raise ValueError(
-                    f"len(selected_mask_files) ({len(selected_mask_files)}) != num_img "
-                    f"({num_img}). This should not happen. Please revisit function "
-                    f"select_mask(self, candidate_mask_files, num_img)."
+                    f"len(selected_mask_files) ({len(selected_mask_files)}) != num_img ({num_img}). This should not happen. Please revisit function select_mask(self, candidate_mask_files, num_img)."
                 )
         for item in selected_mask_files:
+            logging.info("---- Start preparing masks... ----")
+            start_time = time.time()
             if len(self.controllable_anatomy_size) > 0:
                 # generate a synthetic mask
-                (comebine_label_or, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor) = (
-                    self.prepare_one_mask_and_meta_info(anatomy_size_condtion)
-                )
+                (
+                    combine_label_or,
+                    top_region_index_tensor,
+                    bottom_region_index_tensor,
+                    spacing_tensor,
+                ) = self.prepare_one_mask_and_meta_info(anatomy_size_condtion)
             else:
                 # read in mask file
                 mask_file = item["mask_file"]
                 if_aug = item["if_aug"]
-                (comebine_label_or, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor) = (
-                    self.read_mask_information(mask_file)
-                )
+                (
+                    combine_label_or,
+                    top_region_index_tensor,
+                    bottom_region_index_tensor,
+                    spacing_tensor,
+                ) = self.read_mask_information(mask_file)
                 if need_resample:
-                    comebine_label_or = self.ensure_output_size_and_spacing(comebine_label_or)
+                    combine_label_or = self.ensure_output_size_and_spacing(combine_label_or)
                 # mask augmentation
-                if if_aug is True:
-                    comebine_label_or = augmentation(comebine_label_or, self.output_size)
+                if if_aug:
+                    combine_label_or = augmentation(combine_label_or, self.output_size)
+            end_time = time.time()
+            logging.info(f"---- Mask preparation time: {end_time - start_time} seconds ----")
             torch.cuda.empty_cache()
             # generate image/label pairs
             to_generate = True
             try_time = 0
             while to_generate:
                 synthetic_images, synthetic_labels = self.sample_one_pair(
-                    comebine_label_or, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor
+                    combine_label_or,
+                    top_region_index_tensor,
+                    bottom_region_index_tensor,
+                    spacing_tensor,
                 )
-                # current quality always return True
-                pass_quality_check = self.quality_check(synthetic_images)
-                if pass_quality_check or try_time > 3:
+                # synthetic image quality check
+                pass_quality_check = self.quality_check(
+                    synthetic_images.cpu().detach().numpy(), combine_label_or.cpu().detach().numpy()
+                )
+                if pass_quality_check or try_time > self.max_try_time:
                     # save image/label pairs
                     output_postfix = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
                     synthetic_labels.meta["filename_or_obj"] = "sample.nii.gz"
@@ -476,6 +708,9 @@ class LDMSampler:
                         separate_folder=False,
                     )
                     img_saver(synthetic_images[0])
+                    synthetic_images_filename = os.path.join(
+                        self.output_dir, "sample_" + output_postfix + "_image" + self.image_output_ext
+                    )
                     # filter out the organs that are not in anatomy_list
                     synthetic_labels = filter_mask_with_organs(synthetic_labels, self.anatomy_list)
                     label_saver = SaveImage(
@@ -485,13 +720,29 @@ class LDMSampler:
                         separate_folder=False,
                     )
                     label_saver(synthetic_labels[0])
+                    synthetic_labels_filename = os.path.join(
+                        self.output_dir, "sample_" + output_postfix + "_label" + self.label_output_ext
+                    )
+                    output_filenames.append([synthetic_images_filename, synthetic_labels_filename])
                     to_generate = False
                 else:
-                    print("Generated image/label pair did not pass quality check, will re-generate another pair.")
+                    logging.info(
+                        "Generated image/label pair did not pass quality check, will re-generate another pair."
+                    )
                     try_time += 1
-        return
+        return output_filenames
 
     def select_mask(self, candidate_mask_files, num_img):
+        """
+        Select mask files for image generation.
+
+        Args:
+            candidate_mask_files (list): List of candidate mask files.
+            num_img (int): Number of images to generate.
+
+        Returns:
+            list: Selected mask files with augmentation flags.
+        """
         selected_mask_files = []
         random.shuffle(candidate_mask_files)
 
@@ -501,17 +752,33 @@ class LDMSampler:
         return selected_mask_files
 
     def sample_one_pair(
-        self, comebine_label_or_aug, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor
+        self,
+        combine_label_or_aug,
+        top_region_index_tensor,
+        bottom_region_index_tensor,
+        spacing_tensor,
     ):
+        """
+        Generate a single pair of synthetic image and mask.
+
+        Args:
+            combine_label_or_aug (torch.Tensor): Combined label tensor or augmented label.
+            top_region_index_tensor (torch.Tensor): Tensor specifying the top region index.
+            bottom_region_index_tensor (torch.Tensor): Tensor specifying the bottom region index.
+            spacing_tensor (torch.Tensor): Tensor specifying the spacing.
+
+        Returns:
+            tuple: A tuple containing the synthetic image and its corresponding label.
+        """
         # generate image/label pairs
         synthetic_images, synthetic_labels = ldm_conditional_sample_one_image(
             autoencoder=self.autoencoder,
-            difusion_unet=self.difusion_unet,
+            diffusion_unet=self.diffusion_unet,
             controlnet=self.controlnet,
             noise_scheduler=self.noise_scheduler,
             scale_factor=self.scale_factor,
             device=self.device,
-            comebine_label_or=comebine_label_or_aug,
+            combine_label_or=combine_label_or_aug,
             top_region_index_tensor=top_region_index_tensor,
             bottom_region_index_tensor=bottom_region_index_tensor,
             spacing_tensor=spacing_tensor,
@@ -519,10 +786,24 @@ class LDMSampler:
             output_size=self.output_size,
             noise_factor=self.noise_factor,
             num_inference_steps=self.num_inference_steps,
+            autoencoder_sliding_window_infer_size=self.autoencoder_sliding_window_infer_size,
+            autoencoder_sliding_window_infer_overlap=self.autoencoder_sliding_window_infer_overlap,
         )
         return synthetic_images, synthetic_labels
 
-    def prepare_anatomy_size_condtion(self, controllable_anatomy_size):
+    def prepare_anatomy_size_condtion(
+        self,
+        controllable_anatomy_size,
+    ):
+        """
+        Prepare anatomy size conditions for mask generation.
+
+        Args:
+            controllable_anatomy_size (list): List of tuples specifying controllable anatomy sizes.
+
+        Returns:
+            list: Prepared anatomy size conditions.
+        """
         anatomy_size_idx = {
             "gallbladder": 0,
             "liver": 1,
@@ -536,7 +817,7 @@ class LDMSampler:
             "bone lesion": 9,
         }
         provide_anatomy_size = [None for _ in range(10)]
-        print("controllable_anatomy_size:", controllable_anatomy_size)
+        logging.info(f"controllable_anatomy_size: {controllable_anatomy_size}")
         for element in controllable_anatomy_size:
             anatomy_name, anatomy_size = element
             provide_anatomy_size[anatomy_size_idx[anatomy_name]] = anatomy_size
@@ -555,40 +836,56 @@ class LDMSampler:
                 diff += abs(provide_size - db_size)
             candidate_list.append((size, diff))
         candidate_condition = sorted(candidate_list, key=lambda x: x[1])[0][0]
-        print("provide_anatomy_size:", provide_anatomy_size)
-        print("candidate_condition:", candidate_condition)
 
         # overwrite the anatomy size provided by users
         for element in controllable_anatomy_size:
             anatomy_name, anatomy_size = element
             candidate_condition[anatomy_size_idx[anatomy_name]] = anatomy_size
-        print("final candidate_condition:", candidate_condition)
+
         return candidate_condition
 
     def prepare_one_mask_and_meta_info(self, anatomy_size_condtion):
-        comebine_label_or = self.sample_one_mask(anatomy_size=anatomy_size_condtion)
+        """
+        Prepare a single mask and its associated meta information.
+
+        Args:
+            anatomy_size_condtion (list): Anatomy size conditions.
+
+        Returns:
+            tuple: A tuple containing the prepared mask and associated tensors.
+        """
+        combine_label_or = self.sample_one_mask(anatomy_size=anatomy_size_condtion)
         # TODO: current mask generation model only can generate 256^3 volumes with 1.5 mm spacing.
         affine = torch.zeros((4, 4))
         affine[0, 0] = 1.5
         affine[1, 1] = 1.5
         affine[2, 2] = 1.5
         affine[3, 3] = 1.0  # dummy
-        comebine_label_or = MetaTensor(comebine_label_or, affine=affine)
-        comebine_label_or = self.ensure_output_size_and_spacing(comebine_label_or)
+        combine_label_or = MetaTensor(combine_label_or, affine=affine)
+        combine_label_or = self.ensure_output_size_and_spacing(combine_label_or)
 
-        top_region_index, bottom_region_index = get_body_region_index_from_mask(comebine_label_or)
+        top_region_index, bottom_region_index = get_body_region_index_from_mask(combine_label_or)
 
         spacing_tensor = torch.FloatTensor(self.spacing).unsqueeze(0).half().to(self.device) * 1e2
         top_region_index_tensor = torch.FloatTensor(top_region_index).unsqueeze(0).half().to(self.device) * 1e2
         bottom_region_index_tensor = torch.FloatTensor(bottom_region_index).unsqueeze(0).half().to(self.device) * 1e2
 
-        return comebine_label_or, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor
+        return combine_label_or, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor
 
     def sample_one_mask(self, anatomy_size):
+        """
+        Generate a single synthetic mask.
+
+        Args:
+            anatomy_size (list): Anatomy size specifications.
+
+        Returns:
+            torch.Tensor: The generated synthetic mask.
+        """
         # generate one synthetic mask
         synthetic_mask = ldm_conditional_sample_one_mask(
             self.mask_generation_autoencoder,
-            self.mask_generation_difusion_unet,
+            self.mask_generation_diffusion_unet,
             self.mask_generation_noise_scheduler,
             self.mask_generation_scale_factor,
             anatomy_size,
@@ -596,10 +893,25 @@ class LDMSampler:
             self.mask_generation_latent_shape,
             label_dict_remap_json=self.label_dict_remap_json,
             num_inference_steps=self.mask_generation_num_inference_steps,
+            autoencoder_sliding_window_infer_size=self.autoencoder_sliding_window_infer_size,
+            autoencoder_sliding_window_infer_overlap=self.autoencoder_sliding_window_infer_overlap,
         )
         return synthetic_mask
 
     def ensure_output_size_and_spacing(self, labels, check_contains_target_labels=True):
+        """
+        Ensure the output mask has the correct size and spacing.
+
+        Args:
+            labels (torch.Tensor): Input label tensor.
+            check_contains_target_labels (bool): Whether to check if the resampled mask contains target labels.
+
+        Returns:
+            torch.Tensor: Resampled label tensor.
+
+        Raises:
+            ValueError: If the resampled mask doesn't contain required class labels.
+        """
         current_spacing = [labels.affine[0, 0], labels.affine[1, 1], labels.affine[2, 2]]
         current_shape = list(labels.squeeze().shape)
 
@@ -614,27 +926,41 @@ class LDMSampler:
                 need_resample = True
         # resample to target size and spacing
         if need_resample:
-            print("Resampling mask to target shape and sapcing")
-            print(f"Output size: {current_shape} -> {self.output_size}")
-            print(f"Sapcing: {current_spacing} -> {self.spacing}")
+            logging.info("Resampling mask to target shape and spacing")
+            logging.info(f"Resize Spacing: {current_spacing} -> {self.spacing}")
+            logging.info(f"Output size: {current_shape} -> {self.output_size}")
             spacing = monai.transforms.Spacing(pixdim=tuple(self.spacing), mode="nearest")
-            pad = monai.transforms.SpatialPad(spatial_size=tuple(self.output_size))
-            crop = monai.transforms.CenterSpatialCrop(roi_size=tuple(self.output_size))
-            labels = crop(pad(spacing(labels.squeeze(0)))).unsqueeze(0)
+            pad_crop = monai.transforms.ResizeWithPadOrCrop(spatial_size=tuple(self.output_size))
+            labels = pad_crop(spacing(labels.squeeze(0))).unsqueeze(0).to(labels.dtype)
+
             contained_labels = torch.unique(labels)
             if check_contains_target_labels:
                 # check if the resampled mask still contains those target labels
                 for anatomy_label in self.anatomy_list:
                     if anatomy_label not in contained_labels:
                         raise ValueError(
-                            "Resampled mask does not contain required class labels. Please tune spacing and output size"
+                            f"Resampled mask does not contain required class labels {anatomy_label}. Please tune spacing and output size."
                         )
         return labels
 
     def read_mask_information(self, mask_file):
+        """
+        Read mask information from a file.
+
+        Args:
+            mask_file (str): Path to the mask file.
+
+        Returns:
+            tuple: A tuple containing the mask tensor and associated information.
+        """
         val_data = self.val_transforms(mask_file)
 
-        for key in ["pseudo_label", "spacing", "top_region_index", "bottom_region_index"]:
+        for key in [
+            "pseudo_label",
+            "spacing",
+            "top_region_index",
+            "bottom_region_index",
+        ]:
             val_data[key] = val_data[key].unsqueeze(0).to(self.device)
 
         return (
@@ -645,6 +971,18 @@ class LDMSampler:
         )
 
     def find_closest_masks(self, num_img):
+        """
+        Find the closest matching masks from the database.
+
+        Args:
+            num_img (int): Number of images to generate.
+
+        Returns:
+            list: List of closest matching mask candidates.
+
+        Raises:
+            ValueError: If suitable candidates cannot be found.
+        """
         # first check the database based on anatomy list
         candidates = find_masks(
             self.body_region,
@@ -694,6 +1032,20 @@ class LDMSampler:
             raise ValueError("Cannot find body region with given organ list.")
         return final_candidates
 
-    def quality_check(self, image):
-        # This version disabled quality check
+    def quality_check(self, image_data, label_data):
+        """
+        Perform a quality check on the generated image.
+        Args:
+            image_data (np.ndarray): The generated image.
+            label_data (np.ndarray): The corresponding whole body mask.
+        Returns:
+            bool: True if the image passes the quality check, False otherwise.
+        """
+        outlier_results = is_outlier(self.median_statistics, image_data, label_data, self.label_int_dict)
+        for label, result in outlier_results.items():
+            if result.get("is_outlier", False):
+                logging.info(
+                    f"Generated image quality check for label '{label}' failed: median value {result['median_value']} is outside the acceptable range ({result['low_thresh']} - {result['high_thresh']})."
+                )
+                return False
         return True
