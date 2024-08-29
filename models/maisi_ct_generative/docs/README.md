@@ -23,7 +23,7 @@ The inference requires:
 - Disk Memory: at least 21GB disk memory
 
 ### Execute inference
-The model weights can be downloaded with 
+The model weights can be downloaded with
 ```
 python -m scripts.download_files
 ```
