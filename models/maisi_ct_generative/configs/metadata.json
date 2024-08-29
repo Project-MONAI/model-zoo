@@ -1,6 +1,6 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20240318.json",
-    "version": "0.3.6",
+    "version": "0.4.0",
     "changelog": {
         "0.4.0": "update to use monai 1.4, model ckpt updated, rm GenerativeAI repo, add quality check",
         "0.3.6": "first oss version"
