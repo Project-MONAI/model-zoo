@@ -296,7 +296,7 @@ def ldm_conditional_sample_one_image(
         end_time = time.time()
         logging.info(f"---- Image decoding time: {end_time - start_time} seconds ----")
 
-        ## post processing:
+        # post processing:
         # project output to [0, 1]
         synthetic_images = (synthetic_images - b_min) / (b_max - b_min)
         # project output to [-1000, 1000]
