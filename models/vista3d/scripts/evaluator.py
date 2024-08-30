@@ -248,7 +248,7 @@ class Vista3dEvaluator(SupervisedEvaluator):
             points = torch.zeros(label_prompt.shape[0], 1, 3).to(inputs.device)
             point_labels = -1 + torch.zeros(label_prompt.shape[0], 1).to(inputs.device)
             # validation for either auto or point.
-            if engine.hyper_kwargs.get("val_head", "auto") == 'auto':
+            if engine.hyper_kwargs.get("val_head", "auto") == "auto":
                 # automatic only validation
                 # remove val_label_set, vista3d will not sample points from gt labels.
                 val_label_set = None
