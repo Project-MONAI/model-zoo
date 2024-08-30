@@ -386,7 +386,7 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
     if len(controllable_anatomy_size) > 10:
         raise ValueError(
             (
-                f"The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] "
+                "The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] "
                 f"have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
             )
         )
@@ -558,7 +558,7 @@ class LDMSampler:
         if not (0 <= autoencoder_sliding_window_infer_overlap <= 1):
             raise ValueError(
                 (
-                    f"Value of autoencoder_sliding_window_infer_overlap must be between 0 "
+                    "Value of autoencoder_sliding_window_infer_overlap must be between 0 "
                     f"and 1.\n Got {autoencoder_sliding_window_infer_overlap}"
                 )
             )
@@ -648,7 +648,7 @@ class LDMSampler:
                 raise ValueError(
                     (
                         f"len(selected_mask_files) ({len(selected_mask_files)}) != num_img ({num_img}). "
-                        f"This should not happen. Please revisit function select_mask(self, candidate_mask_files, num_img)."
+                        "This should not happen. Please revisit function select_mask(self, candidate_mask_files, num_img)."
                     )
                 )
         for item in selected_mask_files:
