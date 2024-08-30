@@ -71,16 +71,7 @@ def initialize_noise_latents(latent_shape, device):
     Returns:
         torch.Tensor: Initialized noise latents.
     """
-    return (
-        torch.randn(
-            [
-                1,
-            ]
-            + list(latent_shape)
-        )
-        .half()
-        .to(device)
-    )
+    return torch.randn([1] + list(latent_shape)).half().to(device)
 
 
 def ldm_conditional_sample_one_mask(
@@ -251,9 +242,7 @@ def ldm_conditional_sample_one_image(
         for t in tqdm(noise_scheduler.timesteps, ncols=110):
             # Get controlnet output
             down_block_res_samples, mid_block_res_sample = controlnet(
-                x=latents,
-                timesteps=torch.Tensor((t,)).to(device),
-                controlnet_cond=controlnet_cond_vis,
+                x=latents, timesteps=torch.Tensor((t,)).to(device), controlnet_cond=controlnet_cond_vis
             )
             latent_model_input = latents
             noise_pred = diffusion_unet(
@@ -350,12 +339,7 @@ def crop_img_body_mask(synthetic_images, combine_label):
 
 
 def check_input(
-    body_region,
-    anatomy_list,
-    label_dict_json,
-    output_size,
-    spacing,
-    controllable_anatomy_size=[("pancreas", 0.5)],
+    body_region, anatomy_list, label_dict_json, output_size, spacing, controllable_anatomy_size=[("pancreas", 0.5)]
 ):
     """
     Validate input parameters for image generation.
@@ -397,13 +381,7 @@ def check_input(
         raise ValueError(
             f"The length of list controllable_anatomy_size has to be less than 10. Yet got length equal to {len(controllable_anatomy_size)}."
         )
-    available_controllable_organ = [
-        "liver",
-        "gallbladder",
-        "stomach",
-        "pancreas",
-        "colon",
-    ]
+    available_controllable_organ = ["liver", "gallbladder", "stomach", "pancreas", "colon"]
     available_controllable_tumor = [
         "hepatic tumor",
         "bone lesion",
@@ -443,14 +421,7 @@ def check_input(
             f"`controllable_anatomy_size` is empty.\nWe will synthesize based on `body_region`: ({body_region}) and `anatomy_list`: ({anatomy_list})."
         )
         # check body_region format
-        available_body_region = [
-            "head",
-            "chest",
-            "thorax",
-            "abdomen",
-            "pelvis",
-            "lower",
-        ]
+        available_body_region = ["head", "chest", "thorax", "abdomen", "pelvis", "lower"]
         for region in body_region:
             if region not in available_body_region:
                 raise ValueError(
@@ -658,22 +629,16 @@ class LDMSampler:
             start_time = time.time()
             if len(self.controllable_anatomy_size) > 0:
                 # generate a synthetic mask
-                (
-                    combine_label_or,
-                    top_region_index_tensor,
-                    bottom_region_index_tensor,
-                    spacing_tensor,
-                ) = self.prepare_one_mask_and_meta_info(anatomy_size_condtion)
+                (combine_label_or, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor) = (
+                    self.prepare_one_mask_and_meta_info(anatomy_size_condtion)
+                )
             else:
                 # read in mask file
                 mask_file = item["mask_file"]
                 if_aug = item["if_aug"]
-                (
-                    combine_label_or,
-                    top_region_index_tensor,
-                    bottom_region_index_tensor,
-                    spacing_tensor,
-                ) = self.read_mask_information(mask_file)
+                (combine_label_or, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor) = (
+                    self.read_mask_information(mask_file)
+                )
                 if need_resample:
                     combine_label_or = self.ensure_output_size_and_spacing(combine_label_or)
                 # mask augmentation
@@ -687,10 +652,7 @@ class LDMSampler:
             try_time = 0
             while to_generate:
                 synthetic_images, synthetic_labels = self.sample_one_pair(
-                    combine_label_or,
-                    top_region_index_tensor,
-                    bottom_region_index_tensor,
-                    spacing_tensor,
+                    combine_label_or, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor
                 )
                 # synthetic image quality check
                 pass_quality_check = self.quality_check(
@@ -752,11 +714,7 @@ class LDMSampler:
         return selected_mask_files
 
     def sample_one_pair(
-        self,
-        combine_label_or_aug,
-        top_region_index_tensor,
-        bottom_region_index_tensor,
-        spacing_tensor,
+        self, combine_label_or_aug, top_region_index_tensor, bottom_region_index_tensor, spacing_tensor
     ):
         """
         Generate a single pair of synthetic image and mask.
@@ -791,10 +749,7 @@ class LDMSampler:
         )
         return synthetic_images, synthetic_labels
 
-    def prepare_anatomy_size_condtion(
-        self,
-        controllable_anatomy_size,
-    ):
+    def prepare_anatomy_size_condtion(self, controllable_anatomy_size):
         """
         Prepare anatomy size conditions for mask generation.
 
@@ -955,12 +910,7 @@ class LDMSampler:
         """
         val_data = self.val_transforms(mask_file)
 
-        for key in [
-            "pseudo_label",
-            "spacing",
-            "top_region_index",
-            "bottom_region_index",
-        ]:
+        for key in ["pseudo_label", "spacing", "top_region_index", "bottom_region_index"]:
             val_data[key] = val_data[key].unsqueeze(0).to(self.device)
 
         return (

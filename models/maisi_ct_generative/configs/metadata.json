@@ -6,7 +6,7 @@
         "0.3.6": "first oss version"
     },
     "monai_version": "1.4.0",
-    "pytorch_version": "2.2.2",
+    "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
     "optional_packages_version": {
         "fire": "0.6.0",

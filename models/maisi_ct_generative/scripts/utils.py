@@ -177,19 +177,7 @@ def erode_one_img(mask_t: Tensor, filter_size: int | Sequence[int] = 3, pad_valu
     Return:
         Tensor: eroded mask, same shape as input.
     """
-    return (
-        erode(
-            mask_t.float()
-            .unsqueeze(0)
-            .unsqueeze(
-                0,
-            ),
-            filter_size,
-            pad_value=pad_value,
-        )
-        .squeeze(0)
-        .squeeze(0)
-    )
+    return erode(mask_t.float().unsqueeze(0).unsqueeze(0), filter_size, pad_value=pad_value).squeeze(0).squeeze(0)
 
 
 def dilate_one_img(mask_t: Tensor, filter_size: int | Sequence[int] = 3, pad_value: float = 0.0) -> Tensor:
@@ -206,19 +194,7 @@ def dilate_one_img(mask_t: Tensor, filter_size: int | Sequence[int] = 3, pad_val
     Return:
         Tensor: dilated mask, same shape as input.
     """
-    return (
-        dilate(
-            mask_t.float()
-            .unsqueeze(0)
-            .unsqueeze(
-                0,
-            ),
-            filter_size,
-            pad_value=pad_value,
-        )
-        .squeeze(0)
-        .squeeze(0)
-    )
+    return dilate(mask_t.float().unsqueeze(0).unsqueeze(0), filter_size, pad_value=pad_value).squeeze(0).squeeze(0)
 
 
 def binarize_labels(x: Tensor, bits: int = 8) -> Tensor:
@@ -365,27 +341,16 @@ def prepare_maisi_controlnet_json_dataloader(
     train_loader = None
 
     if use_ddp:
-        list_train = partition_dataset(
-            data=list_train,
-            shuffle=True,
-            num_partitions=world_size,
-            even_divisible=True,
-        )[rank]
+        list_train = partition_dataset(data=list_train, shuffle=True, num_partitions=world_size, even_divisible=True)[
+            rank
+        ]
     train_ds = CacheDataset(data=list_train, transform=train_transforms, cache_rate=cache_rate, num_workers=8)
     train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
     if use_ddp:
-        list_valid = partition_dataset(
-            data=list_valid,
-            shuffle=True,
-            num_partitions=world_size,
-            even_divisible=False,
-        )[rank]
-    val_ds = CacheDataset(
-        data=list_valid,
-        transform=val_transforms,
-        cache_rate=cache_rate,
-        num_workers=8,
-    )
+        list_valid = partition_dataset(data=list_valid, shuffle=True, num_partitions=world_size, even_divisible=False)[
+            rank
+        ]
+    val_ds = CacheDataset(data=list_valid, transform=val_transforms, cache_rate=cache_rate, num_workers=8)
     val_loader = DataLoader(val_ds, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=False)
     return train_loader, val_loader
 
@@ -734,8 +699,7 @@ def KL_loss(z_mu, z_sigma):
     """
     eps = 1e-10
     kl_loss = 0.5 * torch.sum(
-        z_mu.pow(2) + z_sigma.pow(2) - torch.log(z_sigma.pow(2) + eps) - 1,
-        dim=list(range(1, len(z_sigma.shape))),
+        z_mu.pow(2) + z_sigma.pow(2) - torch.log(z_sigma.pow(2) + eps) - 1, dim=list(range(1, len(z_sigma.shape)))
     )
     return torch.sum(kl_loss) / kl_loss.shape[0]
 
