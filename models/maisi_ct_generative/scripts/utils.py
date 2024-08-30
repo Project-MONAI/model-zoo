@@ -9,7 +9,6 @@
 # See the License for the specific language governing permissions and
 import copy
 import json
-import logging
 import math
 import os
 import zipfile
@@ -21,19 +20,12 @@ import numpy as np
 import skimage
 import torch
 import torch.distributed as dist
-import torch.nn.functional as F
 from monai.bundle import ConfigParser
 from monai.config import DtypeLike, NdarrayOrTensor
 from monai.data import CacheDataset, DataLoader, partition_dataset
 from monai.transforms import Compose, EnsureTyped, Lambdad, LoadImaged, Orientationd
 from monai.transforms.utils_morphological_ops import dilate, erode
-from monai.utils import (
-    TransformBackends,
-    convert_data_type,
-    convert_to_dst_type,
-    ensure_tuple_rep,
-    get_equivalent_dtype,
-)
+from monai.utils import TransformBackends, convert_data_type, convert_to_dst_type, get_equivalent_dtype
 from scipy import stats
 from torch import Tensor
 
@@ -49,7 +41,18 @@ def unzip_dataset(dataset_dir):
     return
 
 
-def add_data_dir2path(list_files, data_dir, fold=None):
+def add_data_dir2path(list_files: list, data_dir: str, fold: int = None) -> tuple[list, list]:
+    """
+    Read a list of data dictionary.
+
+    Args:
+        list_files (list): input data to load and transform to generate dataset for model.
+        data_dir (str): directory of files.
+        fold (int, optional): fold index for cross validation. Defaults to None.
+
+    Returns:
+        tuple[list, list]: A tuple of two arrays (training, validation).
+    """
     new_list_files = copy.deepcopy(list_files)
     if fold is not None:
         new_list_files_train = []
@@ -251,40 +254,6 @@ def define_instance(args: Namespace, instance_def_key: str) -> Any:
     parser = ConfigParser(vars(args))
     parser.parse(True)
     return parser.get_parsed_content(instance_def_key, instantiate=True)
-
-
-def add_data_dir2path(list_files: list, data_dir: str, fold: int = None) -> tuple[list, list]:
-    """
-    Read a list of data dictionary.
-
-    Args:
-        list_files (list): input data to load and transform to generate dataset for model.
-        data_dir (str): directory of files.
-        fold (int, optional): fold index for cross validation. Defaults to None.
-
-    Returns:
-        tuple[list, list]: A tuple of two arrays (training, validation).
-    """
-    new_list_files = copy.deepcopy(list_files)
-    if fold is not None:
-        new_list_files_train = []
-        new_list_files_val = []
-    for d in new_list_files:
-        d["image"] = os.path.join(data_dir, d["image"])
-
-        if "label" in d:
-            d["label"] = os.path.join(data_dir, d["label"])
-
-        if fold is not None:
-            if d["fold"] == fold:
-                new_list_files_val.append(copy.deepcopy(d))
-            else:
-                new_list_files_train.append(copy.deepcopy(d))
-
-    if fold is not None:
-        return new_list_files_train, new_list_files_val
-    else:
-        return new_list_files, []
 
 
 def prepare_maisi_controlnet_json_dataloader(
@@ -683,12 +652,13 @@ class MapLabelValue:
         return out
 
 
-def KL_loss(z_mu, z_sigma):
+def kl_loss(z_mu, z_sigma):
     """
     Compute the Kullback-Leibler (KL) divergence loss for a variational autoencoder (VAE).
 
     The KL divergence measures how one probability distribution diverges from a second, expected probability distribution.
-    In the context of VAEs, this loss term ensures that the learned latent space distribution is close to a standard normal distribution.
+    In the context of VAEs,
+    this loss term ensures that the learned latent space distribution is close to a standard normal distribution.
 
     Args:
         z_mu (torch.Tensor): Mean of the latent variable distribution, shape [N,C,H,W,D] or [N,C,H,W].
@@ -698,10 +668,10 @@ def KL_loss(z_mu, z_sigma):
         torch.Tensor: The computed KL divergence loss, averaged over the batch.
     """
     eps = 1e-10
-    kl_loss = 0.5 * torch.sum(
+    loss = 0.5 * torch.sum(
         z_mu.pow(2) + z_sigma.pow(2) - torch.log(z_sigma.pow(2) + eps) - 1, dim=list(range(1, len(z_sigma.shape)))
     )
-    return torch.sum(kl_loss) / kl_loss.shape[0]
+    return torch.sum(loss) / loss.shape[0]
 
 
 def dynamic_infer(inferer, model, images):

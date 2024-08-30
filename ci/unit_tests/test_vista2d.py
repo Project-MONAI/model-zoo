@@ -82,7 +82,7 @@ class TestVista2d(unittest.TestCase):
         # check_properties=False, need to add monai service properties later
         check_workflow(workflow, check_properties=False)
 
-        expected_output_file = os.path.join(self.tmp_output_dir, f"image_{self.dataset_size-1}.tif")
+        expected_output_file = os.path.join(self.tmp_output_dir, f"image_{self.dataset_size - 1}.tif")
         self.assertTrue(os.path.isfile(expected_output_file))
 
     @parameterized.expand([TEST_CASE_TRAIN])

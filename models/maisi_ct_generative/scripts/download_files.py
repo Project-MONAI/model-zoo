@@ -1,5 +1,3 @@
-import os
-
 import yaml
 from monai.apps import download_url
 

@@ -84,7 +84,7 @@ def ldm_conditional_sample_one_mask(
     latent_shape,
     label_dict_remap_json,
     num_inference_steps=1000,
-    autoencoder_sliding_window_infer_size=[96, 96, 96],
+    autoencoder_sliding_window_infer_size=(96, 96, 96),
     autoencoder_sliding_window_infer_overlap=0.6667,
 ):
     """
@@ -150,7 +150,7 @@ def ldm_conditional_sample_one_mask(
         # mapping raw index to 132 labels
         synthetic_mask = remap_labels(synthetic_mask, label_dict_remap_json)
 
-        ###### post process #####
+        # post process
         data = synthetic_mask.squeeze().cpu().detach().numpy()
 
         labels = [23, 24, 26, 27, 128]
@@ -181,7 +181,7 @@ def ldm_conditional_sample_one_image(
     output_size,
     noise_factor,
     num_inference_steps=1000,
-    autoencoder_sliding_window_infer_size=[96, 96, 96],
+    autoencoder_sliding_window_infer_size=(96, 96, 96),
     autoencoder_sliding_window_infer_overlap=0.6667,
 ):
     """
@@ -228,7 +228,8 @@ def ldm_conditional_sample_one_image(
             or output_size[2] != combine_label.shape[4]
         ):
             logging.info(
-                "output_size is not a desired value. Need to interpolate the mask to match with output_size. The result image will be very low quality."
+                "output_size is not a desired value. Need to interpolate the mask to match "
+                "with output_size. The result image will be very low quality."
             )
             combine_label = torch.nn.functional.interpolate(combine_label, size=output_size, mode="nearest")
 
@@ -338,9 +339,7 @@ def crop_img_body_mask(synthetic_images, combine_label):
     return synthetic_images
 
 
-def check_input(
-    body_region, anatomy_list, label_dict_json, output_size, spacing, controllable_anatomy_size=[("pancreas", 0.5)]
-):
+def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing, controllable_anatomy_size):
     """
     Validate input parameters for image generation.
 
@@ -360,7 +359,10 @@ def check_input(
         raise ValueError(f"The first two components of output_size need to be equal, yet got {output_size}.")
     if (output_size[0] not in [256, 384, 512]) or (output_size[2] not in [128, 256, 384, 512, 640, 768]):
         raise ValueError(
-            f"The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
+            (
+                "The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] "
+                f"have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
+            )
         )
 
     if spacing[0] != spacing[1]:
@@ -371,15 +373,22 @@ def check_input(
         )
 
     if output_size[0] * spacing[0] < 256:
-        FOV = [output_size[axis] * spacing[axis] for axis in range(3)]
+        fov = [output_size[axis] * spacing[axis] for axis in range(3)]
         raise ValueError(
-            f"`'spacing'({spacing}mm) and 'output_size'({output_size}) together decide the output field of view (FOV). The FOV will be {FOV}mm. We recommend the FOV in x and y axis to be at least 256mm for head, and at least 384mm for other body regions like abdomen. There is no such restriction for z-axis."
+            (
+                f"`'spacing'({spacing}mm) and 'output_size'({output_size}) together decide the output field of view (FOV). "
+                f"The FOV will be {fov}mm. We recommend the FOV in x and y axis to be at least 256mm for head, and at least "
+                "384mm for other body regions like abdomen. There is no such restriction for z-axis."
+            )
         )
 
     # check controllable_anatomy_size format
     if len(controllable_anatomy_size) > 10:
         raise ValueError(
-            f"The length of list controllable_anatomy_size has to be less than 10. Yet got length equal to {len(controllable_anatomy_size)}."
+            (
+                f"The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] "
+                f"have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
+            )
         )
     available_controllable_organ = ["liver", "gallbladder", "stomach", "pancreas", "colon"]
     available_controllable_tumor = [
@@ -395,7 +404,10 @@ def check_input(
     for controllable_anatomy_size_pair in controllable_anatomy_size:
         if controllable_anatomy_size_pair[0] not in available_controllable_anatomy:
             raise ValueError(
-                f"The controllable_anatomy have to be chosen from {available_controllable_anatomy}, yet got {controllable_anatomy_size_pair[0]}."
+                (
+                    f"The controllable_anatomy have to be chosen from {available_controllable_anatomy}, "
+                    f"yet got {controllable_anatomy_size_pair[0]}."
+                )
             )
         if controllable_anatomy_size_pair[0] in available_controllable_tumor:
             controllable_tumor += [controllable_anatomy_size_pair[0]]
@@ -405,7 +417,10 @@ def check_input(
             continue
         if controllable_anatomy_size_pair[1] < 0 or controllable_anatomy_size_pair[1] > 1.0:
             raise ValueError(
-                f"The controllable size scale have to be between 0 and 1,0, or equal to -1, yet got {controllable_anatomy_size_pair[1]}."
+                (
+                    "The controllable size scale have to be between 0 and 1,0, or equal to -1, "
+                    f"yet got {controllable_anatomy_size_pair[1]}."
+                )
             )
     if len(controllable_tumor + controllable_organ) != len(list(set(controllable_tumor + controllable_organ))):
         raise ValueError(f"Please do not repeat controllable_anatomy. Got {controllable_tumor + controllable_organ}.")
@@ -414,11 +429,17 @@ def check_input(
 
     if len(controllable_anatomy_size) > 0:
         logging.info(
-            f"`controllable_anatomy_size` is not empty.\nWe will ignore `body_region` and `anatomy_list` and synthesize based on `controllable_anatomy_size`: ({controllable_anatomy_size})."
+            (
+                "`controllable_anatomy_size` is not empty.\nWe will ignore `body_region` and `anatomy_list` "
+                f"and synthesize based on `controllable_anatomy_size`: ({controllable_anatomy_size})."
+            )
         )
     else:
         logging.info(
-            f"`controllable_anatomy_size` is empty.\nWe will synthesize based on `body_region`: ({body_region}) and `anatomy_list`: ({anatomy_list})."
+            (
+                "`controllable_anatomy_size` is empty.\nWe will synthesize based on `body_region`: "
+                f"({body_region}) and `anatomy_list`: ({anatomy_list})."
+            )
         )
         # check body_region format
         available_body_region = ["head", "chest", "thorax", "abdomen", "pelvis", "lower"]
@@ -476,11 +497,11 @@ class LDMSampler:
         image_output_ext=".nii.gz",
         label_output_ext=".nii.gz",
         real_img_median_statistics="./configs/image_median_statistics.json",
-        spacing=[1, 1, 1],
+        spacing=(1, 1, 1),
         num_inference_steps=None,
         mask_generation_num_inference_steps=None,
         random_seed=None,
-        autoencoder_sliding_window_infer_size=[96, 96, 96],
+        autoencoder_sliding_window_infer_size=(96, 96, 96),
         autoencoder_sliding_window_infer_overlap=0.6667,
     ) -> None:
         """
@@ -536,7 +557,10 @@ class LDMSampler:
             )
         if not (0 <= autoencoder_sliding_window_infer_overlap <= 1):
             raise ValueError(
-                f"Value of autoencoder_sliding_window_infer_overlap must be between 0 and 1.\n Got {autoencoder_sliding_window_infer_overlap}"
+                (
+                    f"Value of autoencoder_sliding_window_infer_overlap must be between 0 "
+                    f"and 1.\n Got {autoencoder_sliding_window_infer_overlap}"
+                )
             )
         self.autoencoder_sliding_window_infer_size = autoencoder_sliding_window_infer_size
         self.autoencoder_sliding_window_infer_overlap = autoencoder_sliding_window_infer_overlap
@@ -622,7 +646,10 @@ class LDMSampler:
             logging.info(f"Images will be generated based on {selected_mask_files}.")
             if len(selected_mask_files) != num_img:
                 raise ValueError(
-                    f"len(selected_mask_files) ({len(selected_mask_files)}) != num_img ({num_img}). This should not happen. Please revisit function select_mask(self, candidate_mask_files, num_img)."
+                    (
+                        f"len(selected_mask_files) ({len(selected_mask_files)}) != num_img ({num_img}). "
+                        f"This should not happen. Please revisit function select_mask(self, candidate_mask_files, num_img)."
+                    )
                 )
         for item in selected_mask_files:
             logging.info("---- Start preparing masks... ----")
@@ -894,7 +921,10 @@ class LDMSampler:
                 for anatomy_label in self.anatomy_list:
                     if anatomy_label not in contained_labels:
                         raise ValueError(
-                            f"Resampled mask does not contain required class labels {anatomy_label}. Please tune spacing and output size."
+                            (
+                                f"Resampled mask does not contain required class labels {anatomy_label}. "
+                                "Please tune spacing and output size."
+                            )
                         )
         return labels
 
@@ -995,7 +1025,10 @@ class LDMSampler:
         for label, result in outlier_results.items():
             if result.get("is_outlier", False):
                 logging.info(
-                    f"Generated image quality check for label '{label}' failed: median value {result['median_value']} is outside the acceptable range ({result['low_thresh']} - {result['high_thresh']})."
+                    (
+                        f"Generated image quality check for label '{label}' failed: median value {result['median_value']} "
+                        f"is outside the acceptable range ({result['low_thresh']} - {result['high_thresh']})."
+                    )
                 )
                 return False
         return True

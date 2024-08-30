@@ -56,7 +56,7 @@ def find_masks(
     body_region: str | Sequence[str],
     anatomy_list: int | Sequence[int],
     spacing: Sequence[float] | float = 1.0,
-    output_size: Sequence[int] = [512, 512, 512],
+    output_size: Sequence[int] = (512, 512, 512),
     check_spacing_and_output_size: bool = False,
     database_filepath: str = "./configs/database.json",
     mask_foldername: str = "./datasets/masks/",
@@ -72,7 +72,8 @@ def find_masks(
         anatomy_list: list of input anatomy. The found candidate mask will include these anatomies.
         spacing: list of three floats, voxel spacing. If providing a single number, will use it for all the three dimensions.
         output_size: list of three int, expected candidate mask spatial size.
-        check_spacing_and_output_size: whether we expect candidate mask to have spatial size of `output_size` and voxel size of `spacing`.
+        check_spacing_and_output_size: whether we expect candidate mask to have spatial size of `output_size`
+            and voxel size of `spacing`.
         database_filepath: path for the json file that stores the information of all the candidate masks.
         mask_foldername: directory that saves all the candidate masks.
     Return:

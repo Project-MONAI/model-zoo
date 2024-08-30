@@ -746,9 +746,9 @@ class VistaCell(BundleWorkflow):
 
                 logger.info(
                     f"Estimated remaining training time for the current model fold {config('fold')} is "
-                    f"{time_remaining_estimate/3600:.2f} hr, "
-                    f"running time {(time.time() - pre_loop_time)/3600:.2f} hr, "
-                    f"est total time {(time.time() - pre_loop_time + time_remaining_estimate)/3600:.2f} hr \n"
+                    f"{time_remaining_estimate / 3600:.2f} hr, "
+                    f"running time {(time.time() - pre_loop_time) / 3600:.2f} hr, "
+                    f"est total time {(time.time() - pre_loop_time + time_remaining_estimate) / 3600:.2f} hr \n"
                 )
 
         # end of main epoch loop
@@ -792,7 +792,7 @@ class VistaCell(BundleWorkflow):
 
         logger.info(
             f"=== DONE: best_metric: {best_metric:.4f} at epoch: {best_metric_epoch} of {report_num_epochs}."
-            f"Training time {(time.time() - pre_loop_time)/3600:.2f} hr."
+            f"Training time {(time.time() - pre_loop_time) / 3600:.2f} hr."
         )
         return best_metric
 
