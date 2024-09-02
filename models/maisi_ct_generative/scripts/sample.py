@@ -1009,7 +1009,7 @@ class LDMSampler:
 
             final_candidates.append(c)
         if len(final_candidates) == 0:
-            raise ValueError("Cannot find body region with given organ list.")
+            raise ValueError("Cannot find body region with given anatomy list.")
         return final_candidates
 
     def quality_check(self, image_data, label_data):
