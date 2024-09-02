@@ -5,7 +5,8 @@
         "$import scripts",
         "$import numpy as np",
         "$import copy",
-        "$import json"
+        "$import json",
+        "$import pathlib"
     ],
     "bundle_root": "./",
     "image_key": "image",
@@ -14,12 +15,10 @@
     "output_dtype": "$np.float32",
     "output_postfix": "trans",
     "separate_folder": true,
-    "input_dict": "${'image': '/data/Task09_Spleen/imagesTr/spleen_10.nii.gz', 'label_prompt': [3]}",
+    "input_dict": "${'image': '/home/venn/Desktop/data/medical/Task09_Spleen/imagesTr/spleen_10.nii.gz', 'label_prompt': [3]}",
     "everything_labels": "$list(set([i+1 for i in range(132)]) - set([2,16,18,20,21,23,24,25,26,27,128,129,130,131,132]))",
     "metadata_path": "$@bundle_root + '/configs/metadata.json'",
-    "metadata_file": "$open(@metadata_path,'r', encoding='utf8')",
-    "metadata": "$json.load(@metadata_file)",
-    "close_metadata_file": "$metadata_file.close()",
+    "metadata": "$json.loads(pathlib.Path(@metadata_path).read_text())",
     "labels_dict": "$@metadata['network_data_format']['outputs']['pred']['channel_def']",
     "subclass": {
         "2": [

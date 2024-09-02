@@ -65,7 +65,7 @@ python -m monai.bundle run --config_file configs/train.json --dataset_dir <actua
 #### Execute finetune:
 
 ```
-python -m monai.bundle run --config_file configs/train.json --finetune True
+python -m monai.bundle run --config_file configs/train.json --finetune True --epochs 5
 ```
 
 Please note that the path of model weights is "/models/model.pt", you can also override it by using `--finetune_model_path`:

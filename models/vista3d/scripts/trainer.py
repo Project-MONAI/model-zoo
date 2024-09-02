@@ -82,8 +82,8 @@ class Vista3dTrainer(Trainer):
             more details: https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html.
         to_kwargs: dict of other args for `prepare_batch` API when converting the input data, except for
             `device`, `non_blocking`.
-        amp_kwargs: dict of the args for `torch.cuda.amp.autocast()` API, for more details:
-            https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.autocast.
+        amp_kwargs: dict of the args for `torch.amp.autocast()` API, for more details:
+            https://pytorch.org/docs/stable/amp.html#torch.amp.autocast.
     """
 
     def __init__(
@@ -197,7 +197,7 @@ class Vista3dTrainer(Trainer):
         engine.optimizer.zero_grad(set_to_none=engine.optim_set_to_none)
 
         if engine.amp and engine.scaler is not None:
-            with torch.cuda.amp.autocast(**engine.amp_kwargs):
+            with torch.amp.autocast("cuda", **engine.amp_kwargs):
                 _compute_pred_loss()
             engine.scaler.scale(engine.state.output[Keys.LOSS]).backward()
             engine.fire_event(IterationEvents.BACKWARD_COMPLETED)
