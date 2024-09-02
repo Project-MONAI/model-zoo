@@ -19,6 +19,7 @@
     "all_anatomy_size_condtions_json": "$@bundle_root + '/configs/all_anatomy_size_condtions.json'",
     "label_dict_json": "$@bundle_root + '/configs/label_dict.json'",
     "label_dict_remap_json": "$@bundle_root + '/configs/label_dict_124_to_132.json'",
+    "real_img_median_statistics_file": "$@bundle_root + '/configs/image_median_statistics.json'",
     "num_output_samples": 1,
     "body_region": [
         "abdomen"
@@ -285,6 +286,7 @@
         "controllable_anatomy_size": "@controllable_anatomy_size",
         "image_output_ext": "@image_output_ext",
         "label_output_ext": "@label_output_ext",
+        "real_img_median_statistics": "@real_img_median_statistics_file",
         "device": "@device",
         "latent_shape": "@latent_shape",
         "mask_generation_latent_shape": "@mask_generation_latent_shape",
