@@ -6,8 +6,8 @@
     "finetune_model_path": "$@bundle_root + '/models/model.pt'",
     "n_train_samples": 10,
     "n_val_samples": 10,
-    "val_interval": 40,
-    "learning_rate": 0.0001,
+    "val_interval": 1,
+    "learning_rate": 5e-05,
     "lr_schedule#activate": false,
     "loss#smooth_dr": 0.01,
     "loss#smooth_nr": 0.0001,
@@ -18,18 +18,14 @@
         "default": [
             [
                 1,
-                2
-            ],
-            [
-                2,
-                254
+                3
             ]
         ]
     },
     "patch_size": [
-        160,
-        160,
-        160
+        128,
+        128,
+        128
     ],
     "label_set": "$[0] + list(x[1] for x in @label_mappings#default)",
     "val_label_set": "$[0] + list(x[0] for x in @label_mappings#default)",
@@ -99,11 +95,13 @@
         "num_workers": "@num_cache_workers",
         "progress": "@show_cache_progress"
     },
+    "validate#evaluator#hyper_kwargs#val_label_set": "$list(range(len(@val_label_set)))",
     "validate#preprocessing#transforms": "$@train#deterministic_transforms + [@valid_remap]",
     "valid_remap": {
         "_target_": "monai.apps.vista3d.transforms.Relabeld",
         "keys": "label",
         "label_mappings": "${'default': [[c, i] for i, c in enumerate(@val_label_set)]}",
         "dtype": "$torch.uint8"
-    }
+    },
+    "validate#handlers#3#key_metric_filename": "model_finetune.pt"
 }

@@ -19,7 +19,7 @@ from monai.config import IgniteInfo
 from monai.engines.evaluator import SupervisedEvaluator
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn, default_prepare_batch
 from monai.inferers import Inferer, SimpleInferer
-from monai.transforms import Transform
+from monai.transforms import Transform, reset_ops_id
 from monai.utils import ForwardMode, RankFilter, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
 from torch.utils.data import DataLoader
@@ -79,8 +79,8 @@ class Vista3dEvaluator(SupervisedEvaluator):
             default to `True`.
         to_kwargs: dict of other args for `prepare_batch` API when converting the input data, except for
             `device`, `non_blocking`.
-        amp_kwargs: dict of the args for `torch.cuda.amp.autocast()` API, for more details:
-            https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.autocast.
+        amp_kwargs: dict of the args for `torch.amp.autocast()` API, for more details:
+            https://pytorch.org/docs/stable/amp.html#torch.amp.autocast.
     """
 
     def __init__(
@@ -207,6 +207,8 @@ class Vista3dEvaluator(SupervisedEvaluator):
         if batchdata is None:
             raise ValueError("Must provide batch data for current iteration.")
         label_set = engine.hyper_kwargs.get("label_set", None)
+        # this validation label set should be consistent with 'labels.unique()', used to generate fg/bg points
+        val_label_set = engine.hyper_kwargs.get("val_label_set", label_set)
         # If user provide prompts in the inference, input image must contain original affine.
         # the point coordinates are from the original_affine space, while image here is after preprocess transforms.
         if engine.hyper_kwargs["user_prompt"]:
@@ -242,25 +244,24 @@ class Vista3dEvaluator(SupervisedEvaluator):
                 output_classes = engine.hyper_kwargs["output_classes"]
                 label_set = np.arange(output_classes).tolist()
             label_prompt = torch.tensor(label_set).to(engine.state.device).unsqueeze(-1)
-            # point prompt is generated withing vista3d,provide empty points
+            # point prompt is generated withing vista3d, provide empty points
             points = torch.zeros(label_prompt.shape[0], 1, 3).to(inputs.device)
             point_labels = -1 + torch.zeros(label_prompt.shape[0], 1).to(inputs.device)
-            if engine.hyper_kwargs["drop_point_prob"] > 0.99:
+            # validation for either auto or point.
+            if engine.hyper_kwargs.get("val_head", "auto") == "auto":
                 # automatic only validation
-                points = None
-                point_labels = None
-            if engine.hyper_kwargs["drop_label_prob"] > 0.99:
+                # remove val_label_set, vista3d will not sample points from gt labels.
+                val_label_set = None
+            else:
                 # point only validation
                 label_prompt = None
-        # this validation label set should be consistent with 'labels.unique()', used to generate fg/bg points
-        val_label_set = engine.hyper_kwargs.get("val_label_set", label_set)
 
         # put iteration outputs into engine.state
         engine.state.output = {Keys.IMAGE: inputs, Keys.LABEL: labels}
         # execute forward computation
         with engine.mode(engine.network):
             if engine.amp:
-                with torch.cuda.amp.autocast(**engine.amp_kwargs):
+                with torch.amp.autocast("cuda", **engine.amp_kwargs):
                     engine.state.output[Keys.PRED] = engine.inferer(
                         inputs=inputs,
                         network=engine.network,
@@ -280,6 +281,7 @@ class Vista3dEvaluator(SupervisedEvaluator):
                     labels=labels,
                     label_set=val_label_set,
                 )
+        inputs = reset_ops_id(inputs)
         # Add dim 0 for decollate batch
         engine.state.output["label_prompt"] = label_prompt.unsqueeze(0) if label_prompt is not None else None
         engine.state.output["points"] = points.unsqueeze(0) if points is not None else None
