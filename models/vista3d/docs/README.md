@@ -65,7 +65,7 @@ python -m monai.bundle run --config_file configs/train.json --dataset_dir <actua
 #### Execute finetune:
 
 ```
-python -m monai.bundle run --config_file configs/train.json --finetune True
+python -m monai.bundle run --config_file configs/train.json --finetune True --epochs 5
 ```
 
 Please note that the path of model weights is "/models/model.pt", you can also override it by using `--finetune_model_path`:
@@ -90,10 +90,9 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 #### Execute continual learning
 When finetuning with new class names, please update `configs/train_continual.json`'s `label_mappings` accordingly.
 
-The current label mapping `[[1, 2], [2, 254]]` indicates that training labels' class indices `1` and `2`, are mapped
-to the VISTA model's class `2` and `254` respectively (format `[[src_class_0, dst_class_0], [src_class_1, dst_class_1], ...]`).
-Since `254` is not used by VISTA, it is therefore indicating
-training with a new class (the training label's class `2` will be trained as VISTA class `254`).
+The current label mapping `[[1, 3]]` indicates that training labels' class indices `1` is mapped
+to the VISTA model's class `3` (format `[[src_class_0, dst_class_0], [src_class_1, dst_class_1], ...]`). For new classes, user
+can map to any value larger than 132.
 
 `label_set` is used to identify the VISTA model classes for providing training prompts.
 `val_label_set` is used to identify the original training label classes for computing foreground/background mask during validation.
@@ -103,7 +102,10 @@ The default configs for both variables are derived from the `label_mappings` con
 "label_set": "$[0] + list(x[1] for x in @label_mappings#default)"
 "val_label_set": "$[0] + list(x[0] for x in @label_mappings#default)"
 ```
-
+`drop_label_prob` and `drop_point_prob` means percentage to remove class prompts and point prompts respectively. If `drop_point_prob=1`, the
+model is only finetuning for automatic segmentation, while `drop_label_prob=1` means only finetuning for interactive segmentation. The VISTA3D foundation
+model is trained with interactive only (drop_label_prob=1) and then froze the point branch and trained with fully automatic segmentation (`drop_point_prob=1`).
+In this bundle, the training is simplified by jointly training with class prompts and point prompts.
 
 Single-GPU:
 ```
@@ -117,11 +119,21 @@ torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run \
 	--config_file="['configs/train.json','configs/train_continual.json','configs/multi_gpu_train.json']" --epochs=320 --learning_rate=0.005
 ```
 
-The patch size parameter is defined in `configs/train_continual.json`: `"patch_size": [160, 160, 160]`, and this works for the use cases
+The patch size parameter is defined in `configs/train_continual.json`: `"patch_size": [128, 128, 128]`, and this works for the use cases
 of extending the current model to segment a few novel classes. Finetuning all supported classes may require large GPU memory and carefully designed
 multi-stage training processes.
 
-Changing `patch_size` to a smaller value such as `"patch_size": [128, 128, 128]` used in `configs/train.json` would reduce the training memory footprint.
+Changing `patch_size` to a smaller value such as `"patch_size": [96, 96, 96]` used in `configs/train.json` would reduce the training memory footprint.
+
+In `train_continual.json`, only subset of training and validation data are used, change `n_train_samples` and `n_val_samples` to use full dataset.
+
+In `train.json`, `validate[evaluator][val_head]` can be `auto` and `point`. If `auto`, the validation results will be automatic segmentation. If `point`,
+the validation results will be sampling one positive point per object per patch. The validation scheme of combining auto and point is deprecated due to
+speed issue.
+
+Note: `valid_remap` is a transform that maps the groundtruth label indexes, e.g. [0,2,3,5,6] to sequential and continuous labels [0,1,2,3,4]. This is
+required by monai dice calculation. It is not related to mapping label index to VISTA3D defined global class index. The validation data is not mapped
+to the VISTA3D global class index.
 
 #### Execute evaluation
 `n_train_samples` and `n_val_samples` are used to specify the number of samples to use for training and validation respectively.
@@ -171,6 +183,13 @@ python -m monai.bundle run --config_file="['configs/inference.json', 'configs/ba
 This default is overridable by changing the input folder `input_dir`, or the input image name suffix `input_suffix`, or directly setting the list of filenames `input_list`.
 
 Set `"postprocessing#transforms#0#_disabled_": false` to move the postprocessing to cpu to reduce the GPU memory footprint.
+
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
+
 
 ## Automatic segmentation label prompts :
 The mapping between organ name and label prompt is in the [json file](labels.json)

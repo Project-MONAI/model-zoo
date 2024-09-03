@@ -1,7 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.2.2",
+    "version": "0.2.4",
     "changelog": {
+        "0.2.4": "enable tensorrt inference",
+        "0.2.3": "update weights link",
         "0.2.2": "update to use monai components",
         "0.2.1": "initial OSS version"
     },
