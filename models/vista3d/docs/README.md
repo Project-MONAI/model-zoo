@@ -184,6 +184,13 @@ This default is overridable by changing the input folder `input_dir`, or the inp
 
 Set `"postprocessing#transforms#0#_disabled_": false` to move the postprocessing to cpu to reduce the GPU memory footprint.
 
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
+
+
 ## Automatic segmentation label prompts :
 The mapping between organ name and label prompt is in the [json file](labels.json)
 
