@@ -1562,5 +1562,13 @@
     "vista2d_v0.2.3": {
         "checksum": "a1d4f859f00052e3a7fd6df8068c27cbe9a28f76",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.3/files/vista2d_v0.2.3.zip"
+    },
+    "vista3d_v0.4.4": {
+        "checksum": "67e92628dbbca95f559198d1ae306435088d3a6f",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.4/files/vista3d_v0.4.4.zip"
+    },
+    "vista2d_v0.2.4": {
+        "checksum": "c159465e72f63bec1f61f93b07bdacaef0d51792",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.4/files/vista2d_v0.2.4.zip"
     }
 }

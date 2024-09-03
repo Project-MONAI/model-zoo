@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "changelog": {
+        "0.4.4": "enable tensorrt inference",
         "0.4.3": "fix CL and batch infer issues",
         "0.4.2": "use MONAI components for network and utils",
         "0.4.1": "initial OSS version"

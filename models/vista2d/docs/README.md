@@ -66,7 +66,13 @@ torchrun --nproc_per_node=gpu -m monai.bundle run_workflow "scripts.workflow.Vis
 python -m monai.bundle run --config_file configs/inference.json
 ```
 
-Please note that the data used in the config file is: "/cellpose_dataset/test/001_img.png", if the dataset path is different or you want to do inference on another file, please modify in `configs/inference.json` accordingly.
+Please note that the data used in this config file is: "/cellpose_dataset/test/001_img.png", if the dataset path is different or you want to do inference on another file, please modify in `configs/inference.json` accordingly.
+
+#### Execute inference with the TensorRT model:
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
 
 ### Execute multi-GPU inference
 ```bash
