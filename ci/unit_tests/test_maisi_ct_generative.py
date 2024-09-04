@@ -93,7 +93,7 @@ TEST_CASE_INFER_ERROR = [
         "body_region": ["head"],
         "anatomy_list": ["colon cancer primaries"],
     },
-    "Cannot find body region with given organ list.",
+    "Cannot find body region with given anatomy list.",
 ]
 
 TEST_CASE_INFER_ERROR_2 = [
@@ -156,7 +156,7 @@ TEST_CASE_INFER_ERROR_7 = [
         "body_region": ["chest"],
         "anatomy_list": ["colon", "spleen", "trachea", "left humerus", "sacrum", "heart"],
     },
-    "Cannot find body region with given organ list.",
+    "Cannot find body region with given anatomy list.",
 ]
 
 TEST_CASE_TRAIN = [

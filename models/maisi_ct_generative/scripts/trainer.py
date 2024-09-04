@@ -15,11 +15,11 @@ from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
 
 import torch
 import torch.nn.functional as F
-from generative.networks.schedulers import Scheduler
 from monai.config import IgniteInfo
 from monai.engines.trainer import Trainer
 from monai.engines.utils import IterationEvents, PrepareBatchExtraInput, default_metric_cmp_fn
 from monai.inferers import Inferer
+from monai.networks.schedulers import Scheduler
 from monai.transforms import Transform
 from monai.utils import RankFilter, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
@@ -50,7 +50,7 @@ class MAISIControlNetTrainer(Trainer):
         max_epochs: the total epoch number for trainer to run.
         train_data_loader: Ignite engine use data_loader to run, must be Iterable or torch.DataLoader.
         controlnet: controlnet to train in the trainer, should be regular PyTorch `torch.nn.Module`.
-        difusion_unet: difusion_unet used in the trainer, should be regular PyTorch `torch.nn.Module`.
+        diffusion_unet: diffusion_unet used in the trainer, should be regular PyTorch `torch.nn.Module`.
         optimizer: the optimizer associated to the detector, should be regular PyTorch optimizer from `torch.optim`
             or its subclass.
         epoch_length: number of iterations for one epoch, default to `len(train_data_loader)`.
@@ -98,7 +98,7 @@ class MAISIControlNetTrainer(Trainer):
         max_epochs: int,
         train_data_loader: Iterable | DataLoader,
         controlnet: torch.nn.Module,
-        difusion_unet: torch.nn.Module,
+        diffusion_unet: torch.nn.Module,
         optimizer: Optimizer,
         loss_function: Callable,
         inferer: Inferer,
@@ -143,7 +143,7 @@ class MAISIControlNetTrainer(Trainer):
         )
 
         self.controlnet = controlnet
-        self.difusion_unet = difusion_unet
+        self.diffusion_unet = diffusion_unet
         self.optimizer = optimizer
         self.loss_function = loss_function
         self.inferer = inferer
@@ -151,7 +151,7 @@ class MAISIControlNetTrainer(Trainer):
         self.hyper_kwargs = hyper_kwargs
         self.noise_scheduler = noise_scheduler
         self.logger.addFilter(RankFilter())
-        for p in self.difusion_unet.parameters():
+        for p in self.diffusion_unet.parameters():
             p.requires_grad = False
         print("freeze the parameters of the diffusion unet model.")
 
@@ -200,7 +200,7 @@ class MAISIControlNetTrainer(Trainer):
             down_block_res_samples, mid_block_res_sample = engine.controlnet(
                 x=noisy_latent, timesteps=timesteps, controlnet_cond=controlnet_cond
             )
-            noise_pred = engine.difusion_unet(
+            noise_pred = engine.diffusion_unet(
                 x=noisy_latent,
                 timesteps=timesteps,
                 top_region_index_tensor=top_region_index,
