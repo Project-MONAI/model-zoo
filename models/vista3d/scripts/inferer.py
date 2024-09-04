@@ -25,14 +25,12 @@ class Vista3dInferer(Inferer):
     Args:
         roi_size: the sliding window patch size.
         overlap: sliding window overlap ratio.
-        use_cfp: use class prompt for point head.
     """
 
-    def __init__(self, roi_size, overlap, use_cfp, use_point_window=False, sw_batch_size=1) -> None:
+    def __init__(self, roi_size, overlap, use_point_window=False, sw_batch_size=1) -> None:
         Inferer.__init__(self)
         self.roi_size = roi_size
         self.overlap = overlap
-        self.use_cfp = use_cfp
         self.sw_batch_size = sw_batch_size
         self.use_point_window = use_point_window
         self.sliding_window_inferer = point_based_window_inferer if use_point_window else sliding_window_inference
@@ -91,6 +89,7 @@ class Vista3dInferer(Inferer):
                 roi_size=self.roi_size,
                 sw_batch_size=self.sw_batch_size,
                 transpose=True,
+                with_coord=True,
                 predictor=network,
                 mode="gaussian",
                 sw_device=device,
@@ -103,7 +102,6 @@ class Vista3dInferer(Inferer):
                 prev_mask=prev_mask,
                 labels=labels,
                 label_set=label_set,
-                use_cfp=self.use_cfp,
             )
         except Exception:
             val_outputs = None
@@ -113,6 +111,7 @@ class Vista3dInferer(Inferer):
                 roi_size=self.roi_size,
                 sw_batch_size=self.sw_batch_size,
                 transpose=True,
+                with_coord=True,
                 predictor=network,
                 mode="gaussian",
                 sw_device=device,
@@ -125,6 +124,5 @@ class Vista3dInferer(Inferer):
                 prev_mask=prev_mask,
                 labels=labels,
                 label_set=label_set,
-                use_cfp=self.use_cfp,
             )
         return val_outputs
