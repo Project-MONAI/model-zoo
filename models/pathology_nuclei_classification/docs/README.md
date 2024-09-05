@@ -144,7 +144,7 @@ This bundle supports acceleration with TensorRT. The table below displays the sp
 
 | method | torch_fp32(ms) | torch_amp(ms) | trt_fp32(ms) | trt_fp16(ms) | speedup amp | speedup fp32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| model computation | 9.99 | 14.14 | 4.62 | 2.37 | 0.71 | 2.16 | 4.22 | 5.97 |
+| model computation | 12.06 | 20.57 | 3.23 | 1.48 | 0.59 | 3.73 | 8.15 | 13.90 |
 | end2end | 412.95 | 408.88 | 351.64 | 286.85 | 1.01 | 1.17 | 1.44 | 1.43 |
 
 Where:
@@ -156,12 +156,12 @@ Where:
 - `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
 
 This result is benchmarked under:
- - TensorRT: 8.6.1+cuda12.0
- - Torch-TensorRT Version: 1.4.0
+ - TensorRT: 10.3.0+cuda12.6
+ - Torch-TensorRT Version: 2.5.0
  - CPU Architecture: x86-64
  - OS: ubuntu 20.04
- - Python version:3.8.10
- - CUDA version: 12.1
+ - Python version:3.10.12
+ - CUDA version: 12.6
  - GPU models and configuration: A100 80G
 
 ## MONAI Bundle Commands
