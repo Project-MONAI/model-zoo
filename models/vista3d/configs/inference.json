@@ -4,7 +4,9 @@
         "$import os",
         "$import scripts",
         "$import numpy as np",
-        "$import json"
+        "$import copy",
+        "$import json",
+        "$import pathlib"
     ],
     "bundle_root": "./",
     "image_key": "image",
@@ -16,9 +18,7 @@
     "input_dict": "${'image': '/data/Task09_Spleen/imagesTr/spleen_10.nii.gz', 'label_prompt': [3]}",
     "everything_labels": "$list(set([i+1 for i in range(132)]) - set([2,16,18,20,21,23,24,25,26,27,128,129,130,131,132]))",
     "metadata_path": "$@bundle_root + '/configs/metadata.json'",
-    "metadata_file": "$open(@metadata_path,'r', encoding='utf8')",
-    "metadata": "$json.load(@metadata_file)",
-    "close_metadata_file": "$metadata_file.close()",
+    "metadata": "$json.loads(pathlib.Path(@metadata_path).read_text())",
     "labels_dict": "$@metadata['network_data_format']['outputs']['pred']['channel_def']",
     "subclass": {
         "2": [
@@ -47,7 +47,6 @@
         128
     ],
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "use_cfp": false,
     "use_point_window": true,
     "network_def": "$monai.networks.nets.vista3d132(in_channels=@input_channels)",
     "network": "$@network_def.to(@device)",
@@ -127,7 +126,6 @@
         "roi_size": "@patch_size",
         "overlap": 0.5,
         "sw_batch_size": "@sw_batch_size",
-        "use_cfp": "@use_cfp",
         "use_point_window": "@use_point_window"
     },
     "postprocessing": {
@@ -146,7 +144,7 @@
             {
                 "_target_": "Invertd",
                 "keys": "pred",
-                "transform": "@preprocessing",
+                "transform": "$copy.deepcopy(@preprocessing)",
                 "orig_keys": "@image_key",
                 "nearest_interp": true,
                 "to_tensor": true
@@ -192,7 +190,6 @@
         "val_handlers": "@handlers",
         "amp": true,
         "hyper_kwargs": {
-            "use_cfp": "@use_cfp",
             "user_prompt": true,
             "everything_labels": "@everything_labels"
         }

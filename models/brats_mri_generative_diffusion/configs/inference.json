@@ -20,12 +20,12 @@
         28
     ],
     "autoencoder_def": {
-        "_target_": "generative.networks.nets.AutoencoderKL",
+        "_target_": "monai.networks.nets.autoencoderkl.AutoencoderKL",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@image_channels",
         "out_channels": "@image_channels",
         "latent_channels": "@latent_channels",
-        "num_channels": [
+        "channels": [
             64,
             128,
             256
@@ -39,14 +39,15 @@
             false
         ],
         "with_encoder_nonlocal_attn": false,
-        "with_decoder_nonlocal_attn": false
+        "with_decoder_nonlocal_attn": false,
+        "include_fc": false
     },
     "network_def": {
-        "_target_": "generative.networks.nets.DiffusionModelUNet",
+        "_target_": "monai.networks.nets.diffusion_model_unet.DiffusionModelUNet",
         "spatial_dims": "@spatial_dims",
         "in_channels": "@latent_channels",
         "out_channels": "@latent_channels",
-        "num_channels": [
+        "channels": [
             256,
             256,
             512
@@ -61,15 +62,18 @@
             64,
             64
         ],
-        "num_res_blocks": 2
+        "num_res_blocks": 2,
+        "include_fc": false,
+        "use_combined_linear": false
     },
     "load_autoencoder_path": "$@bundle_root + '/models/model_autoencoder.pt'",
-    "load_autoencoder": "$@autoencoder_def.to(@device).load_state_dict(torch.load(@load_autoencoder_path, weights_only=True))",
+    "load_autoencoder": "$@autoencoder_def.load_old_state_dict(torch.load(@load_autoencoder_path))",
     "autoencoder": "$@autoencoder_def.to(@device)",
     "load_diffusion_path": "$@model_dir + '/model.pt'",
-    "load_diffusion": "$@network_def.load_state_dict(torch.load(@load_diffusion_path, weights_only=True))",
+    "load_diffusion": "$@network_def.load_old_state_dict(torch.load(@load_diffusion_path))",
+    "diffusion": "$@network_def.to(@device)",
     "noise_scheduler": {
-        "_target_": "generative.networks.schedulers.DDIMScheduler",
+        "_target_": "monai.networks.schedulers.ddim.DDIMScheduler",
         "_requires_": [
             "@load_diffusion",
             "@load_autoencoder"
