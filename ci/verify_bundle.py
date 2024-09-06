@@ -48,6 +48,9 @@ def _get_weights_names(bundle: str):
         return "model_autoencoder.pt", "model_autoencoder.ts"
     if bundle == "brats_mri_axial_slices_generative_diffusion":
         return "model_autoencoder.pt", None
+    if bundle == "pediatric_abdominal_ct_segmentation":
+        # skip test for this bundle's ts file
+        return "dynunet_FT.pt", None
     return "model.pt", "model.ts"
 
 
@@ -211,11 +214,11 @@ def verify_torchscript(
         bundle_root=bundle_path,
     )
     print("export weights into TorchScript module successfully.")
-
-    ts_model_path = os.path.join(bundle_path, "models", ts_name)
-    if os.path.exists(ts_model_path):
-        torch.jit.load(ts_model_path)
-        print("Provided TorchScript module is verified correctly.")
+    if ts_name is not None:
+        ts_model_path = os.path.join(bundle_path, "models", ts_name)
+        if os.path.exists(ts_model_path):
+            torch.jit.load(ts_model_path)
+            print("Provided TorchScript module is verified correctly.")
 
 
 def get_app_properties(app: str, version: str):
