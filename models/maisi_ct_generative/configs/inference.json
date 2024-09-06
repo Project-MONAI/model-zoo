@@ -34,8 +34,8 @@
     "spatial_dims": 3,
     "image_channels": 1,
     "latent_channels": 4,
-    "output_size_xy": 512,
-    "output_size_z": 512,
+    "output_size_xy": 256,
+    "output_size_z": 256,
     "output_size": [
         "@output_size_xy",
         "@output_size_xy",
