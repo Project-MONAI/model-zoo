@@ -1578,5 +1578,9 @@
     "vista3d_v0.4.5": {
         "checksum": "62746519a6774c2a19bf54a0d348ca47b29ee144",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.5/files/vista3d_v0.4.5.zip"
+    },
+    "pediatric_abdominal_ct_segmentation_v0.4.4": {
+        "checksum": "1993fb56db14f7109ef6fccd3c2d49e7c6e8cd59",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pediatric_abdominal_ct_segmentation/versions/0.4.4/files/pediatric_abdominal_ct_segmentation_v0.4.4.zip"
     }
 }
