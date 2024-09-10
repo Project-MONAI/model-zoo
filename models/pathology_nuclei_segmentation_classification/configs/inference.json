@@ -74,17 +74,18 @@
         "progress": true,
         "extra_input_padding": "$((@patch_size - @out_size) // 2,) * 4"
     },
+    "sub_keys": [
+        "horizontal_vertical",
+        "nucleus_prediction",
+        "type_prediction"
+    ],
     "postprocessing": {
         "_target_": "Compose",
         "transforms": [
             {
                 "_target_": "FlattenSubKeysd",
                 "keys": "pred",
-                "sub_keys": [
-                    "horizontal_vertical",
-                    "nucleus_prediction",
-                    "type_prediction"
-                ],
+                "sub_keys": "$@sub_keys",
                 "delete_keys": true
             },
             {

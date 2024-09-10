@@ -1,12 +1,6 @@
 {
-    "imports": [
-        "$import glob",
-        "$import os",
-        "$import pathlib",
-        "$import json",
-        "$import torch_tensorrt"
+    "+imports": [
+        "$from monai.networks import trt_compile"
     ],
-    "handlers#0#_disabled_": true,
-    "network_def": "$torch.jit.load(@bundle_root + '/models/model_trt.ts')",
-    "evaluator#amp": false
+    "network": "$trt_compile(@network_def.to(@device), @checkpoint)"
 }

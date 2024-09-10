@@ -5,6 +5,7 @@
         "$import os"
     ],
     "bundle_root": ".",
+    "checkpoint": "$@bundle_root + '/models/model.pt'",
     "image_key": "image",
     "output_dir": "$@bundle_root + '/eval'",
     "output_ext": ".nii.gz",
@@ -139,7 +140,7 @@
     },
     "checkpointloader": {
         "_target_": "CheckpointLoader",
-        "load_path": "$@bundle_root + '/models/model.pt'",
+        "load_path": "$@checkpoint",
         "load_dict": {
             "model": "@network"
         }
