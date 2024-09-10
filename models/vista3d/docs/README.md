@@ -40,9 +40,7 @@ In Training Mode: Training loss
 
 In Evaluation Mode: Segmentation
 
-#### Training Loss
-
-#### Validation Accuracy
+## Performance
 
 #### TensorRT speedup
 The `vista3d` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU. Please note for 32bit precision models, they are benchmarked with tf32 weight format.

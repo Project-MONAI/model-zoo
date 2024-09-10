@@ -72,7 +72,7 @@ Dice score was used for evaluating the performance of the model. This model achi
 ![A graph showing the validation mean Dice for 5000 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_val_dice_v2.png)
 
 #### TensorRT speedup
-The `swin_unetr` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU. Please note for 32bit precision models, they are benchmarked with tf32 weight format.
+The `swin_unetr` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU. Please note that 32-bit precision models are benchmarked with tf32 weight format.
 
 | method | torch_tf32(ms) | torch_amp(ms) | trt_tf32(ms) | trt_fp16(ms) | speedup amp | speedup tf32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
