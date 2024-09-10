@@ -47,8 +47,8 @@ The `vista3d` bundle supports acceleration with TensorRT. The table below displa
 
 | method | torch_tf32(ms) | torch_amp(ms) | trt_tf32(ms) | trt_fp16(ms) | speedup amp | speedup tf32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| model computation | 577.00 | 91.90 | 353.69 | 60.02 | 6.28 | 1.63 | 9.58 | 1.53 |
-| end2end |6740 | 5166 | 5242 | 3386 | 1.30 | 1.29 | 1.99 | 1.53 |
+| model computation | 108.53| 91.9 | 106.84 | 60.02 | 1.18 | 1.02 | 1.81 | 1.53 |
+| end2end | 6740 | 5166 | 5242 | 3386 | 1.30 | 1.29 | 1.99 | 1.53 |
 
 Where:
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
