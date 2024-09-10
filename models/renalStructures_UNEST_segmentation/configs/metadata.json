@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "changelog": {
+        "0.2.5": "update large files",
         "0.2.4": "fix black 24.1 format error",
         "0.2.3": "update AddChanneld with EnsureChannelFirstd and remove meta_dict",
         "0.2.2": "add name tag",

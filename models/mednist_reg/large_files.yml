@@ -1,5 +1,5 @@
 large_files:
-  - path: "models/model.pt"
-    url: "https://drive.google.com/file/d/1qhoPDrl_ZTDWRX8bvlO72sxS3Oxcod9H/view?usp=sharing"
-    hash_val: "7970f6df5daaa2dff272afd448ea944e"
-    hash_type: "md5"
+- path: "models/model.pt"
+  url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_key_metric=-0.0065.pt"
+  hash_val: "7970f6df5daaa2dff272afd448ea944e"
+  hash_type: "md5"
