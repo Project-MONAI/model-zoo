@@ -1582,5 +1582,33 @@
     "pediatric_abdominal_ct_segmentation_v0.4.4": {
         "checksum": "1993fb56db14f7109ef6fccd3c2d49e7c6e8cd59",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pediatric_abdominal_ct_segmentation/versions/0.4.4/files/pediatric_abdominal_ct_segmentation_v0.4.4.zip"
+    },
+    "pathology_nuclei_classification_v0.1.8": {
+        "checksum": "a0392e188f49048ee5bfb0708118793757820b34",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_classification/versions/0.1.8/files/pathology_nuclei_classification_v0.1.8.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.5.5": {
+        "checksum": "b7fdf77d4a5180bffc7fe215595eeb47b6970b8a",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/swin_unetr_btcv_segmentation/versions/0.5.5/files/swin_unetr_btcv_segmentation_v0.5.5.zip"
+    },
+    "brats_mri_generative_diffusion_v1.1.1": {
+        "checksum": "e916eabe2211e097887f81bfbf49e1b32bf679ac",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_generative_diffusion/versions/1.1.1/files/brats_mri_generative_diffusion_v1.1.1.zip"
+    },
+    "vista2d_v0.2.5": {
+        "checksum": "51afb90fd5b7d2e0fdc413751cb89617d472b9a2",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.5/files/vista2d_v0.2.5.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.1.1": {
+        "checksum": "9ec54d071439b6cbadffa9d1f4c9f265cd7404a1",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_axial_slices_generative_diffusion/versions/1.1.1/files/brats_mri_axial_slices_generative_diffusion_v1.1.1.zip"
+    },
+    "vista3d_v0.4.6": {
+        "checksum": "6abb9b3bddcbc14f963a1489eb82cd3f2706aebd",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.6/files/vista3d_v0.4.6.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.2.5": {
+        "checksum": "9a7193a0cc6469003e71c98598876481d3148738",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_segmentation_classification/versions/0.2.5/files/pathology_nuclei_segmentation_classification_v0.2.5.zip"
     }
 }

@@ -117,7 +117,7 @@ verify_bundle() {
             fi
             test_cmd="python $(pwd)/ci/unit_tests/runner.py --b \"$bundle\""
             if [ "$dist_flag" = "True" ]; then
-                test_cmd="$test_cmd --dist True"
+                test_cmd="torchrun $(pwd)/ci/unit_tests/runner.py --b \"$bundle\" --dist True"
             fi
             eval $test_cmd
             # if not maisi_ct_generative, remove venv
