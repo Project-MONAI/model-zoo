@@ -21,9 +21,12 @@ from bundle_custom_data import (
     exclude_verify_shape_list,
     exclude_verify_torchscript_list,
 )
-from monai.bundle import ckpt_export, create_workflow, verify_metadata, verify_net_in_out
+from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
+from monai.utils.module import optional_import
 from utils import download_large_files, get_json_dict
+
+create_workflow, has_create_workflow = optional_import("monai.bundle.create_workflow")
 
 # files that must be included in a bundle
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
