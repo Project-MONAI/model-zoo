@@ -1,9 +1,9 @@
 large_files:
   - path: "models/model_autoencoder.pt"
-    url: "https://drive.google.com/uc?id=1arp3w8glsQw2h7mQBbk71krqmaG_std6"
+    url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_autoencoder_brats_mri_generative_diffusion_v1.pt"
     hash_val: "9e6df4cc9a2decf49ab3332606b32c55"
     hash_type: "md5"
   - path: "models/model.pt"
-    url: "https://drive.google.com/uc?id=1m2pcbj8NMoxEIAOmD9dgYBN4gNcrMx6e"
+    url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_brats_mri_generative_diffusion_v1.pt"
     hash_val: "35258b1112f701f3d485676d33141a55"
     hash_type: "md5"
