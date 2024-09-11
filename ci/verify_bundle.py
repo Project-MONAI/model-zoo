@@ -21,9 +21,12 @@ from bundle_custom_data import (
     exclude_verify_shape_list,
     exclude_verify_torchscript_list,
 )
-from monai.bundle import ckpt_export, create_workflow, verify_metadata, verify_net_in_out
+from monai.bundle import ckpt_export, verify_metadata, verify_net_in_out
 from monai.bundle.config_parser import ConfigParser
+from monai.utils.module import optional_import
 from utils import download_large_files, get_json_dict
+
+create_workflow, has_create_workflow = optional_import("monai.bundle", name="create_workflow")
 
 # files that must be included in a bundle
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
@@ -246,11 +249,11 @@ def check_properties(**kwargs):
     kwargs.pop("properties_path", None)
     print(kwargs)
 
-    workflow = create_workflow(**kwargs)
     if app_properties_path is not None and os.path.isfile(app_properties_path):
         shutil.copy(app_properties_path, "ci/bundle_properties.py")
         from bundle_properties import InferProperties, MetaProperties
 
+        workflow = create_workflow(**kwargs)
         workflow.properties = {**MetaProperties, **InferProperties}
         check_result = workflow.check_properties()
         if check_result is not None and len(check_result) > 0:
@@ -287,7 +290,6 @@ def verify_bundle_properties(model_path: str, bundle: str):
             if "supported_apps" in metadata:
                 supported_apps = metadata["supported_apps"]
                 all_properties = []
-                print("vista3d sopperted apps: ", supported_apps)
                 for app, version in supported_apps.items():
                     properties_path = get_app_properties(app, version)
                     if properties_path is not None:
@@ -299,7 +301,8 @@ def verify_bundle_properties(model_path: str, bundle: str):
                     check_properties(**check_property_args)
                     print("successfully checked properties.")
             else:
-                check_properties(**check_property_args)
+                # skip property check if supported_apps is not provided
+                pass
 
 
 def verify(bundle, models_path="models", mode="full"):
