@@ -4,7 +4,7 @@
         "$import os",
         "$import ignite"
     ],
-    "bundle_root": "/wokspace/model-zoo/models/prostate_mri_anatomy",
+    "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/prostate158/prostate158_train/",
@@ -366,9 +366,11 @@
             "amp": true
         }
     },
-    "training": [
-        "$monai.utils.set_determinism(seed=42)",
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=321)",
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@train#trainer.run()"
     ]
 }
