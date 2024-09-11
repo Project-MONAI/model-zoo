@@ -76,8 +76,8 @@ The `swin_unetr` bundle supports acceleration with TensorRT. The table below dis
 
 | method | torch_tf32(ms) | torch_amp(ms) | trt_tf32(ms) | trt_fp16(ms) | speedup amp | speedup tf32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| model computation | 503.1 | 123.77 | 229.85 | 42.87 | 4.06 | 2.19 | 11.74 | 2.89 |
-| end2end |5102 | 4895 | 4264 | 2835 | 1.04 | 1.20 | 1.80 | 1.73 |
+| model computation | 123.64 | 123.77 | 93.22 | 42.87 | 1.00 | 1.33 | 2.88 | 2.89 |
+| end2end | 5102 | 4895 | 2863 | 2835 | 1.04 | 1.78 | 1.80 | 1.73 |
 
 Where:
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
