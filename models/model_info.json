@@ -1678,5 +1678,21 @@
     "spleen_ct_segmentation_v0.5.9": {
         "checksum": "8e99230050906d0d3cec484010598aa138201892",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/spleen_ct_segmentation/versions/0.5.9/files/spleen_ct_segmentation_v0.5.9.zip"
+    },
+    "mednist_reg_v0.0.5": {
+        "checksum": "a3a364579e556688b0db3be946c03b43314d1569",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/mednist_reg/versions/0.0.5/files/mednist_reg_v0.0.5.zip"
+    },
+    "renalStructures_UNEST_segmentation_v0.2.5": {
+        "checksum": "4dc403a437df87c713f596c33c05cf29888d3fc3",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/renalstructures_unest_segmentation/versions/0.2.5/files/renalStructures_UNEST_segmentation_v0.2.5.zip"
+    },
+    "wholeBrainSeg_Large_UNEST_segmentation_v0.2.5": {
+        "checksum": "7213e4261cc8322d035a900a67ed3b4478d4c0db",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/wholebrainseg_large_unest_segmentation/versions/0.2.5/files/wholeBrainSeg_Large_UNEST_segmentation_v0.2.5.zip"
+    },
+    "classification_template_v0.0.2": {
+        "checksum": "3f60e6b3531695e834103c47fa784ded35bbba99",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/classification_template/versions/0.0.2/files/classification_template_v0.0.2.zip"
     }
 }
