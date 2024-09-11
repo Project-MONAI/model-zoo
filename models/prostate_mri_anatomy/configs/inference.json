@@ -3,7 +3,7 @@
         "$import pandas as pd",
         "$import os"
     ],
-    "bundle_root": "/workspace/data/prostate_mri_anatomy",
+    "bundle_root": ".",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/prostate158/prostate158_test/",
     "datalist": "$list(@dataset_dir + pd.read_csv(@dataset_dir + 'test.csv').t2)",
@@ -159,8 +159,10 @@
         "val_handlers": "@handlers",
         "amp": true
     },
-    "evaluating": [
-        "$setattr(torch.backends.cudnn, 'benchmark', True)",
+    "initialize": [
+        "$setattr(torch.backends.cudnn, 'benchmark', True)"
+    ],
+    "run": [
         "$@evaluator.run()"
     ]
 }

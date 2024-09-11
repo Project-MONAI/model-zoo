@@ -3,7 +3,7 @@ Body CT segmentation models are evolving. Starting from abdominal multi-organ se
 
 This model is trained using the SegResNet [3] network. The model is trained using TotalSegmentator datasets [2].
 
-![structures](https://raw.githubusercontent.com/wasserth/TotalSegmentator/master/resources/imgs/overview_classes.png)
+![structures](https://github.com/wasserth/TotalSegmentator/blob/30cfde5e7dcd164cd47435f7d3d85505e8e7d7bb/resources/imgs/overview_classes.png)
 
 Figure source from the TotalSegmentator [2].
 
