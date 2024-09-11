@@ -27,8 +27,8 @@ The `vista2d` bundle supports acceleration with TensorRT. The table below displa
 
 | method | torch_tf32(ms) | torch_amp(ms) | trt_tf32(ms) | trt_fp16(ms) | speedup amp | speedup tf32 | speedup fp16 | amp vs fp16|
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| model computation | 90.11 | 39.68 | 71.7 | 17.32 | 2.27 | 1.26 | 5.20 | 2.29 |
-| end2end |1562 | 1903 | 1494 | 1440 | 0.82 | 1.05 | 1.08 | 1.32|
+| model computation | 39.72 | 39.68 | 26.13 | 17.32 | 1.00 | 1.52 | 2.29 | 2.29 |
+| end2end | 1562 | 1903 | 1494 | 1440 | 0.82 | 1.05 | 1.08 | 1.32|
 
 Where:
 - `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
