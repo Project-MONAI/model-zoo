@@ -102,19 +102,6 @@ verify_bundle() {
             fi
             # verify bundle
             python $(pwd)/ci/verify_bundle.py --b "$bundle"
-            # unzip data and do unit tests
-            DATA_DIR="$(pwd)/models/maisi_ct_generative/datasets"
-            ZIP_FILE="$DATA_DIR/all_masks_flexible_size_and_spacing_3000.zip"
-            UNZIP_DIR="$DATA_DIR/all_masks_flexible_size_and_spacing_3000"
-            if [ -f "$ZIP_FILE" ]; then
-                if [ ! -d "$UNZIP_DIR" ]; then
-                    echo "Unzipping files for MAISI Bundle..."
-                    unzip $ZIP_FILE -d $DATA_DIR
-                    echo "Unzipping complete."
-                else
-                    echo "Unzipped content already exists, continuing..."
-                fi
-            fi
             test_cmd="python $(pwd)/ci/unit_tests/runner.py --b \"$bundle\""
             if [ "$dist_flag" = "True" ]; then
                 test_cmd="torchrun $(pwd)/ci/unit_tests/runner.py --b \"$bundle\" --dist True"
