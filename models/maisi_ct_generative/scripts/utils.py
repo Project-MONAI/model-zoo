@@ -31,23 +31,13 @@ from torch import Tensor
 
 
 def unzip_dataset(dataset_dir):
-    if dist.is_available() and dist.is_initialized():
-        rank = dist.get_rank()
-    else:
-        rank = 0
-
-    if rank == 0:
-        if not os.path.exists(dataset_dir):
-            zip_file_path = dataset_dir + ".zip"
-            if not os.path.isfile(zip_file_path):
-                raise ValueError(f"Please download {zip_file_path}.")
-            with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
-                zip_ref.extractall(path=os.path.dirname(dataset_dir))
-            print(f"Unzipped {zip_file_path} to {dataset_dir}.")
-
-    if dist.is_available() and dist.is_initialized():
-        dist.barrier()  # Synchronize all processes
-
+    if not os.path.exists(dataset_dir):
+        zip_file_path = dataset_dir + ".zip"
+        if not os.path.isfile(zip_file_path):
+            raise ValueError(f"Please downloaded {zip_file_path}.")
+        with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
+            zip_ref.extractall(path=os.path.dirname(dataset_dir))
+        print(f"Unzipped {zip_file_path} to {dataset_dir}.")
     return
 
 
