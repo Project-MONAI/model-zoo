@@ -1,0 +1,10 @@
+{
+    "+imports": [
+        "$from monai.networks import trt_compile"
+    ],
+    "trt_args": {
+        "output_names": "$@sub_keys",
+        "dynamic_batchsize": "$[1, @sw_batch_size, @sw_batch_size]"
+    },
+    "network": "$trt_compile(@network_def.to(@device), @bundle_root + '/models/model.pt', args=@trt_args)"
+}

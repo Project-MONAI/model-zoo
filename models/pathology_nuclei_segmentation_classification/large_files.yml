@@ -1,9 +1,9 @@
 large_files:
   - path: "models/model.pt"
-    url: "https://drive.google.com/file/d/162Sc--D2mN-kUGKS9jKWAXKjkXcg3TEt/view?usp=sharing"
+    url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_pathology_nuclei_segmentation_classification_v2.pt"
     hash_val: "0d704f4b938fec725e7fcc9ae5ea6aca"
     hash_type: "md5"
   - path: "models/stage0/model.pt"
-    url: "https://drive.google.com/file/d/1LC4LUTITo_MlTe2orSMoLYvAn_GI7Fh0/view?usp=sharing"
+    url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_pathology_nuclei_segmentation_classification_v2_stage0.pt"
     hash_val: "50ae2aca76816c767a304269bb0bc003"
     hash_type: "md5"

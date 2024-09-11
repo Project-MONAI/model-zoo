@@ -1,0 +1,9 @@
+{
+    "+imports": [
+        "$from monai.networks import trt_compile"
+    ],
+    "trt_args": {
+        "dynamic_batchsize": "$[1, @inferer#sw_batch_size, @inferer#sw_batch_size]"
+    },
+    "network": "$trt_compile(@network_def.to(@device), @checkpoint, args=@trt_args)"
+}
