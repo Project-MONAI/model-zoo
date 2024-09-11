@@ -1610,5 +1610,25 @@
     "pathology_nuclei_segmentation_classification_v0.2.5": {
         "checksum": "9a7193a0cc6469003e71c98598876481d3148738",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_segmentation_classification/versions/0.2.5/files/pathology_nuclei_segmentation_classification_v0.2.5.zip"
+    },
+    "pathology_nuclei_segmentation_classification_v0.2.6": {
+        "checksum": "88d3d7dd37ffb0d7221017c13636b98a6d8b5185",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_segmentation_classification/versions/0.2.6/files/pathology_nuclei_segmentation_classification_v0.2.6.zip"
+    },
+    "swin_unetr_btcv_segmentation_v0.5.6": {
+        "checksum": "3b99a1e0cc2af3dd67349e4bb083ef5063b24d4f",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/swin_unetr_btcv_segmentation/versions/0.5.6/files/swin_unetr_btcv_segmentation_v0.5.6.zip"
+    },
+    "vista2d_v0.2.6": {
+        "checksum": "a64fb98ccecf3e1349d751aecc2d7542083a4855",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.6/files/vista2d_v0.2.6.zip"
+    },
+    "pathology_nuclei_classification_v0.1.9": {
+        "checksum": "ca0e7bd96957489a443a551cecaedc2fba044066",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_classification/versions/0.1.9/files/pathology_nuclei_classification_v0.1.9.zip"
+    },
+    "vista3d_v0.4.7": {
+        "checksum": "5a4d08c67fb1adb6ffb9669feb0b0e1b8060fb72",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.7/files/vista3d_v0.4.7.zip"
     }
 }
