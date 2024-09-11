@@ -26,7 +26,7 @@ from monai.bundle.config_parser import ConfigParser
 from monai.utils.module import optional_import
 from utils import download_large_files, get_json_dict
 
-create_workflow, has_create_workflow = optional_import("monai.bundle.create_workflow")
+create_workflow, has_create_workflow = optional_import("monai.bundle", name="create_workflow")
 
 # files that must be included in a bundle
 necessary_files_list = ["configs/metadata.json", "LICENSE"]
