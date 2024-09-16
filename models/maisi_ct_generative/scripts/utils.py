@@ -9,36 +9,60 @@
 # See the License for the specific language governing permissions and
 import copy
 import json
+import math
 import os
 import zipfile
-from typing import Sequence
+from argparse import Namespace
+from datetime import timedelta
+from typing import Any, Sequence
 
 import numpy as np
 import skimage
 import torch
-import torch.nn.functional as F
+import torch.distributed as dist
+from monai.bundle import ConfigParser
 from monai.config import DtypeLike, NdarrayOrTensor
-from monai.utils import (
-    TransformBackends,
-    convert_data_type,
-    convert_to_dst_type,
-    ensure_tuple_rep,
-    get_equivalent_dtype,
-)
+from monai.data import CacheDataset, DataLoader, partition_dataset
+from monai.transforms import Compose, EnsureTyped, Lambdad, LoadImaged, Orientationd
+from monai.transforms.utils_morphological_ops import dilate, erode
+from monai.utils import TransformBackends, convert_data_type, convert_to_dst_type, get_equivalent_dtype
 from scipy import stats
+from torch import Tensor
 
 
 def unzip_dataset(dataset_dir):
-    if not os.path.exists(dataset_dir):
-        zip_file_path = dataset_dir + ".zip"
-        if not os.path.isfile(zip_file_path):
-            raise ValueError(f"Please downloaded {zip_file_path}.")
-        with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
-            zip_ref.extractall(path=os.path.dirname(dataset_dir))
-        print(f"Unzipped {zip_file_path} to {dataset_dir}.")
+    if dist.is_available() and dist.is_initialized():
+        rank = dist.get_rank()
+    else:
+        rank = 0
+
+    if rank == 0:
+        if not os.path.exists(dataset_dir):
+            zip_file_path = dataset_dir + ".zip"
+            if not os.path.isfile(zip_file_path):
+                raise ValueError(f"Please download {zip_file_path}.")
+            with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
+                zip_ref.extractall(path=os.path.dirname(dataset_dir))
+            print(f"Unzipped {zip_file_path} to {dataset_dir}.")
+
+    if dist.is_available() and dist.is_initialized():
+        dist.barrier()  # Synchronize all processes
+
+    return
 
 
-def add_data_dir2path(list_files, data_dir, fold=None):
+def add_data_dir2path(list_files: list, data_dir: str, fold: int = None) -> tuple[list, list]:
+    """
+    Read a list of data dictionary.
+
+    Args:
+        list_files (list): input data to load and transform to generate dataset for model.
+        data_dir (str): directory of files.
+        fold (int, optional): fold index for cross validation. Defaults to None.
+
+    Returns:
+        tuple[list, list]: A tuple of two arrays (training, validation).
+    """
     new_list_files = copy.deepcopy(list_files)
     if fold is not None:
         new_list_files_train = []
@@ -70,7 +94,42 @@ def maisi_datafold_read(json_list, data_base_dir, fold=None):
     return train_files, val_files
 
 
+def remap_labels(mask, label_dict_remap_json):
+    """
+    Remap labels in the mask according to the provided label dictionary.
+
+    This function reads a JSON file containing label mapping information and applies
+    the mapping to the input mask.
+
+    Args:
+        mask (Tensor): The input mask tensor to be remapped.
+        label_dict_remap_json (str): Path to the JSON file containing the label mapping dictionary.
+
+    Returns:
+        Tensor: The remapped mask tensor.
+    """
+    with open(label_dict_remap_json, "r") as f:
+        mapping_dict = json.load(f)
+    mapper = MapLabelValue(
+        orig_labels=[pair[0] for pair in mapping_dict.values()],
+        target_labels=[pair[1] for pair in mapping_dict.values()],
+        dtype=torch.uint8,
+    )
+    return mapper(mask[0, ...])[None, ...].to(mask.device)
+
+
 def get_index_arr(img):
+    """
+    Generate an index array for the given image.
+
+    This function creates a 3D array of indices corresponding to the dimensions of the input image.
+
+    Args:
+        img (ndarray): The input image array.
+
+    Returns:
+        ndarray: A 3D array containing the indices for each dimension of the input image.
+    """
     return np.moveaxis(
         np.moveaxis(
             np.stack(np.meshgrid(np.arange(img.shape[0]), np.arange(img.shape[1]), np.arange(img.shape[2]))), 0, 3
@@ -81,7 +140,22 @@ def get_index_arr(img):
 
 
 def supress_non_largest_components(img, target_label, default_val=0):
-    """As a last step, supress all non largest components"""
+    """
+    Suppress all components except the largest one(s) for specified target labels.
+
+    This function identifies the largest component(s) for each target label and
+    suppresses all other smaller components.
+
+    Args:
+        img (ndarray): The input image array.
+        target_label (list): List of label values to process.
+        default_val (int, optional): Value to assign to suppressed voxels. Defaults to 0.
+
+    Returns:
+        tuple: A tuple containing:
+            - ndarray: Modified image with non-largest components suppressed.
+            - int: Number of voxels that were changed.
+    """
     index_arr = get_index_arr(img)
     img_mod = copy.deepcopy(img)
     new_background = np.zeros(img.shape, dtype=np.bool_)
@@ -102,68 +176,220 @@ def supress_non_largest_components(img, target_label, default_val=0):
     return img_mod, diff
 
 
-def erode3d(input_tensor, erosion=3, value=0.0):
-    # Define the structuring element
-    erosion = ensure_tuple_rep(erosion, 3)
-    structuring_element = torch.ones(1, 1, erosion[0], erosion[1], erosion[2]).to(input_tensor.device)
+def erode_one_img(mask_t: Tensor, filter_size: int | Sequence[int] = 3, pad_value: float = 1.0) -> Tensor:
+    """
+    Erode 2D/3D binary mask with data type as torch tensor.
 
-    # Pad the input tensor to handle border pixels
-    input_padded = F.pad(
-        input_tensor.float().unsqueeze(0).unsqueeze(0),
-        (erosion[0] // 2, erosion[0] // 2, erosion[1] // 2, erosion[1] // 2, erosion[2] // 2, erosion[2] // 2),
-        mode="constant",
-        value=value,
+    Args:
+        mask_t: input 2D/3D binary mask, [M,N] or [M,N,P] torch tensor.
+        filter_size: erosion filter size, has to be odd numbers, default to be 3.
+        pad_value: the filled value for padding. We need to pad the input before filtering
+                   to keep the output with the same size as input. Usually use default value
+                   and not changed.
+
+    Return:
+        Tensor: eroded mask, same shape as input.
+    """
+    return erode(mask_t.float().unsqueeze(0).unsqueeze(0), filter_size, pad_value=pad_value).squeeze(0).squeeze(0)
+
+
+def dilate_one_img(mask_t: Tensor, filter_size: int | Sequence[int] = 3, pad_value: float = 0.0) -> Tensor:
+    """
+    Dilate 2D/3D binary mask with data type as torch tensor.
+
+    Args:
+        mask_t: input 2D/3D binary mask, [M,N] or [M,N,P] torch tensor.
+        filter_size: dilation filter size, has to be odd numbers, default to be 3.
+        pad_value: the filled value for padding. We need to pad the input before filtering
+                   to keep the output with the same size as input. Usually use default value
+                   and not changed.
+
+    Return:
+        Tensor: dilated mask, same shape as input.
+    """
+    return dilate(mask_t.float().unsqueeze(0).unsqueeze(0), filter_size, pad_value=pad_value).squeeze(0).squeeze(0)
+
+
+def binarize_labels(x: Tensor, bits: int = 8) -> Tensor:
+    """
+    Convert input tensor to binary representation.
+
+    This function takes an input tensor and converts it to a binary representation
+    using the specified number of bits.
+
+    Args:
+        x (Tensor): Input tensor with shape (B, 1, H, W, D).
+        bits (int, optional): Number of bits to use for binary representation. Defaults to 8.
+
+    Returns:
+        Tensor: Binary representation of the input tensor with shape (B, bits, H, W, D).
+    """
+    mask = 2 ** torch.arange(bits).to(x.device, x.dtype)
+    return x.unsqueeze(-1).bitwise_and(mask).ne(0).byte().squeeze(1).permute(0, 4, 1, 2, 3)
+
+
+def setup_ddp(rank: int, world_size: int) -> torch.device:
+    """
+    Initialize the distributed process group.
+
+    Args:
+        rank (int): rank of the current process.
+        world_size (int): number of processes participating in the job.
+
+     Returns:
+        torch.device: device of the current process.
+    """
+    dist.init_process_group(
+        backend="nccl", init_method="env://", timeout=timedelta(seconds=36000), rank=rank, world_size=world_size
     )
-
-    # Apply erosion operation
-    output = F.conv3d(input_padded, structuring_element, padding=0)
-
-    # Set output values based on the minimum value within the structuring element
-    output = torch.where(output == torch.sum(structuring_element), 1.0, 0.0)
-
-    return output.squeeze(0).squeeze(0)
+    dist.barrier()
+    device = torch.device(f"cuda:{rank}")
+    return device
 
 
-def dilate3d(input_tensor, erosion=3, value=0.0):
-    # Define the structuring element
-    erosion = ensure_tuple_rep(erosion, 3)
-    structuring_element = torch.ones(1, 1, erosion[0], erosion[1], erosion[2]).to(input_tensor.device)
+def define_instance(args: Namespace, instance_def_key: str) -> Any:
+    """
+    Define and instantiate an object based on the provided arguments and instance definition key.
 
-    # Pad the input tensor to handle border pixels
-    input_padded = F.pad(
-        input_tensor.float().unsqueeze(0).unsqueeze(0),
-        (erosion[0] // 2, erosion[0] // 2, erosion[1] // 2, erosion[1] // 2, erosion[2] // 2, erosion[2] // 2),
-        mode="constant",
-        value=value,
-    )
+    This function uses a ConfigParser to parse the arguments and instantiate an object
+    defined by the instance_def_key.
 
-    # Apply erosion operation
-    output = F.conv3d(input_padded, structuring_element, padding=0)
+    Args:
+        args: An object containing the arguments to be parsed.
+        instance_def_key (str): The key used to retrieve the instance definition from the parsed content.
 
-    # Set output values based on the minimum value within the structuring element
-    output = torch.where(output > 0, 1.0, 0.0)
-
-    return output.squeeze(0).squeeze(0)
+    Returns:
+        The instantiated object as defined by the instance_def_key in the parsed configuration.
+    """
+    parser = ConfigParser(vars(args))
+    parser.parse(True)
+    return parser.get_parsed_content(instance_def_key, instantiate=True)
 
 
-def organ_fill_by_closing(data, target_label, device):
+def prepare_maisi_controlnet_json_dataloader(
+    json_data_list: list | str,
+    data_base_dir: list | str,
+    batch_size: int = 1,
+    fold: int = 0,
+    cache_rate: float = 0.0,
+    rank: int = 0,
+    world_size: int = 1,
+) -> tuple[DataLoader, DataLoader]:
+    """
+    Prepare dataloaders for training and validation.
+
+    Args:
+        json_data_list (list | str): the name of JSON files listing the data.
+        data_base_dir (list | str): directory of files.
+        batch_size (int, optional): how many samples per batch to load . Defaults to 1.
+        fold (int, optional): fold index for cross validation. Defaults to 0.
+        cache_rate (float, optional): percentage of cached data in total. Defaults to 0.0.
+        rank (int, optional): rank of the current process. Defaults to 0.
+        world_size (int, optional): number of processes participating in the job. Defaults to 1.
+
+    Returns:
+        tuple[DataLoader, DataLoader]:  A tuple of two dataloaders (training, validation).
+    """
+    use_ddp = world_size > 1
+    if isinstance(json_data_list, list):
+        assert isinstance(data_base_dir, list)
+        list_train = []
+        list_valid = []
+        for data_list, data_root in zip(json_data_list, data_base_dir):
+            with open(data_list, "r") as f:
+                json_data = json.load(f)["training"]
+            train, val = add_data_dir2path(json_data, data_root, fold)
+            list_train += train
+            list_valid += val
+    else:
+        with open(json_data_list, "r") as f:
+            json_data = json.load(f)["training"]
+        list_train, list_valid = add_data_dir2path(json_data, data_base_dir, fold)
+
+    common_transform = [
+        LoadImaged(keys=["image", "label"], image_only=True, ensure_channel_first=True),
+        Orientationd(keys=["label"], axcodes="RAS"),
+        EnsureTyped(keys=["label"], dtype=torch.uint8, track_meta=True),
+        Lambdad(keys="top_region_index", func=lambda x: torch.FloatTensor(x)),
+        Lambdad(keys="bottom_region_index", func=lambda x: torch.FloatTensor(x)),
+        Lambdad(keys="spacing", func=lambda x: torch.FloatTensor(x)),
+        Lambdad(keys=["top_region_index", "bottom_region_index", "spacing"], func=lambda x: x * 1e2),
+    ]
+    train_transforms, val_transforms = Compose(common_transform), Compose(common_transform)
+
+    train_loader = None
+
+    if use_ddp:
+        list_train = partition_dataset(data=list_train, shuffle=True, num_partitions=world_size, even_divisible=True)[
+            rank
+        ]
+    train_ds = CacheDataset(data=list_train, transform=train_transforms, cache_rate=cache_rate, num_workers=8)
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=8, pin_memory=True)
+    if use_ddp:
+        list_valid = partition_dataset(data=list_valid, shuffle=True, num_partitions=world_size, even_divisible=False)[
+            rank
+        ]
+    val_ds = CacheDataset(data=list_valid, transform=val_transforms, cache_rate=cache_rate, num_workers=8)
+    val_loader = DataLoader(val_ds, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=False)
+    return train_loader, val_loader
+
+
+def organ_fill_by_closing(data, target_label, device, close_times=2, filter_size=3, pad_value=0.0):
+    """
+    Fill holes in an organ mask using morphological closing operations.
+
+    This function performs a series of dilation and erosion operations to fill holes
+    in the organ mask identified by the target label.
+
+    Args:
+        data (ndarray): The input data containing organ labels.
+        target_label (int): The label of the organ to be processed.
+        device (str): The device to perform the operations on (e.g., 'cuda:0').
+        close_times (int, optional): Number of times to perform the closing operation. Defaults to 2.
+        filter_size (int, optional): Size of the filter for dilation and erosion. Defaults to 3.
+        pad_value (float, optional): Value used for padding in dilation and erosion. Defaults to 0.0.
+
+    Returns:
+        ndarray: Boolean mask of the filled organ.
+    """
     mask = (data == target_label).astype(np.uint8)
-    mask = dilate3d(torch.from_numpy(mask).to(device), erosion=3, value=0.0)
-    mask = erode3d(mask, erosion=3, value=0.0)
-    mask = dilate3d(mask, erosion=3, value=0.0)
-    mask = erode3d(mask, erosion=3, value=0.0).cpu().numpy()
-    return mask.astype(np.bool_)
+    mask = torch.from_numpy(mask).to(device)
+    for _ in range(close_times):
+        mask = dilate_one_img(mask, filter_size=filter_size, pad_value=pad_value)
+        mask = erode_one_img(mask, filter_size=filter_size, pad_value=pad_value)
+    return mask.cpu().numpy().astype(np.bool_)
 
 
 def organ_fill_by_removed_mask(data, target_label, remove_mask, device):
+    """
+    Fill an organ mask in regions where it was previously removed.
+
+    Args:
+        data (ndarray): The input data containing organ labels.
+        target_label (int): The label of the organ to be processed.
+        remove_mask (ndarray): Boolean mask indicating regions where the organ was removed.
+        device (str): The device to perform the operations on (e.g., 'cuda:0').
+
+    Returns:
+        ndarray: Boolean mask of the filled organ in previously removed regions.
+    """
     mask = (data == target_label).astype(np.uint8)
-    mask = dilate3d(torch.from_numpy(mask).to(device), erosion=3, value=0.0)
-    mask = dilate3d(mask, erosion=3, value=0.0)
-    roi_oragn_mask = dilate3d(mask, erosion=3, value=0.0).cpu().numpy()
+    mask = dilate_one_img(torch.from_numpy(mask).to(device), filter_size=3, pad_value=0.0)
+    mask = dilate_one_img(mask, filter_size=3, pad_value=0.0)
+    roi_oragn_mask = dilate_one_img(mask, filter_size=3, pad_value=0.0).cpu().numpy()
     return (roi_oragn_mask * remove_mask).astype(np.bool_)
 
 
 def get_body_region_index_from_mask(input_mask):
+    """
+    Determine the top and bottom body region indices from an input mask.
+
+    Args:
+        input_mask (Tensor): Input mask tensor containing body region labels.
+
+    Returns:
+        tuple: Two lists representing the top and bottom region indices.
+    """
     region_indices = {}
     # head and neck
     region_indices["region_0"] = [22, 120]
@@ -177,7 +403,7 @@ def get_body_region_index_from_mask(input_mask):
     nda = input_mask.cpu().numpy().squeeze()
     unique_elements = np.lib.arraysetops.unique(nda)
     unique_elements = list(unique_elements)
-    print(f"nda: {nda.shape} {unique_elements}.")
+    # print(f"nda: {nda.shape} {unique_elements}.")
     overlap_array = np.zeros(len(region_indices), dtype=np.uint8)
     for _j in range(len(region_indices)):
         overlap = any(element in region_indices[f"region_{_j}"] for element in unique_elements)
@@ -189,20 +415,39 @@ def get_body_region_index_from_mask(input_mask):
     bottom_region_index = np.eye(len(region_indices), dtype=np.uint8)[np.amax(overlap_array_indices), ...]
     bottom_region_index = list(bottom_region_index)
     bottom_region_index = [int(_k) for _k in bottom_region_index]
-    print(f"{top_region_index} {bottom_region_index}")
+    # print(f"{top_region_index} {bottom_region_index}")
     return top_region_index, bottom_region_index
 
 
 def general_mask_generation_post_process(volume_t, target_tumor_label=None, device="cuda:0"):
+    """
+    Perform post-processing on a generated mask volume.
+
+    This function applies various refinement steps to improve the quality of the generated mask,
+    including body mask refinement, tumor prediction refinement, and organ-specific processing.
+
+    Args:
+        volume_t (ndarray): Input volume containing organ and tumor labels.
+        target_tumor_label (int, optional): Label of the target tumor. Defaults to None.
+        device (str, optional): Device to perform operations on. Defaults to "cuda:0".
+
+    Returns:
+        ndarray: Post-processed volume with refined organ and tumor labels.
+    """
     # assume volume_t is np array with shape (H,W,D)
     hepatic_vessel = volume_t == 25
     airway = volume_t == 132
 
     # ------------ refine body mask pred
-    body_region_mask = erode3d(torch.from_numpy((volume_t > 0)).to(device), erosion=3, value=0.0).cpu().numpy()
+    body_region_mask = (
+        erode_one_img(torch.from_numpy((volume_t > 0)).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
+    )
     body_region_mask, _ = supress_non_largest_components(body_region_mask, [1])
     body_region_mask = (
-        dilate3d(torch.from_numpy(body_region_mask).to(device), erosion=3, value=0.0).cpu().numpy().astype(np.uint8)
+        dilate_one_img(torch.from_numpy(body_region_mask).to(device), filter_size=3, pad_value=0.0)
+        .cpu()
+        .numpy()
+        .astype(np.uint8)
     )
     volume_t = volume_t * body_region_mask
 
@@ -248,7 +493,9 @@ def general_mask_generation_post_process(volume_t, target_tumor_label=None, devi
 
     if target_tumor_label == 23 and np.sum(target_tumor) > 0:
         # speical process for cases with lung tumor
-        dia_lung_tumor_mask = dilate3d(torch.from_numpy((data == 23)).to(device), erosion=3, value=0.0).cpu().numpy()
+        dia_lung_tumor_mask = (
+            dilate_one_img(torch.from_numpy((data == 23)).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
+        )
         tmp = (
             (data * (dia_lung_tumor_mask.astype(np.uint8) - (data == 23).astype(np.uint8))).astype(np.float32).flatten()
         )
@@ -256,14 +503,16 @@ def general_mask_generation_post_process(volume_t, target_tumor_label=None, devi
         mode = int(stats.mode(tmp.flatten(), nan_policy="omit")[0])
         if mode in [28, 29, 30, 31, 32]:
             dia_lung_tumor_mask = (
-                dilate3d(torch.from_numpy(dia_lung_tumor_mask).to(device), erosion=3, value=0.0).cpu().numpy()
+                dilate_one_img(torch.from_numpy(dia_lung_tumor_mask).to(device), filter_size=3, pad_value=0.0)
+                .cpu()
+                .numpy()
             )
             lung_remove_mask = dia_lung_tumor_mask.astype(np.uint8) - (data == 23).astype(np.uint8).astype(np.uint8)
             data[organ_fill_by_removed_mask(data, target_label=mode, remove_mask=lung_remove_mask, device=device)] = (
                 mode
             )
         dia_lung_tumor_mask = (
-            dilate3d(torch.from_numpy(dia_lung_tumor_mask).to(device), erosion=3, value=0.0).cpu().numpy()
+            dilate_one_img(torch.from_numpy(dia_lung_tumor_mask).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
         )
         data[
             organ_fill_by_removed_mask(
@@ -284,9 +533,13 @@ def general_mask_generation_post_process(volume_t, target_tumor_label=None, devi
         data[organ_fill_by_removed_mask(data, target_label=3, remove_mask=organ_remove_mask, device=device)] = 3
         data[organ_fill_by_removed_mask(data, target_label=3, remove_mask=organ_remove_mask, device=device)] = 3
         dia_tumor_mask = (
-            dilate3d(torch.from_numpy((data == target_tumor_label)).to(device), erosion=3, value=0.0).cpu().numpy()
+            dilate_one_img(torch.from_numpy((data == target_tumor_label)).to(device), filter_size=3, pad_value=0.0)
+            .cpu()
+            .numpy()
         )
-        dia_tumor_mask = dilate3d(torch.from_numpy(dia_tumor_mask).to(device), erosion=3, value=0.0).cpu().numpy()
+        dia_tumor_mask = (
+            dilate_one_img(torch.from_numpy(dia_tumor_mask).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
+        )
         data[
             organ_fill_by_removed_mask(
                 data, target_label=target_tumor_label, remove_mask=dia_tumor_mask * organ_remove_mask, device=device
@@ -311,9 +564,13 @@ def general_mask_generation_post_process(volume_t, target_tumor_label=None, devi
     if target_tumor_label == 27 and np.sum(target_tumor) > 0:
         # speical process for cases with colon tumor
         dia_tumor_mask = (
-            dilate3d(torch.from_numpy((data == target_tumor_label)).to(device), erosion=3, value=0.0).cpu().numpy()
+            dilate_one_img(torch.from_numpy((data == target_tumor_label)).to(device), filter_size=3, pad_value=0.0)
+            .cpu()
+            .numpy()
         )
-        dia_tumor_mask = dilate3d(torch.from_numpy(dia_tumor_mask).to(device), erosion=3, value=0.0).cpu().numpy()
+        dia_tumor_mask = (
+            dilate_one_img(torch.from_numpy(dia_tumor_mask).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
+        )
         data[
             organ_fill_by_removed_mask(
                 data, target_label=target_tumor_label, remove_mask=dia_tumor_mask * organ_remove_mask, device=device
@@ -375,6 +632,15 @@ class MapLabelValue:
             self.dtype = get_equivalent_dtype(dtype, data_type=np.ndarray)
 
     def __call__(self, img: NdarrayOrTensor):
+        """
+        Apply the label mapping to the input image.
+
+        Args:
+            img (NdarrayOrTensor): Input image to be remapped.
+
+        Returns:
+            NdarrayOrTensor: Remapped image.
+        """
         if self.use_numpy:
             img_np, *_ = convert_data_type(img, np.ndarray)
             _out_shape = img_np.shape
@@ -396,34 +662,22 @@ class MapLabelValue:
         return out
 
 
-def load_autoencoder_ckpt(load_autoencoder_path):
-    checkpoint_autoencoder = torch.load(load_autoencoder_path)
-    new_state_dict = {}
-    for k, v in checkpoint_autoencoder.items():
-        if "decoder" in k and "conv" in k:
-            new_key = (
-                k.replace("conv.weight", "conv.conv.weight")
-                if "conv.weight" in k
-                else k.replace("conv.bias", "conv.conv.bias")
-            )
-            new_state_dict[new_key] = v
-        elif "encoder" in k and "conv" in k:
-            new_key = (
-                k.replace("conv.weight", "conv.conv.weight")
-                if "conv.weight" in k
-                else k.replace("conv.bias", "conv.conv.bias")
-            )
-            new_state_dict[new_key] = v
-        else:
-            new_state_dict[k] = v
-    checkpoint_autoencoder = new_state_dict
-    return checkpoint_autoencoder
-
-
-def binarize_labels(x, bits=8):
+def dynamic_infer(inferer, model, images):
     """
-    x: the input tensor with shape (B, 1, H, W, D)
-    bits: the num of channel to represent the data.
+    Perform dynamic inference using a model and an inferer, typically a monai SlidingWindowInferer.
+
+    This function determines whether to use the model directly or to use the provided inferer
+    (such as a sliding window inferer) based on the size of the input images.
+
+    Args:
+        inferer: An inference object, typically a monai SlidingWindowInferer, which handles patch-based inference.
+        model (torch.nn.Module): The model used for inference.
+        images (torch.Tensor): The input images for inference, shape [N,C,H,W,D] or [N,C,H,W].
+
+    Returns:
+        torch.Tensor: The output from the model or the inferer, depending on the input size.
     """
-    mask = 2 ** torch.arange(bits).to(x.device, x.dtype)
-    return x.unsqueeze(-1).bitwise_and(mask).ne(0).byte().squeeze(1).permute(0, 4, 1, 2, 3)
+    if torch.numel(images[0:1, 0:1, ...]) < math.prod(inferer.roi_size):
+        return model(images)
+    else:
+        return inferer(network=model, inputs=images)

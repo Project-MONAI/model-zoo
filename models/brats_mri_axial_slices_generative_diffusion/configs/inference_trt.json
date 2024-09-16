@@ -1,0 +1,7 @@
+{
+    "+imports": [
+        "$from monai.networks import trt_compile"
+    ],
+    "diffusion": "$trt_compile(@network_def.to(@device), @load_diffusion_path)",
+    "autoencoder": "$trt_compile(@autoencoder_def.to(@device), @load_autoencoder_path)"
+}

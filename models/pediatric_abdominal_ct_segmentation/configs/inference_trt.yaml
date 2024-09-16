@@ -1,0 +1,8 @@
+---
+imports:
+- "$import glob"
+- "$import os"
+- "$import torch_tensorrt"
+handlers#0#_disabled_: true
+network_def: "$torch.jit.load(@bundle_root + '/models/A100/dynunet_FT_trt_16.ts')"
+evaluator#amp: false

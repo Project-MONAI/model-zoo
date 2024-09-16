@@ -1,0 +1,84 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.4.4",
+    "changelog": {
+        "0.4.4": "initial bundle assemblage."
+    },
+    "monai_version": "1.3.0",
+    "pytorch_version": "2.1.0",
+    "numpy_version": "1.22.2",
+    "optional_packages_version": {
+        "fire": "0.4.0",
+        "nibabel": "4.0.1",
+        "pytorch-ignite": "0.4.11"
+    },
+    "name": "CT-Ped-Abdominal-Seg",
+    "task": "Training and Prediction of 3D Segmentation of Liver, Spleen and Pancreas from Abdominal CT images",
+    "description": "TotalSegmentator, TCIA and BTCV dataset pre-trained model for segmenting liver, spleen and pancreas, fine-tuned on Cincinnati Children's Healthy Pediatric Dataset with High Quality Masks. WandB hyperparameter search was used to find the best hyperparameters for training.",
+    "authors": "Cincinnati Children's (CCHMC) - CAIIR Center (https://www.cincinnatichildrens.org/research/divisions/r/radiology/labs/caiir)",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "TotalSegmentator, TCIA and BTCV dataset public data",
+    "data_type": "nifti",
+    "image_classes": "single channel 3D data HU thresholded and clipped to a range of 0 to 1",
+    "label_classes": "single channel data, 1 is liver, 2 is spleen, 3 is pancreas and 0 is everything else",
+    "pred_classes": "single channel data, 1 is liver, 2 is spleen, 3 is pancreas and 0 is everything else",
+    "eval_metrics": {
+        "TS_mean_dice": 0.9,
+        "TCIA_mean_dice": 0.87,
+        "CCHMC_mean_dice": 0.89
+    },
+    "intended_use": "Pediatric model - Validation on institutional data required before clinical use",
+    "references": [
+        "MedArxiv paper: url to be updated"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "hounsfield",
+                "modality": "CT",
+                "num_channels": 1,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 4,
+                "spatial_shape": [
+                    96,
+                    96,
+                    96
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1,
+                    2,
+                    3
+                ],
+                "is_patch_data": true,
+                "label_def": {
+                    "0": "background",
+                    "1": "liver",
+                    "2": "spleen",
+                    "3": "pancreas"
+                }
+            }
+        }
+    }
+}

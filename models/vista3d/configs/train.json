@@ -312,7 +312,7 @@
         "inferer": {
             "_target_": "scripts.inferer.Vista3dInferer",
             "roi_size": "@patch_size_valid",
-            "overlap": "@sw_overlap",
+            "overlap": "@sw_overlap"
         },
         "handlers": [
             {

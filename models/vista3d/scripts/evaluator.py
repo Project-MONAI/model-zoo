@@ -79,8 +79,8 @@ class Vista3dEvaluator(SupervisedEvaluator):
             default to `True`.
         to_kwargs: dict of other args for `prepare_batch` API when converting the input data, except for
             `device`, `non_blocking`.
-        amp_kwargs: dict of the args for `torch.cuda.amp.autocast()` API, for more details:
-            https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.autocast.
+        amp_kwargs: dict of the args for `torch.amp.autocast()` API, for more details:
+            https://pytorch.org/docs/stable/amp.html#torch.amp.autocast.
     """
 
     def __init__(
@@ -248,7 +248,7 @@ class Vista3dEvaluator(SupervisedEvaluator):
             points = torch.zeros(label_prompt.shape[0], 1, 3).to(inputs.device)
             point_labels = -1 + torch.zeros(label_prompt.shape[0], 1).to(inputs.device)
             # validation for either auto or point.
-            if engine.hyper_kwargs.get("val_head", "auto") == 'auto':
+            if engine.hyper_kwargs.get("val_head", "auto") == "auto":
                 # automatic only validation
                 # remove val_label_set, vista3d will not sample points from gt labels.
                 val_label_set = None
@@ -261,7 +261,7 @@ class Vista3dEvaluator(SupervisedEvaluator):
         # execute forward computation
         with engine.mode(engine.network):
             if engine.amp:
-                with torch.cuda.amp.autocast(**engine.amp_kwargs):
+                with torch.amp.autocast("cuda", **engine.amp_kwargs):
                     engine.state.output[Keys.PRED] = engine.inferer(
                         inputs=inputs,
                         network=engine.network,
