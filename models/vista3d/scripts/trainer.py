@@ -179,14 +179,7 @@ class Vista3dTrainer(Trainer):
 
         def _compute_pred_loss():
             outputs = engine.network(
-<<<<<<< HEAD
-                input_images=inputs,
-                point_coords=point,
-                point_labels=point_label,
-                class_vector=label_prompt
-=======
                 input_images=inputs, point_coords=point, point_labels=point_label, class_vector=label_prompt
->>>>>>> 6bdfd30b63b3d1a799c80f1d17a783ff3a66c66c
             )
             # engine.state.output[Keys.PRED] = outputs
             engine.fire_event(IterationEvents.FORWARD_COMPLETED)
