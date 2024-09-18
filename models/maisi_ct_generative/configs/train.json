@@ -104,7 +104,7 @@
     "copy_controlnet_state": "$monai.networks.utils.copy_model_state(@controlnet, @diffusion_unet.state_dict())",
     "checkpoint_controlnet": "$torch.load(@trained_controlnet_path)",
     "load_controlnet": "$@controlnet.load_state_dict(@checkpoint_controlnet['controlnet_state_dict'], strict=True)",
-    "scale_factor": "$@checkpoint_controlnet['scale_factor'].to(@device)",
+    "scale_factor": "$@checkpoint_diffusion_unet['scale_factor'].to(@device)",
     "loss": {
         "_target_": "torch.nn.L1Loss",
         "reduction": "none"
@@ -214,7 +214,8 @@
                 "_target_": "CheckpointSaver",
                 "save_dir": "@ckpt_dir",
                 "save_dict": {
-                    "controlnet_state_dict": "@controlnet"
+                    "controlnet_state_dict": "@controlnet",
+                    "optimizer": "@optimizer"
                 },
                 "save_interval": 1,
                 "n_saved": 5
