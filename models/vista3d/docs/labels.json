@@ -130,8 +130,5 @@
     "kidney mass": 129,
     "liver tumor": 130,
     "vertebrae L6": 131,
-    "airway": 132,
-    "FDG-avid lesion": 133,
-    "lung nodule": 134,
-    "lumbar spine": 135
+    "airway": 132
 }
