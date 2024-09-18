@@ -97,12 +97,12 @@ class Vista3dInferer(Inferer):
                 prev_mask=prev_mask,
                 labels=labels,
                 label_set=label_set,
-            )        
+            )
         else:
             val_outputs = SlidingWindowInfererAdapt(
                 roi_size=self.roi_size,
                 sw_batch_size=self.sw_batch_size,
-                with_coord=True)(inputs,network,transpose=True,            
+                with_coord=True)(inputs,network,transpose=True,
                 point_coords=point_coords,
                 point_labels=point_labels,
                 class_vector=class_vector,

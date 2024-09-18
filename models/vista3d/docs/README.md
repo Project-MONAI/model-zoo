@@ -4,7 +4,7 @@ own datasets.
 
 ## Continual learning
 
-For continual learning, user can change `configs/train_continual.json`. More advanced users can change configurations in `configs/train.json`. The hyperparameters in `configs/train_continual.json` will overwrite ones in `configs/train.json`. Most hyperparameters are straighforward and user can tell based on their names. We list hyperparameters that needs to be modified. 
+For continual learning, user can change `configs/train_continual.json`. More advanced users can change configurations in `configs/train.json`. The hyperparameters in `configs/train_continual.json` will overwrite ones in `configs/train.json`. Most hyperparameters are straighforward and user can tell based on their names. We list hyperparameters that needs to be modified.
 
 ### Data
 
@@ -37,8 +37,8 @@ from monai.data.utils import partition_dataset
 from monai.bundle import ConfigParser
 base_url = "/path_to_your_folder/"
 json_name = "./your_5_folds.json"
-# create matching image and label lists. 
-# The code to generate the lists is based on your local data structure. 
+# create matching image and label lists.
+# The code to generate the lists is based on your local data structure.
 # You can use glob.glob("**.nii.gz") e.t.c.
 image_list = ['images/1.nii.gz', 'images/2.nii.gz', ...]
 label_list = ['labels/1.nii.gz', 'labels/2.nii.gz', ...]
@@ -71,13 +71,13 @@ ConfigParser.export_config_file(parser.config, json_name, indent=4)
 The core concept of label_mapping is to convert ground-truth label index of each dataset to a unified class index. For example, "Spleen" in MSD09 groundtruth will be represented by 1, while in AbdomenCT-1K it's 3. We unified a global label index [`label_dict`](./labels.json) to represent all 132 classes, and create a label mapping to map those local index to this global index. So when a user is training on their own dataset, we need to know this mapping.
 
 The current label mapping `[[1, 3]]` indicates that training labels' class indices `1` is mapped
-to the VISTA model's class `3` (format `[[src_class_0, dst_class_0], [src_class_1, dst_class_1], ...]`). So during inference, "3" is used to segment spleen. 
+to the VISTA model's class `3` (format `[[src_class_0, dst_class_0], [src_class_1, dst_class_1], ...]`). So during inference, "3" is used to segment spleen.
 
-Since it's finetuning, you can map your local class to any global class. If you use [[1,4]], where "4" represents pancreas, the finetuning can still work but requires more training data and epoch because the class "4" is already assigned and trained with pancreas. If you use [[1,3]], where "3" already represents spleen, the finetuning will converge much faster. 
+Since it's finetuning, you can map your local class to any global class. If you use [[1,4]], where "4" represents pancreas, the finetuning can still work but requires more training data and epoch because the class "4" is already assigned and trained with pancreas. If you use [[1,3]], where "3" already represents spleen, the finetuning will converge much faster.
 
 #### Best practice to set label_mapping
 
-For a class that represent the same or similar class as the global index, directly map it to the global index. For example, "mouse left lung" (e.g. index 2 in the mouse dataset) can be mapped to the 28 "left lung upper lobe"(or 29 "left lung lower lobe") with [[2,28]]. After finetuning, 28 now represents "mouse left lung" and will be used for segmentation. If you want to segment 4 substructures of aorta, you can map one of the substructuress to 6 aorta and the rest to any unused classes (class > 132), [[1,6],[2,133],[3,134],[4,135]]. For a completely novel class that none of the VISTA global classes are related, directly map to unused classes (class > 132). 
+For a class that represent the same or similar class as the global index, directly map it to the global index. For example, "mouse left lung" (e.g. index 2 in the mouse dataset) can be mapped to the 28 "left lung upper lobe"(or 29 "left lung lower lobe") with [[2,28]]. After finetuning, 28 now represents "mouse left lung" and will be used for segmentation. If you want to segment 4 substructures of aorta, you can map one of the substructuress to 6 aorta and the rest to any unused classes (class > 132), [[1,6],[2,133],[3,134],[4,135]]. For a completely novel class that none of the VISTA global classes are related, directly map to unused classes (class > 132).
 ```
 NOTE: Do not map to global index value >= 255. `num_classes=255` in the config only represent the maximum mapping index, while the actual output class number only depends on your label_mapping definition. The 255 value in the inference output is also used to represent 'NaN' value.
 ```
@@ -88,14 +88,14 @@ In `train_continual.json`, only `n_train_samples` and `n_val_samples` are used f
 The patch size parameter is defined in `configs/train_continual.json`: `"patch_size": [128, 128, 128]`. For finetuning purposes, this value needs to be changed acccording to user's task and GPU memory. Usually a larger patch_size will give better final results.
 
 #### `resample_to_spacing`
-The resample_to_spacing parameter is defined in `configs/train_continual.json` and it represents the resolution the model will be trained on. The `1.5,1.5,1.5` mm default is suitable for large CT organs, but for other tasks, this value should be changed to achive the optimal performance. 
+The resample_to_spacing parameter is defined in `configs/train_continual.json` and it represents the resolution the model will be trained on. The `1.5,1.5,1.5` mm default is suitable for large CT organs, but for other tasks, this value should be changed to achive the optimal performance.
 
 #### Advanced user: `drop_label_prob` and `drop_point_prob` (in train.json)
-VISTA3D is trained to perform both automatic (class prompts) and interactive point segmentation. 
+VISTA3D is trained to perform both automatic (class prompts) and interactive point segmentation.
 `drop_label_prob` and `drop_point_prob` means percentage to remove class prompts and point prompts during training respectively. If `drop_point_prob=1`, the
 model is only finetuning for automatic segmentation, while `drop_label_prob=1` means only finetuning for interactive segmentation. The VISTA3D foundation
 model is trained with interactive only (drop_label_prob=1) and then froze the point branch and trained with fully automatic segmentation (`drop_point_prob=1`).
-In this bundle, the training is simplified by jointly training with class prompts and point prompts and both of the drop ratio is set to 0.25. 
+In this bundle, the training is simplified by jointly training with class prompts and point prompts and both of the drop ratio is set to 0.25.
 ```
 NOTE: If user doesn't use interactive segmentation, set `drop_point_prob=1` and `drop_label_prob=0` in train.json might provide a faster and easier finetuning process.
 ```
@@ -150,7 +150,7 @@ torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run \
 
 ## Inference:
 For inference, VISTA3d bundle requires at least one prompt for segmentation. It supports label prompt, which is the index of the class for automatic segmentation.
-It also supports point click prompts for binary interactive segmentation. User can provide both prompts at the same time. 
+It also supports point click prompts for binary interactive segmentation. User can provide both prompts at the same time.
 
 All the configurations for inference is stored in inference.json, change those parameters:
 ### `input_dict`
@@ -161,7 +161,7 @@ All the configurations for inference is stored in inference.json, change those p
 ```
 - The input_dict must include the key `image` which contain the absolute path to the nii image file, and includes prompt keys of `label_prompt`, `points` and `point_labels`.
 - The `label_prompt` is a list of length `B`, which can perform `B` foreground objects segmentation, e.g. `[2,3,4,5]`. If `B>1`, Point prompts must NOT be provided.
-- The `points` is of shape `[N, 3]` like `[[x1,y1,z1],[x2,y2,z2],...[xN,yN,zN]]`, representing `N` point coordinates **IN THE ORIGINAL IMAGE SPACE** of a single foreground object. `point_labels` is a list of length [N] like [1,1,0,-1,...], which 
+- The `points` is of shape `[N, 3]` like `[[x1,y1,z1],[x2,y2,z2],...[xN,yN,zN]]`, representing `N` point coordinates **IN THE ORIGINAL IMAGE SPACE** of a single foreground object. `point_labels` is a list of length [N] like [1,1,0,-1,...], which
 matches the `points`. 0 means background, 1 means foreground, -1 means ignoring this point. `points` and `point_labels` must pe provided together and match length.
 - **B must be 1 if label_prompt and points are provided together**. The inferer only supports SINGLE OBJECT point click segmentatation.
 - If no prompt is provided, the model will use `everything_labels` to segment 118 classes: list(set([i+1 for i in range(132)]) - set([2,16,18,20,21,23,24,25,26,27,128,129,130,131,132])).
@@ -177,7 +177,7 @@ VISTA3D support 127 classes.
 "129, # kidney mass" insufficient data or dataset excluded.
 "131, # vertebrae L6", insufficient data or dataset excluded.
 ```
-These 5 are excluded in the `everything_labels`. Another 7 tumor and vessel classes are also removed since they will overlap with other organs and make the output messy. To segment those 7 classes, we recommend users to directly set `label_prompt` to those indexes and avoid using them in `everything_labels`. For "Kidney", "Lung", "Bone" (class index [2, 20, 21]), VISTA3D did not directly use the class index for segmentation, but instead convert them to their subclass indexes as defined by `subclass` dict. For example, "2-Kidney" is converted to "14-Left Kidney" + "5-Right Kidney" since "2" is defined in `subclasss` dict. 
+These 5 are excluded in the `everything_labels`. Another 7 tumor and vessel classes are also removed since they will overlap with other organs and make the output messy. To segment those 7 classes, we recommend users to directly set `label_prompt` to those indexes and avoid using them in `everything_labels`. For "Kidney", "Lung", "Bone" (class index [2, 20, 21]), VISTA3D did not directly use the class index for segmentation, but instead convert them to their subclass indexes as defined by `subclass` dict. For example, "2-Kidney" is converted to "14-Left Kidney" + "5-Right Kidney" since "2" is defined in `subclasss` dict.
 
 
 ```
@@ -185,7 +185,7 @@ Note: if the finetuning mapped the local user data index to global index "2, 20,
 ```
 
 ### `resample_spacing`
-The optimal inference resample spacing should be changed according to the task. For monkey data, a high resolution of [1,1,1] showed better automatic inference results. This spacing applies to both automatic and interactive segmentation. For zero-shot interactive segmentation for non-human CTs e.g. mouse CT or even rock/stone CT, using original resolution (set `resample_spacing` to [-1,-1,-1]) may give better interactive results. 
+The optimal inference resample spacing should be changed according to the task. For monkey data, a high resolution of [1,1,1] showed better automatic inference results. This spacing applies to both automatic and interactive segmentation. For zero-shot interactive segmentation for non-human CTs e.g. mouse CT or even rock/stone CT, using original resolution (set `resample_spacing` to [-1,-1,-1]) may give better interactive results.
 
 ### `use_point_window`
 When user click a point, there is no need to perform whole image sliding window inference. Set "use_point_window" to true in the inference.json to enable this function.
@@ -193,7 +193,7 @@ A window centered at the clicked points will be used for inference. All values o
 If no point click exists, this function will not be used. Notice if "use_point_window" is true and user provided point clicks, there will be obvious cut-off box artefacts.
 
 ### Inference GPU benchmarks
-Benchmarks on a 16GB V100 GPU with 400G system cpu memory. 
+Benchmarks on a 16GB V100 GPU with 400G system cpu memory.
 | Volume size at 1.5x1.5x1.5 mm | 333x333x603 | 512x512x512 | 512x512x768 | 1024x1024x512 | 1024x1024x768 |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 |RunTime| 1m07s | 2m09s | 3m25s| 9m20s| killed |
