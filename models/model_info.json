@@ -1694,5 +1694,9 @@
     "classification_template_v0.0.2": {
         "checksum": "3f60e6b3531695e834103c47fa784ded35bbba99",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/classification_template/versions/0.0.2/files/classification_template_v0.0.2.zip"
+    },
+    "maisi_ct_generative_v0.4.2": {
+        "checksum": "4a8a6a39632562f1c4521523326a847295e789c3",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.2/files/maisi_ct_generative_v0.4.2.zip"
     }
 }
