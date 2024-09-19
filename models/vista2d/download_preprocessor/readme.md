@@ -54,7 +54,7 @@ The `datasets` directory needs to be selected as highlighted in the screenshot, 
 a user created directory named `omnipose_dataset`.
 
 ### The remaining datasets will be downloaded by a python script.
-To run the script use the following example command `python all_file_downloader.py --download_path provide_the_same_root_data_path`
+To run the script use the following example command `python all_file_downloader.py --dir provide_the_same_root_data_path`
 
 After completion of downloading of all datasets, below is how the data root directory should look:
 
@@ -63,11 +63,11 @@ After completion of downloading of all datasets, below is how the data root dire
 ### Process the downloaded data
 To execute VISTA-2D training pipeline, some datasets require label conversion. Please use the `root_data_path` as the input to the script, example command to execute the script is given below:
 
-`python generate_json.py --data_root provide_the_same_root_data_path`
+`python generate_json.py --dir provide_the_same_root_data_path`
 
 ### Generation of Json data lists (Optional)
 If one desires to generate JSON files from scratch, `generate_json.py` script performs both processing and creation of JSON files.
 To execute VISTA-2D training pipeline, some datasets require label conversion and then a json file list which the VISTA-2D training uses a format.
 Creating the json lists from the raw dataset sources, please use the `root_data_path` as the input to the script, example command to execute the script is given below:
 
-`python generate_json.py --data_root provide_the_same_root_data_path`
+`python generate_json.py --dir provide_the_same_root_data_path`
