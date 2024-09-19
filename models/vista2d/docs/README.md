@@ -6,7 +6,6 @@ A pretrained model was trained on collection of 15K public microscopy images. Th
 
 <div align="center"> <img src="https://developer-blogs.nvidia.com/wp-content/uploads/2024/04/magnified-cells-1.png" width="800"/> </div>
 
-
 ### Model highlights
 
 - Robust deep learning algorithm based on transformers
@@ -15,10 +14,9 @@ A pretrained model was trained on collection of 15K public microscopy images. Th
 - Multiple modalities of imaging data collectively supported
 - Multi-GPU and multinode training support
 
-
 ### Generalization performance
 
-Evaluation was performed for the VISTA2D model with multiple public datasets, such as TissueNet, LIVECell, Omnipose, DeepBacs, Cellpose, and [more](./docs/data_license.txt). A total of ~15K annotated cell images were collected to train the generalist VISTA2D model. This ensured broad coverage of many different types of cells, which were acquired by various imaging acquisition types. The benchmark results of the experiment were performed on held-out test sets for each public dataset that were already defined by the dataset contributors. Average precision at an IoU threshold of 0.5 was used for evaluating performance. The benchmark results are reported in comparison with the best numbers found in the literature, in addition to a specialist VISTA2D model trained only on a particular dataset or a subset of data.
+Evaluation was performed for the VISTA2D model with multiple public datasets, such as TissueNet, LIVECell, Omnipose, DeepBacs, Cellpose, and more. For more details about dataset licenses, please refer to `/docs/data_license.txt`. A total of ~15K annotated cell images were collected to train the generalist VISTA2D model. This ensured broad coverage of many different types of cells, which were acquired by various imaging acquisition types. The benchmark results of the experiment were performed on held-out test sets for each public dataset that were already defined by the dataset contributors. Average precision at an IoU threshold of 0.5 was used for evaluating performance. The benchmark results are reported in comparison with the best numbers found in the literature, in addition to a specialist VISTA2D model trained only on a particular dataset or a subset of data.
 
 <div align="center"> <img src="https://developer-blogs.nvidia.com/wp-content/uploads/2024/04/vista-2d-model-precision-versus-specialist-model-baseline-performance.png" width="800"/> </div>
 
@@ -49,9 +47,30 @@ This result is benchmarked under:
 
 ### Prepare Data Lists and Datasets
 
-The default dataset for training, validation, and inference is the [Cellpose](https://www.cellpose.org/) dataset. Please follow the [tutorial](../download_preprocessor/) to prepare the dataset before executing any commands below.
+The default dataset for training, validation, and inference is the [Cellpose](https://www.cellpose.org/) dataset. Please follow the `download_preprocessor/` to prepare the dataset before executing any commands below.
 
 Additionally, all data lists are available in the `datalists.zip` file located in the root directory of the bundle. Extract the contents of the `.zip` file to access the data lists.
+
+### Dependencies
+Please refer to `required_packages_version` in `configs/metadata.json` to install all necessary dependencies before executing.
+
+Important Note: if your environment already contains OpenCV, installing `cellpose` may lead to conflicts and produce errors such as:
+
+```
+AttributeError: partially initialized module 'cv2' has no attribute 'dnn' (most likely due to a circular import)
+```
+
+when executing. To resolve this issue, please uninstall OpenCV and then re-install `cellpose` with a command like:
+
+```Bash
+pip uninstall -y opencv && rm /usr/local/lib/python3.x/dist-packages/cv2
+```
+
+Alternatively, you can use the following command to install `cellpose` without its dependencies:
+
+```
+pip install --no-deps cellpose
+```
 
 ### Execute training
 ```bash
@@ -192,7 +211,7 @@ Ask and answer questions on [MONAI VISTA's GitHub discussions tab](https://githu
 
 ## License
 
-The codebase is under Apache 2.0 Licence. The model weight is released under CC-BY-NC-SA-4.0. For various public data licenses please see [data_license.txt](data_license.txt).
+The codebase is under Apache 2.0 Licence. The model weight is released under CC-BY-NC-SA-4.0. For various public data licenses please see `data_license.txt`.
 
 ## Acknowledgement
 - [segment-anything](https://github.com/facebookresearch/segment-anything)
