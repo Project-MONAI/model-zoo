@@ -923,7 +923,7 @@ class LDMSampler:
                         raise ValueError(
                             (
                                 f"Resampled mask does not contain required class labels {anatomy_label}. "
-                                "Please consider increasing the spacing or specifying a larger output size."
+                                "Please consider increasing the output spacing or specifying a larger output size."
                             )
                         )
         return labels
