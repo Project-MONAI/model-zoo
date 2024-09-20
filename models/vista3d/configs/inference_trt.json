@@ -1,10 +1,12 @@
 {
+    "max_dynamic_batchsize": 4,
+    "enable_class_head": false,
     "+imports": [
         "$from monai.networks import trt_compile"
     ],
     "trt_args": {
-        "dynamic_batchsize": "$[1, @inferer#sw_batch_size, @inferer#sw_batch_size]",
+        "dynamic_batchsize": "$[1, @inferer#sw_batch_size, @max_dynamic_batchsize]",
         "fallback": true
     },
-    "network": "$trt_compile(@network_def.to(@device), @bundle_root + '/models/model.pt', args=@trt_args, submodule=['image_encoder.encoder', 'class_head'])"
+    "network": "$trt_compile(@network_def.to(@device), @bundle_root + '/models/model.pt', args=@trt_args, submodule=['image_encoder.encoder', 'class_head'] if @enable_class_head else ['image_encoder.encoder'])"
 }
