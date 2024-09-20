@@ -457,7 +457,7 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
                 raise ValueError(
                     f"The components in anatomy_list have to be chosen from {label_dict.keys()}, yet got {anatomy}."
                 )
-    logging.info(f"The generate results will have voxel size to be {spacing}mm, volume size to be {output_size}.")
+    logging.info(f"The generate results will have voxel size to be {spacing} mm, volume size to be {output_size}.")
 
     return
 
@@ -923,7 +923,7 @@ class LDMSampler:
                         raise ValueError(
                             (
                                 f"Resampled mask does not contain required class labels {anatomy_label}. "
-                                "Please tune spacing and output size."
+                                "Please consider increasing the spacing or specifying a larger output size."
                             )
                         )
         return labels
