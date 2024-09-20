@@ -17,6 +17,7 @@ from monai.apps.vista3d.inferer import point_based_window_inferer
 from monai.inferers import Inferer, SlidingWindowInfererAdapt
 from torch import Tensor
 
+
 class Vista3dInferer(Inferer):
     """
     Vista3D Inferer
@@ -100,14 +101,17 @@ class Vista3dInferer(Inferer):
             )
         else:
             val_outputs = SlidingWindowInfererAdapt(
-                roi_size=self.roi_size,
-                sw_batch_size=self.sw_batch_size,
-                with_coord=True)(inputs,network,transpose=True,
+                roi_size=self.roi_size, sw_batch_size=self.sw_batch_size, with_coord=True
+            )(
+                inputs,
+                network,
+                transpose=True,
                 point_coords=point_coords,
                 point_labels=point_labels,
                 class_vector=class_vector,
                 prompt_class=prompt_class,
                 prev_mask=prev_mask,
                 labels=labels,
-                label_set=label_set)
+                label_set=label_set,
+            )
         return val_outputs
