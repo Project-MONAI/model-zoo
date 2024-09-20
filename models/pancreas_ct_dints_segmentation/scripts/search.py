@@ -182,9 +182,9 @@ def run(config_file: Union[str, Sequence[str]]):
 
     # amp
     if amp:
-        from torch.cuda.amp import GradScaler, autocast
+        from torch.amp import GradScaler, autocast
 
-        scaler = GradScaler()
+        scaler = GradScaler("cuda")
         if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
             print("[info] amp enabled")
 
@@ -238,7 +238,7 @@ def run(config_file: Union[str, Sequence[str]]):
             optimizer.zero_grad()
 
             if amp:
-                with autocast():
+                with autocast("cuda"):
                     outputs = model(inputs)
                     if output_classes == 2:
                         loss = loss_func(torch.flip(outputs, dims=[1]), 1 - labels)
@@ -310,7 +310,7 @@ def run(config_file: Union[str, Sequence[str]]):
             combination_weights = (epoch - num_epochs_warmup) / (num_epochs - num_epochs_warmup)
 
             if amp:
-                with autocast():
+                with autocast("cuda"):
                     outputs_search = model(inputs_search)
                     if output_classes == 2:
                         loss = loss_func(torch.flip(outputs_search, dims=[1]), 1 - labels_search)
@@ -393,7 +393,7 @@ def run(config_file: Union[str, Sequence[str]]):
                     sw_batch_size = num_sw_batch_size
 
                     if amp:
-                        with torch.cuda.amp.autocast():
+                        with torch.amp.autocast("cuda"):
                             pred = sliding_window_inference(
                                 val_images,
                                 roi_size,
