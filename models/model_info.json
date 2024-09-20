@@ -1698,5 +1698,13 @@
     "maisi_ct_generative_v0.4.2": {
         "checksum": "4a8a6a39632562f1c4521523326a847295e789c3",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.2/files/maisi_ct_generative_v0.4.2.zip"
+    },
+    "vista3d_v0.4.8": {
+        "checksum": "77d61ea00fbe2f3cabbef7ec3b7ce32e59a75fce",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.8/files/vista3d_v0.4.8.zip"
+    },
+    "vista2d_v0.2.7": {
+        "checksum": "1bbfebc1e9adff9dcf0fa7c2c7414734f05f7a95",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.7/files/vista2d_v0.2.7.zip"
     }
 }
