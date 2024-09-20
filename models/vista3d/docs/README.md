@@ -225,11 +225,9 @@ This default is overridable by changing the input folder `input_dir`, or the inp
 python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
 
-By default, the argument `enable_class_head` is set to `false` in `configs/inference_trt.json`. This means that the `class_head` module of the network will not be converted into a TensorRT model. Setting this to `true` may accelerate the process, but there are some limitations:
+By default, the argument `head_trt_enabled` is set to `false` in `configs/inference_trt.json`. This means that the `class_head` module of the network will not be converted into a TensorRT model. Setting this to `true` may accelerate the process, but there are some limitations:
 
-The `label_prompt` will be converted into a tensor and input into the `class_head` module. The batch size of this input tensor will equal the length of the original `label_prompt` list (if no prompt is provided, the length is 117).
-
-To make the TensorRT model work on the `class_head` module, you should set a suitable dynamic batch size range. The maximum dynamic batch size can be configured using the argument `max_dynamic_batchsize` in `configs/inference_trt.json`. If the length of the `label_prompt` list exceeds `max_dynamic_batchsize`, the engine will fall back to using the normal PyTorch model for inference. Setting a larger `max_dynamic_batchsize` can cover more input cases but may require more GPU memory (the default value is 4, which requires 16 GB of GPU memory). Therefore, please set it to a suitable value according to your actual requirements.
+The `label_prompt` will be converted into a tensor and input into the `class_head` module. The batch size of this input tensor will equal the length of the original `label_prompt` list (if no prompt is provided, the length is 117). To make the TensorRT model work on the `class_head` module, you should set a suitable dynamic batch size range. The maximum dynamic batch size can be configured using the argument `max_prompt_size` in `configs/inference_trt.json`. If the length of the `label_prompt` list exceeds `max_prompt_size`, the engine will fall back to using the normal PyTorch model for inference. Setting a larger `max_prompt_size` can cover more input cases but may require more GPU memory (the default value is 4, which requires 16 GB of GPU memory). Therefore, please set it to a suitable value according to your actual requirements.
 
 
 ### TroubleShoot for Out-of-Memory
