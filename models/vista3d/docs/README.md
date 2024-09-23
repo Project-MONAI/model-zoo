@@ -68,7 +68,7 @@ ConfigParser.export_config_file(parser.config, json_name, indent=4)
 ### Configurations
 
 #### `label_mappings`
-The core concept of label_mapping is to convert ground-truth label index of each dataset to a unified class index. For example, "Spleen" in MSD09 groundtruth will be represented by 1, while in AbdomenCT-1K it's 3. We unified a global label index [`label_dict`](./labels.json) to represent all 132 classes, and create a label mapping to map those local index to this global index. So when a user is training on their own dataset, we need to know this mapping.
+The core concept of label_mapping is to convert ground-truth label index of each dataset to a unified class index. For example, "Spleen" in MSD09 groundtruth will be represented by 1, while in AbdomenCT-1K it's 3. We unified a global label index (`docs/labels.json`) to represent all 132 classes, and create a label mapping to map those local index to this global index. So when a user is training on their own dataset, we need to know this mapping.
 
 The current label mapping `[[1, 3]]` indicates that training labels' class indices `1` is mapped
 to the VISTA model's class `3` (format `[[src_class_0, dst_class_0], [src_class_1, dst_class_1], ...]`). So during inference, "3" is used to segment spleen.
@@ -173,7 +173,7 @@ list(set([i+1 for i in range(132)]) - set([2,16,18,20,21,23,24,25,26,27,128,129,
 - The `points` together with `label_prompts` for "Kidney", "Lung", "Bone" (class index [2, 20, 21]) are not allowed since those prompts will be divided into sub-categories (e.g. left kidney and right kidney). Use `points` for the sub-categories as defined in the `inference.json`.
 
 ### `label_prompt` and `label_dict`
-The `label_dict` defined in [`labels.json`](../docs/labels.json) has in total 132 classes. However, there are 5 we do not support and we keep them due to legacy issue. So in total
+The `label_dict` defined in `docs/labels.json` has in total 132 classes. However, there are 5 we do not support and we keep them due to legacy issue. So in total
 VISTA3D support 127 classes.
 
 ```

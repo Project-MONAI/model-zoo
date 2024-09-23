@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.4.9",
+    "version": "0.5.0",
     "changelog": {
+        "0.5.0": "update json file link and add test",
         "0.4.9": "fix oom issue and update readme",
         "0.4.8": "use 0.3 overlap for inference",
         "0.4.7": "update tensorrt benchmark results",
