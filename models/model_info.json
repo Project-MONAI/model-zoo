@@ -1718,5 +1718,9 @@
     "maisi_ct_generative_v0.4.3": {
         "checksum": "89fcb41b1429e4548039f13085a0c8c0174abc11",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.3/files/maisi_ct_generative_v0.4.3.zip"
+    },
+    "vista3d_v0.5.0": {
+        "checksum": "890833322a5485cd5846ed20192ce37b6cf3cde2",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.0/files/vista3d_v0.5.0.zip"
     }
 }
