@@ -32,7 +32,7 @@
     "num_classes": 255,
     "output_classes": "$len(@label_set)",
     "optimizer": {
-        "_target_": "Novograd",
+        "_target_": "torch.optim.AdamW",
         "lr": "@learning_rate",
         "params": "$@network.parameters()"
     },

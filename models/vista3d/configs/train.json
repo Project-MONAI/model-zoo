@@ -16,7 +16,7 @@
     "early_stop": false,
     "fold": 0,
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "epochs": 100,
+    "epochs": 5,
     "val_interval": 1,
     "val_at_start": false,
     "sw_overlap": 0.625,

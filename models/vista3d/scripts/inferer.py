@@ -14,7 +14,7 @@ from typing import List, Union
 
 import torch
 from monai.apps.vista3d.inferer import point_based_window_inferer
-from monai.inferers import Inferer, sliding_window_inference
+from monai.inferers import Inferer, SlidingWindowInfererAdapt
 from torch import Tensor
 
 
@@ -33,7 +33,6 @@ class Vista3dInferer(Inferer):
         self.overlap = overlap
         self.sw_batch_size = sw_batch_size
         self.use_point_window = use_point_window
-        self.sliding_window_inferer = point_based_window_inferer if use_point_window else sliding_window_inference
 
     def __call__(
         self,
@@ -62,11 +61,6 @@ class Vista3dInferer(Inferer):
             prev_mask: [1, B, H, W, D], THE VALUE IS BEFORE SIGMOID!
 
         """
-        sliding_window_inferer = (
-            point_based_window_inferer
-            if (self.use_point_window and point_coords is not None)
-            else sliding_window_inference
-        )
         prompt_class = copy.deepcopy(class_vector)
         if class_vector is not None:
             # Check if network has attribute 'point_head' directly or within its 'module'
@@ -79,12 +73,14 @@ class Vista3dInferer(Inferer):
 
             if torch.any(class_vector > point_head.last_supported):
                 class_vector = None
-        if isinstance(inputs, list):
-            device = inputs[0].device
-        else:
-            device = inputs.device
-        try:
-            val_outputs = sliding_window_inferer(
+        val_outputs = None
+        torch.cuda.empty_cache()
+        if self.use_point_window and point_coords is not None:
+            if isinstance(inputs, list):
+                device = inputs[0].device
+            else:
+                device = inputs.device
+            val_outputs = point_based_window_inferer(
                 inputs=inputs,
                 roi_size=self.roi_size,
                 sw_batch_size=self.sw_batch_size,
@@ -103,20 +99,13 @@ class Vista3dInferer(Inferer):
                 labels=labels,
                 label_set=label_set,
             )
-        except Exception:
-            val_outputs = None
-            torch.cuda.empty_cache()
-            val_outputs = sliding_window_inferer(
-                inputs=inputs,
-                roi_size=self.roi_size,
-                sw_batch_size=self.sw_batch_size,
+        else:
+            val_outputs = SlidingWindowInfererAdapt(
+                roi_size=self.roi_size, sw_batch_size=self.sw_batch_size, with_coord=True
+            )(
+                inputs,
+                network,
                 transpose=True,
-                with_coord=True,
-                predictor=network,
-                mode="gaussian",
-                sw_device=device,
-                device="cpu",
-                overlap=self.overlap,
                 point_coords=point_coords,
                 point_labels=point_labels,
                 class_vector=class_vector,
