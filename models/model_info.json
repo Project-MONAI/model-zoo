@@ -1714,5 +1714,9 @@
     "vista2d_v0.2.8": {
         "checksum": "81181dd40154054c869cd7d53300603a979fe265",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.8/files/vista2d_v0.2.8.zip"
+    },
+    "maisi_ct_generative_v0.4.3": {
+        "checksum": "89fcb41b1429e4548039f13085a0c8c0174abc11",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.3/files/maisi_ct_generative_v0.4.3.zip"
     }
 }
