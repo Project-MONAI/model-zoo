@@ -15,6 +15,7 @@ from typing import List, Union
 import torch
 from monai.apps.vista3d.inferer import point_based_window_inferer
 from monai.inferers import Inferer, SlidingWindowInfererAdapt
+from monai.utils import Range
 from torch import Tensor
 
 
@@ -80,38 +81,40 @@ class Vista3dInferer(Inferer):
                 device = inputs[0].device
             else:
                 device = inputs.device
-            val_outputs = point_based_window_inferer(
-                inputs=inputs,
-                roi_size=self.roi_size,
-                sw_batch_size=self.sw_batch_size,
-                transpose=True,
-                with_coord=True,
-                predictor=network,
-                mode="gaussian",
-                sw_device=device,
-                device=device,
-                overlap=self.overlap,
-                point_coords=point_coords,
-                point_labels=point_labels,
-                class_vector=class_vector,
-                prompt_class=prompt_class,
-                prev_mask=prev_mask,
-                labels=labels,
-                label_set=label_set,
-            )
+            with Range("SW_PointInfer"):
+                val_outputs = point_based_window_inferer(
+                    inputs=inputs,
+                    roi_size=self.roi_size,
+                    sw_batch_size=self.sw_batch_size,
+                    transpose=True,
+                    with_coord=True,
+                    predictor=network,
+                    mode="gaussian",
+                    sw_device=device,
+                    device=device,
+                    overlap=self.overlap,
+                    point_coords=point_coords,
+                    point_labels=point_labels,
+                    class_vector=class_vector,
+                    prompt_class=prompt_class,
+                    prev_mask=prev_mask,
+                    labels=labels,
+                    label_set=label_set,
+                )
         else:
-            val_outputs = SlidingWindowInfererAdapt(
-                roi_size=self.roi_size, sw_batch_size=self.sw_batch_size, with_coord=True
-            )(
-                inputs,
-                network,
-                transpose=True,
-                point_coords=point_coords,
-                point_labels=point_labels,
-                class_vector=class_vector,
-                prompt_class=prompt_class,
-                prev_mask=prev_mask,
-                labels=labels,
-                label_set=label_set,
-            )
+            with Range("SW_Infer"):
+                val_outputs = SlidingWindowInfererAdapt(
+                    roi_size=self.roi_size, sw_batch_size=self.sw_batch_size, with_coord=True
+                )(
+                    inputs,
+                    network,
+                    transpose=True,
+                    point_coords=point_coords,
+                    point_labels=point_labels,
+                    class_vector=class_vector,
+                    prompt_class=prompt_class,
+                    prev_mask=prev_mask,
+                    labels=labels,
+                    label_set=label_set,
+                )
         return val_outputs
