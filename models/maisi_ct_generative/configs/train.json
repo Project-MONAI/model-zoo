@@ -98,11 +98,11 @@
     },
     "unzip_dataset": "$scripts.utils.unzip_dataset(@dataset_dir)",
     "diffusion_unet": "$@diffusion_unet_def.to(@device)",
-    "checkpoint_diffusion_unet": "$torch.load(@trained_diffusion_path)",
+    "checkpoint_diffusion_unet": "$torch.load(@trained_diffusion_path, weights_only=False)",
     "load_diffusion": "$@diffusion_unet.load_state_dict(@checkpoint_diffusion_unet['unet_state_dict'])",
     "controlnet": "$@controlnet_def.to(@device)",
     "copy_controlnet_state": "$monai.networks.utils.copy_model_state(@controlnet, @diffusion_unet.state_dict())",
-    "checkpoint_controlnet": "$torch.load(@trained_controlnet_path)",
+    "checkpoint_controlnet": "$torch.load(@trained_controlnet_path, weights_only=False)",
     "load_controlnet": "$@controlnet.load_state_dict(@checkpoint_controlnet['controlnet_state_dict'], strict=True)",
     "scale_factor": "$@checkpoint_diffusion_unet['scale_factor'].to(@device)",
     "loss": {
