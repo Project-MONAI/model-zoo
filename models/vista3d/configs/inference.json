@@ -138,40 +138,40 @@
         "sw_batch_size": "@sw_batch_size",
         "use_point_window": "@use_point_window"
     },
-    "postprocessing_transforms":[
-            {
-                "_target_": "ToDeviced",
-                "keys": "pred",
-                "device": "cpu",
-                "_disabled_": true
-            },
-            {
-                "_target_": "monai.apps.vista3d.transforms.VistaPostTransformd",
-                "keys": "pred"
-            },
-            {
-                "_target_": "Invertd",
-                "keys": "pred",
-                "transform": "$copy.deepcopy(@preprocessing)",
-                "orig_keys": "@image_key",
-                "nearest_interp": true,
-                "to_tensor": true
-            },
-            {
-                "_target_": "Lambdad",
-                "func": "$lambda x: torch.nan_to_num(x, nan=255)",
-                "keys": "pred"
-            },
-            {
-                "_target_": "SaveImaged",
-                "keys": "pred",
-                "resample": false,
-                "output_dir": "@output_dir",
-                "output_ext": "@output_ext",
-                "output_dtype": "@output_dtype",
-                "output_postfix": "@output_postfix",
-                "separate_folder": "@separate_folder"
-            }
+    "postprocessing_transforms": [
+        {
+            "_target_": "ToDeviced",
+            "keys": "pred",
+            "device": "cpu",
+            "_disabled_": true
+        },
+        {
+            "_target_": "monai.apps.vista3d.transforms.VistaPostTransformd",
+            "keys": "pred"
+        },
+        {
+            "_target_": "Invertd",
+            "keys": "pred",
+            "transform": "$copy.deepcopy(@preprocessing)",
+            "orig_keys": "@image_key",
+            "nearest_interp": true,
+            "to_tensor": true
+        },
+        {
+            "_target_": "Lambdad",
+            "func": "$lambda x: torch.nan_to_num(x, nan=255)",
+            "keys": "pred"
+        },
+        {
+            "_target_": "SaveImaged",
+            "keys": "pred",
+            "resample": false,
+            "output_dir": "@output_dir",
+            "output_ext": "@output_ext",
+            "output_dtype": "@output_dtype",
+            "output_postfix": "@output_postfix",
+            "separate_folder": "@separate_folder"
+        }
     ],
     "postprocessing": {
         "_target_": "Compose",
