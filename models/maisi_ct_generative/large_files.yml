@@ -43,3 +43,7 @@ large_files:
   url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_maisi_C4KC-KiTS_subset.json"
   hash_val: "2b8a0aebc31f5dcae5fc496d92e2beb9"
   hash_type: "md5"
+- path: "configs/label_dict.json"
+  url: "https://github.com/Project-MONAI/tutorials/blob/1c942f49693131c53365359a7b11153a563a97a6/generation/maisi/configs/label_dict.json"
+- path: "configs/label_dict_124_to_132.json"
+  url: "https://github.com/Project-MONAI/tutorials/blob/1c942f49693131c53365359a7b11153a563a97a6/generation/maisi/configs/label_dict_124_to_132.json"
