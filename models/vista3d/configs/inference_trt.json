@@ -2,7 +2,7 @@
     "+imports": [
         "$from monai.networks import trt_compile"
     ],
-    "max_prompt_size": 8,
+    "max_prompt_size": 4,
     "head_trt_enabled": false,
     "network_trt_args": {
         "dynamic_batchsize": "$[1, @inferer#sw_batch_size, @inferer#sw_batch_size]"
