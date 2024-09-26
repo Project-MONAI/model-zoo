@@ -133,10 +133,10 @@ torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run \
 
 ## Evaluation
 Evaluation can be used to calculate dice scores for the model or finetuned model. Change `ckpt_path` to the checkpoint user wish to evaluate.
-The dice score is calculated on the original image spacing with invertd, while the dice score during finetuning is on resampled space. 
+The dice score is calculated on the original image spacing with invertd, while the dice score during finetuning is on resampled space.
 
 ```
-NOTE: Evaluation does not support point evaluation.`"validate#evaluator#hyper_kwargs#val_head` is always set to `auto`.  
+NOTE: Evaluation does not support point evaluation.`"validate#evaluator#hyper_kwargs#val_head` is always set to `auto`.
 ```
 
 Single-GPU:

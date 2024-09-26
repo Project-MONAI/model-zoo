@@ -22,7 +22,7 @@
         ]
     },
     "label_set": "$list(x[1] for x in @label_mappings#default)",
-    "validate#evaluator#hyper_kwargs#val_head": "auto", 
+    "validate#evaluator#hyper_kwargs#val_head": "auto",
     "validate#preprocessing": {
         "_target_": "Compose",
         "transforms": [
@@ -128,7 +128,10 @@
             },
             {
                 "_target_": "monai.apps.vista3d.transforms.Relabeld",
-                "keys": ["pred", "label"],
+                "keys": [
+                    "pred",
+                    "label"
+                ],
                 "label_mappings": "${'default': [[c, i+1] for i, c in enumerate(@label_set)]}",
                 "dtype": "$torch.uint8"
             }
@@ -158,7 +161,7 @@
             "metric_details": "*",
             "summary_ops": "*"
         }
-    ], 
+    ],
     "validate#dataset": {
         "_target_": "Dataset",
         "data": "$list(@val_datalist)",
