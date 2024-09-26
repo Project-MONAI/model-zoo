@@ -171,6 +171,7 @@ list(set([i+1 for i in range(132)]) - set([2,16,18,20,21,23,24,25,26,27,128,129,
 ```
 
 - The `points` together with `label_prompts` for "Kidney", "Lung", "Bone" (class index [2, 20, 21]) are not allowed since those prompts will be divided into sub-categories (e.g. left kidney and right kidney). Use `points` for the sub-categories as defined in the `inference.json`.
+- To specify a new class for zero-shot segmentation, set the `label_prompt` to a value between 133 and 254. Ensure that `points` and `point_labels` are also provided; otherwise, the inference result will be a tensor of zeros.
 
 ### `label_prompt` and `label_dict`
 The `label_dict` defined in `docs/labels.json` has in total 132 classes. However, there are 5 we do not support and we keep them due to legacy issue. So in total
