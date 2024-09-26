@@ -1698,5 +1698,33 @@
     "maisi_ct_generative_v0.4.2": {
         "checksum": "4a8a6a39632562f1c4521523326a847295e789c3",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.2/files/maisi_ct_generative_v0.4.2.zip"
+    },
+    "vista3d_v0.4.8": {
+        "checksum": "77d61ea00fbe2f3cabbef7ec3b7ce32e59a75fce",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.8/files/vista3d_v0.4.8.zip"
+    },
+    "vista2d_v0.2.7": {
+        "checksum": "1bbfebc1e9adff9dcf0fa7c2c7414734f05f7a95",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.7/files/vista2d_v0.2.7.zip"
+    },
+    "vista3d_v0.4.9": {
+        "checksum": "1e82b21a6fffa05efb1ca4fe0365e5d800290f3f",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.4.9/files/vista3d_v0.4.9.zip"
+    },
+    "vista2d_v0.2.8": {
+        "checksum": "81181dd40154054c869cd7d53300603a979fe265",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.8/files/vista2d_v0.2.8.zip"
+    },
+    "maisi_ct_generative_v0.4.3": {
+        "checksum": "89fcb41b1429e4548039f13085a0c8c0174abc11",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.3/files/maisi_ct_generative_v0.4.3.zip"
+    },
+    "vista3d_v0.5.0": {
+        "checksum": "890833322a5485cd5846ed20192ce37b6cf3cde2",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.0/files/vista3d_v0.5.0.zip"
+    },
+    "vista3d_v0.5.1": {
+        "checksum": "3a1d16b60a52889b0b04616156b104efcc261883",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.1/files/vista3d_v0.5.1.zip"
     }
 }

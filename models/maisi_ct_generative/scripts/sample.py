@@ -108,7 +108,7 @@ def ldm_conditional_sample_one_mask(
     """
     recon_model = ReconModel(autoencoder=autoencoder, scale_factor=scale_factor).to(device)
 
-    with torch.no_grad(), torch.cuda.amp.autocast():
+    with torch.no_grad(), torch.amp.autocast("cuda"):
         # Generate random noise
         latents = initialize_noise_latents(latent_shape, device)
         anatomy_size = torch.FloatTensor(anatomy_size).unsqueeze(0).unsqueeze(0).half().to(device)
@@ -217,7 +217,7 @@ def ldm_conditional_sample_one_image(
 
     recon_model = ReconModel(autoencoder=autoencoder, scale_factor=scale_factor).to(device)
 
-    with torch.no_grad(), torch.cuda.amp.autocast():
+    with torch.no_grad(), torch.amp.autocast("cuda"):
         logging.info("---- Start generating latent features... ----")
         start_time = time.time()
         # generate segmentation mask
@@ -457,7 +457,7 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
                 raise ValueError(
                     f"The components in anatomy_list have to be chosen from {label_dict.keys()}, yet got {anatomy}."
                 )
-    logging.info(f"The generate results will have voxel size to be {spacing}mm, volume size to be {output_size}.")
+    logging.info(f"The generate results will have voxel size to be {spacing} mm, volume size to be {output_size}.")
 
     return
 
@@ -923,7 +923,7 @@ class LDMSampler:
                         raise ValueError(
                             (
                                 f"Resampled mask does not contain required class labels {anatomy_label}. "
-                                "Please tune spacing and output size."
+                                "Please consider increasing the output spacing or specifying a larger output size."
                             )
                         )
         return labels
