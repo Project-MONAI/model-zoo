@@ -1726,5 +1726,9 @@
     "vista3d_v0.5.1": {
         "checksum": "3a1d16b60a52889b0b04616156b104efcc261883",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.1/files/vista3d_v0.5.1.zip"
+    },
+    "vista3d_v0.5.2": {
+        "checksum": "f0388a3f75152f709dda1fd6b08a4c4d8d565358",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.2/files/vista3d_v0.5.2.zip"
     }
 }
