@@ -3,7 +3,8 @@
         "$import glob",
         "$import os",
         "$import scripts",
-        "$import ignite"
+        "$import ignite",
+        "$import copy"
     ],
     "bundle_root": ".",
     "ckpt_dir": "$@bundle_root + '/models'",

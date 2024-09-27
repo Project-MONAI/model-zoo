@@ -1,7 +1,0 @@
-# this file shows specific settings for evaluation on each dataset
-validate#postprocessing#transforms#0#_disabled_: false
-eval_folder: "/eval/"
-ckpt_path: "$@bundle_root + '/models/model.pt'"
-label_set: "$list(set([i+1 for i in range(117)]) - set([22, 23, 15, 25, 19, 2, 26, 27, 28, 29, 117]))"
-val_label_set: "$list(range(118))"
-label_mappings: "${}"
