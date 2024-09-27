@@ -121,7 +121,6 @@ class TestVista3d(unittest.TestCase):
             os.path.join(bundle_root, "configs/train_continual.json"),
             os.path.join(bundle_root, "configs/evaluate.json"),
             os.path.join(bundle_root, "configs/mgpu_evaluate.json"),
-            os.path.join(bundle_root, "configs/data.yaml"),
         ]
         output_path = os.path.join(bundle_root, "configs/evaluate_override.json")
         n_gpu = torch.cuda.device_count()
