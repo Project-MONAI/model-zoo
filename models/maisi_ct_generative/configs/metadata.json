@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20240318.json",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "changelog": {
+        "0.4.4": "update issue for IgniteInfo",
         "0.4.3": "remove download large files, add weights_only when loading weights and add label_dict to large files",
         "0.4.2": "update train.json to fix finetune ckpt bug",
         "0.4.1": "update large files",
