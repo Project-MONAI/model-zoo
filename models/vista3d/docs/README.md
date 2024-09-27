@@ -132,21 +132,25 @@ torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run \
 
 
 ## Evaluation
+Evaluation can be used to calculate dice scores for the model or a finetuned model. Change the `ckpt_path` to the checkpoint you wish to evaluate. The dice score is calculated on the original image spacing using `invertd`, while the dice score during finetuning is calculated on resampled space.
 
-`configs/data.yaml` shows potential configurations for each specific dataset for evaluation.
+```
+NOTE: Evaluation does not support point evaluation.`"validate#evaluator#hyper_kwargs#val_head` is always set to `auto`.
+```
 
 Single-GPU:
 ```
 python -m monai.bundle run \
-	--config_file="['configs/train.json','configs/train_continual.json','configs/evaluate.json','configs/data.yaml']"
+	--config_file="['configs/train.json','configs/train_continual.json','configs/evaluate.json']"
 ```
 
 Multi-GPU:
 ```
 torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run \
-	--config_file="['configs/train.json','configs/train_continual.json','configs/evaluate.json','configs/mgpu_evaluate.json','configs/data.yaml']"
+	--config_file="['configs/train.json','configs/train_continual.json','configs/evaluate.json','configs/mgpu_evaluate.json']"
 ```
-
+#### Other explanatory items
+The `label_mapping` in `evaluation.json` does not include `0` because the postprocessing step performs argmax (`VistaPostTransformd`), and a `0` prediction would negatively impact performance. In continuous learning, however, `0` is included for validation because no argmax is performed, and validation is done channel-wise (include_background=False). Additionally, `Relabeld` in `postprocessing` is required to map `label` and `pred` back to sequential indexes like `0, 1, 2, 3, 4` for dice calculation, as they are not in one-hot format. Evaluation does not support `point`, but finetuning does, as it does not perform argmax.
 
 ## Inference:
 For inference, VISTA3d bundle requires at least one prompt for segmentation. It supports label prompt, which is the index of the class for automatic segmentation.
