@@ -48,7 +48,7 @@
                 "b_max": 1.0
             },
             {
-                "_target_": "AddLabelAsGuidanced",
+                "_target_": "monai.apps.nuclick.transforms.AddLabelAsGuidanced",
                 "keys": "image",
                 "source": "label"
             }
