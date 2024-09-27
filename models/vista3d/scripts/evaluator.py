@@ -15,12 +15,11 @@ from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
 
 import numpy as np
 import torch
-from monai.utils import IgniteInfo
 from monai.engines.evaluator import SupervisedEvaluator
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn, default_prepare_batch
 from monai.inferers import Inferer, SimpleInferer
 from monai.transforms import Transform, reset_ops_id
-from monai.utils import ForwardMode, RankFilter, min_version, optional_import
+from monai.utils import ForwardMode, IgniteInfo, RankFilter, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
 from torch.utils.data import DataLoader
 
