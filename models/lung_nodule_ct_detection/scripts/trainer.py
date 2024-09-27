@@ -14,7 +14,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
 import torch
-from monai.config import IgniteInfo
+from monai.utils import IgniteInfo
 from monai.engines.trainer import Trainer
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn
 from monai.inferers import Inferer

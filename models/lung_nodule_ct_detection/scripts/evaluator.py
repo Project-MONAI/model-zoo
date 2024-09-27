@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, List, Optional,
 
 import torch
 from monai.apps.detection.networks.retinanet_detector import RetinaNetDetector
-from monai.config import IgniteInfo
+from monai.utils import IgniteInfo
 from monai.engines.evaluator import SupervisedEvaluator
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn
 from monai.transforms import Transform

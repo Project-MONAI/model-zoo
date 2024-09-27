@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING, Callable, Optional
 import numpy as np
 import torch
 import torch.distributed
-from monai.config import IgniteInfo
+from monai.utils import IgniteInfo
 from monai.utils import min_version, optional_import
 
 Events, _ = optional_import("ignite.engine", IgniteInfo.OPT_IMPORT_VERSION, min_version, "Events")

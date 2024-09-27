@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
 
 import torch
 import torch.nn.functional as F
-from monai.config import IgniteInfo
+from monai.utils import IgniteInfo
 from monai.engines.trainer import Trainer
 from monai.engines.utils import IterationEvents, PrepareBatchExtraInput, default_metric_cmp_fn
 from monai.inferers import Inferer
