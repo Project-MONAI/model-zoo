@@ -58,7 +58,7 @@
                     ]
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.SplitLabeld",
+                    "_target_": "SplitLabeld",
                     "keys": "label",
                     "mask_value": "",
                     "others_value": 255,
@@ -100,7 +100,7 @@
                     "b_max": 1.0
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.AddLabelAsGuidanced",
+                    "_target_": "AddLabelAsGuidanced",
                     "keys": "image",
                     "source": "label"
                 },
@@ -110,7 +110,7 @@
                     "offset": -1
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.SelectItemsd",
+                    "_target_": "SelectItemsd",
                     "keys": [
                         "image",
                         "label"
@@ -244,7 +244,7 @@
                     ]
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.SplitLabeld",
+                    "_target_": "SplitLabeld",
                     "keys": "label",
                     "mask_value": "",
                     "others_value": 255,
@@ -259,12 +259,12 @@
                     "b_max": 1.0
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.AddLabelAsGuidanced",
+                    "_target_": "AddLabelAsGuidanced",
                     "keys": "image",
                     "source": "label"
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.SetLabelClassd",
+                    "_target_": "SetLabelClassd",
                     "keys": "label",
                     "offset": -1
                 },

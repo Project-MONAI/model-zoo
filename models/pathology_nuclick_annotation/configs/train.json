@@ -62,7 +62,7 @@
                     ]
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.SplitLabeld",
+                    "_target_": "SplitLabeld",
                     "keys": "label",
                     "mask_value": "",
                     "others_value": 255
@@ -103,7 +103,7 @@
                     "b_max": 1.0
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.AddPointGuidanceSignald",
+                    "_target_": "AddPointGuidanceSignald",
                     "image": "image",
                     "label": "label",
                     "others": "others",
@@ -219,7 +219,7 @@
                     ]
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.SplitLabeld",
+                    "_target_": "SplitLabeld",
                     "keys": "label",
                     "mask_value": "",
                     "others_value": 255
@@ -233,7 +233,7 @@
                     "b_max": 1.0
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.AddPointGuidanceSignald",
+                    "_target_": "AddPointGuidanceSignald",
                     "image": "image",
                     "label": "label",
                     "others": "others",
@@ -242,7 +242,7 @@
                     "drop_rate": 1.0
                 },
                 {
-                    "_target_": "monai.apps.nuclick.transforms.SelectItemsd",
+                    "_target_": "SelectItemsd",
                     "keys": [
                         "image",
                         "label",
