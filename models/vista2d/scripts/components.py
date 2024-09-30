@@ -251,6 +251,7 @@ class SaveTiffExd(MapTransform):
                 cv2.imwrite(output_filepath, image)
                 logger.info(f"Overlay Masks: Saving {output_filepath}")
             else:
+                label = cv2.convertScaleAbs(label, alpha=255.0 / label.max())
                 contours, _ = cv2.findContours(label, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
                 polygons.extend(self.to_polygons(contours))
 
