@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "changelog": {
+        "0.5.3": "fix multi-gpu issue",
         "0.5.2": "fix eval issue",
         "0.5.1": "add description for zero-shot and upate eval",
         "0.5.0": "update json file link and add test",
