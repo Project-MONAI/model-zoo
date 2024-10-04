@@ -1762,5 +1762,9 @@
     "maisi_ct_generative_v0.4.5": {
         "checksum": "e8271089c14e7aec261cac30ffeec7e07bfa10ef",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.5/files/maisi_ct_generative_v0.4.5.zip"
+    },
+    "pathology_tumor_detection_v0.6.1": {
+        "checksum": "e41d063673ee1bc925eccea772b2535676e5e6f0",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_tumor_detection/versions/0.6.1/files/pathology_tumor_detection_v0.6.1.zip"
     }
 }
