@@ -197,6 +197,11 @@
         },
         "handlers": [
             {
+                "_target_": "LrScheduleHandler",
+                "lr_scheduler": "@lr_scheduler",
+                "print_lr": true
+            },
+            {
                 "_target_": "ValidationHandler",
                 "validator": "@validate#evaluator",
                 "epoch_level": true,
@@ -206,11 +211,6 @@
                 "_target_": "StatsHandler",
                 "tag_name": "train_loss",
                 "output_transform": "$monai.handlers.from_engine(['loss'], first=True)"
-            },
-            {
-                "_target_": "LrScheduleHandler",
-                "lr_scheduler": "@lr_scheduler",
-                "print_lr": true
             },
             {
                 "_target_": "TensorBoardStatsHandler",
