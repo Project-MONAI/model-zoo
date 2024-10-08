@@ -116,6 +116,8 @@ The default configs for both variables are derived from the `label_mappings` con
 "val_label_set": "$[0] + list(x[0] for x in @label_mappings#default)"
 ```
 
+If the user's data lacks header information, MONAI will provide some default header information. After inference, the user may need to apply some transforms to the data to match the original image, or they can add the correct header information to the input data themselves.
+
 ### Commands
 
 Single-GPU:
