@@ -116,7 +116,7 @@ The default configs for both variables are derived from the `label_mappings` con
 "val_label_set": "$[0] + list(x[0] for x in @label_mappings#default)"
 ```
 
-If the user's data lacks header information, MONAI will provide some default header information. After inference, the user may need to apply some transforms to the data to match the original image, or they can add the correct header information to the input data themselves.
+If the input data is missing header information, MONAI will automatically provide some default values. For instance, if affine information is absent, `np.eye(4)` will be used by default. After inference, users may need to apply transforms like `Orientation` to align the data with the original image. Alternatively, users can add the correct header information to the input data themselves.
 
 ### Commands
 
