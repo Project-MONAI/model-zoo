@@ -1,7 +1,15 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.4.4",
+    "version": "0.5.2",
     "changelog": {
+        "0.5.2": "fix eval issue",
+        "0.5.1": "add description for zero-shot and upate eval",
+        "0.5.0": "update json file link and add test",
+        "0.4.9": "fix oom issue and update readme",
+        "0.4.8": "use 0.3 overlap for inference",
+        "0.4.7": "update tensorrt benchmark results",
+        "0.4.6": "add tensorrt benchmark result and remove the metric part",
+        "0.4.5": "remove wrong path",
         "0.4.4": "enable tensorrt inference",
         "0.4.3": "fix CL and batch infer issues",
         "0.4.2": "use MONAI components for network and utils",

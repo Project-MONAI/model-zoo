@@ -15,13 +15,12 @@ from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
 
 import torch
 import torch.nn.functional as F
-from monai.config import IgniteInfo
 from monai.engines.trainer import Trainer
 from monai.engines.utils import IterationEvents, PrepareBatchExtraInput, default_metric_cmp_fn
 from monai.inferers import Inferer
 from monai.networks.schedulers import Scheduler
 from monai.transforms import Transform
-from monai.utils import RankFilter, min_version, optional_import
+from monai.utils import IgniteInfo, RankFilter, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
 from torch.optim.optimizer import Optimizer
 from torch.utils.data import DataLoader
@@ -232,7 +231,7 @@ class MAISIControlNetTrainer(Trainer):
         engine.optimizer.zero_grad(set_to_none=engine.optim_set_to_none)
 
         if engine.amp and engine.scaler is not None:
-            with torch.cuda.amp.autocast(**engine.amp_kwargs):
+            with torch.amp.autocast("cuda", **engine.amp_kwargs):
                 _compute_pred_loss()
             engine.scaler.scale(engine.state.output[Keys.LOSS]).backward()
             engine.fire_event(IterationEvents.BACKWARD_COMPLETED)

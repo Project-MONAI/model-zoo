@@ -9,6 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 import os
 import shutil
 import sys
@@ -312,7 +313,6 @@ class TestVista3d(unittest.TestCase):
             os.path.join(bundle_root, "configs/train.json"),
             os.path.join(bundle_root, "configs/train_continual.json"),
             os.path.join(bundle_root, "configs/evaluate.json"),
-            os.path.join(bundle_root, "configs/data.yaml"),
         ]
         trainer = ConfigWorkflow(
             workflow_type="train",
@@ -440,6 +440,15 @@ class TestVista3d(unittest.TestCase):
         runtime_error = context.exception
         original_exception = runtime_error.__cause__
         self.assertEqual(str(original_exception), override["error"])
+
+    @parameterized.expand([TEST_CASE_INFER])
+    def test_labels_dict(self, override):
+        bundle_root = override["bundle_root"]
+        label_dict_file = os.path.join(bundle_root, "docs/labels.json")
+        if not os.path.isfile(label_dict_file):
+            raise ValueError(f"labels.json not found in {bundle_root}")
+        with open(label_dict_file) as f:
+            _ = json.load(f)
 
 
 if __name__ == "__main__":

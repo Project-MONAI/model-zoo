@@ -1,7 +1,10 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.1.7",
+    "version": "0.2.0",
     "changelog": {
+        "0.2.0": "update issue for IgniteInfo",
+        "0.1.9": "update tensorrt benchmark results",
+        "0.1.8": "enable tensorrt",
         "0.1.7": "update to use monai 1.3.1",
         "0.1.6": "set image_only to False",
         "0.1.5": "add support for TensorRT conversion and inference",
@@ -20,13 +23,13 @@
         "0.0.2": "Update The Torch Vision Transform",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.3.1",
-    "pytorch_version": "2.2.2",
+    "monai_version": "1.4.0",
+    "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
     "optional_packages_version": {
         "nibabel": "5.2.1",
         "pytorch-ignite": "0.4.11",
-        "torchvision": "0.17.2"
+        "torchvision": "0.19.0"
     },
     "name": "Pathology nuclei classification",
     "task": "Pathology Nuclei classification",

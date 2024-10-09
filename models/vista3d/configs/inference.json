@@ -15,7 +15,7 @@
     "output_dtype": "$np.float32",
     "output_postfix": "trans",
     "separate_folder": true,
-    "input_dict": "${'image': '/data/Task09_Spleen/imagesTr/spleen_10.nii.gz', 'label_prompt': ['spleen'], 'point_labels': [1], 'points': [(152, 170, 87)]}",
+    "input_dict": "${'image': '/data/Task09_Spleen/imagesTr/spleen_10.nii.gz', 'label_prompt': [3]}",
     "everything_labels": "$list(set([i+1 for i in range(132)]) - set([2,16,18,20,21,23,24,25,26,27,128,129,130,131,132]))",
     "metadata_path": "$@bundle_root + '/configs/metadata.json'",
     "metadata": "$json.loads(pathlib.Path(@metadata_path).read_text())",
@@ -124,7 +124,7 @@
     "inferer": {
         "_target_": "scripts.inferer.Vista3dInferer",
         "roi_size": "@patch_size",
-        "overlap": 0.5,
+        "overlap": 0.3,
         "sw_batch_size": "@sw_batch_size",
         "use_point_window": "@use_point_window"
     },

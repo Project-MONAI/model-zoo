@@ -1,5 +1,5 @@
 large_files:
-  - path: "models/model.pt"
-    url: "https://drive.google.com/file/d/1aBbzCodYZ4nk3VtuQ71QZoRGN0ZFxaiR/view?usp=sharing"
-    hash_val: ""
-    hash_type: ""
+- path: "models/model.pt"
+  url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_wholebrainseg_large_unest_segmentation.pt"
+  hash_val: "1bbb4b4d01ba785422a94f3ad2a28942"
+  hash_type: "md5"

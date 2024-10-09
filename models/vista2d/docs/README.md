@@ -2,10 +2,9 @@
 
 The **VISTA2D** is a cell segmentation training and inference pipeline for cell imaging [[`Blog`](https://developer.nvidia.com/blog/advancing-cell-segmentation-and-morphology-analysis-with-nvidia-ai-foundation-model-vista-2d/)].
 
-A pretrained model was trained on collection of 15K public microscopy images. The data collection and training can be reproduced following the [tutorial](../download_preprocessor/). Alternatively, the model can be retrained on your own dataset. The pretrained vista2d model achieves good performance on diverse set of cell types, microscopy image modalities, and can be further finetuned if necessary.  The codebase utilizes several components from other great works including [SegmentAnything](https://github.com/facebookresearch/segment-anything)  and [Cellpose](https://www.cellpose.org/), which must be pip installed as dependencies.  Vista2D codebase follows MONAI bundle format and its [specifications](https://docs.monai.io/en/stable/mb_specification.html).
+A pretrained model was trained on collection of 15K public microscopy images. The data collection and training can be reproduced following the `download_preprocessor/`. Alternatively, the model can be retrained on your own dataset. The pretrained vista2d model achieves good performance on diverse set of cell types, microscopy image modalities, and can be further finetuned if necessary.  The codebase utilizes several components from other great works including [SegmentAnything](https://github.com/facebookresearch/segment-anything)  and [Cellpose](https://www.cellpose.org/), which must be pip installed as dependencies.  Vista2D codebase follows MONAI bundle format and its [specifications](https://docs.monai.io/en/stable/mb_specification.html).
 
 <div align="center"> <img src="https://developer-blogs.nvidia.com/wp-content/uploads/2024/04/magnified-cells-1.png" width="800"/> </div>
-
 
 ### Model highlights
 
@@ -15,19 +14,63 @@ A pretrained model was trained on collection of 15K public microscopy images. Th
 - Multiple modalities of imaging data collectively supported
 - Multi-GPU and multinode training support
 
-
 ### Generalization performance
 
-Evaluation was performed for the VISTA2D model with multiple public datasets, such as TissueNet, LIVECell, Omnipose, DeepBacs, Cellpose, and [more](./docs/data_license.txt). A total of ~15K annotated cell images were collected to train the generalist VISTA2D model. This ensured broad coverage of many different types of cells, which were acquired by various imaging acquisition types. The benchmark results of the experiment were performed on held-out test sets for each public dataset that were already defined by the dataset contributors. Average precision at an IoU threshold of 0.5 was used for evaluating performance. The benchmark results are reported in comparison with the best numbers found in the literature, in addition to a specialist VISTA2D model trained only on a particular dataset or a subset of data.
+Evaluation was performed for the VISTA2D model with multiple public datasets, such as TissueNet, LIVECell, Omnipose, DeepBacs, Cellpose, and more. For more details about dataset licenses, please refer to `/docs/data_license.txt`. A total of ~15K annotated cell images were collected to train the generalist VISTA2D model. This ensured broad coverage of many different types of cells, which were acquired by various imaging acquisition types. The benchmark results of the experiment were performed on held-out test sets for each public dataset that were already defined by the dataset contributors. Average precision at an IoU threshold of 0.5 was used for evaluating performance. The benchmark results are reported in comparison with the best numbers found in the literature, in addition to a specialist VISTA2D model trained only on a particular dataset or a subset of data.
 
 <div align="center"> <img src="https://developer-blogs.nvidia.com/wp-content/uploads/2024/04/vista-2d-model-precision-versus-specialist-model-baseline-performance.png" width="800"/> </div>
 
+### TensorRT speedup
+The `vista2d` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU. Please note that 32-bit precision models are benchmarked with tf32 weight format.
+
+| method | torch_tf32(ms) | torch_amp(ms) | trt_tf32(ms) | trt_fp16(ms) | speedup amp | speedup tf32 | speedup fp16 | amp vs fp16|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| model computation | 39.72 | 39.68 | 26.13 | 17.32 | 1.00 | 1.52 | 2.29 | 2.29 |
+| end2end | 1562 | 1903 | 1494 | 1440 | 0.82 | 1.05 | 1.08 | 1.32|
+
+Where:
+- `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
+- `end2end` means run the bundle end-to-end with the TensorRT based model.
+- `torch_tf32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
+- `trt_tf32` and `trt_fp16` are for the TensorRT based models converted in corresponding precision.
+- `speedup amp`, `speedup tf32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
+- `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
+
+This result is benchmarked under:
+ - TensorRT: 10.3.0+cuda12.6
+ - Torch-TensorRT Version: 2.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.10.12
+ - CUDA version: 12.6
+ - GPU models and configuration: A100 80G
 
 ### Prepare Data Lists and Datasets
 
-The default dataset for training, validation, and inference is the [Cellpose](https://www.cellpose.org/) dataset. Please follow the [tutorial](../download_preprocessor/) to prepare the dataset before executing any commands below.
+The default dataset for training, validation, and inference is the [Cellpose](https://www.cellpose.org/) dataset. Please follow the `download_preprocessor/` to prepare the dataset before executing any commands below.
 
 Additionally, all data lists are available in the `datalists.zip` file located in the root directory of the bundle. Extract the contents of the `.zip` file to access the data lists.
+
+### Dependencies
+Please refer to `required_packages_version` in `configs/metadata.json` to install all necessary dependencies before executing.
+
+Important Note: if your environment already contains OpenCV, installing `cellpose` may lead to conflicts and produce errors such as:
+
+```
+AttributeError: partially initialized module 'cv2' has no attribute 'dnn' (most likely due to a circular import)
+```
+
+when executing. To resolve this issue, please uninstall OpenCV and then re-install `cellpose` with a command like:
+
+```Bash
+pip uninstall -y opencv && rm /usr/local/lib/python3.x/dist-packages/cv2
+```
+
+Alternatively, you can use the following command to install `cellpose` without its dependencies:
+
+```
+pip install --no-deps cellpose
+```
 
 ### Execute training
 ```bash
@@ -168,7 +211,7 @@ Ask and answer questions on [MONAI VISTA's GitHub discussions tab](https://githu
 
 ## License
 
-The codebase is under Apache 2.0 Licence. The model weight is released under CC-BY-NC-SA-4.0. For various public data licenses please see [data_license.txt](data_license.txt).
+The codebase is under Apache 2.0 Licence. The model weight is released under CC-BY-NC-SA-4.0. For various public data licenses please see `data_license.txt`.
 
 ## Acknowledgement
 - [segment-anything](https://github.com/facebookresearch/segment-anything)

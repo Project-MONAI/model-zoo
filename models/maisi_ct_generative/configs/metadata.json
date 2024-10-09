@@ -1,7 +1,12 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20240318.json",
-    "version": "0.4.0",
+    "version": "0.4.5",
     "changelog": {
+        "0.4.5": "update README",
+        "0.4.4": "update issue for IgniteInfo",
+        "0.4.3": "remove download large files, add weights_only when loading weights and add label_dict to large files",
+        "0.4.2": "update train.json to fix finetune ckpt bug",
+        "0.4.1": "update large files",
         "0.4.0": "update to use monai 1.4, model ckpt updated, rm GenerativeAI repo, add quality check",
         "0.3.6": "first oss version"
     },
@@ -11,7 +16,7 @@
     "optional_packages_version": {
         "fire": "0.6.0",
         "nibabel": "5.2.1",
-        "tqdm": "4.66.2"
+        "tqdm": "4.66.4"
     },
     "supported_apps": {
         "maisi-nim": ""

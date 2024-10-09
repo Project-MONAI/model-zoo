@@ -1,0 +1,35 @@
+Third Party Licenses
+-----------------------------------------------------------------------
+
+/*********************************************************************/
+i. The Cancer Imaging Archive Pediatric-CT-SEG
+    https://www.cancerimagingarchive.net/collection/pediatric-ct-seg/
+/*********************************************************************/
+
+Data Usage Agreement / Citations
+
+Data Citation Required: Users must abide by the TCIA Data Usage Policy and Restrictions. Attribution must include the following citation, including the Digital Object Identifier:
+
+Jordan, P., Adamson, P. M., Bhattbhatt, V., Beriwal, S., Shen, S., Radermecker, O., Bose, S., Strain, L. S., Offe, M., Fraley, D., Principi, S., Ye, D. H., Wang, A. S., Van Heteren, J., Vo, N.-J., & Schmidt, T. G. (2021). Pediatric Chest/Abdomen/Pelvic CT Exams with Expert Organ Contours (Pediatric-CT-SEG) (Version 2) [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.X0H0-1706
+
+
+/*********************************************************************/
+ii. Multi-Atlas Labeling Beyond the Cranial Vault - Workshop and Challenge
+     https://www.synapse.org/#!Synapse:syn3193805/wiki/89480
+/*********************************************************************/
+
+Data Usage Agreement / Citations
+
+Data license may be requested at URL:
+https://www.synapse.org/#!Synapse:syn3193805/wiki/217753
+
+/*********************************************************************/
+iii. TotalSegmentator v1
+     https://zenodo.org/records/6802614#.ZFPll4TMKUk
+/*********************************************************************/
+
+Data Usage Agreement / Citations
+
+More details about the dataset can be found in the corresponding paper: https://arxiv.org/abs/2208.05868 (the paper describes v1 of the dataset). Please cite this paper if you use the dataset.
+
+Wasserthal, J., Breit, H.-C., Meyer, M. T., Pradella, M., Hinck, D., Sauter, A. W., Heye, T., Boll, D., Cyriac, J., Yang, S., Bach, M., & Segeroth, M. (2023, June 16). TotalSegmentator: Robust segmentation of 104 anatomical structures in CT images. arXiv.org. https://arxiv.org/abs/2208.05868 . https://doi.org/10.1148/ryai.230024

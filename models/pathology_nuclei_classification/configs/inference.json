@@ -6,6 +6,7 @@
         "$import os"
     ],
     "bundle_root": ".",
+    "checkpoint": "$@bundle_root + '/models/model.pt'",
     "output_dir": "$@bundle_root + '/eval'",
     "dataset_dir": "/workspace/data/CoNSePNuclei",
     "images": "$list(sorted(glob.glob(@dataset_dir + '/Test/Images/*.png')))[:1]",
@@ -88,7 +89,7 @@
     "handlers": [
         {
             "_target_": "CheckpointLoader",
-            "load_path": "$@bundle_root + '/models/model.pt'",
+            "load_path": "$@checkpoint",
             "load_dict": {
                 "model": "@network"
             }

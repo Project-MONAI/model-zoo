@@ -71,6 +71,31 @@ Dice score was used for evaluating the performance of the model. This model achi
 
 ![A graph showing the validation mean Dice for 5000 epochs.](https://developer.download.nvidia.com/assets/Clara/Images/monai_swin_unetr_btcv_segmentation_val_dice_v2.png)
 
+#### TensorRT speedup
+The `swin_unetr` bundle supports acceleration with TensorRT. The table below displays the speedup ratios observed on an A100 80G GPU. Please note that 32-bit precision models are benchmarked with tf32 weight format.
+
+| method | torch_tf32(ms) | torch_amp(ms) | trt_tf32(ms) | trt_fp16(ms) | speedup amp | speedup tf32 | speedup fp16 | amp vs fp16|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| model computation | 123.64 | 123.77 | 93.22 | 42.87 | 1.00 | 1.33 | 2.88 | 2.89 |
+| end2end | 5102 | 4895 | 2863 | 2835 | 1.04 | 1.78 | 1.80 | 1.73 |
+
+Where:
+- `model computation` means the speedup ratio of model's inference with a random input without preprocessing and postprocessing
+- `end2end` means run the bundle end-to-end with the TensorRT based model.
+- `torch_tf32` and `torch_amp` are for the PyTorch models with or without `amp` mode.
+- `trt_tf32` and `trt_fp16` are for the TensorRT based models converted in corresponding precision.
+- `speedup amp`, `speedup tf32` and `speedup fp16` are the speedup ratios of corresponding models versus the PyTorch float32 model
+- `amp vs fp16` is the speedup ratio between the PyTorch amp model and the TensorRT float16 based model.
+
+This result is benchmarked under:
+ - TensorRT: 10.3.0+cuda12.6
+ - Torch-TensorRT Version: 2.4.0
+ - CPU Architecture: x86-64
+ - OS: ubuntu 20.04
+ - Python version:3.10.12
+ - CUDA version: 12.6
+ - GPU models and configuration: A100 80G
+
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
@@ -108,9 +133,12 @@ python -m monai.bundle run --config_file "['configs/train.json','configs/evaluat
 python -m monai.bundle run --config_file configs/inference.json
 ```
 
-#### Export checkpoint to TorchScript file:
+#### Execute inference with the TensorRT model:
 
-TorchScript conversion is currently not supported.
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
+```
+
 
 # References
 [1] Hatamizadeh, Ali, et al. "Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images." arXiv preprint arXiv:2201.01266 (2022). https://arxiv.org/abs/2201.01266.

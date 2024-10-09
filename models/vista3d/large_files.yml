@@ -1,3 +1,9 @@
 large_files:
   - path: "models/model.pt"
-    url: "https://drive.google.com/file/d/1Sbe6GjlgH-GIcXolZzUiwgqR4DBYNLQ3/view?usp=drive_link"
+    url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_vista3d.pt"
+    hash_val: "6ce45a8edde4400c5d28d5e74d7b61d5"
+    hash_type: "md5"
+  - path: "docs/labels.json"
+    url: "https://raw.githubusercontent.com/Project-MONAI/tutorials/e66be5955d2b4f5959884ca026932762954b19c5/vista_3d/label_dict.json"
+    hash_val: "71ff501086a80fe973ab843d2f7974c2"
+    hash_type: "md5"

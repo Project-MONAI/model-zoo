@@ -1,0 +1,18 @@
+---
+imports:
+- "$import glob"
+- "$import json"
+- "$import os"
+- "$from scripts.compute_metric import compute_abdominal_ct_metrics"
+- "$from scripts.compute_metric import compute"
+workflow_type: evaluate
+spatial_dims: "$len(@spatial_size)"
+bundle_root: "."
+output_dir: "$@bundle_root + '/eval/dynunet_FT_trt_32'"
+dataset_dir: "/processed/Public/CT_TotalSegmentator/TS_split/test/"
+data_list_file_path: "$@bundle_root + '/configs/TS_test.json'"
+datalist: "$monai.data.load_decathlon_datalist(@data_list_file_path, data_list_key='validation')"
+datalist_pred: "$[{**d, 'pred': os.path.join(@output_dir, d['label'].split('/')[-1].split('.')[0] + '_trans.nii.gz')} for d in @datalist]"
+run:
+#- "$compute_abdominal_ct_metrics(@datalist_pred, @output_dir)"
+- "$compute(@datalist_pred, @output_dir)"
