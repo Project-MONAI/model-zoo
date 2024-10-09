@@ -16,12 +16,11 @@ from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
 import numpy as np
 import torch
 from monai.apps.vista3d.sampler import sample_prompt_pairs
-from monai.config import IgniteInfo
 from monai.engines.trainer import Trainer
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn, default_prepare_batch
 from monai.inferers import Inferer, SimpleInferer
 from monai.transforms import Transform
-from monai.utils import RankFilter, min_version, optional_import
+from monai.utils import IgniteInfo, RankFilter, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
 from torch.optim.optimizer import Optimizer
 from torch.utils.data import DataLoader

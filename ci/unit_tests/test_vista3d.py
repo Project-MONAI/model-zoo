@@ -313,7 +313,6 @@ class TestVista3d(unittest.TestCase):
             os.path.join(bundle_root, "configs/train.json"),
             os.path.join(bundle_root, "configs/train_continual.json"),
             os.path.join(bundle_root, "configs/evaluate.json"),
-            os.path.join(bundle_root, "configs/data.yaml"),
         ]
         trainer = ConfigWorkflow(
             workflow_type="train",

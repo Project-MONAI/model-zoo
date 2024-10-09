@@ -14,9 +14,8 @@ import os
 import warnings
 from typing import TYPE_CHECKING, Callable, Optional
 
-from monai.config import IgniteInfo
 from monai.handlers.classification_saver import ClassificationSaver
-from monai.utils import evenly_divisible_all_gather, min_version, optional_import, string_list_all_gather
+from monai.utils import IgniteInfo, evenly_divisible_all_gather, min_version, optional_import, string_list_all_gather
 
 from .utils import detach_to_numpy
 

@@ -15,8 +15,7 @@ from typing import TYPE_CHECKING, Any, Callable, List, Optional
 import numpy as np
 import torch
 import torch.distributed
-from monai.config import IgniteInfo
-from monai.utils import min_version, optional_import
+from monai.utils import IgniteInfo, min_version, optional_import
 from sklearn.metrics import classification_report
 
 Events, _ = optional_import("ignite.engine", IgniteInfo.OPT_IMPORT_VERSION, min_version, "Events")

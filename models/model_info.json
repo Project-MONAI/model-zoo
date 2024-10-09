@@ -1726,5 +1726,45 @@
     "vista3d_v0.5.1": {
         "checksum": "3a1d16b60a52889b0b04616156b104efcc261883",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.1/files/vista3d_v0.5.1.zip"
+    },
+    "vista3d_v0.5.2": {
+        "checksum": "f0388a3f75152f709dda1fd6b08a4c4d8d565358",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.2/files/vista3d_v0.5.2.zip"
+    },
+    "pathology_nuclei_classification_v0.2.0": {
+        "checksum": "f8dd21b3711fa5705a0796704a0a477257b98da1",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclei_classification/versions/0.2.0/files/pathology_nuclei_classification_v0.2.0.zip"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.1.2": {
+        "checksum": "d6a2ac63890fd43280ff01310771ef265df784fb",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_axial_slices_generative_diffusion/versions/1.1.2/files/brats_mri_axial_slices_generative_diffusion_v1.1.2.zip"
+    },
+    "pathology_nuclick_annotation_v0.2.1": {
+        "checksum": "7287d19869b834235e51c1f3e3cfc387a324c76b",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_nuclick_annotation/versions/0.2.1/files/pathology_nuclick_annotation_v0.2.1.zip"
+    },
+    "brats_mri_generative_diffusion_v1.1.2": {
+        "checksum": "47bc08d062f5cb12d2a5efeba102ccb24e4cef2c",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/brats_mri_generative_diffusion/versions/1.1.2/files/brats_mri_generative_diffusion_v1.1.2.zip"
+    },
+    "lung_nodule_ct_detection_v0.6.8": {
+        "checksum": "1abae7a9379861c477f7b189e0171cfcd71370b0",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/lung_nodule_ct_detection/versions/0.6.8/files/lung_nodule_ct_detection_v0.6.8.zip"
+    },
+    "maisi_ct_generative_v0.4.4": {
+        "checksum": "30aa9a9f53a15ea06b0cfdadbb6876afb072d809",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.4/files/maisi_ct_generative_v0.4.4.zip"
+    },
+    "vista2d_v0.2.9": {
+        "checksum": "36d220ff31b3b96ab4ea79b7c56b04aa105b45c9",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.2.9/files/vista2d_v0.2.9.zip"
+    },
+    "maisi_ct_generative_v0.4.5": {
+        "checksum": "e8271089c14e7aec261cac30ffeec7e07bfa10ef",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.5/files/maisi_ct_generative_v0.4.5.zip"
+    },
+    "pathology_tumor_detection_v0.6.1": {
+        "checksum": "e41d063673ee1bc925eccea772b2535676e5e6f0",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_tumor_detection/versions/0.6.1/files/pathology_tumor_detection_v0.6.1.zip"
     }
 }
