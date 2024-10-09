@@ -161,7 +161,7 @@
             "metric_details": "*",
             "summary_ops": "*"
         }
-    ], 
+    ],
     "validate#dataset": {
         "_target_": "Dataset",
         "data": "$list(@val_datalist)",
