@@ -223,6 +223,26 @@ TEST_CASE_ERROR_PROMPTS = [
             "error": "Label prompt can only be a single object if provided with point prompts.",
         }
     ],
+    [
+        {
+            "bundle_root": "models/vista3d",
+            "input_dict": {"label_prompt": [16, 25, 26]},
+            "patch_size": [32, 32, 32],
+            "checkpointloader#_disabled_": True,  # do not load weights"
+            "initialize": ["$monai.utils.set_determinism(seed=123)"],
+            "error": "Undefined label prompt detected. Provide point prompts for zero-shot.",
+        }
+    ],
+    [
+        {
+            "bundle_root": "models/vista3d",
+            "input_dict": {"label_prompt": [136]},
+            "patch_size": [32, 32, 32],
+            "checkpointloader#_disabled_": True,  # do not load weights"
+            "initialize": ["$monai.utils.set_determinism(seed=123)"],
+            "error": "Undefined label prompt detected. Provide point prompts for zero-shot.",
+        }
+    ]
 ]
 
 
