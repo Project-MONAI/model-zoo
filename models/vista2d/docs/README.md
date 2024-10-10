@@ -63,7 +63,7 @@ AttributeError: partially initialized module 'cv2' has no attribute 'dnn' (most 
 when executing. To resolve this issue, please uninstall OpenCV and then re-install `cellpose` with a command like:
 
 ```Bash
-pip uninstall -y opencv && rm /usr/local/lib/python3.x/dist-packages/cv2
+pip uninstall -y opencv && rm /usr/local/lib/python3.*/dist-packages/cv2
 ```
 
 Alternatively, you can use the following command to install `cellpose` without its dependencies:
