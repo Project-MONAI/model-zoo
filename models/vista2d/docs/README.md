@@ -52,7 +52,12 @@ The default dataset for training, validation, and inference is the [Cellpose](ht
 Additionally, all data lists are available in the `datalists.zip` file located in the root directory of the bundle. Extract the contents of the `.zip` file to access the data lists.
 
 ### Dependencies
-Please refer to `required_packages_version` in `configs/metadata.json` to install all necessary dependencies before executing.
+Please refer to the `required_packages_version` section in `configs/metadata.json` to install all necessary dependencies before execution. If you’re using the MONAI container, you can simply run the commands below and ignore any "opencv-python-headless not installed" error message, as this package is already included in the container.
+
+```
+pip install fastremap==1.15.0 roifile==2024.5.24 natsort==8.4.0
+pip install --no-deps cellpose
+```
 
 Important Note: if your environment already contains OpenCV, installing `cellpose` may lead to conflicts and produce errors such as:
 
@@ -60,13 +65,14 @@ Important Note: if your environment already contains OpenCV, installing `cellpos
 AttributeError: partially initialized module 'cv2' has no attribute 'dnn' (most likely due to a circular import)
 ```
 
-when executing. To resolve this issue, please uninstall OpenCV and then re-install `cellpose` with a command like:
+To resolve this, uninstall `OpenCV` first, and then install `cellpose` using the following commands:
 
 ```Bash
 pip uninstall -y opencv && rm /usr/local/lib/python3.*/dist-packages/cv2
 ```
+Make sure to replace 3.* with your actual Python version (e.g., 3.10).
 
-Alternatively, you can use the following command to install `cellpose` without its dependencies:
+Alternatively, you can install `cellpose` without its dependencies to avoid potential conflicts:
 
 ```
 pip install --no-deps cellpose
