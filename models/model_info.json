@@ -1770,5 +1770,13 @@
     "vista3d_v0.5.3": {
         "checksum": "2bfd5fd915f985f5ae1e19dea4dc2b6967ae2048",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.3/files/vista3d_v0.5.3.zip"
+    },
+    "vista2d_v0.3.0": {
+        "checksum": "6b78becd6590506ce379a9c58b288c75bda59d60",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista2d/versions/0.3.0/files/vista2d_v0.3.0.zip"
+    },
+    "pathology_tumor_detection_v0.6.2": {
+        "checksum": "24352fe6210711b74a11eb70ca25ed7efefc7d31",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_tumor_detection/versions/0.6.2/files/pathology_tumor_detection_v0.6.2.zip"
     }
 }
