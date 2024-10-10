@@ -242,7 +242,7 @@ TEST_CASE_ERROR_PROMPTS = [
             "initialize": ["$monai.utils.set_determinism(seed=123)"],
             "error": "Undefined label prompt detected. Provide point prompts for zero-shot.",
         }
-    ]
+    ],
 ]
 
 
