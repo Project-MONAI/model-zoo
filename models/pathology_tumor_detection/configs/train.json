@@ -4,14 +4,14 @@
         "$import ignite"
     ],
     "lr": 0.001,
-    "num_epochs": 4,
+    "num_epochs": 2,
     "val_interval": 1,
     "bundle_root": ".",
     "ckpt_dir": "$os.path.join(@bundle_root, 'models')",
     "output_dir": "$os.path.join(@bundle_root, 'log')",
-    "training_file": "$os.path.join(@bundle_root, 'training.csv')",
-    "validation_file": "$os.path.join(@bundle_root, 'validation.csv')",
-    "dataset_dir": "/workspace/data/medical/pathology",
+    "training_file": "/workspace/Code/tutorials/pathology/tumor_detection/ignite/training.csv",
+    "validation_file": "/workspace/Code/tutorials/pathology/tumor_detection/ignite/training.csv",
+    "dataset_dir": "/workspace/Code/tutorials/pathology/tumor_detection/ignite/",
     "wsi_reader": "cuCIM",
     "region_size": [
         768,
@@ -173,8 +173,8 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
-            "batch_size": 128,
-            "pin_memory": true,
+            "batch_size": 50,
+            "pin_memory": false,
             "num_workers": 8
         },
         "inferer": {
@@ -324,8 +324,8 @@
         "dataloader": {
             "_target_": "DataLoader",
             "dataset": "@validate#dataset",
-            "batch_size": 128,
-            "pin_memory": true,
+            "batch_size": 50,
+            "pin_memory": false,
             "shuffle": false,
             "num_workers": 8
         },
