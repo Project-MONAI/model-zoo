@@ -143,8 +143,6 @@ Please note that the distributed training-related options depend on the actual r
 
 You can implement these settings by adding flags like `--train#dataloader#num_workers 0` or `--train#dataloader#pin_memory false`.
 
-These adjustments can improve stability when working with NCCL in distributed training.
-
 #### Execute inference
 
 ```
