@@ -61,7 +61,7 @@ TEST_CASE_INFER_MULTI_STR_PROMPT = [
 TEST_CASE_INFER_MULTI_NEW_STR_PROMPT = [
     {
         "bundle_root": "models/vista3d",
-        "input_dict": {"label_prompt": ["new class 1", "new class 2", "new class 3"]},
+        "input_dict": {"label_prompt": ["new class 1"], "points": [[123, 212, 151]], "point_labels": [1]},
         "patch_size": [32, 32, 32],
         "checkpointloader#_disabled_": True,  # do not load weights"
         "initialize": ["$monai.utils.set_determinism(seed=123)"],
