@@ -1778,5 +1778,9 @@
     "pathology_tumor_detection_v0.6.2": {
         "checksum": "24352fe6210711b74a11eb70ca25ed7efefc7d31",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/pathology_tumor_detection/versions/0.6.2/files/pathology_tumor_detection_v0.6.2.zip"
+    },
+    "vista3d_v0.5.4": {
+        "checksum": "05c03492449cad23267f1b97fd39c4153edd58b6",
+        "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/vista3d/versions/0.5.4/files/vista3d_v0.5.4.zip"
     }
 }
