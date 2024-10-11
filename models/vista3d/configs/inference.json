@@ -15,7 +15,8 @@
     "output_dtype": "$np.float32",
     "output_postfix": "trans",
     "separate_folder": true,
-    "input_dict": "${'image': '/data/Task09_Spleen/imagesTr/spleen_10.nii.gz', 'label_prompt': [3]}",
+    "sw_batch_size": 10,
+    "input_dict": "${'image': '/home/liubin/data/trt_2408/dataset/Task09_Spleen/imagesTr/spleen_10.nii.gz'}",
     "everything_labels": "$list(set([i+1 for i in range(132)]) - set([2,16,18,20,21,23,24,25,26,27,128,129,130,131,132]))",
     "metadata_path": "$@bundle_root + '/configs/metadata.json'",
     "metadata": "$json.loads(pathlib.Path(@metadata_path).read_text())",
@@ -40,7 +41,6 @@
         1.5,
         1.5
     ],
-    "sw_batch_size": 1,
     "patch_size": [
         128,
         128,
@@ -105,9 +105,19 @@
             "dtype": "$torch.float32"
         }
     ],
+    "range_preprocessing": {
+        "_target_": "Range",
+        "name": "preprocessing",
+        "recursive": true
+    },
+    "range_postprocessing": {
+        "_target_": "Range",
+        "name": "postprocessing",
+        "recursive": true
+    },
     "preprocessing": {
         "_target_": "Compose",
-        "transforms": "$@preprocessing_transforms "
+        "transforms": "$@range_preprocessing(@preprocessing_transforms)"
     },
     "dataset": {
         "_target_": "Dataset",
@@ -128,48 +138,57 @@
         "sw_batch_size": "@sw_batch_size",
         "use_point_window": "@use_point_window"
     },
+    "postprocessing_transforms": [
+        {
+            "_target_": "ToDeviced",
+            "keys": "pred",
+            "device": "cpu",
+            "_disabled_": true
+        },
+        {
+            "_target_": "monai.apps.vista3d.transforms.VistaPostTransformd",
+            "keys": "pred"
+        },
+        {
+            "_target_": "Invertd",
+            "keys": "pred",
+            "transform": "$copy.deepcopy(@preprocessing)",
+            "orig_keys": "@image_key",
+            "nearest_interp": true,
+            "to_tensor": true
+        },
+        {
+            "_target_": "Lambdad",
+            "func": "$lambda x: torch.nan_to_num(x, nan=255)",
+            "keys": "pred"
+        },
+        {
+            "_target_": "SaveImaged",
+            "keys": "pred",
+            "resample": false,
+            "output_dir": "@output_dir",
+            "output_ext": "@output_ext",
+            "output_dtype": "@output_dtype",
+            "output_postfix": "@output_postfix",
+            "separate_folder": "@separate_folder"
+        }
+    ],
     "postprocessing": {
         "_target_": "Compose",
-        "transforms": [
-            {
-                "_target_": "ToDeviced",
-                "keys": "pred",
-                "device": "cpu",
-                "_disabled_": true
-            },
-            {
-                "_target_": "monai.apps.vista3d.transforms.VistaPostTransformd",
-                "keys": "pred"
-            },
-            {
-                "_target_": "Invertd",
-                "keys": "pred",
-                "transform": "$copy.deepcopy(@preprocessing)",
-                "orig_keys": "@image_key",
-                "nearest_interp": true,
-                "to_tensor": true
-            },
-            {
-                "_target_": "Lambdad",
-                "func": "$lambda x: torch.nan_to_num(x, nan=255)",
-                "keys": "pred"
-            },
-            {
-                "_target_": "SaveImaged",
-                "keys": "pred",
-                "resample": false,
-                "output_dir": "@output_dir",
-                "output_ext": "@output_ext",
-                "output_dtype": "@output_dtype",
-                "output_postfix": "@output_postfix",
-                "separate_folder": "@separate_folder"
-            }
-        ]
+        "transforms": "$@range_postprocessing(@postprocessing_transforms)"
     },
     "handlers": [
         {
             "_target_": "StatsHandler",
             "iteration_log": false
+        },
+        {
+            "_target_": "RangeHandler",
+            "events": "ITERATION"
+        },
+        {
+            "_target_": "RangeHandler",
+            "events": "BATCH"
         }
     ],
     "checkpointloader": {
