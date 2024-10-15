@@ -15,7 +15,7 @@ import sys
 import torch
 
 from monai.apps import get_logger
-from monai.bundle import BundleWorkflow
+from monai.bundle import PythonicWorkflow
 from monai.data import Dataset
 from monai.inferers import SlidingWindowInferer
 from monai.networks.nets import UNet
@@ -32,7 +32,7 @@ from monai.transforms import (
 from monai.utils.enums import CommonKeys
 
 
-class InferenceWorkflow(BundleWorkflow):
+class InferenceWorkflow(PythonicWorkflow):
     """
     Test class simulates the bundle workflow defined by Python script directly.
 
@@ -53,8 +53,8 @@ class InferenceWorkflow(BundleWorkflow):
 
     """
 
-    def __init__(self, dataset_dir: str = "./infer", bundle_root: str = "/workspace/Code/model-zoo/models/spleen_ct_segmentation_real_time_support"):
-        super().__init__(workflow="inference", properties_path="/workspace/Code/model-zoo/models/spleen_ct_segmentation_real_time_support/scripts/properties.json")
+    def __init__(self, dataset_dir: str = "./infer", bundle_root: str = "/workspace/Code/model-zoo/models/spleen_ct_segmentation_real_time"):
+        super().__init__(workflow="inference", properties_path="/workspace/Code/model-zoo/models/spleen_ct_segmentation_real_time/scripts/properties.json")
         # set root log level to INFO and init a evaluation logger, will be used in `StatsHandler`
         logging.basicConfig(stream=sys.stdout, level=logging.INFO)
         get_logger("eval_log")
@@ -62,7 +62,8 @@ class InferenceWorkflow(BundleWorkflow):
         self.dataset_dir = dataset_dir
         self.bundle_root = bundle_root
         self.dataflow = {}
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    def initialize(self):
         self.net = UNet(
             spatial_dims=3,
             in_channels=1,
@@ -71,8 +72,7 @@ class InferenceWorkflow(BundleWorkflow):
             strides=(2, 2, 2),
             num_res_units=2,
         ).to(self.device)
-
-        self.preprocessing = Compose(
+        preprocessing = Compose(
             [
                 EnsureChannelFirstd(keys=["image"]),
                 Orientationd(keys=["image"], axcodes="RAS"),
@@ -81,11 +81,9 @@ class InferenceWorkflow(BundleWorkflow):
                 ScaleIntensityRanged(keys="image", a_min=-57, a_max=164, b_min=0.0, b_max=1.0, clip=True),
             ]
         )
-    def initialize(self):
-        
         self.dataset = Dataset(
             data=[self.dataflow],
-            transform=self.preprocessing,
+            transform=preprocessing,
         )
         self.postprocessing = Compose(
             [
@@ -104,3 +102,9 @@ class InferenceWorkflow(BundleWorkflow):
 
     def finalize(self):
         pass
+
+    def get_bundle_root(self):
+        return "."
+
+    def get_device(self):
+        return torch.device("cuda" if torch.cuda.is_available() else "cpu")
