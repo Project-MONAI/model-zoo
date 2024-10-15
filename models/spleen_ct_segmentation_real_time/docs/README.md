@@ -80,8 +80,6 @@ print(f"Inference Output: {output}")
 workflow.finalize()
 ```
 
-
-
 # References
 [1] Xia, Yingda, et al. "3D Semi-Supervised Learning with Uncertainty-Aware Multi-View Co-Training." arXiv preprint arXiv:1811.12506 (2018). https://arxiv.org/abs/1811.12506.
 
