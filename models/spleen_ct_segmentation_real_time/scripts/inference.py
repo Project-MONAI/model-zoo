@@ -53,14 +53,12 @@ class InferenceWorkflow(PythonicWorkflow):
 
     """
 
-    def __init__(self, dataset_dir: str = "./infer", bundle_root: str = "/workspace/Code/model-zoo/models/spleen_ct_segmentation_real_time"):
-        super().__init__(workflow="inference", properties_path="/workspace/Code/model-zoo/models/spleen_ct_segmentation_real_time/scripts/properties.json")
+    def __init__(self, workflow_type: str = "inference", properties_path: str = "./properties.json"):
+        super().__init__(workflow_type=workflow_type, properties_path=properties_path)
         # set root log level to INFO and init a evaluation logger, will be used in `StatsHandler`
         logging.basicConfig(stream=sys.stdout, level=logging.INFO)
         get_logger("eval_log")
 
-        self.dataset_dir = dataset_dir
-        self.bundle_root = bundle_root
         self.dataflow = {}
 
     def initialize(self):
