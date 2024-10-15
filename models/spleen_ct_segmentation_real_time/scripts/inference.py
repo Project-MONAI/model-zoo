@@ -35,24 +35,6 @@ from monai.utils.enums import CommonKeys
 class InferenceWorkflow(PythonicWorkflow):
     """
     Test class simulates the bundle workflow defined by Python script directly.
-
-    Typical usage:
-        from monai.bundle import create_workflow
-        from monai.transforms import LoadImaged
-        
-        workflow = create_workflow("inference.InferenceWorkflow")
-        workflow.initialize()
-        input_loader = LoadImaged(keys="image")
-        workflow.dataflow.update(input_loader({"image": "/workspace/Data/Task09_Spleen/imagesTr/spleen_46.nii.gz"}))
-        workflow.run()
-        
-        # update dataflow
-        workflow.dataflow.clear()
-        workflow.dataflow.update(input_loader({"image": "/workspace/Data/Task09_Spleen/imagesTr/spleen_38.nii.gz"}))
-        workflow.run()
-
-        # get output
-        output = workflow.dataflow[CommonKeys.PRED]
     """
 
     def __init__(self, workflow_type: str = "inference", properties_path: str = "./properties.json"):
