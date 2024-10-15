@@ -40,7 +40,7 @@ class InferenceWorkflow(PythonicWorkflow):
         from monai.bundle import create_workflow
         from monai.transforms import LoadImaged
         
-        workflow = create_workflow("inference.InferenceWorkflow", dataset_dir="/workspace/Data/Task09_Spleen")
+        workflow = create_workflow("inference.InferenceWorkflow")
         workflow.initialize()
         input_loader = LoadImaged(keys="image")
         workflow.dataflow.update(input_loader({"image": "/workspace/Data/Task09_Spleen/imagesTr/spleen_46.nii.gz"}))
@@ -48,7 +48,7 @@ class InferenceWorkflow(PythonicWorkflow):
         
         # update dataflow
         workflow.dataflow.clear()
-        workflow.dataflow.update({"image": "/workspace/Data/Task09_Spleen/imagesTr/spleen_38.nii.gz"})
+        workflow.dataflow.update(input_loader({"image": "/workspace/Data/Task09_Spleen/imagesTr/spleen_38.nii.gz"}))
         workflow.run()
 
     """
