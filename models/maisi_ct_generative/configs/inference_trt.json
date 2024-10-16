@@ -3,7 +3,10 @@
 	"$from monai.networks import trt_compile"
     ],
     "torch_trt_args" : {"method" : "torch_trt", "export_args": { "dynamo" : "$False", "verbose" : "$True" } },
-    "trt_args" : {"export_args": { "dynamo" : "$False", "verbose" : "$True" } },
+    "trt_args" : {
+	"export_args": { "dynamo" : "$False", "verbose" : "$False" },
+	"dynamic_batchsize": "$[1, 1, 4]"
+    },
     "controlnet": "$trt_compile(@controlnet_def.to(@device), @trained_controlnet_path)",
     "diffusion_unet": "$trt_compile(@diffusion_unet_def.to(@device), @trained_diffusion_path, args=@trt_args)"
 }
