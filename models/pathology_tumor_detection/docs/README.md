@@ -135,6 +135,14 @@ torchrun --standalone --nnodes=1 --nproc_per_node=2 -m monai.bundle run --config
 
 Please note that the distributed training-related options depend on the actual running environment; thus, users may need to remove `--standalone`, modify `--nnodes`, or do some other necessary changes according to the machine used. For more details, please refer to [pytorch's official tutorial](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
+**Note:** When using a container based on [PyTorch 24.0x](https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes), you may encounter random NCCL timeout errors. To address this issue, consider the following adjustments:
+
+- Reduce the `num_workers`: Decreasing the number of data loader workers can help minimize these errors.
+- Set `pin_memory` to `False`: Disabling pinned memory may reduce the likelihood of timeouts.
+- Switch to the `gloo` backend: As a workaround, you can set the distributed training backend to `gloo` to avoid NCCL-related timeouts.
+
+You can implement these settings by adding flags like `--train#dataloader#num_workers 0` or `--train#dataloader#pin_memory false`.
+
 #### Execute inference
 
 ```

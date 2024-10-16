@@ -174,7 +174,7 @@
             "_target_": "DataLoader",
             "dataset": "@train#dataset",
             "batch_size": 128,
-            "pin_memory": true,
+            "pin_memory": false,
             "num_workers": 8
         },
         "inferer": {
@@ -325,7 +325,7 @@
             "_target_": "DataLoader",
             "dataset": "@validate#dataset",
             "batch_size": 128,
-            "pin_memory": true,
+            "pin_memory": false,
             "shuffle": false,
             "num_workers": 8
         },
