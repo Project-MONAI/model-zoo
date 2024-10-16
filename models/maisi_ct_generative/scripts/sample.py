@@ -244,7 +244,7 @@ def ldm_conditional_sample_one_image(
             controlnet_ret = controlnet(
                 x=latents, timesteps=torch.Tensor((t,)).to(device), controlnet_cond=controlnet_cond_vis
             )
-            if len(controlnet_ret==2):
+            if len(controlnet_ret) == 2:
                 down_block_res_samples, mid_block_res_sample = controlnet_ret
             else:
                 down_block_res_samples, mid_block_res_sample = controlnet_ret[:-1], controlnet_ret[-1]
