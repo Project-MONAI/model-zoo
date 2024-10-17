@@ -37,8 +37,8 @@ class InferenceWorkflow(PythonicWorkflow):
     Test class simulates the bundle workflow defined by Python script directly.
     """
 
-    def __init__(self, workflow_type: str = "inference", properties_path: str = "./properties.json"):
-        super().__init__(workflow_type=workflow_type, properties_path=properties_path)
+    def __init__(self, workflow_type: str = "inference", config_file: str | None = None, properties_path: str = "./properties.json"):
+        super().__init__(workflow_type=workflow_type, properties_path=properties_path, config_file=config_file)
         # set root log level to INFO and init a evaluation logger, will be used in `StatsHandler`
         logging.basicConfig(stream=sys.stdout, level=logging.INFO)
         get_logger("eval_log")
@@ -73,7 +73,7 @@ class InferenceWorkflow(PythonicWorkflow):
                 AsDiscreted(keys="pred", argmax=True),
             ]
         )
-        self.inferer = SlidingWindowInferer(roi_size=(96, 96, 96), sw_batch_size=1, overlap=0)
+        self.inferer = SlidingWindowInferer(roi_size=self.parser.roi_size, sw_batch_size=1, overlap=0)
 
     def run(self):
         data = self.dataset[0]
