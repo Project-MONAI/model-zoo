@@ -1,0 +1,53 @@
+{
+    "train": {
+        "bundle_root": {
+            "description": "root path of the bundle.",
+            "required": true,
+            "id": "bundle_root"
+        },
+        "device": {
+            "description": "target device to execute the bundle workflow.",
+            "required": true,
+            "id": "device"
+        },
+        "dataflow": {
+            "description": "dataflow to execute the bundle workflow.",
+            "required": true,
+            "id": "dataflow"
+        }
+    },
+    "infer": {
+        "bundle_root": {
+            "description": "root path of the bundle.",
+            "required": true,
+            "id": "bundle_root"
+        },
+        "device": {
+            "description": "target device to execute the bundle workflow.",
+            "required": true,
+            "id": "device"
+        },
+        "dataflow": {
+            "description": "dataflow to execute the bundle workflow.",
+            "required": true,
+            "id": "dataflow"
+        }
+    },
+    "meta": {
+        "version": {
+            "description": "bundle version",
+            "required": true,
+            "id": "_meta_::version"
+        },
+        "channel_def": {
+            "description": "channel definition for the prediction",
+            "required": false,
+            "id": "_meta_::network_data_format::outputs::pred::channel_def"
+        },
+        "type": {
+            "description": "data type of the input image",
+            "required": true,
+            "id": "_meta_::network_data_format::outputs::pred::type"
+        }
+    }
+}
