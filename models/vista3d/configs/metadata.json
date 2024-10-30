@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.5.4",
+    "version": "0.5.5",
     "changelog": {
+        "0.5.5": "add arg for trt compiler base path",
         "0.5.4": "add undefined label prompt check",
         "0.5.3": "update readme",
         "0.5.2": "fix eval issue",

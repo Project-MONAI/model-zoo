@@ -1,4 +1,5 @@
 {
+    "base_path": null,
     "+imports": [
         "$from monai.networks import trt_compile"
     ],
@@ -8,11 +9,11 @@
         "dynamic_batchsize": "$[1, @inferer#sw_batch_size, @inferer#sw_batch_size]"
     },
     "network_dev": "$@network_def.to(@device)",
-    "encoder": "$trt_compile(@network_dev, @bundle_root + '/models/model.pt', args=@network_trt_args, submodule=['image_encoder.encoder'])",
+    "encoder": "$trt_compile(@network_dev, @bundle_root + '/models/model.pt' if not @base_path else @base_path, args=@network_trt_args, submodule=['image_encoder.encoder'])",
     "head_trt_args": {
         "dynamic_batchsize": "$[1, 1, @max_prompt_size]",
         "fallback": "$True"
     },
-    "head": "$trt_compile(@network_dev, @bundle_root + '/models/model.pt', args=@head_trt_args, submodule=['class_head']) if @head_trt_enabled else @network_dev",
+    "head": "$trt_compile(@network_dev, @bundle_root + '/models/model.pt' if not @base_path else @base_path, args=@head_trt_args, submodule=['class_head']) if @head_trt_enabled else @network_dev",
     "network": "$None if @encoder is None else @head"
 }
