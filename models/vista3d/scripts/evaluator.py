@@ -22,6 +22,7 @@ from monai.transforms import Transform, reset_ops_id
 from monai.utils import ForwardMode, IgniteInfo, RankFilter, min_version, optional_import
 from monai.utils.enums import CommonKeys as Keys
 from torch.utils.data import DataLoader
+from .warmup import warm_up
 
 rearrange, _ = optional_import("einops", name="rearrange")
 
@@ -133,6 +134,7 @@ class Vista3dEvaluator(SupervisedEvaluator):
         self.inferer = SimpleInferer() if inferer is None else inferer
         self.hyper_kwargs = hyper_kwargs
         self.logger.addFilter(RankFilter())
+        warm_up()
 
     def transform_points(self, point, affine):
         """transform point to the coordinates of the transformed image
