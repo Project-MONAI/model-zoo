@@ -45,8 +45,7 @@ jobs:
     if: |
       github.event.comment.body == '/build' &&
       (
-        github.actor == 'pxLi' ||
-        github.actor == 'YanxuanLiu' ||
+        github.actor == 'wendell-hom' ||
         github.actor == 'wyli' ||
         github.actor == 'Nic-Ma' ||
         github.actor == 'yiheng-wang-nv' ||
