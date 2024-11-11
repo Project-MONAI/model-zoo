@@ -1,6 +1,6 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.5.6",
+    "version": "0.5.7",
     "changelog": {
         "0.5.7": "change sw padding mode to replicate",
         "0.5.6": "add mlflow support",
