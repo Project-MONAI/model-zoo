@@ -3,7 +3,10 @@
         "$from monai.networks import trt_compile"
     ],
     "c_trt_args": {
-	"export_args" : {"dynamo" : "$True", "report" : "$True"},
+        "export_args": {
+            "dynamo": "$True",
+            "report": "$True"
+        },
         "output_lists": [
             [
                 -1
