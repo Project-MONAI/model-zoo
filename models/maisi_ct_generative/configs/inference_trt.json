@@ -3,6 +3,7 @@
         "$from monai.networks import trt_compile"
     ],
     "c_trt_args": {
+	"export_args" : {"dynamo" : "$True", "report" : "$True"},
         "output_lists": [
             [
                 -1
@@ -12,6 +13,6 @@
             ]
         ]
     },
-    "controlnet": "$trt_compile(@controlnet_def.to(@device), @trained_controlnet_path, args=@c_trt_args)",
+    "controlnet": "$trt_compile(@controlnet_def.to(@device), @trained_controlnet_path)",
     "diffusion_unet": "$trt_compile(@diffusion_unet_def.to(@device), @trained_diffusion_path)"
 }
