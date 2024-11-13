@@ -133,6 +133,24 @@ torchrun --nnodes=1 --nproc_per_node=8 -m monai.bundle run \
 	--config_file="['configs/train.json','configs/train_continual.json','configs/multi_gpu_train.json']" --epochs=320 --learning_rate=0.00005
 ```
 
+### MLFlow support
+
+MLflow can be enabled to track and manage your machine learning experiments. To enable MLflow, set the `use_mlflow` parameter to `True`. Below is an example of how to run a single-GPU training command with MLflow enabled:
+
+```bash
+python -m monai.bundle run \
+	--config_file="['configs/train.json','configs/train_continual.json']" --epochs=320 --learning_rate=0.00005 --use_mlflow True
+```
+
+By default, the data of MLflow is stored in the `mlruns/` folder under the bundle's root directory. To launch the MLflow UI and track your experiment data, follow these steps:
+
+1. Open a terminal and navigate to the root directory of your bundle where the `mlruns/` folder is located.
+
+2. Execute the following command to start the MLflow server. This will make the MLflow UI accessible.
+
+```Bash
+mlflow ui
+```
 
 ## Evaluation
 Evaluation can be used to calculate dice scores for the model or a finetuned model. Change the `ckpt_path` to the checkpoint you wish to evaluate. The dice score is calculated on the original image spacing using `invertd`, while the dice score during finetuning is calculated on resampled space.
