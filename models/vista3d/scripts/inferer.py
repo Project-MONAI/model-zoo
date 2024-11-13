@@ -101,7 +101,7 @@ class Vista3dInferer(Inferer):
             )
         else:
             val_outputs = SlidingWindowInfererAdapt(
-                roi_size=self.roi_size, sw_batch_size=self.sw_batch_size, with_coord=True
+                roi_size=self.roi_size, sw_batch_size=self.sw_batch_size, with_coord=True, padding_mode="replicate"
             )(
                 inputs,
                 network,
