@@ -4,7 +4,7 @@
     ],
     "c_trt_args": {
         "export_args": {
-            "dynamo": "$True",
+            "dynamo": "$False",
             "report": "$True"
         },
         "output_lists": [
@@ -12,10 +12,9 @@
                 -1
             ],
             [
-                0
-            ]
+	    ]
         ]
     },
-    "controlnet": "$trt_compile(@controlnet_def.to(@device), @trained_controlnet_path)",
+    "controlnet": "$trt_compile(@controlnet_def.to(@device), @trained_controlnet_path, @c_trt_args)",
     "diffusion_unet": "$trt_compile(@diffusion_unet_def.to(@device), @trained_diffusion_path)"
 }
