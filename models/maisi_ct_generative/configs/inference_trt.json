@@ -11,8 +11,7 @@
             [
                 -1
             ],
-            [
-	    ]
+            []
         ]
     },
     "controlnet": "$trt_compile(@controlnet_def.to(@device), @trained_controlnet_path, @c_trt_args)",
