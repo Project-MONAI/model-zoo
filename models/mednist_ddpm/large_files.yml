@@ -1,0 +1,5 @@
+large_files:
+- path: "models/model.pt"
+  url: "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/mednist_ddpm.pt"
+  hash_val: "02fd8c8e8ed5f7cda5deeed72b69f4f1"
+  hash_type: "md5"

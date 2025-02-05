@@ -15,6 +15,7 @@
 # If a bundle does not need to be tested, please add the bundle name into the list.
 exclude_verify_shape_list = [
     "mednist_gan",
+    "mednist_ddpm",
     "lung_nodule_ct_detection",
     "pathology_nuclei_segmentation_classification",
     "brats_mri_generative_diffusion",
@@ -42,6 +43,7 @@ exclude_verify_torchscript_list = [
     "vista3d",
     "maisi_ct_generative",
     "vista2d",
+    "mednist_ddpm",
     "cxr_image_synthesis_latent_diffusion_model",
 ]
 
