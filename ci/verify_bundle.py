@@ -54,6 +54,8 @@ def _get_weights_names(bundle: str):
     if bundle == "pediatric_abdominal_ct_segmentation":
         # skip test for this bundle's ts file
         return "dynunet_FT.pt", None
+    if bundle == "brain_image_synthesis_latent_diffusion":
+        return "autoencoder.pt", "model.pt"
     if bundle == "cxr_image_synthesis_latent_diffusion_model":
         return "autoencoder.pt", None
     return "model.pt", "model.ts"

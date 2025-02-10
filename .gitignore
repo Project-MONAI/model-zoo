@@ -129,3 +129,5 @@ temp/
 # VSCode
 .vscode/
 *.zip
+models/*/models/*
+models/*/output/*
