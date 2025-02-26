@@ -21,8 +21,7 @@
     "label_dict_remap_json": "$@bundle_root + '/configs/label_dict_124_to_132.json'",
     "real_img_median_statistics_file": "$@bundle_root + '/configs/image_median_statistics.json'",
     "num_output_samples": 1,
-    "body_region": [
-    ],
+    "body_region": [],
     "anatomy_list": [
         "hepatic tumor"
     ],
