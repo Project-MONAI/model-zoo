@@ -393,7 +393,7 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
             f"spacing[0] have to be between 0.5 and 3.0 mm, spacing[2] have to be between 0.5 and 5.0 mm, yet got {spacing}."
         )
 
-    if output_size[0] * spacing[0] < 256 or output_size[2] * spacing[2] < 128:
+    if output_size[0] * spacing[0] < 256 or output_size[2] * spacing[2] < 128 or output_size[0] * spacing[0] >640 or output_size[2] * spacing[2] > 2000:
         fov = [output_size[axis] * spacing[axis] for axis in range(3)]
         raise ValueError(
             (
