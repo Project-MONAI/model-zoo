@@ -399,7 +399,8 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
             (
                 f"`'spacing'({spacing}mm) and 'output_size'({output_size}) together decide the output field of view (FOV). "
                 f"The FOV will be {fov}mm. We recommend the FOV in x and y axis to be at least 256mm for head, and at least "
-                "384mm for other body regions like abdomen. For z-axis, we require it to be at least 128mm."
+                "384mm for other body regions like abdomen, and less than 640mm. "
+                "For z-axis, we require it to be at least 128mm and less than 2000mm."
             )
         )
 
