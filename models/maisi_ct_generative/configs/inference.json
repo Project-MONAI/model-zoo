@@ -11,27 +11,26 @@
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "trained_autoencoder_path": "$@model_dir + '/autoencoder_epoch273.pt'",
     "trained_diffusion_path": "$@model_dir + '/diff_unet_ckpt_epoch19350.pt'",
-    "trained_controlnet_path": "$@model_dir + '/controlnet_epoch150.pt'",
+    "trained_controlnet_path": "$@model_dir + '/controlnet_epoch208_v9.pt'",
     "trained_mask_generation_autoencoder_path": "$@model_dir + '/mask_generation_autoencoder.pt'",
     "trained_mask_generation_diffusion_path": "$@model_dir + '/mask_generation_diffusion_unet.pt'",
-    "all_mask_files_base_dir": "$@bundle_root + '/datasets/all_masks_flexible_size_and_spacing_3000'",
-    "all_mask_files_json": "$@bundle_root + '/configs/candidate_masks_flexible_size_and_spacing_3000.json'",
+    "all_mask_files_base_dir": "$@bundle_root + '/datasets/all_masks_flexible_size_and_spacing_4000'",
+    "all_mask_files_json": "$@bundle_root + '/configs/candidate_masks_flexible_size_and_spacing_4000.json'",
     "all_anatomy_size_condtions_json": "$@bundle_root + '/configs/all_anatomy_size_condtions.json'",
     "label_dict_json": "$@bundle_root + '/configs/label_dict.json'",
     "label_dict_remap_json": "$@bundle_root + '/configs/label_dict_124_to_132.json'",
     "real_img_median_statistics_file": "$@bundle_root + '/configs/image_median_statistics.json'",
     "num_output_samples": 1,
     "body_region": [
-        "abdomen"
     ],
     "anatomy_list": [
-        "liver"
+        "hepatic tumor"
     ],
     "modality": "ct",
     "controllable_anatomy_size": [],
     "num_inference_steps": 30,
     "mask_generation_num_inference_steps": 1000,
-    "random_seed": null,
+    "random_seed": 0,
     "spatial_dims": 3,
     "image_channels": 1,
     "latent_channels": 4,
@@ -44,8 +43,8 @@
     ],
     "image_output_ext": ".nii.gz",
     "label_output_ext": ".nii.gz",
-    "spacing_xy": 1.0,
-    "spacing_z": 1.0,
+    "spacing_xy": 1,
+    "spacing_z": 1,
     "spacing": [
         "@spacing_xy",
         "@spacing_xy",
@@ -68,7 +67,7 @@
         80,
         80
     ],
-    "autoencoder_sliding_window_infer_overlap": 0.25,
+    "autoencoder_sliding_window_infer_overlap": 0.4,
     "autoencoder_def": {
         "_target_": "monai.apps.generation.maisi.networks.autoencoderkl_maisi.AutoencoderKlMaisi",
         "spatial_dims": "@spatial_dims",
@@ -97,7 +96,7 @@
         "use_checkpointing": false,
         "use_convtranspose": false,
         "norm_float16": true,
-        "num_splits": 8,
+        "num_splits": 2,
         "dim_split": 1
     },
     "diffusion_unet_def": {
@@ -308,6 +307,7 @@
         "autoencoder_sliding_window_infer_overlap": "@autoencoder_sliding_window_infer_overlap"
     },
     "run": [
+        "$monai.utils.set_determinism(seed=@random_seed)",
         "$@ldm_sampler.sample_multiple_images(@num_output_samples)"
     ],
     "evaluator": null
