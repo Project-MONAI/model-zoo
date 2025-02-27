@@ -532,6 +532,7 @@ class LDMSampler:
         Args:
             Various parameters related to model configuration, input settings, and output specifications.
         """
+        self.random_seed = random_seed
         if random_seed is not None:
             set_determinism(seed=random_seed)
 
@@ -692,7 +693,7 @@ class LDMSampler:
                     combine_label_or = self.ensure_output_size_and_spacing(combine_label_or)
                 # mask augmentation
                 if if_aug:
-                    combine_label_or = augmentation(combine_label_or, self.output_size)
+                    combine_label_or = augmentation(combine_label_or, self.output_size, random_seed=self.random_seed)
             end_time = time.time()
             logging.info(f"---- Mask preparation time: {end_time - start_time} seconds ----")
             torch.cuda.empty_cache()
