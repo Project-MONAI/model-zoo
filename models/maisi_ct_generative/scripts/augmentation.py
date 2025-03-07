@@ -340,7 +340,7 @@ def augmentation_body(pt_nda, random_seed):
 
     zoom = RandZoom(min_zoom=0.99, max_zoom=1.01, mode="nearest", align_corners=None, prob=1.0)
     zoom.set_random_state(seed=random_seed)
-    
+
     volume = zoom(volume)
 
     pt_nda = volume.unsqueeze(0)
