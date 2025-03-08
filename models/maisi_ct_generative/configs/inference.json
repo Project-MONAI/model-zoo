@@ -9,7 +9,7 @@
     "output_dir": "$@bundle_root + '/output'",
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "trained_autoencoder_path": "$@model_dir + '/autoencoder_epoch273.pt'",
+    "trained_autoencoder_path": "$@model_dir + '/autoencoder.pt'",
     "trained_diffusion_path": "$@model_dir + '/diffusion_unet.pt'",
     "trained_controlnet_path": "$@model_dir + '/controlnet.pt'",
     "trained_mask_generation_autoencoder_path": "$@model_dir + '/mask_generation_autoencoder.pt'",
