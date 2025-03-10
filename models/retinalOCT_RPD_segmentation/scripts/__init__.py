@@ -1,0 +1,1 @@
+from.inference import main  # Import main from inference.py

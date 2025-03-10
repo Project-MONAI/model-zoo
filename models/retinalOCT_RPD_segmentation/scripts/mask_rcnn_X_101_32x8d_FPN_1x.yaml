@@ -1,0 +1,56 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/FAIR/X-101-32x8d.pkl"
+  PIXEL_STD: [57.375, 57.120, 58.395]
+  MASK_ON: True
+  RESNETS:
+    STRIDE_IN_1X1: False  # this is a C2 model
+    NUM_GROUPS: 32
+    WIDTH_PER_GROUP: 8
+    DEPTH: 101
+  ROI_HEADS:
+    NUM_CLASSES: 1
+    SCORE_THRESH_TEST: 0.001
+    NMS_THRESH_TEST: .01
+INPUT:
+  MIN_SIZE_TRAIN: (496,)
+  MIN_SIZE_TEST: 496
+SOLVER:
+  BASE_LR: 0.02
+  #GAMMA: 0.05
+  #STEPS: (3000, 7000, 11000, 15000)
+  #MAX_ITER: 18000  
+  GAMMA: 0.1
+  STEPS: (3000, 4500)
+  MAX_ITER: 6000  
+  CHECKPOINT_PERIOD: 300
+  IMS_PER_BATCH: 14
+TEST:
+  DETECTIONS_PER_IMAGE: 30  # LVIS allows up to 300
+  EVAL_PERIOD: 300
+DATALOADER:
+  SAMPLER_TRAIN: "RepeatFactorTrainingSampler"
+  REPEAT_THRESHOLD: 0.001
+  NUM_WORKERS: 4
+# DATASETS:
+#   TRAIN: ("fold1","fold2","fold3","fold4",)
+#   TEST: ("fold5",)
+# OUTPUT_DIR: "./output_valid_fold5"
+# DATASETS:
+#   TRAIN: ("fold2","fold3","fold4","fold5",)
+#   TEST: ("fold1",)
+# OUTPUT_DIR: "./output_valid_fold1"
+# DATASETS:
+#   TRAIN: ("fold3","fold4","fold5","fold1",)
+#   TEST: ("fold2",)
+# OUTPUT_DIR: "./output_valid_fold2"
+# DATASETS:
+#   TRAIN: ("fold4","fold5","fold1","fold2",)
+#   TEST: ("fold3",)
+# OUTPUT_DIR: "./output_valid_fold3"
+# DATASETS:
+#   TRAIN: ("fold5","fold1","fold2","fold3",)
+#   TEST: ("fold4",)
+# OUTPUT_DIR: "./output_valid_fold4"
+
+#modifiying to commit again

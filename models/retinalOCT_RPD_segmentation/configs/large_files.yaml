@@ -1,0 +1,5 @@
+large_files:
+  - path: "models/models.zip"
+    url: "https://s3.us-west-2.amazonaws.com/comp.ophthalmology.uw.edu/models.zip"
+    hash_val: ""
+    hash_type: ""

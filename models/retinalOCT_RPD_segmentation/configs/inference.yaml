@@ -1,0 +1,23 @@
+imports:
+- $import scripts
+- $import scripts.inference
+
+args:
+  run_extract : False
+  input_dir : "/path/to/data"
+  extracted_dir : "/path/to/extracted/data"
+  input_format : "dicom"
+  create_dataset : True
+  dataset_name : "my_dataset_name"
+
+  output_dir : "/path/to/model/output"
+  run_inference : True
+  create_tables : True
+
+# create visuals
+  binary_mask : False
+  binary_mask_overlay : True
+  instance_mask_overlay : False
+
+inference:
+- $scripts.inference.main(@args)
