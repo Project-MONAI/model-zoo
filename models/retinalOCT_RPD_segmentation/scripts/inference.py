@@ -75,12 +75,6 @@ def run_prediction(cfg, dataset_name, output_path):
     myeval = COCOEvaluator(dataset_name,tasks={'bbox','segm'},output_dir =output_path) #produces _coco_format.json when initialized
     for mdl in ("fold1", "fold2", "fold3", "fold4","fold5"):
         extract_directory = '../model'
-        if not os.path.isdir(extract_directory):
-            os.mkdir(extract_directory)
-            url = 'https://s3.us-west-2.amazonaws.com/comp.ophthalmology.uw.edu/models.zip'
-            path_to_zip_file, headers = urllib.request.urlretrieve(url, reporthook = MyProgressBar())
-            with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
-                zip_ref.extractall(extract_directory)
         file_name = mdl + "_model_final.pth"
         model_weights_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), extract_directory, file_name)
         print(model_weights_path)
@@ -156,6 +150,8 @@ def main(args):
     output = None
     run_ext = True
     run_inf = True
+    prob_thresh = 0.5
+    iou_thresh = 0.2
     make_table = True
     make_visuals = False
     bm = False
@@ -172,14 +168,13 @@ def main(args):
     run_ext = args.get('run_extract', True)  # Provide default values
     make_dataset = args.get('create_dataset',True)
     run_inf = args.get('run_inference', True)
+    prob_thresh = args.get('prob_thresh',0.5)
     make_table = args.get('create_tables', True)
     bm = args.get('binary_mask', False)
     bmo = args.get('binary_mask_overlay', False)
     imo = args.get('instance_mask_overlay', False)
     make_visuals = (bm | bmo | imo)
 
-    iou_thresh = 0.2
-    prob_thresh = 0.5
     if run_ext:
         if not os.path.isdir(extracted):
             print("Extracted dir does not exist! Making extracted dir...")

@@ -100,8 +100,9 @@ To run inference on your dataset:
 The final ensembled predictions will be saved in COCO Instance Segmentation format in `coco_instances_results.json` in the output directory. The output directory will also be populated with five folders with the preffix 'fold' which contain predictions from the individual models of the ensemble.
 
 ### SUMMARY TABLES and VISUAL OUTPUT
-Tables and images can be created from the predictions and written to the output directory.
-These tables can be created by setting `create_tables` to `True`:
+Tables and images can be created from the predictions and written to the output directory. A confidence threshold of 0.5 is applied to the scored predictions by default. To change the threshold, set the `prob_thresh` value between 0.0 and 1.0.
+
+The tables can be created by setting `create_tables` to `True`:
 * HTML table called `dfimg_<dataset_name>.html` indexed by OCT-B scan with columns listing the detected number of RPD <em>instances</em> (dt_instances), <em>pixels</em> (dt_pixels), and <em>horizontal pixels</em> (dt_xpxs) in that B-scan.
 * HTML table called `dfvol_<dataset_name>.html` indexed by OCT volume with columns listing the detected number of RPD <em>instances</em> (dt_instances), <em>pixels</em> (dt_pixels), and <em>horizontal pixels</em> (dt_xpxs) in that volume.
 

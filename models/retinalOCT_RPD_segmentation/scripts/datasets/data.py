@@ -93,7 +93,7 @@ def rpd_data(extracted_path):
     dataset = []
     instances = 0
     wrong_poly = 0
-    extracted_files = glob.glob(os.path.join(extracted_path,'**/*.png'),recursive=True)
+    extracted_files = glob.glob(os.path.join(extracted_path,'**/*.[Pp][Nn][Gg]'),recursive=True)
     print("Generating dataset of images...")
     for fn in tqdm(extracted_files):
         fn_adjusted = fn.replace('\\','/')
