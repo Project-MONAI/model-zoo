@@ -23,18 +23,18 @@
     "num_output_samples": 1,
     "body_region": [],
     "anatomy_list": [
-        "hepatic tumor"
+        "liver"
     ],
     "modality": "ct",
     "controllable_anatomy_size": [],
     "num_inference_steps": 30,
     "mask_generation_num_inference_steps": 1000,
-    "random_seed": 10,
+    "random_seed": null,
     "spatial_dims": 3,
     "image_channels": 1,
     "latent_channels": 4,
-    "output_size_xy": 256,
-    "output_size_z": 256,
+    "output_size_xy": 512,
+    "output_size_z": 512,
     "output_size": [
         "@output_size_xy",
         "@output_size_xy",
@@ -42,8 +42,8 @@
     ],
     "image_output_ext": ".nii.gz",
     "label_output_ext": ".nii.gz",
-    "spacing_xy": 1.5,
-    "spacing_z": 1.5,
+    "spacing_xy": 1.0,
+    "spacing_z": 1.0,
     "spacing": [
         "@spacing_xy",
         "@spacing_xy",
