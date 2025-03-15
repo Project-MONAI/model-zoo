@@ -27,12 +27,7 @@ from tqdm import tqdm
 from .augmentation import augmentation
 from .find_masks import find_masks
 from .quality_check import is_outlier
-from .utils import (
-    binarize_labels,
-    dynamic_infer,
-    general_mask_generation_post_process,
-    remap_labels,
-)
+from .utils import binarize_labels, dynamic_infer, general_mask_generation_post_process, remap_labels
 
 modality_mapping = {
     "unknown": 0,
@@ -393,7 +388,12 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
             f"spacing[0] have to be between 0.5 and 3.0 mm, spacing[2] have to be between 0.5 and 5.0 mm, yet got {spacing}."
         )
 
-    if output_size[0] * spacing[0] < 256 or output_size[2] * spacing[2] < 128 or output_size[0] * spacing[0] >640 or output_size[2] * spacing[2] > 2000:
+    if (
+        output_size[0] * spacing[0] < 256
+        or output_size[2] * spacing[2] < 128
+        or output_size[0] * spacing[0] > 640
+        or output_size[2] * spacing[2] > 2000
+    ):
         fov = [output_size[axis] * spacing[axis] for axis in range(3)]
         raise ValueError(
             (
@@ -458,9 +458,7 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
         )
     else:
         logging.info(
-            (
-                f"`controllable_anatomy_size` is empty.\nWe will synthesize based on `anatomy_list`: ({anatomy_list})."
-            )
+            (f"`controllable_anatomy_size` is empty.\nWe will synthesize based on `anatomy_list`: ({anatomy_list}).")
         )
         # check body_region format
         available_body_region = ["head", "chest", "thorax", "abdomen", "pelvis", "lower"]
@@ -647,12 +645,7 @@ class LDMSampler:
             need_resample = False
             # find candidate mask and save to candidate_mask_files
             candidate_mask_files = find_masks(
-                self.anatomy_list,
-                self.spacing,
-                self.output_size,
-                True,
-                self.all_mask_files_json,
-                self.data_root,
+                self.anatomy_list, self.spacing, self.output_size, True, self.all_mask_files_json, self.data_root
             )
             if len(candidate_mask_files) < num_img:
                 # if we cannot find enough masks based on the exact match of anatomy list, spacing, and output size,
@@ -679,16 +672,12 @@ class LDMSampler:
             logging.info(f"Image will be generated based on {item}.")
             if len(self.controllable_anatomy_size) > 0:
                 # generate a synthetic mask
-                (combine_label_or, spacing_tensor) = (
-                    self.prepare_one_mask_and_meta_info(anatomy_size_condtion)
-                )
+                (combine_label_or, spacing_tensor) = self.prepare_one_mask_and_meta_info(anatomy_size_condtion)
             else:
                 # read in mask file
                 mask_file = item["mask_file"]
                 if_aug = item["if_aug"]
-                (combine_label_or, spacing_tensor) = (
-                    self.read_mask_information(mask_file)
-                )
+                (combine_label_or, spacing_tensor) = self.read_mask_information(mask_file)
                 if need_resample:
                     combine_label_or = self.ensure_output_size_and_spacing(combine_label_or)
                 # mask augmentation
@@ -702,20 +691,18 @@ class LDMSampler:
             try_time = 0
             modality_tensor = torch.ones_like(spacing_tensor[:, 0]).long() * self.modality_int
             # start generation
-            synthetic_images, synthetic_labels = self.sample_one_pair(
-                combine_label_or, modality_tensor, spacing_tensor
-            )
+            synthetic_images, synthetic_labels = self.sample_one_pair(combine_label_or, modality_tensor, spacing_tensor)
             # synthetic image quality check
             pass_quality_check = self.quality_check(
                 synthetic_images.cpu().detach().numpy(), combine_label_or.cpu().detach().numpy()
             )
-            if pass_quality_check or (num_img - num_generated_img)>=(len(selected_mask_files)-index_s):
+            if pass_quality_check or (num_img - num_generated_img) >= (len(selected_mask_files) - index_s):
                 if not pass_quality_check:
                     logging.info(
-                    "Generated image/label pair did not pass quality check, but will still save them. "
-                    "Please consider changing spacing and output_size to facilitate a more realistic setting."
-                )
-                num_generated_img = num_generated_img +1
+                        "Generated image/label pair did not pass quality check, but will still save them. "
+                        "Please consider changing spacing and output_size to facilitate a more realistic setting."
+                    )
+                num_generated_img = num_generated_img + 1
                 # save image/label pairs
                 output_postfix = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
                 synthetic_labels.meta["filename_or_obj"] = "sample.nii.gz"
@@ -745,9 +732,7 @@ class LDMSampler:
                 output_filenames.append([synthetic_images_filename, synthetic_labels_filename])
                 to_generate = False
             else:
-                logging.info(
-                    "Generated image/label pair did not pass quality check, will re-generate another pair."
-                )
+                logging.info("Generated image/label pair did not pass quality check, will re-generate another pair.")
         return output_filenames
 
     def select_mask(self, candidate_mask_files, num_img):
@@ -764,7 +749,7 @@ class LDMSampler:
         selected_mask_files = []
         random.shuffle(candidate_mask_files)
 
-        for n in range(num_img*self.max_try_time):
+        for n in range(num_img * self.max_try_time):
             mask_file = candidate_mask_files[n % len(candidate_mask_files)]
             selected_mask_files.append({"mask_file": mask_file, "if_aug": True})
         return selected_mask_files
@@ -961,13 +946,10 @@ class LDMSampler:
         """
         val_data = self.val_transforms(mask_file)
 
-        for key in ["pseudo_label", "spacing", ]:
+        for key in ["pseudo_label", "spacing"]:
             val_data[key] = val_data[key].unsqueeze(0).to(self.device)
 
-        return (
-            val_data["pseudo_label"],
-            val_data["spacing"],
-        )
+        return (val_data["pseudo_label"], val_data["spacing"])
 
     def find_closest_masks(self, num_img):
         """
@@ -984,12 +966,7 @@ class LDMSampler:
         """
         # first check the database based on anatomy list
         candidates = find_masks(
-            self.anatomy_list,
-            self.spacing,
-            self.output_size,
-            False,
-            self.all_mask_files_json,
-            self.data_root,
+            self.anatomy_list, self.spacing, self.output_size, False, self.all_mask_files_json, self.data_root
         )
 
         if len(candidates) < num_img:
@@ -1001,12 +978,14 @@ class LDMSampler:
             diff = 0
             include_c = True
             for axis in range(3):
-                if abs(c["dim"][axis]) < self.output_size[axis]-64:
+                if abs(c["dim"][axis]) < self.output_size[axis] - 64:
                     # we cannot upsample the mask too much
                     include_c = False
                     break
                 # check diff in FOV, major metric
-                diff += abs((abs(c["dim"][axis]*c["spacing"][axis]) - self.output_size[axis]*self.spacing[axis]) / 10)
+                diff += abs(
+                    (abs(c["dim"][axis] * c["spacing"][axis]) - self.output_size[axis] * self.spacing[axis]) / 10
+                )
                 # check diff in dim
                 diff += abs((abs(c["dim"][axis]) - self.output_size[axis]) / 100)
                 # check diff in spacing
