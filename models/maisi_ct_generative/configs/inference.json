@@ -248,7 +248,7 @@
         "num_train_timesteps": 1000,
         "use_discrete_timesteps": false,
         "use_timestep_transform": true,
-        "sample_method": "logit-normal",
+        "sample_method": "uniform",
         "scale": 1.2
     },
     "mask_generation_noise_scheduler": {
