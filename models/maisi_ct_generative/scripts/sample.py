@@ -688,7 +688,6 @@ class LDMSampler:
             torch.cuda.empty_cache()
             # generate image/label pairs
             to_generate = True
-            try_time = 0
             modality_tensor = torch.ones_like(spacing_tensor[:, 0]).long() * self.modality_int
             # start generation
             synthetic_images, synthetic_labels = self.sample_one_pair(combine_label_or, modality_tensor, spacing_tensor)
