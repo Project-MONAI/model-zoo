@@ -12,14 +12,6 @@ Each model directory contains:
 
 These models must be accessed directly from Hugging Face using the `huggingface_hub` and `transformers` libraries. For complete usage instructions and examples, please visit the corresponding Hugging Face model repository linked below.
 
-### Authentication
-
-Some models may require authentication with a Hugging Face token. You can set your token as an environment variable:
-
-```bash
-export HF_TOKEN=your_huggingface_token
-```
-
 ### Available Models
 
 | Model | Description | HF Repository |
