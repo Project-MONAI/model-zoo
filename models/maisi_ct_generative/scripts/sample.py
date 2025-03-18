@@ -687,7 +687,6 @@ class LDMSampler:
             logging.info(f"---- Mask preparation time: {end_time - start_time} seconds ----")
             torch.cuda.empty_cache()
             # generate image/label pairs
-            to_generate = True
             modality_tensor = torch.ones_like(spacing_tensor[:, 0]).long() * self.modality_int
             # start generation
             synthetic_images, synthetic_labels = self.sample_one_pair(combine_label_or, modality_tensor, spacing_tensor)
@@ -729,7 +728,6 @@ class LDMSampler:
                     self.output_dir, "sample_" + output_postfix + "_label" + self.label_output_ext
                 )
                 output_filenames.append([synthetic_images_filename, synthetic_labels_filename])
-                to_generate = False
             else:
                 logging.info("Generated image/label pair did not pass quality check, will re-generate another pair.")
         return output_filenames
