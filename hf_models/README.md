@@ -20,4 +20,4 @@ These models must be accessed directly from Hugging Face using the `huggingface_
 | llama3_vila_m3_3b | Lightweight medical vision language model that enhances VLMs with medical expert knowledge (3B parameters) | [MONAI/Llama3-VILA-M3-3B](https://huggingface.co/MONAI/Llama3-VILA-M3-3B) |
 | llama3_vila_m3_8b | Medical vision language model that utilizes domain-expert models to improve precision in medical imaging tasks (8B parameters) | [MONAI/Llama3-VILA-M3-8B](https://huggingface.co/MONAI/Llama3-VILA-M3-8B) |
 | llama3_vila_m3_13b | Enhanced medical vision language model with improved capabilities for various medical imaging tasks (13B parameters) | [MONAI/Llama3-VILA-M3-13B](https://huggingface.co/MONAI/Llama3-VILA-M3-13B) |
-| ct_rate | Pioneering dataset of chest CT volumes paired with radiology reports, multi-abnormality labels, and metadata | [ibrahimhamamci/CT_RATE](https://huggingface.co/datasets/ibrahimhamamci/CT_RATE) |
+| ct_rate | Pioneering dataset of chest CT volumes paired with radiology reports, multi-abnormality labels, and metadata | [ibrahimhamamci/CT-RATE](https://huggingface.co/datasets/ibrahimhamamci/CT-RATE) |
