@@ -1,0 +1,36 @@
+{
+    "version": "1.0.0",
+    "changelog": {
+        "1.0.0": "initial release of CT-RATE dataset"
+    },
+    "monai_version": "1.4.0",
+    "pytorch_version": "2.4.0",
+    "numpy_version": "1.24.4",
+    "required_packages_version": {
+        "torch": "2.4.0",
+        "nibabel": "5.2.1",
+        "pandas": "2.2.1",
+        "huggingface_hub": "0.24.2",
+        "datasets": "2.18.0"
+    },
+    "supported_apps": {
+        "ct-clip": "",
+        "ct-chat": ""
+    },
+    "name": "CT-RATE",
+    "task": "3D Chest CT multimodal dataset",
+    "description": "CT-RATE is a pioneering dataset of 25,692 non-contrast chest CT volumes (expanded to 50,188 through various reconstructions) paired with corresponding radiology text reports, multi-abnormality labels, and metadata from 21,304 unique patients.",
+    "authors": "Ibrahim Ethem Hamamci, Sezgin Er, Furkan Almas, et al.",
+    "copyright": "Ibrahim Ethem Hamamci and collaborators",
+    "data_source": "CT-RATE dataset",
+    "data_type": "3D CT volumes and text",
+    "image_classes": "3D chest CT volumes with various abnormalities",
+    "huggingface_dataset_id": "ibrahimhamamci/CT-RATE",
+    "huggingface_url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+    "intended_use": "Research and development of AI models for 3D CT analysis",
+    "references": [
+        "Hamamci, Ibrahim Ethem, et al. 'Developing Generalist Foundation Models from a Multimodal Dataset for 3D Computed Tomography.' arXiv preprint arXiv:2403.17834 (2024).",
+        "Hamamci, Ibrahim Ethem, et al. 'GenerateCT: Text-Conditional Generation of 3D Chest CT Volumes.' arXiv preprint arXiv:2305.16037 (2024).",
+        "Hamamci, Ibrahim Ethem, et al. 'CT2Rep: Automated Radiology Report Generation for 3D Medical Imaging.' arXiv preprint arXiv:2403.06801 (2024)."
+    ]
+}

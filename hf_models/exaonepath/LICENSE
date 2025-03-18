@@ -1,0 +1,34 @@
+EXAONEPath AI Model License Agreement 1.0 - NC
+
+This EXAONEPath AI Model License Agreement (the "Agreement") is entered into by and between LG AI Research ("Licensor") and the individual or entity exercising the rights under this Agreement ("Licensee").
+
+1. Definitions
+   a. "Model" means the EXAONEPath AI Model, a machine learning model, including all associated weights, parameters, and other components.
+   b. "Commercial Use" means any use of the Model primarily intended for or directed toward commercial advantage or monetary compensation.
+
+2. License Grant
+   Subject to the terms and conditions of this Agreement, Licensor hereby grants to Licensee a worldwide, non-exclusive, non-transferable, non-sublicensable, royalty-free license to use, reproduce, and create derivative works of the Model for non-commercial purposes only.
+
+3. Restrictions
+   a. Commercial Use is not permitted under this license.
+   b. Licensee shall not use the Model in connection with any illegal, harmful, fraudulent, infringing, or offensive use.
+   c. Licensee shall not use the Model to create, train, or improve any foundation models.
+   d. Licensee shall not rent, lease, lend, sell, redistribute, or sublicense the Model.
+
+4. Disclaimer of Warranties
+   THE MODEL IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+5. Limitation of Liability
+   IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE MODEL OR THE USE OR OTHER DEALINGS IN THE MODEL.
+
+6. Attribution
+   Any use of the Model shall include appropriate attribution to LG AI Research and reference to the research paper: "EXAONEPath 1.0 Patch-level Foundation Model for Pathology" (https://arxiv.org/abs/2408.00380).
+
+7. Termination
+   This Agreement will terminate automatically if Licensee breaches any of its terms.
+
+8. Governing Law
+   This Agreement shall be governed by and construed in accordance with the laws of South Korea, without regard to its conflict of law provisions.
+
+9. Entire Agreement
+   This Agreement constitutes the entire agreement between the parties with respect to the use of the Model.
