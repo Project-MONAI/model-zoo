@@ -4,12 +4,9 @@ This directory contains models that are hosted on Hugging Face. **Important: The
 
 Each model directory contains:
 
-1. `configs/metadata.json` - Model metadata following a similar schema to MONAI Bundles
-2. `configs/inference.json` - Configuration that references the HF model but may not be directly executable
-3. `configs/logging.conf` - Logging configuration
-4. `docs/README.md` - Detailed documentation about the model
-5. `large_files.yml` - References the Hugging Face model repository
-6. `LICENSE` - Model license
+1. `metadata.json` - Model metadata following a similar schema to MONAI Bundles
+2. `README.md` - Detailed documentation about the model
+3. `LICENSE` - Model license
 
 ## Using HF Models
 
@@ -28,7 +25,7 @@ export HF_TOKEN=your_huggingface_token
 | Model | Description | HF Repository |
 |-------|-------------|--------------|
 | exaonepath | EXAONEPath is a patch-level pathology pretrained model with 86 million parameters | [LGAI-EXAONE/EXAONEPath](https://huggingface.co/LGAI-EXAONE/EXAONEPath) |
-| llama3-vila-m3-3b | Lightweight medical visual language model based on VILA and Llama 3 (3B parameters) | [MONAI/Llama3-VILA-M3-3B](https://huggingface.co/MONAI/Llama3-VILA-M3-3B) |
-| llama3-vila-m3-8b | Medical visual language model based on VILA and Llama 3 that supports medical image analysis | [MONAI/Llama3-VILA-M3-8B](https://huggingface.co/MONAI/Llama3-VILA-M3-8B) |
-| llama3-vila-m3-13b | Enhanced medical visual language model based on VILA and Llama 3 with improved reasoning capabilities (13B parameters) | [MONAI/Llama3-VILA-M3-13B](https://huggingface.co/MONAI/Llama3-VILA-M3-13B) |
-| ct-rate | Pioneering dataset of chest CT volumes paired with radiology reports, multi-abnormality labels, and metadata | [ibrahimhamamci/CT-RATE](https://huggingface.co/datasets/ibrahimhamamci/CT-RATE) |
+| llama3_vila_m3_3b | Lightweight medical vision language model that enhances VLMs with medical expert knowledge (3B parameters) | [MONAI/Llama3-VILA-M3-3B](https://huggingface.co/MONAI/Llama3-VILA-M3-3B) |
+| llama3_vila_m3_8b | Medical vision language model that utilizes domain-expert models to improve precision in medical imaging tasks (8B parameters) | [MONAI/Llama3-VILA-M3-8B](https://huggingface.co/MONAI/Llama3-VILA-M3-8B) |
+| llama3_vila_m3_13b | Enhanced medical vision language model with improved capabilities for various medical imaging tasks (13B parameters) | [MONAI/Llama3-VILA-M3-13B](https://huggingface.co/MONAI/Llama3-VILA-M3-13B) |
+| ct_rate | Pioneering dataset of chest CT volumes paired with radiology reports, multi-abnormality labels, and metadata | [ibrahimhamamci/CT_RATE](https://huggingface.co/datasets/ibrahimhamamci/CT_RATE) |

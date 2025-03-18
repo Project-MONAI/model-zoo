@@ -8,15 +8,15 @@ tags:
 - multimodal
 ---
 
-# CT-RATE Dataset
+# CT_RATE Dataset
 
 ## [Developing Generalist Foundation Models from a Multimodal Dataset for 3D Computed Tomography](https://arxiv.org/abs/2403.17834)
 
-CT-RATE is a pioneering dataset in 3D medical imaging that uniquely pairs textual data with image data focused on chest CT volumes. The dataset comprises chest CT volumes paired with corresponding radiology text reports, multi-abnormality labels, and metadata, all freely accessible to researchers.
+CT_RATE is a pioneering dataset in 3D medical imaging that uniquely pairs textual data with image data focused on chest CT volumes. The dataset comprises chest CT volumes paired with corresponding radiology text reports, multi-abnormality labels, and metadata, all freely accessible to researchers.
 
 ## Dataset Overview
 
-CT-RATE consists of 25,692 non-contrast chest CT volumes, expanded to 50,188 through various reconstructions, from 21,304 unique patients, along with corresponding radiology text reports, multi-abnormality labels, and metadata.
+CT_RATE consists of 25,692 non-contrast chest CT volumes, expanded to 50,188 through various reconstructions, from 21,304 unique patients, along with corresponding radiology text reports, multi-abnormality labels, and metadata.
 
 The dataset is divided into:
 - Training set: 20,000 patients
@@ -43,7 +43,7 @@ A multimodal AI assistant designed to enhance the interpretation and diagnostic 
 
 ## Terms and Conditions
 
-Users of the CT-RATE dataset must agree to the [Terms and Conditions](https://huggingface.co/datasets/ibrahimhamamci/CT-RATE) which specify:
+Users of the CT_RATE dataset must agree to the [Terms and Conditions](https://huggingface.co/datasets/ibrahimhamamci/CT_RATE) which specify:
 
 - The dataset is intended solely for academic, research, and educational purposes
 - Any commercial exploitation is forbidden without permission
