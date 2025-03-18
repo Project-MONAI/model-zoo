@@ -1,9 +1,9 @@
 large_files:
-- path: "models/autoencoder_epoch273.pt"
+- path: "models/autoencoder.pt"
   url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_maisi_autoencoder_epoch273_alternative.pt"
   hash_val: "917cfb1e49631c8a713e3bb7c758fbca"
   hash_type: "md5"
-- path: "models/diff_unet_ckpt.pt"
+- path: "models/diff_unet.pt"
   url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/diff_unet_ckpt_rflow_epoch19350.pt"
   hash_val: "10501d59a3066802087c82ebd7a71719"
   hash_type: "md5"
