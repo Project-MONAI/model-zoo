@@ -11,9 +11,6 @@
         "huggingface_hub": "0.24.2",
         "transformers": "4.43.3"
     },
-    "supported_apps": {
-        "vila_m3": ""
-    },
     "name": "VILA_M3_13B",
     "task": "Medical vision-language model",
     "description": "VILA_M3 is a medical vision language model that enhances VLMs with medical expert knowledge, utilizing domain-expert models to improve precision in medical imaging tasks.",

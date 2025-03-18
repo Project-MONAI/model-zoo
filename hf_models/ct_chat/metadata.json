@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "changelog": {
-        "1.0.0": "initial release of CT_RATE dataset"
+        "1.0.0": "initial release of CT_CHAT model"
     },
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
@@ -17,17 +17,17 @@
         "ct_clip": "",
         "ct_chat": ""
     },
-    "name": "CT_RATE",
-    "task": "3D Chest CT multimodal dataset",
-    "description": "CT_RATE is a pioneering dataset of 25,692 non-contrast chest CT volumes (expanded to 50,188 through various reconstructions) paired with corresponding radiology text reports, multi-abnormality labels, and metadata from 21,304 unique patients.",
+    "name": "CT_CHAT",
+    "task": "Vision-language foundational chat model for 3D chest CT volumes",
+    "description": "CT-CHAT is a multimodal AI assistant designed to enhance the interpretation and diagnostic capabilities of 3D chest CT imaging. Building on the strong foundation of CT-CLIP, it integrates both visual and language processing to handle diverse tasks like visual question answering, report generation, and multiple-choice questions. Trained on over 2.7 million question-answer pairs from CT-RATE, it leverages 3D spatial information, making it superior to 2D-based models.",
     "authors": "Ibrahim Ethem Hamamci, Sezgin Er, Furkan Almas, et al.",
     "copyright": "Ibrahim Ethem Hamamci and collaborators",
-    "data_source": "CT_RATE dataset",
+    "data_source": "CT-RATE dataset",
     "data_type": "3D CT volumes and text",
-    "image_classes": "3D chest CT volumes with various abnormalities",
+    "image_classes": "3D chest CT volumes with radiology reports and Q&A",
     "huggingface_dataset_id": "ibrahimhamamci/CT-RATE",
     "huggingface_url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
-    "intended_use": "Research and development of AI models for 3D CT analysis",
+    "intended_use": "Research on multimodal medical AI assistants for radiology interpretation and diagnosis",
     "references": [
         "Hamamci, Ibrahim Ethem, et al. 'Developing Generalist Foundation Models from a Multimodal Dataset for 3D Computed Tomography.' arXiv preprint arXiv:2403.17834 (2024).",
         "Hamamci, Ibrahim Ethem, et al. 'GenerateCT: Text-Conditional Generation of 3D Chest CT Volumes.' arXiv preprint arXiv:2305.16037 (2024).",
