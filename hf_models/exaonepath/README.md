@@ -17,8 +17,8 @@ tags:
 
 
 ## Introduction
-We introduce EXAONEPath, a patch-level pathology pretrained model with 86 million parameters. 
-The model was pretrained on 285,153,903 patches extracted from a total of 34,795 WSIs. 
+We introduce EXAONEPath, a patch-level pathology pretrained model with 86 million parameters.
+The model was pretrained on 285,153,903 patches extracted from a total of 34,795 WSIs.
 EXAONEPath demonstrates superior performance considering the number of WSIs used and the model's parameter count.
 
 

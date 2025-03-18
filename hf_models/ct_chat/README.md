@@ -57,32 +57,32 @@ When using this model, please consider citing the following related papers:
 
 ```bibtex
 @misc{hamamci2024foundation,
-      title={Developing Generalist Foundation Models from a Multimodal Dataset for 3D Computed Tomography}, 
+      title={Developing Generalist Foundation Models from a Multimodal Dataset for 3D Computed Tomography},
       author={Ibrahim Ethem Hamamci and Sezgin Er and Furkan Almas and Ayse Gulnihan Simsek and Sevval Nil Esirgun and Irem Dogan and Muhammed Furkan Dasdelen and Omer Faruk Durugol and Bastian Wittmann and Tamaz Amiranashvili and Enis Simsar and Mehmet Simsar and Emine Bensu Erdemir and Abdullah Alanbay and Anjany Sekuboyina and Berkan Lafci and Christian Bluethgen and Mehmet Kemal Ozdemir and Bjoern Menze},
       year={2024},
       eprint={2403.17834},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2403.17834}, 
+      url={https://arxiv.org/abs/2403.17834},
 }
 
 @misc{hamamci2024generatect,
-      title={GenerateCT: Text-Conditional Generation of 3D Chest CT Volumes}, 
+      title={GenerateCT: Text-Conditional Generation of 3D Chest CT Volumes},
       author={Ibrahim Ethem Hamamci and Sezgin Er and Anjany Sekuboyina and Enis Simsar and Alperen Tezcan and Ayse Gulnihan Simsek and Sevval Nil Esirgun and Furkan Almas and Irem Dogan and Muhammed Furkan Dasdelen and Chinmay Prabhakar and Hadrien Reynaud and Sarthak Pati and Christian Bluethgen and Mehmet Kemal Ozdemir and Bjoern Menze},
       year={2024},
       eprint={2305.16037},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2305.16037}, 
+      url={https://arxiv.org/abs/2305.16037},
 }
 
 @misc{hamamci2024ct2rep,
-      title={CT2Rep: Automated Radiology Report Generation for 3D Medical Imaging}, 
+      title={CT2Rep: Automated Radiology Report Generation for 3D Medical Imaging},
       author={Ibrahim Ethem Hamamci and Sezgin Er and Bjoern Menze},
       year={2024},
       eprint={2403.06801},
       archivePrefix={arXiv},
       primaryClass={eess.IV},
-      url={https://arxiv.org/abs/2403.06801}, 
+      url={https://arxiv.org/abs/2403.06801},
 }
 ```

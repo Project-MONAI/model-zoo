@@ -29,5 +29,6 @@
     "huggingface_url": "https://huggingface.co/LGAI-EXAONE/EXAONEPath",
     "intended_use": "Research and clinical support for pathology image analysis",
     "references": [
-        "Yun, Juseung, et al. 'EXAONEPath 1.0 Patch-level Foundation Model for Pathology', arXiv preprint arXiv:2408.00380 (2024)."]
+        "Yun, Juseung, et al. 'EXAONEPath 1.0 Patch-level Foundation Model for Pathology', arXiv preprint arXiv:2408.00380 (2024)."
+    ]
 }
