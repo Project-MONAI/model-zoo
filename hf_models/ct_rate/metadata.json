@@ -25,8 +25,8 @@
     "data_source": "CT_RATE dataset",
     "data_type": "3D CT volumes and text",
     "image_classes": "3D chest CT volumes with various abnormalities",
-    "huggingface_dataset_id": "ibrahimhamamci/CT_RATE",
-    "huggingface_url": "https://huggingface.co/datasets/ibrahimhamamci/CT_RATE",
+    "huggingface_dataset_id": "ibrahimhamamci/CT-RATE",
+    "huggingface_url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
     "intended_use": "Research and development of AI models for 3D CT analysis",
     "references": [
         "Hamamci, Ibrahim Ethem, et al. 'Developing Generalist Foundation Models from a Multimodal Dataset for 3D Computed Tomography.' arXiv preprint arXiv:2403.17834 (2024).",

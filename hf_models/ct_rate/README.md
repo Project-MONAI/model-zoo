@@ -43,7 +43,7 @@ A multimodal AI assistant designed to enhance the interpretation and diagnostic 
 
 ## Terms and Conditions
 
-Users of the CT_RATE dataset must agree to the [Terms and Conditions](https://huggingface.co/datasets/ibrahimhamamci/CT_RATE) which specify:
+Users of the CT_RATE dataset must agree to the [Terms and Conditions](https://huggingface.co/datasets/ibrahimhamamci/CT-RATE) which specify:
 
 - The dataset is intended solely for academic, research, and educational purposes
 - Any commercial exploitation is forbidden without permission
