@@ -59,36 +59,44 @@ def update_model_info(
         return (False, f"Download large files error: {e}")
 
     # step 2
-    # get the latest version
     bundle_metadata_path = os.path.join(temp_path, "configs/metadata.json")
     metadata = get_json_dict(bundle_metadata_path)
     latest_version = metadata["version"]
+    bundle_zip_name = f"{bundle_name}_v{latest_version}.zip"
+    bundle_name_with_version = f"{bundle_name}_v{latest_version}"
+    zipfile_path = os.path.join(temp_dir, bundle_zip_name)
+    try:
+        compress_bundle(root_path=temp_dir, bundle_name=bundle_name, bundle_zip_name=bundle_zip_name)
+    except Exception as e:
+        return (False, f"Compress bundle error: {e}")
+
+    hash_func = get_hash_func(hash_type="sha1")
+    checksum = get_checksum(dst_path=zipfile_path, hash_func=hash_func)
 
     # step 3
     # check if uploading a new bundle
     model_info_path = os.path.join(models_path, model_info_file)
     model_info = get_json_dict(model_info_path)
+    existing_bundle_list = get_existing_bundle_list(model_info)
     exist_flag = False
-    # check if the bundle has been created in huggingface
-    for k in model_info.keys():
-        if bundle_name in k:
-            version_info = model_info[k]
-            if "https://huggingface.co/" in version_info["source"]:
-                exist_flag = True
-                break
+    if bundle_name in existing_bundle_list:
+        exist_flag = True
     try:
         source = upload_bundle(
-            bundle_name=bundle_name, version=latest_version, root_path=temp_dir, exist_flag=exist_flag, org_name="MONAI"
+            bundle_name=bundle_name,
+            version=latest_version,
+            root_path=temp_dir,
+            bundle_zip_name=bundle_zip_name,
+            exist_flag=exist_flag,
         )
     except Exception as e:
         return (False, f"Upload bundle error: {e}")
 
     # step 4
-    bundle_name_with_version = f"{bundle_name}_v{latest_version}"
     if bundle_name_with_version not in model_info.keys():
         model_info[bundle_name_with_version] = {"checksum": "", "source": ""}
 
-    model_info[bundle_name_with_version]["checksum"] = ""
+    model_info[bundle_name_with_version]["checksum"] = checksum
     model_info[bundle_name_with_version]["source"] = source
 
     save_model_info(model_info, model_info_path)
