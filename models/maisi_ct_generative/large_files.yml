@@ -11,7 +11,7 @@ large_files:
   url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_maisi_controlnet-20datasets-e20wl100fold0bc_noi_dia_fsize_current_alternative.pt"
   hash_val: "6c36572335372f405a0e85c760fa6dee"
   hash_type: "md5"
-- path: "models/diff_unet.pt"
+- path: "models/diffusion_unet.pt"
   url: "https://developer.download.nvidia.com/assets/Clara/monai/tutorials/diff_unet_ckpt_rflow_epoch19350.pt"
   hash_val: "10501d59a3066802087c82ebd7a71719"
   hash_type: "md5"
