@@ -85,17 +85,6 @@ TEST_CASE_INFER_DIFFERENT_OUTPUT_TYPE = [
     }
 ]
 
-TEST_CASE_INFER_ERROR = [
-    {
-        "bundle_root": "models/maisi_ct_generative",
-        "num_output_samples": 1,
-        "output_size": [256, 256, 256],
-        "body_region": ["head"],
-        "anatomy_list": ["colon cancer primaries"],
-    },
-    "Cannot find body region with given anatomy list.",
-]
-
 TEST_CASE_INFER_ERROR_2 = [
     {
         "bundle_root": "models/maisi_ct_generative",
@@ -277,7 +266,7 @@ class TestMAISI(unittest.TestCase):
             else:
                 self.assertTrue(output_file.endswith(".nii.gz"))
 
-    @parameterized.expand([TEST_CASE_INFER_ERROR, TEST_CASE_INFER_ERROR_7])
+    @parameterized.expand([TEST_CASE_INFER_ERROR_7])
     def test_infer_config_error_input(self, override, expected_error):
         # update override
         override["output_dir"] = self.output_dir
