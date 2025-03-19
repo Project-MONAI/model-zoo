@@ -1798,5 +1798,17 @@
     "maisi_ct_generative_v0.4.6": {
         "checksum": "95c9552e4bc421d1533872c7cb9d27969cec685f",
         "source": "https://api.ngc.nvidia.com/v2/models/nvidia/monaihosting/maisi_ct_generative/versions/0.4.6/files/maisi_ct_generative_v0.4.6.zip"
+    },
+    "cxr_image_synthesis_latent_diffusion_model_v1.0.0": {
+        "checksum": "47b66d3325b582ed23f6583e7f95982424914185",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/cxr_image_synthesis_latent_diffusion_model_v1.0.0.zip"
+    },
+    "mednist_ddpm_v1.0.0": {
+        "checksum": "e01b9d8b5bfe961ee4b3cfc54bf0574954a84569",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/mednist_ddpm_v1.0.0.zip"
+    },
+    "brain_image_synthesis_latent_diffusion_model_v1.0.0": {
+        "checksum": "6c39a58e1645c7fec8e433cf21eb39b35c1a900a",
+        "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brain_image_synthesis_latent_diffusion_model_v1.0.0.zip"
     }
 }
