@@ -15,12 +15,8 @@ import shutil
 import tempfile
 
 from utils import (
-    compress_bundle,
     download_large_files,
     get_changed_bundle_list,
-    get_checksum,
-    get_existing_bundle_list,
-    get_hash_func,
     get_json_dict,
     save_model_info,
     submit_pull_request,

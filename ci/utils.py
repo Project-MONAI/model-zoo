@@ -15,7 +15,6 @@ import json
 import os
 import re
 import shutil
-import subprocess
 from typing import List
 
 from huggingface_hub import HfApi
