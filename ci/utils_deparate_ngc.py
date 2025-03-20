@@ -15,9 +15,9 @@ import json
 import os
 import re
 import shutil
+import subprocess
 from typing import List
 
-from huggingface_hub import HfApi
 from monai.apps.utils import download_url
 from monai.bundle.config_parser import ConfigParser
 from monai.utils import look_up_option, optional_import
@@ -156,6 +156,19 @@ def submit_pull_request(model_info_path: str):
     repo.create_pull(title=pr_title, body=pr_description, head=new_branch.ref, base=default_branch)
 
 
+def compress_bundle(root_path: str, bundle_name: str, bundle_zip_name: str):
+    touch_cmd = f"find {bundle_name} -exec touch -t 202205300000 " + "{} +"
+    zip_cmd = f"zip -rq -D -X -9 -A --compression-method deflate {bundle_zip_name} {bundle_name}"
+    subprocess.check_call(f"{touch_cmd}; {zip_cmd}", shell=True, cwd=root_path)
+
+
+def get_checksum(dst_path: str, hash_func):
+    with open(dst_path, "rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            hash_func.update(chunk)
+    return hash_func.hexdigest()
+
+
 def split_bundle_name_version(bundle_name: str):
     pattern_version = re.compile(r"^(.+)\_v(\d.*)$")
     matched_result = pattern_version.match(bundle_name)
@@ -174,56 +187,53 @@ def get_existing_bundle_list(model_info):
     return all_bundle_names
 
 
-def create_bundle_to_huggingface(bundle_name: str, org_name: str):
-    api = HfApi()
+def create_bundle_to_ngc(bundle_name: str, org_name: str):
+    options = "--short-desc '' --application '' --format '' --framework MONAI --precision ''"
+    # models in NGC need to be lowercase
+    ngc_create_cmd = f"ngc registry model create {org_name}/{bundle_name.lower()} {options}"
     try:
-        _ = api.create_repo(repo_id=f"{org_name}/{bundle_name}", repo_type="model", private=False)
-    except Exception as e:
-        if "already created" in str(e):
-            print(f"{org_name}/{bundle_name} already exists, skip creating.")
+        _ = subprocess.run(ngc_create_cmd, shell=True, check=True, stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError as e:
+        msg = e.stderr.decode("utf-8")
+        if "already exists" in msg:
+            print(f"{bundle_name} already exists, skip creating.")
+            pass
         else:
             raise e
 
 
-def upload_version_to_huggingface(bundle_name: str, version: str, root_path: str, org_name: str):
-    api = HfApi()
+def upload_version_to_ngc(bundle_name: str, version: str, root_path: str, org_name: str):
+    upload_file = f"{bundle_name}_v{version}.zip"
+    ngc_upload_cmd = (
+        f"ngc registry model upload-version --source {upload_file} {org_name}/{bundle_name.lower()}:{version}"
+    )
 
     try:
-        # if no file is changed, will skip uploading automatically
-
-        api.upload_folder(
-            folder_path=os.path.join(root_path, bundle_name),
-            repo_id=f"{org_name}/{bundle_name}",
-            repo_type="model",
-            commit_message=f"Upload {bundle_name} version {version}",
-        )
-    except Exception as e:
-        print(f"Error uploading {bundle_name} to Hugging Face: {e}")
-        raise e
-
-    # tag version
-    try:
-        api.create_tag(
-            repo_id=f"{org_name}/{bundle_name}",
-            tag=version,
-            repo_type="model",
-            tag_message=f"tag {bundle_name} version {version}",
-        )
-    except Exception as e:
-        if "Tag reference exists already" in str(e):
-            print(f"Tag {version} already exists, skip creating.")
+        _ = subprocess.run(ngc_upload_cmd, shell=True, cwd=root_path, check=True, stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError as e:
+        msg = e.stderr.decode("utf-8")
+        if "already exists" in msg:
+            print(f"{bundle_name} with version {version} already exists, skip uploading.")
+            pass
         else:
-            print(f"Error tagging {bundle_name} version {version}: {e}")
             raise e
 
 
-def upload_bundle(bundle_name: str, version: str, root_path: str, exist_flag: bool, org_name: str = "MONAI"):
+def upload_bundle(
+    bundle_name: str,
+    version: str,
+    root_path: str,
+    bundle_zip_name: str,
+    exist_flag: bool,
+    org_name: str = "nvidia/monaihosting",
+):
     if exist_flag is False:
         # need to create bundle first
-        create_bundle_to_huggingface(bundle_name=bundle_name, org_name=org_name)
+        create_bundle_to_ngc(bundle_name=bundle_name, org_name=org_name)
     # upload version
-    upload_version_to_huggingface(bundle_name=bundle_name, version=version, root_path=root_path, org_name=org_name)
+    upload_version_to_ngc(bundle_name=bundle_name, version=version, root_path=root_path, org_name=org_name)
     # access link
-    access_link = f"https://huggingface.co/{org_name}/{bundle_name}/tree/{version}"
+    site = "https://api.ngc.nvidia.com/v2/models/"
+    access_link = f"{site}{org_name}/{bundle_name.lower()}/versions/{version}/files/{bundle_zip_name}"
 
     return access_link
