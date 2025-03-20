@@ -1802,5 +1802,17 @@
     "maisi_ct_generative_v1.0.0": {
         "checksum": "",
         "source": "https://huggingface.co/MONAI/maisi_ct_generative/tree/1.0.0"
+    },
+    "brain_image_synthesis_latent_diffusion_model_v1.0.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/brain_image_synthesis_latent_diffusion_model/tree/1.0.1"
+    },
+    "cxr_image_synthesis_latent_diffusion_model_v1.0.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/cxr_image_synthesis_latent_diffusion_model/tree/1.0.1"
+    },
+    "mednist_ddpm_v1.0.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/mednist_ddpm/tree/1.0.1"
     }
 }
