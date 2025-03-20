@@ -9,9 +9,9 @@
     "output_dir": "$@bundle_root + '/output'",
     "create_output_dir": "$Path(@output_dir).mkdir(exist_ok=True)",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-    "trained_autoencoder_path": "$@model_dir + '/autoencoder_epoch273.pt'",
-    "trained_diffusion_path": "$@model_dir + '/input_unet3d_data-all_steps1000size512ddpm_random_current_inputx_v1.pt'",
-    "trained_controlnet_path": "$@model_dir + '/controlnet-20datasets-e20wl100fold0bc_noi_dia_fsize_current.pt'",
+    "trained_autoencoder_path": "$@model_dir + '/autoencoder.pt'",
+    "trained_diffusion_path": "$@model_dir + '/diffusion_unet.pt'",
+    "trained_controlnet_path": "$@model_dir + '/controlnet.pt'",
     "trained_mask_generation_autoencoder_path": "$@model_dir + '/mask_generation_autoencoder.pt'",
     "trained_mask_generation_diffusion_path": "$@model_dir + '/mask_generation_diffusion_unet.pt'",
     "all_mask_files_base_dir": "$@bundle_root + '/datasets/all_masks_flexible_size_and_spacing_3000'",
@@ -21,14 +21,13 @@
     "label_dict_remap_json": "$@bundle_root + '/configs/label_dict_124_to_132.json'",
     "real_img_median_statistics_file": "$@bundle_root + '/configs/image_median_statistics.json'",
     "num_output_samples": 1,
-    "body_region": [
-        "abdomen"
-    ],
+    "body_region": [],
     "anatomy_list": [
         "liver"
     ],
+    "modality": "ct",
     "controllable_anatomy_size": [],
-    "num_inference_steps": 1000,
+    "num_inference_steps": 30,
     "mask_generation_num_inference_steps": 1000,
     "random_seed": null,
     "spatial_dims": 3,
@@ -63,11 +62,11 @@
         64
     ],
     "autoencoder_sliding_window_infer_size": [
-        96,
-        96,
-        96
+        80,
+        80,
+        80
     ],
-    "autoencoder_sliding_window_infer_overlap": 0.6667,
+    "autoencoder_sliding_window_infer_overlap": 0.4,
     "autoencoder_def": {
         "_target_": "monai.apps.generation.maisi.networks.autoencoderkl_maisi.AutoencoderKlMaisi",
         "spatial_dims": "@spatial_dims",
@@ -96,7 +95,7 @@
         "use_checkpointing": false,
         "use_convtranspose": false,
         "norm_float16": true,
-        "num_splits": 8,
+        "num_splits": 2,
         "dim_split": 1
     },
     "diffusion_unet_def": {
@@ -124,9 +123,12 @@
         ],
         "num_res_blocks": 2,
         "use_flash_attention": true,
-        "include_top_region_index_input": true,
-        "include_bottom_region_index_input": true,
-        "include_spacing_input": true
+        "include_top_region_index_input": false,
+        "include_bottom_region_index_input": false,
+        "include_spacing_input": true,
+        "num_class_embeds": 128,
+        "resblock_updown": true,
+        "include_fc": true
     },
     "controlnet_def": {
         "_target_": "monai.apps.generation.maisi.networks.controlnet_maisi.ControlNetMaisi",
@@ -157,7 +159,10 @@
             8,
             32,
             64
-        ]
+        ],
+        "num_class_embeds": 128,
+        "resblock_updown": true,
+        "include_fc": true
     },
     "mask_generation_autoencoder_def": {
         "_target_": "monai.apps.generation.maisi.networks.autoencoderkl_maisi.AutoencoderKlMaisi",
@@ -239,12 +244,11 @@
     "load_mask_generation_diffusion": "$@mask_generation_diffusion_unet.load_state_dict(@checkpoint_mask_generation_diffusion_unet['unet_state_dict'], strict=True)",
     "mask_generation_scale_factor": "$@checkpoint_mask_generation_diffusion_unet['scale_factor']",
     "noise_scheduler": {
-        "_target_": "monai.networks.schedulers.ddpm.DDPMScheduler",
+        "_target_": "scripts.rectified_flow.RFlowScheduler",
         "num_train_timesteps": 1000,
-        "beta_start": 0.0015,
-        "beta_end": 0.0195,
-        "schedule": "scaled_linear_beta",
-        "clip_sample": false
+        "use_discrete_timesteps": false,
+        "use_timestep_transform": true,
+        "sample_method": "uniform"
     },
     "mask_generation_noise_scheduler": {
         "_target_": "monai.networks.schedulers.ddpm.DDPMScheduler",
@@ -269,6 +273,7 @@
         ],
         "body_region": "@body_region",
         "anatomy_list": "@anatomy_list",
+        "modality": "@modality",
         "all_mask_files_json": "@all_mask_files_json",
         "all_anatomy_size_condtions_json": "@all_anatomy_size_condtions_json",
         "all_mask_files_base_dir": "@all_mask_files_base_dir",
@@ -300,6 +305,7 @@
         "autoencoder_sliding_window_infer_overlap": "@autoencoder_sliding_window_infer_overlap"
     },
     "run": [
+        "$monai.utils.set_determinism(seed=@random_seed)",
         "$@ldm_sampler.sample_multiple_images(@num_output_samples)"
     ],
     "evaluator": null

@@ -53,7 +53,6 @@ def convert_body_region(body_region: str | Sequence[str]) -> Sequence[int]:
 
 
 def find_masks(
-    body_region: str | Sequence[str],
     anatomy_list: int | Sequence[int],
     spacing: Sequence[float] | float = 1.0,
     output_size: Sequence[int] = (512, 512, 512),
@@ -63,12 +62,10 @@ def find_masks(
 ):
     """
     Find candidate masks that fullfills all the requirements.
-    They shoud contain all the body region in `body_region`, all the anatomies in `anatomy_list`.
+    They shoud contain all the anatomies in `anatomy_list`.
     If there is no tumor specified in `anatomy_list`, we also expect the candidate masks to be tumor free.
     If check_spacing_and_output_size is True, the candidate masks need to have the expected `spacing` and `output_size`.
     Args:
-        body_region: list of input body region string. If single str, will be converted to list of str.
-            The found candidate mask will include these body regions.
         anatomy_list: list of input anatomy. The found candidate mask will include these anatomies.
         spacing: list of three floats, voxel spacing. If providing a single number, will use it for all the three dimensions.
         output_size: list of three int, expected candidate mask spatial size.
@@ -80,8 +77,6 @@ def find_masks(
         candidate_masks, list of dict, each dict contains information of one candidate mask that fullfills all the requirements.
     """
     # check and preprocess input
-    body_region = convert_body_region(body_region)
-
     if isinstance(anatomy_list, int):
         anatomy_list = [anatomy_list]
 
@@ -108,19 +103,8 @@ def find_masks(
         if not set(anatomy_list).issubset(_item["label_list"]):
             continue
 
-        # extract region indice (top_index and bottom_index) for candidate mask
-        top_index = [index for index, element in enumerate(_item["top_region_index"]) if element != 0]
-        top_index = top_index[0]
-        bottom_index = [index for index, element in enumerate(_item["bottom_region_index"]) if element != 0]
-        bottom_index = bottom_index[0]
-
         # whether to keep this mask, default to be True.
         keep_mask = True
-
-        # if candiate mask does not contain all the body_region, skip it
-        for _idx in body_region:
-            if _idx > bottom_index or _idx < top_index:
-                keep_mask = False
 
         for tumor_label in [23, 24, 26, 27, 128]:
             # we skip those mask with tumors if users do not provide tumor label in anatomy_list
@@ -139,8 +123,6 @@ def find_masks(
                 "pseudo_label": os.path.join(mask_foldername, _item["pseudo_label_filename"]),
                 "spacing": _item["spacing"],
                 "dim": _item["dim"],
-                "top_region_index": _item["top_region_index"],
-                "bottom_region_index": _item["bottom_region_index"],
             }
 
             # Conditionally add the label to the candidate dictionary
