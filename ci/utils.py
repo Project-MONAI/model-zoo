@@ -189,6 +189,8 @@ def upload_version_to_huggingface(bundle_name: str, version: str, root_path: str
     api = HfApi()
 
     try:
+        # if no file is changed, will skip uploading automatically
+
         api.upload_folder(
             folder_path=os.path.join(root_path, bundle_name),
             repo_id=f"{org_name}/{bundle_name}",
@@ -208,8 +210,11 @@ def upload_version_to_huggingface(bundle_name: str, version: str, root_path: str
             tag_message=f"tag {bundle_name} version {version}",
         )
     except Exception as e:
-        print(f"Error tagging {bundle_name} version {version}: {e}")
-        raise e
+        if "Tag reference exists already" in str(e):
+            print(f"Tag {version} already exists, skip creating.")
+        else:
+            print(f"Error tagging {bundle_name} version {version}: {e}")
+            raise e
 
 
 def upload_bundle(bundle_name: str, version: str, root_path: str, exist_flag: bool, org_name: str = "MONAI"):
