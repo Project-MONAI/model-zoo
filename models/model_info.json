@@ -1810,5 +1810,9 @@
     "brain_image_synthesis_latent_diffusion_model_v1.0.0": {
         "checksum": "6c39a58e1645c7fec8e433cf21eb39b35c1a900a",
         "source": "https://github.com/Project-MONAI/model-zoo/releases/download/hosting_storage_v1/brain_image_synthesis_latent_diffusion_model_v1.0.0.zip"
+    },
+    "maisi_ct_generative_v1.0.0": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/maisi_ct_generative/tree/1.0.0"
     }
 }
