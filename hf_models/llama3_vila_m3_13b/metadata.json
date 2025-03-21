@@ -1,0 +1,29 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hf_20250321.json",
+    "version": "1.0.0",
+    "changelog": {
+        "1.0.0": "initial release of VILA_M3_13B model"
+    },
+    "monai_version": "1.4.0",
+    "pytorch_version": "2.4.0",
+    "numpy_version": "1.24.4",
+    "required_packages_version": {
+        "torch": "2.4.0",
+        "huggingface_hub": "0.24.2",
+        "transformers": "4.43.3"
+    },
+    "name": "VILA_M3_13B",
+    "task": "Medical vision-language model",
+    "description": "VILA_M3 is a medical vision language model that enhances VLMs with medical expert knowledge, utilizing domain-expert models to improve precision in medical imaging tasks.",
+    "authors": "Vishwesh Nath, Wenqi Li, Dong Yang, Andriy Myronenko, et al. from NVIDIA, SingHealth, and NIH",
+    "copyright": "NVIDIA",
+    "data_source": "NVIDIA",
+    "data_type": "Medical images and text",
+    "image_classes": "Various medical imaging modalities",
+    "huggingface_model_id": "MONAI/Llama3-VILA-M3-13B",
+    "huggingface_url": "https://huggingface.co/MONAI/Llama3-VILA-M3-13B",
+    "intended_use": "Research in medical vision-language tasks",
+    "references": [
+        "Nath, Vishwesh, et al. 'VILA_M3: Enhancing Vision-Language Models with Medical Expert Knowledge', arXiv preprint arXiv:2411.12915 (2025)."
+    ]
+}

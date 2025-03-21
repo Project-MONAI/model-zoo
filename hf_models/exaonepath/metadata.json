@@ -1,0 +1,35 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hf_20250321.json",
+    "version": "1.0.0",
+    "changelog": {
+        "1.0.0": "initial release of EXAONEPath 1.0"
+    },
+    "monai_version": "1.4.0",
+    "pytorch_version": "2.4.0",
+    "numpy_version": "1.24.4",
+    "required_packages_version": {
+        "torch": "2.4.0",
+        "torchvision": "0.15.0",
+        "torchstain": "1.3.0",
+        "pillow": "10.0.0",
+        "huggingface_hub": "0.24.2",
+        "transformers": "4.43.3"
+    },
+    "supported_apps": {
+        "exaonepath": ""
+    },
+    "name": "EXAONEPath",
+    "task": "Pathology foundation model",
+    "description": "EXAONEPath is a patch-level pathology pretrained model with 86 million parameters, pretrained on 285,153,903 patches extracted from 34,795 WSIs.",
+    "authors": "LG AI Research",
+    "copyright": "LG AI Research",
+    "data_source": "LG AI Research",
+    "data_type": "WSI patches",
+    "image_classes": "RGB pathology image patches",
+    "huggingface_model_id": "LGAI-EXAONE/EXAONEPath",
+    "huggingface_url": "https://huggingface.co/LGAI-EXAONE/EXAONEPath",
+    "intended_use": "Research and clinical support for pathology image analysis",
+    "references": [
+        "Yun, Juseung, et al. 'EXAONEPath 1.0 Patch-level Foundation Model for Pathology', arXiv preprint arXiv:2408.00380 (2024)."
+    ]
+}
