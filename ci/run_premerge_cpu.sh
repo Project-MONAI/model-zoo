@@ -89,6 +89,28 @@ verify_bundle() {
     else
         echo "this pull request does not change any files in 'models', skip verify."
     fi
+    # check hf models
+    hf_model_changes=$(git diff --name-only $head_ref origin/dev -- hf_models)
+    if [ ! -z "$hf_model_changes" ]
+    then
+        # get all changed hf models
+        hf_model_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$hf_model_changes" --hf_model)
+        if [ ! -z "$hf_model_list" ]
+        then
+            python $(pwd)/ci/prepare_schema.py --l "$hf_model_list" --p "hf_models"
+            echo $hf_model_list
+            for hf_model in $hf_model_list;
+            do
+                echo "verify hf model: $hf_model"
+                # verify hf model
+                python $(pwd)/ci/verify_hf_model.py -b "$hf_model"
+            done
+        else
+            echo "this pull request does not change any hf models, skip verify."
+        fi
+    else
+        echo "this pull request does not change any hf models, skip verify."
+    fi
 }
 
 

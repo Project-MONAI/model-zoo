@@ -28,10 +28,26 @@ def get_changed_bundle(changed_dirs):
         bundle_names += f"{bundle} "
     print(bundle_names)
 
+def get_changed_hf_model(changed_dirs):
+    """
+    This function is used to get all changed hf models, a string which
+    contains all hf model names will be printed, and can be used in shell scripts.
+    """
+    hf_model_names = ""
+    root_path = "hf_models"
+    hf_model_list = get_changed_bundle_list(changed_dirs, root_path=root_path)
+    for hf_model in hf_model_list:
+        hf_model_names += f"{hf_model} "
+    print(hf_model_names)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-f", "--f", type=str, help="changed files.")
+    parser.add_argument("--hf_model", type=bool, default=False, help="if true, get changed hf models.")
     args = parser.parse_args()
     changed_dirs = args.f.splitlines()
-    get_changed_bundle(changed_dirs)
+    if args.hf_model:
+        get_changed_hf_model(changed_dirs)
+    else:
+        get_changed_bundle(changed_dirs)
