@@ -11,13 +11,9 @@
 
 import argparse
 import os
-import shutil
 import sys
 
-import torch
 from monai.bundle import verify_metadata
-from monai.bundle.config_parser import ConfigParser
-from monai.utils.module import optional_import
 from utils import get_json_dict
 
 
@@ -41,7 +37,7 @@ def verify_hf_model_directory(models_path: str, model_name: str):
 
 def verify_version_changes(models_path: str, model_name: str):
     """
-    This function is used to verify if "version" and "changelog" are correct in "configs/metadata.json".
+    This function is used to verify if "version" and "changelog" are correct in "metadata.json".
     In addition, if changing an existing hf model, a new version number should be provided.
 
     """
@@ -51,15 +47,15 @@ def verify_version_changes(models_path: str, model_name: str):
     meta_file_path = os.path.join(model_path, "metadata.json")
     metadata = get_json_dict(meta_file_path)
     if "version" not in metadata:
-        raise ValueError(f"'version' is missing in configs/metadata.json of hf model: {model_name}.")
+        raise ValueError(f"'version' is missing in metadata.json of hf model: {model_name}.")
     if "changelog" not in metadata:
-        raise ValueError(f"'changelog' is missing in configs/metadata.json of hf model: {model_name}.")
+        raise ValueError(f"'changelog' is missing in metadata.json of hf model: {model_name}.")
 
     # version number should be in changelog
     latest_version = metadata["version"]
     if latest_version not in metadata["changelog"].keys():
         raise ValueError(
-            f"version number: {latest_version} is missing in 'changelog' in configs/metadata.json of hf model: {model_name}."
+            f"version number: {latest_version} is missing in 'changelog' in metadata.json of hf model: {model_name}."
         )
 
 
@@ -69,8 +65,7 @@ def verify_metadata_format(model_path: str):
 
     """
     verify_metadata(
-        meta_file=os.path.join(model_path, "metadata.json"),
-        filepath=os.path.join(model_path, "eval/schema.json"),
+        meta_file=os.path.join(model_path, "metadata.json"), filepath=os.path.join(model_path, "eval/schema.json")
     )
 
 
@@ -97,7 +92,7 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--p", type=str, default="hf_models", help="models path.")
     parser.add_argument("-m", "--mode", type=str, default="full", help="verify model mode (full/min).")
     args = parser.parse_args()
-    model_name = args.m
+    model_name = args.b
     models_path = args.p
     mode = args.mode
     verify(model_name, models_path, mode)

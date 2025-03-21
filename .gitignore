@@ -131,3 +131,4 @@ temp/
 *.zip
 models/*/models/*
 models/*/output/*
+hf_models/*/eval/*

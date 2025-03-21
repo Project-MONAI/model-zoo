@@ -67,7 +67,7 @@ def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
     return list(set(changed_bundle_list))
 
 
-def prepare_schema(bundle_list: List[str], root_path: str = "models"):
+def prepare_schema(bundle_list: List[str], root_path: str = "models", hf_model: bool = False):
     """
     This function is used to prepare schema for changed bundles.
     Due to Github's limitation (see: https://github.com/Project-MONAI/model-zoo/issues/111),
@@ -79,7 +79,10 @@ def prepare_schema(bundle_list: List[str], root_path: str = "models"):
     for bundle_name in bundle_list:
         bundle_path = os.path.join(root_path, bundle_name)
         if os.path.exists(bundle_path):
-            meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
+            if hf_model:
+                meta_file_path = os.path.join(bundle_path, "metadata.json")
+            else:
+                meta_file_path = os.path.join(bundle_path, "configs/metadata.json")
             metadata = get_json_dict(meta_file_path)
             schema_url = metadata["schema"]
             schema_name = schema_url.split("/")[-1]

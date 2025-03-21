@@ -28,6 +28,7 @@ def get_changed_bundle(changed_dirs):
         bundle_names += f"{bundle} "
     print(bundle_names)
 
+
 def get_changed_hf_model(changed_dirs):
     """
     This function is used to get all changed hf models, a string which

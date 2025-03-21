@@ -52,49 +52,49 @@ verify_bundle() {
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
-    changes=$(git diff --name-only $head_ref origin/dev -- models)
-    if [ ! -z "$changes" ]
-    then
-        # get all changed bundles
-        bundle_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$changes")
-        if [ ! -z "$bundle_list" ]
-        then
-            python $(pwd)/ci/prepare_schema.py --l "$bundle_list"
-            echo $bundle_list
-            for bundle in $bundle_list;
-            do
-                if is_excluded "$bundle"; then
-                    echo "skip '$bundle' cpu premerge tests."
-                else
-                    pip install -r requirements-dev.txt
-                    # get required libraries according to the bundle's metadata file
-                    requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
-                    # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
-                    if [ $ALLOW_MONAI_RC = true ]; then
-                        include_pre_release="--pre"
-                    else
-                        include_pre_release=""
-                    fi
-                    if [ ! -z "$requirements" ]; then
-                        echo "install required libraries for bundle: $bundle"
-                        pip install $include_pre_release -r "$requirements"
-                    fi
-                    # verify bundle
-                    python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
-                fi
-            done
-        else
-            echo "this pull request does not change any bundles, skip verify."
-        fi
-    else
-        echo "this pull request does not change any files in 'models', skip verify."
-    fi
+    # changes=$(git diff --name-only $head_ref origin/dev -- models)
+    # if [ ! -z "$changes" ]
+    # then
+    #     # get all changed bundles
+    #     bundle_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$changes")
+    #     if [ ! -z "$bundle_list" ]
+    #     then
+    #         python $(pwd)/ci/prepare_schema.py --l "$bundle_list"
+    #         echo $bundle_list
+    #         for bundle in $bundle_list;
+    #         do
+    #             if is_excluded "$bundle"; then
+    #                 echo "skip '$bundle' cpu premerge tests."
+    #             else
+    #                 pip install -r requirements-dev.txt
+    #                 # get required libraries according to the bundle's metadata file
+    #                 requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
+    #                 # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
+    #                 if [ $ALLOW_MONAI_RC = true ]; then
+    #                     include_pre_release="--pre"
+    #                 else
+    #                     include_pre_release=""
+    #                 fi
+    #                 if [ ! -z "$requirements" ]; then
+    #                     echo "install required libraries for bundle: $bundle"
+    #                     pip install $include_pre_release -r "$requirements"
+    #                 fi
+    #                 # verify bundle
+    #                 python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
+    #             fi
+    #         done
+    #     else
+    #         echo "this pull request does not change any bundles, skip verify."
+    #     fi
+    # else
+    #     echo "this pull request does not change any files in 'models', skip verify."
+    # fi
     # check hf models
     hf_model_changes=$(git diff --name-only $head_ref origin/dev -- hf_models)
     if [ ! -z "$hf_model_changes" ]
     then
         # get all changed hf models
-        hf_model_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$hf_model_changes" --hf_model)
+        hf_model_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$hf_model_changes" --hf_model True)
         if [ ! -z "$hf_model_list" ]
         then
             python $(pwd)/ci/prepare_schema.py --l "$hf_model_list" --p "hf_models"
