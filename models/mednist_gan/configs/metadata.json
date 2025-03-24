@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20220718.json",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "changelog": {
+        "0.4.3": "update to huggingface hosting",
         "0.4.2": "add name tag",
         "0.4.1": "fix license Copyright error",
         "0.4.0": "update license files",

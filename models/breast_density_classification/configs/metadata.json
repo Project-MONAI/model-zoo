@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "changelog": {
+        "0.1.7": "update to huggingface hosting",
         "0.1.6": "Remove meta dict usage",
         "0.1.5": "Fixed duplication of input output format section",
         "0.1.4": "Changed Readme",

@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "changelog": {
+        "0.0.5": "update to huggingface hosting",
         "0.0.4": "Set image_only to False",
         "0.0.3": "Update for stable MONAI version",
         "0.0.2": "Retrain with new MONAI",
