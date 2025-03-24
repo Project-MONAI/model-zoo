@@ -2,7 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20220718.json",
     "version": "0.4.3",
     "changelog": {
-        "0.4.3": "update to huggingface hosting",
+        "0.4.3": "update to huggingface hosting and compatible with py3.10",
         "0.4.2": "add name tag",
         "0.4.1": "fix license Copyright error",
         "0.4.0": "update license files",
@@ -10,12 +10,12 @@
         "0.2.0": "Unify naming",
         "0.1.0": "Initial version"
     },
-    "monai_version": "1.0.0",
-    "pytorch_version": "1.10.0",
-    "numpy_version": "1.21.0",
+    "monai_version": "1.4.0",
+    "pytorch_version": "2.4.0",
+    "numpy_version": "1.24.4",
     "optional_packages_version": {
-        "pytorch-ignite": "0.4.8",
-        "pillow": "8.4.0"
+        "pytorch-ignite": "0.4.11",
+        "pillow": "10.4.0"
     },
     "name": "MedNIST GAN",
     "task": "Generate random hand images from the MedNIST dataset",
