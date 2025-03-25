@@ -31,11 +31,10 @@ fi
 
 init_venv() {
     if [ ! -d "model_zoo_venv" ]; then  # Check if the venv directory does not exist
-        echo "initializing pip environment: $1"
+        echo "initializing pip environment"
         python -m venv model_zoo_venv
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
-        pip install -r $1
         export PYTHONPATH=$PWD
     else
         echo "Virtual environment model_zoo_venv already exists. Activating..."
@@ -54,9 +53,8 @@ remove_venv() {
 }
 
 set_local_env() {
-    echo "set local pip environment: $1"
+    echo "set local pip environment"
     pip install --upgrade pip wheel
-    pip install -r $1
     export PYTHONPATH=$PWD
 }
 
@@ -78,9 +76,9 @@ verify_bundle() {
             # Check if the bundle is "maisi_ct_generative", if so, set local environment (venv cannot work with xformers)
             if [ "$bundle" == "maisi_ct_generative" ]; then
                 echo "Special handling for maisi_ct_generative bundle"
-                set_local_env requirements-dev.txt
+                set_local_env
             else
-                init_venv requirements-dev.txt
+                init_venv
             fi
             # get required libraries according to the bundle's metadata file
             requirements_file="requirements_$bundle.txt"
