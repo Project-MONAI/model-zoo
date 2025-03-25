@@ -1,5 +1,5 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
     "version": "0.5.3",
     "changelog": {
         "0.5.3": "update to huggingface hosting",
@@ -34,12 +34,13 @@
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
-    "optional_packages_version": {
+    "required_packages_version": {
         "nibabel": "5.2.1",
         "pytorch-ignite": "0.4.11",
         "scikit-learn": "1.5.1",
         "tensorboard": "2.17.0"
     },
+    "supported_apps": {},
     "name": "BraTS MRI segmentation",
     "task": "Multimodal Brain Tumor segmentation",
     "description": "A pre-trained model for volumetric (3D) segmentation of brain tumor subregions from multimodal MRIs based on BraTS 2018 data",

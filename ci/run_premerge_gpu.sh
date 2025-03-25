@@ -73,13 +73,6 @@ verify_bundle() {
             python $(pwd)/ci/prepare_schema.py --l "$bundle_list"
         for bundle in $bundle_list;
         do
-            # Check if the bundle is "maisi_ct_generative", if so, set local environment (venv cannot work with xformers)
-            if [ "$bundle" == "maisi_ct_generative" ]; then
-                echo "Special handling for maisi_ct_generative bundle"
-                set_local_env
-            else
-                init_venv
-            fi
             # get required libraries according to the bundle's metadata file
             requirements_file="requirements_$bundle.txt"
             python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --requirements_file "$requirements_file"
@@ -88,6 +81,14 @@ verify_bundle() {
                 include_pre_release="--pre"
             else
                 include_pre_release=""
+            fi
+            # Set a new environment to verify bundle
+            if [ "$bundle" == "maisi_ct_generative" ]; then
+                # Check if the bundle is "maisi_ct_generative", if so, set local environment (venv cannot work with xformers)
+                echo "Special handling for maisi_ct_generative bundle"
+                set_local_env
+            else
+                init_venv
             fi
             # Check if the requirements file exists and is not empty
             if [ -s "$requirements_file" ]; then

@@ -50,7 +50,7 @@ verify_bundle() {
     echo 'Run verify bundle...'
     pip install -r requirements.txt
     # install extra dependencies for get changed bundle
-    pip install huggingface_hub==0.29.3 jsonschema gdown
+    pip install jsonschema gdown
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
