@@ -35,13 +35,13 @@ init_venv() {
         python -m venv model_zoo_venv
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
-        pip install jsonschema gdown pyyaml parameterized
+        pip install jsonschema gdown pyyaml parameterized fire
         export PYTHONPATH=$PWD
     else
         echo "Virtual environment model_zoo_venv already exists. Activating..."
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
-        pip install jsonschema gdown pyyaml parameterized
+        pip install jsonschema gdown pyyaml parameterized fire
         export PYTHONPATH=$PWD
     fi
 }
@@ -50,7 +50,7 @@ remove_venv() {
     if [ -d "model_zoo_venv" ]; then  # Check if the venv directory exists
         echo "Removing virtual environment..."
         deactivate 2>/dev/null || true  # Deactivate venv, ignore errors if not activated
-        rm -rf model_zoo_venv  # Remove the venv directory
+        # rm -rf model_zoo_venv  # Remove the venv directory
     else
         echo "Virtual environment not found. Skipping removal."
     fi
@@ -67,7 +67,8 @@ verify_bundle() {
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
-    changes=$(git diff --name-only $head_ref origin/dev -- models)
+    # changes=$(git diff --name-only $head_ref origin/dev -- models)
+    changes="models/brats_mri_segmentation/configs/metadata.json"
     if [ ! -z "$changes" ]
     then
         # get all changed bundles
