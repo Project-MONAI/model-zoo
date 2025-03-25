@@ -5,36 +5,34 @@ Utiltites for analyizing and visualizing model segmentations on dataset.
 Yelena Bagdasarova, Scott Song
 """
 
+import json
 import os
 import pickle
+import sys
+import warnings
+
+import cv2
+import detectron2
+import detectron2.utils.comm as comm
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import warnings
-from tqdm import tqdm
-import json
-import sys
-
+import torch
+from detectron2.data import DatasetCatalog, MetadataCatalog
+from detectron2.engine import DefaultPredictor
+from detectron2.evaluation import COCOEvaluator
+from detectron2.utils.visualizer import Visualizer
+from PIL import Image
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 from pycocotools.mask import decode
+from tqdm import tqdm
 
-import torch
-from detectron2.data import (
-    DatasetCatalog,
-    MetadataCatalog)
-import detectron2
-import detectron2.utils.comm as comm
-from detectron2.engine import DefaultPredictor
-from detectron2.utils.visualizer import Visualizer
-from detectron2.evaluation import COCOEvaluator
-
-import cv2
-from PIL import Image
-import matplotlib.pyplot as plt
 plt.style.use('ybpres.mplstyle')
+import seaborn as sns
+
 #plt.style.use('/data/ssong/detectron2-rpd-yb/detectron2-rpd-pkg/src/detectron2-rpd/ybpres.mplstyle')
 from matplotlib.backends.backend_pdf import PdfPages
-import seaborn as sns
 
 
 def grab_dataset(name):
@@ -630,7 +628,9 @@ class EvaluateClass(COCOEvaluator):
         return dict(gt_instances=gt_inst,dt_instances=dt_inst,gt_neg_scans = gt_neg_scans)
 
 
-from sklearn.metrics import precision_recall_curve,average_precision_score
+from sklearn.metrics import average_precision_score, precision_recall_curve
+
+
 class CreatePlotsRPD():
     def __init__(self,dfimg):
         self.dfimg = dfimg

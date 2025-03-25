@@ -1,15 +1,16 @@
+import distutils.util
+import glob
 import os
 import shutil
+
 import cv2
+import pandas as pd
 from PIL import Image
-from .volReader import volFile
-from tqdm import tqdm
-import glob
-import distutils.util
 from pydicom import dcmread
 from pydicom.fileset import FileSet
-import pandas as pd
+from tqdm import tqdm
 
+from .volReader import volFile
 
 script_dir = os.path.dirname(__file__)
 class Error(Exception):

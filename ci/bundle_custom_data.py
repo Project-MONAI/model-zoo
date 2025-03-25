@@ -23,6 +23,7 @@ exclude_verify_shape_list = [
     "maisi_ct_generative",
     "cxr_image_synthesis_latent_diffusion_model",
     "brain_image_synthesis_latent_diffusion_model",
+    "retinalOCT_RPD_segmentation",
 ]
 
 # This list is used for our CI tests to determine whether a bundle contains the preferred files.
@@ -47,6 +48,7 @@ exclude_verify_torchscript_list = [
     "mednist_ddpm",
     "cxr_image_synthesis_latent_diffusion_model",
     "brain_image_synthesis_latent_diffusion_model",
+    "retinalOCT_RPD_segmentation",
 ]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested after downloading

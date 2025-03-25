@@ -1,27 +1,28 @@
 import os
+
 os.chdir(os.path.dirname(os.path.abspath(__file__))) 
 current_directory = os.getcwd()
 print(current_directory)
 
 
+import logging
+import pickle
+import urllib
+
+import configargparse
+import pandas as pd
+import progressbar
+from detectron2.checkpoint import DetectionCheckpointer
+from detectron2.config import get_cfg
+from detectron2.data import DatasetCatalog, MetadataCatalog, build_detection_test_loader
+from detectron2.evaluation import COCOEvaluator, inference_on_dataset
+from detectron2.modeling import build_model
+
+from .analysis_lib import CreatePlotsRPD, EvaluateClass, OutputVis, grab_dataset
 from .datasets import data
-from .analysis_lib import grab_dataset,EvaluateClass,CreatePlotsRPD,OutputVis
 from .Ensembler import Ensembler
 from .table_styles import styles
 
-import pickle
-from detectron2.config import get_cfg
-from detectron2.data import DatasetCatalog,MetadataCatalog
-from detectron2.modeling import build_model
-from detectron2.data import build_detection_test_loader
-from detectron2.checkpoint import DetectionCheckpointer
-from detectron2.evaluation import inference_on_dataset, COCOEvaluator
-
-import pandas as pd
-import logging
-import configargparse
-import progressbar
-import urllib
 logging.basicConfig(level=logging.INFO)
 
 import json

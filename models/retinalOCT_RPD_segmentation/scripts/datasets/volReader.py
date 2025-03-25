@@ -9,9 +9,14 @@
 #   Kris Sheets, Retinal Cell Biology Lab, Neuroscience Center of Excellence, LSU Health Sciences Center, New Orleans
 
 
-import struct, array, datetime, codecs
-import numpy as np
+import array
+import codecs
+import datetime
+import struct
 from collections import OrderedDict
+
+import numpy as np
+
 
 class volFile():
     def __init__(self, filename):

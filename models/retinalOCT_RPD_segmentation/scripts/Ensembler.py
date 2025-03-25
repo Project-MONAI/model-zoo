@@ -1,11 +1,13 @@
-from pycocotools.coco import COCO
-import pandas as pd
-from torchvision.ops.boxes import box_iou,box_convert
-import torch
-import numpy as np
-import os
 import json
+import os
+
+import numpy as np
+import pandas as pd
+import torch
+from pycocotools.coco import COCO
+from torchvision.ops.boxes import box_convert, box_iou
 from tqdm import tqdm
+
 
 class NpEncoder(json.JSONEncoder):
     def default(self, obj):
