@@ -35,7 +35,7 @@ init_venv() {
         python -m venv model_zoo_venv
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
-        pip install jsonschema
+        pip install jsonschema pyyaml
         export PYTHONPATH=$PWD
     else
         echo "Virtual environment model_zoo_venv already exists. Activating..."

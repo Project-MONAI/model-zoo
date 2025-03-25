@@ -1,14 +1,17 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "changelog": {
+        "1.0.2": "add missing dependencies",
         "1.0.1": "update to huggingface hosting",
         "1.0.0": "Initial release"
     },
     "monai_version": "1.4.0",
     "pytorch_version": "2.5.1",
     "numpy_version": "1.26.4",
-    "required_packages_version": {},
+    "required_packages_version": {
+        "pyyaml": "6.0.2"
+    },
     "task": "MedNIST Hand Generation",
     "description": "",
     "authors": "Walter Hugo Lopez Pinaya, Mark Graham, and Eric Kerfoot",
