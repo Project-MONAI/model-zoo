@@ -13,7 +13,8 @@
     "pytorch_version": "1.13.0",
     "numpy_version": "1.22.2",
     "required_packages_version": {
-        "pytorch-ignite": "0.4.8"
+        "pytorch-ignite": "0.4.8",
+        "pyyaml": "6.0.2"
     },
     "supported_apps": {},
     "name": "MedNIST registration",
