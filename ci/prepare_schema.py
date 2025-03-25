@@ -16,7 +16,11 @@ from utils import prepare_schema
 
 
 def main(bundle_list, models_path):
-    prepare_schema(bundle_list, root_path=models_path)
+    if "hf_models" in models_path:
+        hf_model = True
+    else:
+        hf_model = False
+    prepare_schema(bundle_list, root_path=models_path, hf_model=hf_model)
 
 
 if __name__ == "__main__":

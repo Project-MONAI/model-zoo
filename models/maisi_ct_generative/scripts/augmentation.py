@@ -60,7 +60,7 @@ def dilate3d(input_tensor, erosion=3):
     return output.squeeze(0).squeeze(0)
 
 
-def augmentation_tumor_bone(pt_nda, output_size):
+def augmentation_tumor_bone(pt_nda, output_size, random_seed):
     volume = pt_nda.squeeze(0)
     real_l_volume_ = torch.zeros_like(volume)
     real_l_volume_[volume == 128] = 1
@@ -74,6 +74,7 @@ def augmentation_tumor_bone(pt_nda, output_size):
         scale_range=(0.15, 0.15, 0),
         padding_mode="zeros",
     )
+    elastic.set_random_state(seed=random_seed)
 
     tumor_szie = torch.sum((real_l_volume_ > 0).float())
     ###########################
@@ -112,7 +113,7 @@ def augmentation_tumor_bone(pt_nda, output_size):
     return pt_nda
 
 
-def augmentation_tumor_liver(pt_nda, output_size):
+def augmentation_tumor_liver(pt_nda, output_size, random_seed):
     volume = pt_nda.squeeze(0)
     real_l_volume_ = torch.zeros_like(volume)
     real_l_volume_[volume == 1] = 1
@@ -129,6 +130,7 @@ def augmentation_tumor_liver(pt_nda, output_size):
         scale_range=(0.2, 0.2, 0.2),
         padding_mode="zeros",
     )
+    elastic.set_random_state(seed=random_seed)
 
     tumor_szie = torch.sum(real_l_volume_ == 2)
     ###########################
@@ -161,7 +163,7 @@ def augmentation_tumor_liver(pt_nda, output_size):
     return pt_nda
 
 
-def augmentation_tumor_lung(pt_nda, output_size):
+def augmentation_tumor_lung(pt_nda, output_size, random_seed):
     volume = pt_nda.squeeze(0)
     real_l_volume_ = torch.zeros_like(volume)
     real_l_volume_[volume == 23] = 1
@@ -177,6 +179,7 @@ def augmentation_tumor_lung(pt_nda, output_size):
         scale_range=(0.15, 0.15, 0.15),
         padding_mode="zeros",
     )
+    elastic.set_random_state(seed=random_seed)
 
     tumor_szie = torch.sum(real_l_volume_)
     # before move lung tumor maks, full the original location by lung labels
@@ -224,7 +227,7 @@ def augmentation_tumor_lung(pt_nda, output_size):
     return pt_nda
 
 
-def augmentation_tumor_pancreas(pt_nda, output_size):
+def augmentation_tumor_pancreas(pt_nda, output_size, random_seed):
     volume = pt_nda.squeeze(0)
     real_l_volume_ = torch.zeros_like(volume)
     real_l_volume_[volume == 4] = 1
@@ -241,6 +244,7 @@ def augmentation_tumor_pancreas(pt_nda, output_size):
         scale_range=(0.1, 0.1, 0.1),
         padding_mode="zeros",
     )
+    elastic.set_random_state(seed=random_seed)
 
     tumor_szie = torch.sum(real_l_volume_ == 2)
     ###########################
@@ -273,7 +277,7 @@ def augmentation_tumor_pancreas(pt_nda, output_size):
     return pt_nda
 
 
-def augmentation_tumor_colon(pt_nda, output_size):
+def augmentation_tumor_colon(pt_nda, output_size, random_seed):
     volume = pt_nda.squeeze(0)
     real_l_volume_ = torch.zeros_like(volume)
     real_l_volume_[volume == 27] = 1
@@ -289,6 +293,7 @@ def augmentation_tumor_colon(pt_nda, output_size):
         scale_range=(0.1, 0.1, 0.1),
         padding_mode="zeros",
     )
+    elastic.set_random_state(seed=random_seed)
 
     tumor_szie = torch.sum(real_l_volume_)
     ###########################
@@ -330,37 +335,39 @@ def augmentation_tumor_colon(pt_nda, output_size):
     return pt_nda
 
 
-def augmentation_body(pt_nda):
+def augmentation_body(pt_nda, random_seed):
     volume = pt_nda.squeeze(0)
 
     zoom = RandZoom(min_zoom=0.99, max_zoom=1.01, mode="nearest", align_corners=None, prob=1.0)
+    zoom.set_random_state(seed=random_seed)
+
     volume = zoom(volume)
 
     pt_nda = volume.unsqueeze(0)
     return pt_nda
 
 
-def augmentation(pt_nda, output_size):
+def augmentation(pt_nda, output_size, random_seed):
     label_list = torch.unique(pt_nda)
     label_list = list(label_list.cpu().numpy())
 
     if 128 in label_list:
         print("augmenting bone lesion/tumor")
-        pt_nda = augmentation_tumor_bone(pt_nda, output_size)
+        pt_nda = augmentation_tumor_bone(pt_nda, output_size, random_seed)
     elif 26 in label_list:
         print("augmenting liver tumor")
-        pt_nda = augmentation_tumor_liver(pt_nda, output_size)
+        pt_nda = augmentation_tumor_liver(pt_nda, output_size, random_seed)
     elif 23 in label_list:
         print("augmenting lung tumor")
-        pt_nda = augmentation_tumor_lung(pt_nda, output_size)
+        pt_nda = augmentation_tumor_lung(pt_nda, output_size, random_seed)
     elif 24 in label_list:
         print("augmenting pancreas tumor")
-        pt_nda = augmentation_tumor_pancreas(pt_nda, output_size)
+        pt_nda = augmentation_tumor_pancreas(pt_nda, output_size, random_seed)
     elif 27 in label_list:
         print("augmenting colon tumor")
-        pt_nda = augmentation_tumor_colon(pt_nda, output_size)
+        pt_nda = augmentation_tumor_colon(pt_nda, output_size, random_seed)
     else:
         print("augmenting body")
-        pt_nda = augmentation_body(pt_nda)
+        pt_nda = augmentation_body(pt_nda, random_seed)
 
     return pt_nda
