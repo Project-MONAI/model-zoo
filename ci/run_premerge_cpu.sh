@@ -49,6 +49,8 @@ verify_bundle() {
     done
     echo 'Run verify bundle...'
     pip install -r requirements.txt
+    # install extra dependencies for get changed bundle
+    pip install huggingface_hub==0.29.3 jsonschema
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
@@ -66,7 +68,6 @@ verify_bundle() {
                 if is_excluded "$bundle"; then
                     echo "skip '$bundle' cpu premerge tests."
                 else
-                    pip install -r requirements-dev.txt
                     # get required libraries according to the bundle's metadata file
                     requirements_file="requirements_$bundle.txt"
                     python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --requirements_file "$requirements_file"

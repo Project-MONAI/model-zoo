@@ -34,7 +34,6 @@ verify_release_bundle() {
     echo 'Run verify bundle...'
     # get all bundles
     download_path="download"
-    pip install -r requirements-dev.txt
     pip install git+https://github.com/Project-MONAI/MONAI.git@dev  # project-monai/model-zoo issue #505
     # download bundle from releases
     python $(pwd)/ci/download_latest_bundle.py --b "$bundle" --models_path $(pwd)/models --p "$download_path"
