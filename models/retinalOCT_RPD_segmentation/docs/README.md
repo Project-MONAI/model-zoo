@@ -28,11 +28,11 @@ In the external test datasets, the overall performance for detecting RPD in a vo
 
 For more details regarding evaluation results, please see Results section of paper.
 
-## INSTALLATION
+<!-- ## INSTALLATION
 This bundle can be installed using docker by navigating to the RPDBundle directory and running 
 ```
 docker build -t <image_name>:<tag> .
-```
+``` -->
 
 ## USAGE
 The expected image data is in PNG format at the scan level, VOL format at the volume level, or DICOM format at the volume level. To run inference, modify the parameters of the inference.yaml config file in the configs folder which looks like: 
@@ -109,7 +109,7 @@ The tables can be created by setting `create_tables` to `True`:
 The predicted segmentations can be output as multi-page TIFFs, where each TIFF file corresponds to an input volume of the dataset, and each page to an OCT slice from the volume in original order. The output images can be binary masks, binary masks overlaying the original B-scan, and instance masks overlaying the original B-scan. Set the `binary_mask`, `binary_mask_overlay` and `instance_mask_overlay` flags in the yaml file to `True` accordingly.
 
 ### SAMPLE DATA
-As a reference, sample OCT-B scans are provided in PNG format under the `sample_data` directory. Set `extracted_dir` in `inference.yaml` to `sample_data` to run inference on these few set of images.
+As a reference, sample OCT-B scans are provided in PNG format under the sample_data directory. Set `extracted_dir` in `inference.yaml` to `sample_data` to run inference on these few set of images.
 
 ## **System Configuration**
 Inference on one Nvidia A100 gpu takes about 0.041 s/batch of 14 images, about 3G of gpu memory, and 6G of RAM.
