@@ -89,7 +89,7 @@ Once you have the scans in PNG format, you can create a "dataset" in Detectron2 
 * set `create_dataset` to `True`
 * set `dataset_name` to the chosen name of your dataset
 
-The dataset dictionary will be saved as pickle file in `/<path>/<to>/<bundle>/RPDBundle/datasets/<your_dataset_name>.pk`
+The summary tables and visual output is organized around OCT volumes, so please make sure that the basename of the PNG files looks like `<volumeid>_<sliceid>.` The dataset dictionary will be saved as pickle file in `/<path>/<to>/<bundle>/RPDBundle/datasets/<your_dataset_name>.pk`
 
 ### INFERENCE
 To run inference on your dataset:
@@ -107,6 +107,9 @@ The tables can be created by setting `create_tables` to `True`:
 * HTML table called `dfvol_<dataset_name>.html` indexed by OCT volume with columns listing the detected number of RPD <em>instances</em> (dt_instances), <em>pixels</em> (dt_pixels), and <em>horizontal pixels</em> (dt_xpxs) in that volume.
 
 The predicted segmentations can be output as multi-page TIFFs, where each TIFF file corresponds to an input volume of the dataset, and each page to an OCT slice from the volume in original order. The output images can be binary masks, binary masks overlaying the original B-scan, and instance masks overlaying the original B-scan. Set the `binary_mask`, `binary_mask_overlay` and `instance_mask_overlay` flags in the yaml file to `True` accordingly.
+
+### SAMPLE DATA
+As a reference, sample OCT-B scans are provided in PNG format under the `sample_data` directory. Set `extracted_dir` in `inference.yaml` to `sample_data` to run inference on these few set of images.
 
 ## **System Configuration**
 Inference on one Nvidia A100 gpu takes about 0.041 s/batch of 14 images, about 3G of gpu memory, and 6G of RAM.
