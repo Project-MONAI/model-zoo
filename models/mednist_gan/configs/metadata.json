@@ -1,5 +1,5 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20240725.json",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
     "version": "0.4.3",
     "changelog": {
         "0.4.3": "update to huggingface hosting and compatible with py3.10",
