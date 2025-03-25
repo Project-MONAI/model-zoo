@@ -2,7 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
     "version": "0.6.9",
     "changelog": {
-        "0.6.9": "update to huggingface hosting",
+        "0.6.9": "update to huggingface hosting and fix missing dependencies",
         "0.6.8": "update issue for IgniteInfo",
         "0.6.7": "use monai 1.4 and update large files",
         "0.6.6": "update to use monai 1.3.1",
@@ -39,7 +39,8 @@
     "required_packages_version": {
         "nibabel": "5.2.1",
         "pytorch-ignite": "0.4.11",
-        "torchvision": "0.19.0"
+        "torchvision": "0.19.0",
+        "tensorboard": "2.17.0"
     },
     "supported_apps": {},
     "name": "Lung nodule CT detection",
