@@ -1,5 +1,5 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20220718.json",
     "version": "0.4.3",
     "changelog": {
         "0.4.3": "update to huggingface hosting and compatible with py3.10",
@@ -13,11 +13,10 @@
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
-    "required_packages_version": {
+    "optional_packages_version": {
         "pytorch-ignite": "0.4.11",
         "pillow": "10.4.0"
     },
-    "supported_apps": {},
     "name": "MedNIST GAN",
     "task": "Generate random hand images from the MedNIST dataset",
     "description": "This example of a GAN generator produces hand xray images like those in the MedNIST dataset",
