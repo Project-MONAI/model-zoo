@@ -53,7 +53,7 @@ def increment_version(version):
     return result_version
 
 
-def get_requirements(bundle, models_path):
+def get_requirements(bundle, models_path, requirements_file):
     """
     This function is used to produce a requirements txt file, and print a string
     which shows the filename. The printed string can be used in shell scripts.
@@ -89,11 +89,9 @@ def get_requirements(bundle, models_path):
                             libs = [lib for lib in libs if "torch" not in lib]
 
         if len(libs) > 0:
-            requirements_file_name = f"requirements_{bundle}.txt"
-            with open(requirements_file_name, "w") as f:
+            with open(requirements_file, "w") as f:
                 for line in libs:
                     f.write(f"{line}\n")
-            print(requirements_file_name)
 
 
 def get_install_script(bundle):
@@ -109,6 +107,7 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--b", type=str, help="bundle name.")
     parser.add_argument("-p", "--p", type=str, default="models", help="models path.")
     parser.add_argument("--get_script", type=bool, default=False, help="whether to get the install script.")
+    parser.add_argument("--requirements_file", type=str, help="output filename for requirements.")
     args = parser.parse_args()
     bundle = args.b
     models_path = args.p
@@ -116,4 +115,5 @@ if __name__ == "__main__":
     if get_script is True:
         get_install_script(bundle)
     else:
-        get_requirements(bundle, models_path)
+        requirements_file = args.requirements_file
+        get_requirements(bundle, models_path, requirements_file)
