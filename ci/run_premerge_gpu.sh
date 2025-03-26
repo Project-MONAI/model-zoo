@@ -31,15 +31,18 @@ fi
 
 init_venv() {
     if [ ! -d "model_zoo_venv" ]; then  # Check if the venv directory does not exist
-        echo "initializing pip environment: $1"
+        echo "initializing pip environment"
         python -m venv model_zoo_venv
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
-        pip install -r $1
+        pip install jsonschema gdown pyyaml parameterized fire
         export PYTHONPATH=$PWD
     else
         echo "Virtual environment model_zoo_venv already exists. Activating..."
         source model_zoo_venv/bin/activate
+        pip install --upgrade pip wheel
+        pip install jsonschema gdown pyyaml parameterized fire
+        export PYTHONPATH=$PWD
     fi
 }
 
@@ -54,9 +57,8 @@ remove_venv() {
 }
 
 set_local_env() {
-    echo "set local pip environment: $1"
+    echo "set local pip environment"
     pip install --upgrade pip wheel
-    pip install -r $1
     export PYTHONPATH=$PWD
 }
 
@@ -75,24 +77,20 @@ verify_bundle() {
             python $(pwd)/ci/prepare_schema.py --l "$bundle_list"
         for bundle in $bundle_list;
         do
-            # Check if the bundle is "maisi_ct_generative", if so, set local environment (venv cannot work with xformers)
-            if [ "$bundle" == "maisi_ct_generative" ]; then
-                echo "Special handling for maisi_ct_generative bundle"
-                set_local_env requirements-dev.txt
-            else
-                init_venv requirements-dev.txt
-            fi
             # get required libraries according to the bundle's metadata file
-            requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
+            requirements_file="requirements_$bundle.txt"
+            python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --requirements_file "$requirements_file"
             # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
             if [ $ALLOW_MONAI_RC = true ]; then
                 include_pre_release="--pre"
             else
                 include_pre_release=""
             fi
-            if [ ! -z "$requirements" ]; then
+            init_venv
+            # Check if the requirements file exists and is not empty
+            if [ -s "$requirements_file" ]; then
                 echo "install required libraries for bundle: $bundle"
-                pip install $include_pre_release -r "$requirements"
+                pip install $include_pre_release -r "$requirements_file"
             fi
             # get extra install script if exists
             extra_script=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --get_script True)

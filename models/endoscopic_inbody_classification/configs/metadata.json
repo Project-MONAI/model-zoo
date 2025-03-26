@@ -1,7 +1,8 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.9",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.5.0",
     "changelog": {
+        "0.5.0": "update to huggingface hosting and fix missing dependencies",
         "0.4.9": "use monai 1.4 and update large files",
         "0.4.8": "update to use monai 1.3.1",
         "0.4.7": "add load_pretrain flag for infer",
@@ -31,10 +32,13 @@
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
-    "optional_packages_version": {
+    "required_packages_version": {
         "nibabel": "5.2.1",
-        "pytorch-ignite": "0.4.11"
+        "pytorch-ignite": "0.4.11",
+        "pillow": "10.4.0",
+        "tensorboard": "2.17.0"
     },
+    "supported_apps": {},
     "name": "Endoscopic inbody classification",
     "task": "Endoscopic inbody classification",
     "description": "A pre-trained binary classification model for endoscopic inbody classification task",

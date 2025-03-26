@@ -49,6 +49,8 @@ verify_bundle() {
     done
     echo 'Run verify bundle...'
     pip install -r requirements.txt
+    # install extra dependencies for get changed bundle
+    pip install jsonschema gdown pyyaml
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'
@@ -66,18 +68,19 @@ verify_bundle() {
                 if is_excluded "$bundle"; then
                     echo "skip '$bundle' cpu premerge tests."
                 else
-                    pip install -r requirements-dev.txt
                     # get required libraries according to the bundle's metadata file
-                    requirements=$(python $(pwd)/ci/get_bundle_requirements.py --b "$bundle")
+                    requirements_file="requirements_$bundle.txt"
+                    python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --requirements_file "$requirements_file"
                     # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
                     if [ $ALLOW_MONAI_RC = true ]; then
                         include_pre_release="--pre"
                     else
                         include_pre_release=""
                     fi
-                    if [ ! -z "$requirements" ]; then
+                    # Check if the requirements file exists and is not empty
+                    if [ -s "$requirements_file" ]; then
                         echo "install required libraries for bundle: $bundle"
-                        pip install $include_pre_release -r "$requirements"
+                        pip install $include_pre_release -r "$requirements_file"
                     fi
                     # verify bundle
                     python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
