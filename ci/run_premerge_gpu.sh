@@ -86,14 +86,7 @@ verify_bundle() {
             else
                 include_pre_release=""
             fi
-            # Set a new environment to verify bundle
-            if [ "$bundle" == "maisi_ct_generative" ]; then
-                # Check if the bundle is "maisi_ct_generative", if so, set local environment (venv cannot work with xformers)
-                echo "Special handling for maisi_ct_generative bundle"
-                set_local_env
-            else
-                init_venv
-            fi
+            init_venv
             # Check if the requirements file exists and is not empty
             if [ -s "$requirements_file" ]; then
                 echo "install required libraries for bundle: $bundle"
