@@ -1814,5 +1814,61 @@
     "mednist_ddpm_v1.0.1": {
         "checksum": "",
         "source": "https://huggingface.co/MONAI/mednist_ddpm/tree/1.0.1"
+    },
+    "multi_organ_segmentation_v0.0.5": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/multi_organ_segmentation/tree/0.0.5"
+    },
+    "brats_mri_segmentation_v0.5.3": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/brats_mri_segmentation/tree/0.5.3"
+    },
+    "maisi_ct_generative_v1.0.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/maisi_ct_generative/tree/1.0.1"
+    },
+    "endoscopic_inbody_classification_v0.5.0": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/endoscopic_inbody_classification/tree/0.5.0"
+    },
+    "brats_mri_generative_diffusion_v1.1.3": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/brats_mri_generative_diffusion/tree/1.1.3"
+    },
+    "brats_mri_axial_slices_generative_diffusion_v1.1.3": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/brats_mri_axial_slices_generative_diffusion/tree/1.1.3"
+    },
+    "breast_density_classification_v0.1.7": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/breast_density_classification/tree/0.1.7"
+    },
+    "mednist_gan_v0.4.3": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/mednist_gan/tree/0.4.3"
+    },
+    "mednist_reg_v0.0.6": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/mednist_reg/tree/0.0.6"
+    },
+    "classification_template_v0.0.3": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/classification_template/tree/0.0.3"
+    },
+    "mednist_ddpm_v1.0.2": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/mednist_ddpm/tree/1.0.2"
+    },
+    "brain_image_synthesis_latent_diffusion_model_v1.0.2": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/brain_image_synthesis_latent_diffusion_model/tree/1.0.2"
+    },
+    "endoscopic_tool_segmentation_v0.6.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/endoscopic_tool_segmentation/tree/0.6.1"
+    },
+    "lung_nodule_ct_detection_v0.6.9": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/lung_nodule_ct_detection/tree/0.6.9"
     }
 }
