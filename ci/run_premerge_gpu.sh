@@ -105,10 +105,7 @@ verify_bundle() {
                 test_cmd="torchrun $(pwd)/ci/unit_tests/runner.py --b \"$bundle\" --dist True"
             fi
             eval $test_cmd
-            # if not maisi_ct_generative, remove venv
-            if [ "$bundle" != "maisi_ct_generative" ]; then
-                remove_venv
-            fi
+            remove_venv
         done
         else
             echo "this pull request does not change any bundles, skip verify."

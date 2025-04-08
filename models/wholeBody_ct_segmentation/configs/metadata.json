@@ -1,7 +1,8 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.5",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.2.6",
     "changelog": {
+        "0.2.6": "update to huggingface hosting",
         "0.2.5": "use monai 1.4 and update large files",
         "0.2.4": "update to use monai 1.3.1",
         "0.2.3": "add load_pretrain flag for infer",
@@ -23,10 +24,13 @@
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
-    "optional_packages_version": {
+    "required_packages_version": {
+        "itk": "5.4.0",
         "nibabel": "5.2.1",
-        "pytorch-ignite": "0.4.11"
+        "pytorch-ignite": "0.4.11",
+        "tensorboard": "2.17.0"
     },
+    "supported_apps": {},
     "name": "Whole body CT segmentation",
     "task": "TotalSegmentator Segmentation",
     "description": "A pre-trained SegResNet model for volumetric (3D) segmentation of the 104 whole body segments",
