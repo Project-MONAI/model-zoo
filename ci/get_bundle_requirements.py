@@ -19,8 +19,6 @@ from utils import get_json_dict
 
 ALLOW_MONAI_RC = os.environ.get("ALLOW_MONAI_RC", "false").lower() in ("true", "1", "t", "y", "yes")
 
-SPECIAL_LIB_LIST = ["xformers"]
-
 
 def increment_version(version):
     """
