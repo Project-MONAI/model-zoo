@@ -6,12 +6,12 @@
         "0.0.2": "Minor train.yaml clarifications",
         "0.0.1": "Initial version"
     },
-    "monai_version": "1.2.0",
-    "pytorch_version": "2.0.1",
+    "monai_version": "1.4.0",
+    "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
     "optional_packages_version": {
-        "nibabel": "5.1.0",
-        "pytorch-ignite": "0.4.12"
+        "nibabel": "5.2.1",
+        "pytorch-ignite": "0.4.11"
     },
     "name": "Segmentation Template",
     "task": "Segmentation of randomly generated spheres in 3D images",
