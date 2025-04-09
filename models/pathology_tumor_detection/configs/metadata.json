@@ -1,7 +1,8 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.6.2",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.6.3",
     "changelog": {
+        "0.6.3": "update to huggingface hosting",
         "0.6.2": "enhance readme for nccl timout issue",
         "0.6.1": "fix multi-gpu issue",
         "0.6.0": "use monai 1.4 and update large files",
@@ -36,11 +37,14 @@
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
-    "optional_packages_version": {
+    "required_packages_version": {
         "cucim-cu12": "24.6.0",
         "pandas": "2.2.1",
-        "torchvision": "0.19.0"
+        "torchvision": "0.19.0",
+        "pytorch-ignite": "0.4.11",
+        "tensorboard": "2.17.0"
     },
+    "supported_apps": {},
     "name": "Pathology tumor detection",
     "task": "Pathology metastasis detection",
     "description": "A pre-trained model for metastasis detection on Camelyon 16 dataset.",

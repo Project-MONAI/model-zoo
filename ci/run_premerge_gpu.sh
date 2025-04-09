@@ -35,12 +35,14 @@ init_venv() {
         python -m venv model_zoo_venv
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
+        pip install --upgrade setuptools
         pip install jsonschema gdown pyyaml parameterized fire
         export PYTHONPATH=$PWD
     else
         echo "Virtual environment model_zoo_venv already exists. Activating..."
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
+        pip install --upgrade setuptools
         pip install jsonschema gdown pyyaml parameterized fire
         export PYTHONPATH=$PWD
     fi
@@ -54,12 +56,6 @@ remove_venv() {
     else
         echo "Virtual environment not found. Skipping removal."
     fi
-}
-
-set_local_env() {
-    echo "set local pip environment"
-    pip install --upgrade pip wheel
-    export PYTHONPATH=$PWD
 }
 
 verify_bundle() {
@@ -105,10 +101,7 @@ verify_bundle() {
                 test_cmd="torchrun $(pwd)/ci/unit_tests/runner.py --b \"$bundle\" --dist True"
             fi
             eval $test_cmd
-            # if not maisi_ct_generative, remove venv
-            if [ "$bundle" != "maisi_ct_generative" ]; then
-                remove_venv
-            fi
+            remove_venv
         done
         else
             echo "this pull request does not change any bundles, skip verify."

@@ -19,8 +19,6 @@ from utils import get_json_dict
 
 ALLOW_MONAI_RC = os.environ.get("ALLOW_MONAI_RC", "false").lower() in ("true", "1", "t", "y", "yes")
 
-SPECIAL_LIB_LIST = ["xformers"]
-
 
 def increment_version(version):
     """
@@ -81,12 +79,7 @@ def get_requirements(bundle, models_path, requirements_file):
             if package_key in metadata.keys():
                 optional_dict = metadata[package_key]
                 for name, version in optional_dict.items():
-                    if name not in SPECIAL_LIB_LIST:
-                        libs.append(f"{name}=={version}")
-                    else:
-                        if "pytorch_version" in metadata.keys():
-                            # remove torch from libs
-                            libs = [lib for lib in libs if "torch" not in lib or lib == "pytorch-ignite"]
+                    libs.append(f"{name}=={version}")
 
         if len(libs) > 0:
             with open(requirements_file, "w") as f:

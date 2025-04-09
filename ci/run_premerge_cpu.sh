@@ -41,6 +41,35 @@ is_excluded() {
     return 1 # Return false (1) if not excluded
 }
 
+init_venv() {
+    if [ ! -d "model_zoo_venv" ]; then  # Check if the venv directory does not exist
+        echo "initializing pip environment"
+        python -m venv model_zoo_venv
+        source model_zoo_venv/bin/activate
+        pip install --upgrade pip wheel
+        pip install --upgrade setuptools
+        pip install jsonschema gdown pyyaml parameterized fire
+        export PYTHONPATH=$PWD
+    else
+        echo "Virtual environment model_zoo_venv already exists. Activating..."
+        source model_zoo_venv/bin/activate
+        pip install --upgrade pip wheel
+        pip install --upgrade setuptools
+        pip install jsonschema gdown pyyaml parameterized fire
+        export PYTHONPATH=$PWD
+    fi
+}
+
+remove_venv() {
+    if [ -d "model_zoo_venv" ]; then  # Check if the venv directory exists
+        echo "Removing virtual environment..."
+        deactivate 2>/dev/null || true  # Deactivate venv, ignore errors if not activated
+        rm -rf model_zoo_venv  # Remove the venv directory
+    else
+        echo "Virtual environment not found. Skipping removal."
+    fi
+}
+
 verify_bundle() {
     for dir in /opt/hostedtoolcache/*; do
         if [[ $dir != "/opt/hostedtoolcache/Python" ]]; then
@@ -77,6 +106,7 @@ verify_bundle() {
                     else
                         include_pre_release=""
                     fi
+                    init_venv
                     # Check if the requirements file exists and is not empty
                     if [ -s "$requirements_file" ]; then
                         echo "install required libraries for bundle: $bundle"
@@ -84,6 +114,7 @@ verify_bundle() {
                     fi
                     # verify bundle
                     python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
+                    remove_venv
                 fi
             done
         else
