@@ -35,12 +35,14 @@ init_venv() {
         python -m venv model_zoo_venv
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
+        pip install --upgrade setuptools
         pip install jsonschema gdown pyyaml parameterized fire
         export PYTHONPATH=$PWD
     else
         echo "Virtual environment model_zoo_venv already exists. Activating..."
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
+        pip install --upgrade setuptools
         pip install jsonschema gdown pyyaml parameterized fire
         export PYTHONPATH=$PWD
     fi
