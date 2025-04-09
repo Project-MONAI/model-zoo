@@ -1870,5 +1870,81 @@
     "lung_nodule_ct_detection_v0.6.9": {
         "checksum": "",
         "source": "https://huggingface.co/MONAI/lung_nodule_ct_detection/tree/0.6.9"
+    },
+    "pediatric_abdominal_ct_segmentation_v0.4.5": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/pediatric_abdominal_ct_segmentation/tree/0.4.5"
+    },
+    "prostate_mri_anatomy_v0.3.5": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/prostate_mri_anatomy/tree/0.3.5"
+    },
+    "renalStructures_CECT_segmentation_v0.2.2": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/renalStructures_CECT_segmentation/tree/0.2.2"
+    },
+    "segmentation_template_v0.0.3": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/segmentation_template/tree/0.0.3"
+    },
+    "ventricular_short_axis_3label_v0.3.4": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/ventricular_short_axis_3label/tree/0.3.4"
+    },
+    "vista2d_v0.3.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/vista2d/tree/0.3.1"
+    },
+    "spleen_deepedit_annotation_v0.5.7": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/spleen_deepedit_annotation/tree/0.5.7"
+    },
+    "pathology_tumor_detection_v0.6.3": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/pathology_tumor_detection/tree/0.6.3"
+    },
+    "pancreas_ct_dints_segmentation_v0.5.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/pancreas_ct_dints_segmentation/tree/0.5.1"
+    },
+    "renalStructures_UNEST_segmentation_v0.2.6": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/renalStructures_UNEST_segmentation/tree/0.2.6"
+    },
+    "wholeBrainSeg_Large_UNEST_segmentation_v0.2.6": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/wholeBrainSeg_Large_UNEST_segmentation/tree/0.2.6"
+    },
+    "valve_landmarks_v0.5.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/valve_landmarks/tree/0.5.1"
+    },
+    "wholeBody_ct_segmentation_v0.2.6": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/wholeBody_ct_segmentation/tree/0.2.6"
+    },
+    "pathology_nuclick_annotation_v0.2.2": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/pathology_nuclick_annotation/tree/0.2.2"
+    },
+    "swin_unetr_btcv_segmentation_v0.5.7": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/swin_unetr_btcv_segmentation/tree/0.5.7"
+    },
+    "spleen_ct_segmentation_v0.6.0": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/spleen_ct_segmentation/tree/0.6.0"
+    },
+    "pathology_nuclei_classification_v0.2.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/pathology_nuclei_classification/tree/0.2.1"
+    },
+    "vista3d_v0.5.8": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/vista3d/tree/0.5.8"
+    },
+    "pathology_nuclei_segmentation_classification_v0.2.7": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/pathology_nuclei_segmentation_classification/tree/0.2.7"
     }
 }
