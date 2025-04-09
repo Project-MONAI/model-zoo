@@ -33,7 +33,7 @@ fi
 # Usually, CPU test is required, but for some bundles that are too large to run in Github Actions, we can exclude them.
 exclude_test_list=("maisi_ct_generative")
 is_excluded() {
-    for item in "${exclude_list[@]}"; do
+    for item in "${exclude_test_list[@]}"; do  # Use exclude_test_list here
         if [ "$1" == "$item" ]; then
             return 0 # Return true (0) if excluded
         fi
