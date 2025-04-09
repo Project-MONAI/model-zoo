@@ -30,30 +30,44 @@ elif [[ $# -gt 1 ]]; then
     exit 1
 fi
 
+# Usually, CPU test is required, but for some bundles that are too large to run in Github Actions, we can exclude them.
+exclude_test_list=("maisi_ct_generative")
+is_excluded() {
+    for item in "${exclude_test_list[@]}"; do  # Use exclude_test_list here
+        if [ "$1" == "$item" ]; then
+            return 0 # Return true (0) if excluded
+        fi
+    done
+    return 1 # Return false (1) if not excluded
+}
+
 verify_release_bundle() {
     echo 'Run verify bundle...'
-    # get all bundles
-    download_path="download"
-    pip install git+https://github.com/Project-MONAI/MONAI.git@dev  # project-monai/model-zoo issue #505
-    pip install jsonschema gdown
-    # download bundle from releases
-    python $(pwd)/ci/download_latest_bundle.py --b "$bundle" --models_path $(pwd)/models --p "$download_path"
-    # get required libraries according to the bundle's metadata file
-    requirements_file="requirements_$bundle.txt"
-    python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --requirements_file "$requirements_file"
-    # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
-    if [ $ALLOW_MONAI_RC = true ]; then
-        include_pre_release="--pre"
+    if is_excluded "$bundle"; then
+        echo "skip '$bundle' weekly cpu tests."
     else
-        include_pre_release=""
+        download_path="download"
+        pip install git+https://github.com/Project-MONAI/MONAI.git@dev  # project-monai/model-zoo issue #505
+        pip install jsonschema gdown huggingface_hub==0.29.3
+        # download bundle from releases
+        python $(pwd)/ci/download_latest_bundle.py --b "$bundle" --models_path $(pwd)/models --p "$download_path"
+        # get required libraries according to the bundle's metadata file
+        requirements_file="requirements_$bundle.txt"
+        python $(pwd)/ci/get_bundle_requirements.py --b "$bundle" --requirements_file "$requirements_file"
+        # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
+        if [ $ALLOW_MONAI_RC = true ]; then
+            include_pre_release="--pre"
+        else
+            include_pre_release=""
+        fi
+        # Check if the requirements file exists and is not empty
+        if [ -s "$requirements_file" ]; then
+            echo "install required libraries for bundle: $bundle"
+            pip install $include_pre_release -r "$requirements_file"
+        fi
+        # verify bundle
+        python $(pwd)/ci/verify_bundle.py -b "$bundle" -p "$download_path" -m "regular"  # regular tests on cpu
     fi
-    # Check if the requirements file exists and is not empty
-    if [ -s "$requirements_file" ]; then
-        echo "install required libraries for bundle: $bundle"
-        pip install $include_pre_release -r "$requirements_file"
-    fi
-    # verify bundle
-    python $(pwd)/ci/verify_bundle.py -b "$bundle" -p "$download_path" -m "regular"  # regular tests on cpu
 }
 
 
