@@ -56,12 +56,6 @@ remove_venv() {
     fi
 }
 
-set_local_env() {
-    echo "set local pip environment"
-    pip install --upgrade pip wheel
-    export PYTHONPATH=$PWD
-}
-
 verify_bundle() {
     echo 'Run verify bundle...'
     head_ref=$(git rev-parse HEAD)
