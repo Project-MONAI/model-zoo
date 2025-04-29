@@ -88,10 +88,11 @@ class Ensembler:
         )
         for img in tqdm(self.coco_gt.imgs.keys()):
             # print(img)
-            df = pd.DataFrame()  # a dataframe of detections
+            dflist = []  # a dataframe of detections
             obj_set = set()  # a set of objects (frozensets)
             for i, coco_dt in enumerate(self.dtlist):  # for each detector append predictions to df
-                df = df.append(pd.DataFrame(coco_dt.imgToAnns[img]).assign(det=i), ignore_index=True)
+                dflist.append(pd.DataFrame(coco_dt.imgToAnns[img]).assign(det=i))
+            df = pd.concat(dflist,ignore_index=True)
             if not df.empty:
                 for cat in self.cats:  # for each category
                     dfcat = df[df["category_id"] == cat]

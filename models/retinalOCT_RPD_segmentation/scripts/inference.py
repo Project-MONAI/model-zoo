@@ -76,7 +76,7 @@ def run_prediction(cfg, dataset_name, output_path):
         dataset_name, tasks={"bbox", "segm"}, output_dir=output_path
     )  # produces _coco_format.json when initialized
     for mdl in ("fold1", "fold2", "fold3", "fold4", "fold5"):
-        extract_directory = "../model"
+        extract_directory = "../models"
         file_name = mdl + "_model_final.pth"
         model_weights_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), extract_directory, file_name)
         print(model_weights_path)

@@ -111,7 +111,7 @@ class TestRPDInference(unittest.TestCase):
 
         # At least 10 RPD present in sample data
         dfvol = pd.read_html(os.path.join(self.output_dir, "dfvol_testDataset.html"))[0]
-        self.assertTrue(dfvol["dt_instances"].sum()[0] > 10)
+        self.assertTrue(dfvol["dt_instances"].sum().iloc[0] > 10)
 
 
 if __name__ == "__main__":

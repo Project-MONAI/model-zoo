@@ -33,6 +33,17 @@ This bundle can be installed using docker by navigating to the RPDBundle directo
 ```
 docker build -t <image_name>:<tag> .
 ``` -->
+## INSTALL
+The following installation order works when installing into an environment with python==3.9.
+
+From the bundle directory, install the required packages using
+```
+pip install -r ./docs/requirements.txt
+```
+Install detectron2 using
+```
+python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
+```
 
 ## USAGE
 The expected image data is in PNG format at the scan level, VOL format at the volume level, or DICOM format at the volume level. To run inference, modify the parameters of the inference.yaml config file in the configs folder which looks like: 

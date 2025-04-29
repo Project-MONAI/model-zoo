@@ -1,0 +1,7 @@
+monai[fire,ninja,torchvision,pandas,pydicom]
+
+opencv-python-headless 
+seaborn 
+scikit-learn 
+progressbar
+lxml
