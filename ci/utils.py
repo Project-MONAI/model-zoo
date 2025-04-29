@@ -17,11 +17,11 @@ import re
 import shutil
 from typing import List
 
-from huggingface_hub import HfApi
 from monai.apps.utils import download_url
 from monai.bundle.config_parser import ConfigParser
 from monai.utils import look_up_option, optional_import
 
+huggingface_hub, _ = optional_import("huggingface_hub")
 Github, _ = optional_import("github", name="Github")
 
 SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
@@ -178,7 +178,7 @@ def get_existing_bundle_list(model_info):
 
 
 def create_bundle_to_huggingface(bundle_name: str, org_name: str):
-    api = HfApi()
+    api = huggingface_hub.HfApi()
     try:
         _ = api.create_repo(repo_id=f"{org_name}/{bundle_name}", repo_type="model", private=False)
     except Exception as e:
@@ -189,7 +189,7 @@ def create_bundle_to_huggingface(bundle_name: str, org_name: str):
 
 
 def upload_version_to_huggingface(bundle_name: str, version: str, root_path: str, org_name: str):
-    api = HfApi()
+    api = huggingface_hub.HfApi()
 
     try:
         # if no file is changed, will skip uploading automatically

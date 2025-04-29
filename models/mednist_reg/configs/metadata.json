@@ -1,7 +1,8 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.5",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.0.6",
     "changelog": {
+        "0.0.6": "update to huggingface hosting",
         "0.0.5": "update large files",
         "0.0.4": "add name tag",
         "0.0.3": "update to use monai 1.1.0",
@@ -11,9 +12,11 @@
     "monai_version": "1.1.0",
     "pytorch_version": "1.13.0",
     "numpy_version": "1.22.2",
-    "optional_packages_version": {
-        "pytorch-ignite": "0.4.8"
+    "required_packages_version": {
+        "pytorch-ignite": "0.4.8",
+        "pyyaml": "6.0.2"
     },
+    "supported_apps": {},
     "name": "MedNIST registration",
     "task": "Spatial transformer for hand image registration from the MedNIST dataset",
     "description": "This is an example of a ResNet and spatial transformer for hand xray image registration",

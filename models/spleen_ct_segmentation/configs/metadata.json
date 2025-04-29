@@ -1,7 +1,8 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.9",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.6.0",
     "changelog": {
+        "0.6.0": "update to huggingface hosting",
         "0.5.9": "use monai 1.4 and update large files",
         "0.5.8": "update to use monai 1.3.2",
         "0.5.7": "update to use monai 1.3.1",
@@ -40,10 +41,12 @@
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
-    "optional_packages_version": {
+    "required_packages_version": {
         "nibabel": "5.2.1",
-        "pytorch-ignite": "0.4.11"
+        "pytorch-ignite": "0.4.11",
+        "tensorboard": "2.17.0"
     },
+    "supported_apps": {},
     "name": "Spleen CT segmentation",
     "task": "Decathlon spleen segmentation",
     "description": "A pre-trained model for volumetric (3D) segmentation of the spleen from CT image",

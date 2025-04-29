@@ -61,7 +61,6 @@ exclude_download_large_file_list = ["maisi_ct_generative"]
 # If a bundle has this kind of dependencies, please add the bundle name (key), and the path of the install script (value)
 # into the dict.
 install_dependency_dict = {
-    "maisi_ct_generative": "ci/install_scripts/install_maisi_ct_generative_dependency.sh",
     "retinalOCT_RPD_segmentation": "ci/install_scripts/install_retinalOCT_RPD_segmentation_dependency.sh"}
 
 # This list is used for our CI tests to determine whether a bundle supports TensorRT export. Related

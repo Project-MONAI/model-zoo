@@ -1,16 +1,19 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.0.2",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.0.3",
     "changelog": {
+        "0.0.3": "update to huggingface hosting",
         "0.0.2": "update large file yml",
         "0.0.1": "Initial version"
     },
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
-    "optional_packages_version": {
-        "pytorch-ignite": "0.4.11"
+    "required_packages_version": {
+        "pytorch-ignite": "0.4.11",
+        "pyyaml": "6.0.2"
     },
+    "supported_apps": {},
     "name": "Classification Template",
     "task": "Classification Template in 2D images",
     "description": "This is a template bundle for classifying in 2D, take this as a basis for your own bundles.",

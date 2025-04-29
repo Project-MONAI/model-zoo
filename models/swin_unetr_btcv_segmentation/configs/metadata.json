@@ -1,7 +1,8 @@
 {
-    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.5.6",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.5.7",
     "changelog": {
+        "0.5.7": "update to huggingface hosting",
         "0.5.6": "update tensorrt benchmark results",
         "0.5.5": "enable tensorrt",
         "0.5.4": "update to use monai 1.3.1",
@@ -36,11 +37,14 @@
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
     "numpy_version": "1.24.4",
-    "optional_packages_version": {
+    "required_packages_version": {
+        "itk": "5.4.0",
         "nibabel": "5.2.1",
         "pytorch-ignite": "0.4.11",
-        "einops": "0.7.0"
+        "einops": "0.7.0",
+        "tensorboard": "2.17.0"
     },
+    "supported_apps": {},
     "name": "Swin UNETR BTCV segmentation",
     "task": "BTCV multi-organ segmentation",
     "description": "A pre-trained model for volumetric (3D) multi-organ segmentation from CT image",

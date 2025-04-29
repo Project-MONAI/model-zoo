@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20240318.json",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "changelog": {
+        "1.0.1": "add missing dependencies",
         "1.0.0": "accelerated maisi, inference only, is not compartible with previous maisi diffusion model weights",
         "0.4.6": "add TensorRT support",
         "0.4.5": "update README",
@@ -18,7 +19,12 @@
     "optional_packages_version": {
         "fire": "0.6.0",
         "nibabel": "5.2.1",
-        "tqdm": "4.66.4"
+        "tqdm": "4.66.4",
+        "einops": "0.7.0",
+        "scikit-image": "0.23.2",
+        "pytorch-ignite": "0.4.11",
+        "tensorboard": "2.17.0",
+        "itk": "5.4.0"
     },
     "supported_apps": {
         "maisi-nim": ""
