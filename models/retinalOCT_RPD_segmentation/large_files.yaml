@@ -3,22 +3,22 @@ large_files:
     url: "https://s3.us-west-2.amazonaws.com/comp.ophthalmology.uw.edu/fold1_model_final.pth"
     hash_val: ""
     hash_type: ""
-  
+
   - path: "models/fold2_model_final.pth"
     url: "https://s3.us-west-2.amazonaws.com/comp.ophthalmology.uw.edu/fold2_model_final.pth"
     hash_val: ""
     hash_type: ""
-      
+
   - path: "models/fold3_model_final.pth"
     url: "https://s3.us-west-2.amazonaws.com/comp.ophthalmology.uw.edu/fold3_model_final.pth"
     hash_val: ""
     hash_type: ""
-      
+
   - path: "models/fold4_model_final.pth"
     url: "https://s3.us-west-2.amazonaws.com/comp.ophthalmology.uw.edu/fold4_model_final.pth"
     hash_val: ""
     hash_type: ""
-      
+
   - path: "models/fold5_model_final.pth"
     url: "https://s3.us-west-2.amazonaws.com/comp.ophthalmology.uw.edu/fold5_model_final.pth"
     hash_val: ""
