@@ -54,7 +54,7 @@ def extract_files(dirtoextract, extracted_path, input_format):
         print(f"Extracting files from {dirtoextract} into {extracted_path}...")
         if input_format == "vol":
             files_to_extract = glob.glob(os.path.join(dirtoextract, "**/*.vol"), recursive=True)
-            for i, line in enumerate(tqdm(files_to_extract)):
+            for _, line in enumerate(tqdm(files_to_extract)):
                 fpath = line.strip("\n")
                 vol = volFile(fpath)
                 fpath = fpath.replace("\\", "/")

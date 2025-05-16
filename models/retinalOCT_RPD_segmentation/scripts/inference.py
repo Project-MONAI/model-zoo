@@ -19,7 +19,6 @@ from .datasets import data
 from .Ensembler import Ensembler
 from .table_styles import styles
 
-
 logging.basicConfig(level=logging.INFO)
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"

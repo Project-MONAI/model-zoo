@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 Utiltites for analyizing and visualizing model segmentations on dataset.
 Yelena Bagdasarova, Scott Song
@@ -31,7 +29,7 @@ from pycocotools.mask import decode
 from sklearn.metrics import average_precision_score, precision_recall_curve
 from tqdm import tqdm
 
-plt.style.use('ybpres.mplstyle')
+plt.style.use("ybpres.mplstyle")
 
 # plt.style.use('/data/ssong/detectron2-rpd-yb/detectron2-rpd-pkg/src/detectron2-rpd/ybpres.mplstyle')
 
@@ -114,7 +112,8 @@ class OutputVis:
         Args:
             dat (dict): Dictionary for the image im containing ground truth annotations.
             im (numpy array): a numpy array of shape (H, W, C), where H and W correspond to
-        the height and width of the image respectively. C is the number of color channels. The image is required to be in RGB format since that is a requirement of the Matplotlib library. The image is also expected to be in the range [0, 255].
+        the height and width of the image respectively. C is the number of color channels.
+        The image is required to be in RGB format since that is a requirement of the Matplotlib library. The image is also expected to be in the range [0, 255].
 
         Returns:
             PIL.Image: The resulting original image overlayed with ground truth instances.
@@ -142,13 +141,15 @@ class OutputVis:
         return img
 
     def produce_model_image(self, ImgId, dat, im):
-        """Returns image im overlayed with instances predicted by the model. Depending on visualizer mode the model predicts on the image im or reads the predictions from file based on the given ImgId.
+        """Returns image im overlayed with instances predicted by the model.
+        Depending on visualizer mode the model predicts on the image im or reads the predictions from file based on the given ImgId.
 
         Args:
             ImgId (str): Value of image_id in image data structure.
             dat (dict): Dictionary for the image im. Used for height and width parameters.
             im (numpy array): a numpy array of shape (H, W, C), where H and W correspond to
-        the height and width of the image respectively. C is the number of color channels. The image is required to be in RGB format since that is a requirement of the Matplotlib library. The image is also expected to be in the range [0, 255].
+        the height and width of the image respectively. C is the number of color channels.
+        The image is required to be in RGB format since that is a requirement of the Matplotlib library. The image is also expected to be in the range [0, 255].
 
         Returns:
             PIL.Image: The resulting original image overlayed with model-predicted instances.
@@ -671,7 +672,7 @@ class EvaluateClass(COCOEvaluator):
         gt_inst = 0
         dt_inst = 0
         gt_neg_scans = 0
-        for key, val in self.cocoGt.imgs.items():
+        for _, val in self.cocoGt.imgs.items():
             imgid = val["id"]
             # Gt instances
             annIdsGt = self.cocoGt.getAnnIds([imgid])

@@ -7,20 +7,20 @@ Himeesh Kumar, Yelena Bagdasarova, Scott Song, Doron G. Hickey, Amy C. Cohn, Mal
 Reticular Pseudodrusen, AMD, OCT, Segmentation
 
 ## **Model Description**
-This model detects and segments Reticular Pseudodrusen (RPD) instances in Optical Coherence Tomography (OCT) B-scans. The instance segmentation model used a Mask-RCNN [1] head with the ResNeXt-101-32x8d-FPN [2] backbone (pretrained on ImageNet) implemented via the Detectron2 framework [3]. The model produces outputs that consist of bounding boxes and segmentation masks that delineate the coordinates and pixels of each instance detected, which are assigned a corresponding output probability. A tuneable probability threshold can then be applied to finalise the binary detection of an RPD instance. 
+This model detects and segments Reticular Pseudodrusen (RPD) instances in Optical Coherence Tomography (OCT) B-scans. The instance segmentation model used a Mask-RCNN [1] head with the ResNeXt-101-32x8d-FPN [2] backbone (pretrained on ImageNet) implemented via the Detectron2 framework [3]. The model produces outputs that consist of bounding boxes and segmentation masks that delineate the coordinates and pixels of each instance detected, which are assigned a corresponding output probability. A tuneable probability threshold can then be applied to finalise the binary detection of an RPD instance.
 
 Five segmentation models using these RPD instance labels on the OCT B-scans were trained based on five-fold cross-validation which were used to form a final ensemble model using soft voting (see supplementary material of paper for more information on model training.)
 
 ## **Data**
 The model was trained using the prospectively-collected, baseline OCT scans (prior to any treatments) of individuals enrolled in the LEAD study [4] imaged using Heidelberg Spectralis HRA+OCT. OCT B-scans from 200 eyes from 100 individuals in the LEAD study were randomly selected to undergo manual annotations of RPD by a single grader (HK) at the pixel level, following training from two senior investigators (RHG and ZW). Only definite RPD lesions, defined as subretinal hyperreflective accumulations that altered the contour of, or broke through, the overlying photoreceptor ellipsoid zone on the OCT B-scans were annotated.
 
-The model was then internally tested in a different set of OCT scans from 125 eyes from 92 individuals from the LEAD study, and externally tested on five independent datasets: the MACUSTAR study [5], the Northern Ireland Cohort for Longitudinal Study of Ageing (NICOLA) study [6], the Montrachet study [7], AMD observational studies at the University of Bonn, Germany (UB), and a routine clinical care cohort seen at the University of Washington (UW). The presence of RPD was graded either as part of each study (MACUSTAR and UB datasets) or graded by one of the study investigators (HK; in the NICOLA, UW, and Montrachet datasets). All these studies defined RPD based on the presence of five or more definite lesions on more than one OCT B-scan that corresponded to hyporeflective lesions seen on near-infrared reflectance imaging. 
+The model was then internally tested in a different set of OCT scans from 125 eyes from 92 individuals from the LEAD study, and externally tested on five independent datasets: the MACUSTAR study [5], the Northern Ireland Cohort for Longitudinal Study of Ageing (NICOLA) study [6], the Montrachet study [7], AMD observational studies at the University of Bonn, Germany (UB), and a routine clinical care cohort seen at the University of Washington (UW). The presence of RPD was graded either as part of each study (MACUSTAR and UB datasets) or graded by one of the study investigators (HK; in the NICOLA, UW, and Montrachet datasets). All these studies defined RPD based on the presence of five or more definite lesions on more than one OCT B-scan that corresponded to hyporeflective lesions seen on near-infrared reflectance imaging.
 
 #### **Preprocessing**
 Scans were kept at native resolution (1024 x 496 pixels).
 
 ## **Performance**
-In the external test datasets, the overall performance for detecting RPD in a volume scan was (AUC = 0·94; 95% CI = 0·92–0·97). In the internal test dataset, the Dice coefficient (DSC) between the model and manual annotations by retinal specialists for each B-scan was caculated and the average over the dataset is listed in the table below. Note that the DSC was assigned a value of 1·0 to all pairwise comparisons where no pixels on a B-scan were labelled as having RPD. 
+In the external test datasets, the overall performance for detecting RPD in a volume scan was (AUC = 0·94; 95% CI = 0·92–0·97). In the internal test dataset, the Dice coefficient (DSC) between the model and manual annotations by retinal specialists for each B-scan was caculated and the average over the dataset is listed in the table below. Note that the DSC was assigned a value of 1·0 to all pairwise comparisons where no pixels on a B-scan were labelled as having RPD.
 
 ![](Table2.gif)
 
@@ -29,7 +29,7 @@ In the external test datasets, the overall performance for detecting RPD in a vo
 For more details regarding evaluation results, please see Results section of paper.
 
 <!-- ## INSTALLATION
-This bundle can be installed using docker by navigating to the RPDBundle directory and running 
+This bundle can be installed using docker by navigating to the RPDBundle directory and running
 ```
 docker build -t <image_name>:<tag> .
 ``` -->
@@ -46,7 +46,7 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
 ```
 
 ## USAGE
-The expected image data is in PNG format at the scan level, VOL format at the volume level, or DICOM format at the volume level. To run inference, modify the parameters of the inference.yaml config file in the configs folder which looks like: 
+The expected image data is in PNG format at the scan level, VOL format at the volume level, or DICOM format at the volume level. To run inference, modify the parameters of the inference.yaml config file in the configs folder which looks like:
 
 ```
 imports:
@@ -73,7 +73,7 @@ args:
 inference:
 - $scripts.inference.main(@args)
 ```
-Then in your bash shell run 
+Then in your bash shell run
 ```
 BUNDLE="/path/to/budle/RPDBundle"
 
@@ -87,7 +87,7 @@ If extracting DICOM or VOL files:
 * set `run_extract` to `True`
 * specify `input_dir`, the path to the directory that contains the VOL or DICOM files
 * specify `extracted_dir`, the path to the directory where extracted images will be stored
-* set `input_format` to "dicom" or "vol" 
+* set `input_format` to "dicom" or "vol"
 
 The VOL or DICOM files can be in a nested hierarchy of folders, and all files in that directory with a VOL or DICOM extension will be extracted.
 
@@ -95,7 +95,7 @@ For DICOM files, each OCT slice will be saved as a png file to `<extracted_dir>/
 
 For VOL files, each OCT slice will be saved as a png file to `<extracted_dir>/<some>/<file>/<name>/<some_file_name>_oct_<DDD>.png` on disk, where `<DDD>` is the slice number and a nested hierarchy of folders is created using the underscores in the original filename. "
 
-### DATASET PACKAGING 
+### DATASET PACKAGING
 Once you have the scans in PNG format, you can create a "dataset" in Detectron2 dictionary format for model consumption:
 * set `create_dataset` to `True`
 * set `dataset_name` to the chosen name of your dataset
@@ -104,7 +104,7 @@ The summary tables and visual output is organized around OCT volumes, so please 
 
 ### INFERENCE
 To run inference on your dataset:
-* set `dataset_name` to the name of your dataset which you create with the previous step and resides in `/<path>/<to>/<bundle>/RPDBundle/datasets/<your_dataset_name>.pk` 
+* set `dataset_name` to the name of your dataset which you create with the previous step and resides in `/<path>/<to>/<bundle>/RPDBundle/datasets/<your_dataset_name>.pk`
 * set `output_dir`, the path to the directory where model predictions and other data will be stored.
 * set `run_inference` to `True`
 
@@ -128,7 +128,7 @@ Inference on one Nvidia A100 gpu takes about 0.041 s/batch of 14 images, about 3
 ## **Limitations**
 This model has not been tested for robustness of performance on OCTs imaged with other devices and with different scan parameters.
 
-## **Citation Info** 
+## **Citation Info**
 
 ```
 @article {Kumar2024.09.11.24312817,
@@ -144,7 +144,7 @@ This model has not been tested for robustness of performance on OCTs imaged with
 }
 ```
 
-## **References** 
+## **References**
 [1]: He, Kaiming, Georgia Gkioxari, Piotr Dollár, and Ross Girshick. "Mask R-CNN." In Proceedings of the IEEE international conference on computer vision (ICCV), pp. 2961-2969. 2017.
 
 [2]: Xie, Saining, Ross Girshick, Piotr Dollár, Zhuowen Tu, and Kaiming He. "Aggregated residual transformations for deep neural networks." In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 1492-1500. 2017.
@@ -158,13 +158,3 @@ This model has not been tested for robustness of performance on OCTs imaged with
 [6]: Hogg RE, Wright DM, Quinn NB, et al. Prevalence and risk factors for age-related macular degeneration in a population-based cohort study of older adults in Northern Ireland using multimodal imaging: NICOLA Study. Br J Ophthalmol. 2022:bjophthalmol-2021-320469.
 
 [7]: Gabrielle P-H, Seydou A, Arnould L, et al. Subretinal Drusenoid Deposits in the Elderly in a Population-Based Study (the Montrachet Study). Invest Ophthalmol Vis Sci. 2019;60(14):4838–48.
-
-
-
-
-
-
-
-
-
-

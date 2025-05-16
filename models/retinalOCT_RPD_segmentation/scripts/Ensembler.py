@@ -92,7 +92,7 @@ class Ensembler:
             obj_set = set()  # a set of objects (frozensets)
             for i, coco_dt in enumerate(self.dtlist):  # for each detector append predictions to df
                 dflist.append(pd.DataFrame(coco_dt.imgToAnns[img]).assign(det=i))
-            df = pd.concat(dflist,ignore_index=True)
+            df = pd.concat(dflist, ignore_index=True)
             if not df.empty:
                 for cat in self.cats:  # for each category
                     dfcat = df[df["category_id"] == cat]
