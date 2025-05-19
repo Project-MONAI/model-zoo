@@ -21,6 +21,7 @@ ALLOW_MONAI_RC = os.environ.get("ALLOW_MONAI_RC", "false").lower() in ("true", "
 
 special_dependencies_list = ["detectron2"]
 
+
 def increment_version(version):
     """
     Split the version into components, assume missing parts are '0'.

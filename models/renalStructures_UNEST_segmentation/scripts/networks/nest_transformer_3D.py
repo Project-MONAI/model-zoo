@@ -33,7 +33,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-""" Nested Transformer (NesT) in PyTorch
+"""Nested Transformer (NesT) in PyTorch
 A PyTorch implement of Aggregating Nested Transformers as described in:
 'Aggregating Nested Transformers'
     - https://arxiv.org/abs/2105.12723

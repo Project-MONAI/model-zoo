@@ -16,7 +16,7 @@
         "progressbar": "2.5",
         "pydicom": "2.4.4",
         "fire": "0.7.0",
-        "torchvision" :"0.22.0",
+        "torchvision": "0.22.0",
         "detectron2": "0.6",
         "lxml": "5.4.0"
     },
@@ -142,4 +142,3 @@
         }
     }
 }
-
