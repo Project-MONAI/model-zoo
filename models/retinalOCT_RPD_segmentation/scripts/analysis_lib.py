@@ -29,9 +29,10 @@ from pycocotools.mask import decode
 from sklearn.metrics import average_precision_score, precision_recall_curve
 from tqdm import tqdm
 
-plt.style.use("ybpres.mplstyle")
-
-# plt.style.use('/data/ssong/detectron2-rpd-yb/detectron2-rpd-pkg/src/detectron2-rpd/ybpres.mplstyle')
+# current_directory = os.getcwd()
+# print(current_directory)
+plt.style.use("./scripts/ybpres.mplstyle")
+# plt.style.use("ybpres.mplstyle")
 
 
 def grab_dataset(name):
@@ -107,13 +108,15 @@ class OutputVis:
         return gt_data
 
     def produce_gt_image(self, dat, im):
-        """Returns image im overlayed with ground truth instances found in dat if there are any. Depending on visualizer mode, the instances are separate colors or monochrome.
+        """Returns image im overlayed with ground truth instances found in dat if there are any.
+        Depending on visualizer mode, the instances are separate colors or monochrome.
 
         Args:
             dat (dict): Dictionary for the image im containing ground truth annotations.
             im (numpy array): a numpy array of shape (H, W, C), where H and W correspond to
         the height and width of the image respectively. C is the number of color channels.
-        The image is required to be in RGB format since that is a requirement of the Matplotlib library. The image is also expected to be in the range [0, 255].
+        The image is required to be in RGB format since that is a requirement of the Matplotlib library.
+        The image is also expected to be in the range [0, 255].
 
         Returns:
             PIL.Image: The resulting original image overlayed with ground truth instances.
@@ -142,14 +145,16 @@ class OutputVis:
 
     def produce_model_image(self, ImgId, dat, im):
         """Returns image im overlayed with instances predicted by the model.
-        Depending on visualizer mode the model predicts on the image im or reads the predictions from file based on the given ImgId.
+        Depending on visualizer mode the model predicts on the image im or reads the predictions from file based on
+        the given ImgId.
 
         Args:
             ImgId (str): Value of image_id in image data structure.
             dat (dict): Dictionary for the image im. Used for height and width parameters.
             im (numpy array): a numpy array of shape (H, W, C), where H and W correspond to
         the height and width of the image respectively. C is the number of color channels.
-        The image is required to be in RGB format since that is a requirement of the Matplotlib library. The image is also expected to be in the range [0, 255].
+        The image is required to be in RGB format since that is a requirement of the Matplotlib library.
+        The image is also expected to be in the range [0, 255].
 
         Returns:
             PIL.Image: The resulting original image overlayed with model-predicted instances.
@@ -188,14 +193,16 @@ class OutputVis:
         return img, img_model
 
     def get_outputs_from_file(self, ImgId, imgsize):
-        """For image with image_id ImgId, reads in and converts instances from coco format in self.pred_file to a detectron2 Instances structure required for the visulizer utility.
+        """For image with image_id ImgId, reads in and converts instances from coco format in self.pred_file to a
+        detectron2 Instances structure required for the visulizer utility.
 
         Args:
             ImgId (str): Value of image_id in image data structure.
             imgsize (tuple): Height and width of the image in pixels.
 
         Returns:
-            detectron2.structures.Instances: The correctly formated data structure to be used to the detectron2 visualizer utility.
+            detectron2.structures.Instances: The correctly formated data structure to be used to the detectron2
+            visualizer utility.
         """
 
         pred_boxes = []
@@ -222,7 +229,8 @@ class OutputVis:
 
     @staticmethod
     def height_crop_range(im, height_target=256):
-        """Find the range of pixels in the height dimension spanning the height height_target which contain the brightest regions of the image.
+        """Find the range of pixels in the height dimension spanning the height height_target which contain the
+        brightest regions of the image.
 
         Args:
             im (numpy array): a numpy array of shape (H, W, C)
@@ -244,7 +252,8 @@ class OutputVis:
         return range(h1, h2)
 
     def output_to_pdf(self, ImgIds, outname, dfimg=None):
-        """Create pdf with name outname displaying ground truth and model prediction overlays for image ids listed in ImgIds.
+        """Create pdf with name outname displaying ground truth and model prediction overlays for
+        image ids listed in ImgIds.
 
         Args:
             ImgIds (list(str)): List of image_id values to output.
@@ -363,7 +372,8 @@ class OutputVis:
         self.save_imgarr_to_tiff(imgs, outname)
 
     def get_enface_dt(self, grp, scan_height, scan_width, scan_spacing):
-        """Return enface perspective of model predictions for a single scan volume whose imgids are listed in the index of grp.
+        """Return enface perspective of model predictions for a single scan volume whose imgids are
+        listed in the index of grp.
 
         Args:
             grp (pandas.DataFrame): Dataframe containing images from a single scan volume indexed by ImageId.
@@ -395,7 +405,8 @@ class OutputVis:
         return enface
 
     def get_enface_gt(self, grp, scan_height, scan_width, scan_spacing):
-        """Return enface perspective of ground truth annotations for a single scan volume whose imgids are listed in the index of grp.
+        """Return enface perspective of ground truth annotations for a single scan volume whose imgids are
+        listed in the index of grp.
 
         Args:
             grp (pandas.DataFrame): Dataframe containing images from a single scan volume indexed by ImageId.
@@ -555,7 +566,8 @@ class EvaluateClass(COCOEvaluator):
         # FP rate, 1 RPD in image = FP
         if (self.scores.min() == -1) and (self.scores.max() == -1):
             print(
-                "WARNING: Scores for all iou thresholds and all recall levels are not defined. This can arise if ground truth annotations contain no instances. Leaving fpr matrix as None"
+                "WARNING: Scores for all iou thresholds and all recall levels are not defined. "
+                "This can arise if ground truth annotations contain no instances. Leaving fpr matrix as None"
             )
             self.fpr = None
             return

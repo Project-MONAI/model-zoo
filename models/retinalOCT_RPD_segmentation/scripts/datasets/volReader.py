@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # Aaron Y. Lee MD MSCI (University of Washington) Copyright 2019
 #
 # Code ported from Markus Mayer's excellent work (https://www5.cs.fau.de/research/software/octseg/)
@@ -223,7 +221,7 @@ class volFile:
                     U[U == v] = 0.0
                     if segmentations is None:
                         segmentations = []
-                        for j in range(bscanHead["numSeg"]):
+                        for _ in range(bscanHead["numSeg"]):
                             segmentations.append([])
 
                     for j in range(bscanHead["numSeg"]):

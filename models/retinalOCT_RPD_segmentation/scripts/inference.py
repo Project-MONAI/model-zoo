@@ -11,13 +11,14 @@ from detectron2.data import DatasetCatalog, MetadataCatalog, build_detection_tes
 from detectron2.evaluation import COCOEvaluator, inference_on_dataset
 from detectron2.modeling import build_model
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-current_directory = os.getcwd()
-print(current_directory)
 from .analysis_lib import CreatePlotsRPD, EvaluateClass, OutputVis, grab_dataset
 from .datasets import data
 from .Ensembler import Ensembler
 from .table_styles import styles
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+# current_directory = os.getcwd()
+# print(current_directory)
 
 logging.basicConfig(level=logging.INFO)
 

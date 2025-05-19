@@ -21,27 +21,6 @@ class Error(Exception):
     pass
 
 
-# def extract_files(dirtoextract, extracted_path):
-#     proceed = True
-#     if ((os.path.isdir(extracted_path)) and (len(os.listdir(extracted_path))!=0)):
-#         val = input(f'{extracted_path} exists and is not empty. Files may be overwritten. Proceed with extraction? (Y/N)')
-#         proceed = bool(distutils.util.strtobool(val))
-#     if proceed:
-#         print(f"Extracting files from {dirtoextract} into {extracted_path}...")
-#         files_to_extract = glob.glob(os.path.join(dirtoextract,'**/*.vol'),recursive=True)
-#         for i,line in enumerate(tqdm(files_to_extract)):
-#             fpath = line.strip('\n')
-#             vol = volFile(fpath)
-#             fpath = fpath.replace('\\','/')
-#             path, scan_str = fpath.strip('.vol').rsplit('/',1)
-#             extractpath = os.path.join(extracted_path,scan_str.replace('_','/'))
-#             os.makedirs(extractpath,exist_ok=True)
-#             preffix = os.path.join(extractpath, scan_str+'_oct')
-#             vol.renderOCTscans(preffix)
-#     else:
-#         pass
-
-
 def extract_files(dirtoextract, extracted_path, input_format):
     assert input_format in ["vol", "dicom"], 'Error: input_format must be "vol" or "dicom".'
     proceed = True
@@ -78,7 +57,6 @@ def extract_files(dirtoextract, extracted_path, input_format):
                         dd[key] = fi.get(key)
 
                     volpath = os.path.join(extracted_path, f"{fi.SOPInstanceUID}")
-                    # volpath = os.path.join(extracted_path, f'{fi.PatientID}_{fi.ImageLaterality}_{fi.SeriesDate}') #path for volume
                     shutil.rmtree(volpath, ignore_errors=True)
                     os.mkdir(volpath)
                     n = fi.NumberOfFrames
