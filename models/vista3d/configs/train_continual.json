@@ -1,6 +1,6 @@
 {
     "data_list_file_path": "$@bundle_root + '/configs/msd_task09_spleen_folds.json'",
-    "dataset_dir": "/media/yufan/b685c1d0-c2eb-4b27-bf3e-0afadffbf895/home/yufan/Data/msd/Task09_Spleen",
+    "dataset_dir": "/data/Task09_Spleen",
     "finetune": true,
     "val_at_start": true,
     "finetune_model_path": "$@bundle_root + '/models/model.pt'",
