@@ -62,8 +62,11 @@ class Vista3dInferer(Inferer):
 
         """
         prompt_class = copy.deepcopy(class_vector)
-        if class_vector is not None:
-            # Check if network has attribute 'point_head' directly or within its 'module'
+        if class_vector is not None and (point_labels is not None and torch.any(point_labels !=-1)):
+            # Only when user perform zero-shot interactive during inference. Remove the class vector
+            # and keep the prompt_class to inform the model about the zero-shot. During finetuning,
+            # a novel class > last_supported is possible and should be taken care of. 
+            # This check should be moved to evaluator and prompt_class should be added as input to the inferer.
             if hasattr(network, "point_head"):
                 point_head = network.point_head
             elif hasattr(network, "module") and hasattr(network.module, "point_head"):
