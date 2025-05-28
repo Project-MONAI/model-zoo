@@ -9,14 +9,14 @@ python -m monai.bundle download "vista3d" --bundle_dir "bundles/"
 ```
 Please refer to monai model zoo (https://github.com/Project-MONAI/model-zoo) for more details.
 # Inference:
-The bundle only provides single-gpu inference. User can modify within the inference [config](../configs/inference.json).   
+The bundle only provides single-gpu inference. User can modify within the inference [config](../configs/inference.json).
 ## Single image inference to segment everything (automatic)
 The output will be saved to `output_dir/spleen_03/spleen_03_{output_postfix}{output_ext}`.
 ```
 python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'spleen_03.nii.gz'}
 ```
 ## Single image inference to segment specific class (automatic)
-The detailed automatic segmentation class index can be found [here](../configs/metadata.json). 
+The detailed automatic segmentation class index can be found [here](../configs/metadata.json).
 ```
 python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'spleen_03.nii.gz','label_prompt':[3]}
 ```
@@ -47,7 +47,7 @@ For more details, please refer to [this](inference.md).
 
 # Continual learning / Finetuning
 
-## Step1: Generate Data json file 
+## Step1: Generate Data json file
 Users need to provide a json data split for continuous learning (`configs/msd_task09_spleen_folds.json` from the [MSD](http://medicaldecathlon.com/) is provided as an example). The data split should meet the following format ('testing' labels are optional):
 ```json
 {
@@ -67,8 +67,8 @@ Example code for 5 fold cross-validation generation can be found [here](data.md)
 ```
 Note the data is not the absolute path to the image and label file. The actual image file will be `os.path.join(dataset_dir, data["training"][item]["image"])`, where `dataset_dir` is defined in `configs/train_continual.json`. Also 5-fold cross-validation is not required! `fold=0` is defined in train.json, which means any data item with fold==0 will be used as validation and other fold will be used for training. So if you only have train/val split, you can manually set validation data with "fold": 0 in its datalist and the other to be training by setting "fold" to any number other than 0.
 ```
-## Step2: Changing hyperparameters 
-For continual learning, user can change `configs/train_continual.json`. More advanced users can change configurations in `configs/train.json`.  Most hyperparameters are straighforward and user can tell based on their names. The users must manually change the following keys in `configs/train_continual.json`. 
+## Step2: Changing hyperparameters
+For continual learning, user can change `configs/train_continual.json`. More advanced users can change configurations in `configs/train.json`.  Most hyperparameters are straighforward and user can tell based on their names. The users must manually change the following keys in `configs/train_continual.json`.
 #### 1. `label_mappings`
 ```
     "label_mappings": {
@@ -80,7 +80,7 @@ For continual learning, user can change `configs/train_continual.json`. More adv
             [
                 index_2_in_user_data, # e.g. 2
                 mapped_index_2, # e.g. 2
-            ], ..., 
+            ], ...,
             [
                 index_last_in_user_data, # e.g. N
                 mapped_index_N, # e.g. N
@@ -91,9 +91,9 @@ For continual learning, user can change `configs/train_continual.json`. More adv
 `index_1_in_user_data`,...,`index_N_in_user_data` is the class index value in the groundtruth that user tries to segment. `mapped_index_1`,...,`mapped_index_N` is the mapped index value that the bundle will output. You can make these two the same for finetuning, but we suggest finding the semantic relevant mappings from our unified [global label index](../configs/metadata.json). For example, "Spleen" in MSD09 groundtruth label is represented by 1, but "Spleen" is 3 in `docs/labels.json`. So by defining label mapping `[[1, 3]]`, VISTA3D can segment "Spleen" using its pretrained weights out-of-the-box, and can speed up the finetuning convergence speed. If you cannot find a relevant semantic label for your class, just use any value < `num_classes` defined in train_continue.json. For more details about this label_mapping, please read [this](finetune.md).
 
 #### 2.  `data_list_file_path` and `dataset_dir`
-Change `data_list_file_path` to the absolute path of your data json split. Change `dataset_dir` to the root folder that combines with the relative path in the data json split. 
+Change `data_list_file_path` to the absolute path of your data json split. Change `dataset_dir` to the root folder that combines with the relative path in the data json split.
 
-#### 3. Optional hyperparameters and details are [here](finetune.md). 
+#### 3. Optional hyperparameters and details are [here](finetune.md).
 Hyperparameteers finetuning is important and varies from task to task.
 
 ## Step3: Run finetuning

@@ -18,7 +18,7 @@ Users can disable if the validation takes too long.
 In `train_continual.json`, only `n_train_samples` and `n_val_samples` are used for training and validation.
 
 #### `patch_size`
-The patch size parameter is defined in `configs/train_continual.json`: `"patch_size": [128, 128, 128]`. For finetuning purposes, this value needs to be changed acccording to user's task and GPU memory. Usually a larger patch_size will give better final results. `[192,192,128]` is a good value for larger memory GPU. 
+The patch size parameter is defined in `configs/train_continual.json`: `"patch_size": [128, 128, 128]`. For finetuning purposes, this value needs to be changed acccording to user's task and GPU memory. Usually a larger patch_size will give better final results. `[192,192,128]` is a good value for larger memory GPU.
 
 #### `resample_to_spacing`
 The resample_to_spacing parameter is defined in `configs/train_continual.json` and it represents the resolution the model will be trained on. The `1.5,1.5,1.5` mm default is suitable for large CT organs, but for other tasks, this value should be changed to achive the optimal performance.
