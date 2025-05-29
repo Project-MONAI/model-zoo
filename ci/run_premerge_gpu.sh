@@ -69,14 +69,13 @@ init_conda_env() {
     local bundle_identifier="$2"
     local conda_env_name="conda_env_${bundle_identifier}"
 
-    if [[ -z "$CONDA_SHLVL" || "$CONDA_SHLVL" -eq 0 ]]; then
-        if [ -n "$CONDA_EXE" ]; then
-            source "$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh"
-        elif [ -n "$MINICONDA_PATH_0" ] && [ -f "$MINICONDA_PATH_0/etc/profile.d/conda.sh" ]; then
-            source "$MINICONDA_PATH_0/etc/profile.d/conda.sh"
-        else
-            echo "Warning: Could not reliably source conda.sh for Conda activation."
-        fi
+    # Always source conda.sh to ensure conda activate is available
+    if [ -n "$CONDA_EXE" ] && [ -f "$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh" ]; then
+        source "$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh"
+    elif [ -n "$MINICONDA_PATH_0" ] && [ -f "$MINICONDA_PATH_0/etc/profile.d/conda.sh" ]; then
+        source "$MINICONDA_PATH_0/etc/profile.d/conda.sh"
+    else
+        echo "Warning: Could not reliably source conda.sh for Conda activation."
     fi
 
     if conda env list | grep -q "^${conda_env_name}[[:space:]]"; then
