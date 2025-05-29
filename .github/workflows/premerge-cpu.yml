@@ -37,7 +37,7 @@ jobs:
       shell: bash
       run: |
         conda init bash
-        source ~/.bashrc || echo "Sourcing ~/.bashrc failed or file not found, relying on next login shell."
+        eval "$(conda shell.bash hook)"
 
     - name: cache weekly timestamp
       id: pip-cache-ts
