@@ -33,6 +33,12 @@ jobs:
         python-version: 3.10.14
         auto-activate-base: false # Crucial: ensures the Python 3.10 from actions/setup-python is the default
 
+    - name: Initialize Conda for shell integration
+      shell: bash
+      run: |
+        conda init bash
+        source ~/.bashrc || echo "Sourcing ~/.bashrc failed or file not found, relying on next login shell."
+
     - name: cache weekly timestamp
       id: pip-cache-ts
       run: |
@@ -70,19 +76,7 @@ jobs:
         python -m pip install --upgrade pip wheel
         python -m pip install --upgrade setuptools
 
-    - name: Check environment
-      shell: bash
-      run: |
-        echo "Default Python version:"
-        python --version
-        echo "Conda executable path:"
-        command -v conda
-        conda info
-        # This ensures conda command is available, but the default python is still 3.10
-
     - name: Run check script
-      # The shell: bash -el {0} can be helpful if conda init modified shell profiles
-      # and your script needs to `conda activate` sub-environments.
       shell: bash -el {0}
       run: |
         # clean up temporary files

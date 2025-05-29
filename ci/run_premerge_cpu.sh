@@ -160,12 +160,10 @@ verify_bundle() {
                     fi
                     if $use_conda_for_bundle
                     then
-                        echo "Bundle '$bundle' requires Python $required_python_version (specified) for GPU. Using Conda."
                         init_conda_env "$required_python_version" "$bundle"
                         active_conda_env_for_bundle="conda_env_${bundle}"
                         conda activate "$active_conda_env_for_bundle"
                     else
-                        echo "Bundle '$bundle' using default Python ${DEFAULT_PYTHON_VERSION_FOR_VENV} venv."
                         init_venv
                     fi
                     # Check if the requirements file exists and is not empty
