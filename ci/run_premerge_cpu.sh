@@ -94,7 +94,7 @@ init_conda_env() {
         fi
     fi
 
-    if conda env list | grep -q "^${conda_env_name}[[:space:]]"; then 
+    if conda env list | grep -q "^${conda_env_name}[[:space:]]"; then
         echo "Conda env '$conda_env_name' already exists. Removing for a clean start..." >&2
         conda env remove -n "$conda_env_name" -y >&2
     fi
@@ -103,7 +103,7 @@ init_conda_env() {
     conda activate "$conda_env_name"
     install_common_deps_in_activated_env
     conda deactivate 2>/dev/null || true
-    
+
     echo "$conda_env_name"
 }
 
@@ -138,7 +138,7 @@ verify_bundle() {
     git fetch origin dev $head_ref
 
     changes=$(git diff --name-only $head_ref origin/dev -- models)
-    
+
     if [ ! -z "$changes" ]; then
         echo "Detected changes in 'models': $changes"
         bundle_list=$(python "$(pwd)/ci/get_changed_bundle.py" --f "$changes")
@@ -154,7 +154,7 @@ verify_bundle() {
 
                 requirements_file="requirements_$bundle.txt"
                 python "$(pwd)/ci/get_bundle_requirements.py" --b "$bundle" --requirements_file "$requirements_file"
-                
+
                 # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
                 if [ $ALLOW_MONAI_RC = true ]; then
                     include_pre_release="--pre"
@@ -176,17 +176,17 @@ verify_bundle() {
                     conda activate "$active_conda_env_for_bundle"
                 else
                     echo "Bundle '$bundle' using default Python ${DEFAULT_PYTHON_VERSION_FOR_VENV} venv."
-                    init_venv 
+                    init_venv
                 fi
-                
+
                 if [ -s "$requirements_file" ]; then
                     echo "Installing requirements from $requirements_file for $bundle"
                     python -m pip install $include_pre_release -r "$requirements_file"
                 fi
-                
+
                 echo "Verifying bundle (min tests): $bundle"
                 python "$(pwd)/ci/verify_bundle.py" -b "$bundle" -m "min"
-                
+
                 # cleanup
                 if $use_conda_for_bundle; then
                     remove_conda_env "$active_conda_env_for_bundle"
@@ -201,7 +201,7 @@ verify_bundle() {
     else
         echo "No changes in 'models' directory."
     fi
-    
+
     echo "Processing Hugging Face models..."
     hf_model_changes=$(git diff --name-only $head_ref origin/dev -- hf_models)
     if [ ! -z "$hf_model_changes" ]; then

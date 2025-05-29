@@ -53,7 +53,7 @@ install_common_deps_in_activated_env() {
 
 
 init_venv() {
-    if [ ! -d "model_zoo_venv" ]; then 
+    if [ ! -d "model_zoo_venv" ]; then
         echo "Initializing pip environment (model_zoo_venv for Python ${DEFAULT_PYTHON_VERSION_FOR_VENV})" >&2
         python -m venv model_zoo_venv
         source model_zoo_venv/bin/activate
@@ -93,7 +93,7 @@ init_conda_env() {
         fi
     fi
 
-    if conda env list | grep -q "^${conda_env_name}[[:space:]]"; then 
+    if conda env list | grep -q "^${conda_env_name}[[:space:]]"; then
         echo "Conda env '$conda_env_name' already exists. Removing for a clean start..." >&2
         conda env remove -n "$conda_env_name" -y >&2
     fi
@@ -102,7 +102,7 @@ init_conda_env() {
     conda activate "$conda_env_name"
     install_common_deps_in_activated_env
     conda deactivate 2>/dev/null || true
-    
+
     echo "$conda_env_name"
 }
 
@@ -147,7 +147,7 @@ verify_bundle() {
             for bundle in $bundle_list; do
                 echo "Processing GPU bundle: $bundle" >&2
                 requirements_file="requirements_$bundle.txt"
-                python "$(pwd)/ci/get_bundle_requirements.py" --b "$bundle" --requirements_file "$requirements_file" 
+                python "$(pwd)/ci/get_bundle_requirements.py" --b "$bundle" --requirements_file "$requirements_file"
 
                 # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
                 if [ "$ALLOW_MONAI_RC" = true ]; then
@@ -176,23 +176,23 @@ verify_bundle() {
                     echo "Installing requirements from $requirements_file for $bundle" >&2
                     python -m pip install $include_pre_release -r "$requirements_file" >&2
                 fi
-                
+
                 extra_script=$(python "$(pwd)/ci/get_bundle_requirements.py" --b "$bundle" --get_script True)
                 if [ ! -z "$extra_script" ]; then
                     echo "Installing extra libraries for GPU with script: $extra_script" >&2
                     bash "$extra_script"
                 fi
-                
+
                 echo "Verifying GPU bundle: $bundle" >&2
                 python "$(pwd)/ci/verify_bundle.py" --b "$bundle"
-                
+
                 test_cmd="python $(pwd)/ci/unit_tests/runner.py --b \"$bundle\""
                 if [ "$dist_flag" = "True" ]; then
                     test_cmd="torchrun $(pwd)/ci/unit_tests/runner.py --b \"$bundle\" --dist True"
                 fi
                 echo "Executing GPU test command: $test_cmd" >&2
                 eval $test_cmd
-                
+
                 if $use_conda_for_bundle; then
                     remove_conda_env "$active_conda_env_for_bundle"
                 else

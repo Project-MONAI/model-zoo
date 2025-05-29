@@ -30,18 +30,18 @@ jobs:
         auto-update-conda: true
         # The python-version here is for Conda's base, if activated.
         # We set auto-activate-base to false, so actions/setup-python's version remains default.
-        python-version: 3.10.14 
+        python-version: 3.10.14
         auto-activate-base: false # Crucial: ensures the Python 3.10 from actions/setup-python is the default
 
     - name: cache weekly timestamp
       id: pip-cache-ts
       run: |
         echo "datew=$(date '+%Y-%V')" >> $GITHUB_OUTPUT
-    
+
     - name: Get pip cache directory
       id: pip-cache-dir
       # This runs using the default Python (3.10)
-      shell: bash 
+      shell: bash
       run: echo "dir=$(python -m pip cache dir)" >> $GITHUB_OUTPUT
 
     - name: Cache pip dependencies (for Python 3.10 global env)
@@ -83,7 +83,7 @@ jobs:
     - name: Run check script
       # The shell: bash -el {0} can be helpful if conda init modified shell profiles
       # and your script needs to `conda activate` sub-environments.
-      shell: bash -el {0} 
+      shell: bash -el {0}
       run: |
         # clean up temporary files
         $(pwd)/runtests.sh --clean
