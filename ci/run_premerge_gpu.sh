@@ -118,7 +118,7 @@ remove_conda_env() {
 }
 
 verify_bundle() {
-    echo 'Run verify GPU bundle...' >&2
+    echo 'Run verify bundle...' >&2
 
     # Source conda.sh to initialize Conda for the main script shell
     if [[ -z "$CONDA_SHLVL" || "$CONDA_SHLVL" -eq 0 ]]; then
@@ -138,19 +138,23 @@ verify_bundle() {
 
     changes=$(git diff --name-only $head_ref origin/dev -- models)
 
-    if [ ! -z "$changes" ]; then
+    if [ ! -z "$changes" ]
+    then
         echo "Detected changes in 'models': $changes" >&2
         bundle_list=$(python "$(pwd)/ci/get_changed_bundle.py" --f "$changes")
-        if [ ! -z "$bundle_list" ]; then
+        if [ ! -z "$bundle_list" ]
+        then
             python "$(pwd)/ci/prepare_schema.py" --l "$bundle_list"
             echo "GPU Bundles to process: $bundle_list" >&2
-            for bundle in $bundle_list; do
+            for bundle in $bundle_list
+            do
                 echo "Processing GPU bundle: $bundle" >&2
                 requirements_file="requirements_$bundle.txt"
                 python "$(pwd)/ci/get_bundle_requirements.py" --b "$bundle" --requirements_file "$requirements_file"
 
                 # check if ALLOW_MONAI_RC is set to 1, if so, append --pre to the pip install command
-                if [ "$ALLOW_MONAI_RC" = true ]; then
+                if [ "$ALLOW_MONAI_RC" = true ]
+                then
                     include_pre_release="--pre"
                 else
                     include_pre_release=""
@@ -159,11 +163,13 @@ verify_bundle() {
                 # determine if conda should be used for the bundle
                 required_python_version="${bundle_python_versions[$bundle]}"
                 use_conda_for_bundle=false
-                if [[ -n "$required_python_version" && "$required_python_version" != "$DEFAULT_PYTHON_VERSION_FOR_VENV" ]]; then
+                if [[ -n "$required_python_version" && "$required_python_version" != "$DEFAULT_PYTHON_VERSION_FOR_VENV" ]]
+                then
                     use_conda_for_bundle=true
                 fi
 
-                if $use_conda_for_bundle; then
+                if $use_conda_for_bundle
+                then
                     echo "Bundle '$bundle' requires Python $required_python_version (specified) for GPU. Using Conda." >&2
                     init_conda_env "$required_python_version" "$bundle"
                     active_conda_env_for_bundle="conda_env_${bundle}"
@@ -172,13 +178,15 @@ verify_bundle() {
                     echo "Bundle '$bundle' using default Python ${DEFAULT_PYTHON_VERSION_FOR_VENV} venv for GPU." >&2
                     init_venv
                 fi
-                if [ -s "$requirements_file" ]; then
+                if [ -s "$requirements_file" ]
+                then
                     echo "Installing requirements from $requirements_file for $bundle" >&2
                     python -m pip install $include_pre_release -r "$requirements_file" >&2
                 fi
 
                 extra_script=$(python "$(pwd)/ci/get_bundle_requirements.py" --b "$bundle" --get_script True)
-                if [ ! -z "$extra_script" ]; then
+                if [ ! -z "$extra_script" ]
+                then
                     echo "Installing extra libraries for GPU with script: $extra_script" >&2
                     bash "$extra_script"
                 fi
@@ -193,7 +201,8 @@ verify_bundle() {
                 echo "Executing GPU test command: $test_cmd" >&2
                 eval $test_cmd
 
-                if $use_conda_for_bundle; then
+                if $use_conda_for_bundle
+                then
                     remove_conda_env "$active_conda_env_for_bundle"
                 else
                     remove_venv
