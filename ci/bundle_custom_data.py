@@ -28,7 +28,11 @@ exclude_verify_shape_list = [
 
 # This list is used for our CI tests to determine whether a bundle contains the preferred files.
 # If a bundle does not have any of the preferred files, please add the bundle name into the list.
-exclude_verify_preferred_files_list = ["pediatric_abdominal_ct_segmentation", "maisi_ct_generative"]
+exclude_verify_preferred_files_list = [
+    "pediatric_abdominal_ct_segmentation",
+    "maisi_ct_generative",
+    "retinalOCT_RPD_segmentation",
+]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested with
 # the `verify_export_torchscript` function in `verify_bundle.py`.
