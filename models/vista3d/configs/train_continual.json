@@ -4,8 +4,8 @@
     "finetune": true,
     "val_at_start": true,
     "finetune_model_path": "$@bundle_root + '/models/model.pt'",
-    "n_train_samples": 10,
-    "n_val_samples": 10,
+    "n_train_samples": null,
+    "n_val_samples": null,
     "val_interval": 1,
     "learning_rate": 5e-05,
     "lr_schedule#activate": false,
@@ -68,6 +68,77 @@
             "ratios": "$tuple(float(i>=0) for i in range(@num_classes))",
             "indices_key": "$@cache_cls_idx#indices_key",
             "warn": false
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "image",
+                "label"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "image"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "image"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "image"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "image"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "image"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
         },
         {
             "_target_": "monai.apps.vista3d.transforms.Relabeld",
