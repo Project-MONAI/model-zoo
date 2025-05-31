@@ -78,7 +78,7 @@ python -m monai.bundle run inference --meta_file configs/metadata.json --config_
 
 ### 5. Run-time errors
 
-Particularly on Windows, if you receive the error 
+Particularly on Windows, if you receive the error
 ```
 RuntimeError: Failed to evaluate ConfigExpression:
 "$scripts.inference.infer(__local_refs['model'], __local_refs['input_files'])"
@@ -91,7 +91,7 @@ then you may have set the number of workers for the dataloader to 0.  This is
 accomplished by changing line 65 of "scripts/exaonepath.py" to
 ```
             num_workers=0,
-``` 
+```
 and removing lines 66 and 67, such that lines 62-67 become
 ```
         patch_loader = DataLoader(
