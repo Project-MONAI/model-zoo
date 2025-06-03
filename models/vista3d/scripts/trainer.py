@@ -184,6 +184,8 @@ class Vista3dTrainer(Trainer):
             engine.fire_event(IterationEvents.FORWARD_COMPLETED)
             loss, loss_n = torch.tensor(0.0, device=engine.state.device), torch.tensor(0.0, device=engine.state.device)
             for id in range(len(prompt_class)):
+                if prompt_class[id] == 0:
+                    continue
                 loss += engine.loss_function(outputs[[id]].float(), labels == prompt_class[id])
                 loss_n += 1.0
             loss /= max(loss_n, 1.0)
