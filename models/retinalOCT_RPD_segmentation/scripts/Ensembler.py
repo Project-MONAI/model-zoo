@@ -10,7 +10,21 @@ from tqdm import tqdm
 
 
 class NpEncoder(json.JSONEncoder):
+    """Custom JSON encoder for NumPy data types.
+
+    This encoder handles NumPy-specific types that are not serializable by
+    the default JSON library by converting them into standard Python types.
+    """
+
     def default(self, obj):
+        """Converts NumPy objects to their native Python equivalents.
+
+        Args:
+            obj (any): The object to encode.
+
+        Returns:
+            any: The JSON-serializable representation of the object.
+        """
         if isinstance(obj, np.integer):
             return int(obj)
         elif isinstance(obj, np.floating):
@@ -22,9 +36,33 @@ class NpEncoder(json.JSONEncoder):
 
 
 class Ensembler:
+    """A class to ensemble predictions from multiple object detection models.
+
+    This class loads ground truth data and predictions from several models,
+    performs non-maximum suppression (NMS) to merge overlapping detections,
+    and saves the final ensembled results in COCO format.
+    """
+
     def __init__(
         self, output_dir, dataset_name, grplist, iou_thresh, coco_gt_path=None, coco_instances_results_fname=None
     ):
+        """Initializes the Ensembler.
+
+        Args:
+            output_dir (str): The base directory where model outputs and
+                ensembled results are stored.
+            dataset_name (str): The name of the dataset being evaluated.
+            grplist (list[str]): A list of subdirectory names, where each
+                subdirectory contains the prediction file from one model.
+            iou_thresh (float): The IoU threshold for considering two bounding
+                boxes as overlapping during NMS.
+            coco_gt_path (str, optional): The full path to the ground truth
+                COCO JSON file. If None, it's assumed to be in `output_dir`.
+                Defaults to None.
+            coco_instances_results_fname (str, optional): The filename for the
+                COCO prediction files within each model's subdirectory.
+                Defaults to "coco_instances_results.json".
+        """
         self.output_dir = output_dir
         self.dataset_name = dataset_name
         self.grplist = grplist
@@ -62,6 +100,19 @@ class Ensembler:
         )
 
     def mean_score_nms(self):
+        """Performs non-maximum suppression by merging overlapping boxes.
+
+        This method iterates through all images and categories, merging sets of
+        overlapping bounding boxes from different detectors based on the IoU
+        threshold. For each merged set, it calculates a mean score and selects
+        the single box with the highest original score as the representative
+        detection for the ensembled output.
+
+        Returns:
+            Ensembler: The instance itself, with the `self.results` attribute
+                populated with the ensembled predictions.
+        """
+
         def nik_merge(lsts):
             """Niklas B. https://github.com/rikpg/IntersectionMerge/blob/master/core.py"""
             sets = [set(lst) for lst in lsts if lst]
@@ -124,6 +175,15 @@ class Ensembler:
         return self
 
     def save_coco_instances(self, fname="coco_instances_results.json"):
+        """Saves the ensembled prediction results to a JSON file.
+
+        The output file follows the COCO instance format and can be used for
+        further evaluation.
+
+        Args:
+            fname (str, optional): The filename for the output JSON file.
+                Defaults to "coco_instances_results.json".
+        """
         if self.results:
             with open(os.path.join(self.output_dir, fname), "w") as f:
                 f.write(json.dumps(self.results, cls=NpEncoder))
@@ -131,5 +191,8 @@ class Ensembler:
 
 
 if __name__ == "__main__":
+    # Example usage:
+    # This assumes an 'output' directory with subdirectories 'fold1', 'fold2', etc.,
+    # each containing a 'coco_instances_results.json' file.
     ens = Ensembler("dev", ["fold1", "fold2", "fold3", "fold4", "fold5"], 0.2)
     ens.mean_score_nms()

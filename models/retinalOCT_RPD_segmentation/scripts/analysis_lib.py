@@ -32,10 +32,21 @@ from tqdm import tqdm
 # current_directory = os.getcwd()
 # print(current_directory)
 plt.style.use("./scripts/ybpres.mplstyle")
-# plt.style.use("ybpres.mplstyle")
 
 
 def grab_dataset(name):
+    """Creates a function to load a pickled dataset by name.
+
+    This function returns another function that, when called, loads a dataset
+    from a pickle file located in the "datasets/" directory.
+
+    Args:
+        name (str): The base name of the dataset file (without extension).
+
+    Returns:
+        function: A zero-argument function that loads and returns the dataset.
+    """
+
     def f():
         return pickle.load(open("datasets/" + name + ".pk", "rb"))
 
@@ -43,6 +54,8 @@ def grab_dataset(name):
 
 
 class OutputVis:
+    """A class to visualize model outputs and ground truth annotations."""
+
     def __init__(
         self,
         dataset_name,
@@ -53,6 +66,24 @@ class OutputVis:
         has_annotations=True,
         draw_mode="default",
     ):
+        """Initializes the OutputVis class.
+
+        Args:
+            dataset_name (str): The name of the registered Detectron2 dataset.
+            cfg (CfgNode, optional): The Detectron2 configuration object.
+                Required if `pred_mode` is "model". Defaults to None.
+            prob_thresh (float, optional): The probability threshold to apply
+                to model predictions for visualization. Defaults to 0.5.
+            pred_mode (str, optional): The mode for getting predictions. Must be
+                either "model" (to use a live predictor) or "file" (to load
+                from a COCO results file). Defaults to "model".
+            pred_file (str, optional): The path to the COCO JSON results file.
+                Required if `pred_mode` is "file". Defaults to None.
+            has_annotations (bool, optional): Whether the dataset has ground
+                truth annotations to visualize. Defaults to True.
+            draw_mode (str, optional): The drawing style for visualizations.
+                Can be "default" (color) or "bw" (monochrome). Defaults to "default".
+        """
         self.dataset_name = dataset_name
         self.cfg = cfg
         self.prob_thresh = prob_thresh
@@ -75,89 +106,93 @@ class OutputVis:
         self.scale = 3.0
 
     def set_draw_mode(self, draw_mode):
+        """Sets the drawing mode for visualizations.
+
+        Args:
+            draw_mode (str): The drawing style. Must be one of the permitted
+                modes (e.g., "default", "bw").
+        """
         if draw_mode not in self.permitted_draw_modes:
             sys.exit("draw_mode must be one of the following: {}".format(self.permitted_draw_modes))
         self.draw_mode = draw_mode
 
-    def get_ori_image(self, ImgId):
-        """[summary]
+    def get_ori_image(self, imgid):
+        """Retrieves the original image for a given image ID.
+
+        The image is scaled up by a factor of 3 for better visualization.
 
         Args:
-            ImgId (str): Value of image_id in image data structure.
+            imgid (str): The 'image_id' from the dataset dictionary.
 
         Returns:
-            PIL.Image: Original image fed into the model scaled up by a factor of 3 for visualization.
+            PIL.Image: The original image.
         """
-        dat = self.get_gt_image_data(ImgId)  # gt
+        dat = self.get_gt_image_data(imgid)  # gt
         im = cv2.imread(dat["file_name"])  # input to model
         v_gt = Visualizer(im, MetadataCatalog.get(self.dataset_name), scale=self.scale)
         result_image = v_gt.output.get_image()  # get original image
         img = Image.fromarray(result_image)
         return img
 
-    def get_gt_image_data(self, ImgId):
-        """Returns image ground truth image entry for corresponding to ImgId.
+    def get_gt_image_data(self, imgid):
+        """Returns the ground truth data dictionary for a given image ID.
 
         Args:
-            ImgId (str): Value of image_id in image data structure.
+            imgid (str): The 'image_id' from the dataset dictionary.
 
         Returns:
-            dict: Dictionary for the image with corresponding ImgId.
+            dict: The dataset dictionary for the specified image.
         """
-        gt_data = next(item for item in self.data if (item["image_id"] == ImgId))
+        gt_data = next(item for item in self.data if (item["image_id"] == imgid))
         return gt_data
 
     def produce_gt_image(self, dat, im):
-        """Returns image im overlayed with ground truth instances found in dat if there are any.
-        Depending on visualizer mode, the instances are separate colors or monochrome.
+        """Creates an image with ground truth annotations overlaid.
+
+        The visualization can be in color or monochrome depending on the draw mode.
 
         Args:
-            dat (dict): Dictionary for the image im containing ground truth annotations.
-            im (numpy array): a numpy array of shape (H, W, C), where H and W correspond to
-        the height and width of the image respectively. C is the number of color channels.
-        The image is required to be in RGB format since that is a requirement of the Matplotlib library.
-        The image is also expected to be in the range [0, 255].
+            dat (dict): The dataset dictionary containing ground truth annotations.
+            im (np.ndarray): The input image in RGB format (H, W, C) as a NumPy array.
 
         Returns:
-            PIL.Image: The resulting original image overlayed with ground truth instances.
+            PIL.Image: The image with ground truth instances overlaid.
         """
         v_gt = Visualizer(im, MetadataCatalog.get(self.dataset_name), scale=self.scale)
         if self.has_annotations:  # ground truth boxes and masks
             segs = [ddict["segmentation"] for ddict in dat["annotations"]]
             if self.draw_mode == "bw":
-                BBoxes = None
+                _bboxes = None
                 assigned_colors = [self.annotation_color] * len(segs)
             else:  # default behavior
                 bboxes = [ddict["bbox"] for ddict in dat["annotations"]]
-                BBoxes = detectron2.structures.Boxes(bboxes)
-                BBoxes = detectron2.structures.BoxMode.convert(
-                    BBoxes.tensor, from_mode=1, to_mode=0
+                _bboxes = detectron2.structures.Boxes(bboxes)
+                _bboxes = detectron2.structures.BoxMode.convert(
+                    _bboxes.tensor, from_mode=1, to_mode=0
                 )  # 0= XYXY, 1 = XYWH
                 assigned_colors = None
 
             result_image = v_gt.overlay_instances(
-                boxes=BBoxes, masks=segs, assigned_colors=assigned_colors, alpha=1.0
+                boxes=_bboxes, masks=segs, assigned_colors=assigned_colors, alpha=1.0
             ).get_image()
         else:
             result_image = v_gt.output.get_image()  # get original image if no annotations
         img = Image.fromarray(result_image)
         return img
 
-    def produce_model_image(self, ImgId, dat, im):
-        """Returns image im overlayed with instances predicted by the model.
-        Depending on visualizer mode the model predicts on the image im or reads the predictions from file based on
-        the given ImgId.
+    def produce_model_image(self, imgid, dat, im):
+        """Creates an image with model-predicted instances overlaid.
+
+        Predictions are either generated by the model or loaded from a file,
+        based on the configured `pred_mode`.
 
         Args:
-            ImgId (str): Value of image_id in image data structure.
-            dat (dict): Dictionary for the image im. Used for height and width parameters.
-            im (numpy array): a numpy array of shape (H, W, C), where H and W correspond to
-        the height and width of the image respectively. C is the number of color channels.
-        The image is required to be in RGB format since that is a requirement of the Matplotlib library.
-        The image is also expected to be in the range [0, 255].
+            imgid (str): The 'image_id' from the dataset dictionary.
+            dat (dict): The dataset dictionary for the image (used for height/width).
+            im (np.ndarray): The input image in RGB format (H, W, C) as a NumPy array.
 
         Returns:
-            PIL.Image: The resulting original image overlayed with model-predicted instances.
+            PIL.Image: The image with model-predicted instances overlaid.
         """
         v_dt = Visualizer(im, MetadataCatalog.get(self.dataset_name), scale=self.scale)
         v_dt._default_font_size = self.font_size
@@ -166,7 +201,7 @@ class OutputVis:
         if self._mode == "model":
             outputs = self.predictor(im)["instances"].to("cpu")
         elif self._mode == "file":
-            outputs = self.get_outputs_from_file(ImgId, (dat["height"], dat["width"]))
+            outputs = self.get_outputs_from_file(imgid, (dat["height"], dat["width"]))
         outputs = outputs[outputs.scores > self.prob_thresh]  # apply probability threshold to instances
         if self.draw_mode == "bw":
             result_model = v_dt.overlay_instances(
@@ -177,32 +212,35 @@ class OutputVis:
         img_model = Image.fromarray(result_model)
         return img_model
 
-    def get_image(self, ImgId):
-        """Returns the ground truth and model prediction overlays for the image corresponding to ImgId.
+    def get_image(self, imgid):
+        """Generates both ground truth and model prediction overlay images.
 
         Args:
-            ImgId (str): Value of image_id in image data structure.
+            imgid (str): The 'image_id' from the dataset dictionary.
 
         Returns:
-            (PIL.Image,PIL.Image): Tuple of PIL.images corresponding to ground truth and model prediction respectively.
+            tuple[PIL.Image, PIL.Image]: A tuple containing the ground truth
+                image and the model prediction image.
         """
-        dat = self.get_gt_image_data(ImgId)  # gt
+        dat = self.get_gt_image_data(imgid)  # gt
         im = cv2.imread(dat["file_name"])  # input to model
         img = self.produce_gt_image(dat, im)
-        img_model = self.produce_model_image(ImgId, dat, im)
+        img_model = self.produce_model_image(imgid, dat, im)
         return img, img_model
 
-    def get_outputs_from_file(self, ImgId, imgsize):
-        """For image with image_id ImgId, reads in and converts instances from coco format in self.pred_file to a
-        detectron2 Instances structure required for the visulizer utility.
+    def get_outputs_from_file(self, imgid, imgsize):
+        """Loads and formats model predictions from a COCO results file.
+
+        Converts COCO-formatted instances into a Detectron2 `Instances` object
+        suitable for the visualizer.
 
         Args:
-            ImgId (str): Value of image_id in image data structure.
-            imgsize (tuple): Height and width of the image in pixels.
+            imgid (str): The 'image_id' of the desired image.
+            imgsize (tuple[int, int]): The (height, width) of the image.
 
         Returns:
-            detectron2.structures.Instances: The correctly formated data structure to be used to the detectron2
-            visualizer utility.
+            detectron2.structures.Instances: An `Instances` object containing
+                the predictions.
         """
 
         pred_boxes = []
@@ -210,14 +248,14 @@ class OutputVis:
         pred_classes = []
         pred_masks = []
         for i, img in enumerate(self.instance_img_list):
-            if img == ImgId:
+            if img == imgid:
                 pred_boxes.append(self.pred_instances[i]["bbox"])
                 scores.append(self.pred_instances[i]["score"])
                 pred_classes.append(int(self.pred_instances[i]["category_id"]))
                 # pred_masks_rle.append(self.pred_instances[i]['segmentation'])
                 pred_masks.append(decode(self.pred_instances[i]["segmentation"]))
-        BBoxes = detectron2.structures.Boxes(pred_boxes)
-        pred_boxes = detectron2.structures.BoxMode.convert(BBoxes.tensor, from_mode=1, to_mode=0)  # 0= XYXY, 1 = XYWH
+        _bboxes = detectron2.structures.Boxes(pred_boxes)
+        pred_boxes = detectron2.structures.BoxMode.convert(_bboxes.tensor, from_mode=1, to_mode=0)  # 0= XYXY, 1 = XYWH
         inst_dict = dict(
             pred_boxes=pred_boxes,
             scores=torch.tensor(np.array(scores)),
@@ -229,15 +267,15 @@ class OutputVis:
 
     @staticmethod
     def height_crop_range(im, height_target=256):
-        """Find the range of pixels in the height dimension spanning the height height_target which contain the
-        brightest regions of the image.
+        """Calculates a vertical crop range centered on the brightest part of an image.
 
         Args:
-            im (numpy array): a numpy array of shape (H, W, C)
-            height_target (int, optional): The desired span of the image height. Defaults to 256.
+            im (np.ndarray): The input image as a NumPy array (H, W, C).
+            height_target (int, optional): The desired height of the crop.
+                Defaults to 256.
 
         Returns:
-            range: The starting and stopping pixels for cropping the image height.
+            range: A range object representing the start and end pixel rows for the crop.
         """
         yhist = im.sum(axis=1)  # integrate over width of image
         mu = np.average(np.arange(yhist.shape[0]), weights=yhist)
@@ -251,14 +289,16 @@ class OutputVis:
             h1 = h2 - height_target
         return range(h1, h2)
 
-    def output_to_pdf(self, ImgIds, outname, dfimg=None):
-        """Create pdf with name outname displaying ground truth and model prediction overlays for
-        image ids listed in ImgIds.
+    def output_to_pdf(self, imgids, outname, dfimg=None):
+        """Exports visualizations of ground truth and model predictions to a PDF file.
+
+        Each page of the PDF contains the ground truth and model prediction for one image.
 
         Args:
-            ImgIds (list(str)): List of image_id values to output.
-            outname (str): path name for pdf
-            dfimg (pandas.DataFrame, optional): A dataframe of stats to display for each image. Defaults to None.
+            imgids (list[str]): A list of 'image_id' values to include in the PDF.
+            outname (str): The path and filename for the output PDF.
+            dfimg (pd.DataFrame, optional): A DataFrame with image statistics
+                to display on each page. Index should be `imgid`. Defaults to None.
         """
 
         gtstr = ""
@@ -269,7 +309,7 @@ class OutputVis:
             dtcols = dfimg.columns[["dt_" in col for col in dfimg.columns]]
 
         with PdfPages(outname) as pdf:
-            for imgid in tqdm(ImgIds):
+            for imgid in tqdm(imgids):
                 img, img_model = self.get_image(imgid)
                 # pdb.set_trace()
                 crop_range = self.height_crop_range(np.array(img.convert("L")), height_target=256 * self.scale)
@@ -292,49 +332,55 @@ class OutputVis:
                 plt.close(fig)
 
     def save_imgarr_to_tiff(self, imgs, outname):
-        """Save array of images in stacked tiff format (one image per page).
+        """Saves a list of PIL images to a multi-page TIFF file.
 
         Args:
-            imgs (array(PIL.Images)): An array of PIL.Images to save.
-            outname (str): Path name to save to.
+            imgs (list[PIL.Image]): A list of images to save.
+            outname (str): The path and filename for the output TIFF.
         """
         if len(imgs) > 1:
             imgs[0].save(outname, dpi=(400, 400), tags="", compression=None, save_all=True, append_images=imgs[1:])
         else:
             imgs[0].save(outname)
 
-    def output_ori_to_tiff(self, ImgIds, outname):
-        """Save list of original images corresponding to ImgIds in stacked tiff format.
+    def output_ori_to_tiff(self, imgids, outname):
+        """Saves the original images for a list of IDs to a multi-page TIFF.
 
         Args:
-            ImgIds (list(str)): A list of image_ids for images to save.
-            outname (str): Path name to save to.
+            imgids (list[str]): A list of 'image_id' values.
+            outname (str): The path and filename for the output TIFF.
         """
         imgs = []
-        for imgid in tqdm(ImgIds):
+        for imgid in tqdm(imgids):
             img_ori = self.get_ori_image(imgid)  # PIL Image
             imgs.append(img_ori)
         self.save_imgarr_to_tiff(imgs, outname)
 
-    def output_pred_to_tiff(self, ImgIds, outname, pred_only=False):
-        """Save list of images overlayed with the model predictions in stacked tiff format.
+    def output_pred_to_tiff(self, imgids, outname, pred_only=False):
+        """Saves model prediction overlays for a list of IDs to a multi-page TIFF.
 
         Args:
-            ImgIds (list(str)): A list of image_ids for images to save.
-            outname (str): Path name to save to.
+            imgids (list[str]): A list of 'image_id' values.
+            outname (str): The path and filename for the output TIFF.
+            pred_only (bool, optional): If True, overlays predictions on a
+                black background instead of the original image. Defaults to False.
         """
-        imgs = self.output_pred_to_list(ImgIds, pred_only)
+        imgs = self.output_pred_to_list(imgids, pred_only)
         self.save_imgarr_to_tiff(imgs, outname)
 
-    def output_pred_to_list(self, ImgIds, pred_only=False):
-        """Return list of images overlayed with the model predictions.
+    def output_pred_to_list(self, imgids, pred_only=False):
+        """Generates a list of images with model predictions overlaid.
 
         Args:
-            ImgIds (list(str)): A list of image_ids for images to save.
-            outname (str): Path name to save to.
+            imgids (list[str]): A list of 'image_id' values.
+            pred_only (bool, optional): If True, overlays predictions on a
+                black background. Defaults to False.
+
+        Returns:
+            list[PIL.Image]: A list of the generated visualization images.
         """
         imgs = []
-        for imgid in tqdm(ImgIds):
+        for imgid in tqdm(imgids):
             dat = self.get_gt_image_data(imgid)  # gt
             if pred_only:
                 im = np.zeros((dat["height"], dat["width"], 3))  # blank image for overlay
@@ -347,15 +393,19 @@ class OutputVis:
             imgs.append(img_dt)
         return imgs
 
-    def output_all_to_tiff(self, ImgIds, outname):
-        """Save list of images (original, ground truth overlay, and model prediction overlay) to stacked tiff format.
+    def output_all_to_tiff(self, imgids, outname):
+        """Saves a combined visualization (original, GT, prediction) to a TIFF.
+
+        For each image ID, it creates a single composite image by concatenating
+        the original, ground truth overlay, and model prediction overlay, then
+        saves them to a multi-page TIFF.
 
         Args:
-            ImgIds (list(str)): A list of image_ids for images to save.
-            outname (str): Path name to save to.
+            imgids (list[str]): A list of 'image_id' values.
+            outname (str): The path and filename for the output TIFF.
         """
         imgs = []
-        for imgid in tqdm(ImgIds):
+        for imgid in tqdm(imgids):
             img_gt, img_dt = self.get_image(imgid)
             img_ori = self.get_ori_image(imgid)
             hcrange = list(self.height_crop_range(np.array(img_ori.convert("L")), height_target=256 * self.scale))
@@ -372,17 +422,16 @@ class OutputVis:
         self.save_imgarr_to_tiff(imgs, outname)
 
     def get_enface_dt(self, grp, scan_height, scan_width, scan_spacing):
-        """Return enface perspective of model predictions for a single scan volume whose imgids are
-        listed in the index of grp.
+        """Generates an en-face view of model predictions for a scan volume.
 
         Args:
-            grp (pandas.DataFrame): Dataframe containing images from a single scan volume indexed by ImageId.
-            scan_height (int): Image height in pixels.
-            scan_width (int): Image width in pixels.
+            grp (pd.DataFrame): DataFrame for a single scan volume, indexed by imgid.
+            scan_height (int): The height of a single scan image in pixels.
+            scan_width (int): The width of a single scan image in pixels.
             scan_spacing (float): The spacing between scan centers in pixels.
 
         Returns:
-            np.array: Numpy array of dimension [scan_spacing*number of scans,scan_width,3].
+            np.ndarray: An en-face image of the model predictions.
         """
         grp = grp.sort_index()
         nscans = len(grp)
@@ -405,17 +454,16 @@ class OutputVis:
         return enface
 
     def get_enface_gt(self, grp, scan_height, scan_width, scan_spacing):
-        """Return enface perspective of ground truth annotations for a single scan volume whose imgids are
-        listed in the index of grp.
+        """Generates an en-face view of ground truth annotations for a scan volume.
 
         Args:
-            grp (pandas.DataFrame): Dataframe containing images from a single scan volume indexed by ImageId.
-            scan_height (int): Image height in pixels.
-            scan_width (int): Image width in pixels.
+            grp (pd.DataFrame): DataFrame for a single scan volume, indexed by imgid.
+            scan_height (int): The height of a single scan image in pixels.
+            scan_width (int): The width of a single scan image in pixels.
             scan_spacing (float): The spacing between scan centers in pixels.
 
         Returns:
-            np.array: Numpy array of dimension [scan_spacing*number of scans,scan_width,3].
+            np.ndarray: An en-face image of the ground truth annotations.
         """
         grp = grp.sort_index()
         nscans = len(grp)
@@ -442,17 +490,17 @@ class OutputVis:
         return enface
 
     def compare_enface(self, grp, name, scan_height, scan_width, scan_spacing):
-        """Return figure comparing detector enface perspective of model prediction with ground truth.
+        """Creates a figure comparing the en-face views of predictions and ground truth.
 
         Args:
-            grp (pandas.DataFrame): Dataframe containing images from a single scan volume indexed by ImageId.
-            name (str): The name of the group identified by scan volume ID.
-            scan_height (int): Image height in pixels.
-            scan_width (int): Image width in pixels.
+            grp (pd.DataFrame): DataFrame for a single scan volume, indexed by imgid.
+            name (str): The name/ID of the scan volume for the plot title.
+            scan_height (int): The height of a single scan image in pixels.
+            scan_width (int): The width of a single scan image in pixels.
             scan_spacing (float): The spacing between scan centers in pixels.
 
         Returns:
-            (matplotlib.figure.Figure, array(AxesSubplot)): Tuple of figure handle and array of subplot axes.
+            tuple[plt.Figure, np.ndarray]: A tuple containing the figure and axes objects.
         """
         fig, ax = plt.subplots(1, 2, figsize=[18, 9], dpi=120)
 
@@ -468,7 +516,17 @@ class OutputVis:
         return fig, ax
 
 
-def Wilson_CI(p, n, z):
+def wilson_ci(p, n, z):
+    """Calculates the Wilson score interval for a binomial proportion.
+
+    Args:
+        p (float): The observed proportion of successes.
+        n (int): The total number of trials.
+        z (float): The z-score for the desired confidence level (e.g., 1.96 for 95%).
+
+    Returns:
+        tuple[float, float]: A tuple containing the lower and upper bounds of the confidence interval.
+    """
     if p < 0 or p > 1 or n == 0:
         if p < 0 or p > 1:
             warnings.warn(f"The value of proportion {p} must be in the range [0,1]. Returning identity for CIs.")
@@ -484,7 +542,21 @@ def Wilson_CI(p, n, z):
 
 
 class EvaluateClass(COCOEvaluator):
+    """A custom evaluation class extending COCOEvaluator for detailed analysis."""
+
     def __init__(self, dataset_name, output_dir, prob_thresh=0.5, iou_thresh=0.1, evalsuper=True):
+        """Initializes the custom evaluator.
+
+        Args:
+            dataset_name (str): The name of the registered Detectron2 dataset.
+            output_dir (str): Directory to store temporary evaluation files.
+            prob_thresh (float, optional): Probability threshold for calculating
+                precision, recall, and FPR. Defaults to 0.5.
+            iou_thresh (float, optional): IoU threshold for defining a true positive.
+                Defaults to 0.1.
+            evalsuper (bool, optional): If True, run the parent COCOEvaluator's
+                evaluate method to generate standard COCO metrics. Defaults to True.
+        """
         super().__init__(dataset_name, tasks={"bbox", "segm"}, output_dir=output_dir)
         self.dataset_name = dataset_name
         self.mycoco = None  # pycocotools.cocoEval instance
@@ -498,14 +570,31 @@ class EvaluateClass(COCOEvaluator):
         self.fpr = None
 
     def reset(self):
+        """Resets the evaluator's state for a new evaluation run."""
         super().reset()
         self.mycoco = None
 
     def process(self, inputs, outputs):
+        """Processes a batch of inputs and outputs from the model.
+
+        This method is called by the evaluation loop for each batch.
+
+        Args:
+            inputs (list[dict]): A list of dataset dictionaries.
+            outputs (list[dict]): A list of model output dictionaries.
+        """
         super().process(inputs, outputs)
 
     def evaluate(self):
-        # with nostdout(): #suppress the coco summarize statment (the one with APs)
+        """Runs the evaluation and calculates detailed performance metrics.
+
+        This method orchestrates the COCO evaluation, calculates precision-recall
+        curves, and other custom metrics.
+
+        Returns:
+            tuple[float, float]: The precision and recall at the specified
+                `prob_thresh` and `iou_thresh`.
+        """
         if self.evalsuper:
             _ = super().evaluate()  # this call populates coco_instances_results.json
         comm.synchronize()
@@ -521,9 +610,7 @@ class EvaluateClass(COCOEvaluator):
         self.num_images = len(self.mycoco.params.imgIds)
         print("Calculated metrics for {} images".format(self.num_images))
         self.mycoco.params.iouThrs = np.arange(0.10, 0.6, 0.1)
-        # mycoco.params.recThrs = [0,.5,.75,1]
         self.mycoco.params.maxDets = [100]
-        # mycoco.params.imgIds=[imgId]
         self.mycoco.params.areaRng = [[0, 10000000000.0]]
 
         self.mycoco.evaluate()
@@ -538,7 +625,13 @@ class EvaluateClass(COCOEvaluator):
         p, r = self.get_precision_recall()
         return p, r
 
-    def plot_PRcurve(self, ax=None):
+    def plot_pr_curve(self, ax=None):
+        """Plots precision-recall curves for various IoU thresholds.
+
+        Args:
+            ax (plt.Axes, optional): A matplotlib axes object to plot on. If None,
+                a new figure and axes are created.
+        """
         if ax is None:
             fig, ax = plt.subplots(1, 1)
         for i in range(len(self.iou)):
@@ -549,6 +642,7 @@ class EvaluateClass(COCOEvaluator):
         ax.legend(title="IoU")
 
     def plot_recall_vs_prob(self):
+        """Plots model score thresholds versus recall for various IoU thresholds."""
         plt.figure()
         for i in range(len(self.iou)):
             plt.plot(self.rc, self.scores[i], label="{:.2}".format(self.iou[i]))
@@ -557,12 +651,19 @@ class EvaluateClass(COCOEvaluator):
         plt.legend(title="IoU")
 
     def get_precision_recall(self):
+        """Gets the precision and recall for the configured IoU and probability thresholds.
+
+        Returns:
+            tuple[float, float]: The calculated precision and recall.
+        """
         iou_idx, rc_idx = self._find_iou_rc_inds()
         precision = self.pr[iou_idx, rc_idx]
         recall = self.rc[rc_idx]
         return precision, recall
 
     def _calculate_fpr_matrix(self):
+        """(Private) Calculates the false positive rate matrix across all IoU and recall thresholds."""
+
         # FP rate, 1 RPD in image = FP
         if (self.scores.min() == -1) and (self.scores.max() == -1):
             print(
@@ -592,6 +693,14 @@ class EvaluateClass(COCOEvaluator):
         self.fpr = fpr
 
     def _calculate_fpr(self):
+        """(Private) Calculates FPR for a single probability threshold.
+
+        This is an alternate calculation used when the main FPR matrix cannot
+        be computed (e.g., no positive ground truth instances).
+
+        Returns:
+            float: The calculated false positive rate.
+        """
         print("Using alternate calculation for fpr at instance score threshold of {}".format(self.prob_thresh))
         ng = 0  # number of negative images
         fp = 0  # number of false positives images
@@ -609,6 +718,11 @@ class EvaluateClass(COCOEvaluator):
         return fp / (ng + 1e-5)
 
     def _find_iou_rc_inds(self):
+        """(Private) Finds the indices corresponding to the configured IoU and probability thresholds.
+
+        Returns:
+            tuple[int, int]: The index for the IoU threshold and the index for the recall level.
+        """
         try:
             iou_idx = np.argwhere(self.iou == self.iou_thresh)[0][0]  # first instance of
         except IndexError:
@@ -627,6 +741,11 @@ class EvaluateClass(COCOEvaluator):
         return iou_idx, rc_idx
 
     def get_fpr(self):
+        """Gets the false positive rate for the configured thresholds.
+
+        Returns:
+            float: The calculated false positive rate. Returns -1 if it cannot be computed.
+        """
         if self.fpr is None:
             self._calculate_fpr_matrix()
 
@@ -640,6 +759,12 @@ class EvaluateClass(COCOEvaluator):
         return fpr
 
     def summarize_scalars(self):  # for pretty printing
+        """Generates a dictionary summarizing key performance metrics with confidence intervals.
+
+        Returns:
+            dict: A dictionary containing precision, recall, F1-score, FPR,
+                  and their confidence intervals.
+        """
         p, r = self.get_precision_recall()
         f1 = 2 * (p * r) / (p + r)
         fpr = self.get_fpr()
@@ -652,16 +777,16 @@ class EvaluateClass(COCOEvaluator):
         n_p = inst_cnt["dt_instances"]
         n_fpr = inst_cnt["gt_neg_scans"]
 
-        def stat_CI(p, n, z):
+        def stat_ci(p, n, z):
             return z * np.sqrt(p * (1 - p) / n)
 
-        r_ci = Wilson_CI(r, n_r, z)
-        p_ci = Wilson_CI(p, n_p, z)
-        fpr_ci = Wilson_CI(fpr, n_fpr, z)
+        r_ci = wilson_ci(r, n_r, z)
+        p_ci = wilson_ci(p, n_p, z)
+        fpr_ci = wilson_ci(fpr, n_fpr, z)
 
         # propogate errors for f1
-        int_r = stat_CI(r, n_r, z)
-        int_p = stat_CI(p, n_p, z)
+        int_r = stat_ci(r, n_r, z)
+        int_p = stat_ci(p, n_p, z)
         int_f1 = (f1) * np.sqrt(int_r**2 * (1 / r - 1 / (p + r)) ** 2 + int_p**2 * (1 / p - 1 / (p + r)) ** 2)
         f1_ci = (f1 - int_f1, f1 + int_f1)
 
@@ -681,29 +806,44 @@ class EvaluateClass(COCOEvaluator):
         return dd
 
     def count_instances(self):
+        """Counts ground truth and detected instances across the dataset.
+
+        Returns:
+            dict: A dictionary with counts for 'gt_instances', 'dt_instances',
+                  and 'gt_neg_scans' (images with no GT instances).
+        """
         gt_inst = 0
         dt_inst = 0
         gt_neg_scans = 0
         for _, val in self.cocoGt.imgs.items():
             imgid = val["id"]
             # Gt instances
-            annIdsGt = self.cocoGt.getAnnIds([imgid])
-            annsGt = self.cocoGt.loadAnns(annIdsGt)
-            gt_inst += len(annsGt)
-            if len(annsGt) == 0:
+            annids_gt = self.cocoGt.getAnnIds([imgid])
+            anns_gt = self.cocoGt.loadAnns(annids_gt)
+            gt_inst += len(anns_gt)
+            if len(anns_gt) == 0:
                 gt_neg_scans += 1
 
             # Dt instances
-            annIdsDt = self.cocoDt.getAnnIds([imgid])
-            annsDt = self.cocoDt.loadAnns(annIdsDt)
-            annsDt = [ann for ann in annsDt if ann["score"] > self.prob_thresh]
-            dt_inst += len(annsDt)
+            annids_dt = self.cocoDt.getAnnIds([imgid])
+            anns_dt = self.cocoDt.loadAnns(annids_dt)
+            anns_dt = [ann for ann in anns_dt if ann["score"] > self.prob_thresh]
+            dt_inst += len(anns_dt)
 
         return dict(gt_instances=gt_inst, dt_instances=dt_inst, gt_neg_scans=gt_neg_scans)
 
 
 class CreatePlotsRPD:
+    """A class to create various plots for analyzing RPD (Reticular Pseudodrusen) data."""
+
     def __init__(self, dfimg):
+        """Initializes the plotting class with image-level data.
+
+        Args:
+            dfimg (pd.DataFrame): A DataFrame where each row corresponds to an
+                image, containing counts for ground truth and detected instances
+                and pixels. Must include a 'volID' column.
+        """
         self.dfimg = dfimg
         self.dfvol = self.dfimg.groupby(["volID"])[
             ["gt_instances", "gt_pxs", "gt_xpxs", "dt_instances", "dt_pxs", "dt_xpxs"]
@@ -711,6 +851,15 @@ class CreatePlotsRPD:
 
     @classmethod
     def initfromcoco(cls, mycoco, prob_thresh):
+        """Initializes the class from a COCOeval object.
+
+        Args:
+            mycoco (COCOeval): An evaluated COCOeval object.
+            prob_thresh (float): The probability threshold to apply to detections.
+
+        Returns:
+            CreatePlotsRPD: An instance of the class.
+        """
         df = pd.DataFrame(
             index=mycoco.cocoGt.imgs.keys(),
             columns=["gt_instances", "gt_pxs", "gt_xpxs", "dt_instances", "dt_pxs", "dt_xpxs"],
@@ -720,24 +869,24 @@ class CreatePlotsRPD:
         for key, val in mycoco.cocoGt.imgs.items():
             imgid = val["id"]
             # Gt instances
-            annIdsGt = mycoco.cocoGt.getAnnIds([imgid])
-            annsGt = mycoco.cocoGt.loadAnns(annIdsGt)
-            instGt = [mycoco.cocoGt.annToMask(ann).sum() for ann in annsGt]
-            xprojGt = [(mycoco.cocoGt.annToMask(ann).sum(axis=0) > 0).astype("uint8").sum() for ann in annsGt]
+            annids_gt = mycoco.cocoGt.getAnnIds([imgid])
+            anns_gt = mycoco.cocoGt.loadAnns(annids_gt)
+            inst_gt = [mycoco.cocoGt.annToMask(ann).sum() for ann in anns_gt]
+            xproj_gt = [(mycoco.cocoGt.annToMask(ann).sum(axis=0) > 0).astype("uint8").sum() for ann in anns_gt]
             # Dt instances
-            annIdsDt = mycoco.cocoDt.getAnnIds([imgid])
-            annsDt = mycoco.cocoDt.loadAnns(annIdsDt)
-            annsDt = [ann for ann in annsDt if ann["score"] > prob_thresh]
-            instDt = [mycoco.cocoDt.annToMask(ann).sum() for ann in annsDt]
-            xprojDt = [(mycoco.cocoDt.annToMask(ann).sum(axis=0) > 0).astype("uint8").sum() for ann in annsDt]
+            annids_dt = mycoco.cocoDt.getAnnIds([imgid])
+            anns_dt = mycoco.cocoDt.loadAnns(annids_dt)
+            anns_dt = [ann for ann in anns_dt if ann["score"] > prob_thresh]
+            inst_dt = [mycoco.cocoDt.annToMask(ann).sum() for ann in anns_dt]
+            xproj_dt = [(mycoco.cocoDt.annToMask(ann).sum(axis=0) > 0).astype("uint8").sum() for ann in anns_dt]
 
             dat = [
-                len(instGt),
-                np.array(instGt).sum(),
-                np.array(xprojGt).sum(),
-                len(instDt),
-                np.array(instDt).sum(),
-                np.array(xprojDt).sum(),
+                len(inst_gt),
+                np.array(inst_gt).sum(),
+                np.array(xproj_gt).sum(),
+                len(inst_dt),
+                np.array(inst_dt).sum(),
+                np.array(xproj_dt).sum(),
             ]
             df.loc[key] = dat
 
@@ -749,10 +898,26 @@ class CreatePlotsRPD:
 
     @classmethod
     def initfromcsv(cls, fname):
+        """Initializes the class from a CSV file.
+
+        Args:
+            fname (str): The path to the CSV file.
+
+        Returns:
+            CreatePlotsRPD: An instance of the class.
+        """
         df = pd.read_csv(fname)
         return cls(df)
 
     def get_max_limits(self, df):
+        """Calculates the maximum values for plotting limits.
+
+        Args:
+            df (pd.DataFrame): The DataFrame to analyze.
+
+        Returns:
+            tuple[int, int, int]: Max values for instances, x-pixels, and total pixels.
+        """
         max_inst = np.max([df.gt_instances.max(), df.dt_instances.max()])
         max_xpxs = np.max([df.gt_xpxs.max(), df.dt_xpxs.max()])
         max_pxs = np.max([df.gt_pxs.max(), df.dt_pxs.max()])
@@ -762,6 +927,17 @@ class CreatePlotsRPD:
         return max_inst, max_xpxs, max_pxs
 
     def vol_level_prc(self, df, gt_thresh=5, ax=None):
+        """Plots a volume-level precision-recall curve.
+
+        Args:
+            df (pd.DataFrame): DataFrame with volume-level statistics.
+            gt_thresh (int, optional): The minimum number of ground truth
+                instances for a volume to be considered positive. Defaults to 5.
+            ax (plt.Axes, optional): Axes to plot on. Defaults to None.
+
+        Returns:
+            tuple[float, tuple]: The average precision and the PR curve data.
+        """
         prc = precision_recall_curve(df.gt_instances >= gt_thresh, df.dt_instances)
         if ax is None:
             fig, ax = plt.subplots(1, 1)
@@ -773,6 +949,16 @@ class CreatePlotsRPD:
         return ap, prc
 
     def plot_img_level_instance_thresholding(self, df, inst):
+        """Plots P/R/FPR as a function of the instance count threshold.
+
+        Args:
+            df (pd.DataFrame): DataFrame with image-level statistics.
+            inst (list[int]): A list of instance count thresholds to evaluate.
+
+        Returns:
+            tuple[np.ndarray, np.ndarray, np.ndarray]: Arrays for precision,
+                recall, and FPR at each threshold.
+        """
         rc = np.zeros((len(inst),))
         pr = np.zeros((len(inst),))
         fpr = np.zeros((len(inst),))
@@ -804,15 +990,17 @@ class CreatePlotsRPD:
         return pr, rc, fpr
 
     def plot_img_level_instance_thresholding2(self, df, inst, gt_thresh, plot=True):
-        # should be using global function
-        # def Wilson_CI(p,n,z):
+        """Plots P/R/FPR vs. instance threshold with confidence intervals.
 
-        #     sym = z*(p*(1-p)/n + z*z/4/n/n)**.5
-        #     asym = p + z*z/2/n
-        #     fact = 1/(1+z*z/n)
-        #     upper = fact*(asym+sym)
-        #     lower = fact*(asym-sym)
-        #     return (lower,upper)
+        Args:
+            df (pd.DataFrame): DataFrame with image-level statistics.
+            inst (list[int]): A list of instance count thresholds to evaluate.
+            gt_thresh (int): The ground truth instance threshold.
+            plot (bool, optional): Whether to generate a plot. Defaults to True.
+
+        Returns:
+            dict: A dictionary containing arrays for P/R/FPR and their CIs.
+        """
 
         rc = np.zeros((len(inst),))
         pr = np.zeros((len(inst),))
@@ -827,9 +1015,9 @@ class CreatePlotsRPD:
             rc[i] = (gt & dt).sum() / gt.sum()
             pr[i] = (gt & dt).sum() / dt.sum()
             fpr[i] = ((~gt) & (dt)).sum() / ((~gt).sum())
-            rc_ci[i, :] = Wilson_CI(rc[i], gt.sum(), 1.96)
-            pr_ci[i, :] = Wilson_CI(pr[i], dt.sum(), 1.96)
-            fpr_ci[i, :] = Wilson_CI(fpr[i], ((~gt).sum()), 1.96)
+            rc_ci[i, :] = wilson_ci(rc[i], gt.sum(), 1.96)
+            pr_ci[i, :] = wilson_ci(pr[i], dt.sum(), 1.96)
+            fpr_ci[i, :] = wilson_ci(fpr[i], ((~gt).sum()), 1.96)
 
         if plot:
             fig, ax = plt.subplots(1, 3, figsize=[15, 5])
@@ -859,6 +1047,14 @@ class CreatePlotsRPD:
         return dict(precision=pr, precision_ci=pr_ci, recall=rc, recall_ci=rc_ci, fpr=fpr, fpr_ci=fpr_ci)
 
     def gt_vs_dt_instances(self, ax=None):
+        """Plots mean detected instances vs. ground truth instances with error bars.
+
+        Args:
+            ax (plt.Axes, optional): Axes to plot on. Defaults to None.
+
+        Returns:
+            plt.Axes: The axes object with the plot.
+        """
         df = self.dfimg
         max_inst, max_xpxs, max_pxs = self.get_max_limits(df)
         idx = (df.gt_instances > 0) & (df.dt_instances > 0)
@@ -880,6 +1076,14 @@ class CreatePlotsRPD:
         return ax
 
     def gt_vs_dt_instances_boxplot(self, ax=None):
+        """Creates a boxplot of detected instances for each ground truth instance count.
+
+        Args:
+            ax (plt.Axes, optional): Axes to plot on. Defaults to None.
+
+        Returns:
+            plt.Axes: The axes object with the plot.
+        """
         df = self.dfimg
         max_inst, max_xpxs, max_pxs = self.get_max_limits(df)
         max_inst = int(max_inst)
@@ -908,6 +1112,11 @@ class CreatePlotsRPD:
         return ax
 
     def gt_vs_dt_xpxs(self):
+        """Creates scatter plots comparing ground truth and detected x-pixels.
+
+        Returns:
+            tuple[plt.Figure, plt.Figure, plt.Figure]: Figure handles for the three generated plots.
+        """
         df = self.dfimg
         max_inst, max_xpxs, max_pxs = self.get_max_limits(df)
         idx = (df.gt_instances > 0) & (df.dt_instances > 0)
@@ -946,6 +1155,11 @@ class CreatePlotsRPD:
         return fig1, fig2, fig3
 
     def gt_vs_dt_xpxs_mu(self):
+        """Plots binned means of detected vs. ground truth x-pixels.
+
+        Returns:
+            plt.Figure: The figure handle for the plot.
+        """
         df = self.dfimg
         max_inst, max_xpxs, max_pxs = self.get_max_limits(df)
         idx = (df.gt_instances > 0) & (df.dt_instances > 0)
@@ -968,7 +1182,12 @@ class CreatePlotsRPD:
         plt.tight_layout()
         return fig
 
-    def gt_dt_FP_FN_count(self):
+    def gt_dt_fp_fn_count(self):
+        """Plots histograms of false positive and false negative instance counts.
+
+        Returns:
+            plt.Figure: The figure handle for the plot.
+        """
         df = self.dfimg
         fig, ax = plt.subplots(1, 2, figsize=[10, 5])
 
@@ -988,6 +1207,14 @@ class CreatePlotsRPD:
         return fig
 
     def avg_inst_size(self):
+        """Plots histograms of the average instance size in pixels.
+
+        Compares the average size (in both total pixels and x-axis projection)
+        between ground truth and detected instances.
+
+        Returns:
+            plt.Figure: The figure handle for the plot.
+        """
         df = self.dfimg
         max_inst, max_xpxs, max_pxs = self.get_max_limits(df)
         idx = (df.gt_instances > 0) & (df.dt_instances > 0)

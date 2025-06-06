@@ -16,7 +16,7 @@ from collections import OrderedDict
 import numpy as np
 
 
-class volFile:
+class VolFile:
     def __init__(self, filename):
         """
         Parses Heyex Spectralis *.vol files.
@@ -28,7 +28,7 @@ class volFile:
             volFile class
 
         """
-        self.__parseVolFile(filename)
+        self.__parse_volfile(filename)
 
     @property
     def oct(self):
@@ -66,15 +66,15 @@ class volFile:
         wf = self.wholefile
         grid = []
         for bi in range(len(wf["slice-headers"])):
-            bscanHead = wf["slice-headers"][bi]
-            x_0 = int(bscanHead["startX"] / wf["header"]["scaleXSlo"])
-            x_1 = int(bscanHead["endX"] / wf["header"]["scaleXSlo"])
-            y_0 = int(bscanHead["startY"] / wf["header"]["scaleYSlo"])
-            y_1 = int(bscanHead["endY"] / wf["header"]["scaleYSlo"])
+            bscan_head = wf["slice-headers"][bi]
+            x_0 = int(bscan_head["startX"] / wf["header"]["scaleXSlo"])
+            x_1 = int(bscan_head["endX"] / wf["header"]["scaleXSlo"])
+            y_0 = int(bscan_head["startY"] / wf["header"]["scaleYSlo"])
+            y_1 = int(bscan_head["endY"] / wf["header"]["scaleYSlo"])
             grid.append([x_0, y_0, x_1, y_1])
         return grid
 
-    def renderIRslo(self, filename, renderGrid=False):
+    def render_ir_slo(self, filename, render_grid=False):
         """
         Renders IR SLO image as a PNG file and optionally overlays grid of B scans
 
@@ -90,7 +90,7 @@ class volFile:
 
         wf = self.wholefile
         a = np.copy(wf["sloImage"])
-        if renderGrid:
+        if render_grid:
             a = np.stack((a,) * 3, axis=-1)
             a = Image.fromarray(a)
             draw = ImageDraw.Draw(a)
@@ -101,7 +101,7 @@ class volFile:
         else:
             Image.fromarray(a).save(filename)
 
-    def renderOCTscans(self, filepre="oct", renderSeg=False):
+    def render_oct_scans(self, filepre="oct", render_seg=False):
         """
         Renders OCT images a PNG file and optionally overlays segmentation lines
         Also creates a CSV file of vol file features.
@@ -119,7 +119,7 @@ class volFile:
         wf = self.wholefile
         for i in range(wf["cScan"].shape[0]):
             a = np.copy(wf["cScan"][i])
-            if renderSeg:
+            if render_seg:
                 a = np.stack((a,) * 3, axis=-1)
                 for li in range(wf["segmentations"].shape[0]):
                     for x in range(wf["segmentations"].shape[2]):
@@ -127,7 +127,7 @@ class volFile:
 
             Image.fromarray(a).save("%s_%03d.png" % (filepre, i))
 
-    def __parseVolFile(self, fn, parseSeg=False):
+    def __parse_volfile(self, fn, parse_seg=False):
         print(fn)
         wholefile = OrderedDict()
         decode_hex = codecs.getdecoder("hex_codec")
@@ -173,61 +173,61 @@ class volFile:
 
             wholefile["header"] = header
             fin.seek(2048)
-            U = array.array("B")
-            U.frombytes(fin.read(header["sizeXSlo"] * header["sizeYSlo"]))
-            U = np.array(U).astype("uint8").reshape((header["sizeXSlo"], header["sizeYSlo"]))
-            wholefile["sloImage"] = U
+            u = array.array("B")
+            u.frombytes(fin.read(header["sizeXSlo"] * header["sizeYSlo"]))
+            u = np.array(u).astype("uint8").reshape((header["sizeXSlo"], header["sizeYSlo"]))
+            wholefile["sloImage"] = u
 
-            sloOffset = 2048 + header["sizeXSlo"] * header["sizeYSlo"]
-            octOffset = header["BscanHdrSize"] + header["octSizeX"] * header["octSizeZ"] * 4
+            slo_offset = 2048 + header["sizeXSlo"] * header["sizeYSlo"]
+            oct_offset = header["BscanHdrSize"] + header["octSizeX"] * header["octSizeZ"] * 4
             bscans = []
             bscanheaders = []
             bscanqualities = []
-            if parseSeg:
+            if parse_seg:
                 segmentations = None
             for i in range(header["numBscan"]):
-                fin.seek(16 + sloOffset + i * octOffset)
-                bscanHead = OrderedDict()
-                bscanHead["startX"] = struct.unpack("d", fin.read(8))[0]
-                bscanHead["startY"] = struct.unpack("d", fin.read(8))[0]
-                bscanHead["endX"] = struct.unpack("d", fin.read(8))[0]
-                bscanHead["endY"] = struct.unpack("d", fin.read(8))[0]
-                bscanHead["numSeg"] = struct.unpack("I", fin.read(4))[0]
-                bscanHead["offSeg"] = struct.unpack("I", fin.read(4))[0]
-                bscanHead["quality"] = struct.unpack("f", fin.read(4))[0]
-                bscanHead["shift"] = struct.unpack("I", fin.read(4))[0]
-                bscanheaders.append(bscanHead)
-                bscanqualities.append(bscanHead["quality"])
+                fin.seek(16 + slo_offset + i * oct_offset)
+                bscan_head = OrderedDict()
+                bscan_head["startX"] = struct.unpack("d", fin.read(8))[0]
+                bscan_head["startY"] = struct.unpack("d", fin.read(8))[0]
+                bscan_head["endX"] = struct.unpack("d", fin.read(8))[0]
+                bscan_head["endY"] = struct.unpack("d", fin.read(8))[0]
+                bscan_head["numSeg"] = struct.unpack("I", fin.read(4))[0]
+                bscan_head["offSeg"] = struct.unpack("I", fin.read(4))[0]
+                bscan_head["quality"] = struct.unpack("f", fin.read(4))[0]
+                bscan_head["shift"] = struct.unpack("I", fin.read(4))[0]
+                bscanheaders.append(bscan_head)
+                bscanqualities.append(bscan_head["quality"])
 
                 # extract OCT B scan data
-                fin.seek(header["BscanHdrSize"] + sloOffset + i * octOffset)
-                U = array.array("f")
-                U.frombytes(fin.read(4 * header["octSizeX"] * header["octSizeZ"]))
-                U = np.array(U).reshape((header["octSizeZ"], header["octSizeX"]))
+                fin.seek(header["BscanHdrSize"] + slo_offset + i * oct_offset)
+                u = array.array("f")
+                u.frombytes(fin.read(4 * header["octSizeX"] * header["octSizeZ"]))
+                u = np.array(u).reshape((header["octSizeZ"], header["octSizeX"]))
                 # remove out of boundary
                 v = struct.unpack("f", decode_hex("FFFF7F7F")[0])
-                U[U == v] = 0
+                u[u == v] = 0
                 # log normalize
-                U = np.log(10000 * U + 1)
-                U = (255.0 * (np.clip(U, 0, np.max(U)) / np.max(U))).astype("uint8")
-                bscans.append(U)
-                if parseSeg:
+                u = np.log(10000 * u + 1)
+                u = (255.0 * (np.clip(u, 0, np.max(u)) / np.max(u))).astype("uint8")
+                bscans.append(u)
+                if parse_seg:
                     # extract OCT segmentations data
-                    fin.seek(256 + sloOffset + i * octOffset)
-                    U = array.array("f")
-                    U.frombytes(fin.read(4 * header["octSizeX"] * bscanHead["numSeg"]))
-                    U = np.array(U)
-                    print(U.shape)
-                    U[U == v] = 0.0
+                    fin.seek(256 + slo_offset + i * oct_offset)
+                    u = array.array("f")
+                    u.frombytes(fin.read(4 * header["octSizeX"] * bscan_head["numSeg"]))
+                    u = np.array(u)
+                    print(u.shape)
+                    u[u == v] = 0.0
                     if segmentations is None:
                         segmentations = []
-                        for _ in range(bscanHead["numSeg"]):
+                        for _ in range(bscan_head["numSeg"]):
                             segmentations.append([])
 
-                    for j in range(bscanHead["numSeg"]):
-                        segmentations[j].append(U[j * header["octSizeX"] : (j + 1) * header["octSizeX"]].tolist())
+                    for j in range(bscan_head["numSeg"]):
+                        segmentations[j].append(u[j * header["octSizeX"] : (j + 1) * header["octSizeX"]].tolist())
             wholefile["cScan"] = np.array(bscans)
-            if parseSeg:
+            if parse_seg:
                 wholefile["segmentations"] = np.array(segmentations)
             wholefile["slice-headers"] = bscanheaders
             wholefile["average-quality"] = np.mean(bscanqualities)
@@ -235,7 +235,7 @@ class volFile:
         import csv
         from pathlib import Path, PurePath
 
-        volFeatures = [
+        vol_features = [
             PurePath(fn).name,
             wholefile["header"]["version"].decode("utf-8").rstrip("\x00"),
             wholefile["header"]["numBscan"],
@@ -314,10 +314,10 @@ class volFile:
         with open(output_csv, "a", newline="") as file:
             print("Adding", PurePath(fn).name, "to vols.csv.")
             writer = csv.writer(file)
-            writer.writerow(volFeatures)
+            writer.writerow(vol_features)
 
     @property
-    def fileHeader(self):
+    def file_header(self):
         """
         Retrieve vol header fields
 
@@ -354,7 +354,7 @@ class volFile:
         """
         return self.wholefile["header"]
 
-    def bScanHeader(self, slicei):
+    def bscan_header(self, slicei):
         """
         Retrieve the B Scan header information per slice.
 
@@ -374,7 +374,7 @@ class volFile:
         """
         return self.wholefile["slice-headers"][slicei]
 
-    def saveGrid(self, outfn):
+    def save_grid(self, outfn):
         """
         Saves the grid coordinates mapping OCT Bscans to the IR SLO image to a text file. The text file
         will be a tab-delimited file with 5 columns: The bscan number, x_0, y_0, x_1, y_1 in pixel space
