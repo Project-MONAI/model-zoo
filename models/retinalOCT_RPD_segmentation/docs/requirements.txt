@@ -5,3 +5,4 @@ seaborn
 scikit-learn
 progressbar
 lxml
+setuptools == 75.8.0

@@ -34,8 +34,6 @@ This bundle can be installed using docker by navigating to the RPDBundle directo
 docker build -t <image_name>:<tag> .
 ``` -->
 ## INSTALL
-The following installation order works when installing into an environment with python==3.9.
-
 From the bundle directory, install the required packages using
 ```
 pip install -r ./docs/requirements.txt

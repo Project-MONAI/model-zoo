@@ -9,6 +9,7 @@
     "numpy_version": "1.26.4",
     "optional_packages_version": {},
     "required_packages_version": {
+        "setuptools": "75.8.0",
         "opencv-python-headless": "4.11.0.86",
         "pandas": "2.2.3",
         "seaborn": "0.13.2",
