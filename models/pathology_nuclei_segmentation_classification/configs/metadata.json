@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hovernet_20221124.json",
-    "version": "0.2.7",
+    "version": "0.2.8",
     "changelog": {
+        "0.2.8": "enhance metadata with improved descriptions",
         "0.2.7": "update to huggingface hosting",
         "0.2.6": "update tensorrt benchmark results",
         "0.2.5": "enable tensorrt",
@@ -34,12 +35,12 @@
         "tensorboard": "2.17.0",
         "nibabel": "5.2.1"
     },
-    "name": "Nuclear segmentation and classification",
-    "task": "Nuclear segmentation and classification",
-    "description": "A simultaneous segmentation and classification of nuclei within multitissue histology images based on CoNSeP data",
+    "name": "HoVer-Net: Nuclear Segmentation and Classification",
+    "task": "Multi-task Nuclear Segmentation and Classification in H&E Histology",
+    "description": "A multi-task learning model based on the HoVer-Net architecture that simultaneously performs nuclei segmentation and type classification in H&E-stained histology images. The model processes 256x256 pixel RGB patches and outputs three complementary predictions: binary nuclear segmentation (Dice score: 0.83), hover maps for instance separation, and pixel-level nuclear type classification.",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
-    "data_source": "https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/",
+    "data_source": "CoNSeP Dataset from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/",
     "data_type": "numpy",
     "image_classes": "RGB image with intensity between 0 and 255",
     "label_classes": "a dictionary contains binary nuclear segmentation, hover map and pixel-level classification",

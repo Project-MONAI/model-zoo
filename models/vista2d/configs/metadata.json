@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "changelog": {
-        "0.3.1": "update to huggingface hosting",
+        "0.4.0": "rebrand as VISTA-2D, enhance metadata and documentation",
+        "0.3.1": "huggingface hosting",
         "0.3.0": "update readme",
         "0.2.9": "fix unsupported data dtype in findContours",
         "0.2.8": "remove relative path in readme",
@@ -42,14 +43,14 @@
         "psutil": "5.9.8"
     },
     "supported_apps": {},
-    "name": "VISTA-Cell",
-    "task": "cell image segmentation",
-    "description": "VISTA2D bundle for cell image analysis",
+    "name": "VISTA-2D: Cell Instance Segmentation",
+    "task": "Cell Instance Segmentation in Microscopy Images",
+    "description": "VISTA-2D is a flow-based cell instance segmentation model for microscopy images. It processes 256x256 RGB images and generates instance masks with unique labels for each cell. The model supports brightfield, fluorescence, and phase contrast imaging, handling touching cells and overlapping instances.",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_type": "tiff",
-    "image_classes": "1 channel data, intensity scaled to [0, 1]",
-    "label_classes": "3-channel data",
+    "image_classes": "3-channel RGB microscopy images, normalized to [0, 1] intensity range",
+    "label_classes": "Single-channel instance segmentation mask with unique integer labels for each cell",
     "pred_classes": "3 channels",
     "eval_metrics": {
         "mean_dice": 0.0

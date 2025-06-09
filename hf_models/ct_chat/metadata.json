@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hf_20250321.json",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "changelog": {
-        "1.0.0": "initial release of CT_CHAT model"
+        "1.0.0": "initial release of CT_CHAT model",
+        "1.1.0": "enhanced metadata with improved descriptions, task specification, and intended use documentation"
     },
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
@@ -18,10 +19,10 @@
         "ct_clip": "",
         "ct_chat": ""
     },
-    "name": "CT_CHAT",
-    "task": "Vision-language foundational chat model for 3D chest CT volumes",
-    "description": "CT-CHAT is a multimodal AI assistant designed to enhance the interpretation and diagnostic capabilities of 3D chest CT imaging. Building on the strong foundation of CT-CLIP, it integrates both visual and language processing to handle diverse tasks like visual question answering, report generation, and multiple-choice questions. Trained on over 2.7 million question-answer pairs from CT-RATE, it leverages 3D spatial information, making it superior to 2D-based models.",
-    "authors": "Ibrahim Ethem Hamamci, Sezgin Er, Furkan Almas, et al.",
+    "name": "CT-CHAT",
+    "task": "Vision-Language Chat Model for 3D Chest CT Analysis",
+    "description": "CT-CHAT is a multimodal AI assistant specifically designed for 3D chest CT imaging interpretation and analysis. The model excels at tasks including visual question answering, report generation, and multiple-choice questions, leveraging full 3D spatial information for superior performance compared to 2D-based approaches.",
+    "authors": ["Ibrahim Ethem Hamamci", "Sezgin Er", "Furkan Almas", "et al."],
     "copyright": "Ibrahim Ethem Hamamci and collaborators",
     "data_source": "CT-RATE dataset",
     "data_type": "3D CT volumes and text",

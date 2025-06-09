@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_ldm_20240318.json",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "changelog": {
+        "1.0.2": "enhance metadata with improved descriptions and intended use",
         "1.0.1": "add missing dependencies",
         "1.0.0": "accelerated maisi, inference only, is not compartible with previous maisi diffusion model weights",
         "0.4.6": "add TensorRT support",
@@ -29,17 +30,19 @@
     "supported_apps": {
         "maisi-nim": ""
     },
-    "name": "CT image latent diffusion generation",
-    "task": "CT image synthesis",
-    "description": "A generative model for creating 3D CT from Gaussian noise",
-    "authors": "MONAI team",
+    "name": "MAISI: Medical AI for Synthetic Imaging",
+    "task": "Synthetic 3D CT Image Generation with Anatomical Control",
+    "description": "MAISI is a diffusion-based model for generating synthetic 3D CT images with anatomical control. The model produces realistic CT volumes up to 512×512×768 voxels and can generate images conditioned on organ segmentations of 127 anatomical structures.",
+    "authors": ["MONAI Team"],
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "http://medicaldecathlon.com/",
     "data_type": "nibabel",
     "image_classes": "Flair brain MRI with 1.1x1.1x1.1 mm voxel size",
     "eval_metrics": {},
     "intended_use": "This is a research tool/prototype and not to be used clinically",
-    "references": [],
+    "references": [
+        "Guo, Pengfei, et al. 'MAISI: Medical AI for Synthetic Imaging.' arXiv preprint arXiv:2409.11169 (2024)."
+    ],
     "autoencoder_data_format": {
         "inputs": {
             "image": {

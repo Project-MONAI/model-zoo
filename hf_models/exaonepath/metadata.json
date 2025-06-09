@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hf_20250321.json",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "changelog": {
+        "1.1.0": "Enhanced metadata with detailed model architecture, performance metrics on downstream tasks, and preprocessing requirements.",
         "1.0.0": "initial release of EXAONEPath 1.0"
     },
     "monai_version": "1.4.0",
@@ -19,11 +20,11 @@
         "exaonepath": ""
     },
     "name": "EXAONEPath",
-    "task": "Pathology foundation model",
-    "description": "EXAONEPath is a patch-level pathology pretrained model with 86 million parameters, pretrained on 285,153,903 patches extracted from 34,795 WSIs.",
-    "authors": "LG AI Research",
+    "task": "Pathology Foundation Model and Feature Extraction",
+    "description": "EXAONEPath is a patch-level pathology foundation model that achieves state-of-the-art performance across multiple pathology tasks while maintaining computational efficiency. It excels in tissue classification, tumor detection, and microsatellite instability assessment.",
+    "authors": ["LG AI Research Team"],
     "copyright": "LG AI Research",
-    "data_source": "LG AI Research",
+    "data_source": "Large-scale collection of pathology WSIs processed into patches",
     "data_type": "WSI patches",
     "image_classes": "RGB pathology image patches",
     "huggingface_model_id": "LGAI-EXAONE/EXAONEPath",

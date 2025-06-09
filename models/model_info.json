@@ -1946,9 +1946,5 @@
     "pathology_nuclei_segmentation_classification_v0.2.7": {
         "checksum": "",
         "source": "https://huggingface.co/MONAI/pathology_nuclei_segmentation_classification/tree/0.2.7"
-    },
-    "vista3d_v0.5.9": {
-        "checksum": "",
-        "source": "https://huggingface.co/MONAI/vista3d/tree/0.5.9"
     }
 }

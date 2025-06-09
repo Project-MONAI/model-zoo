@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "changelog": {
+        "0.2.3": "enhance metadata with improved descriptions",
         "0.2.2": "update to huggingface hosting",
         "0.2.1": "update issue for IgniteInfo",
         "0.2.0": "use monai 1.4 and update large files",
@@ -37,9 +38,9 @@
         "tensorboard": "2.17.0"
     },
     "supported_apps": {},
-    "name": "Pathology nuclick annotation",
-    "task": "Pathology Nuclick annotation",
-    "description": "A pre-trained model for segmenting nuclei cells with user clicks/interactions",
+    "name": "Pathology NuClick Annotation",
+    "task": "Interactive Nuclei Segmentation in Histopathology Images",
+    "description": "An interactive nuclei segmentation model based on the NuClick framework. The model processes 128x128 pixel RGB images with positive and negative click signals to generate nuclei segmentation masks. Trained on the CoNSeP dataset",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "consep_dataset.zip from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet",

@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "changelog": {
+        "0.2.3": "enhance metadata with improved descriptions",
         "0.2.2": "update to huggingface hosting",
         "0.2.1": "fix pytype error",
         "0.2.0": "set image_only to False",
@@ -19,9 +20,9 @@
         "tensorboard": "2.17.0",
         "scipy": "1.13.1"
     },
-    "name": "Segmentation of renal structures based on contrast computed tomography scans",
-    "task": "Renal structures segmentation",
-    "description": "A UNET-based model for renal segmentation from contrast enhanced CT image",
+    "name": "Renal Structures CECT Segmentation",
+    "task": "Multi-class Segmentation of Renal Structures in Contrast-Enhanced CT",
+    "description": "A 3D UNet-based segmentation model for comprehensive renal structure analysis in contrast-enhanced CT scans. The model processes 96x96x96 voxel patches and identifies six anatomical structures: arteries, veins, ureters, parenchyma, cysts, and tumors.",
     "authors": "Sechenov university",
     "copyright": "Copyright (c) Sechenov university",
     "data_source": "AVUCTK_cases.zip",

@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "changelog": {
+        "0.6.1": "enhance metadata with improved descriptions",
         "0.6.0": "update to huggingface hosting",
         "0.5.9": "use monai 1.4 and update large files",
         "0.5.8": "update to use monai 1.3.2",
@@ -47,9 +48,9 @@
         "tensorboard": "2.17.0"
     },
     "supported_apps": {},
-    "name": "Spleen CT segmentation",
-    "task": "Decathlon spleen segmentation",
-    "description": "A pre-trained model for volumetric (3D) segmentation of the spleen from CT image",
+    "name": "Spleen CT Segmentation",
+    "task": "Automated Spleen Segmentation in CT Images",
+    "description": "A 3D segmentation model for spleen delineation in CT images. The model processes 96x96x96 pixel patches and provides segmentation masks for spleen tissue. Trained on the Medical Segmentation Decathlon dataset.",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "Task09_Spleen.tar from http://medicaldecathlon.com/",

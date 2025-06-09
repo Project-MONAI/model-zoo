@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "changelog": {
+        "0.2.2": "enhance metadata with improved descriptions",
         "0.2.1": "update to huggingface hosting",
         "0.2.0": "update issue for IgniteInfo",
         "0.1.9": "update tensorrt benchmark results",
@@ -37,9 +38,9 @@
         "scikit-image": "0.23.2"
     },
     "supported_apps": {},
-    "name": "Pathology nuclei classification",
-    "task": "Pathology Nuclei classification",
-    "description": "A pre-trained model for Nuclei Classification within Haematoxylin & Eosin stained histology images",
+    "name": "Pathology Nuclei Classification",
+    "task": "Multi-class Nuclei Classification in H&E Histology Images",
+    "description": "A deep learning model based on the HoVer-Net architecture that classifies nuclei in H&E-stained histology images. The model processes 128x128 pixel RGB images with nuclei masks and classifies four distinct cell types: inflammatory, epithelial, spindle-shaped, and other nuclei",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "consep_dataset.zip from https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet",

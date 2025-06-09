@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "changelog": {
+        "1.0.2": "enhanced metadata with improved descriptions and task specification",
         "1.0.1": "update to huggingface hosting",
         "1.0.0": "Initial release"
     },
@@ -11,8 +12,9 @@
     "required_packages_version": {
         "transformers": "4.46.3"
     },
-    "task": "Chest X-ray image synthesis",
-    "description": "A generative model for creating high-resolution chest X-ray based on MIMIC dataset",
+    "name": "Chest X-ray Latent Diffusion Synthesis",
+    "task": "Conditional Synthesis of Chest X-ray Images with Pathology Control",
+    "description": "A latent diffusion model that generates 512x512 pixel chest X-ray images from a 64x64x77 dimensional latent space. The model processes text-based condition inputs through a 1024-dimensional context vector, enabling controlled generation of X-rays with specific pathological features.",
     "copyright": "Copyright (c) MONAI Consortium",
     "authors": "Walter Hugo Lopez Pinaya, Mark Graham, Eric Kerfoot, Virginia Fernandez",
     "data_source": "https://physionet.org/content/mimic-cxr-jpg/2.0.0/",
