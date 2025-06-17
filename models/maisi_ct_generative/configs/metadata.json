@@ -32,7 +32,7 @@
     },
     "name": "MAISI: Medical AI for Synthetic Imaging",
     "task": "Synthetic 3D CT Image Generation with Anatomical Control",
-    "description": "MAISI is a diffusion-based model for generating synthetic 3D CT images with anatomical control. The model produces realistic CT volumes up to 512×512×768 voxels and can generate images conditioned on organ segmentations of 127 anatomical structures.",
+    "description": "MAISI is a diffusion-based model for generating synthetic 3D CT images with anatomical control. The model produces realistic CT volumes up to 512\u00d7512\u00d7768 voxels and can generate images conditioned on organ segmentations of 127 anatomical structures.",
     "authors": "MONAI Team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "http://medicaldecathlon.com/",
