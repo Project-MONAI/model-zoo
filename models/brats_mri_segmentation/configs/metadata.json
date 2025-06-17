@@ -45,7 +45,7 @@
     "name": "BraTS MRI segmentation",
     "task": "Multimodal Brain Tumor Subregion Segmentation",
     "description": "3D segmentation model for delineating brain tumor subregions from multimodal MRI scans (T1, T1c, T2, FLAIR). The model processes 4-channel input volumes with 1mm isotropic resolution and outputs 3-channel segmentation masks for tumor core (TC), whole tumor (WT), and enhancing tumor (ET).",
-    "authors": ["MONAI team"],
+    "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "BraTS 2018 Challenge Dataset (https://www.med.upenn.edu/sbia/brats2018/data.html)",
     "data_type": "nibabel",

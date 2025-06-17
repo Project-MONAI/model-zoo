@@ -16,7 +16,7 @@
     "name": "Llama3-VILA-M3-13B",
     "task": "Medical Visual Language Understanding and Generation",
     "description": "VILA-M3 is a medical visual language model built on Llama 3 and VILA architecture. This 13B parameter model performs medical image analysis including segmentation, classification, visual question answering, and report generation across multiple imaging modalities.",
-    "authors": ["Vishwesh Nath", "Wenqi Li", "Dong Yang", "Andriy Myronenko", "et al. from NVIDIA, SingHealth and NIH"],
+    "authors": "Vishwesh Nath, Wenqi Li, Dong Yang, Andriy Myronenko, et al. from NVIDIA, SingHealth and NIH",
     "copyright": "NVIDIA",
     "data_source": "MONAI and specialized medical datasets",
     "data_type": "Medical images and text",

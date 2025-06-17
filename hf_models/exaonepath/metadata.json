@@ -22,7 +22,7 @@
     "name": "EXAONEPath",
     "task": "Pathology Foundation Model and Feature Extraction",
     "description": "EXAONEPath is a patch-level pathology foundation model that achieves state-of-the-art performance across multiple pathology tasks while maintaining computational efficiency. It excels in tissue classification, tumor detection, and microsatellite instability assessment.",
-    "authors": ["LG AI Research Team"],
+    "authors": "LG AI Research Team",
     "copyright": "LG AI Research",
     "data_source": "Large-scale collection of pathology WSIs processed into patches",
     "data_type": "WSI patches",
