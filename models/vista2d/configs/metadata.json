@@ -3,7 +3,7 @@
     "version": "0.4.0",
     "changelog": {
         "0.4.0": "rebrand as VISTA-2D, enhance metadata and documentation",
-        "0.3.1": "huggingface hosting",
+        "0.3.1": "update to huggingface hosting",
         "0.3.0": "update readme",
         "0.2.9": "fix unsupported data dtype in findContours",
         "0.2.8": "remove relative path in readme",

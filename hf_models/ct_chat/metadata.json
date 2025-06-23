@@ -2,8 +2,8 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hf_20250321.json",
     "version": "1.1.0",
     "changelog": {
-        "1.0.0": "initial release of CT_CHAT model",
-        "1.1.0": "enhanced metadata with improved descriptions, task specification, and intended use documentation"
+        "1.1.0": "enhanced metadata with improved descriptions, task specification, and intended use documentation",
+        "1.0.0": "initial release of CT_CHAT model"
     },
     "monai_version": "1.4.0",
     "pytorch_version": "2.4.0",
