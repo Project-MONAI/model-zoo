@@ -1,8 +1,9 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "changelog": {
-        "0.6.1": "enhance metadata with improved descriptions and task specification",
+        "0.6.2": "enhance metadata with improved descriptions and task specification",
+        "0.6.1": "update to huggingface hosting and fix missing dependencies",
         "0.6.0": "use monai 1.4 and update large files",
         "0.5.9": "update to use monai 1.3.1",
         "0.5.8": "add load_pretrain flag for infer",
