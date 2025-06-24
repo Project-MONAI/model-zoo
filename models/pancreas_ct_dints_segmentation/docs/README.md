@@ -4,7 +4,7 @@ A neural architecture search algorithm for volumetric (3D) segmentation of the p
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_workflow_4-1.png)
 
 ## Data
-The training dataset is the Pancreas Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
+The training dataset is the Pancreas Task from the Medical Segmentation Decathlon. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
 - Target: Pancreas and pancreatic tumor
 - Modality: Portal venous phase CT

@@ -6,7 +6,7 @@ This model is trained using the runner-up [1] awarded pipeline of the "Medical S
 ![model workflow](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_spleen_ct_segmentation_workflow.png)
 
 ## Data
-The training dataset is the Spleen Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
+The training dataset is the Spleen Task from the Medical Segmentation Decathlon. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
 - Target: Spleen
 - Modality: CT

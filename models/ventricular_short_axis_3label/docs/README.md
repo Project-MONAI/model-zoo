@@ -19,7 +19,7 @@ The network is trained with this data in conjunction with a series of augmentati
 
 Free-form deformation is applied to vary the shape of the heart and its surrounding tissues which mimics to a degree deformation like what would be observed through the cardiac cycle. This of course does not replicate the heart moving through plane during the cycle or represent other observed changes but does provide enough variation that full-cycle segmentation is generally acceptable.
 
-Smooth fields are used to vary contrast and intensity in localised regions to simulate some of the variation in image quality caused by acquisition artefacts. Guassian noise is also added to simulate poor quality acquisition. These together force the network to learn to deal with a wider variation of image quality and partially to account for the difference between scanner vendors.
+Smooth fields are used to vary contrast and intensity in localised regions to simulate some of the variation in image quality caused by acquisition artefacts. Gaussian noise is also added to simulate poor quality acquisition. These together force the network to learn to deal with a wider variation of image quality and partially to account for the difference between scanner vendors.
 
 Training is invoked with the following command line:
 

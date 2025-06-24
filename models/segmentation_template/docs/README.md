@@ -7,7 +7,7 @@ so doesn't do anything useful on its own. The purpose is to demonstrate the base
 bundles compatible with MONAILabel amongst other things.
 
 To use this bundle, copy the contents of the whole directory and change the definitions for network, data, transforms,
-or whatever else you want for your own new segmentation bundle. Some of the names are critical for MONAILable but
+or whatever else you want for your own new segmentation bundle. Some of the names are critical for MONAI Label but
 otherwise you're free to change just about whatever else is defined here to suit your network.
 
 This bundle should also demonstrate good practice and design, however there is one caveat about definitions being

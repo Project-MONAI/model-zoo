@@ -9,7 +9,7 @@ All the configurations for inference is stored in inference.json, change those p
 - The `label_prompt` is a list of length `B`, which can perform `B` foreground objects segmentation, e.g. `[2,3,4,5]`. If `B>1`, Point prompts must NOT be provided.
 - The `points` is of shape `[N, 3]` like `[[x1,y1,z1],[x2,y2,z2],...[xN,yN,zN]]`, representing `N` point coordinates **IN THE ORIGINAL IMAGE SPACE** of a single foreground object. `point_labels` is a list of length [N] like [1,1,0,-1,...], which
 matches the `points`. 0 means background, 1 means foreground, -1 means ignoring this point. `points` and `point_labels` must pe provided together and match length.
-- **B must be 1 if label_prompt and points are provided together**. The inferer only supports SINGLE OBJECT point click segmentatation.
+- **B must be 1 if label_prompt and points are provided together**. The inferer only supports SINGLE OBJECT point click segmentation.
 - If no prompt is provided, the model will use `everything_labels` to segment 117 classes:
 
 ```Python

@@ -4,7 +4,7 @@
 
 #### Best practice to set label_mapping
 
-For a class that represent the same or similar class as the global index, directly map it to the global index. For example, "mouse left lung" (e.g. index 2 in the mouse dataset) can be mapped to the 28 "left lung upper lobe"(or 29 "left lung lower lobe") with [[2,28]]. After finetuning, 28 now represents "mouse left lung" and will be used for segmentation. If you want to segment 4 substructures of aorta, you can map one of the substructuress to 6 aorta and the rest to any value, [[1,6],[2,133],[3,134],[4,135]].
+For a class that represent the same or similar class as the global index, directly map it to the global index. For example, "mouse left lung" (e.g. index 2 in the mouse dataset) can be mapped to the 28 "left lung upper lobe"(or 29 "left lung lower lobe") with [[2,28]]. After finetuning, 28 now represents "mouse left lung" and will be used for segmentation. If you want to segment 4 substructures of aorta, you can map one of the substructures to 6 aorta and the rest to any value, [[1,6],[2,133],[3,134],[4,135]].
 ```
 NOTE: Do not map to global index value >= 255. `num_classes=255` in the config only represent the maximum mapping index, while the actual output class number only depends on your label_mapping definition. The 255 value in the inference output is also used to represent 'NaN' value.
 ```
@@ -18,7 +18,7 @@ Users can disable if the validation takes too long.
 In `train_continual.json`, only `n_train_samples` and `n_val_samples` are used for training and validation.
 
 #### `patch_size`
-The patch size parameter is defined in `configs/train_continual.json`: `"patch_size": [128, 128, 128]`. For finetuning purposes, this value needs to be changed acccording to user's task and GPU memory. Usually a larger patch_size will give better final results. `[192,192,128]` is a good value for larger memory GPU.
+The patch size parameter is defined in `configs/train_continual.json`: `"patch_size": [128, 128, 128]`. For finetuning purposes, this value needs to be changed according to user's task and GPU memory. Usually a larger patch_size will give better final results. `[192,192,128]` is a good value for larger memory GPU.
 
 #### `resample_to_spacing`
 The resample_to_spacing parameter is defined in `configs/train_continual.json` and it represents the resolution the model will be trained on. The `1.5,1.5,1.5` mm default is suitable for large CT organs, but for other tasks, this value should be changed to achive the optimal performance.

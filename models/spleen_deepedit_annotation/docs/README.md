@@ -6,7 +6,7 @@ DeepEdit is an algorithm that combines the power of two models in one single arc
 The model was trained on 32 images and validated on 9 images.
 
 ## Data
-The training dataset is the Spleen Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
+The training dataset is the Spleen Task from the Medical Segmentation Decathlon. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
 - Target: Spleen
 - Modality: CT

@@ -1,6 +1,6 @@
 # Description
 
-A diffusion model to synthetise X-Ray images based on radiological report impressions.
+A diffusion model to synthesise X-Ray images based on radiological report impressions.
 
 # Model Overview
 This model is trained from scratch using the Latent Diffusion Model architecture [1] and is used for the synthesis of
@@ -20,7 +20,7 @@ original images to have a format of 512 x 512 pixels.
 ## Preprocessing
 We resized the original images to make the smallest sides have 512 pixels. When inputting it to the network, we center
 cropped the images to 512 x 512. The pixel intensity was normalised to be between [0, 1]. The text data was obtained
-from associated radiological reports. We randoomly extracted sentences from the findings and impressions sections of the
+from associated radiological reports. We randomly extracted sentences from the findings and impressions sections of the
 reports, having a maximum of 5 sentences and 77 tokens. The text was tokenised using the CLIPTokenizer from
 transformers package (https://github.com/huggingface/transformers) (pretrained model
 "stabilityai/stable-diffusion-2-1-base") and then encoded using CLIPTextModel from the same package and pretrained
