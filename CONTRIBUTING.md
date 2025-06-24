@@ -8,7 +8,7 @@ Please refer to [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_
 
 The [get started](https://github.com/Project-MONAI/tutorials/blob/main/bundle/get_started.md) notebook is a step-by-step tutorial to help developers easily get started to develop a bundle. And [bundle examples](https://github.com/Project-MONAI/tutorials/tree/main/bundle) show the typical bundle for 3D segmentation, how to use customized components in a bundle, and how to parse bundle in your own program as "hybrid" mode, etc.
 
-As for the path related varibles within config files (such as "bundle_root"), we suggest to use path that do not include personal information (such as `"/home/your_name/"`).The following is an example of path using:
+As for the path related variables within config files (such as "bundle_root"), we suggest using paths that do not include personal information (such as `"/home/your_name/"`). The following is an example of a path definition:
 
 `"bundle_root": "/workspace/data/<bundle name>"`.
 
@@ -44,7 +44,7 @@ If a bundle has large files, please upload those files into a publicly accessibl
 1. `path`, relative path of the large file in the bundle.
 2. `url`, URL link that can download the file.
 3. `hash_val`, (**optional**) expected hash value of the file.
-4. `hash_type`, (**optional**) hash type. Supprted hash type includes "md5", "sha1", "sha256" and "sha512".
+4. `hash_type`, (**optional**) hash type. Supported hash types include "md5", "sha1", "sha256" and "sha512".
 
 The template is as follow, and you can also click [here](https://github.com/Project-MONAI/model-zoo/blob/dev/models/spleen_ct_segmentation/large_files.yml) to see an actual example of `spleen_ct_segmentation`:
 

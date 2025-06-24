@@ -1,14 +1,14 @@
 # Model Title
 
 ### **Authors**
-*Anyone who should be attributed as part of the model. If multiple people or companies, use a comma seperated list*
+*Anyone who should be attributed as part of the model. If multiple people or companies, use a comma separated list*
 
 Example:
 
 Firstname1 LastName1, Firstname2 Lastname2, Affiliation1
 
 ### **Tags**
-*What tags describe the model and task performed? Use a comma seperated list*
+*What tags describe the model and task performed? Use a comma separated list*
 
 Example:
 
@@ -45,7 +45,7 @@ This model achieves the following results on COCO 2017 validation: a box AP (ave
 For more details regarding evaluation results, we refer to table 5 of the original paper.
 
 
-## **Additinal Usage Steps** (Optional)
+## **Additional Usage Steps** (Optional)
 *If your bundle requires steps outside the normal flow of usage, describe those here in bash style commands.*
 
 Example:
@@ -67,7 +67,7 @@ Example:
 The model was trained for 300 epochs on 16 V100 GPUs. This takes 3 days, with 4 images per GPU (hence a total batch size of 64).
 
 ## **Limitations** (Optional)
-Are there general limitations of what this model should be used for? Has this been approved for use in any clinicial systems? Are there any things to watch out for when using this model?
+Are there general limitations of what this model should be used for? Has this been approved for use in any clinical systems? Are there any things to watch out for when using this model?
 
 Example:
 *This training and inference pipeline was developed by NVIDIA. It is based on a segmentation model created by NVIDIA researchers. This research use only software that has not been cleared or approved by FDA or any regulatory agency. Clara’s pre-trained models are for developmental purposes only and cannot be used directly for clinical procedures.*

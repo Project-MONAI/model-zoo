@@ -61,8 +61,8 @@ def find_masks(
     mask_foldername: str = "./datasets/masks/",
 ):
     """
-    Find candidate masks that fullfills all the requirements.
-    They shoud contain all the anatomies in `anatomy_list`.
+    Find candidate masks that fulfills all the requirements.
+    They should contain all the anatomies in `anatomy_list`.
     If there is no tumor specified in `anatomy_list`, we also expect the candidate masks to be tumor free.
     If check_spacing_and_output_size is True, the candidate masks need to have the expected `spacing` and `output_size`.
     Args:
@@ -74,7 +74,7 @@ def find_masks(
         database_filepath: path for the json file that stores the information of all the candidate masks.
         mask_foldername: directory that saves all the candidate masks.
     Return:
-        candidate_masks, list of dict, each dict contains information of one candidate mask that fullfills all the requirements.
+        candidate_masks, list of dict, each dict contains information of one candidate mask that fulfills all the requirements.
     """
     # check and preprocess input
     if isinstance(anatomy_list, int):

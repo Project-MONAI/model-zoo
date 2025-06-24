@@ -32,7 +32,7 @@ The neural architecture search was performed with the following:
 - Initial Learning Rate: 0.025
 - Loss: DiceCELoss
 
-### Optimial Architecture Training Configuration
+### Optimal Architecture Training Configuration
 The training was performed with the following:
 
 - AMP: True
