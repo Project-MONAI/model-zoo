@@ -17,6 +17,7 @@ These models must be accessed directly from Hugging Face using the `huggingface_
 | Model | Description | HF Repository |
 |-------|-------------|--------------|
 | exaonepath | EXAONEPath is a patch-level pathology pretrained model with 86 million parameters | [LGAI-EXAONE/EXAONEPath](https://huggingface.co/LGAI-EXAONE/EXAONEPath) |
+| exaonepath-crc-msi-predictor | MSI classification of CRC tumors using EXAONEPath 1.0.0 Patch-level Foundation Model for Pathology | [LGAI-EXAONE/EXAONEPath-CRC-MSI-Predictor](https://huggingface.co/LGAI-EXAONE/EXAONEPath-CRC-MSI-Predictor) |
 | llama3_vila_m3_3b | Lightweight medical vision language model that enhances VLMs with medical expert knowledge (3B parameters) | [MONAI/Llama3-VILA-M3-3B](https://huggingface.co/MONAI/Llama3-VILA-M3-3B) |
 | llama3_vila_m3_8b | Medical vision language model that utilizes domain-expert models to improve precision in medical imaging tasks (8B parameters) | [MONAI/Llama3-VILA-M3-8B](https://huggingface.co/MONAI/Llama3-VILA-M3-8B) |
 | llama3_vila_m3_13b | Enhanced medical vision language model with improved capabilities for various medical imaging tasks (13B parameters) | [MONAI/Llama3-VILA-M3-13B](https://huggingface.co/MONAI/Llama3-VILA-M3-13B) |
