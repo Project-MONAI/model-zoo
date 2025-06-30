@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.6.3",
+    "version": "0.6.4",
     "changelog": {
+        "0.6.4": "enhance metadata with improved descriptions",
         "0.6.3": "update to huggingface hosting",
         "0.6.2": "enhance readme for nccl timout issue",
         "0.6.1": "fix multi-gpu issue",
@@ -45,9 +46,9 @@
         "tensorboard": "2.17.0"
     },
     "supported_apps": {},
-    "name": "Pathology tumor detection",
-    "task": "Pathology metastasis detection",
-    "description": "A pre-trained model for metastasis detection on Camelyon 16 dataset.",
+    "name": "Pathology Tumor Detection",
+    "task": "Metastatic Tissue Detection in Whole-Slide Pathology Images",
+    "description": "A deep learning model for detecting metastatic tissue in whole-slide pathology images. The model processes 224x224 pixel RGB patches and provides probability scores for metastasis detection. Trained on the Camelyon16 dataset",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "Camelyon dataset",

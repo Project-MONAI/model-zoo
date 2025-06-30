@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.5",
+    "version": "0.3.6",
     "changelog": {
+        "0.3.6": "enhance metadata with improved descriptions",
         "0.3.5": "update to huggingface hosting",
         "0.3.4": "support monai 1.4",
         "0.3.3": "add invertd transformation",
@@ -21,9 +22,9 @@
         "pytorch-ignite": "0.4.11",
         "pandas": "2.2.1"
     },
-    "name": "Prostate MRI anatomy",
-    "task": "Segmentation of peripheral zone and central gland in prostate MRI",
-    "description": "A pre-trained model for volumetric (3D) segmentation of the prostate from MRI images",
+    "name": "Prostate MRI Anatomy",
+    "task": "Segmentation of Peripheral Zone and Central Gland in Prostate MRI",
+    "description": "A 3D segmentation model that differentiates between central gland and peripheral zone within the prostate in MRI images. The model processes 96x96x96 pixel patches and provides segmentation masks.",
     "authors": "Keno Bressem",
     "copyright": "Copyright (c) Keno Bressem",
     "data_source": "Prostate158 from 10.5281/zenodo.6481141",

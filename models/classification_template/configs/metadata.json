@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "changelog": {
+        "0.0.4": "enhanced metadata with improved descriptions and task specification",
         "0.0.3": "update to huggingface hosting",
         "0.0.2": "update large file yml",
         "0.0.1": "Initial version"
@@ -14,9 +15,9 @@
         "pyyaml": "6.0.2"
     },
     "supported_apps": {},
-    "name": "Classification Template",
-    "task": "Classification Template in 2D images",
-    "description": "This is a template bundle for classifying in 2D, take this as a basis for your own bundles.",
+    "name": "Medical Image Classification Template",
+    "task": "Template for 2D Medical Image Classification",
+    "description": "A comprehensive template for developing 2D medical image classification models, featuring a modular architecture and standardized training pipeline. The template supports single-channel 128x128 pixel input images and outputs 4-class probability distributions, serving as a foundation for custom medical image classification tasks.",
     "authors": "Yun Liu",
     "copyright": "Copyright (c) 2023 MONAI Consortium",
     "network_data_format": {

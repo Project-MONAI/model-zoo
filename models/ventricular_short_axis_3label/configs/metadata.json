@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "changelog": {
+        "0.3.5": "enhance metadata with improved descriptions",
         "0.3.4": "update to huggingface hosting",
         "0.3.3": "update AddChanneld with EnsureChannelFirstd",
         "0.3.2": "add name tag",
@@ -17,12 +18,13 @@
         "nibabel": "3.2.1",
         "pytorch-ignite": "0.4.8"
     },
-    "name": "Ventricular short axis 3 label segmentation",
-    "task": "Segments the left and right ventricle in 2D short axis MR images",
-    "description": "This network segments full cycle short axis images of the ventricles, labelling LV pool separate from myocardium and RV pool",
+    "name": "Ventricular Short Axis 3-Label Segmentation",
+    "task": "Cardiac MRI Segmentation of Left and Right Ventricles",
+    "description": "A cardiac MRI segmentation model that delineates three key structures in 2D short-axis images: left ventricle blood pool, myocardium, and right ventricle blood pool. The model processes 256x256 pixel images and provides segmentation masks for functional assessment of cardiac structures throughout the cardiac cycle.",
     "authors": "Eric Kerfoot",
     "copyright": "Copyright (c) Eric Kerfoot, KCL",
     "license": "See license.txt",
+    "intended_use": "This is suitable for research purposes only",
     "network_data_format": {
         "inputs": {
             "image": {

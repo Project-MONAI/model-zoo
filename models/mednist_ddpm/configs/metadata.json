@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "changelog": {
+        "1.0.3": "enhance metadata with improved descriptions",
         "1.0.2": "add missing dependencies",
         "1.0.1": "update to huggingface hosting",
         "1.0.0": "Initial release"
@@ -12,8 +13,9 @@
     "required_packages_version": {
         "pyyaml": "6.0.2"
     },
-    "task": "MedNIST Hand Generation",
-    "description": "",
+    "name": "MedNIST DDPM Hand X-ray Generation",
+    "task": "Synthetic Hand X-ray Image Generation via DDPM",
+    "description": "A denoising diffusion probabilistic model (DDPM) that synthesizes hand X-ray images based on the MedNIST dataset. The model learns the underlying distribution of the dataset through an iterative denoising process, demonstrating the capabilities of diffusion models in medical image synthesis. Features progressive noise-to-image generation with fine-grained control over the generation process.",
     "authors": "Walter Hugo Lopez Pinaya, Mark Graham, and Eric Kerfoot",
     "copyright": "Copyright (c) KCL",
     "references": [],
