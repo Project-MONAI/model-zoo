@@ -11,7 +11,8 @@
     "numpy_version": "1.26.4",
     "required_packages_version": {
         "transformers": "4.46.3",
-        "einops": "0.8.1"
+        "einops": "0.8.1",
+        "pillow": "10.4.0"
     },
     "name": "Chest X-ray Latent Diffusion Synthesis",
     "task": "Conditional Synthesis of Chest X-ray Images with Pathology Control",
