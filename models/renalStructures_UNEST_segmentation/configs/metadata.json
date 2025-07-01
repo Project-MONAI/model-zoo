@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "changelog": {
+        "0.2.7": "enhance metadata with improved descriptions",
         "0.2.6": "update to huggingface hosting",
         "0.2.5": "update large files",
         "0.2.4": "fix black 24.1 format error",
@@ -26,9 +27,9 @@
         "torchvision": "0.19.0",
         "tensorboard": "2.17.0"
     },
-    "name": "Renal structures UNEST segmentation",
-    "task": "Renal segmentation",
-    "description": "A transformer-based model for renal segmentation from CT image",
+    "name": "Renal Structures UNEST Segmentation",
+    "task": "Kidney Structure Segmentation in CT Images",
+    "description": "A transformer-based 3D segmentation model that delineates kidney cortex, medulla, and pelvicalyceal system in CT images. The model processes 96x96x96 pixel patches and provides segmentation masks for detailed morphological analysis.",
     "authors": "Vanderbilt University + MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "RawData.zip",

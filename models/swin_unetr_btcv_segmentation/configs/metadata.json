@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.5.7",
+    "version": "0.5.8",
     "changelog": {
+        "0.5.8": "enhance metadata with improved descriptions",
         "0.5.7": "update to huggingface hosting",
         "0.5.6": "update tensorrt benchmark results",
         "0.5.5": "enable tensorrt",
@@ -45,12 +46,12 @@
         "tensorboard": "2.17.0"
     },
     "supported_apps": {},
-    "name": "Swin UNETR BTCV segmentation",
-    "task": "BTCV multi-organ segmentation",
-    "description": "A pre-trained model for volumetric (3D) multi-organ segmentation from CT image",
+    "name": "Swin UNETR BTCV Multi-organ Segmentation",
+    "task": "Multi-organ Segmentation in Abdominal CT Scans",
+    "description": "A 3D segmentation model based on the Swin UNETR architecture that processes 96x96x96 pixel patches from CT scans to segment 13 abdominal organs and structures. The model utilizes self-supervised pre-training and hierarchical transformer blocks.",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
-    "data_source": "RawData.zip from https://www.synapse.org/#!Synapse:syn3193805/wiki/217752/",
+    "data_source": "Beyond the Cranial Vault (BTCV) Challenge Dataset: RawData.zip from https://www.synapse.org/#!Synapse:syn3193805/wiki/217752/",
     "data_type": "nibabel",
     "image_classes": "single channel data, intensity scaled to [0, 1]",
     "label_classes": "multi-channel data,0:background,1:spleen, 2:Right Kidney, 3:Left Kideny, 4:Gallbladder, 5:Esophagus, 6:Liver, 7:Stomach, 8:Aorta, 9:IVC, 10:Portal and Splenic Veins, 11:Pancreas, 12:Right adrenal gland, 13:Left adrenal gland",
