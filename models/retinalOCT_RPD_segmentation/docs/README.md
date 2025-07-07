@@ -34,7 +34,7 @@ This bundle can be installed using docker by navigating to the RPDBundle directo
 docker build -t <image_name>:<tag> .
 ``` -->
 ## INSTALL
-From the bundle directory, install the required packages using
+This bundle has been installed and tested using python 3.10. From the bundle directory, install the required packages using
 ```
 pip install -r ./docs/requirements.txt
 ```
@@ -95,6 +95,7 @@ For VOL files, each OCT slice will be saved as a png file to `<extracted_dir>/<s
 
 ### DATASET PACKAGING
 Once you have the scans in PNG format, you can create a "dataset" in Detectron2 dictionary format for model consumption:
+* specify `extracted_dir`, the path to the directory where the PNG files are stored
 * set `create_dataset` to `True`
 * set `dataset_name` to the chosen name of your dataset
 
