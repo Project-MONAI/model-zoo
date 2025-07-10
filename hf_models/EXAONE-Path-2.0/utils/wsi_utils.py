@@ -511,4 +511,3 @@ def read_mask_by_wsi_path(wsi_path: Path, wsi_dir: Path, mask_dir: Path) -> np.n
     )
     mask_path = get_mask_path_by_wsi_path(wsi_path, wsi_dir, mask_dir)
     return read_mask(mask_path)
-
