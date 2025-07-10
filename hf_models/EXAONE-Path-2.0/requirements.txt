@@ -1,0 +1,16 @@
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+torch==2.6.0+cu124 
+torchvision==0.21.0+cu124
+
+# configs
+pydantic==2.10.3
+
+# data
+openslide-bin==4.0.0.6
+openslide-python==1.4.1
+cucim-cu12==25.2
+rectangle_packer==2.0.2
+opencv-python-headless==4.11.0.86
+
+huggingface_hub
