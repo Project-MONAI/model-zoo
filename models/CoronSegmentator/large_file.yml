@@ -1,0 +1,9 @@
+large_files:
+  - path: "models/cardiacModel.pt"
+    url: "https://mega.nz/file/L8oz3QhA#illHJWSCmsmV5xqbXktwiu-1jUebbpJ0HSKv0hbMFCc"
+    hash_val: "md5"
+    hash_type: "0e783497e94293c86995392e5fbbc790"
+  - path: "models/CAseg066.zip"
+    url: "https://mega.nz/file/74YjjLBJ#xtz5R2UgqyKK_M0F5oP1-t7OzN9LMSqIoGYJgvD8REY"
+    hash_val: "b0f1870fabf29386ab8929d2e1d1af1c"
+    hash_type: "md5"

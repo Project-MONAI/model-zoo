@@ -1,0 +1,13 @@
+fire
+monai
+nnunetv2
+nibabel
+numpy
+numpy_stl
+pynrrd
+scipy
+simpleitk
+scikit-image
+torch
+trimesh
+usd_core
