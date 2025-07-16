@@ -11,5 +11,7 @@
             "outputDir": "$@output_dir"
         }
     },
-    "run": ["$@infer.run()"]
+    "run": [
+        "$@infer.run()"
+    ]
 }

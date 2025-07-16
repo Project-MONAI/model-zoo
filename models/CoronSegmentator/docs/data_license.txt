@@ -24,5 +24,3 @@ Package	Version	License(s)	Copyright Holder / Author
 monai	1.4.0	Apache-2.0	MONAI Consortium / Project MONAI
 usd-core	25.5	Apache-2.0	Pixar Animation Studios
 nnunetv2 (editable)	2.5.1	Apache-2.0	Fabian Isensee / Helmholtz Munich
-
-
