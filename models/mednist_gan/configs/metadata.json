@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_generator_20220718.json",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "changelog": {
+        "0.4.4": "enhance metadata with improved descriptions",
         "0.4.3": "update to huggingface hosting and compatible with py3.10",
         "0.4.2": "add name tag",
         "0.4.1": "fix license Copyright error",
@@ -18,8 +19,8 @@
         "pillow": "10.4.0"
     },
     "name": "MedNIST GAN",
-    "task": "Generate random hand images from the MedNIST dataset",
-    "description": "This example of a GAN generator produces hand xray images like those in the MedNIST dataset",
+    "task": "Synthetic Medical Hand X-ray Image Generation",
+    "description": "A generative adversarial network (GAN) that synthesizes hand X-ray images based on the MedNIST dataset. The model generates 64x64 pixel hand radiographs with varying appearances and orientations. The generated images maintain anatomical plausibility and can be used for data augmentation and educational purposes.",
     "authors": "MONAI Team",
     "copyright": "Copyright (c) MONAI Consortium",
     "intended_use": "This is an example of a GAN with generator discriminator networks using MONAI, suitable for demonstration purposes only.",

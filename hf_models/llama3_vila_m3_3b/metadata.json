@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hf_20250321.json",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "changelog": {
+        "1.1.0": "enhanced metadata with improved descriptions, task specification, and intended use documentation",
         "1.0.0": "initial release of VILA_M3_3B model"
     },
     "monai_version": "1.4.0",
@@ -12,12 +13,12 @@
         "huggingface_hub": "0.24.2",
         "transformers": "4.43.3"
     },
-    "name": "VILA_M3_3B",
-    "task": "Medical vision-language model",
-    "description": "VILA_M3 is a medical vision language model that enhances VLMs with medical expert knowledge, utilizing domain-expert models to improve precision in medical imaging tasks.",
-    "authors": "Vishwesh Nath, Wenqi Li, Dong Yang, Andriy Myronenko, et al. from NVIDIA, SingHealth, and NIH",
+    "name": "Llama3-VILA-M3-3B",
+    "task": "Medical Visual Language Understanding and Generation",
+    "description": "VILA-M3 is a medical visual language model built on Llama 3 and VILA architecture. This 3B parameter model performs medical image analysis including segmentation, classification, visual question answering, and report generation across multiple imaging modalities.",
+    "authors": "Vishwesh Nath, Wenqi Li, Dong Yang, Andriy Myronenko, et al. from NVIDIA, SingHealth and NIH",
     "copyright": "NVIDIA",
-    "data_source": "NVIDIA",
+    "data_source": "MONAI and specialized medical datasets",
     "data_type": "Medical images and text",
     "image_classes": "Various medical imaging modalities",
     "huggingface_model_id": "MONAI/Llama3-VILA-M3-3B",

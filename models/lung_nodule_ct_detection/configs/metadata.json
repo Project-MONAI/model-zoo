@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.6.9",
+    "version": "0.6.10",
     "changelog": {
+        "0.6.10": "enhance metadata with improved descriptions and intended use",
         "0.6.9": "update to huggingface hosting and fix missing dependencies",
         "0.6.8": "update issue for IgniteInfo",
         "0.6.7": "use monai 1.4 and update large files",
@@ -43,9 +44,9 @@
         "tensorboard": "2.17.0"
     },
     "supported_apps": {},
-    "name": "Lung nodule CT detection",
-    "task": "CT lung nodule detection",
-    "description": "A pre-trained model for volumetric (3D) detection of the lung lesion from CT image on LUNA16 dataset",
+    "name": "Lung Nodule CT Detection",
+    "task": "3D Pulmonary Nodule Detection in CT Scans",
+    "description": "A 3D detection model for identifying pulmonary nodules in CT scans. The model processes variable-sized patches and outputs detection boxes with classification scores. Trained on the LUNA16 challenge dataset, it provides automated screening capabilities for pulmonary nodule detection in chest CT examinations.",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "https://luna16.grand-challenge.org/Home/",

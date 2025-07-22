@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "changelog": {
+        "1.1.4": "enhanced metadata with improved descriptions and task specification",
         "1.1.3": "update to huggingface hosting and fix missing dependencies",
         "1.1.2": "update issue for IgniteInfo",
         "1.1.1": "enable tensorrt",
@@ -28,9 +29,9 @@
         "tensorboard": "2.17.0"
     },
     "supported_apps": {},
-    "name": "BraTS MRI image latent diffusion generation",
-    "task": "BraTS MRI image synthesis",
-    "description": "A generative model for creating 3D brain MRI from Gaussian noise based on BraTS dataset",
+    "name": "BraTS MRI Latent Diffusion Generation",
+    "task": "Conditional Synthesis of Brain MRI with Tumor Features",
+    "description": "Volumetric latent diffusion model that generates 3D brain MRI volumes (112x128x80 voxels) with tumor features from Gaussian noise, trained on the BraTS multimodal MRI dataset.",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "http://medicaldecathlon.com/",

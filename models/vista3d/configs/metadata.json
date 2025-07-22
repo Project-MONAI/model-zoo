@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.5.9",
+    "version": "0.5.10",
     "changelog": {
+        "0.5.10": "enhance metadata with improved descriptions",
         "0.5.9": "fix finetuning bug and update readme",
         "0.5.8": "update to huggingface hosting",
         "0.5.7": "change sw padding mode to replicate",
@@ -38,9 +39,9 @@
     "supported_apps": {
         "vista3d-nim": ""
     },
-    "name": "VISTA3D",
-    "task": "Decathlon Spleen segmentation",
-    "description": "VISTA3D bundle",
+    "name": "VISTA-3D: Versatile Imaging SegmenTation and Annotation",
+    "task": "Multi-organ Segmentation in CT Scans with Zero-shot Learning",
+    "description": "A 3D segmentation model that processes 128x128x128 pixel patches from CT scans to identify and delineate over 130 anatomical structures. The model employs zero-shot learning capabilities to adapt to new anatomical targets without retraining, supporting comprehensive volumetric analysis of organs, bones, muscles, and pathological findings.",
     "authors": "MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "Task09_Spleen.tar from http://medicaldecathlon.com/",
