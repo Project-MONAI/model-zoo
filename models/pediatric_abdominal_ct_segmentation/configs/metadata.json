@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.5",
+    "version": "0.4.6",
     "changelog": {
+        "0.4.6": "enhance metadata with improved descriptions",
         "0.4.5": "update to huggingface hosting",
         "0.4.4": "initial bundle assemblage."
     },
@@ -13,9 +14,9 @@
         "nibabel": "4.0.1",
         "pytorch-ignite": "0.4.11"
     },
-    "name": "CT-Ped-Abdominal-Seg",
-    "task": "Training and Prediction of 3D Segmentation of Liver, Spleen and Pancreas from Abdominal CT images",
-    "description": "TotalSegmentator, TCIA and BTCV dataset pre-trained model for segmenting liver, spleen and pancreas, fine-tuned on Cincinnati Children's Healthy Pediatric Dataset with High Quality Masks. WandB hyperparameter search was used to find the best hyperparameters for training.",
+    "name": "Pediatric Abdominal CT Segmentation",
+    "task": "3D Segmentation of Liver, Spleen and Pancreas in Pediatric Abdominal CT",
+    "description": "A 3D segmentation model for liver, spleen, and pancreas in pediatric abdominal CT images. The model processes 96x96x96 pixel patches and provides segmentation masks. Pre-trained on TotalSegmentator, TCIA and BTCV datasets and fine-tuned on Cincinnati Children's Healthy Pediatric Dataset.",
     "authors": "Cincinnati Children's (CCHMC) - CAIIR Center (https://www.cincinnatichildrens.org/research/divisions/r/radiology/labs/caiir)",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "TotalSegmentator, TCIA and BTCV dataset public data",

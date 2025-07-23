@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "changelog": {
+        "0.2.7": "enhance metadata with improved descriptions",
         "0.2.6": "update to huggingface hosting",
         "0.2.5": "update large files",
         "0.2.4": "fix black 24.1 format error",
@@ -26,9 +27,9 @@
         "tensorboard": "2.17.0"
     },
     "supported_apps": {},
-    "name": "Whole brain large UNEST segmentation",
-    "task": "Whole Brain Segmentation",
-    "description": "A 3D transformer-based model for whole brain segmentation from T1W MRI image",
+    "name": "Whole Brain Large UNEST Segmentation",
+    "task": "Whole Brain Segmentation in T1W MRI",
+    "description": "A transformer-based 3D segmentation model that identifies 133 distinct brain structures in T1W MRI scans. The model processes 96x96x96 pixel patches and provides segmentation masks for comprehensive neuroanatomical analysis.",
     "authors": "Vanderbilt University + MONAI team",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "",

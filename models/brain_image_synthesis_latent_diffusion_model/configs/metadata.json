@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "changelog": {
+        "1.0.3": "enhanced metadata with improved descriptions, task specification",
         "1.0.2": "fix missing dependencies",
         "1.0.1": "update to huggingface hosting",
         "1.0.0": "Initial release"
@@ -13,8 +14,9 @@
         "nibabel": "5.3.2",
         "einops": "0.7.0"
     },
-    "task": "Brain image synthesis",
-    "description": "A generative model for creating high-resolution 3D brain MRI based on UK Biobank",
+    "name": "Brain MRI Latent Diffusion Synthesis",
+    "task": "Conditional Synthesis of 3D Brain MRI with Demographic and Morphological Control",
+    "description": "A latent diffusion model that generates 160x224x160 voxel T1-weighted brain MRI volumes with 1mm isotropic resolution. The model accepts conditional inputs for age, gender, ventricular volume, and brain volume, enabling controlled generation of brain images with specific demographic and morphological characteristics.",
     "authors": "Walter H. L. Pinaya, Petru-Daniel Tudosiu, Jessica Dafflon, Pedro F Da Costa, Virginia Fernandez, Parashkev Nachev, Sebastien Ourselin, and M. Jorge Cardoso",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "https://www.ukbiobank.ac.uk/",

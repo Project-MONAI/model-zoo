@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "changelog": {
+        "0.5.1": "enhance metadata with improved descriptions and task specification",
         "0.5.0": "update to huggingface hosting and fix missing dependencies",
         "0.4.9": "use monai 1.4 and update large files",
         "0.4.8": "update to use monai 1.3.1",
@@ -39,11 +40,11 @@
         "tensorboard": "2.17.0"
     },
     "supported_apps": {},
-    "name": "Endoscopic inbody classification",
-    "task": "Endoscopic inbody classification",
-    "description": "A pre-trained binary classification model for endoscopic inbody classification task",
-    "authors": "NVIDIA DLMED team",
-    "copyright": "Copyright (c) 2021-2022, NVIDIA CORPORATION",
+    "name": "Endoscopic In-Body Classification",
+    "task": "Endoscopic Frame Classification for In-Body vs Out-Body Detection",
+    "description": "A binary classification model based on SENet that distinguishes between inside-body and outside-body frames in endoscopic videos. The model processes 256x256 pixel RGB images and filters irrelevant frames, enabling automated procedure analysis.",
+    "authors": "MONAI team",
+    "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "private dataset",
     "data_type": "RGB",
     "image_classes": "three channel data, intensity [0-255]",
@@ -52,6 +53,7 @@
     "eval_metrics": {
         "accuracy": 0.99
     },
+    "intended_use": "This is a research tool/prototype and not to be used clinically",
     "references": [
         "J. Hu, L. Shen and G. Sun, Squeeze-and-Excitation Networks, 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2018, pp. 7132-7141. https://arxiv.org/pdf/1709.01507.pdf"
     ],

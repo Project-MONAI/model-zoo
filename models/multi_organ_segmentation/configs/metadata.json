@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "changelog": {
+        "0.0.6": "enhance metadata with improved descriptions",
         "0.0.5": "update to huggingface hosting",
         "0.0.4": "Set image_only to False",
         "0.0.3": "Update for stable MONAI version",
@@ -18,9 +19,9 @@
         "pyyaml": "6.0.2"
     },
     "supported_apps": {},
-    "name": "Abdominal multi-organ segmentation",
-    "task": "Multi-organ segmentation in abdominal CT",
-    "description": "DiNTS architectures for volumetric (3D) segmentation of the abdominal from CT image",
+    "name": "Multi-organ Abdominal Segmentation",
+    "task": "Multi-organ Segmentation in Abdominal CT Images",
+    "description": "A 3D segmentation model optimized through Neural Architecture Search (DiNTS) that processes 96x96x96 pixel patches from CT scans to segment eight abdominal organs and structures. The model achieves a mean Dice score of 0.88 across all structures, including liver, spleen, pancreas, stomach, gallbladder, and vascular structures (artery and portal vein).",
     "authors": "Chen Shen, Holger R. Roth, Kazunari Misawa, Kensaku Mori",
     "copyright": "",
     "data_source": "Aichi Cancer Center, Japan",
@@ -31,6 +32,7 @@
     "eval_metrics": {
         "mean_dice": 0.88
     },
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
         "He, Y., Yang, D., Roth, H., Zhao, C. and Xu, D., 2021. Dints: Differentiable neural network topology search for 3d medical image segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5841-5850).",
         "Roth, H., Shen C, Oda H., Sugino T., Oda M., Hayashi Y., Misawa K., Mori K., 2018. A multi-scale pyramid of 3D fully convolutional networks for abdominal multi-organ segmentation. International conference on medical image computing and computer-assisted intervention",
