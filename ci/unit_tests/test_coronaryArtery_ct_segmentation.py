@@ -72,9 +72,9 @@ class TestCoronaryArteryCTSeg(unittest.TestCase):
 
         inferrer = ConfigWorkflow(
             workflow_type="infer",
-            config_file=os.path.join(bundle_root, r"configs\inference.json"),
-            logging_file=os.path.join(bundle_root, r"configs\logging.conf"),
-            meta_file=os.path.join(bundle_root, r"configs\metadata.json"),
+            config_file=Path(bundle_root) / "configs/inference.json",
+            logging_file=Path(bundle_root) / "configs/logging.conf",
+            meta_file=Path(bundle_root) / "configs/metadata.json",
             **override,
         )
         check_workflow(inferrer, check_properties=True)
