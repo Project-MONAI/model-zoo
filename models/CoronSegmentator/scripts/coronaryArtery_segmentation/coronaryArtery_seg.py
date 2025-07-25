@@ -126,7 +126,7 @@ class STLSplitter:
         """
         if self.num_triangles == 0:
             return
-        
+
         vectors = self.original_mesh.vectors
         # Process in batches to reduce memory pressure
         batch_size = min(10000, self.num_triangles)  # Adjust batch size based on available memory
