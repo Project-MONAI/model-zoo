@@ -112,7 +112,6 @@ class USDMeshCreator:
                 meshes = list(executor.map(self.load_mesh, self.input_files))
             # meshes = [self.load_mesh(file) for file in self.input_files]
 
-            # 创建所有网格作为根节点的直接子级
             mesh_paths = []
             for input_file, mesh in zip(self.input_files, meshes):
                 xform_path, mesh_path = self.get_paths(input_file)
@@ -120,7 +119,6 @@ class USDMeshCreator:
                     mesh_paths.append(mesh_path)
 
             if mesh_paths:
-                # 计算所有网格的世界空间包围盒
                 bbox_cache = UsdGeom.BBoxCache(Usd.TimeCode.Default(), includedPurposes=[UsdGeom.Tokens.default_])
                 total_range = None
                 for mesh_path in mesh_paths:
@@ -136,11 +134,11 @@ class USDMeshCreator:
                 if total_range and not total_range.IsEmpty():
                     bbox_min = total_range.GetMin()
                     bbox_max = total_range.GetMax()
-                    # 计算基底中心
+
                     base_center = Gf.Vec3d(
                         (bbox_min[0] + bbox_max[0]) / 2, bbox_min[1], (bbox_min[2] + bbox_max[2]) / 2
                     )
-                    # 计算平移量，使得基底中心移动到原点
+
                     translation = -base_center
                     translate_op.Set(Gf.Vec3f(translation))
 
@@ -148,7 +146,7 @@ class USDMeshCreator:
             anim_rotate_op.Set(0.0, time_codes[0])
             anim_rotate_op.Set(360.0, time_codes[1])
 
-            # 设置时间范围并保存
+
             self.stage.SetStartTimeCode(time_codes[0])
             self.stage.SetEndTimeCode(time_codes[1])
 

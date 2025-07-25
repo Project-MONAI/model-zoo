@@ -13,7 +13,6 @@ NIfTI, NRRD, and STL for 3D visualization and processing.
 import gc
 import logging
 import os
-
 import numpy as np
 import SimpleITK as sitk
 import trimesh
@@ -32,7 +31,7 @@ class FileConversion:
     @staticmethod
     def convert_nrrd_to_nii(nrrd_file, nii_file):
         image = sitk.ReadImage(nrrd_file)
-        # 保存为NIfTI格式
+        # save as NIfTI
         sitk.WriteImage(image, nii_file)
 
     @staticmethod
@@ -50,7 +49,7 @@ class FileConversion:
             logger.debug(f"Conversion successful: {os.path.basename(nrrd_file)}")
             return True
         except Exception as e:
-            logger.error(f"Error converting NIfTI to NRRD: {e}")
+            # logger.error(f"Error converting NIfTI to NRRD: {e}")
             raise RuntimeError(f"NIfTI to NRRD conversion failed: {str(e)}")
 
     @staticmethod
@@ -87,34 +86,38 @@ class FileConversion:
                 raise RuntimeError(f"Failed during image smoothing: {str(e)}")
 
             logger.debug("Converting image to numpy array")
-            try:
-                volume_data = sitk.GetArrayFromImage(smoothed_image)
-                del smoothed_image
-            except Exception as e:
-                del smoothed_image  # Free memory in case of error
-                raise RuntimeError(f"Failed to convert image to numpy array: {str(e)}")
-
+            
+            volume_data = sitk.GetArrayFromImage(smoothed_image)
+            del smoothed_image
             logger.debug("Generating mesh using marching cubes algorithm")
-            verts, faces, _, _ = marching_cubes(volume_data, level=0.5)
-            del volume_data
 
-            logger.debug("Transforming vertices to physical coordinates")
-            transform_matrix = np.diag(metadata["spacing"]) @ metadata["direction"].T
-            physical_verts = verts[:, [2, 1, 0]] @ transform_matrix + metadata["origin"]
-            del verts, transform_matrix
+            if np.all(volume_data == 0):
+                
+                dummy_vertices = [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
+                dummy_faces = [[0, 1, 2]]
+                mesh_obj = trimesh.Trimesh(vertices=dummy_vertices, faces=dummy_faces)
+        
+            else:
+                verts, faces, _, _ = marching_cubes(volume_data, level=0.5)
+                del volume_data
 
-            logger.debug("Creating and processing mesh")
-            mesh_obj = trimesh.Trimesh(vertices=physical_verts, faces=faces)
+                logger.debug("Transforming vertices to physical coordinates")
+                transform_matrix = np.diag(metadata["spacing"]) @ metadata["direction"].T
+                physical_verts = verts[:, [2, 1, 0]] @ transform_matrix + metadata["origin"]
+                del verts, transform_matrix
+
+                logger.debug("Creating and processing mesh")
+                mesh_obj = trimesh.Trimesh(vertices=physical_verts, faces=faces)
+                del physical_verts, faces
+
             mesh_obj.process(validate=True)
-            del physical_verts, faces
-
             logger.debug(f"Exporting mesh to STL: {stl_file_path}")
             mesh_obj.export(stl_file_path)
             logger.info(f"Successfully converted {os.path.basename(nrrd_file_path)} to STL")
 
             return True
         except Exception as e:
-            logger.error(f"Error converting NRRD to STL: {e}")
+            # logger.error(f"Error converting NRRD to STL: {e}")
             raise RuntimeError(f"NRRD to STL conversion failed: {str(e)}") from e
         finally:
             gc.collect()

@@ -61,7 +61,6 @@ class USDShaderApplier:
         )
         EMISSION_MODE_OPTIONS = "emission_lx:0|emission_nt:1"
 
-        # 设置 Shader 属性
         shader.CreateImplementationSourceAttr("sourceAsset")
         shader.SetSourceAsset(Sdf.AssetPath("OmniSurface/OmniSurfaceBase.mdl"), "mdl")
         shader.SetSourceAssetSubIdentifier("OmniSurfaceBase", "mdl")
@@ -358,7 +357,7 @@ class USDShaderApplier:
             self._set_shader_default_attributes(shader)
 
             input_specs = [
-                # (输入属性名, 值类型, 数据路径, 转换函数)
+                # (enter name, value type, datapath, conversion function)
                 ("coat_affect_color", Sdf.ValueTypeNames.Float, ["coat_affect_color"]),
                 ("coat_roughness", Sdf.ValueTypeNames.Float, ["coat_roughness"]),
                 ("diffuse_reflection_color", Sdf.ValueTypeNames.Color3f, ["diffuse_reflection", "color"]),
@@ -414,7 +413,7 @@ class USDShaderApplier:
             shader.CreateIdAttr("UsdPreviewSurface")
 
             input_specs = [
-                # (输入属性名, 值类型, shader_data键,)
+                # (Enter name, value type, shader_data key,)
                 ("clearcoat", Sdf.ValueTypeNames.Float, "clearcoat"),
                 ("clearcoatRoughness", Sdf.ValueTypeNames.Float, "clearcoatRoughness"),
                 ("diffuseColor", Sdf.ValueTypeNames.Color3f, "base_color"),

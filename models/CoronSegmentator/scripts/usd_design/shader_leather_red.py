@@ -335,12 +335,6 @@ class LeatherRed:
         rough_tex = self._create_texture_nodegraph("MDL_ImageTexture_001", self.roughness_url)
         normal_map = self._create_normal_map()
 
-        # Create principled BSDF
-        # bsdf = self._create_shader(
-        #    Sdf.Path(self.base_path), "MDL_PrincipledBSDF",
-        #    'OmniSurface/OmniSurfaceBase.mdl',
-        #    'OmniSurfaceBase'
-        # )
         bsdf = UsdShade.Shader(self.stage.GetPrimAtPath(f"{self.base_path}/MDL_PrincipledBSDF"))
         self._configure_bsdf(bsdf, color_tex, rough_tex, normal_map)
 

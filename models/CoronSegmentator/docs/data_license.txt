@@ -19,6 +19,8 @@ The dataset is publicly available via Kaggle (https://www.kaggle.com/datasets/xi
 Please cite the original publication when using the dataset:
 Zeng, A., Wu, C., Lin, G., et al. ImageCAS: A large-scale dataset and benchmark for coronary artery segmentation based on computed tomography angiography images. Computerized Medical Imaging and Graphics, 109, 102287 (2023). https://doi.org/10.1016/j.compmedimag.2023.102287
 
+
+
 -----------------------------------------------------------------------
 Package	Version	License(s)	Copyright Holder / Author
 monai	1.4.0	Apache-2.0	MONAI Consortium / Project MONAI

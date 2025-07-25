@@ -21,7 +21,7 @@ import uuid
 from collections import defaultdict
 from pathlib import Path
 from tempfile import TemporaryDirectory
-
+import traceback
 import nibabel as nib
 import numpy as np
 import SimpleITK as sitk
@@ -124,6 +124,9 @@ class STLSplitter:
         Initializes the vertex map by iterating over all triangles in the mesh.
         Rounds the vertex coordinates to the specified number of decimals to avoid floating-point precision issues.
         """
+        if self.num_triangles == 0:
+            return
+        
         vectors = self.original_mesh.vectors
         # Process in batches to reduce memory pressure
         batch_size = min(10000, self.num_triangles)  # Adjust batch size based on available memory
@@ -372,13 +375,8 @@ class NNUnetPredictor:
             self.create_directory(self.seg_path)
             self.create_directory(self.output_path)
 
-            # Verify critical paths exist
-            if not os.path.exists(self.preprocessed_path):
-                logger.warning(f"Preprocessed path not found at {self.preprocessed_path}. Will attempt to create.")
-            if not os.path.exists(self.results_path):
-                logger.warning(f"Results path not found at {self.results_path}. Will attempt to create.")
         except Exception as e:
-            logger.error(f"Failed to initialize paths: {str(e)}")
+            # logger.error(f"Failed to initialize paths: {str(e)}")
             raise RuntimeError(f"NNUnetPredictor initialization failed: {str(e)}") from e
 
     @staticmethod
@@ -391,7 +389,7 @@ class NNUnetPredictor:
         try:
             shutil.copy(self.input_path, os.path.join(self.img_path, f"{self.base_name}_0000.nii.gz"))
         except Exception as e:
-            logger.error(f"Failed to copy input file: {str(e)}")
+            # logger.error(f"Failed to copy input file: {str(e)}")
             raise RuntimeError(f"Failed to copy input file: {str(e)}") from e
 
     def _run_nnunet(self):
@@ -480,7 +478,7 @@ class NNUnetPredictor:
                     # Move the STL file to the output directory
                     shutil.move(file, os.path.join(self.output_path, os.path.basename(file)))
             except Exception as e:
-                logger.error(f"Error processing {nii_path}: {str(e)}")
+                logger.error(f"Error processing {nii_path}: {str(e)}. {traceback.print_exc()}")
                 raise
 
         nii_files = [os.path.join(self.seg_path, f) for f in os.listdir(self.seg_path) if f.endswith(".nii.gz")]

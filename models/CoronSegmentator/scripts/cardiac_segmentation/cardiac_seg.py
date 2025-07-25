@@ -73,7 +73,7 @@ class Auto3DSeg:
             logger.info(f"Conversion completed: {nrrd_path}")
             return nrrd_path
         except Exception as e:
-            logger.error(f"File conversion failed: {str(e)}")
+            # logger.error(f"File conversion failed: {str(e)}")
             raise RuntimeError(f"File conversion failed: {str(e)}")
 
     def _run_segmentation(self, input_nrrd, output_dir):
@@ -85,9 +85,9 @@ class Auto3DSeg:
             auto3dseg_inference(model_file=self.model_path, image_file=input_nrrd, result_file=seg_output_nrrd)
             return seg_output_nrrd
         except Exception as e:
-            logger.error(
-                f"Cardiac <{os.path.basename(self.input_path)}> segmentation inference failed with code {e.returncode}"
-            )
+            # logger.error(
+            #     f"Cardiac <{os.path.basename(self.input_path)}> segmentation inference failed with error: {e}."
+            # )
             raise RuntimeError("auto3dseg process failed")
 
     def _process_single_segment(self, seg_image, segment, output_dir):
@@ -115,8 +115,8 @@ class Auto3DSeg:
             # Cleanup temporary files
             os.remove(temp_nrrd)
         except Exception as e:
-            logger.error(f"Error processing {name}: {str(e)}")
-            raise
+            # logger.error(f"Error processing {name}: {str(e)}")
+            raise e
         finally:
             gc.collect()
 
@@ -131,9 +131,9 @@ class Auto3DSeg:
             logger.info(
                 f"Processing {len(segments_to_process)} segments out of {len(self.segments)} defined segments for {os.path.basename(seg_nrrd_path)}"
             )
-
+            workers = 4 # min(int(os.cpu_count() * 0.75), len(segments_to_process))
             with concurrent.futures.ThreadPoolExecutor(
-                max_workers=min(int(os.cpu_count() * 0.75), len(segments_to_process))
+                max_workers=workers
             ) as executor:
                 futures = [
                     executor.submit(self._process_single_segment, seg_image, segment, output_dir)
@@ -171,16 +171,16 @@ class Auto3DSeg:
             tempfile.TemporaryDirectory(prefix=f"CardiacSeg_Input_{self.instance_id}_") as input_tmp_dir,
             tempfile.TemporaryDirectory(prefix=f"CardiacSeg_Output_{self.instance_id}_") as output_tmp_dir,
         ):
-            # try:
-            # Step 1: Convert input to NRRD
-            input_nrrd = self._convert_to_nrrd(self.input_path, input_tmp_dir)
-            # Step 2: Run segmentation
-            seg_nrrd = self._run_segmentation(input_nrrd, output_tmp_dir)
-            # Step 3: Process results
-            self._process_segmentation_results(seg_nrrd, output_tmp_dir)
-            # except Exception as e:
-            #     logger.error(f"Processing failed: {str(e)}")
-            #     raise
+            try:
+                # Step 1: Convert input to NRRD
+                input_nrrd = self._convert_to_nrrd(self.input_path, input_tmp_dir)
+                # Step 2: Run segmentation
+                seg_nrrd = self._run_segmentation(input_nrrd, output_tmp_dir)
+                # Step 3: Process results
+                self._process_segmentation_results(seg_nrrd, output_tmp_dir)
+            except Exception as e:
+                # logger.error(f"Processing failed: {str(e)}")
+                raise e
 
         total_time = time.time() - start_time
         logger.info(

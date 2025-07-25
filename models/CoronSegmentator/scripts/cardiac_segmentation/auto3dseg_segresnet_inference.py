@@ -83,7 +83,7 @@ def auto3dseg_inference(
     model = ConfigParser(config["network"]).get_parsed_content()
     model.load_state_dict(state_dict, strict=True)
 
-    print(f"Model epoch {epoch} metric {best_metric}")
+    # print(f"Model epoch {epoch} metric {best_metric}")
 
     device = torch.device("cpu") if torch.cuda.device_count() == 0 else torch.device(0)
     model = model.to(device=device, memory_format=torch.channels_last_3d)  # gpu
@@ -112,7 +112,7 @@ def auto3dseg_inference(
         for idx, img in enumerate(keys[1:]):
             temp_shape = images_loaded[img].shape[-len(image1_shape) :]
             if np.any(np.not_equal(image1_shape, temp_shape)):
-                print(f"Volumes do not have the same size - Resizing volume {img}")
+                # print(f"Volumes do not have the same size - Resizing volume {img}")
                 resizer = Resized(keys=img, spatial_size=image1_shape, mode="bilinear")
                 images_loaded = resizer(images_loaded)
                 timing_checkpoints.append((f"Resizing volume {img}", time.time()))
@@ -182,14 +182,14 @@ def auto3dseg_inference(
     data = batch_data["image"].as_subclass(torch.Tensor).to(memory_format=torch.channels_last_3d, device=device)
     timing_checkpoints.append(("Preprocessing", time.time()))
 
-    print("Running Inference ...")
+    # print("Running Inference ...")
     with autocast(enabled=True):
         logits = sliding_inferrer(inputs=data, network=model)
     timing_checkpoints.append(("Inference", time.time()))
 
-    print(f"Logits {logits.shape}")
+    # print(f"Logits {logits.shape}")
     # logits -> preds
-    print("Converting logits into predictions")
+    # print("Converting logits into predictions")
     try:
         pred = logits2pred(logits, sigmoid=sigmoid)
     except RuntimeError as e:
@@ -198,7 +198,7 @@ def auto3dseg_inference(
         print(f"logits2pred failed on GPU pred retrying on CPU {logits.shape}")
         logits = logits.cpu()
         pred = logits2pred(logits, sigmoid=sigmoid)
-    print(f"preds {pred.shape}")
+    # print(f"preds {pred.shape}")
     timing_checkpoints.append(("Logits", time.time()))
     logits = None
 
@@ -218,7 +218,7 @@ def auto3dseg_inference(
     pred = [post_transforms(x)["pred"] for x in decollate_batch(batch_data)]
     seg = pred[0][0]
 
-    print(f"preds inverted {seg.shape}")
+    # print(f"preds inverted {seg.shape}")
     timing_checkpoints.append(("Preds", time.time()))
 
     seg = seg.cpu().numpy().astype(np.uint8)
@@ -229,13 +229,13 @@ def auto3dseg_inference(
     nrrd.write(result_file, seg, nrrd_header)
     timing_checkpoints.append(("Save", time.time()))
 
-    print("Computation time log:")
+    # print("Computation time log:")
     previous_start_time = start_time
     for timing_checkpoint in timing_checkpoints:
-        print(f"  {timing_checkpoint[0]}: {timing_checkpoint[1] - previous_start_time:.2f} seconds")
+        # print(f"  {timing_checkpoint[0]}: {timing_checkpoint[1] - previous_start_time:.2f} seconds")
         previous_start_time = timing_checkpoint[1]
 
-    print(f"ALL DONE, result saved in {result_file}")
+    # print(f"ALL DONE, result saved in {result_file}")
 
 
 def _add_normalization_transforms(ts, key, normalize_mode, intensity_bounds):

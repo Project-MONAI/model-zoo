@@ -18,6 +18,7 @@ import shutil
 import time
 from pathlib import Path
 
+from .download import download_and_verify
 from scripts.cardiac_segmentation.cardiac_seg import Auto3DSeg
 from scripts.coronaryArtery_segmentation.coronaryArtery_seg import NNUnetPredictor
 from scripts.usd_design.usd_create import USDCreator
@@ -105,8 +106,11 @@ class CoroSegmentator_Pipeline:
         Process a single NIfTI file: segment cardiac and coronary artery regions, and convert to USD format.
         """
         start_time = time.time()
-        logger.info(f"Starting processing of {self.nii_file}")
+        # Download the weights of models according to large_file.yml
+        logger.info(f"Starting downloading weights of models.")
+        download_and_verify()
 
+        logger.info(f"Starting processing of {self.nii_file}")
         nii_path = self.input_image
         seg_folder = create_output_folder(self.output_dir, self.nii_file)
         try:
@@ -141,11 +145,3 @@ class CoroSegmentator_Pipeline:
             return False
         finally:
             gc.collect()
-
-
-if __name__ == "__main__":
-    args = parseArg()
-    with open(args.json) as jf:
-        data = json.load(jf)
-    infer = CoroSegmentator_Pipeline(data["input_file"], data["output_dir"])
-    infer.run()
