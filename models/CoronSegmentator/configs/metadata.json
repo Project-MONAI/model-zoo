@@ -63,6 +63,12 @@
           "0": "Coronary Artery (1 = target, 0 = background)"
         }
       }
+    },
+    
+    "optional_packages_version": {
+        "monai": "1.3.2",
+        "torch": "2.7.0+cu126",
+        "numpy": "2.3.1"
     }
   }
 }
