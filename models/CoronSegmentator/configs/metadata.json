@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
   "name": "coronaryArtery_ct_segmentation",
   "version": "1.0.0",
@@ -72,3 +73,91 @@
     }
   }
 }
+=======
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "name": "coronaryArtery_ct_segmentation",
+    "version": "1.0.0",
+    "monai_version": "1.4.0",
+    "pytorch_version": "1.4.0",
+    "numpy_version": "2.3.1",
+    "required_packages_version": {
+        "fire": "0.7.0",
+        "PyYAML": "6.0.2",
+        "gdown": "5.2.0",
+        "nnunetv2": "2.6.0",
+        "nibabel": "5.3.2",
+        "numpy_stl": "3.2.0",
+        "pynrrd": "1.1.3",
+        "scipy": "1.16.0",
+        "simpleitk": "2.5.0",
+        "scikit-image": "0.25.2",
+        "torch": "2.7.0+cu126",
+        "trimesh": "4.6.10",
+        "usd_core": "25.5.1",
+        "numpy-stl": "3.2.0"
+    },
+    "task": "Coronary artery ct segmentation",
+    "description": "Coronsegmentator is an automated pipeline that performs dual-task segmentation on cardiac CT images, focusing on both whole-heart and coronary artery structures. It integrates MONAI Auto3DSeg for general cardiac segmentation and a custom nnU-Net model for detailed coronary artery segmentation. The pipeline further converts segmentation results (in STL format) into USD files for downstream 3D visualization and digital twin simulation using NVIDIA Omniverse.",
+    "authors": "Y. Ke, MC. Chen, TY. Lin, YC. Chan Foxconn Digital Health AI Team",
+    "copyright": "Copyright \u00a9 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved",
+    "data_source": "The ImageCAS dataset is publicly available at: https://github.com/XiaoweiXu/ImageCAS-A-Large-Scale-Dataset-and-Benchmark-for-Coronary-Artery-Segmentation-based-on-CT.git",
+    "data_type": "nifti",
+    "image_classes": "3D volume data",
+    "label_classes": "single channel data, 1 is coronary artery, 0 is background",
+    "pred_classes": "2 channels OneHot data, channel 1 is coronary artery, channel 0 is background",
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Zeng, An, et al. ImageCAS: A large-scale dataset and benchmark for coronary artery segmentation based on computed tomography angiography images. Computerized Medical Imaging and Graphics 109 (2023): 102287.",
+        "Isensee, Fabian, et al. nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. Nature methods 18.2 (2021): 203-211."
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "hounsfield",
+                "modality": "CT",
+                "num_channels": 1,
+                "spatial_shape": [
+                    512,
+                    512,
+                    256
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": true,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "usd",
+                "format": "segmentation",
+                "num_channels": 1,
+                "spatial_shape": [
+                    512,
+                    512,
+                    256
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "channel_def": {
+                    "0": "Coronary Artery (1 = target, 0 = background)"
+                }
+            }
+        },
+        "optional_packages_version": {
+            "monai": "1.3.2",
+            "torch": "2.7.0+cu126",
+            "numpy": "2.3.1"
+        }
+    }
+}
+>>>>>>> c8b3ad0a5842cf425f0ffb9355bfcb67ce994382

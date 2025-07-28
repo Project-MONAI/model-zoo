@@ -12,7 +12,7 @@ def _calculate_md5(filepath: Path, block_size: int = 65536) -> str:
     Calculate md5 value of file
     """
     md5 = hashlib.md5()
-    
+
     with open(filepath, 'rb') as f:
         for block in iter(lambda: f.read(block_size), b''):
             md5.update(block)
@@ -30,7 +30,7 @@ def download_and_verify():
     """
     with open(DOWNLOAD_CONFIG, 'r') as file:
         downloadConfig = yaml.safe_load(file)
-    
+
     for fileInfo in downloadConfig['large_files']:
         rel_path = fileInfo.get("path")
         url = fileInfo.get("url")

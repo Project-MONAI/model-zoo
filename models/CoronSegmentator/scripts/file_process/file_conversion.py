@@ -86,17 +86,17 @@ class FileConversion:
                 raise RuntimeError(f"Failed during image smoothing: {str(e)}")
 
             logger.debug("Converting image to numpy array")
-            
+
             volume_data = sitk.GetArrayFromImage(smoothed_image)
             del smoothed_image
             logger.debug("Generating mesh using marching cubes algorithm")
 
             if np.all(volume_data == 0):
-                
+
                 dummy_vertices = [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
                 dummy_faces = [[0, 1, 2]]
                 mesh_obj = trimesh.Trimesh(vertices=dummy_vertices, faces=dummy_faces)
-        
+
             else:
                 verts, faces, _, _ = marching_cubes(volume_data, level=0.5)
                 del volume_data
