@@ -4,7 +4,7 @@ own datasets. To reproduce the paper results, please refer to https://github.com
 
 # Installation Guide
 ```
-pip install "monai[fire]"
+pip install "monai[fire]" requests huggingface_hub
 python -m monai.bundle download "vista3d" --bundle_dir "bundles/"
 ```
 Please refer to monai model zoo (https://github.com/Project-MONAI/model-zoo) for more details.
