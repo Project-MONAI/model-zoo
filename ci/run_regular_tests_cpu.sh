@@ -30,7 +30,8 @@ elif [[ $# -gt 1 ]]; then
     exit 1
 fi
 
-exclude_test_list=("maisi_ct_generative" "retinalOCT_RPD_segmentation")
+# Usually, CPU test is required, but for some bundles that are too large to run in Github Actions, we can exclude them.
+exclude_test_list=("maisi_ct_generative")
 is_excluded() {
     for item in "${exclude_test_list[@]}"; do  # Use exclude_test_list here
         if [ "$1" == "$item" ]; then

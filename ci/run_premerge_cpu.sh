@@ -30,12 +30,6 @@ elif [[ $# -gt 1 ]]; then
     exit 1
 fi
 
-# Bunles that requires special python version
-declare -A bundle_python_versions=(
-    ["retinalOCT_RPD_segmentation"]="3.9"
-)
-DEFAULT_PYTHON_VERSION_FOR_VENV="3.10"
-
 # Usually, CPU test is required, but for some bundles that are too large to run in Github Actions, we can exclude them.
 exclude_test_list=("maisi_ct_generative")
 is_excluded() {
@@ -47,23 +41,22 @@ is_excluded() {
     return 1 # Return false (1) if not excluded
 }
 
-install_common_deps_in_activated_env() {
-    python -m pip install --upgrade pip wheel
-    python -m pip install --upgrade setuptools
-    python -m pip install jsonschema gdown pyyaml parameterized fire
-    export PYTHONPATH=$PWD
-}
-
 init_venv() {
     if [ ! -d "model_zoo_venv" ]; then  # Check if the venv directory does not exist
         echo "initializing pip environment"
         python -m venv model_zoo_venv
         source model_zoo_venv/bin/activate
-        install_common_deps_in_activated_env
+        pip install --upgrade pip wheel
+        pip install --upgrade setuptools
+        pip install jsonschema gdown pyyaml parameterized fire
+        export PYTHONPATH=$PWD
     else
         echo "Virtual environment model_zoo_venv already exists. Activating..."
         source model_zoo_venv/bin/activate
-        install_common_deps_in_activated_env
+        pip install --upgrade pip wheel
+        pip install --upgrade setuptools
+        pip install jsonschema gdown pyyaml parameterized fire
+        export PYTHONPATH=$PWD
     fi
 }
 
@@ -75,42 +68,6 @@ remove_venv() {
     else
         echo "Virtual environment not found. Skipping removal."
     fi
-}
-
-init_conda_env() {
-    local python_version_to_create="$1"
-    local bundle_identifier="$2"
-    local conda_env_name="conda_env_${bundle_identifier}"
-
-    # Always source conda.sh to ensure conda activate is available
-    if [ -n "$CONDA_EXE" ] && [ -f "$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh" ]; then
-        source "$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh"
-    elif [ -n "$MINICONDA_PATH_0" ] && [ -f "$MINICONDA_PATH_0/etc/profile.d/conda.sh" ]; then
-        source "$MINICONDA_PATH_0/etc/profile.d/conda.sh"
-    else
-        echo "Warning: Could not reliably source conda.sh for Conda activation."
-    fi
-
-    if conda env list | grep -q "^${conda_env_name}[[:space:]]"; then
-        echo "Conda env '$conda_env_name' already exists. Removing for a clean start..."
-        conda env remove -n "$conda_env_name" -y
-    fi
-
-    conda create -n "$conda_env_name" python="$python_version_to_create" -y
-    conda activate "$conda_env_name"
-    install_common_deps_in_activated_env
-    conda deactivate 2>/dev/null || true
-}
-
-remove_conda_env() {
-    local conda_env_name_to_remove="$1"
-    if [ -z "$conda_env_name_to_remove" ]; then
-        echo "Warning: No Conda env name provided to remove_conda_env."
-        return
-    fi
-    echo "Deactivating and removing Conda environment: $conda_env_name_to_remove"
-    conda deactivate 2>/dev/null || true
-    conda env remove -n "$conda_env_name_to_remove" -y
 }
 
 verify_bundle() {
@@ -149,22 +106,7 @@ verify_bundle() {
                     else
                         include_pre_release=""
                     fi
-                    # determine if conda env should be used for the bundle
-                    active_conda_env_for_bundle=""
-                    required_python_version="${bundle_python_versions[$bundle]}"
-                    use_conda_for_bundle=false
-                    if [[ -n "$required_python_version" && "$required_python_version" != "$DEFAULT_PYTHON_VERSION_FOR_VENV" ]]
-                    then
-                        use_conda_for_bundle=true
-                    fi
-                    if $use_conda_for_bundle
-                    then
-                        init_conda_env "$required_python_version" "$bundle"
-                        active_conda_env_for_bundle="conda_env_${bundle}"
-                        conda activate "$active_conda_env_for_bundle"
-                    else
-                        init_venv
-                    fi
+                    init_venv
                     # Check if the requirements file exists and is not empty
                     if [ -s "$requirements_file" ]; then
                         echo "install required libraries for bundle: $bundle"
@@ -172,13 +114,7 @@ verify_bundle() {
                     fi
                     # verify bundle
                     python $(pwd)/ci/verify_bundle.py -b "$bundle" -m "min"  # min tests on cpu
-                    # cleanup
-                    if $use_conda_for_bundle
-                    then
-                        remove_conda_env "$active_conda_env_for_bundle"
-                    else
-                        remove_venv
-                    fi
+                    remove_venv
                 fi
             done
         else
