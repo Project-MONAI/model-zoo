@@ -23,11 +23,16 @@ exclude_verify_shape_list = [
     "maisi_ct_generative",
     "cxr_image_synthesis_latent_diffusion_model",
     "brain_image_synthesis_latent_diffusion_model",
+    "retinalOCT_RPD_segmentation",
 ]
 
 # This list is used for our CI tests to determine whether a bundle contains the preferred files.
 # If a bundle does not have any of the preferred files, please add the bundle name into the list.
-exclude_verify_preferred_files_list = ["pediatric_abdominal_ct_segmentation", "maisi_ct_generative"]
+exclude_verify_preferred_files_list = [
+    "pediatric_abdominal_ct_segmentation",
+    "maisi_ct_generative",
+    "retinalOCT_RPD_segmentation",
+]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested with
 # the `verify_export_torchscript` function in `verify_bundle.py`.
@@ -47,6 +52,7 @@ exclude_verify_torchscript_list = [
     "mednist_ddpm",
     "cxr_image_synthesis_latent_diffusion_model",
     "brain_image_synthesis_latent_diffusion_model",
+    "retinalOCT_RPD_segmentation",
 ]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested after downloading
@@ -58,7 +64,9 @@ exclude_download_large_file_list = ["maisi_ct_generative"]
 # This dict is used for our CI tests to install required dependencies that cannot be installed by `pip install` directly.
 # If a bundle has this kind of dependencies, please add the bundle name (key), and the path of the install script (value)
 # into the dict.
-install_dependency_dict = {}
+install_dependency_dict = {
+    "retinalOCT_RPD_segmentation": "ci/install_scripts/install_retinalOCT_RPD_segmentation_dependency.sh"
+}
 
 # This list is used for our CI tests to determine whether a bundle supports TensorRT export. Related
 # test will be employed for bundles in the dict.
