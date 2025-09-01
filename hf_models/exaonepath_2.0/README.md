@@ -56,6 +56,18 @@ Performance of EXAONE Path 2.0 on 10 slide-level benchmarks (AUROC scores):
 | COAD-TP53-CPTAC | 0.889 | 0.816 | 0.701 | 0.712 | 0.783 | 0.819 | 0.875 |
 | **Average** | 0.748 | 0.765 | 0.696 | 0.707 | 0.755 | 0.731 | **0.784** |
 <br>
+LUAD: Lung Adenocarcinoma <br>
+CRC: Colorectal Cancer <br>
+BRCA: Breast Cancer <br>
+RCC: Renal Cell Cancer <br>
+COAD: Colon Adenocarcinoma <br>
+TMB: low/high classfication under TMB score 10 <br>
+EGFR, KRAS, TP53, PIK3CA, PBRM1, BAP1: wild/mut classification in coding region <br>
+MSI: MSI(low and high)/MSS classification <br>
+USA1, USA2: Test data from medical institute in USA <br>
+KOR : Test data from medical institute in Korea, Republic of <br>
+CPTAC: Test data from CPTAC dataset (https://gdc.cancer.gov/about-gdc/contributed-genomic-data-cancer-research/clinical-proteomic-tumor-analysis-consortium-cptac)<br>
+
 
 ## License
 The model is licensed under [EXAONEPath AI Model License Agreement 1.0 - NC](./LICENSE)
