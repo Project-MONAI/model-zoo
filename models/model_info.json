@@ -2082,5 +2082,9 @@
     "brain_image_synthesis_latent_diffusion_model_v1.0.3": {
         "checksum": "",
         "source": "https://huggingface.co/MONAI/brain_image_synthesis_latent_diffusion_model/tree/1.0.3"
+    },
+    "retinalOCT_RPD_segmentation_v0.0.1": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/retinalOCT_RPD_segmentation/tree/0.0.1"
     }
 }

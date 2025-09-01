@@ -1,0 +1,146 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
+    "version": "0.0.1",
+    "changelog": {
+        "0.0.1": "Initial version"
+    },
+    "monai_version": "1.5.0",
+    "pytorch_version": "2.6.0",
+    "numpy_version": "1.26.4",
+    "optional_packages_version": {},
+    "required_packages_version": {
+        "setuptools": "75.8.0",
+        "opencv-python-headless": "4.11.0.86",
+        "pandas": "2.3.0",
+        "seaborn": "0.13.2",
+        "scikit-learn": "1.6.1",
+        "progressbar": "2.5",
+        "pydicom": "3.0.1",
+        "fire": "0.7.0",
+        "torchvision": "0.21.0",
+        "detectron2": "0.6",
+        "lxml": "5.4.0",
+        "pillow": "11.2.1"
+    },
+    "name": "retinalOCT_RPD_segmentation",
+    "task": "Reticular Pseudodrusen (RPD) instance segmentation.",
+    "description": "This network detects and segments Reticular Pseudodrusen (RPD) instances in Optical Coherence Tomography (OCT) B-scans which can be presented in a vol or dicom format.",
+    "authors": "Yelena Bagdasarova, Scott Song",
+    "copyright": "Copyright (c) 2022, uw-biomedical-ml",
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "OCT",
+                "num_channels": 1,
+                "spatial_shape": [
+                    496,
+                    1024
+                ],
+                "dtype": "int16",
+                "value_range": [
+                    0,
+                    256
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "preprocessed_data_sources": {
+            "vol_file": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "OCT",
+                "num_channels": 1,
+                "spatial_shape": [
+                    496,
+                    1024,
+                    "D"
+                ],
+                "dtype": "int16",
+                "value_range": [
+                    0,
+                    256
+                ],
+                "description": "The pixel array of each OCT slice is extracted with volreader and the png files saved to <extracted_dir>/<some>/<file>/<name>/<some_file_name>_oct_<DDD>.png on disk, where <DDD> is the slice number and a nested hierarchy of folders is created using the underscores in the original filename. "
+            },
+            "dicom_series": {
+                "type": "image",
+                "format": "magnitude",
+                "modality": "OCT",
+                "SOP class UID": "1.2.840.10008.5.1.4.1.1.77.1.5.4",
+                "num_channels": 1,
+                "spatial_shape": [
+                    496,
+                    1024,
+                    "D"
+                ],
+                "dtype": "int16",
+                "value_range": [
+                    0,
+                    256
+                ],
+                "description": "The pixel array of each OCT slice is extracted with pydicom and the png files saved to <extracted_dir>/<SOPInstanceUID>/<SOPInstanceUID>_oct_<DDD>.png on disk, where <DDD> is the slice number. "
+            }
+        },
+        "outputs": {
+            "pred": {
+                "dtype": "dictionary",
+                "type": "dictionary",
+                "format": "COCO",
+                "modality": "n/a",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "num_channels": 1,
+                "spatial_shape": [
+                    496,
+                    1024
+                ],
+                "channel_def": {
+                    "0": "RPD"
+                },
+                "description": "This output is a JSON file in COCO Instance Segmentation format, containing bounding boxes, segmentation masks, and output probabilities for detected instances."
+            }
+        },
+        "post_processed_outputs": {
+            "binary segmentation": {
+                "type": "image",
+                "format": "TIFF",
+                "modality": "OCT",
+                "num_channels": 3,
+                "spatial_shape": [
+                    496,
+                    1024
+                ],
+                "description": "This output is a multi-page TIFF file. Each page of the TIFF image corresponds to a binary segmentation mask for a single OCT slice from the input volume. The segmentation masks are stacked in the same order as the original OCT slices."
+            },
+            "binary segmentation overlay": {
+                "type": "image",
+                "format": "TIFF",
+                "modality": "OCT",
+                "num_channels": 3,
+                "spatial_shape": [
+                    496,
+                    1024
+                ],
+                "description": "This output is a multi-page TIFF file. Each page of the TIFF image corresponds to a single OCT slice from the input volume overlayed with the detected binary segmentation mask."
+            },
+            "instance segmentation overlay": {
+                "type": "image",
+                "format": "TIFF",
+                "modality": "OCT",
+                "num_channels": 3,
+                "spatial_shape": [
+                    496,
+                    1024
+                ],
+                "description": "This output is a multi-page TIFF file. Each page of the TIFF image corresponds to a single OCT slice from the input volume overlayed with the detected binary segmentation mask."
+            }
+        }
+    }
+}
