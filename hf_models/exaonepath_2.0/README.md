@@ -64,13 +64,13 @@ The model is licensed under [EXAONEPath AI Model License Agreement 1.0 - NC](./L
 If you find EXAONE Path 2.0 useful, please cite it using this BibTeX:
 ```
 @article{pyeon2025exaonepath20pathology,
-      title={EXAONE Path 2.0: Pathology Foundation Model with End-to-End Supervision}, 
+      title={EXAONE Path 2.0: Pathology Foundation Model with End-to-End Supervision},
       author={Myeongjang Pyeon and Janghyeon Lee and Minsoo Lee and Juseung Yun and Hwanil Choi and Jonghyun Kim and Jiwon Kim and Yi Hu and Jongseong Jang and Soonyoung Lee},
       year={2025},
       eprint={2507.06639},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2507.06639}, 
+      url={https://arxiv.org/abs/2507.06639},
 }
 ```
 ## Contact
