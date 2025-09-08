@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
   "name": "coronaryArtery_ct_segmentation",
   "version": "1.0.0",
@@ -160,4 +159,3 @@
         }
     }
 }
->>>>>>> c8b3ad0a5842cf425f0ffb9355bfcb67ce994382
