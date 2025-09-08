@@ -1,44 +1,25 @@
 {
-  "imports": ["$import glob"],
-  "bundle_root": ".",
-  "ckpt_dir": "$@bundle_root + '/models'",
-  "dataset_dir": "",
-  "data": "$list(sorted(glob.glob(@dataset_dir + '/*.nii.gz')))",
-  "output_ext": ".usd",
-  "output_dir": "$@bundle_root + '/Output'",
-
-  "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-  "inferer": {
-    "_target_": "scripts.heart_digital_twin.CoroSegmentator_Pipeline",
-    "input_params": {
-      "inputFile": "$@data[0]",
-      "outputDir": "$@output_dir"
-    }
-  },
-  "dataset": {},
-  "evaluator": {},
-  "network_def": {},
-  "imports": [
-      "$import glob"
-  ],
-  "bundle_root": ".",
-  "ckpt_dir": "$@bundle_root + '/models'",
-  "dataset_dir": "",
-  "data": "$list(sorted(glob.glob(@dataset_dir + '/*.nii.gz')))",
-  "output_ext": ".usd",
-  "output_dir": "$@bundle_root + '/Output'",
-  "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
-  "inferer": {
-      "_target_": "scripts.heart_digital_twin.CoroSegmentator_Pipeline",
-      "input_params": {
-          "inputFile": "$@data[0]",
-          "outputDir": "$@output_dir"
-      }
-  },
-  "dataset": {},
-  "evaluator": {},
-  "network_def": {},
-  "run": [
-      "$@inferer.run()"
-  ]
+    "imports": [
+        "$import glob"
+    ],
+    "bundle_root": ".",
+    "ckpt_dir": "$@bundle_root + '/models'",
+    "dataset_dir": "",
+    "data": "$list(sorted(glob.glob(@dataset_dir + '/*.nii.gz')))",
+    "output_ext": ".usd",
+    "output_dir": "$@bundle_root + '/Output'",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "inferer": {
+        "_target_": "scripts.heart_digital_twin.CoroSegmentator_Pipeline",
+        "input_params": {
+            "inputFile": "$@data[0]",
+            "outputDir": "$@output_dir"
+        }
+    },
+    "dataset": {},
+    "evaluator": {},
+    "network_def": {},
+    "run": [
+        "$@inferer.run()"
+    ]
 }
