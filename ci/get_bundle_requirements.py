@@ -19,6 +19,8 @@ from utils import get_json_dict
 
 ALLOW_MONAI_RC = os.environ.get("ALLOW_MONAI_RC", "false").lower() in ("true", "1", "t", "y", "yes")
 
+special_dependencies_list = ["detectron2"]
+
 
 def increment_version(version):
     """
@@ -79,6 +81,8 @@ def get_requirements(bundle, models_path, requirements_file):
             if package_key in metadata.keys():
                 optional_dict = metadata[package_key]
                 for name, version in optional_dict.items():
+                    if name in special_dependencies_list:
+                        continue
                     libs.append(f"{name}=={version}")
 
         if len(libs) > 0:
