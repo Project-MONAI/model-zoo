@@ -17,11 +17,12 @@ import os
 import shutil
 import subprocess
 import time
+import traceback
 import uuid
 from collections import defaultdict
 from pathlib import Path
 from tempfile import TemporaryDirectory
-import traceback
+
 import nibabel as nib
 import numpy as np
 import SimpleITK as sitk

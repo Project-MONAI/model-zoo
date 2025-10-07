@@ -11,10 +11,10 @@
 
 import os
 import shutil
+import sys
 import tempfile
 import unittest
 from pathlib import Path
-import sys
 
 import nibabel as nib
 import numpy as np

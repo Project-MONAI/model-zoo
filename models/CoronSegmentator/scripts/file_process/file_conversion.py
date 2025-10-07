@@ -13,6 +13,7 @@ NIfTI, NRRD, and STL for 3D visualization and processing.
 import gc
 import logging
 import os
+
 import numpy as np
 import SimpleITK as sitk
 import trimesh

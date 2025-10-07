@@ -1,8 +1,9 @@
-import yaml
 import hashlib
 import os
 from pathlib import Path
+
 import gdown
+import yaml
 
 BUNDLE_ROOT = Path(__file__).parent.parent
 DOWNLOAD_CONFIG = os.path.join(BUNDLE_ROOT, "large_file.yml")

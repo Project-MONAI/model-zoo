@@ -18,10 +18,11 @@ import shutil
 import time
 from pathlib import Path
 
-from .download import download_and_verify
 from scripts.cardiac_segmentation.cardiac_seg import Auto3DSeg
 from scripts.coronaryArtery_segmentation.coronaryArtery_seg import NNUnetPredictor
 from scripts.usd_design.usd_create import USDCreator
+
+from .download import download_and_verify
 
 NII_GZ_EXT = ".nii.gz"
 STL_EXT = ".stl"
