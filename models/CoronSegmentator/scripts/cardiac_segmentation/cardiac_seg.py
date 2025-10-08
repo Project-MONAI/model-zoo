@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 """
 Author: John Y. Ke, MC. Chen, TY. Lin, YC. Chan
@@ -20,7 +22,7 @@ import uuid
 from pathlib import Path
 
 import numpy as np
-import SimpleITK as sitk
+import SimpleITK as sitk  # noqa: N813
 from scripts.cardiac_segmentation.auto3dseg_segresnet_inference import auto3dseg_inference
 from scripts.file_process.file_conversion import FileConversion
 
@@ -74,7 +76,7 @@ class Auto3DSeg:
             return nrrd_path
         except Exception as e:
             # logger.error(f"File conversion failed: {str(e)}")
-            raise RuntimeError(f"File conversion failed: {str(e)}")
+            raise RuntimeError(f"File conversion failed: {str(e)}") from e
 
     def _run_segmentation(self, input_nrrd, output_dir):
         """ "Execute the segmentation model inference."""
@@ -85,10 +87,7 @@ class Auto3DSeg:
             auto3dseg_inference(model_file=self.model_path, image_file=input_nrrd, result_file=seg_output_nrrd)
             return seg_output_nrrd
         except Exception as e:
-            # logger.error(
-            #     f"Cardiac <{os.path.basename(self.input_path)}> segmentation inference failed with error: {e}."
-            # )
-            raise RuntimeError("auto3dseg process failed")
+            raise RuntimeError("auto3dseg process failed") from e
 
     def _process_single_segment(self, seg_image, segment, output_dir):
         """Process individual anatomical segment and convert to STL."""
@@ -129,12 +128,11 @@ class Auto3DSeg:
             unique_labels = set(seg_array)
             segments_to_process = [s for s in self.segments if s["label"] in unique_labels]
             logger.info(
-                f"Processing {len(segments_to_process)} segments out of {len(self.segments)} defined segments for {os.path.basename(seg_nrrd_path)}"
+                f"Processing {len(segments_to_process)} segments out of {len(self.segments)} \
+                  defined segments for {os.path.basename(seg_nrrd_path)}"
             )
-            workers = 4 # min(int(os.cpu_count() * 0.75), len(segments_to_process))
-            with concurrent.futures.ThreadPoolExecutor(
-                max_workers=workers
-            ) as executor:
+            workers = 4  # min(int(os.cpu_count() * 0.75), len(segments_to_process))
+            with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
                 futures = [
                     executor.submit(self._process_single_segment, seg_image, segment, output_dir)
                     for segment in self.segments
@@ -144,6 +142,7 @@ class Auto3DSeg:
                     try:
                         future.result(timeout=300)
                     except TimeoutError as te:
+                        logger.error(f"TimeoutError: {str(te)}")
                         future.cancel()
                     except Exception as e:
                         logger.error(f"processing task for {futures[future]} failed: {str(e)}")
@@ -158,7 +157,7 @@ class Auto3DSeg:
             del seg_image, seg_array
             gc.collect()
         except Exception as e:
-            raise RuntimeError(f"Result processing failed: {str(e)}")
+            raise RuntimeError(f"Result processing failed: {str(e)}") from e
 
     def run(self):
         """Execute the complete processing pipeline."""

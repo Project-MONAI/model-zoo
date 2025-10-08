@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 """
 File  : coronaryArtery_seg.py
@@ -23,9 +25,7 @@ from collections import defaultdict
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-import nibabel as nib
 import numpy as np
-import SimpleITK as sitk
 import torch
 from scipy.spatial import cKDTree
 from scripts.file_process.file_conversion import FileConversion
@@ -155,7 +155,8 @@ class STLSplitter:
     @staticmethod
     def has_nearby_points(vertices_a, vertices_b, threshold):
         """
-        Checks if two sets of vertices are close to each other within the specified threshold using a KD-Tree for efficient querying.
+        Checks if two sets of vertices are close to each other within the specified threshold
+        using a KD-Tree for efficient querying.
         """
         if len(vertices_a) == 0 or len(vertices_b) == 0:
             return False
@@ -203,7 +204,7 @@ class STLSplitter:
         vertex_items = list(self.vertex_map.items())
         for i in range(0, len(vertex_items), batch_size):
             batch_end = min(i + batch_size, len(vertex_items))
-            for vert, tris in vertex_items[i:batch_end]:
+            for _vert, tris in vertex_items[i:batch_end]:
                 if len(tris) > 1:
                     root = tris[0]
                     for t in tris[1:]:
@@ -437,7 +438,7 @@ class NNUnetPredictor:
             )
             raise RuntimeError("nnUNet prediction failed") from e
 
-    def set_model_weight(self, modelWeight):
+    def set_model_weight(self, model_weight):
         """get model weight from zip file"""
         env = os.environ.copy()
         env.update(
@@ -449,18 +450,19 @@ class NNUnetPredictor:
         )
 
         # Construct the nnUNet prediction command
-        command = ["nnUNetv2_install_pretrained_model_from_zip", f"{modelWeight}"]
+        command = ["nnUNetv2_install_pretrained_model_from_zip", f"{model_weight}"]
 
         try:
             subprocess.run(
                 command, check=True, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True
             )
             logger.info(
-                f"Coronary artery Segmentation: nnUnetv2 model weight was extracted successfully from {modelWeight}."
+                f"Coronary artery Segmentation: nnUnetv2 model weight was extracted successfully from {model_weight}."
             )
         except subprocess.CalledProcessError as e:
             logger.error(
-                f"Coronary artery Segmentation: nnUnetv2 model weight from {modelWeight} failed to extract with code {e.returncode}"
+                f"Coronary artery Segmentation: nnUnetv2 model weight from {model_weight}\
+                failed to extract with code {e.returncode}"
             )
             raise RuntimeError("Load the model weight is failed") from e
 
@@ -497,6 +499,7 @@ class NNUnetPredictor:
                 try:
                     future.result(timeout=300)
                 except TimeoutError as te:
+                    logger.error(f"TimeoutError: {str(te)}")
                     future.cancel()
                 except Exception as e:
                     logger.error(f"processing task for {futures[future]} failed: {str(e)}")
@@ -505,7 +508,7 @@ class NNUnetPredictor:
         """Runs the entire pipeline: file handling, nnUNet inference, and result post-processing."""
         start_time = time.time()
         try:
-            if self.model_weight:  # get the model weight from <modelWeight.zip>
+            if self.model_weight:  # get the model weight from <model_weight.zip>
                 for w in self.model_weight:
                     self.set_model_weight(w)
 
@@ -521,7 +524,8 @@ class NNUnetPredictor:
 
             elapsed_time = time.time() - start_time
             logger.info(
-                f"Completed coronary artery segmentation pipeline for {os.path.basename(self.input_path)} in {elapsed_time:.2f} seconds"
+                f"Completed coronary artery segmentation pipeline \
+                for {os.path.basename(self.input_path)} in {elapsed_time:.2f} seconds"
             )
         except FileNotFoundError as e:
             logger.error(f"File not found error: {str(e)}")

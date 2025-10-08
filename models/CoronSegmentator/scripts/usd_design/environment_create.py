@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 """
 File  : environment_create.py
@@ -76,8 +78,6 @@ class EnvironmentSetup:
         xform.SetXformOpOrder([translate_op, rotate_op, scale_op])
 
     def create_look_scope(self):
-        looks_scope = self.stage.DefinePrim("/Environment/Looks", "Scope")
-
         material = UsdShade.Material.Define(self.stage, "/Environment/Looks/Grid")
 
         shader = UsdShade.Shader.Define(self.stage, "/Environment/Looks/Grid/Shader")
@@ -110,8 +110,7 @@ class EnvironmentSetup:
             if name == "diffuse_texture":
                 inp.GetAttr().SetColorSpace("sRBG")
 
-
-        output = shader.CreateOutput("out", Sdf.ValueTypeNames.Token)
+        # output = shader.CreateOutput("out", Sdf.ValueTypeNames.Token)
 
         material.CreateOutput("mdl:displacement", Sdf.ValueTypeNames.Token).ConnectToSource(
             shader.ConnectableAPI(), "out"
@@ -122,7 +121,6 @@ class EnvironmentSetup:
     def cereate_ground(self):
         mesh = UsdGeom.Mesh.Define(self.stage, "/Environment/ground")
         material_api = UsdShade.MaterialBindingAPI.Apply(mesh.GetPrim())
-
 
         mesh.CreateExtentAttr([(-1400, -1400, 0), (1400, 1400, 0)])
         mesh.CreateFaceVertexCountsAttr([4])
@@ -136,7 +134,6 @@ class EnvironmentSetup:
         primvar.SetInterpolation(UsdGeom.Tokens.faceVarying)
 
         UsdGeom.PrimvarsAPI(mesh).CreatePrimvar("isMatteObject", Sdf.ValueTypeNames.Bool).Set(False)
-
 
         material = UsdShade.Material(self.stage.GetPrimAtPath("/Environment/Looks/Grid"))
         material_api.Bind(material, bindingStrength=UsdShade.Tokens.weakerThanDescendants)

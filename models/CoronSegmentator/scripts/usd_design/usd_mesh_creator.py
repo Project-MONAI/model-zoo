@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 """
 File  : usd_mesh_creator.py
@@ -145,7 +147,6 @@ class USDMeshCreator:
             time_codes = [0, 96]
             anim_rotate_op.Set(0.0, time_codes[0])
             anim_rotate_op.Set(360.0, time_codes[1])
-
 
             self.stage.SetStartTimeCode(time_codes[0])
             self.stage.SetEndTimeCode(time_codes[1])

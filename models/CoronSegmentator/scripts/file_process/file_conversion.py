@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 """
 File  : file_conversion.py
@@ -15,7 +17,7 @@ import logging
 import os
 
 import numpy as np
-import SimpleITK as sitk
+import SimpleITK as sitk  # noqa: N813
 import trimesh
 from skimage.measure import marching_cubes
 
@@ -51,7 +53,7 @@ class FileConversion:
             return True
         except Exception as e:
             # logger.error(f"Error converting NIfTI to NRRD: {e}")
-            raise RuntimeError(f"NIfTI to NRRD conversion failed: {str(e)}")
+            raise RuntimeError(f"NIfTI to NRRD conversion failed: {str(e)}") from e
 
     @staticmethod
     def convert_nrrd_to_stl(nrrd_file_path, stl_file_path, gaussian_sigma=1.0):
@@ -69,7 +71,7 @@ class FileConversion:
                 logger.debug(f"Reading NRRD file: {nrrd_file_path}")
                 image = sitk.ReadImage(nrrd_file_path)
             except Exception as e:
-                raise RuntimeError(f"Failed to read NRRD file: {str(e)}")
+                raise RuntimeError(f"Failed to read NRRD file: {str(e)}") from e
 
             # Apply Gaussian smoothing
             logger.debug(f"Applying Gaussian smoothing with sigma={gaussian_sigma}")
@@ -83,8 +85,8 @@ class FileConversion:
                 }
                 del image
             except Exception as e:
-                del image  # Free memory in case of error
-                raise RuntimeError(f"Failed during image smoothing: {str(e)}")
+                # del image  # Free memory in case of error
+                raise RuntimeError(f"Failed during image smoothing: {str(e)}") from e
 
             logger.debug("Converting image to numpy array")
 

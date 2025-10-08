@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Author: John Y. Ke, MC. Chen, TY. Lin, YC. Chan
 Copyright © 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved.
@@ -30,7 +32,9 @@ from monai.transforms import (
     ScaleIntensityRanged,
     Spacingd,
 )
-from monai.utils import MetaKeys, convert_to_dst_type
+
+# from monai.utils import MetaKeys, convert_to_dst_type
+from monai.utils import convert_to_dst_type
 from torch.cuda.amp import autocast
 
 
@@ -59,7 +63,6 @@ def auto3dseg_inference(
     image_file_4=None,
     **kwargs,
 ):
-    start_time = time.time()
     timing_checkpoints = []  # list of (operation, time) tuples
 
     # Checking for model file
@@ -75,9 +78,6 @@ def auto3dseg_inference(
     config = checkpoint["config"]
 
     state_dict = checkpoint["state_dict"]
-
-    epoch = checkpoint.get("epoch", 0)
-    best_metric = checkpoint.get("best_metric", 0)
     sigmoid = config.get("sigmoid", False)
 
     model = ConfigParser(config["network"]).get_parsed_content()
@@ -109,7 +109,7 @@ def auto3dseg_inference(
         # Loading size of image 1
         image1_shape = images_loaded[keys[0]].shape[1:]
         # Resizing the other volumes if needed
-        for idx, img in enumerate(keys[1:]):
+        for _, img in enumerate(keys[1:]):
             temp_shape = images_loaded[img].shape[-len(image1_shape) :]
             if np.any(np.not_equal(image1_shape, temp_shape)):
                 # print(f"Volumes do not have the same size - Resizing volume {img}")
@@ -176,8 +176,6 @@ def auto3dseg_inference(
 
     # process DATA
     batch_data = inf_transform([images_loaded])
-    # original_affine = batch_data[0]['image_meta_dict']['original_affine']
-    original_affine = batch_data[0]["image"].meta[MetaKeys.ORIGINAL_AFFINE]
     batch_data = list_data_collate([batch_data])
     data = batch_data["image"].as_subclass(torch.Tensor).to(memory_format=torch.channels_last_3d, device=device)
     timing_checkpoints.append(("Preprocessing", time.time()))
@@ -228,14 +226,6 @@ def auto3dseg_inference(
     nrrd_header = nrrd.read_header(image_file)
     nrrd.write(result_file, seg, nrrd_header)
     timing_checkpoints.append(("Save", time.time()))
-
-    # print("Computation time log:")
-    previous_start_time = start_time
-    for timing_checkpoint in timing_checkpoints:
-        # print(f"  {timing_checkpoint[0]}: {timing_checkpoint[1] - previous_start_time:.2f} seconds")
-        previous_start_time = timing_checkpoint[1]
-
-    # print(f"ALL DONE, result saved in {result_file}")
 
 
 def _add_normalization_transforms(ts, key, normalize_mode, intensity_bounds):

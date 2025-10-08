@@ -1,11 +1,10 @@
+#!/usr/bin/env python
+
 """
 Author: John Y. Ke, MC. Chen, TY. Lin, YC. Chan
 Copyright © 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved.
 License: Apache License 2.0
 """
-
-import os
-
 from pxr import Gf, Sdf, UsdShade
 
 
@@ -37,10 +36,10 @@ class LeatherRed:
             return self.define_shader(shader_path, mdl_source, sub_identifier)
         return UsdShade.Shader(prim)
 
-    def _create_node_graph(self, nodeGraph_path):
-        prim = self.stage.GetPrimAtPath(nodeGraph_path)
+    def _create_node_graph(self, nodegraph_path):
+        prim = self.stage.GetPrimAtPath(nodegraph_path)
         if not prim.IsValid():
-            return UsdShade.NodeGraph.Define(self.stage, nodeGraph_path)
+            return UsdShade.NodeGraph.Define(self.stage, nodegraph_path)
         return UsdShade.NodeGraph(prim)
 
     def _create_texture_nodegraph(self, nodegraph_name, texture_url):
@@ -118,8 +117,9 @@ class LeatherRed:
         invert.GetAttr().SetMetadata("displayName", "Invert image")
 
         # image_texture = {
-        #    "texture": texture, "mono_source": mono_source, "brightness": brightness, "contrast": contrast, "translation": translation,
-        #    "scaling": scaling, "rotation": rotation, "invert": invert, "texture_space": texture_space, "clip": clip,
+        #     "texture": texture, "mono_source": mono_source, "brightness": brightness,
+        #     "contrast": contrast, "translation": translation,"scaling": scaling,
+        #     "rotation": rotation, "invert": invert, "texture_space": texture_space, "clip": clip,
         # }
 
         file_texture = self._create_shader(
@@ -199,7 +199,6 @@ class LeatherRed:
 
     def _create_construct_color(self, parent_path, file_texture):
         """Creates a color constructor shader."""
-        construct_color_path = parent_path.AppendChild("construct_color")
         construct_color = self._create_shader(
             parent_path, "construct_color", "nvidia/aux_definitions.mdl", "construct_color(::base::texture_return)"
         )

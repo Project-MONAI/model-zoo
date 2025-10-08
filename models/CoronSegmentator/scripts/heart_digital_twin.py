@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 """
 File  : heart_digital_twin.py
@@ -11,7 +13,6 @@ This script performs <brief description of converting NII Files to USD Files>.
 
 import argparse
 import gc
-import json
 import logging
 import os
 import shutil
@@ -35,7 +36,7 @@ logging.basicConfig(
 logger = logging.getLogger("HeartDigitalTwin")
 
 
-def parseArg():
+def parse_arg():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--json", default="./configs/inference.json", help="The json file which define the input config."
@@ -96,7 +97,7 @@ def convert_stl_to_usd(seg_folder, nii_file):
         gc.collect()
 
 
-class CoroSegmentator_Pipeline:
+class CoroSegmentatorPipeline:
     def __init__(self, input_params: dict):
         self.input_image = input_params["inputFile"]
         self.output_dir = input_params["outputDir"]
@@ -108,7 +109,7 @@ class CoroSegmentator_Pipeline:
         """
         start_time = time.time()
         # Download the weights of models according to large_file.yml
-        logger.info(f"Starting downloading weights of models.")
+        logger.info("Starting downloading weights of models.")
         download_and_verify()
 
         logger.info(f"Starting processing of {self.nii_file}")

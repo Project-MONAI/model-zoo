@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 """
 File  : usd_shader_applier.py
@@ -41,7 +43,7 @@ class USDShaderApplier:
             return {"materials": []}
 
     def _set_shader_default_attributes(self, shader):
-        IOR_PRESET_OPTIONS = (
+        ior_preset_options = (
             "ior_acrylic_glass:0|ior_air:1|ior_crystal:2|ior_diamond:3|ior_emerald:4|"
             "ior_ethanol:5|ior_flint_glass:6|ior_glass:7|ior_honey_21p_water:8|"
             "ior_human_eye_aqueous_humor:9|ior_human_eye_cornea:10|"
@@ -52,14 +54,14 @@ class USDShaderApplier:
             "ior_vacuum:23|ior_water_0c:24|ior_water_35c:25|"
             "ior_water_100c:26|ior_custom:99"
         )
-        SCATTERING_COLORS_OPTIONS = (
+        scattering_colors_options = (
             "scattering_colors_apple:0|scattering_colors_chicken:1|scattering_colors_cream:2|"
             "scattering_colors_ketchup:3|scattering_colors_marble:4|scattering_colors_potato:5|"
             "scattering_colors_skim_milk:6|scattering_colors_whole_milk:7|scattering_colors_skin_1:8|"
             "scattering_colors_skin_2:9|scattering_colors_skin_3:10|scattering_colors_skin_4:11|"
             "scattering_colors_custom:12"
         )
-        EMISSION_MODE_OPTIONS = "emission_lx:0|emission_nt:1"
+        emission_mode_options = "emission_lx:0|emission_nt:1"
 
         shader.CreateImplementationSourceAttr("sourceAsset")
         shader.SetSourceAsset(Sdf.AssetPath("OmniSurface/OmniSurfaceBase.mdl"), "mdl")
@@ -103,7 +105,7 @@ class USDShaderApplier:
                 Sdf.ValueTypeNames.Int,
                 {
                     "customData": {"default": 99},
-                    "sdrMetadata": {"__SDR__enum_value": "ior_custom", "options": IOR_PRESET_OPTIONS},
+                    "sdrMetadata": {"__SDR__enum_value": "ior_custom", "options": ior_preset_options},
                 },
             ),
             ("coat_normal", Sdf.ValueTypeNames.Float3, {"customData": {"default": Gf.Vec3f(0, 0, 0)}}),
@@ -139,7 +141,7 @@ class USDShaderApplier:
                 Sdf.ValueTypeNames.Int,
                 {
                     "customData": {"default": 0},
-                    "sdrMetadata": {"__SDR__enum_value": "emission_lx", "options": EMISSION_MODE_OPTIONS},
+                    "sdrMetadata": {"__SDR__enum_value": "emission_lx", "options": emission_mode_options},
                 },
             ),
             (
@@ -191,7 +193,7 @@ class USDShaderApplier:
                 Sdf.ValueTypeNames.Int,
                 {
                     "customData": {"default": 99},
-                    "sdrMetadata": {"__SDR__enum_value": "ior_custom", "options": IOR_PRESET_OPTIONS},
+                    "sdrMetadata": {"__SDR__enum_value": "ior_custom", "options": ior_preset_options},
                 },
             ),
             (
@@ -287,7 +289,7 @@ class USDShaderApplier:
                     "customData": {"default": 12},
                     "sdrMetadata": {
                         "__SDR__enum_value": "scattering_colors_custom",
-                        "options": SCATTERING_COLORS_OPTIONS,
+                        "options": scattering_colors_options,
                     },
                 },
             ),
@@ -317,7 +319,7 @@ class USDShaderApplier:
                 Sdf.ValueTypeNames.Int,
                 {
                     "customData": {"default": 99},
-                    "sdrMetadata": {"__SDR__enum_value": "ior_custom", "options": IOR_PRESET_OPTIONS},
+                    "sdrMetadata": {"__SDR__enum_value": "ior_custom", "options": ior_preset_options},
                 },
             ),
             (
