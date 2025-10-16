@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # -*- coding: utf-8 -*-
 """
 Author: John Y. Ke, MC. Chen, TY. Lin, YC. Chan

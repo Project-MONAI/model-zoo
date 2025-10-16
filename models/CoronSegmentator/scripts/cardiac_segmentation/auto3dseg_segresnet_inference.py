@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 Author: John Y. Ke, MC. Chen, TY. Lin, YC. Chan
 Copyright © 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved.
