@@ -94,10 +94,11 @@ def update_model_info(
 
     # step 4
     if bundle_name_with_version not in model_info.keys():
-        model_info[bundle_name_with_version] = {"checksum": "", "source": ""}
+        model_info[bundle_name_with_version] = {"checksum": "", "source": "", "description": ""}
 
     model_info[bundle_name_with_version]["checksum"] = checksum
     model_info[bundle_name_with_version]["source"] = source
+    model_info[bundle_name_with_version]["description"] = metadata["description"]
 
     save_model_info(model_info, model_info_path)
     return (True, "update successful")
