@@ -39,7 +39,7 @@ Fig.2 - The network architecture of UNEST Base model
 
 
 ## Data
-The training data is from the Vanderbilt University and Vanderbilt University Medical Center with public released OASIS and CANDI datsets.
+The training data is from the Vanderbilt University and Vanderbilt University Medical Center with public released OASIS and CANDI datasets.
 Training and testing data are MRI T1-weighted (T1w) 3D volumes coming from 3 different sites. There are a total of 133 classes in the whole brain segmentation task.
 Among 50 T1w MRI scans from Open Access Series on Imaging Studies (OASIS) (Marcus et al., 2007) dataset, 45 scans are used for training and the other 5 for validation.
  The testing cohort contains Colin27 T1w scan (Aubert-Broche et al., 2006) and 13 T1w MRI scans from the Child and Adolescent Neuro Development Initiative (CANDI)
@@ -52,7 +52,7 @@ The data should be in the MNI305 space before inference.
 
 If your images are already in MNI space, skip the registration step.
 
-You could use any resitration tool to register image to MNI space. Here is an example using ants.
+You could use any registration tool to register image to MNI space. Here is an example using ants.
 Registration to MNI Space: Sample suggestion. E.g., use ANTS or other tools for registering T1 MRI image to MNI305 Space.
 
 ```
@@ -158,8 +158,8 @@ With 10 fine-tuned labels, the training process converges fast.
 |  132 :  Left-TTG---transverse-temporal-gyrus  |
 
 
-## Bundle Integration in MONAI Lable
-The inference and training pipleine can be easily used by the MONAI Label server and 3D Slicer for fast labeling T1w MRI images in MNI space.
+## Bundle Integration in MONAI Label
+The inference and training pipeline can be easily used by the MONAI Label server and 3D Slicer for fast labeling T1w MRI images in MNI space.
 
 ![](./3DSlicer_use.png) <br>
 

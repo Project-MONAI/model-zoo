@@ -1,5 +1,5 @@
 # Model Overview
-Vista3D model fintuning/evaluation/inference pipeline. VISTA3D is trained using over 20 partial datasets with more complicated pipeline. To avoid confusion, we will only provide finetuning/continual learning APIs for users to finetune on their
+Vista3D model finetuning/evaluation/inference pipeline. VISTA3D is trained using over 20 partial datasets with more complicated pipeline. To avoid confusion, we will only provide finetuning/continual learning APIs for users to finetune on their
 own datasets. To reproduce the paper results, please refer to https://github.com/Project-MONAI/VISTA/tree/main/vista3d
 
 # Installation Guide
@@ -68,7 +68,7 @@ Example code for 5 fold cross-validation generation can be found [here](data.md)
 Note the data is not the absolute path to the image and label file. The actual image file will be `os.path.join(dataset_dir, data["training"][item]["image"])`, where `dataset_dir` is defined in `configs/train_continual.json`. Also 5-fold cross-validation is not required! `fold=0` is defined in train.json, which means any data item with fold==0 will be used as validation and other fold will be used for training. So if you only have train/val split, you can manually set validation data with "fold": 0 in its datalist and the other to be training by setting "fold" to any number other than 0.
 ```
 ## Step2: Changing hyperparameters
-For continual learning, user can change `configs/train_continual.json`. More advanced users can change configurations in `configs/train.json`.  Most hyperparameters are straighforward and user can tell based on their names. The users must manually change the following keys in `configs/train_continual.json`.
+For continual learning, user can change `configs/train_continual.json`. More advanced users can change configurations in `configs/train.json`.  Most hyperparameters are straightforward and user can tell based on their names. The users must manually change the following keys in `configs/train_continual.json`.
 #### 1. `label_mappings`
 ```
     "label_mappings": {
@@ -94,10 +94,10 @@ For continual learning, user can change `configs/train_continual.json`. More adv
 Change `data_list_file_path` to the absolute path of your data json split. Change `dataset_dir` to the root folder that combines with the relative path in the data json split.
 
 #### 3. Optional hyperparameters and details are [here](finetune.md).
-Hyperparameteers finetuning is important and varies from task to task.
+Hyperparameters finetuning is important and varies from task to task.
 
 ## Step3: Run finetuning
-The hyperparameters in `configs/train_continual.json` will overwrite ones in `configs/train.json`. Configs in the back will overide the previous ones if they have the same key.
+The hyperparameters in `configs/train_continual.json` will overwrite ones in `configs/train.json`. Configs in the back will override the previous ones if they have the same key.
 
 Single-GPU:
 ```bash

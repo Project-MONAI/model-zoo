@@ -6,7 +6,7 @@ DeepEdit is an algorithm that combines the power of two models in one single arc
 The model was trained on 32 images and validated on 9 images.
 
 ## Data
-The training dataset is the Spleen Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
+The training dataset is the Spleen Task from the Medical Segmentation Decathlon. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
 - Target: Spleen
 - Modality: CT
@@ -88,7 +88,7 @@ If you face memory issues with CacheDataset, you can either switch to a regular 
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+For more detailed usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
 #### Execute training:
 

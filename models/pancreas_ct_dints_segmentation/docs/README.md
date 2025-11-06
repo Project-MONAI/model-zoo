@@ -4,7 +4,7 @@ A neural architecture search algorithm for volumetric (3D) segmentation of the p
 ![image](https://developer.download.nvidia.com/assets/Clara/Images/clara_pt_net_arch_search_segmentation_workflow_4-1.png)
 
 ## Data
-The training dataset is the Pancreas Task from the Medical Segmentation Decathalon. Users can find more details on the datasets at http://medicaldecathlon.com/.
+The training dataset is the Pancreas Task from the Medical Segmentation Decathlon. Users can find more details on the datasets at http://medicaldecathlon.com/.
 
 - Target: Pancreas and pancreatic tumor
 - Modality: Portal venous phase CT
@@ -32,7 +32,7 @@ The neural architecture search was performed with the following:
 - Initial Learning Rate: 0.025
 - Loss: DiceCELoss
 
-### Optimial Architecture Training Configuration
+### Optimal Architecture Training Configuration
 The training was performed with the following:
 
 - AMP: True
@@ -112,7 +112,7 @@ Users can install Graphviz for visualization of searched architectures (needed i
 ## MONAI Bundle Commands
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+For more detailed usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
 #### Execute model searching:
 

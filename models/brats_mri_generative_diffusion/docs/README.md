@@ -20,7 +20,7 @@ An example result from inference is shown below:
 **This is a demonstration network meant to just show the training process for this sort of network with MONAI. To achieve better performance, users need to use larger dataset like [Brats 2021](https://www.synapse.org/#!Synapse:syn25829067/wiki/610865) and have GPU with memory larger than 32G to enable larger networks and attention layers.**
 
 ## Data
-The training data is BraTS 2016 and 2017 from the Medical Segmentation Decathalon. Users can find more details on the dataset (`Task01_BrainTumour`) at http://medicaldecathlon.com/.
+The training data is BraTS 2016 and 2017 from the Medical Segmentation Decathlon. Users can find more details on the dataset (`Task01_BrainTumour`) at http://medicaldecathlon.com/.
 
 - Target: Image Generation
 - Task: Synthesis
@@ -112,7 +112,7 @@ This result is benchmarked under:
 
 In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle. The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
 
-For more details usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
+For more detailed usage instructions, visit the [MONAI Bundle Configuration Page](https://docs.monai.io/en/latest/config_syntax.html).
 
 ### Execute Autoencoder Training
 

@@ -86,7 +86,7 @@ python -m monai.bundle run_workflow "scripts.workflow.VistaCell" --config_file c
 You can override the `basedir` to specify a different dataset directory by using the following command:
 
 ```bash
-python -m monai.bundle run_workflow "scripts.workflow.VistaCell" --config_file configs/hyper_parameters.yaml --basedir <actual dataset ditectory>
+python -m monai.bundle run_workflow "scripts.workflow.VistaCell" --config_file configs/hyper_parameters.yaml --basedir <actual dataset directory>
 ```
 
 #### Quick run with a few data points

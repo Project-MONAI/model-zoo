@@ -1,5 +1,5 @@
 ### Best practice to generate data list
-User can use monai to generate the 5-fold data lists. Full exampls can be found in VISTA3D open source [codebase](https://github.com/Project-MONAI/VISTA/blob/main/vista3d/data/make_datalists.py)
+User can use monai to generate the 5-fold data lists. Full examples can be found in VISTA3D open source [codebase](https://github.com/Project-MONAI/VISTA/blob/main/vista3d/data/make_datalists.py)
 ```python
 from monai.data.utils import partition_dataset
 from monai.bundle import ConfigParser
