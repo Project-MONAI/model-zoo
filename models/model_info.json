@@ -2086,5 +2086,9 @@
     "retinalOCT_RPD_segmentation_v0.0.1": {
         "checksum": "",
         "source": "https://huggingface.co/MONAI/retinalOCT_RPD_segmentation/tree/0.0.1"
+    },
+    "vista3d_v0.5.11": {
+        "checksum": "",
+        "source": "https://huggingface.co/MONAI/vista3d/tree/0.5.11"
     }
 }
