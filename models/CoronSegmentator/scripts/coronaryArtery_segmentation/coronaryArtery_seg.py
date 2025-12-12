@@ -6,18 +6,15 @@ Copyright © 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved.
 License: Apache License 2.0
 
 Description:
-This script performs segmentation of coronary arteries using nnUNetv2 and processes
-the results for 3D visualization.
+This script performs segmentation of coronary arteries using nnUNetv2
+and processes the results for 3D visualization.
 """
 
-import concurrent.futures
 import gc
 import logging
 import os
 import shutil
 import subprocess
-import time
-import traceback
 import uuid
 from collections import defaultdict
 from pathlib import Path
@@ -26,14 +23,14 @@ from tempfile import TemporaryDirectory
 import numpy as np
 import torch
 from scipy.spatial import cKDTree
-from scripts.file_process.file_conversion import FileConversion
 from stl import mesh
 
 # Configure logging
 logger = logging.getLogger("CoronaryArterySeg")
 
 
-# Class representing information about each component (a group of connected triangles in the mesh)
+# Class representing information about each component (a group of connected
+# triangles in the mesh)
 class ComponentInfo:
     """
     Initializes a ComponentInfo instance with vertices.
@@ -48,8 +45,8 @@ class ComponentInfo:
     def compute_bbox(vertices):
         """
         Computes the bounding box for the given vertices.
-        The bounding box is represented by two points (min_coords, max_coords) in 3D space.
-        Optimized for performance with empty vertex handling.
+        The bounding box is represented by two points (min_coords, max_coords)
+        in 3D space. Optimized for performance with empty vertex handling.
         """
         if len(vertices) == 0:
             return (np.zeros(3), np.zeros(3))
@@ -63,7 +60,8 @@ class DSU:
     def __init__(self, components_info):
         """
         Initializes the DSU data structure.
-        Sets up parent, rank (for union by rank), and stores the component info.
+        Sets up parent, rank (for union by rank), and stores the component
+        info.
         """
         self.parent = list(range(len(components_info)))
         self.rank = [0] * len(components_info)
@@ -80,8 +78,8 @@ class DSU:
     def union(self, x, y):
         """
         Unites the sets containing x and y. Performs union by rank.
-        Also merges the vertices of the two components and updates their bounding box.
-        Optimized to reduce memory usage during vertex merging.
+        Also merges the vertices of the two components and updates their
+        bounding box. Optimized to reduce memory usage during vertex merging.
         """
         x_root = self.find(x)
         y_root = self.find(y)
@@ -121,7 +119,8 @@ class STLSplitter:
     def initialize_vertex_map(self):
         """
         Initializes the vertex map by iterating over all triangles in the mesh.
-        Rounds the vertex coordinates to the specified number of decimals to avoid floating-point precision issues.
+        Rounds the vertex coordinates to the specified number of decimals to
+        avoid floating-point precision issues.
         """
         if self.num_triangles == 0:
             return
@@ -140,7 +139,8 @@ class STLSplitter:
     @staticmethod
     def bbox_distance(bbox_a, bbox_b):
         """
-        Calculates the Euclidean distance between the bounding boxes of two components.
+        Calculates the Euclidean distance between the bounding boxes of two
+        components.
         """
         a_min, a_max = bbox_a
         b_min, b_max = bbox_b
@@ -153,8 +153,8 @@ class STLSplitter:
     @staticmethod
     def has_nearby_points(vertices_a, vertices_b, threshold):
         """
-        Checks if two sets of vertices are close to each other within the specified threshold
-        using a KD-Tree for efficient querying.
+        Checks if two sets of vertices are close to each other within the
+        specified threshold using a KD-Tree for efficient querying.
         """
         if len(vertices_a) == 0 or len(vertices_b) == 0:
             return False
@@ -167,31 +167,34 @@ class STLSplitter:
         tree = cKDTree(vertices_a)
 
         # Process vertices_b in batches to reduce memory usage
-        batch_size = min(1000, max(100, len(vertices_b) // 10))  # Adaptive batch size
+        batch_size = min(1000, max(100, len(vertices_b) // 10))
 
         # Use query_ball_tree for batch processing when vertices_b is large
         if len(vertices_b) > 10000:
             # Process in larger chunks for very large datasets
             for i in range(0, len(vertices_b), batch_size * 5):
                 batch = vertices_b[i : i + batch_size * 5]
-                # Use query_ball_point with r=threshold and return_length=True for early termination
+                # Use query_ball_point with r=threshold and return_length=True
+                # for early termination
                 indices = tree.query_ball_point(batch, threshold, return_length=True)
                 if any(indices):
                     return True
         else:
-            # For smaller datasets, process point by point for early termination
+            # For smaller datasets, process point by point
+            # for early termination
             for i in range(0, len(vertices_b), batch_size):
                 batch = vertices_b[i : i + batch_size]
                 for point in batch:
-                    # Early termination: return True as soon as we find any nearby point
+                    # Early termination: return True as soon as
+                    # we find any nearby point
                     if tree.query_ball_point(point, threshold, return_length=True):
                         return True
         return False
 
     def split(self):
         """
-        Splits the STL mesh into independent components based on the distance threshold.
-        Saves each component as a separate STL file.
+        Splits the STL mesh into independent components based on the
+        distance threshold. Saves each component as a separate STL file.
         """
         # Step 1: Initial component identification using DSU
         logger.debug("Starting initial component identification")
@@ -302,7 +305,8 @@ class STLSplitter:
 
         return stl_files
 
-    # Helper class for DSU (Disjoint Set Union) operations specific to the triangles
+    # Helper class for DSU (Disjoint Set Union) operations
+    # specific to the triangles
     class DSUOriginal:
         def __init__(self, size):
             self.parent = list(range(size))
@@ -334,12 +338,15 @@ class STLSplitter:
 
 class NNUnetPredictor:
     """
-    A class to handle NN-UNet-based segmentation tasks, including preprocessing, prediction,
-    and post-processing of segmentation results.
+    A class to handle NN-UNet-based segmentation tasks, including
+    preprocessing, prediction, and post-processing of segmentation results.
     """
 
     def __init__(self, input_path, output_path, dataset_id=66, configuration="3d_lowres"):
-        """Initializes the NNUnetPredictor class with input paths, output paths, and model configuration."""
+        """
+        Initializes the NNUnetPredictor class with input paths, output paths,
+        and model configuration.
+        """
         # Fixed paths for the nnUNet environment
         self.instance_id = uuid.uuid4().hex
         self.dataset_id = dataset_id
@@ -365,10 +372,7 @@ class NNUnetPredictor:
             # Input and output paths for CT data and results
             self.input_path = input_path
             self.output_path = output_path
-
-            self.heart_nii_file = os.path.join(self.output_path, f"{self.base_name}.nii")
             self.coronary_nii_file = os.path.join(self.seg_path, f"{self.base_name}.nii.gz")
-            self.coronary_npz_file = os.path.join(self.seg_path, f"{self.base_name}.npz")
 
             # Initialize directory structure
             self.create_directory(self.img_path)
@@ -393,7 +397,10 @@ class NNUnetPredictor:
             raise RuntimeError(f"Failed to copy input file: {str(e)}") from e
 
     def _run_nnunet(self):
-        """Runs the nnUNet prediction using the provided input and model configuration."""
+        """
+        Runs the nnUNet prediction using the provided input and
+        model configuration.
+        """
         # Check if GPU is available and set device
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -420,19 +427,17 @@ class NNUnetPredictor:
             "-device",
             device.type,  # Device (CPU or GPU)
             "--disable_tta",
-            "--save_probabilities",
         ]
 
         try:
             subprocess.run(
                 command, check=True, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True
             )
-            logger.info(
-                f"Coronary artery <{os.path.basename(self.input_path)}> segmentation inference has been completed."
-            )
+            shutil.move(self.coronary_nii_file, os.path.join(self.output_path, f"{self.base_name}.nii.gz"))
         except subprocess.CalledProcessError as e:
             logger.error(
-                f"Coronary artery <{os.path.basename(self.input_path)}> segmentation inference failed with code {e.returncode}"
+                f"Coronary artery <{os.path.basename(self.input_path)}> \
+                segmentation inference failed with code {e.returncode}"
             )
             raise RuntimeError("nnUNet prediction failed") from e
 
@@ -454,77 +459,29 @@ class NNUnetPredictor:
             subprocess.run(
                 command, check=True, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True
             )
-            logger.info(
-                f"Coronary artery Segmentation: nnUnetv2 model weight was extracted successfully from {model_weight}."
-            )
         except subprocess.CalledProcessError as e:
             logger.error(
-                f"Coronary artery Segmentation: nnUnetv2 model weight from {model_weight}\
-                failed to extract with code {e.returncode}"
+                f"Coronary artery Segmentation: nnUnetv2 model weight \
+                from {model_weight} failed to extract with code {e.returncode}"
             )
             raise RuntimeError("Load the model weight is failed") from e
 
-    def _process_results(self):
-        """Converts the NIfTI segmentation result to STL format and moves the result to the output directory."""
-
-        def process_file(nii_path):
-            """Process individual NIfTI file into split STLs."""
-            try:
-                stl_path = os.path.join(os.path.dirname(nii_path), f"coronary_artery_{self.instance_id}.stl")
-
-                FileConversion.convert_nrrd_to_stl(nii_path, stl_path, gaussian_sigma=0.6)
-
-                split_files = STLSplitter(stl_path, distance_threshold=10, decimals=4).split()
-                for file in split_files:
-                    # Move the STL file to the output directory
-                    shutil.move(file, os.path.join(self.output_path, os.path.basename(file)))
-            except Exception as e:
-                logger.error(f"Error processing {nii_path}: {str(e)}. {traceback.print_exc()}")
-                raise
-
-        nii_files = [os.path.join(self.seg_path, f) for f in os.listdir(self.seg_path) if f.endswith(".nii.gz")]
-        if not nii_files:
-            logger.warning("No NIfTI files found in the segmentation output directory")
-            return
-
-        # Use thread pool for parallel processing with optimal number of workers
-        with concurrent.futures.ThreadPoolExecutor(
-            max_workers=min(int(os.cpu_count() * 0.75), len(nii_files))
-        ) as executor:
-            futures = [executor.submit(process_file, nii_file) for nii_file in nii_files]
-            # Wait for all tasks to complete and handle exceptions
-            for future in concurrent.futures.as_completed(futures):
-                try:
-                    future.result(timeout=300)
-                except TimeoutError as te:
-                    logger.error(f"TimeoutError: {str(te)}")
-                    future.cancel()
-                except Exception as e:
-                    logger.error(f"processing task for {futures[future]} failed: {str(e)}")
-
     def run(self):
-        """Runs the entire pipeline: file handling, nnUNet inference, and result post-processing."""
-        start_time = time.time()
+        """
+        Runs the entire pipeline: file handling, nnUNet inference,
+        and result post-processing.
+        """
         try:
             if self.model_weight:  # get the model weight from <model_weight.zip>
                 for w in self.model_weight:
                     self.set_model_weight(w)
-
-            logger.info(f"Starting coronary artery segmentation for {os.path.basename(self.input_path)}")
 
             # Step 1: Copy input file to nnUNet's expected location
             self._copy_input_file()
             # Step 2: Run nnUNet inference
             self._run_nnunet()
             gc.collect()
-            # Step 3: Process segmentation results and convert them to STL
-            self._process_results()
 
-            elapsed_time = time.time() - start_time
-            logger.info(
-                f"Completed coronary artery segmentation pipeline \
-                for {os.path.basename(self.input_path)} in {elapsed_time:.2f} seconds"
-            )
         except FileNotFoundError as e:
             logger.error(f"File not found error: {str(e)}")
             raise RuntimeError(f"Input file not found or accessible: {str(e)}") from e
@@ -543,4 +500,7 @@ class NNUnetPredictor:
                 self.temp_dir.cleanup()
                 logger.debug(f"Cleaned up temporary directory: {self.temp_dir.name}")
             except Exception as cleanup_error:
-                logger.warning(f"Failed to clean up temporary directory: {str(cleanup_error)}")
+                logger.warning(
+                    f"Failed to clean up temporary directory:\
+                    {str(cleanup_error)}"
+                )

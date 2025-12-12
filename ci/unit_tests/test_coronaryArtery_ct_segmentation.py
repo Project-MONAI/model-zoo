@@ -1,3 +1,4 @@
+#!/bin/python
 # Copyright (c) MONAI Consortium
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,7 +30,7 @@ if bundle_path not in sys.path:
     sys.path.insert(0, bundle_path)
     print(f"Added to sys.path: {bundle_path}")
 
-TEST_CASE_1 = [{"bundle_root": r"models\CoronSegmentator"}]  # inference
+TEST_CASE_1 = [{"bundle_root": r"models/CoronSegmentator"}]  # inference
 
 
 def test_order(test_name1, test_name2):
