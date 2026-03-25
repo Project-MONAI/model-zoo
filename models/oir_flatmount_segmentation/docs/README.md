@@ -71,9 +71,9 @@ Each training fold is expected to emit:
 
 Neal Shah1*, Aniket Ramshekar1*, Bright Asare-Bediako1, Morgan Tankersley1, Heng-Chiao Huang1,2, Shreya Beri1, Eric Kunz3, Aaron Y. Lee4, M. Elizabeth Hartnett1,#
 
-1 Byers Eye Institute Department of Ophthalmology, Stanford University School of Medicine, Stanford, California, USA  
-2 Department of Ophthalmology, Chang Gung Memorial Hospital, Chiayi, Taiwan  
-3 John A. Moran Eye Center, University of Utah, Salt Lake City, Utah, USA  
+1 Byers Eye Institute Department of Ophthalmology, Stanford University School of Medicine, Stanford, California, USA
+2 Department of Ophthalmology, Chang Gung Memorial Hospital, Chiayi, Taiwan
+3 John A. Moran Eye Center, University of Utah, Salt Lake City, Utah, USA
 4 John F. Hardesty Department of Ophthalmology and Visual Sciences, Washington University in St. Louis, St. Louis, Missouri, USA
 
 ## Contacts
@@ -91,4 +91,3 @@ If you use this model, please cite the associated TVST publication (to be update
 - Performance may degrade for out-of-distribution scanners/prep protocols.
 - Small IVNV lesions are sensitive to threshold and component filtering settings.
 - Cross-species domain shift (mouse vs rat) should be evaluated explicitly per cohort.
-

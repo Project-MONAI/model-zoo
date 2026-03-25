@@ -31,4 +31,3 @@
 
 - Mean best validation Dice (across folds): `0.8254`
 - Standard deviation: `0.0183`
-

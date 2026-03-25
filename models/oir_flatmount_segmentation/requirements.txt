@@ -7,4 +7,3 @@ opencv-python
 matplotlib
 albumentations
 openpyxl
-

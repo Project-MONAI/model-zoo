@@ -49,4 +49,3 @@ Contains:
 - `cv_summary.csv`, `cv_summary.json`
 - `release_manifest.json` (includes SHA256 per fold checkpoint)
 - `cv_learning_curves.png`
-

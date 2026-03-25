@@ -19,4 +19,3 @@ large_files:
     url: "https://github.com/hartnettlabteam/oir_flatmount_segmentation/releases/download/v1.0.0/oir_flatmount_segmentation_fold_4_model.pth"
     hash_val: "1891584577d473e3206b720635bca4c8e98add0b6eabc232e4f22c875ec1dbbd"
     hash_type: "sha256"
-

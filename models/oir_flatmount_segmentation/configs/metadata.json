@@ -1,54 +1,53 @@
 {
-  "version": "0.1.0",
-  "changelog": {
-    "0.1.0": "Initial MONAI bundle packaging for OIR flatmount segmentation."
-  },
-  "monai_version": "1.4.0",
-  "pytorch_version": "2.3.0",
-  "numpy_version": "1.26.4",
-  "name": "OIR Flatmount Segmentation (Hartnett Lab)",
-  "task": "pathology_segmentation",
-  "description": "Multi-task segmentation of total retina, intravitreal neovascularization, and avascular area in OIR flatmount images.",
-  "authors": "Neal Shah, Aniket Ramshekar, Bright Asare-Bediako, Morgan Tankersley, Heng-Chiao Huang, Shreya Beri, Eric Kunz, Aaron Y. Lee, M. Elizabeth Hartnett",
-  "copyright": "Hartnett Lab",
-  "data_source": "Hartnett Lab OIR flatmount datasets",
-  "data_type": "image",
-  "image_classes": "retinal_flatmount",
-  "intended_use": "Research",
-  "network_data_format": {
-    "inputs": {
-      "image": {
-        "type": "image",
-        "format": "png/jpg/tif/bmp",
-        "dtype": "float32",
-        "num_channels": 1,
-        "spatial_shape": [
-          512,
-          512
-        ]
-      }
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "Initial MONAI bundle packaging for OIR flatmount segmentation."
     },
-    "outputs": {
-      "pred": {
-        "type": "image",
-        "dtype": "float32",
-        "num_channels": 3,
-        "channels": [
-          "retina",
-          "ivnv",
-          "ava"
-        ]
-      }
+    "monai_version": "1.4.0",
+    "pytorch_version": "2.3.0",
+    "numpy_version": "1.26.4",
+    "name": "OIR Flatmount Segmentation (Hartnett Lab)",
+    "task": "pathology_segmentation",
+    "description": "Multi-task segmentation of total retina, intravitreal neovascularization, and avascular area in OIR flatmount images.",
+    "authors": "Neal Shah, Aniket Ramshekar, Bright Asare-Bediako, Morgan Tankersley, Heng-Chiao Huang, Shreya Beri, Eric Kunz, Aaron Y. Lee, M. Elizabeth Hartnett",
+    "copyright": "Hartnett Lab",
+    "data_source": "Hartnett Lab OIR flatmount datasets",
+    "data_type": "image",
+    "image_classes": "retinal_flatmount",
+    "intended_use": "Research",
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "png/jpg/tif/bmp",
+                "dtype": "float32",
+                "num_channels": 1,
+                "spatial_shape": [
+                    512,
+                    512
+                ]
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "dtype": "float32",
+                "num_channels": 3,
+                "channels": [
+                    "retina",
+                    "ivnv",
+                    "ava"
+                ]
+            }
+        }
+    },
+    "schema": "https://raw.githubusercontent.com/Project-MONAI/model-zoo/dev/monai_bundle_schemas/metadata_schema.json",
+    "optional_packages_version": {
+        "timm": "",
+        "albumentations": "",
+        "opencv-python": "",
+        "pandas": "",
+        "matplotlib": "",
+        "openpyxl": ""
     }
-  },
-  "schema": "https://raw.githubusercontent.com/Project-MONAI/model-zoo/dev/monai_bundle_schemas/metadata_schema.json",
-  "optional_packages_version": {
-    "timm": "",
-    "albumentations": "",
-    "opencv-python": "",
-    "pandas": "",
-    "matplotlib": "",
-    "openpyxl": ""
-  }
 }
-

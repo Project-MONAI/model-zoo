@@ -25,4 +25,3 @@ Data usage and licensing notes for `oir_flatmount_segmentation`.
 
 7. TODO before release:
    - Replace this file with final institution-approved licensing language.
-
