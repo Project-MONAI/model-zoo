@@ -52,7 +52,9 @@
         "transforms": [
             {
                 "_target_": "monai.transforms.Activationsd",
-                "keys": ["pred"],
+                "keys": [
+                    "pred"
+                ],
                 "sigmoid": true
             }
         ]
