@@ -1,0 +1,56 @@
+{
+  "bundle_root": ".",
+  "device": "$torch.device('cuda' if torch.cuda.is_available() else 'cpu')",
+  "output_dir": "$@bundle_root + '/infer_output'",
+  "input_dir": "$@bundle_root + '/inputs'",
+  "network_def": {
+    "_target_": "model_transformer.AttentionUNetTransformer",
+    "in_ch": 1,
+    "out_ch": 3,
+    "backbone": "convnext_tiny",
+    "pretrained": false
+  },
+  "inferer": {
+    "_target_": "monai.inferers.SimpleInferer"
+  },
+  "preprocessing": {
+    "_target_": "monai.transforms.Compose",
+    "transforms": [
+      {
+        "_target_": "monai.transforms.LoadImaged",
+        "keys": [
+          "image"
+        ],
+        "ensure_channel_first": true
+      },
+      {
+        "_target_": "monai.transforms.ScaleIntensityRanged",
+        "keys": [
+          "image"
+        ],
+        "a_min": 0,
+        "a_max": 255,
+        "b_min": -1.0,
+        "b_max": 1.0,
+        "clip": true
+      },
+      {
+        "_target_": "monai.transforms.Resized",
+        "keys": [
+          "image"
+        ],
+        "spatial_size": [
+          512,
+          512
+        ],
+        "mode": "area"
+      }
+    ]
+  },
+  "postprocessing": {
+    "_target_": "monai.transforms.Compose",
+    "transforms": []
+  },
+  "notes": "This config defines required MONAI keys. For production inference, use infer.py from the parent codebase for ensemble and threshold logic."
+}
+

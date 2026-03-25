@@ -1,0 +1,10 @@
+monai
+torch
+timm
+numpy
+pandas
+opencv-python
+matplotlib
+albumentations
+openpyxl
+

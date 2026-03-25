@@ -1,0 +1,71 @@
+{
+  "bundle_root": ".",
+  "dataset_dir": "/workspace/data/oir_flatmount_segmentation",
+  "output_dir": "$@bundle_root + '/train_output'",
+  "device": "$torch.device('cuda' if torch.cuda.is_available() else 'cpu')",
+  "network_def": {
+    "_target_": "model_transformer.AttentionUNetTransformer",
+    "in_ch": 1,
+    "out_ch": 3,
+    "backbone": "convnext_tiny",
+    "pretrained": true
+  },
+  "train": {
+    "trainer": {
+      "_target_": "monai.engines.SupervisedTrainer"
+    },
+    "trainer#max_epochs": 120,
+    "dataset": {
+      "_target_": "dataset.OIRSegmentationDataset"
+    },
+    "dataset#data": "$@dataset_dir",
+    "preprocessing": {
+      "_target_": "monai.transforms.Compose",
+      "transforms": []
+    },
+    "postprocessing": {
+      "_target_": "monai.transforms.Compose",
+      "transforms": []
+    },
+    "inferer": {
+      "_target_": "monai.inferers.SimpleInferer"
+    },
+    "key_metric": {
+      "mean_dice": {
+        "_target_": "monai.metrics.DiceMetric",
+        "include_background": true
+      }
+    },
+    "handlers": []
+  },
+  "validate": {
+    "evaluator": {
+      "_target_": "monai.engines.SupervisedEvaluator"
+    },
+    "dataset": {
+      "_target_": "dataset.OIRSegmentationDataset"
+    },
+    "dataset#data": "$@dataset_dir",
+    "preprocessing": {
+      "_target_": "monai.transforms.Compose",
+      "transforms": []
+    },
+    "postprocessing": {
+      "_target_": "monai.transforms.Compose",
+      "transforms": []
+    },
+    "inferer": {
+      "_target_": "monai.inferers.SimpleInferer"
+    },
+    "key_metric": {
+      "mean_dice": {
+        "_target_": "monai.metrics.DiceMetric",
+        "include_background": true
+      }
+    },
+    "handlers": []
+  },
+  "val_interval": 1,
+  "notes": "Primary training is executed via retrain_kfold_v2.py and train_with_split.py in the parent project. This file exists to satisfy MONAI preferred train-config keys."
+}
+

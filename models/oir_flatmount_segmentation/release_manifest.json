@@ -1,0 +1,71 @@
+{
+  "model_name": "oir_flatmount_segmentation",
+  "release_id": "v2_20260317",
+  "created_utc": "2026-03-18T06:06:53Z",
+  "selection_method": "5-fold ensemble of best.pth checkpoints with per-fold calibrated thresholds",
+  "notes": "Selected as best method for robustness and generalization after completed 5-fold CV.",
+  "cv_aggregate": {
+    "best_val_dice_mean": 0.8253780000000001,
+    "best_val_dice_std": 0.018266284378603097,
+    "avg_thr_retina": 0.62,
+    "avg_thr_nv": 0.7799999999999999,
+    "avg_thr_vo": 0.65
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "model_path": "weights/fold_0/model.pth",
+      "thresholds_path": "weights/fold_0/thresholds.json",
+      "model_sha256": "1e4b607f1a89ffd8272d2edbcd5596b3096403177d6d00aeed384cef2a6aa078",
+      "thresholds": {
+        "retina": 0.3,
+        "nv": 0.95,
+        "vo": 0.85
+      }
+    },
+    {
+      "fold": 1,
+      "model_path": "weights/fold_1/model.pth",
+      "thresholds_path": "weights/fold_1/thresholds.json",
+      "model_sha256": "62d5c247c8025ddcd7ad4ae0d06d9a2921a8e86cc790f47ecd3d9efaf6e5fffd",
+      "thresholds": {
+        "retina": 0.8,
+        "nv": 0.6,
+        "vo": 0.65
+      }
+    },
+    {
+      "fold": 2,
+      "model_path": "weights/fold_2/model.pth",
+      "thresholds_path": "weights/fold_2/thresholds.json",
+      "model_sha256": "4fe96be0fbfe53350abd3dfc7b83260509b6989513818fa5b60c38675781ee72",
+      "thresholds": {
+        "retina": 0.75,
+        "nv": 0.65,
+        "vo": 0.85
+      }
+    },
+    {
+      "fold": 3,
+      "model_path": "weights/fold_3/model.pth",
+      "thresholds_path": "weights/fold_3/thresholds.json",
+      "model_sha256": "8a60f5096cd233b660374a1192cef153f3aebd2ea79d53f293b652a4fb78049d",
+      "thresholds": {
+        "retina": 0.35,
+        "nv": 0.95,
+        "vo": 0.5
+      }
+    },
+    {
+      "fold": 4,
+      "model_path": "weights/fold_4/model.pth",
+      "thresholds_path": "weights/fold_4/thresholds.json",
+      "model_sha256": "1891584577d473e3206b720635bca4c8e98add0b6eabc232e4f22c875ec1dbbd",
+      "thresholds": {
+        "retina": 0.9,
+        "nv": 0.75,
+        "vo": 0.4
+      }
+    }
+  ]
+}
