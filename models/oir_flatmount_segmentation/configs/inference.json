@@ -49,7 +49,13 @@
     },
     "postprocessing": {
         "_target_": "monai.transforms.Compose",
-        "transforms": []
+        "transforms": [
+            {
+                "_target_": "monai.transforms.Activationsd",
+                "keys": ["pred"],
+                "sigmoid": true
+            }
+        ]
     },
-    "notes": "This config defines required MONAI keys. For production inference, use infer.py from the parent codebase for ensemble and threshold logic."
+    "notes": "This config provides basic inference with sigmoid activation. For production inference with 5-fold ensemble and calibrated per-class thresholds, use infer.py from the parent codebase."
 }
