@@ -15,28 +15,28 @@ import argparse
 from utils import get_changed_bundle_list
 
 
-def get_changed_bundle(changed_dirs):
+def get_changed_bundle(changed_dirs, filter_docs=False):
     """
     This function is used to get all changed bundles, a string which
     contains all bundle names will be printed, and can be used in shell scripts.
     """
     bundle_names = ""
     root_path = "models"
-    bundle_list = get_changed_bundle_list(changed_dirs, root_path=root_path)
+    bundle_list = get_changed_bundle_list(changed_dirs, root_path=root_path, filter_docs=filter_docs)
 
     for bundle in bundle_list:
         bundle_names += f"{bundle} "
     print(bundle_names)
 
 
-def get_changed_hf_model(changed_dirs):
+def get_changed_hf_model(changed_dirs, filter_docs=False):
     """
     This function is used to get all changed hf models, a string which
     contains all hf model names will be printed, and can be used in shell scripts.
     """
     hf_model_names = ""
     root_path = "hf_models"
-    hf_model_list = get_changed_bundle_list(changed_dirs, root_path=root_path)
+    hf_model_list = get_changed_bundle_list(changed_dirs, root_path=root_path, filter_docs=filter_docs)
     for hf_model in hf_model_list:
         hf_model_names += f"{hf_model} "
     print(hf_model_names)
@@ -46,9 +46,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-f", "--f", type=str, help="changed files.")
     parser.add_argument("--hf_model", type=bool, default=False, help="if true, get changed hf models.")
+    parser.add_argument(
+        "--filter_docs", type=bool, default=False, help="if true, skip bundles with documentation-only changes."
+    )
     args = parser.parse_args()
     changed_dirs = args.f.splitlines()
     if args.hf_model:
-        get_changed_hf_model(changed_dirs)
+        get_changed_hf_model(changed_dirs, filter_docs=args.filter_docs)
     else:
-        get_changed_bundle(changed_dirs)
+        get_changed_bundle(changed_dirs, filter_docs=args.filter_docs)
