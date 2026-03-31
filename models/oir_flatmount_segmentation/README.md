@@ -27,6 +27,7 @@ For final model development, a modified 5-fold cross-validation strategy was use
 #### **Preprocessing**
 Input retinal flatmount images were converted to grayscale, resized to 512×512, and intensity-normalized.
 During training, joint image-mask augmentation was applied using random horizontal/vertical flips, random rotations (up to 180 degrees), brightness/contrast perturbation, CLAHE, Gaussian noise, elastic/grid/optical distortions, coarse dropout, motion blur, and random gamma adjustments.
+These augmentations are implemented in the project training pipeline (`retrain_kfold_v2.py` / `train_with_split.py` using `dataset.py`). The MONAI `configs/train.json` file in this bundle is a compatibility template and keeps transform lists minimal.
 
 ## **Performance**
 
