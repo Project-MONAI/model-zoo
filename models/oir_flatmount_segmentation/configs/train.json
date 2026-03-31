@@ -1,6 +1,6 @@
 {
     "bundle_root": ".",
-    "dataset_dir": "/workspace/data/oir_flatmount_segmentation",
+    "dataset_dir": "$@bundle_root + '/data'",
     "output_dir": "$@bundle_root + '/train_output'",
     "device": "$torch.device('cuda' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
@@ -66,5 +66,5 @@
         "handlers": []
     },
     "val_interval": 1,
-    "notes": "Primary training is executed via retrain_kfold_v2.py and train_with_split.py in the parent project. This file exists to satisfy MONAI preferred train-config keys."
+    "notes": "Primary training is executed via retrain_kfold_v2.py and train_with_split.py in the parent project. This file exists to satisfy MONAI preferred train-config keys. Override dataset_dir to your local dataset path when running training."
 }
