@@ -34,7 +34,7 @@
                 "dtype": "float32",
                 "num_channels": 3,
                 "channels": [
-                    "retina",
+                    "tr",
                     "ivnv",
                     "ava"
                 ]
