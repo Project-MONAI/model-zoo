@@ -22,4 +22,3 @@ Data licensing and access notes for `oir_flatmount_segmentation`.
    - neals1@stanford.edu
    - aniket.ramshekar@stanford.edu
    - me.hartnett@stanford.edu
-
