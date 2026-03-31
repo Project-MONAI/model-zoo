@@ -10,8 +10,7 @@ class TransformerEncoder(nn.Module):
 	def __init__(self, backbone: str = "swin_tiny_patch4_window7_224", in_ch: int = 1, pretrained: bool = True):
 		super().__init__()
 		self.backbone = timm.create_model(backbone, pretrained=pretrained, features_only=True, in_chans=in_ch)
-		feat_info = self.backbone.feature_info
-		self.channels = [s['num_chs'] for s in feat_info]
+		self.channels = self.backbone.feature_info.channels
 
 	def forward(self, x):
 		feats = self.backbone(x)
