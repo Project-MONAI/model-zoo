@@ -47,17 +47,20 @@
             }
         ]
     },
-    "postprocessing": {
-        "_target_": "monai.transforms.Compose",
-        "transforms": [
-            {
-                "_target_": "monai.transforms.Activationsd",
-                "keys": [
-                    "pred"
-                ],
-                "sigmoid": true
-            }
-        ]
+"pred_threshold": 0.5,
+"postprocessing": {
+  "_target_": "monai.transforms.Compose",
+  "transforms": [
+    {
+      "_target_": "monai.transforms.Activationsd",
+      "keys": ["pred"],
+      "sigmoid": true
     },
-    "notes": "This config provides basic inference with sigmoid activation. For production inference with 5-fold ensemble and calibrated per-class thresholds, use infer.py from the parent codebase."
-}
+    {
+      "_target_": "monai.transforms.AsDiscreted",
+      "keys": ["pred"],
+      "threshold": "$@pred_threshold"
+    }
+  ]
+},
+"notes": "This config provides basic standalone inference (sigmoid + threshold). For production inference with 5-fold ensemble and calibrated per-class thresholds, use infer.py from the parent codebase."
