@@ -66,5 +66,5 @@
         "handlers": []
     },
     "val_interval": 1,
-    "notes": "Primary training is executed via retrain_kfold_v2.py and train_with_split.py in the parent project. This file exists to satisfy MONAI preferred train-config keys. Override dataset_dir to your local dataset path when running training."
+    "notes": "Primary training is executed via retrain_kfold_v2.py and train_with_split.py in the parent project. This file exists to satisfy MONAI preferred train-config keys. Override dataset_dir to your local dataset path when running training. Augmentation and dataset-specific preprocessing are implemented in the external training pipeline, so transform lists in this template config are intentionally minimal."
 }
