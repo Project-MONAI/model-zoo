@@ -87,7 +87,7 @@ verify_bundle() {
     if [ ! -z "$changes" ]
     then
         # get all changed bundles
-        bundle_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$changes" --filter_docs True)
+        bundle_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$changes" --filter_docs)
         if [ ! -z "$bundle_list" ]
         then
             python $(pwd)/ci/prepare_schema.py --l "$bundle_list"
@@ -128,7 +128,7 @@ verify_bundle() {
     if [ ! -z "$hf_model_changes" ]
     then
         # get all changed hf models
-        hf_model_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$hf_model_changes" --hf_model True --filter_docs True)
+        hf_model_list=$(python $(pwd)/ci/get_changed_bundle.py --f "$hf_model_changes" --hf_model --filter_docs)
         if [ ! -z "$hf_model_list" ]
         then
             python $(pwd)/ci/prepare_schema.py --l "$hf_model_list" --p "hf_models"

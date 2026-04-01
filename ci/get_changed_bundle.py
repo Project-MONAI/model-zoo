@@ -45,9 +45,9 @@ def get_changed_hf_model(changed_dirs, filter_docs=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-f", "--f", type=str, help="changed files.")
-    parser.add_argument("--hf_model", type=bool, default=False, help="if true, get changed hf models.")
+    parser.add_argument("--hf_model", action="store_true", help="if true, get changed hf models.")
     parser.add_argument(
-        "--filter_docs", type=bool, default=False, help="if true, skip bundles with documentation-only changes."
+        "--filter_docs", action="store_true", help="if true, skip bundles with documentation-only changes."
     )
     args = parser.parse_args()
     changed_dirs = args.f.splitlines()
