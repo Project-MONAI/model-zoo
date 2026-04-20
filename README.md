@@ -5,7 +5,7 @@ All source code of models (bundles) are tracked in `models/`, and for each disti
 
 ## Getting Started
 
-To browse the available models, please see https://monai.io/model-zoo.
+To browse the available models, please see https://project-monai.github.io/model-zoo.html#/.
 
 A basic example to download and extract a bundle is:
 
@@ -44,4 +44,4 @@ To make a contribution in MONAI Model Zoo, see the [contributing guidelines](htt
 - The models are currently hosted at https://github.com/Project-MONAI/model-zoo/releases/tag/hosting_storage_v1
 - MONAI Bundle API tutorials: https://github.com/Project-MONAI/tutorials/tree/main/bundle
 - MONAI Bundle demo: https://github.com/Project-MONAI/tutorials/tree/main/model_zoo
-- MONAI model zoo browser: https://monai.io/model-zoo.html
+- MONAI model zoo browser: https://project-monai.github.io/model-zoo.html#/
