@@ -1,11 +1,11 @@
 # MONAI Model Zoo
 
-MONAI Model Zoo hosts a collection of medical imaging models in the [MONAI Bundle](https://docs.monai.io/en/latest/bundle_intro.html) format.
+MONAI Model Zoo hosts a collection of medical imaging models in the [MONAI Bundle](https://monai.readthedocs.io/en/stable/bundle_intro.html) format.
 All source code of models (bundles) are tracked in `models/`, and for each distinct version of a bundle, it will be archived as a `.zip` file (named in the form of `bundle_name_version.zip`) and stored in `Releases`.
 
 ## Getting Started
 
-To browse the available models, please see https://project-monai.github.io/model-zoo.html#/.
+To browse the available models, please see [https://project-monai.github.io/model-zoo.html](https://project-monai.github.io/model-zoo.html).
 
 A basic example to download and extract a bundle is:
 
@@ -41,7 +41,7 @@ The MONAI Model Zoo does not make any statement of the suitability of any model 
 To make a contribution in MONAI Model Zoo, see the [contributing guidelines](https://github.com/Project-MONAI/model-zoo/blob/dev/CONTRIBUTING.md).
 
 ## Links
-- The models are currently hosted at https://github.com/Project-MONAI/model-zoo/releases/tag/hosting_storage_v1
+- The models are currently hosted at [https://huggingface.co/MONAI](https://huggingface.co/MONAI)
 - MONAI Bundle API tutorials: https://github.com/Project-MONAI/tutorials/tree/main/bundle
 - MONAI Bundle demo: https://github.com/Project-MONAI/tutorials/tree/main/model_zoo
-- MONAI model zoo browser: https://project-monai.github.io/model-zoo.html#/
+- MONAI model zoo browser: [https://project-monai.github.io/model-zoo.html](https://project-monai.github.io/model-zoo.html)
