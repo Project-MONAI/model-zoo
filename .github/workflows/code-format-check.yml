@@ -16,29 +16,20 @@ jobs:
   flake8-py3:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Set up Python 3.10
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
-        python-version: 3.10.14
-    - name: cache weekly timestamp
-      id: pip-cache
-      run: |
-        echo "::set-output name=datew::$(date '+%Y-%V')"
-    - name: cache for pip
-      uses: actions/cache@v4
-      id: cache
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ steps.pip-cache.outputs.datew }}
+        python-version: '3.10'
+        cache: 'pip'
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip wheel
+        python -m pip install --upgrade pip wheel wheel-stub
         python -m pip install --upgrade setuptools
         python -m pip install -r requirements-dev.txt
     - name: type check
       run: |
         # clean up temporary files
         $(pwd)/runtests.sh --clean
-        # Git hub actions have 2 cores, so parallize pytype
+        # Git hub actions have 2 cores, so parallelize pytype
         $(pwd)/runtests.sh --codeformat -j 2
