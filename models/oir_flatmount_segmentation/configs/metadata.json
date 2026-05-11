@@ -41,7 +41,7 @@
             }
         }
     },
-    "schema": "https://raw.githubusercontent.com/Project-MONAI/model-zoo/dev/monai_bundle_schemas/metadata_schema.json",
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
     "optional_packages_version": {
         "timm": "",
         "albumentations": "",
