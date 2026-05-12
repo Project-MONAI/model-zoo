@@ -43,7 +43,7 @@ python -m monai.bundle run --config_file "configs/inference.json"
 ```
 
 The ImageCAS dataset is publicly available at:
-https://github.com/XiaoweiXu/ImageCAS-A-Large-Scale-Dataset-and-Benchmark-for-Coronary-Artery-Segmentation-based-on-CT.git''
+https://github.com/XiaoweiXu/ImageCAS-A-Large-Scale-Dataset-and-Benchmark-for-Coronary-Artery-Segmentation-based-on-CT.git
 
 ## **Limitations**
 

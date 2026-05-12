@@ -2,7 +2,7 @@
 """
 File  : heart_digital_twin.py
 Author: John Y. Ke, MC. Chen, TY. Lin, YC. Chan
-Copyright © 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved.
+Copyright © 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved.
 License: Apache License 2.0
 
 Description:
@@ -27,7 +27,9 @@ USD_EXT = ".usd"
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
 logger = logging.getLogger("HeartDigitalTwin")
 
@@ -35,7 +37,9 @@ logger = logging.getLogger("HeartDigitalTwin")
 def parse_arg():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--json", default="./configs/inference.json", help="The json file which define the input config."
+        "--json",
+        default="./configs/inference.json",
+        help="The json file which define the input config.",
     )
 
     return parser.parse_args()
@@ -97,7 +101,9 @@ class CoroSegmentatorPipeline:
             # Remove the output folder if failed
             if os.path.exists(seg_folder):
                 for f in os.listdir(seg_folder):
-                    os.remove(os.path.join(seg_folder, f))
+                    file_path = os.path.join(seg_folder, f)
+                    if os.path.isfile(file_path):
+                        os.remove(file_path)
                 os.rmdir(seg_folder)
             return False
         finally:
