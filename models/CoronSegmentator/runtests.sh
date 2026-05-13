@@ -83,21 +83,21 @@ function print_usage {
 
 function check_import {
     echo "Python: ${PY_EXE}"
-    ${cmdPrefix}${PY_EXE} -W error -W ignore::DeprecationWarning -c "import monai"
+    "${cmdPrefix[@]}" "${PY_EXE}" -W error -W ignore::DeprecationWarning -c "import monai"
 }
 
 function print_monai_version {
-    ${cmdPrefix}${PY_EXE} -c 'import monai; monai.config.print_config()'
+    "${cmdPrefix[@]}" "${PY_EXE}" -c 'import monai; monai.config.print_config()'
 }
 
 function install_monai {
     echo "Pip installing MONAI basic dependencies"
-    ${cmdPrefix}${PY_EXE} -m pip install -r requirements.txt
+    "${cmdPrefix[@]}" "${PY_EXE}" -m pip install -r requirements.txt
 }
 
 function install_deps {
     echo "Pip installing MONAI development dependencies"
-    ${cmdPrefix}${PY_EXE} -m pip install -r requirements-dev.txt
+    "${cmdPrefix[@]}" "${PY_EXE}" -m pip install -r requirements-dev.txt
 }
 
 function clean_py {
@@ -105,8 +105,8 @@ function clean_py {
     TO_CLEAN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
     echo "Removing temporary files in ${TO_CLEAN}"
 
-    find ${TO_CLEAN} -depth -maxdepth 1 -type d -name ".pytype" -exec rm -r "{}" +
-    find ${TO_CLEAN} -depth -maxdepth 1 -type d -name "__pycache__" -exec rm -r "{}" +
+    find "${TO_CLEAN}" -depth -maxdepth 1 -type d -name ".pytype" -exec rm -r "{}" +
+    find "${TO_CLEAN}" -depth -maxdepth 1 -type d -name "__pycache__" -exec rm -r "{}" +
 }
 
 function print_error_msg() {
@@ -120,7 +120,7 @@ function print_style_fail_msg() {
 }
 
 function is_pip_installed() {
-    return $(${PY_EXE} -c "import sys, pkgutil; sys.exit(0 if pkgutil.find_loader(sys.argv[1]) else 1)" $1)
+    "${PY_EXE}" -c "import sys, pkgutil; sys.exit(0 if pkgutil.find_loader(sys.argv[1]) else 1)" "$1"
 }
 
 if [ -z "$1" ]
@@ -174,6 +174,10 @@ do
         -h|--help)
             print_usage
         ;;
+        -v|--version)
+            print_monai_version
+            exit 0
+        ;;
         *)
             print_error_msg "Incorrect commandline provided, invalid key: $key"
             print_usage
@@ -190,15 +194,15 @@ cd "$homedir"
 export PYTHONPATH="$homedir:$PYTHONPATH"
 echo "PYTHONPATH: $PYTHONPATH"
 
-# by default do nothing
-cmdPrefix=""
+# by default do nothing — use array so quoting works correctly in all cases
+cmdPrefix=()
 
 if [ $doDryRun = true ]
 then
     echo "${separator}${blue}dryrun${noColor}"
 
     # commands are echoed instead of ran
-    cmdPrefix="dryrun "
+    cmdPrefix=(dryrun)
     function dryrun { echo "    " "$@"; }
 else
     if ! is_pip_installed monai
@@ -235,13 +239,13 @@ then
     then
         install_deps
     fi
-    ${cmdPrefix}${PY_EXE} -m isort --version
+    "${cmdPrefix[@]}" "${PY_EXE}" -m isort --version
 
     if [ $doIsortFix = true ]
     then
-        ${cmdPrefix}${PY_EXE} -m isort "$(pwd)"
+        "${cmdPrefix[@]}" "${PY_EXE}" -m isort "$(pwd)"
     else
-        ${cmdPrefix}${PY_EXE} -m isort --check "$(pwd)"
+        "${cmdPrefix[@]}" "${PY_EXE}" -m isort --check "$(pwd)"
     fi
 
     isort_status=$?
@@ -271,13 +275,13 @@ then
     then
         install_deps
     fi
-    ${cmdPrefix}${PY_EXE} -m black --version
+    "${cmdPrefix[@]}" "${PY_EXE}" -m black --version
 
     if [ $doBlackFix = true ]
     then
-        ${cmdPrefix}${PY_EXE} -m black --skip-magic-trailing-comma "$(pwd)"
+        "${cmdPrefix[@]}" "${PY_EXE}" -m black --skip-magic-trailing-comma "$(pwd)"
     else
-        ${cmdPrefix}${PY_EXE} -m black --skip-magic-trailing-comma --check "$(pwd)"
+        "${cmdPrefix[@]}" "${PY_EXE}" -m black --skip-magic-trailing-comma --check "$(pwd)"
     fi
 
     black_status=$?
@@ -302,9 +306,9 @@ then
     then
         install_deps
     fi
-    ${cmdPrefix}${PY_EXE} -m flake8 --version
+    "${cmdPrefix[@]}" "${PY_EXE}" -m flake8 --version
 
-    ${cmdPrefix}${PY_EXE} -m flake8 "$(pwd)" --count --statistics
+    "${cmdPrefix[@]}" "${PY_EXE}" -m flake8 "$(pwd)" --count --statistics
 
     flake8_status=$?
     if [ ${flake8_status} -ne 0 ]
@@ -328,7 +332,7 @@ then
     then
         install_deps
     fi
-    ${cmdPrefix}${PY_EXE} -m pre_commit run --all-files
+    "${cmdPrefix[@]}" "${PY_EXE}" -m pre_commit run --all-files
 
     pre_commit_status=$?
     if [ ${pre_commit_status} -ne 0 ]
@@ -351,14 +355,14 @@ then
     then
         install_deps
     fi
-    pytype_ver=$(${cmdPrefix}${PY_EXE} -m pytype --version)
+    pytype_ver=$("${cmdPrefix[@]}" "${PY_EXE}" -m pytype --version)
     if [[ "$OSTYPE" == "darwin"* && "$pytype_ver" == "2021."* ]]; then
         echo "${red}pytype not working on macOS 2021 (https://github.com/Project-MONAI/MONAI/issues/2391). Please upgrade to 2022*.${noColor}"
         exit 1
     else
-        ${cmdPrefix}${PY_EXE} -m pytype --version
+        "${cmdPrefix[@]}" "${PY_EXE}" -m pytype --version
 
-        ${cmdPrefix}${PY_EXE} -m pytype -j ${NUM_PARALLEL} --python-version="$(${PY_EXE} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")" "$(pwd)"
+        "${cmdPrefix[@]}" "${PY_EXE}" -m pytype -j "${NUM_PARALLEL}" --python-version="$("${PY_EXE}" -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")" "$(pwd)"
 
         pytype_status=$?
         if [ ${pytype_status} -ne 0 ]
