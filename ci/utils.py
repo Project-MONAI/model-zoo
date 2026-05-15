@@ -26,6 +26,26 @@ Github, _ = optional_import("github", name="Github")
 
 SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
 
+# Documentation file patterns that do not require code testing
+DOC_DIR_NAME = "docs"
+DOC_FILE_EXTENSIONS = {".md"}
+
+
+def is_doc_file(filepath: str) -> bool:
+    """
+    Check if a file is a documentation file that does not require code testing.
+
+    A file is considered documentation if it is inside a ``docs/`` directory
+    or has a documentation-only extension (e.g. ``.md``).
+    """
+    parts = filepath.replace("\\", "/").split("/")
+    if DOC_DIR_NAME in parts:
+        return True
+    _, ext = os.path.splitext(filepath)
+    if ext.lower() in DOC_FILE_EXTENSIONS:
+        return True
+    return False
+
 
 def get_sub_folders(root_dir: str):
     """
@@ -49,12 +69,20 @@ def get_hash_func(hash_type: str = "sha1"):
     return actual_hash_func()
 
 
-def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
+def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models", filter_docs: bool = False):
     """
     This function is used to return all bundle names that have changed files.
     If a bundle is totally removed, it will be ignored (since it not exists).
 
+    If ``filter_docs`` is True, changed files that are documentation-only
+    (inside a ``docs/`` directory or with a ``.md`` extension) are excluded
+    before determining which bundles have changed.  A bundle whose changes
+    are **all** documentation files will therefore not appear in the
+    returned list.
     """
+    if filter_docs:
+        changed_dirs = [d for d in changed_dirs if not is_doc_file(d)]
+
     bundles = get_sub_folders(root_path)
 
     changed_bundle_list = []
