@@ -177,7 +177,7 @@ class STLSplitter:
         if len(vertices_b) > 10000:
             # Process in larger chunks for very large datasets
             for i in range(0, len(vertices_b), batch_size * 5):
-                batch = vertices_b[i : i + batch_size * 5]
+                batch = vertices_b[i : i + batch_size * 5]  # noqa: E203
                 # Use query_ball_point with r=threshold and return_length=True
                 # for early termination
                 indices = tree.query_ball_point(batch, threshold, return_length=True)
@@ -187,7 +187,7 @@ class STLSplitter:
             # For smaller datasets, process point by point
             # for early termination
             for i in range(0, len(vertices_b), batch_size):
-                batch = vertices_b[i : i + batch_size]
+                batch = vertices_b[i : i + batch_size]  # noqa: E203
                 for point in batch:
                     # Early termination: return True as soon as
                     # we find any nearby point
@@ -365,18 +365,21 @@ class NNUnetPredictor:
             script_path = Path(os.path.abspath(__file__))
             self.raw_path = os.path.join(self.temp_dir.name, "nnUNet/nnUNet_raw")
             self.preprocessed_path = os.path.join(
-                script_path.parent, "nnUNet/nnUNet_preprocessed"
+                self.temp_dir.name, "nnUNet/nnUNet_preprocessed"
             )
             self.results_path = os.path.join(
                 script_path.parent.parent.parent, "models/nnUNet_results"
             )
-            self.model_weight = [
-                os.path.join(script_path.parent.parent.parent, "models", f)
-                for f in os.listdir(
-                    os.path.join(script_path.parent.parent.parent, "models")
-                )
-                if f.split(".")[-1] == "zip"
-            ]  # check if any model weight exist
+            models_dir = os.path.join(script_path.parent.parent.parent, "models")
+            self.model_weight = (
+                [
+                    os.path.join(models_dir, f)
+                    for f in os.listdir(models_dir)
+                    if f.endswith(".zip")
+                ]
+                if os.path.isdir(models_dir)
+                else []
+            )  # check if any model weight exist
 
             # Path for coronary artery dataset and output
             self.img_path = os.path.join(
@@ -387,7 +390,9 @@ class NNUnetPredictor:
             # Input and output paths for CT data and results
             self.input_path = input_path
             self.output_path = output_path
-            self.coronary_nii_file = os.path.join(self.seg_path, f"{self.base_name}.nii.gz")
+            self.coronary_nii_file = os.path.join(
+                self.seg_path, f"{self.base_name}.nii.gz"
+            )
 
             # Initialize directory structure
             self.create_directory(self.img_path)
@@ -456,7 +461,10 @@ class NNUnetPredictor:
                 stderr=subprocess.DEVNULL,
                 text=True,
             )
-            shutil.move(self.coronary_nii_file, os.path.join(self.output_path, f"{self.base_name}.nii.gz"))
+            shutil.move(
+                self.coronary_nii_file,
+                os.path.join(self.output_path, f"{self.base_name}.nii.gz"),
+            )
         except subprocess.CalledProcessError as e:
             input_name = os.path.basename(self.input_path)
             logger.error(
@@ -523,6 +531,8 @@ class NNUnetPredictor:
             ) from e
         except subprocess.CalledProcessError as e:
             logger.error(f"nnUNet process error (code {e.returncode}): {str(e)}")
-            raise RuntimeError(f"nnUNet process failed with return code {e.returncode}") from e
+            raise RuntimeError(
+                f"nnUNet process failed with return code {e.returncode}"
+            ) from e
         finally:
             self.temp_dir.cleanup()

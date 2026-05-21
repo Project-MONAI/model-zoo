@@ -10,9 +10,9 @@ Segmentation, CT, Heart, Coronary Artery, USD, MONAI, nnU-Net, 3D Reconstruction
 
 ## **Model Description**
 
-Coronsegmentator is an automated pipeline that performs dual-task segmentation on cardiac CT images, focusing on both whole-heart and coronary artery structures. It integrates MONAI’s Auto3DSeg for general cardiac segmentation and a custom nnU-Net model for detailed coronary artery segmentation. The pipeline further converts segmentation results (in STL format) into USD files for downstream 3D visualization and digital twin simulation using NVIDIA Omniverse.
+Coronsegmentator is an automated pipeline that performs coronary artery segmentation on cardiac CT images using a pretrained nnU-Net model. The pipeline converts segmentation results (in NIfTI format) into STL files for downstream 3D visualization and digital twin simulation using NVIDIA Omniverse.
 
-The entire workflow is designed to enable precise, scalable, and automated generation of personalized coronary artery digital twins, supporting clinical planning, AI-based diagnosis, and medical visualization in research or pre-operative planning workflows.
+The workflow is designed to enable precise, scalable, and automated generation of personalized coronary artery digital twins, supporting clinical planning, AI-based diagnosis, and medical visualization in research or pre-operative planning workflows.
 
 ## **Data**
 
@@ -22,11 +22,9 @@ The input data consists of anonymized 3D CT scans in .nii.gz format. This pipeli
 
 Each image is processed by:
 
-1. Segmenting the cardiac chambers using MONAI Auto3DSeg
+1. Segmenting coronary arteries using a pretrained nnU-Net model
 
-2. Segmenting coronary arteries using a pretrained nnU-Net model
-
-3. Saving segmentation as STL files and converting them into USD
+2. Saving segmentation results as STL files
 
 #### **Preprocessing**
 
@@ -39,7 +37,12 @@ No manual annotation required for inference
 #### **Inference**
 
 ```bash
-python -m monai.bundle run --config_file "configs/inference.json"
+python -m monai.bundle run \
+  --config_file configs/inference.json \
+  --meta_file configs/metadata.json \
+  --logging_file configs/logging.conf \
+  --bundle_root <path/to/CoronSegmentator> \
+  --dataset_dir <path/to/nifti_inputs>
 ```
 
 The ImageCAS dataset is publicly available at:

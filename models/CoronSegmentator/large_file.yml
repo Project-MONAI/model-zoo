@@ -1,5 +1,5 @@
 large_files:
-  - path: "models/cardiacModel.pt"
+  - path: "models/model.pt"
     url: "https://drive.google.com/file/d/11-pgULhmSZyAAfZG9n1vOusWHeH-hpwE/view?usp=drive_link"
     hash_val: "0e783497e94293c86995392e5fbbc790"
     hash_type: "md5"

@@ -6,13 +6,16 @@ Copyright © 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved.
 License: Apache License 2.0
 
 Description:
-This script performs <brief description of converting NII Files to USD Files>.
+This script runs coronary artery segmentation on NIfTI CT files,
+downloads required model weights, and prepares segmentation outputs
+for downstream 3D digital twin workflows.
 """
 
 import argparse
 import gc
 import logging
 import os
+import shutil
 from pathlib import Path
 
 import yaml
@@ -96,15 +99,9 @@ class CoroSegmentatorPipeline:
         try:
             run_coronary_artery_segmentation(nii_path, seg_folder)
             return True
-        except Exception as e:
-            logger.error(f"Processing failed for {self.nii_file}: {str(e)}")
-            # Remove the output folder if failed
-            if os.path.exists(seg_folder):
-                for f in os.listdir(seg_folder):
-                    file_path = os.path.join(seg_folder, f)
-                    if os.path.isfile(file_path):
-                        os.remove(file_path)
-                os.rmdir(seg_folder)
-            return False
+        except Exception:
+            logger.exception(f"Processing failed for {self.nii_file}")
+            shutil.rmtree(seg_folder, ignore_errors=True)
+            raise
         finally:
             gc.collect()
