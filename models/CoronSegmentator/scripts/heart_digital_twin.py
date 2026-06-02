@@ -30,9 +30,7 @@ USD_EXT = ".usd"
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
 )
 logger = logging.getLogger("HeartDigitalTwin")
 
@@ -40,9 +38,7 @@ logger = logging.getLogger("HeartDigitalTwin")
 def parse_arg():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--json",
-        default="./configs/inference.json",
-        help="The json file which define the input config.",
+        "--json", default="./configs/inference.json", help="The json file which define the input config."
     )
 
     return parser.parse_args()

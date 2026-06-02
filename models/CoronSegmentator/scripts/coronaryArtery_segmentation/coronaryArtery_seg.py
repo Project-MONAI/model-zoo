@@ -39,9 +39,7 @@ class ComponentInfo:
 
     def __init__(self, vertices):
         self.vertices = vertices  # List of vertices for the component
-        self.bbox = self.compute_bbox(
-            vertices
-        )  # Compute the bounding box for the component
+        self.bbox = self.compute_bbox(vertices)  # Compute the bounding box for the component
 
     @staticmethod
     def compute_bbox(vertices):
@@ -129,9 +127,7 @@ class STLSplitter:
 
         vectors = self.original_mesh.vectors
         # Process in batches to reduce memory pressure
-        batch_size = min(
-            10000, self.num_triangles
-        )  # Adjust batch size based on available memory
+        batch_size = min(10000, self.num_triangles)  # Adjust batch size based on available memory
         for batch_start in range(0, self.num_triangles, batch_size):
             batch_end = min(batch_start + batch_size, self.num_triangles)
             for idx in range(batch_start, batch_end):
@@ -277,9 +273,7 @@ class STLSplitter:
             if dsu.find(root_i) != dsu.find(root_j):
                 info_i = dsu.info[dsu.find(root_i)]
                 info_j = dsu.info[dsu.find(root_j)]
-                if self.has_nearby_points(
-                    info_i.vertices, info_j.vertices, self.distance_threshold
-                ):
+                if self.has_nearby_points(info_i.vertices, info_j.vertices, self.distance_threshold):
                     dsu.union(root_i, root_j)
 
         # Step 5: Create final components
@@ -305,9 +299,7 @@ class STLSplitter:
                 data["normals"][i:end_idx] = self.original_mesh.normals[batch_indices]
 
             component_mesh = mesh.Mesh(data, remove_empty_areas=False)
-            file_path = os.path.join(
-                os.path.dirname(self.stl_file), f"coronary_artery_{comp_id}.stl"
-            )
+            file_path = os.path.join(os.path.dirname(self.stl_file), f"coronary_artery_{comp_id}.stl")
             component_mesh.save(file_path)
             stl_files.append(file_path)
 
@@ -350,9 +342,7 @@ class NNUnetPredictor:
     preprocessing, prediction, and post-processing of segmentation results.
     """
 
-    def __init__(
-        self, input_path, output_path, dataset_id=66, configuration="3d_lowres"
-    ):
+    def __init__(self, input_path, output_path, dataset_id=66, configuration="3d_lowres"):
         """Initializes the NNUnetPredictor class with input paths, output paths, and model configuration."""
         # Fixed paths for the nnUNet environment
         self.instance_id = uuid.uuid4().hex
@@ -364,35 +354,23 @@ class NNUnetPredictor:
         try:
             script_path = Path(os.path.abspath(__file__))
             self.raw_path = os.path.join(self.temp_dir.name, "nnUNet/nnUNet_raw")
-            self.preprocessed_path = os.path.join(
-                self.temp_dir.name, "nnUNet/nnUNet_preprocessed"
-            )
-            self.results_path = os.path.join(
-                script_path.parent.parent.parent, "models/nnUNet_results"
-            )
+            self.preprocessed_path = os.path.join(self.temp_dir.name, "nnUNet/nnUNet_preprocessed")
+            self.results_path = os.path.join(script_path.parent.parent.parent, "models/nnUNet_results")
             models_dir = os.path.join(script_path.parent.parent.parent, "models")
             self.model_weight = (
-                [
-                    os.path.join(models_dir, f)
-                    for f in os.listdir(models_dir)
-                    if f.endswith(".zip")
-                ]
+                [os.path.join(models_dir, f) for f in os.listdir(models_dir) if f.endswith(".zip")]
                 if os.path.isdir(models_dir)
                 else []
             )  # check if any model weight exist
 
             # Path for coronary artery dataset and output
-            self.img_path = os.path.join(
-                self.raw_path, f"Dataset{dataset_id:03d}_CoronaryArtery"
-            )
+            self.img_path = os.path.join(self.raw_path, f"Dataset{dataset_id:03d}_CoronaryArtery")
             self.seg_path = os.path.join(self.temp_dir.name, "seg_output")
 
             # Input and output paths for CT data and results
             self.input_path = input_path
             self.output_path = output_path
-            self.coronary_nii_file = os.path.join(
-                self.seg_path, f"{self.base_name}.nii.gz"
-            )
+            self.coronary_nii_file = os.path.join(self.seg_path, f"{self.base_name}.nii.gz")
 
             # Initialize directory structure
             self.create_directory(self.img_path)
@@ -400,9 +378,7 @@ class NNUnetPredictor:
             self.create_directory(self.output_path)
 
         except Exception as e:
-            raise RuntimeError(
-                f"NNUnetPredictor initialization failed: {str(e)}"
-            ) from e
+            raise RuntimeError(f"NNUnetPredictor initialization failed: {str(e)}") from e
 
     @staticmethod
     def create_directory(path):
@@ -412,10 +388,7 @@ class NNUnetPredictor:
     def _copy_input_file(self):
         """Copy input file to nnUNet's expected location."""
         try:
-            shutil.copy(
-                self.input_path,
-                os.path.join(self.img_path, f"{self.base_name}_0000.nii.gz"),
-            )
+            shutil.copy(self.input_path, os.path.join(self.img_path, f"{self.base_name}_0000.nii.gz"))
         except Exception as e:
             raise RuntimeError(f"Failed to copy input file: {str(e)}") from e
 
@@ -454,22 +427,16 @@ class NNUnetPredictor:
 
         try:
             subprocess.run(
-                command,
-                check=True,
-                env=env,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                text=True,
+                command, check=True, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True
             )
-            shutil.move(
-                self.coronary_nii_file,
-                os.path.join(self.output_path, f"{self.base_name}.nii.gz"),
-            )
+            if not os.path.exists(self.coronary_nii_file):
+                raise RuntimeError(
+                    f"nnUNet exited successfully but expected output not found: {self.coronary_nii_file}"
+                )
+            shutil.move(self.coronary_nii_file, os.path.join(self.output_path, f"{self.base_name}.nii.gz"))
         except subprocess.CalledProcessError as e:
             input_name = os.path.basename(self.input_path)
-            logger.error(
-                f"Coronary artery <{input_name}> segmentation inference failed with code {e.returncode}"
-            )
+            logger.error(f"Coronary artery <{input_name}> segmentation inference failed with code {e.returncode}")
             raise RuntimeError("nnUNet prediction failed") from e
 
     def set_model_weight(self, model_weight):
@@ -488,12 +455,7 @@ class NNUnetPredictor:
 
         try:
             subprocess.run(
-                command,
-                check=True,
-                env=env,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                text=True,
+                command, check=True, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True
             )
         except subprocess.CalledProcessError as e:
             logger.error(
@@ -512,9 +474,7 @@ class NNUnetPredictor:
                 for w in self.model_weight:
                     self.set_model_weight(w)
 
-            logger.info(
-                f"Starting coronary artery segmentation for {os.path.basename(self.input_path)}"
-            )
+            logger.info(f"Starting coronary artery segmentation for {os.path.basename(self.input_path)}")
             # Step 1: Copy input file to nnUNet's expected location
             self._copy_input_file()
             # Step 2: Run nnUNet inference
@@ -526,13 +486,9 @@ class NNUnetPredictor:
             raise RuntimeError(f"Input file not found or accessible: {str(e)}") from e
         except PermissionError as e:
             logger.error(f"Permission error: {str(e)}")
-            raise RuntimeError(
-                f"Permission denied when accessing files: {str(e)}"
-            ) from e
+            raise RuntimeError(f"Permission denied when accessing files: {str(e)}") from e
         except subprocess.CalledProcessError as e:
             logger.error(f"nnUNet process error (code {e.returncode}): {str(e)}")
-            raise RuntimeError(
-                f"nnUNet process failed with return code {e.returncode}"
-            ) from e
+            raise RuntimeError(f"nnUNet process failed with return code {e.returncode}") from e
         finally:
             self.temp_dir.cleanup()
