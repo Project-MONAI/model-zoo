@@ -43,11 +43,11 @@
     },
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
     "optional_packages_version": {
-        "timm": "",
-        "albumentations": "",
-        "opencv-python": "",
-        "pandas": "",
-        "matplotlib": "",
-        "openpyxl": ""
+        "timm": ">=1.0.19",
+        "albumentations": ">=2.0.8",
+        "opencv-python": ">=4.12.0.88",
+        "pandas": ">=2.3.1",
+        "matplotlib": ">=3.9.4",
+        "openpyxl": ">=3.1.5"
     }
 }
