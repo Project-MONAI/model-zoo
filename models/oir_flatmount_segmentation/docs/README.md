@@ -49,5 +49,4 @@ Model checkpoints are hosted externally and linked through `large_files.yml` (no
 1. Liu Z, Mao H, Wu CY, Feichtenhofer C, Darrell T, Xie S. A ConvNet for the 2020s. 2022:11966-11976.
 2. Marra KV, Chen JS, Robles-Holmes HK, et al. Development of an Open-Source Dataset of Flat-Mounted Images for the Murine Oxygen-Induced Retinopathy Model of Ischemic Retinopathy. Transl Vis Sci Technol. Dec 2 2024;13(12):4.
 3. Xiao S, Bucher F, Wu Y, et al. Fully automated, deep learning segmentation of oxygen-induced retinopathy images. JCI Insight. Dec 21 2017;2(24)doi:10.1172/jci.insight.97585
-4. Shah NS, Ramshekar A, Asare-Bediako B, Tankersley MP, Huang HC, Beri S, Kunz E, Lee AY, Hartnett ME. Automated Deep Learning Quantification of Avascular Area and Intravitreal Neovascularization in Retinal Flatmounts of Rodent Oxygen-Induced Retinopathy Models. Transl Vis Sci Technol. 2026 Jun 1;15(6):41. doi: 10.1167/tvst.15.6.41. 
-
+4. Shah NS, Ramshekar A, Asare-Bediako B, Tankersley MP, Huang HC, Beri S, Kunz E, Lee AY, Hartnett ME. Automated Deep Learning Quantification of Avascular Area and Intravitreal Neovascularization in Retinal Flatmounts of Rodent Oxygen-Induced Retinopathy Models. Transl Vis Sci Technol. 2026 Jun 1;15(6):41. doi: 10.1167/tvst.15.6.41.
