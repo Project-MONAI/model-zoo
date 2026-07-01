@@ -37,7 +37,7 @@ Dice agreement between model masks and human consensus masks was high for total 
 
 At the metric level, the deep learning model showed strong correlation with the mean of three graders for rat percent AVA (r=0.979) and rat percent IVNV (r=0.943). In mouse OIR, correlation was strong for percent AVA (r=0.957) but weak for percent IVNV (r=0.265), likely due to high inter-grader variability for mouse IVNV scoring.
 
-(For full analysis please refer to the [TVST manuscript.)](https://iovs.arvojournals.org/article.aspx?articleid=2817567) [4]
+(For full analysis please refer to the [TVST manuscript.)](https://tvst.arvojournals.org/article.aspx?articleid=2817982) [4]
 
 ## **System Configuration**
 This model was trained on an Apple M2 pro 16GB Macbook. 5-fold cross-validation was run sequentially with batch size 4 and a maximum of 120 epochs per fold. The folds ran for 86, 88, 120, 61, and 80 epochs, with total training time of approximately 24 hours.
