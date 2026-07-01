@@ -19,7 +19,7 @@
         "inputs": {
             "image": {
                 "type": "image",
-                "format": "png/jpg/tif/bmp",
+                "format": "magnitude",
                 "dtype": "float32",
                 "num_channels": 1,
                 "spatial_shape": [
