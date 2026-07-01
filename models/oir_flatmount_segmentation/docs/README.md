@@ -85,7 +85,8 @@ Neal Shah1*, Aniket Ramshekar1*, Bright Asare-Bediako1, Morgan Tankersley1, Heng
 ## Citation
 
 If you use this model, please cite the associated TVST publication https://tvst.arvojournals.org/article.aspx?articleid=2817982 and acknowledge the Hartnett Lab.
-Shah, Neal Sandeep, et al. "AI-Assisted Quantification of Retinal Vascular Parameters in Oxygen-Induced Retinopathy Models: A U-Net Approach." Investigative Ophthalmology & Visual Science 67.7 (2026): 5204-5204.
+
+"Shah, Neal Sandeep, et al. "AI-Assisted Quantification of Retinal Vascular Parameters in Oxygen-Induced Retinopathy Models: A U-Net Approach." Investigative Ophthalmology & Visual Science 67.7 (2026): 5204-5204."
 
 ## Known Limitations
 
