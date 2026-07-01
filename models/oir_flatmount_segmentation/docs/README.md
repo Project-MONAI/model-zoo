@@ -37,7 +37,7 @@ Dice agreement between model masks and human consensus masks was high for total 
 
 At the metric level, the deep learning model showed strong correlation with the mean of three graders for rat percent AVA (r=0.979) and rat percent IVNV (r=0.943). In mouse OIR, correlation was strong for percent AVA (r=0.957) but weak for percent IVNV (r=0.265), likely due to high inter-grader variability for mouse IVNV scoring.
 
-(For full analysis please refer to the manuscript.)
+(For full analysis please refer to the [TVST manuscript.](https://iovs.arvojournals.org/article.aspx?articleid=2817567) [4]
 
 ## **System Configuration**
 This model was trained on an Apple M2 pro 16GB Macbook. 5-fold cross-validation was run sequentially with batch size 4 and a maximum of 120 epochs per fold. The folds ran for 86, 88, 120, 61, and 80 epochs, with total training time of approximately 24 hours.
@@ -49,3 +49,4 @@ Model checkpoints are hosted externally and linked through `large_files.yml` (no
 1. Liu Z, Mao H, Wu CY, Feichtenhofer C, Darrell T, Xie S. A ConvNet for the 2020s. 2022:11966-11976.
 2. Marra KV, Chen JS, Robles-Holmes HK, et al. Development of an Open-Source Dataset of Flat-Mounted Images for the Murine Oxygen-Induced Retinopathy Model of Ischemic Retinopathy. Transl Vis Sci Technol. Dec 2 2024;13(12):4.
 3. Xiao S, Bucher F, Wu Y, et al. Fully automated, deep learning segmentation of oxygen-induced retinopathy images. JCI Insight. Dec 21 2017;2(24)doi:10.1172/jci.insight.97585
+4. Shah, N.S., Ramshekar, A., Asare-Bediako, B., Tankersley, M., Randolph, J.W., Whitney, J. and Hartnett, M.E., 2026. AI-Assisted Quantification of Retinal Vascular Parameters in Oxygen-Induced Retinopathy Models: A U-Net Approach. Investigative Ophthalmology & Visual Science, 67(7), pp.5204-5204.
