@@ -2,8 +2,8 @@ import timm
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 from model import AttentionGate, ConvBNReLU, scSE
+
 
 class TransformerEncoder(nn.Module):
 	def __init__(self, backbone: str = "swin_tiny_patch4_window7_224", in_ch: int = 1, pretrained: bool = True):
