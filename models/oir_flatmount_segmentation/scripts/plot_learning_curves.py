@@ -11,6 +11,7 @@ import pandas as pd
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
+
 def _load_histories(kfold_dir: str) -> List[pd.DataFrame]:
     histories: List[pd.DataFrame] = []
     for fold in range(5):
