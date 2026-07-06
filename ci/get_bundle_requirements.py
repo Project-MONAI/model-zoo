@@ -83,7 +83,13 @@ def get_requirements(bundle, models_path, requirements_file):
                 for name, version in optional_dict.items():
                     if name in special_dependencies_list:
                         continue
-                    libs.append(f"{name}=={version}")
+
+                    version = version.strip()
+                    version_line = f"{name}=={version}"
+                    if version[0] in {"<", ">", "="}:  # operator included in version, don't add ==
+                        version_line = f"{name}{version}"
+
+                    libs.append(version_line)
 
         if len(libs) > 0:
             with open(requirements_file, "w") as f:
