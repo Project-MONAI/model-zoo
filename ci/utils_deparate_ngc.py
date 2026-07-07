@@ -24,6 +24,8 @@ from monai.utils import look_up_option, optional_import
 
 Github, _ = optional_import("github", name="Github")
 
+gdown, has_gdown = optional_import("gdown")
+
 SUPPORTED_HASH_TYPES = {"md5": hashlib.md5, "sha1": hashlib.sha1, "sha256": hashlib.sha256, "sha512": hashlib.sha512}
 
 
@@ -98,7 +100,6 @@ def download_large_files(bundle_path: str, large_file_name: str = "large_file.ym
     parser.read_config(os.path.join(bundle_path, large_file_name))
     large_files_list = parser.get()["large_files"]
     for lf_data in large_files_list:
-        lf_data["fuzzy"] = True
         if "hash_val" in lf_data and lf_data.get("hash_val", "") == "":
             lf_data.pop("hash_val")
         if "hash_type" in lf_data and lf_data.get("hash_type", "") == "":
