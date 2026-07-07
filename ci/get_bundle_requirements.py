@@ -77,13 +77,22 @@ def get_requirements(bundle, models_path, requirements_file):
         if "numpy_version" in metadata.keys():
             numpy_version = metadata["numpy_version"]
             libs.append(f"numpy=={numpy_version}")
+
         for package_key in ["optional_packages_version", "required_packages_version"]:
-            if package_key in metadata.keys():
-                optional_dict = metadata[package_key]
-                for name, version in optional_dict.items():
-                    if name in special_dependencies_list:
-                        continue
-                    libs.append(f"{name}=={version}")
+            for name, version in metadata.get(package_key, {}).items():
+                if name in special_dependencies_list:
+                    continue
+
+                version = version.strip()
+
+                if not version:  # blank version, just add name without version specification
+                    version_line = str(name)
+                elif version[0] in {"<", ">", "=", "!", "~"}:  # operator included in version, don't add ==
+                    version_line = f"{name}{version}"
+                else:
+                    version_line = f"{name}=={version}"  # assume exact version specification
+
+                libs.append(version_line)
 
         if len(libs) > 0:
             with open(requirements_file, "w") as f:
