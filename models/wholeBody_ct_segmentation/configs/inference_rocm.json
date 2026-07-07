@@ -1,0 +1,13 @@
+{
+    "+imports": [
+        "$import torch"
+    ],
+    "network": "$@network_def.to(@device).to(memory_format=torch.channels_last_3d)",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)",
+        "$setattr(torch.backends.cudnn, 'deterministic', False)",
+        "$setattr(@evaluator, 'amp_kwargs', {'dtype': torch.bfloat16})",
+        "$@checkpointloader(@evaluator) if @load_pretrain else None",
+        "$setattr(@evaluator, 'network', torch.compile(@network))"
+    ]
+}
