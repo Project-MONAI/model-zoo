@@ -1,0 +1,9 @@
+large_files:
+  - path: "models/model.pt"
+    url: "https://drive.google.com/uc?export=download&id=1hBsBRrET40FbB9WJcNg5hIL67h2p2pRi"
+    hash_val: "5883296f3d06021b7068d024a00ac0c7"
+    hash_type: "md5"
+  - path: "models/model.onnx"
+    url: "https://drive.google.com/uc?export=download&id=184YGCmG7kHScBC8Cf5cxrt1qJCcfo9Zh"
+    hash_val: "636a469d5fbf72ab568dd232c8aa965c"
+    hash_type: "md5"
