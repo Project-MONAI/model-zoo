@@ -1,0 +1,88 @@
+# Copyright (c) MONAI Consortium
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#     http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import os
+import shutil
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+import nibabel as nib
+import numpy as np
+from monai.bundle import ConfigWorkflow
+from parameterized import parameterized
+from utils import check_workflow
+
+ROOT = Path(__file__).parent.parent.parent
+bundle_path = os.path.join(ROOT, "models", "CoronSegmentator")
+
+if bundle_path not in sys.path:
+    sys.path.insert(0, bundle_path)
+    print(f"Added to sys.path: {bundle_path}")
+
+# Use os.path.join for Linux/CI compatibility (avoids Windows backslash issues)
+TEST_CASE_1 = [{"bundle_root": os.path.join("models", "CoronSegmentator")}]  # inference
+
+
+def test_order(test_name1, test_name2):
+    def get_order(name):
+        if "train" in name:
+            return 1
+        if "eval" in name:
+            return 2
+        if "infer" in name:
+            return 3
+        return 4
+
+    return get_order(test_name1) - get_order(test_name2)
+
+
+class TestCoronaryArteryCTSeg(unittest.TestCase):
+    def setUp(self):
+        self.dataset_dir = tempfile.mkdtemp()
+        dataset_size = 10
+        input_shape = (128, 128, 128)
+        for s in range(dataset_size):
+            # Use int16 to match CT Hounsfield Unit range (-1024 to 3071)
+            test_image = np.random.randint(low=-1024, high=1000, size=input_shape).astype(np.int16)
+            test_label = np.random.randint(low=0, high=2, size=input_shape).astype(np.int16)
+            image_filename = os.path.join(self.dataset_dir, f"image_{s}.nii.gz")
+            label_filename = os.path.join(self.dataset_dir, f"label_{s}.nii.gz")
+            nib.save(nib.Nifti1Image(test_image, np.eye(4)), image_filename)
+            nib.save(nib.Nifti1Image(test_label, np.eye(4)), label_filename)
+
+    def tearDown(self):
+        shutil.rmtree(self.dataset_dir)
+
+    @parameterized.expand([TEST_CASE_1])
+    def test_infer_config(self, override):
+        override["dataset_dir"] = self.dataset_dir
+        bundle_root = override["bundle_root"]
+
+        inferrer = ConfigWorkflow(
+            workflow_type="infer",
+            config_file=os.path.join(bundle_root, "configs/inference.json"),
+            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+            # Override 'run' to empty list so CI only validates config structure
+            # without triggering model downloads or GPU inference.
+            # Full end-to-end inference requires GPU and pre-downloaded model weights.
+            run="[]",
+            **override,
+        )
+        check_workflow(inferrer, check_properties=True)
+
+
+if __name__ == "__main__":
+    loader = unittest.TestLoader()
+    loader.sortTestMethodsUsing = test_order
+    unittest.main(testLoader=loader)

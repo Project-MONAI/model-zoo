@@ -1,0 +1,28 @@
+Copyright © 2025 Hon Hai Precision Industry Co.,Ltd. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Third Party Licenses
+-----------------------------------------------------------------------
+i. ImageCAS Dataset
+The ImageCAS dataset is generously provided by Dr. An Zeng and colleagues from the Department of Radiology, Guangdong Provincial People's Hospital and Guangdong Academy of Medical Sciences.
+
+The dataset is publicly available via Kaggle (https://www.kaggle.com/datasets/xiaoweixumedicalai/imagecas/data) and the official GitHub repository (https://github.com/XiaoweiXu/ImageCAS-A-Large-Scale-Dataset-and-Benchmark-for-Coronary-Artery-Segmentation-based-on-CT#imagecas-a-large-scale-dataset-and-benchmark-for-coronary-artery-segmentation-based-on-computed-tomo.), and is released under the Apache License 2.0.
+
+Please cite the original publication when using the dataset:
+Zeng, A., Wu, C., Lin, G., et al. ImageCAS: A large-scale dataset and benchmark for coronary artery segmentation based on computed tomography angiography images. Computerized Medical Imaging and Graphics, 109, 102287 (2023). https://doi.org/10.1016/j.compmedimag.2023.102287
+
+
+
+-----------------------------------------------------------------------
+Package	Version	License(s)	Copyright Holder / Author
+monai	1.4.0	Apache-2.0	MONAI Consortium / Project MONAI
+usd-core	25.5	Apache-2.0	Pixar Animation Studios
+nnunetv2 (editable)	2.5.1	Apache-2.0	Fabian Isensee / Helmholtz Munich
