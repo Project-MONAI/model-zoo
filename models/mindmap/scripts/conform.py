@@ -9,11 +9,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Port of brainchopC's default (non-CT, non-comply) preprocessing pipeline
-for mindmap: conform.c's `scale_intensity` + `conform_reslice` (via
-`brainchopc_conform`), the uint8 cast in brainchopc.c's `run_model`, and
-`bc_accel_normalize_input` in backend_accel.c (quantile_mode "rank", the mode
-mindmap's model_meta.json selects).
+"""Port of the upstream reference implementation's default (non-CT,
+non-comply) preprocessing pipeline for mindmap: conform.c's
+`scale_intensity` + `conform_reslice`, the uint8 cast the reference
+implementation applies before its main inference step, and
+`bc_accel_normalize_input` in backend_accel.c (quantile_mode "rank", the
+mode mindmap's model_meta.json selects).
 
 This reproduces FreeSurfer-style conforming: resample to a 256^3, 1mm
 isotropic grid in LIA orientation, centered on the input volume, using
@@ -67,9 +68,10 @@ def _niimath_scale_intensity(img: np.ndarray) -> np.ndarray:
 
 
 def _conform_affine(in_dim: tuple[int, int, int], in_affine: np.ndarray) -> np.ndarray:
-    """conform.c `conform_xform`, `ras=0` branch (brainchopc_conform always
-    calls conform_reslice with ras=0): a 256^3, 1mm, LIA-oriented grid,
-    centered on the input volume's geometric center.
+    """conform.c `conform_xform`, `ras=0` branch (the reference
+    implementation's conform step always calls conform_reslice with
+    ras=0): a 256^3, 1mm, LIA-oriented grid, centered on the input volume's
+    geometric center.
     """
     half = np.array([in_dim[0] / 2.0, in_dim[1] / 2.0, in_dim[2] / 2.0, 1.0])
     center = (in_affine @ half)[:3]
@@ -92,9 +94,9 @@ def reslice_to_grid(
 ) -> np.ndarray:
     """conform.c `do_reslice`/`reslice_rows`, generalized over its `linear`
     flag: `linear=True` is the trilinear path used going into conform space
-    (mindmap_preprocess); `linear=False` is the nearest-neighbor path
-    `brainchopc_reslice` uses to bring a conform-space prediction back onto
-    the input's native grid.
+    (mindmap_preprocess); `linear=False` is the nearest-neighbor path the
+    reference implementation's reslice step uses to bring a conform-space
+    prediction back onto the input's native grid.
 
     Out-of-FOV voxels are filled with `img`'s own minimum by default (not
     zero), matching `do_reslice`'s `mn` prefill. In the trilinear case a
@@ -206,8 +208,8 @@ def _quantile_normalize_uint8(
 
 
 def mindmap_preprocess(img: np.ndarray, affine: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """Full default (MRI, non-CT, non-comply) brainchopC preprocessing chain
-    for mindmap: scale_intensity -> conform reslice -> uint8 cast -> quantile
+    """Full default (MRI, non-CT, non-comply) preprocessing chain for
+    mindmap: scale_intensity -> conform reslice -> uint8 cast -> quantile
     normalize (rank mode).
 
     Args:

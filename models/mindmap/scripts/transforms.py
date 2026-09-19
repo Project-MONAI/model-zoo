@@ -10,7 +10,7 @@
 # limitations under the License.
 
 """MONAI MapTransform wrappers around conform.py/postprocess.py, so the
-brainchopC-ported preprocessing and postprocessing can sit inside a bundle's
+ported preprocessing and postprocessing can sit inside a bundle's
 `configs/inference.json` transform Compose.
 
 The extra state postprocessing needs (the original image's affine and

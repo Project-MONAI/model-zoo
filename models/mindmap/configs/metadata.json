@@ -16,7 +16,7 @@
     "supported_apps": {},
     "name": "MindMap Brain Segmentation",
     "task": "18-class whole-brain segmentation (gray/white matter and subcortical structures) in any imaging modality",
-    "description": "A 24-channel, 13-layer dilated 3D CNN (MeshNet-style, model16chan18cls's topology at 24 channels) that segments a 3D medical image into 18 FreeSurfer-style brain regions, ported from the mindmap model in the brainchopC project so it runs as a standard MONAI bundle. The bundle reproduces brainchopC's full inference pipeline: intensity-clip and reslice the input onto a 256x256x256, 1mm, LIA-oriented conform grid, quantile-normalize it, run the network, keep only the single largest 26-connected foreground component (across all classes jointly), and reslice the label map back onto the input's native grid.",
+    "description": "A 24-channel, 13-layer dilated 3D CNN (MeshNet-style, model16chan18cls's topology at 24 channels) that segments a 3D medical image into 18 FreeSurfer-style brain regions, ported from the mindmap model (published as model24chan18cls_gdice_prio in neuroneural/brainchop-test) so it runs as a standard MONAI bundle. The bundle reproduces the upstream reference implementation's full inference pipeline: intensity-clip and reslice the input onto a 256x256x256, 1mm, LIA-oriented conform grid, quantile-normalize it, run the network, keep only the single largest 26-connected foreground component (across all classes jointly), and reslice the label map back onto the input's native grid.",
     "authors": "Sergey Plis and the neuroneural / brainchop-models team (original model16chan18cls/model24chan18cls training); ported to MONAI bundle format by the MONAI Model Zoo community",
     "copyright": "Copyright (c) MONAI Consortium",
     "data_source": "Trained on SynthSeg-style synthetic data (synth18 / label18); not otherwise documented by this port. See the upstream brainchop-models project for the original training details.",
@@ -27,8 +27,8 @@
     "eval_metrics": {},
     "intended_use": "This is an example, not to be used for diagnostic purposes",
     "references": [
-        "brainchop-models, the upstream training/checkpoint repository this bundle's weights are pulled from: https://github.com/neuroneural/brainchop-models/tree/main/meshnet/model24chan18cls",
-        "brainchopC, the C reference implementation this bundle ports (private repository)"
+        "brainchop-models, the upstream training/checkpoint repository this bundle's weights are pulled from: https://github.com/neuroneural/brainchop-models/tree/f53f7b93d725416c2705a9e4f79765d1739badb9/meshnet/model24chan18cls",
+        "neuroneural/brainchop-test, which publishes this model's weights/config publicly as model24chan18cls_gdice_prio: https://github.com/neuroneural/brainchop-test/tree/webgpu/public/models/model24chan18cls_gdice_prio"
     ],
     "network_data_format": {
         "inputs": {

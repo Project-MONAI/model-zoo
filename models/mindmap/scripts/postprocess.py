@@ -9,11 +9,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Port of brainchopC's default (non---pve) post-segmentation chain for
-label-output models like mindmap (brainchopc.c's `run_model`, the label-model
-branch, lines ~565-624): largest-component cleanup and reslice back to the
-input's native grid, producing an 18-class label map -- mindmap's output
-*is* the label volume itself.
+"""Port of the upstream reference implementation's default (non-pve)
+post-segmentation chain for label-output models like mindmap (the reference
+implementation's main inference routine, label-model branch): largest-
+component cleanup and reslice back to the input's native grid, producing an
+18-class label map -- mindmap's output *is* the label volume itself.
 """
 
 from __future__ import annotations
@@ -63,8 +63,9 @@ def mindmap_postprocess(
         orig_affine: the original input volume's 4x4 voxel-to-world affine.
         save_conform: if True, skip the reslice back to the input's native
             grid and return the label map in 256^3 conform space instead
-            (brainchopC's `--save-conform`; mindmap's model_meta.json sets
-            `save_conform: true` in its capabilities).
+            (the reference implementation's `--save-conform` option;
+            mindmap's model_meta.json sets `save_conform: true` in its
+            capabilities).
 
     Returns:
         float32 array of class labels (0-17): shaped like `orig_shape` by
@@ -78,7 +79,7 @@ def mindmap_postprocess(
     if save_conform:
         return pred
 
-    # brainchopc_reslice(conformed, original, linear=0): nearest-neighbor,
+    # Reslicing back to native space uses nearest-neighbor (linear=0);
     # source min (0.0, background) is the out-of-FOV fill, matching
     # `do_reslice`'s prefill.
     return reslice_to_grid(pred, conform_affine, np.asarray(orig_affine, dtype=np.float64), orig_shape, linear=False)

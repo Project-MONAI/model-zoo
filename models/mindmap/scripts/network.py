@@ -18,26 +18,29 @@ import torch.nn as nn
 
 __all__ = ["MindMapNet"]
 
-# The symmetric coprime dilation ramp brainchopC calls "gn_hdc_deep": receptive
-# field 255 on a 256^3 grid (no gridding holes), shared verbatim with
-# model16chan18cls -- mindmap is that same topology at 24 channels.
+# The symmetric coprime dilation ramp the upstream reference implementation
+# calls "gn_hdc_deep": receptive field 255 on a 256^3 grid (no gridding
+# holes), shared verbatim with model16chan18cls -- mindmap is that same
+# topology at 24 channels.
 DEFAULT_DILATIONS: Sequence[int] = (1, 3, 5, 7, 13, 19, 31, 19, 13, 7, 5, 3, 1)
 
 
 class MindMapNet(nn.Module):
     """Dilated 3D conv stack used by the MindMap 18-class brain segmentation
-    model (brainchopC's "model24chan18cls" topology, 24 channels).
+    model ("model24chan18cls" topology, 24 channels, published as
+    model24chan18cls_gdice_prio in neuroneural/brainchop-test).
 
     A MeshNet-style network: 13 same-padded, bias-free dilated Conv3d blocks,
     each followed by GroupNorm (num_groups == num_channels, eps 1e-5, *with*
     learnable per-channel affine) and GELU, followed by a 1x1x1 classifier
     conv that does carry a bias.
 
-    brainchopC's own weight layout represents each block's GroupNorm affine
-    as a diagonal `[C, C]` 1x1x1 "affine" convolution (needed because its TFJS
-    runtime has no rank-5 BatchNorm/GroupNorm op), but that is just an
-    alternate encoding of the same per-channel `gamma * x + beta`: see
-    `scripts/checkpoint.py` for the reverse mapping back to `nn.GroupNorm`.
+    The upstream reference implementation's own weight layout represents
+    each block's GroupNorm affine as a diagonal `[C, C]` 1x1x1 "affine"
+    convolution (needed because its TFJS runtime has no rank-5
+    BatchNorm/GroupNorm op), but that is just an alternate encoding of the
+    same per-channel `gamma * x + beta`: see `scripts/checkpoint.py` for the
+    reverse mapping back to `nn.GroupNorm`.
     """
 
     def __init__(
