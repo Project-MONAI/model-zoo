@@ -15,7 +15,7 @@
     "load_pretrain": true,
     "save_conform": false,
     "dataset_dir": "/workspace/data/mindmap",
-    "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.nii.gz')))",
+    "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.nii') + glob.glob(@dataset_dir + '/*.nii.gz')))",
     "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
     "network_def": {
         "_target_": "scripts.network.MindMapNet"

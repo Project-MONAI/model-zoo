@@ -26,12 +26,12 @@ Training data and procedure for the original checkpoint are not documented by th
 
 #### **Preprocessing**
 
-This bundle reproduces the upstream reference implementation's full preprocessing pipeline exactly (see `scripts/conform.py`), not a generic MONAI intensity/spacing transform:
+This bundle reproduces the upstream reference implementation's intensity-clip, conform-reslice, and quantile-normalization preprocessing exactly (see `scripts/conform.py`), not a generic MONAI intensity/spacing transform -- with one exception noted in **Limitations**: input orientation (qform/sform affine selection) uses NiBabel's resolution logic rather than the reference implementation's own:
 
 1. **Intensity clip** -- niimath-style: a 1000-bin histogram over the input's nonzero voxels finds the 98th-percentile intensity, then the image is linearly rescaled into `[0, 255]`.
 2. **Conform reslice** -- the image is resampled (trilinear) onto a fixed `256x256x256`, 1mm-isotropic grid in LIA orientation, centered on the input volume's geometric center. Out-of-field voxels are filled with the input's own minimum intensity.
 3. **uint8 cast** -- the conformed volume is rounded and clamped to `[0, 255]`.
-4. **Quantile normalization** -- a 256-bin histogram gives the 5th and 95th percentile intensities by plain rank selection (mindmap's `quantile_mode: "rank"`: no interpolation, no denominator guard, no output clamp); the volume is rescaled to `(x - low) / (high - low)`. This is what actually reaches the network.
+4. **Quantile normalization** -- a 256-bin histogram gives the 5th and 95th percentile intensities by plain rank selection (mindmap's `quantile_mode: "rank"`: no interpolation, no epsilon added to the denominator, no output clamp -- though a non-positive `high - low` still falls back to a denominator of 1.0, matching the reference implementation's own guard); the volume is rescaled to `(x - low) / (high - low)`. This is what actually reaches the network.
 
 Postprocessing (`scripts/postprocess.py`) mirrors the upstream reference implementation's post-segmentation chain for label models: argmax the 18-channel network output into a label map, keep only the single largest 26-connected component across *all* nonzero classes jointly (voxels outside it are zeroed, voxels inside it keep their predicted class -- this is not a binary mask cleanup), then nearest-neighbor reslice that label map back onto the input's native grid. Passing `save_conform: true` to `MindMapPostprocessd` (wired to the bundle-level `save_conform` config value, `false` by default) skips that last reslice and returns the label map in 256^3 conform space instead, matching the reference implementation's `--save-conform` option.
 
