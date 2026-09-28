@@ -18,7 +18,7 @@ class ConvBNReLU(nn.Module):
         return x
 
 
-class scSE(nn.Module):
+class scSE(nn.Module):  # noqa: N801
     # Concurrent spatial and channel squeeze & excitation
     def __init__(self, ch: int, reduction: int = 16):
         super().__init__()
