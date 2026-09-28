@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 File  : heart_digital_twin.py
 Author: John Y. Ke, MC. Chen, TY. Lin, YC. Chan
@@ -76,7 +75,7 @@ class CoroSegmentatorPipeline:
         regions, and convert to USD format.
         """
         # Download the weights of models according to large_file.yml
-        with open(DOWNLOAD_CONFIG, "r") as file:
+        with open(DOWNLOAD_CONFIG) as file:
             download_config = yaml.safe_load(file)
 
         for file_info in download_config["large_files"]:
