@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Sequence, Union
+from collections.abc import Callable, Sequence
 
 import torch
 from ignite.metrics.metric import Metric, reinit__is_reduced, sync_all_reduce
@@ -12,12 +12,12 @@ from .utils import detach_to_numpy
 class IgniteCocoMetric(Metric):
     def __init__(
         self,
-        coco_metric_monai: Union[None, COCOMetric] = None,
+        coco_metric_monai: None | COCOMetric = None,
         box_key="box",
         label_key="label",
         pred_score_key="label_scores",
         output_transform: Callable = lambda x: x,
-        device: Union[str, torch.device, None] = None,
+        device: str | torch.device | None = None,
         reduce_scalar: bool = True,
     ):
         r"""
@@ -74,7 +74,7 @@ class IgniteCocoMetric(Metric):
 
         if device is None:
             device = torch.device("cpu")
-        super(IgniteCocoMetric, self).__init__(output_transform=output_transform, device=device)
+        super().__init__(output_transform=output_transform, device=device)
 
     @reinit__is_reduced
     def reset(self) -> None:
@@ -82,7 +82,7 @@ class IgniteCocoMetric(Metric):
         self.val_outputs_all = []
 
     @reinit__is_reduced
-    def update(self, output: Sequence[Dict]) -> None:
+    def update(self, output: Sequence[dict]) -> None:
         y_pred, y = output[0], output[1]
         self.val_outputs_all += y_pred
         self.val_targets_all += y

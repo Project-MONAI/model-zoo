@@ -66,7 +66,7 @@ def update_model_info(
     model_info = get_json_dict(model_info_path)
     exist_flag = False
     # check if the bundle has been created in huggingface
-    for k in model_info.keys():
+    for k in model_info:
         if bundle_name in k:
             version_info = model_info[k]
             if "https://huggingface.co/" in version_info["source"]:
@@ -81,7 +81,7 @@ def update_model_info(
 
     # step 4
     bundle_name_with_version = f"{bundle_name}_v{latest_version}"
-    if bundle_name_with_version not in model_info.keys():
+    if bundle_name_with_version not in model_info:
         model_info[bundle_name_with_version] = {"checksum": "", "source": ""}
 
     model_info[bundle_name_with_version]["checksum"] = ""

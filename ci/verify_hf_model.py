@@ -53,7 +53,7 @@ def verify_version_changes(models_path: str, model_name: str):
 
     # version number should be in changelog
     latest_version = metadata["version"]
-    if latest_version not in metadata["changelog"].keys():
+    if latest_version not in metadata["changelog"]:
         raise ValueError(
             f"version number: {latest_version} is missing in 'changelog' in metadata.json of hf model: {model_name}."
         )

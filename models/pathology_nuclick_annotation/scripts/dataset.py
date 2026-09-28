@@ -14,7 +14,6 @@ import json
 import logging
 import os
 import pathlib
-from typing import Dict, List
 
 import numpy as np
 from monai.apps.utils import tqdm
@@ -24,7 +23,7 @@ loadmat, _ = optional_import("scipy.io", name="loadmat")
 PILImage, _ = optional_import("PIL.Image")
 
 
-def consep_nuclei_dataset(datalist, output_dir, crop_size, min_area=80, min_distance=20, limit=0) -> List[Dict]:
+def consep_nuclei_dataset(datalist, output_dir, crop_size, min_area=80, min_distance=20, limit=0) -> list[dict]:
     """
     Utility to pre-process and create dataset list for Patches per Nuclei for training over ConSeP dataset.
 
@@ -66,7 +65,7 @@ def consep_nuclei_dataset(datalist, output_dir, crop_size, min_area=80, min_dist
         print("Please make sure scipy with loadmat function is correctly installed")
         raise ValueError("scipy.io.loadmat module/function not found")
 
-    dataset_json: List[Dict] = []
+    dataset_json: list[dict] = []
     for d in tqdm(datalist):
         logging.debug(f"Processing Image: {d['image']} => Label: {d['label']}")
 

@@ -11,7 +11,6 @@ import warnings
 
 import cv2
 import detectron2
-import detectron2.utils.comm as comm
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -20,6 +19,7 @@ import torch
 from detectron2.data import DatasetCatalog, MetadataCatalog
 from detectron2.engine import DefaultPredictor
 from detectron2.evaluation import COCOEvaluator
+from detectron2.utils import comm
 from detectron2.utils.visualizer import Visualizer
 from matplotlib.backends.backend_pdf import PdfPages
 from PIL import Image
@@ -92,7 +92,7 @@ class OutputVis:
             self.predictor = DefaultPredictor(cfg)
             self._mode = "model"
         elif pred_mode == "file":
-            with open(pred_file, "r") as f:
+            with open(pred_file) as f:
                 self.pred_instances = json.load(f)
             self.instance_img_list = [p["image_id"] for p in self.pred_instances]
             self._mode = "file"
@@ -113,7 +113,7 @@ class OutputVis:
                 modes (e.g., "default", "bw").
         """
         if draw_mode not in self.permitted_draw_modes:
-            sys.exit("draw_mode must be one of the following: {}".format(self.permitted_draw_modes))
+            sys.exit(f"draw_mode must be one of the following: {self.permitted_draw_modes}")
         self.draw_mode = draw_mode
 
     def get_ori_image(self, imgid):
@@ -324,9 +324,9 @@ class OutputVis:
                 ax[1].set_title(imgid + " Model Prediction")
                 ax[1].set_axis_off()
                 if dfimg is not None:  # annotate with provided stats
-                    gtstr = ["{:s}={:.2f}".format(col, dfimg.loc[imgid, col]) for col in gtcols]
+                    gtstr = [f"{col:s}={dfimg.loc[imgid, col]:.2f}" for col in gtcols]
                     ax[0].text(0, 0.05 * (ax[0].get_ylim()[0]), gtstr, color="white", fontsize=14)
-                    dtstr = ["{:s}={:.2f}".format(col, dfimg.loc[imgid, col]) for col in dtcols]
+                    dtstr = [f"{col:s}={dfimg.loc[imgid, col]:.2f}" for col in dtcols]
                     ax[1].text(0, 0.05 * (ax[1].get_ylim()[0]), dtstr, color="white", fontsize=14)
                 pdf.savefig(fig)
                 plt.close(fig)
@@ -442,7 +442,7 @@ class OutputVis:
 
             outputs = self.get_outputs_from_file(imgid, (scan_height, scan_width))
             outputs = outputs[outputs.scores > self.prob_thresh]
-            instances = outputs.pred_boxes[:, (0, 2)].round().clip(0, scan_width - 1).to(np.int)
+            instances = outputs.pred_boxes[:, (0, 2)].round().clip(0, scan_width - 1).to(dtype=torch.int64)
 
             for inst in instances:
                 try:
@@ -608,7 +608,7 @@ class EvaluateClass(COCOEvaluator):
         )  # load detector results
         self.mycoco = COCOeval(self.cocoGt, self.cocoDt, iouType="segm")
         self.num_images = len(self.mycoco.params.imgIds)
-        print("Calculated metrics for {} images".format(self.num_images))
+        print(f"Calculated metrics for {self.num_images} images")
         self.mycoco.params.iouThrs = np.arange(0.10, 0.6, 0.1)
         self.mycoco.params.maxDets = [100]
         self.mycoco.params.areaRng = [[0, 10000000000.0]]
@@ -635,7 +635,7 @@ class EvaluateClass(COCOEvaluator):
         if ax is None:
             fig, ax = plt.subplots(1, 1)
         for i in range(len(self.iou)):
-            ax.plot(self.rc, self.pr[i], label="{:.2}".format(self.iou[i]))
+            ax.plot(self.rc, self.pr[i], label=f"{self.iou[i]:.2}")
         ax.set_xlabel("Recall")
         ax.set_ylabel("Precision")
         ax.set_title("")
@@ -645,7 +645,7 @@ class EvaluateClass(COCOEvaluator):
         """Plots model score thresholds versus recall for various IoU thresholds."""
         plt.figure()
         for i in range(len(self.iou)):
-            plt.plot(self.rc, self.scores[i], label="{:.2}".format(self.iou[i]))
+            plt.plot(self.rc, self.scores[i], label=f"{self.iou[i]:.2}")
         plt.ylabel("Model probability")
         plt.xlabel("Recall")
         plt.legend(title="IoU")
@@ -701,7 +701,7 @@ class EvaluateClass(COCOEvaluator):
         Returns:
             float: The calculated false positive rate.
         """
-        print("Using alternate calculation for fpr at instance score threshold of {}".format(self.prob_thresh))
+        print(f"Using alternate calculation for fpr at instance score threshold of {self.prob_thresh}")
         ng = 0  # number of negative images
         fp = 0  # number of false positives images
         for el in self.mycoco.evalImgs:
@@ -726,11 +726,7 @@ class EvaluateClass(COCOEvaluator):
         try:
             iou_idx = np.argwhere(self.iou == self.iou_thresh)[0][0]  # first instance of
         except IndexError:
-            print(
-                "iou threshold {} not found in mycoco.params.iouThrs {}".format(
-                    self.iou_thresh, self.mycoco.params.iouThrs
-                )
-            )
+            print(f"iou threshold {self.iou_thresh} not found in mycoco.params.iouThrs {self.mycoco.params.iouThrs}")
             exit(1)
         # test above for out of bounds
         inds = np.argwhere(self.scores[iou_idx] >= self.prob_thresh)
@@ -861,7 +857,7 @@ class CreatePlotsRPD:
             CreatePlotsRPD: An instance of the class.
         """
         df = pd.DataFrame(
-            index=mycoco.cocoGt.imgs.keys(),
+            index=mycoco.cocoGt.imgs,
             columns=["gt_instances", "gt_pxs", "gt_xpxs", "dt_instances", "dt_pxs", "dt_xpxs"],
             dtype=np.uint64,
         )

@@ -986,8 +986,6 @@ def main():
             json_base_name = os.path.join(data_root_path, "json_files")
             tissuenet_json_files(dataset_dir=dataset_path, json_f_path=json_base_name)
 
-    return None
-
 
 if __name__ == "__main__":
     main()

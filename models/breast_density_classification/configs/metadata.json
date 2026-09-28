@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "changelog": {
+        "0.1.9": "clean up file-opening syntax without changing behavior",
         "0.1.8": "enhance metadata with improved descriptions and task specification",
         "0.1.7": "update to huggingface hosting",
         "0.1.6": "Remove meta dict usage",

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import logging
 import os
-from collections.abc import Hashable, Mapping
-from typing import Any, Callable, Sequence
+from collections.abc import Callable, Hashable, Mapping, Sequence
+from typing import Any
 
 import numpy as np
 import torch
@@ -33,10 +33,8 @@ def get_device_list(n_gpu):
         device_list = [d for d in device_list if d in n_gpu]
     else:
         logging.info(
-            """Highest GPU ID provided in 'n_gpu' is larger than number of GPUs available, assigning GPUs starting from 0
-                 to match n_gpu length of {}""".format(
-                len(n_gpu)
-            )
+            f"""Highest GPU ID provided in 'n_gpu' is larger than number of GPUs available, assigning GPUs starting from 0
+                 to match n_gpu length of {len(n_gpu)}"""
         )
         device_list = device_list[: len(n_gpu)]
     return device_list

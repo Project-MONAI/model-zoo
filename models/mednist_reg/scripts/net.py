@@ -9,10 +9,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import torch.nn as nn
 from monai.networks.blocks import Warp
 from monai.networks.nets import resnet18
 from monai.networks.nets.regunet import AffineHead
+from torch import nn
 
 
 class RegResNet(nn.Module):

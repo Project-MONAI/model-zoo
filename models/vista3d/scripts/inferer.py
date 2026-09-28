@@ -10,7 +10,6 @@
 # limitations under the License.
 
 import copy
-from typing import List, Union
 
 import torch
 from monai.apps.vista3d.inferer import point_based_window_inferer
@@ -36,7 +35,7 @@ class Vista3dInferer(Inferer):
 
     def __call__(
         self,
-        inputs: Union[List[Tensor], Tensor],
+        inputs: list[Tensor] | Tensor,
         network,
         point_coords,
         point_labels,

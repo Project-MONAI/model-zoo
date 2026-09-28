@@ -10,7 +10,8 @@
 # limitations under the License.
 
 import logging
-from typing import TYPE_CHECKING, Callable, Optional
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 import numpy as np
 import torch
@@ -33,7 +34,7 @@ else:
 class TensorBoardImageHandler:
     def __init__(
         self,
-        summary_writer: Optional[SummaryWriter] = None,
+        summary_writer: SummaryWriter | None = None,
         log_dir: str = "./runs",
         tag_name="val",
         interval: int = 1,
@@ -81,22 +82,11 @@ class TensorBoardImageHandler:
             cl = np.count_nonzero(y)
             cp = np.count_nonzero(y_pred)
             self.logger.info(
-                "{} => {} - Image: {};"
-                " Label: {} (nz: {});"
-                " Pred: {} (nz: {});"
-                " Diff: {:.2f}%;"
-                " Sig: (pos-nz: {}, neg-nz: {})".format(
-                    self.tag_name,
-                    bidx,
-                    image.shape,
-                    y.shape,
-                    cl,
-                    y_pred.shape,
-                    cp,
-                    100 * (cp - cl) / (cl + 1),
-                    np.count_nonzero(image[3]),
-                    np.count_nonzero(image[4]),
-                )
+                f"{self.tag_name} => {bidx} - Image: {image.shape};"
+                f" Label: {y.shape} (nz: {cl});"
+                f" Pred: {y_pred.shape} (nz: {cp});"
+                f" Diff: {100 * (cp - cl) / (cl + 1):.2f}%;"
+                f" Sig: (pos-nz: {np.count_nonzero(image[3])}, neg-nz: {np.count_nonzero(image[4])})"
             )
 
             tag_prefix = f"{self.tag_name} - b{bidx} - " if self.batch_limit != 1 else f"{self.tag_name} - "

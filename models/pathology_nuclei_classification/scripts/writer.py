@@ -10,7 +10,7 @@
 # limitations under the License.
 import json
 import logging
-from typing import Dict, Mapping, Optional
+from collections.abc import Mapping
 
 import numpy as np
 from monai.config import NdarrayOrTensor, PathLike
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 class ClassificationWriter(ImageWriter):
-    def __init__(self, label_index_map: Optional[Dict[str, str]] = None, **kwargs):
+    def __init__(self, label_index_map: dict[str, str] | None = None, **kwargs):
         super().__init__(**kwargs)
         self.label_index_map = (
             label_index_map
@@ -31,14 +31,14 @@ class ClassificationWriter(ImageWriter):
     def set_data_array(
         self,
         data_array: NdarrayOrTensor,
-        channel_dim: Optional[int] = 0,
+        channel_dim: int | None = 0,
         squeeze_end_dims: bool = True,
         contiguous: bool = False,
         **kwargs,
     ):
         self.data_obj: np.ndarray = super().create_backend_obj(data_array)
 
-    def set_metadata(self, meta_dict: Optional[Mapping] = None, resample: bool = True, **options):
+    def set_metadata(self, meta_dict: Mapping | None = None, resample: bool = True, **options):
         pass
 
     def write(self, filename: PathLike, verbose: bool = False, **kwargs):

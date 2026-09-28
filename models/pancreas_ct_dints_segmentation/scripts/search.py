@@ -15,8 +15,8 @@ import os
 import random
 import sys
 import time
+from collections.abc import Sequence
 from datetime import datetime
-from typing import Sequence, Union
 
 import monai
 import numpy as np
@@ -34,7 +34,7 @@ from torch.nn.parallel import DistributedDataParallel
 from torch.utils.tensorboard import SummaryWriter
 
 
-def run(config_file: Union[str, Sequence[str]]):
+def run(config_file: str | Sequence[str]):  # ruff: ignore[C901]  FIXME: too complex
     logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
     parser = ConfigParser()
@@ -75,7 +75,7 @@ def run(config_file: Union[str, Sequence[str]]):
         world_size = 1
     print("[info] world_size:", world_size)
 
-    with open(data_list_file_path, "r") as f:
+    with open(data_list_file_path) as f:
         json_data = json.load(f)
 
     list_train = json_data["training"]
@@ -214,7 +214,7 @@ def run(config_file: Union[str, Sequence[str]]):
         if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
             print("-" * 10)
             print(f"epoch {epoch + 1}/{num_epochs}")
-            print("learning rate is set to {}".format(lr))
+            print(f"learning rate is set to {lr}")
 
         model.train()
         epoch_loss = 0
@@ -264,7 +264,7 @@ def run(config_file: Union[str, Sequence[str]]):
             idx_iter += 1
 
             if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
-                print("[{0}] ".format(str(datetime.now())[:19]) + f"{step}/{epoch_len}, train_loss: {loss.item():.4f}")
+                print(f"[{str(datetime.now())[:19]}] " + f"{step}/{epoch_len}, train_loss: {loss.item():.4f}")
                 writer.add_scalar("train_loss", loss.item(), epoch_len * epoch + step)
 
             if epoch < num_epochs_warmup:
@@ -345,10 +345,7 @@ def run(config_file: Union[str, Sequence[str]]):
             loss_torch_arch[1] += 1.0
 
             if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
-                print(
-                    "[{0}] ".format(str(datetime.now())[:19])
-                    + f"{step}/{epoch_len}, train_loss_arch: {loss.item():.4f}"
-                )
+                print(f"[{str(datetime.now())[:19]}] " + f"{step}/{epoch_len}, train_loss_arch: {loss.item():.4f}")
                 writer.add_scalar("train_loss_arch", loss.item(), epoch_len * epoch + step)
 
         # synchronizes all processes and reduce results
@@ -446,7 +443,7 @@ def run(config_file: Union[str, Sequence[str]]):
                 metric = metric.tolist()
                 if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
                     for _c in range(output_classes - 1):
-                        print("evaluation metric - class {0:d}:".format(_c + 1), metric[2 * _c] / metric[2 * _c + 1])
+                        print(f"evaluation metric - class {_c + 1:d}:", metric[2 * _c] / metric[2 * _c + 1])
                     avg_metric = 0
                     for _c in range(output_classes - 1):
                         avg_metric += metric[2 * _c] / metric[2 * _c + 1]
@@ -458,7 +455,7 @@ def run(config_file: Union[str, Sequence[str]]):
                         best_metric_epoch = epoch + 1
                         best_metric_iterations = idx_iter
 
-                    (node_a_d, arch_code_a_d, arch_code_c_d, arch_code_a_max_d) = dints_space.decode()
+                    node_a_d, arch_code_a_d, arch_code_c_d, arch_code_a_max_d = dints_space.decode()
                     torch.save(
                         {
                             "node_a": node_a_d,
@@ -482,18 +479,14 @@ def run(config_file: Union[str, Sequence[str]]):
                         _ = yaml.dump(dict_file, stream=out_file)
 
                     print(
-                        "current epoch: {} current mean dice: {:.4f} best mean dice: {:.4f} at epoch {}".format(
-                            epoch + 1, avg_metric, best_metric, best_metric_epoch
-                        )
+                        f"current epoch: {epoch + 1} current mean dice: {avg_metric:.4f} best mean dice: {best_metric:.4f} at epoch {best_metric_epoch}"
                     )
 
                     current_time = time.time()
                     elapsed_time = (current_time - start_time) / 60.0
                     with open(os.path.join(arch_ckpt_path, "accuracy_history.csv"), "a") as f:
                         f.write(
-                            "{0:d}\t{1:.5f}\t{2:.5f}\t{3:.5f}\t{4:.1f}\t{5:d}\n".format(
-                                epoch + 1, avg_metric, loss_torch_epoch, lr, elapsed_time, idx_iter
-                            )
+                            f"{epoch + 1:d}\t{avg_metric:.5f}\t{loss_torch_epoch:.5f}\t{lr:.5f}\t{elapsed_time:.1f}\t{idx_iter:d}\n"
                         )
 
                 if torch.cuda.device_count() > 1:
