@@ -5,11 +5,10 @@ import collections.abc
 import math
 import warnings
 from itertools import repeat
-from typing import List, Optional, Tuple
 
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
+from torch import nn
 
 try:
     from torch import _assert
@@ -116,7 +115,7 @@ class DropBlock2d(nn.Module):
     def __init__(
         self, drop_prob=0.1, block_size=7, gamma_scale=1.0, with_noise=False, inplace=False, batchwise=False, fast=True
     ):
-        super(DropBlock2d, self).__init__()
+        super().__init__()
         self.drop_prob = drop_prob
         self.gamma_scale = gamma_scale
         self.block_size = block_size
@@ -162,7 +161,7 @@ class DropPath(nn.Module):
     """Drop paths (Stochastic Depth) per sample  (when applied in main path of residual blocks)."""
 
     def __init__(self, drop_prob=None, scale_by_keep=True):
-        super(DropPath, self).__init__()
+        super().__init__()
         self.drop_prob = drop_prob
         self.scale_by_keep = scale_by_keep
 
@@ -188,10 +187,10 @@ def create_conv3d(in_channels, out_channels, kernel_size, **kwargs):
 def conv3d_same(
     x,
     weight: torch.Tensor,
-    bias: Optional[torch.Tensor] = None,
-    stride: Tuple[int, int] = (1, 1, 1),
-    padding: Tuple[int, int] = (0, 0, 0),
-    dilation: Tuple[int, int] = (1, 1, 1),
+    bias: torch.Tensor | None = None,
+    stride: tuple[int, int] = (1, 1, 1),
+    padding: tuple[int, int] = (0, 0, 0),
+    dilation: tuple[int, int] = (1, 1, 1),
     groups: int = 1,
 ):
     x = pad_same(x, weight.shape[-3:], stride, dilation)
@@ -202,7 +201,7 @@ class Conv3dSame(nn.Conv2d):
     """Tensorflow like 'SAME' convolution wrapper for 2D convolutions"""
 
     def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True):
-        super(Conv3dSame, self).__init__(in_channels, out_channels, kernel_size, stride, 0, dilation, groups, bias)
+        super().__init__(in_channels, out_channels, kernel_size, stride, 0, dilation, groups, bias)
 
     def forward(self, x):
         return conv3d_same(x, self.weight, self.bias, self.stride, self.padding, self.dilation, self.groups)
@@ -235,7 +234,7 @@ def is_static_pad(kernel_size: int, stride: int = 1, dilation: int = 1, **_):
 
 
 # Dynamically pad input x with 'SAME' padding for conv with specified args
-def pad_same(x, k: List[int], s: List[int], d: List[int] = (1, 1, 1), value: float = 0):
+def pad_same(x, k: list[int], s: list[int], d: list[int] = (1, 1, 1), value: float = 0):
     id, ih, iw = x.size()[-3:]
     pad_d, pad_h, pad_w = (
         get_same_padding(id, k[0], s[0], d[0]),
@@ -251,7 +250,7 @@ def pad_same(x, k: List[int], s: List[int], d: List[int] = (1, 1, 1), value: flo
     return x
 
 
-def get_padding_value(padding, kernel_size, **kwargs) -> Tuple[Tuple, bool]:
+def get_padding_value(padding, kernel_size, **kwargs) -> tuple[tuple, bool]:
     dynamic = False
     if isinstance(padding, str):
         # for any string padding, the padding will be calculated for you, one of three ways
@@ -341,9 +340,9 @@ class Mlp(nn.Module):
 
 def avg_pool3d_same(
     x,
-    kernel_size: List[int],
-    stride: List[int],
-    padding: List[int] = (0, 0, 0),
+    kernel_size: list[int],
+    stride: list[int],
+    padding: list[int] = (0, 0, 0),
     ceil_mode: bool = False,
     count_include_pad: bool = True,
 ):
@@ -358,7 +357,7 @@ class AvgPool3dSame(nn.AvgPool2d):
     def __init__(self, kernel_size: int, stride=None, padding=0, ceil_mode=False, count_include_pad=True):
         kernel_size = to_2tuple(kernel_size)
         stride = to_2tuple(stride)
-        super(AvgPool3dSame, self).__init__(kernel_size, stride, (0, 0, 0), ceil_mode, count_include_pad)
+        super().__init__(kernel_size, stride, (0, 0, 0), ceil_mode, count_include_pad)
 
     def forward(self, x):
         x = pad_same(x, self.kernel_size, self.stride)
@@ -367,10 +366,10 @@ class AvgPool3dSame(nn.AvgPool2d):
 
 def max_pool3d_same(
     x,
-    kernel_size: List[int],
-    stride: List[int],
-    padding: List[int] = (0, 0, 0),
-    dilation: List[int] = (1, 1, 1),
+    kernel_size: list[int],
+    stride: list[int],
+    padding: list[int] = (0, 0, 0),
+    dilation: list[int] = (1, 1, 1),
     ceil_mode: bool = False,
 ):
     x = pad_same(x, kernel_size, stride, value=-float("inf"))
@@ -384,7 +383,7 @@ class MaxPool3dSame(nn.MaxPool2d):
         kernel_size = to_2tuple(kernel_size)
         stride = to_2tuple(stride)
         dilation = to_2tuple(dilation)
-        super(MaxPool3dSame, self).__init__(kernel_size, stride, (0, 0, 0), dilation, ceil_mode)
+        super().__init__(kernel_size, stride, (0, 0, 0), dilation, ceil_mode)
 
     def forward(self, x):
         x = pad_same(x, self.kernel_size, self.stride, value=-float("inf"))

@@ -11,7 +11,8 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Callable, Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
+from typing import TYPE_CHECKING, Any
 
 import torch
 from monai.engines.utils import IterationEvents, default_metric_cmp_fn, default_prepare_batch

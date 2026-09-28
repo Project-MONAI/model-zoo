@@ -392,8 +392,6 @@ def main():
             dataset_path = os.path.join(data_root_path, key)
             tissuenet_process_files(dataset_dir=dataset_path)
 
-    return None
-
 
 if __name__ == "__main__":
     main()

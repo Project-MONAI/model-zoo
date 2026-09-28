@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.5.11",
+    "version": "0.5.12",
     "changelog": {
+        "0.5.12": "modernize type annotations and imports without changing behavior",
         "0.5.11": "update dependencies for bundle",
         "0.5.10": "enhance metadata with improved descriptions",
         "0.5.9": "fix finetuning bug and update readme",

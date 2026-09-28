@@ -12,7 +12,8 @@
 # based on Pytorch DistributedSampler and WeightedRandomSampler combined
 
 import math
-from typing import Iterator, Optional, Sequence, TypeVar
+from collections.abc import Iterator, Sequence
+from typing import TypeVar
 
 import torch
 import torch.distributed as dist
@@ -29,8 +30,8 @@ class DistributedWeightedSampler(Sampler[T_co]):
         dataset: Dataset,
         weights: Sequence[float],
         num_samples: int,
-        num_replicas: Optional[int] = None,
-        rank: Optional[int] = None,
+        num_replicas: int | None = None,
+        rank: int | None = None,
         shuffle: bool = True,
         seed: int = 0,
         drop_last: bool = False,
