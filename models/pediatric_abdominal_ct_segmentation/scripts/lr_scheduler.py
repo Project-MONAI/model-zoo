@@ -11,12 +11,11 @@
 
 import math
 import warnings
-from typing import List
 
 from torch.optim import Optimizer
 from torch.optim.lr_scheduler import LambdaLR, _LRScheduler
 
-__all__ = ["LinearLR", "ExponentialLR"]
+__all__ = ["ExponentialLR", "LinearLR"]
 
 
 class _LRSchedulerMONAI(_LRScheduler):
@@ -35,7 +34,7 @@ class _LRSchedulerMONAI(_LRScheduler):
         """
         self.end_lr = end_lr
         self.num_iter = num_iter
-        super(_LRSchedulerMONAI, self).__init__(optimizer, last_epoch)
+        super().__init__(optimizer, last_epoch)
 
 
 class LinearLR(_LRSchedulerMONAI):
@@ -79,7 +78,7 @@ class WarmupCosineSchedule(LambdaLR):
         self.warmup_steps = warmup_steps
         self.t_total = t_total
         self.cycles = cycles
-        super(WarmupCosineSchedule, self).__init__(optimizer, self.lr_lambda, last_epoch)
+        super().__init__(optimizer, self.lr_lambda, last_epoch)
 
     def lr_lambda(self, step):
         if step < self.warmup_steps:
@@ -112,9 +111,9 @@ class LinearWarmupCosineAnnealingLR(_LRScheduler):
         self.warmup_start_lr = warmup_start_lr
         self.eta_min = eta_min
 
-        super(LinearWarmupCosineAnnealingLR, self).__init__(optimizer, last_epoch)
+        super().__init__(optimizer, last_epoch)
 
-    def get_lr(self) -> List[float]:
+    def get_lr(self) -> list[float]:
         """
         Compute learning rate using chainable form of the scheduler
         """
@@ -152,7 +151,7 @@ class LinearWarmupCosineAnnealingLR(_LRScheduler):
             for group in self.optimizer.param_groups
         ]
 
-    def _get_closed_form_lr(self) -> List[float]:
+    def _get_closed_form_lr(self) -> list[float]:
         """
         Called when epoch is passed as a param to the `step` function of the scheduler.
         """

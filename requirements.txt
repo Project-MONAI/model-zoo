@@ -1,1 +1,2 @@
-monai>=1.0.1
+torch<2.14.0  # temporary version restriction to avoid deprecation error
+monai>=1.2.0

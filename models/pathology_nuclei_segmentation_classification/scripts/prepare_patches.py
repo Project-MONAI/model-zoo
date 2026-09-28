@@ -62,7 +62,7 @@ class PatchExtractor:
         win = x[ptx[0] : pty[0], ptx[1] : pty[1]]
         assert (
             win.shape[0] == self.patch_size[0] and win.shape[1] == self.patch_size[1]
-        ), "[BUG] Incorrect Patch Size {0}".format(win.shape)
+        ), f"[BUG] Incorrect Patch Size {win.shape}"
         return win
 
     def __extract_valid(self, x):
@@ -176,8 +176,8 @@ def main(cfg):
             img = load_img(f"{img_dir}/{base_name}.{cfg['image_suffix']}")
             ann = load_ann(f"{ann_dir}/{base_name}.{cfg['label_suffix']}")
 
-            np.save("{0}/label_{1}.npy".format(out_dir, base_name), ann)
-            np.save("{0}/image_{1}.npy".format(out_dir, base_name), img)
+            np.save(f"{out_dir}/label_{base_name}.npy", ann)
+            np.save(f"{out_dir}/image_{base_name}.npy", img)
 
             # *
             img = np.concatenate([img, ann], axis=-1)
@@ -190,9 +190,9 @@ def main(cfg):
                 image_patch = patch[..., :3]
                 inst_map_patch = patch[..., 3:4]
                 type_map_patch = patch[..., 4:5]
-                np.save("{0}/{1}_{2:03d}_image.npy".format(out_dir, base_name, idx), image_patch)
-                np.save("{0}/{1}_{2:03d}_inst_map.npy".format(out_dir, base_name, idx), inst_map_patch)
-                np.save("{0}/{1}_{2:03d}_type_map.npy".format(out_dir, base_name, idx), type_map_patch)
+                np.save(f"{out_dir}/{base_name}_{idx:03d}_image.npy", image_patch)
+                np.save(f"{out_dir}/{base_name}_{idx:03d}_inst_map.npy", inst_map_patch)
+                np.save(f"{out_dir}/{base_name}_{idx:03d}_type_map.npy", type_map_patch)
                 pbar.update()
             pbar.close()
             # *

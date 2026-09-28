@@ -36,7 +36,7 @@ class GradualWarmupScheduler(_LRScheduler):
         self.total_epoch = total_epoch
         self.after_scheduler = after_scheduler
         self.finished = False
-        super(GradualWarmupScheduler, self).__init__(optimizer)
+        super().__init__(optimizer)
 
     def get_lr(self):
         self.last_epoch = max(1, self.last_epoch)  # to avoid epoch=0 thus lr=0
@@ -84,6 +84,6 @@ class GradualWarmupScheduler(_LRScheduler):
                     self.after_scheduler.step(epoch - self.total_epoch)
                 self._last_lr = self.after_scheduler.get_last_lr()
             else:
-                return super(GradualWarmupScheduler, self).step(epoch)
+                return super().step(epoch)
         else:
             self.step_reduce_lr_on_plateau(metrics, epoch)

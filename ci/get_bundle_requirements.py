@@ -63,7 +63,7 @@ def get_requirements(bundle, models_path, requirements_file):
     if os.path.exists(meta_file_path):
         metadata = get_json_dict(meta_file_path)
         libs = []
-        if "monai_version" in metadata.keys():
+        if "monai_version" in metadata:
             monai_version = metadata["monai_version"]
             if not ALLOW_MONAI_RC:
                 lib_monai_req = f"monai=={monai_version}"
@@ -71,10 +71,10 @@ def get_requirements(bundle, models_path, requirements_file):
                 lib_monai_req = f"monai>={monai_version}rc1,<{increment_version(monai_version)}"
                 print(f"ALLOW_MONAI_RC is set to true, the version range is {lib_monai_req}", file=sys.stderr)
             libs.append(lib_monai_req)
-        if "pytorch_version" in metadata.keys():
+        if "pytorch_version" in metadata:
             pytorch_version = metadata["pytorch_version"]
             libs.append(f"torch=={pytorch_version}")
-        if "numpy_version" in metadata.keys():
+        if "numpy_version" in metadata:
             numpy_version = metadata["numpy_version"]
             libs.append(f"numpy=={numpy_version}")
 
@@ -96,14 +96,13 @@ def get_requirements(bundle, models_path, requirements_file):
 
         if len(libs) > 0:
             with open(requirements_file, "w") as f:
-                for line in libs:
-                    f.write(f"{line}\n")
+                f.writelines(f"{line}\n" for line in libs)
 
 
 def get_install_script(bundle):
     # install extra dependencies if needed
     script_path = ""
-    if bundle in install_dependency_dict.keys():
+    if bundle in install_dependency_dict:
         script_path = install_dependency_dict[bundle]
     print(script_path)
 

@@ -183,11 +183,7 @@ def _accel_quantile_rank(cumulative: np.ndarray, quantile: float, nvox: int, upp
 
 
 def _quantile_normalize_uint8(
-    img_uint8: np.ndarray,
-    q_low: float = 0.05,
-    q_high: float = 0.95,
-    denom_eps: float = 0.0,
-    clamp: bool = False,
+    img_uint8: np.ndarray, q_low: float = 0.05, q_high: float = 0.95, denom_eps: float = 0.0, clamp: bool = False
 ) -> np.ndarray:
     """backend_accel.c `bc_accel_normalize_input`, parameterized with
     mindmap's model_meta.json values (q_low=0.05, q_high=0.95, denom_eps=0.0,

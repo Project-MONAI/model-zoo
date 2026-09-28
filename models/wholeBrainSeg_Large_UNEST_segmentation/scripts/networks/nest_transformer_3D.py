@@ -33,7 +33,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-""" Nested Transformer (NesT) in PyTorch
+"""Nested Transformer (NesT) in PyTorch
 A PyTorch implement of Aggregating Nested Transformers as described in:
 'Aggregating Nested Transformers'
     - https://arxiv.org/abs/2105.12723
@@ -49,8 +49,8 @@ Copyright 2021 Alexander Soare
 import collections.abc
 import logging
 import math
+from collections.abc import Callable, Sequence
 from functools import partial
-from typing import Callable, Sequence
 
 import torch
 import torch.nn.functional as F
@@ -482,7 +482,7 @@ def resize_pos_embed(posemb, posemb_new):
 
 def checkpoint_filter_fn(state_dict, model):
     """resize positional embeddings of pretrained weights"""
-    pos_embed_keys = [k for k in state_dict.keys() if k.startswith("pos_embed_")]
+    pos_embed_keys = [k for k in state_dict if k.startswith("pos_embed_")]
     for k in pos_embed_keys:
         if state_dict[k].shape != getattr(model, k).shape:
             state_dict[k] = resize_pos_embed(state_dict[k], getattr(model, k))

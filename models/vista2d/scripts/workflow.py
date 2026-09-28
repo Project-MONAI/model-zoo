@@ -731,7 +731,6 @@ class VistaCell(BundleWorkflow):
                         shutil.copyfile(best_ckpt_path, intermediate_ckpt_path)  # if already saved once
                     except Exception as err:
                         logger.warning(f"error copying {best_ckpt_path} {intermediate_ckpt_path} {err}")
-                        pass
 
             if lr_scheduler is not None:
                 lr_scheduler.step()
@@ -1121,9 +1120,7 @@ class VistaCell(BundleWorkflow):
 
         if self.config("compile", False):
             # remove key prefix of compiled models
-            state_dict = OrderedDict(
-                (k[len("_orig_mod.") :] if k.startswith("_orig_mod.") else k, v) for k, v in state_dict.items()
-            )
+            state_dict = OrderedDict((k.removeprefix("_orig_mod."), v) for k, v in state_dict.items())
 
         torch.save({"state_dict": state_dict, "config": self.parser.config, **kwargs}, ckpt)
 

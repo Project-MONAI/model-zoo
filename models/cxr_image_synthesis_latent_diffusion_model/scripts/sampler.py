@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import torch
-import torch.nn as nn
 from monai.utils import optional_import
+from torch import nn
 from torch.cuda.amp import autocast
 
 tqdm, has_tqdm = optional_import("tqdm", name="tqdm")

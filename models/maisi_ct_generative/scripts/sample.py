@@ -375,10 +375,8 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
         raise ValueError(f"The first two components of output_size need to be equal, yet got {output_size}.")
     if (output_size[0] not in [256, 384, 512]) or (output_size[2] not in [128, 256, 384, 512, 640, 768]):
         raise ValueError(
-            (
-                "The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] "
-                f"have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
-            )
+            "The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] "
+            f"have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
         )
 
     if spacing[0] != spacing[1]:
@@ -396,21 +394,17 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
     ):
         fov = [output_size[axis] * spacing[axis] for axis in range(3)]
         raise ValueError(
-            (
-                f"`'spacing'({spacing}mm) and 'output_size'({output_size}) together decide the output field of view (FOV). "
-                f"The FOV will be {fov}mm. We recommend the FOV in x and y axis to be at least 256mm for head, and at least "
-                "384mm for other body regions like abdomen, and less than 640mm. "
-                "For z-axis, we require it to be at least 128mm and less than 2000mm."
-            )
+            f"`'spacing'({spacing}mm) and 'output_size'({output_size}) together decide the output field of view (FOV). "
+            f"The FOV will be {fov}mm. We recommend the FOV in x and y axis to be at least 256mm for head, and at least "
+            "384mm for other body regions like abdomen, and less than 640mm. "
+            "For z-axis, we require it to be at least 128mm and less than 2000mm."
         )
 
     # check controllable_anatomy_size format
     if len(controllable_anatomy_size) > 10:
         raise ValueError(
-            (
-                "The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] "
-                f"have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
-            )
+            "The output_size[0] have to be chosen from [256, 384, 512], and output_size[2] "
+            f"have to be chosen from [128, 256, 384, 512, 640, 768], yet got {output_size}."
         )
     available_controllable_organ = ["liver", "gallbladder", "stomach", "pancreas", "colon"]
     available_controllable_tumor = [
@@ -426,10 +420,8 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
     for controllable_anatomy_size_pair in controllable_anatomy_size:
         if controllable_anatomy_size_pair[0] not in available_controllable_anatomy:
             raise ValueError(
-                (
-                    f"The controllable_anatomy have to be chosen from {available_controllable_anatomy}, "
-                    f"yet got {controllable_anatomy_size_pair[0]}."
-                )
+                f"The controllable_anatomy have to be chosen from {available_controllable_anatomy}, "
+                f"yet got {controllable_anatomy_size_pair[0]}."
             )
         if controllable_anatomy_size_pair[0] in available_controllable_tumor:
             controllable_tumor += [controllable_anatomy_size_pair[0]]
@@ -439,10 +431,8 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
             continue
         if controllable_anatomy_size_pair[1] < 0 or controllable_anatomy_size_pair[1] > 1.0:
             raise ValueError(
-                (
-                    "The controllable size scale have to be between 0 and 1,0, or equal to -1, "
-                    f"yet got {controllable_anatomy_size_pair[1]}."
-                )
+                "The controllable size scale have to be between 0 and 1,0, or equal to -1, "
+                f"yet got {controllable_anatomy_size_pair[1]}."
             )
     if len(controllable_tumor + controllable_organ) != len(list(set(controllable_tumor + controllable_organ))):
         raise ValueError(f"Please do not repeat controllable_anatomy. Got {controllable_tumor + controllable_organ}.")
@@ -451,14 +441,12 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
 
     if len(controllable_anatomy_size) > 0:
         logging.info(
-            (
-                "`controllable_anatomy_size` is not empty.\nWe will ignore `body_region` and `anatomy_list` "
-                f"and synthesize based on `controllable_anatomy_size`: ({controllable_anatomy_size})."
-            )
+            "`controllable_anatomy_size` is not empty.\nWe will ignore `body_region` and `anatomy_list` "
+            f"and synthesize based on `controllable_anatomy_size`: ({controllable_anatomy_size})."
         )
     else:
         logging.info(
-            (f"`controllable_anatomy_size` is empty.\nWe will synthesize based on `anatomy_list`: ({anatomy_list}).")
+            f"`controllable_anatomy_size` is empty.\nWe will synthesize based on `anatomy_list`: ({anatomy_list})."
         )
         # check body_region format
         available_body_region = ["head", "chest", "thorax", "abdomen", "pelvis", "lower"]
@@ -472,13 +460,11 @@ def check_input(body_region, anatomy_list, label_dict_json, output_size, spacing
         with open(label_dict_json) as f:
             label_dict = json.load(f)
         for anatomy in anatomy_list:
-            if anatomy not in label_dict.keys():
+            if anatomy not in label_dict:
                 raise ValueError(
-                    f"The components in anatomy_list have to be chosen from {label_dict.keys()}, yet got {anatomy}."
+                    f"The components in anatomy_list have to be chosen from {label_dict}, yet got {anatomy}."
                 )
     logging.info(f"The generate results will have voxel size to be {spacing} mm, volume size to be {output_size}.")
-
-    return
 
 
 class LDMSampler:
@@ -534,7 +520,7 @@ class LDMSampler:
         if random_seed is not None:
             set_determinism(seed=random_seed)
 
-        with open(label_dict_json, "r") as f:
+        with open(label_dict_json) as f:
             label_dict = json.load(f)
         self.all_anatomy_size_condtions_json = all_anatomy_size_condtions_json
 
@@ -579,17 +565,15 @@ class LDMSampler:
             )
         if not (0 <= autoencoder_sliding_window_infer_overlap <= 1):
             raise ValueError(
-                (
-                    "Value of autoencoder_sliding_window_infer_overlap must be between 0 "
-                    f"and 1.\n Got {autoencoder_sliding_window_infer_overlap}"
-                )
+                "Value of autoencoder_sliding_window_infer_overlap must be between 0 "
+                f"and 1.\n Got {autoencoder_sliding_window_infer_overlap}"
             )
         self.autoencoder_sliding_window_infer_size = autoencoder_sliding_window_infer_size
         self.autoencoder_sliding_window_infer_overlap = autoencoder_sliding_window_infer_overlap
 
         # quality check args
         self.max_try_time = 3  # if not pass quality check, will try self.max_try_time times
-        with open(real_img_median_statistics, "r") as json_file:
+        with open(real_img_median_statistics) as json_file:
             self.median_statistics = json.load(json_file)
         self.label_int_dict = {
             "liver": [1],
@@ -657,10 +641,8 @@ class LDMSampler:
             selected_mask_files = self.select_mask(candidate_mask_files, num_img)
             if len(selected_mask_files) < num_img:
                 raise ValueError(
-                    (
-                        f"len(selected_mask_files) ({len(selected_mask_files)}) < num_img ({num_img}). "
-                        "This should not happen. Please revisit function select_mask(self, candidate_mask_files, num_img)."
-                    )
+                    f"len(selected_mask_files) ({len(selected_mask_files)}) < num_img ({num_img}). "
+                    "This should not happen. Please revisit function select_mask(self, candidate_mask_files, num_img)."
                 )
         num_generated_img = 0
         for index_s in range(len(selected_mask_files)):
@@ -672,12 +654,12 @@ class LDMSampler:
             logging.info(f"Image will be generated based on {item}.")
             if len(self.controllable_anatomy_size) > 0:
                 # generate a synthetic mask
-                (combine_label_or, spacing_tensor) = self.prepare_one_mask_and_meta_info(anatomy_size_condtion)
+                combine_label_or, spacing_tensor = self.prepare_one_mask_and_meta_info(anatomy_size_condtion)
             else:
                 # read in mask file
                 mask_file = item["mask_file"]
                 if_aug = item["if_aug"]
-                (combine_label_or, spacing_tensor) = self.read_mask_information(mask_file)
+                combine_label_or, spacing_tensor = self.read_mask_information(mask_file)
                 if need_resample:
                     combine_label_or = self.ensure_output_size_and_spacing(combine_label_or)
                 # mask augmentation
@@ -811,7 +793,7 @@ class LDMSampler:
             anatomy_name, anatomy_size = element
             provide_anatomy_size[anatomy_size_idx[anatomy_name]] = anatomy_size
 
-        with open(self.all_anatomy_size_condtions_json, "r") as f:
+        with open(self.all_anatomy_size_condtions_json) as f:
             all_anatomy_size_condtions = json.load(f)
 
         # loop through the database and find closest combinations
@@ -924,10 +906,8 @@ class LDMSampler:
                 for anatomy_label in self.anatomy_list:
                     if anatomy_label not in contained_labels:
                         raise ValueError(
-                            (
-                                f"Resampled mask does not contain required class labels {anatomy_label}. "
-                                "Please consider increasing the output spacing or specifying a larger output size."
-                            )
+                            f"Resampled mask does not contain required class labels {anatomy_label}. "
+                            "Please consider increasing the output spacing or specifying a larger output size."
                         )
         return labels
 
@@ -1027,10 +1007,8 @@ class LDMSampler:
         for label, result in outlier_results.items():
             if result.get("is_outlier", False):
                 logging.info(
-                    (
-                        f"Generated image quality check for label '{label}' failed: median value {result['median_value']} "
-                        f"is outside the acceptable range ({result['low_thresh']} - {result['high_thresh']})."
-                    )
+                    f"Generated image quality check for label '{label}' failed: median value {result['median_value']} "
+                    f"is outside the acceptable range ({result['low_thresh']} - {result['high_thresh']})."
                 )
                 return False
         return True

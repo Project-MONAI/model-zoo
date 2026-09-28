@@ -93,7 +93,7 @@ def update_model_info(
         return (False, f"Upload bundle error: {e}")
 
     # step 4
-    if bundle_name_with_version not in model_info.keys():
+    if bundle_name_with_version not in model_info:
         model_info[bundle_name_with_version] = {"checksum": "", "source": ""}
 
     model_info[bundle_name_with_version]["checksum"] = checksum

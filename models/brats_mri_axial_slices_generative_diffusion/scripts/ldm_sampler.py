@@ -12,9 +12,9 @@
 from __future__ import annotations
 
 import torch
-import torch.nn as nn
 from monai.utils import optional_import
 from PIL import Image
+from torch import nn
 from torch.cuda.amp import autocast
 
 from .utils import visualize_2d_image
@@ -56,9 +56,8 @@ class LDMSampler:
                 )
                 image, _ = scheduler.step(model_output, t, image)
 
-        with torch.no_grad():
-            with autocast():
-                sample = autoencoder_model.decode_stage_2_outputs(image)
+        with torch.no_grad(), autocast():
+            sample = autoencoder_model.decode_stage_2_outputs(image)
 
         return sample
 
