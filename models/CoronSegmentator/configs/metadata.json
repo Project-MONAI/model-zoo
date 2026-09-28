@@ -3,7 +3,7 @@
     "name": "coronaryArtery_ct_segmentation",
     "version": "1.0.0",
     "monai_version": "1.6.0",
-    "pytorch_version": "2.6.0",
+    "pytorch_version": "2.8.0",
     "numpy_version": "2.2.6",
     "required_packages_version": {
         "fire": "0.7.0",
