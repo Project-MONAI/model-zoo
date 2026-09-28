@@ -3,17 +3,16 @@
 
 import argparse
 import os
-from typing import List
 
 import matplotlib
 import pandas as pd
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.pyplot as plt
 
 
-def _load_histories(kfold_dir: str) -> List[pd.DataFrame]:
-    histories: List[pd.DataFrame] = []
+def _load_histories(kfold_dir: str) -> list[pd.DataFrame]:
+    histories: list[pd.DataFrame] = []
     for fold in range(5):
         csv_path = os.path.join(kfold_dir, f"fold_{fold}", "training_history.csv")
         if os.path.exists(csv_path):
