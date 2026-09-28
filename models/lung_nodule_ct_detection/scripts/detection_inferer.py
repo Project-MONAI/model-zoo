@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Any, List, Union
+from typing import Any
 
 import numpy as np
 import torch
@@ -42,7 +42,7 @@ class RetinaNetInferer(Inferer):
             if hasattr(self.detector.inferer, "roi_size"):
                 self.sliding_window_size = np.prod(self.detector.inferer.roi_size)
 
-    def __call__(self, inputs: Union[List[Tensor], Tensor], network: torch.nn.Module, *args: Any, **kwargs: Any):
+    def __call__(self, inputs: list[Tensor] | Tensor, network: torch.nn.Module, *args: Any, **kwargs: Any):
         """Unified callable function API of Inferers.
         Args:
             inputs: model input data for inference.

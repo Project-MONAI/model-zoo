@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "changelog": {
+        "0.4.1": "modernize type annotations and formatting without changing behavior",
         "0.4.0": "rebrand as VISTA-2D, enhance metadata and documentation",
         "0.3.1": "update to huggingface hosting",
         "0.3.0": "update readme",

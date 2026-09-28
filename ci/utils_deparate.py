@@ -15,7 +15,6 @@ import json
 import os
 import shutil
 import subprocess
-from typing import List
 
 from monai.apps.utils import download_url
 from monai.bundle.config_parser import ConfigParser
@@ -34,7 +33,7 @@ def get_sub_folders(root_dir: str):
 
 
 def get_json_dict(json_dict_path: str):
-    with open(json_dict_path, "r") as f:
+    with open(json_dict_path) as f:
         json_dict = json.load(f)
 
     return json_dict
@@ -46,7 +45,7 @@ def get_hash_func(hash_type: str = "sha1"):
     return actual_hash_func()
 
 
-def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
+def get_changed_bundle_list(changed_dirs: list[str], root_path: str = "models"):
     """
     This function is used to return all bundle names that have changed files.
     If a bundle is totally removed, it will be ignored (since it not exists).
@@ -64,7 +63,7 @@ def get_changed_bundle_list(changed_dirs: List[str], root_path: str = "models"):
     return list(set(changed_bundle_list))
 
 
-def prepare_schema(bundle_list: List[str], root_path: str = "models"):
+def prepare_schema(bundle_list: list[str], root_path: str = "models"):
     """
     This function is used to prepare schema for changed bundles.
     Due to Github's limitation (see: https://github.com/Project-MONAI/model-zoo/issues/111),
@@ -81,7 +80,7 @@ def prepare_schema(bundle_list: List[str], root_path: str = "models"):
             schema_url = metadata["schema"]
             schema_name = schema_url.split("/")[-1]
 
-            if schema_url not in schema_dict.keys():
+            if schema_url not in schema_dict:
                 schema_path = os.path.join(root_path, schema_name)
                 download_url(url=schema_url, filepath=schema_path)
                 schema_dict[schema_url] = schema_path
@@ -112,7 +111,7 @@ def save_model_info(model_info_dict, model_info_path: str):
 def get_latest_version(bundle_name: str, model_info_path: str):
     model_info_dict = get_json_dict(model_info_path)
     versions = []
-    for k in model_info_dict.keys():
+    for k in model_info_dict:
         if bundle_name in k:
             versions.append(k.split(f"{bundle_name}_v")[1])
 

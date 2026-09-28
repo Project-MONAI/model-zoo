@@ -1,10 +1,8 @@
-from typing import Dict, List, Union
-
 import numpy as np
 import torch
 
 
-def detach_to_numpy(data: Union[List, Dict, torch.Tensor]) -> Union[List, Dict, torch.Tensor]:
+def detach_to_numpy(data: list | dict | torch.Tensor) -> list | dict | torch.Tensor:
     """
     Recursively detach elements in data
     """
@@ -18,7 +16,7 @@ def detach_to_numpy(data: Union[List, Dict, torch.Tensor]) -> Union[List, Dict, 
         return [detach_to_numpy(d) for d in data]
 
     elif isinstance(data, dict):
-        for k in data.keys():
+        for k in data:
             data[k] = detach_to_numpy(data[k])
         return data
 

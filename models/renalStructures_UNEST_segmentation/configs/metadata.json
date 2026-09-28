@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.2.7",
+    "version": "0.2.8",
     "changelog": {
+        "0.2.8": "modernize network type annotations, imports, and superclass calls without changing behavior",
         "0.2.7": "enhance metadata with improved descriptions",
         "0.2.6": "update to huggingface hosting",
         "0.2.5": "update large files",

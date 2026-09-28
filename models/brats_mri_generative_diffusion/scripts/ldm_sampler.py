@@ -12,9 +12,9 @@
 from __future__ import annotations
 
 import torch
-import torch.nn as nn
 from monai.transforms import Transform
 from monai.utils import optional_import
+from torch import nn
 from torch.cuda.amp import autocast
 
 tqdm, has_tqdm = optional_import("tqdm", name="tqdm")
@@ -54,9 +54,8 @@ class LDMSampler:
                 )
                 image, _ = scheduler.step(model_output, t, image)
 
-        with torch.no_grad():
-            with autocast():
-                sample = autoencoder_model.decode_stage_2_outputs(image)
+        with torch.no_grad(), autocast():
+            sample = autoencoder_model.decode_stage_2_outputs(image)
 
         return sample
 

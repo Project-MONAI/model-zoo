@@ -13,8 +13,9 @@ import math
 import os
 import zipfile
 from argparse import Namespace
+from collections.abc import Sequence
 from datetime import timedelta
-from typing import Any, Sequence
+from typing import Any
 
 import numpy as np
 import skimage
@@ -47,8 +48,6 @@ def unzip_dataset(dataset_dir):
 
     if dist.is_available() and dist.is_initialized():
         dist.barrier()  # Synchronize all processes
-
-    return
 
 
 def add_data_dir2path(list_files: list, data_dir: str, fold: int = None) -> tuple[list, list]:
@@ -86,7 +85,7 @@ def add_data_dir2path(list_files: list, data_dir: str, fold: int = None) -> tupl
 
 
 def maisi_datafold_read(json_list, data_base_dir, fold=None):
-    with open(json_list, "r") as f:
+    with open(json_list) as f:
         filenames_train = json.load(f)["training"]
     # training data
     train_files, val_files = add_data_dir2path(filenames_train, data_base_dir, fold=fold)
@@ -108,7 +107,7 @@ def remap_labels(mask, label_dict_remap_json):
     Returns:
         Tensor: The remapped mask tensor.
     """
-    with open(label_dict_remap_json, "r") as f:
+    with open(label_dict_remap_json) as f:
         mapping_dict = json.load(f)
     mapper = MapLabelValue(
         orig_labels=[pair[0] for pair in mapping_dict.values()],
@@ -296,13 +295,13 @@ def prepare_maisi_controlnet_json_dataloader(
         list_train = []
         list_valid = []
         for data_list, data_root in zip(json_data_list, data_base_dir):
-            with open(data_list, "r") as f:
+            with open(data_list) as f:
                 json_data = json.load(f)["training"]
             train, val = add_data_dir2path(json_data, data_root, fold)
             list_train += train
             list_valid += val
     else:
-        with open(json_data_list, "r") as f:
+        with open(json_data_list) as f:
             json_data = json.load(f)["training"]
         list_train, list_valid = add_data_dir2path(json_data, data_base_dir, fold)
 
@@ -440,7 +439,7 @@ def general_mask_generation_post_process(volume_t, target_tumor_label=None, devi
 
     # ------------ refine body mask pred
     body_region_mask = (
-        erode_one_img(torch.from_numpy((volume_t > 0)).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
+        erode_one_img(torch.from_numpy(volume_t > 0).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
     )
     body_region_mask, _ = supress_non_largest_components(body_region_mask, [1])
     body_region_mask = (
@@ -494,7 +493,7 @@ def general_mask_generation_post_process(volume_t, target_tumor_label=None, devi
     if target_tumor_label == 23 and np.sum(target_tumor) > 0:
         # speical process for cases with lung tumor
         dia_lung_tumor_mask = (
-            dilate_one_img(torch.from_numpy((data == 23)).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
+            dilate_one_img(torch.from_numpy(data == 23).to(device), filter_size=3, pad_value=0.0).cpu().numpy()
         )
         tmp = (
             (data * (dia_lung_tumor_mask.astype(np.uint8) - (data == 23).astype(np.uint8))).astype(np.float32).flatten()
@@ -533,7 +532,7 @@ def general_mask_generation_post_process(volume_t, target_tumor_label=None, devi
         data[organ_fill_by_removed_mask(data, target_label=3, remove_mask=organ_remove_mask, device=device)] = 3
         data[organ_fill_by_removed_mask(data, target_label=3, remove_mask=organ_remove_mask, device=device)] = 3
         dia_tumor_mask = (
-            dilate_one_img(torch.from_numpy((data == target_tumor_label)).to(device), filter_size=3, pad_value=0.0)
+            dilate_one_img(torch.from_numpy(data == target_tumor_label).to(device), filter_size=3, pad_value=0.0)
             .cpu()
             .numpy()
         )
@@ -564,7 +563,7 @@ def general_mask_generation_post_process(volume_t, target_tumor_label=None, devi
     if target_tumor_label == 27 and np.sum(target_tumor) > 0:
         # speical process for cases with colon tumor
         dia_tumor_mask = (
-            dilate_one_img(torch.from_numpy((data == target_tumor_label)).to(device), filter_size=3, pad_value=0.0)
+            dilate_one_img(torch.from_numpy(data == target_tumor_label).to(device), filter_size=3, pad_value=0.0)
             .cpu()
             .numpy()
         )
