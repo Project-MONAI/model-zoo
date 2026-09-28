@@ -6,10 +6,10 @@
     },
     "monai_version": "1.6.0",
     "pytorch_version": "2.14.0",
-    "numpy_version": "2.4.0",
+    "numpy_version": "2.2.6",
     "required_packages_version": {
         "nibabel": "5.4.2",
-        "scipy": "1.18.1",
+        "scipy": "1.15.3",
         "pytorch-ignite": "0.5.2"
     },
     "supported_apps": {},
