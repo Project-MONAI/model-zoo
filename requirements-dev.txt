@@ -1,3 +1,4 @@
+-r requirements.txt
 # Full requirements for developments
 flake8>=3.8.1
 flake8-bugbear
@@ -8,8 +9,8 @@ mccabe
 pep8-naming
 pycodestyle
 pyflakes
-black<25
-isort<6.0.0
+black>=26.5.1
+isort>9.0.0
 pytype>=2020.6.1; platform_system != "Windows"
 types-setuptools
 mypy>=0.790
@@ -20,10 +21,9 @@ einops
 nibabel
 pyyaml
 jsonschema
-gdown>=4.5.4
+gdown>=4.5.4,<6.0.0
 tensorboard
 parameterized
-monai>=1.2.0
 pillow!=8.3.0  # https://github.com/python-pillow/Pillow/issues/5571
 itk>=5.2
 scikit-learn

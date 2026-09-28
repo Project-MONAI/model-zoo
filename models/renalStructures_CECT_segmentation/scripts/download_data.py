@@ -17,8 +17,7 @@ class Spinner:
     @staticmethod
     def spinning_cursor():
         while 1:
-            for cursor in "|/-\\":
-                yield cursor
+            yield from "|/-\\"
 
     def __init__(self, delay=None):
         self.spinner_generator = self.spinning_cursor()

@@ -71,8 +71,8 @@ def get_datalist(args, images_folder, labels_folder):
         all_images, all_labels = parse_files(images_folder, labels_folder, file_extension_pattern)
         all_images, all_labels = keep_image_label_pairs_only(all_images, all_labels, images_folder, labels_folder)
 
-    logging.info("Length of all_images: {}".format(len(all_images)))
-    logging.info("Length of all_labels: {}".format(len(all_labels)))
+    logging.info(f"Length of all_images: {len(all_images)}")
+    logging.info(f"Length of all_labels: {len(all_labels)}")
 
     datalist = [{"image": image_name, "label": label_name} for image_name, label_name in zip(all_images, all_labels)]
 
@@ -93,7 +93,7 @@ def main(args):
     datalist = produce_datalist_splits(datalist, args.splits, args.train_split, args.valid_test_split)
     with open(output_json, "w") as f:
         json.dump(datalist, f, ensure_ascii=True, indent=4)
-    logging.info("datalist json file saved to: {}".format(output_json))
+    logging.info(f"datalist json file saved to: {output_json}")
 
 
 if __name__ == "__main__":

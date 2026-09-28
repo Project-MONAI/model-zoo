@@ -32,7 +32,7 @@ class NpEncoder(json.JSONEncoder):
         elif isinstance(obj, np.ndarray):
             return obj.tolist()
         else:
-            return super(NpEncoder, self).default(obj)
+            return super().default(obj)
 
 
 class Ensembler:
@@ -86,7 +86,7 @@ class Ensembler:
         for grp in grplist:
             fname = os.path.join(output_dir, grp, fname_dt)
             dtlist.append(coco_gt.loadRes(fname))
-            print("Successfully loaded {} into memory. {} instance detected.\n".format(fname, len(dtlist[-1].anns)))
+            print(f"Successfully loaded {fname} into memory. {len(dtlist[-1].anns)} instance detected.\n")
 
         self.coco_gt = coco_gt
         self.cats = [cat["id"] for cat in self.coco_gt.dataset["categories"]]
@@ -94,9 +94,7 @@ class Ensembler:
         self.results = []
 
         print(
-            "Working with {} models, {} categories, and {} images.".format(
-                self.n_detectors, len(self.cats), len(self.coco_gt.imgs.keys())
-            )
+            f"Working with {self.n_detectors} models, {len(self.cats)} categories, and {len(self.coco_gt.imgs)} images."
         )
 
     def mean_score_nms(self):
@@ -134,10 +132,8 @@ class Ensembler:
             return sets
 
         winning_list = []
-        print(
-            "Computing mean score non-max suppression ensembling for {} images.".format(len(self.coco_gt.imgs.keys()))
-        )
-        for img in tqdm(self.coco_gt.imgs.keys()):
+        print(f"Computing mean score non-max suppression ensembling for {len(self.coco_gt.imgs)} images.")
+        for img in tqdm(self.coco_gt.imgs):
             # print(img)
             dflist = []  # a dataframe of detections
             obj_set = set()  # a set of objects (frozensets)
@@ -150,7 +146,7 @@ class Ensembler:
                     ts = box_convert(
                         torch.tensor(dfcat["bbox"]), in_fmt="xywh", out_fmt="xyxy"
                     )  # list of tensor boxes for cateogory
-                    iou_bool = np.array((box_iou(ts, ts) > self.iou_thresh))  # compute IoU matrix and threshold
+                    iou_bool = np.array(box_iou(ts, ts) > self.iou_thresh)  # compute IoU matrix and threshold
                     for i in range(len(dfcat)):  # for each detection in that category
                         fset = frozenset(dfcat.index[iou_bool[i]])
                         obj_set.add(fset)  # compute set of sets representing objects
@@ -170,7 +166,7 @@ class Ensembler:
                         winning_box = dfset.iloc[dfset["score"].argmax()].to_dict()
                         winning_box["score"] = mean_score
                         winning_list.append(winning_box)
-        print("{} resulting instances from NMS".format(len(winning_list)))
+        print(f"{len(winning_list)} resulting instances from NMS")
         self.results = winning_list
         return self
 

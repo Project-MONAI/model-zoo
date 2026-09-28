@@ -1,5 +1,5 @@
 def hover(hover_color="#add8e6"):
-    return dict(selector="tbody tr:hover", props=[("background-color", "%s" % hover_color)])
+    return dict(selector="tbody tr:hover", props=[("background-color", str(hover_color))])
 
 
 styles = [

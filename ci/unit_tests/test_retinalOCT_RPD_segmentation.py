@@ -60,7 +60,7 @@ class TestRPDInference(unittest.TestCase):
 
         # Load the original inference.yaml
         inference_yaml_path = "configs/inference.yaml"
-        with open(inference_yaml_path, "r") as f:
+        with open(inference_yaml_path) as f:
             inference_yaml = yaml.safe_load(f)
 
         # Modify inference.yaml with override parameters.

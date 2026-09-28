@@ -125,7 +125,7 @@ class VolFile:
                     for x in range(wf["segmentations"].shape[2]):
                         a[int(wf["segmentations"][li, i, x]), x, li] = 255
 
-            Image.fromarray(a).save("%s_%03d.png" % (filepre, i))
+            Image.fromarray(a).save(f"{filepre!s}_{int(i):03d}.png")
 
     def __parse_volfile(self, fn, parse_seg=False):
         print(fn)
@@ -305,7 +305,7 @@ class VolFile:
                         "Average Quality",
                     ]
                 )
-        with open(output_csv, "r", newline="") as file:
+        with open(output_csv, newline="") as file:
             existing_vols = csv.reader(file)
             for vol in existing_vols:
                 if vol[0] == PurePath(fn).name:
@@ -393,5 +393,5 @@ class VolFile:
             ri = 0
             for r in grid:
                 r = [ri] + r
-                fout.write("%s\n" % "\t".join(map(str, r)))
+                fout.write("\t".join(map(str, r)) + "\n")
                 ri += 1

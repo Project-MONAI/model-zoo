@@ -10,7 +10,8 @@
 # limitations under the License.
 
 import logging
-from typing import TYPE_CHECKING, Any, Callable, List, Optional
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 import torch
@@ -35,7 +36,7 @@ class TensorBoardImageHandler:
     def __init__(
         self,
         class_names,
-        summary_writer: Optional[SummaryWriter] = None,
+        summary_writer: SummaryWriter | None = None,
         log_dir: str = "./runs",
         tag_name="val",
         interval: int = 1,
@@ -57,8 +58,8 @@ class TensorBoardImageHandler:
 
         if torch.distributed.is_initialized():
             self.tag_name = f"{self.tag_name}-r{torch.distributed.get_rank()}"
-        self.class_y: List[Any] = []
-        self.class_y_pred: List[Any] = []
+        self.class_y: list[Any] = []
+        self.class_y_pred: list[Any] = []
 
     def attach(self, engine: Engine) -> None:
         if self.interval == 1:

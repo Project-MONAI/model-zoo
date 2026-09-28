@@ -18,8 +18,6 @@ script_dir = os.path.dirname(__file__)
 class Error(Exception):
     """Base class for exceptions in this module."""
 
-    pass
-
 
 def extract_files(dirtoextract, extracted_path, input_format):
     """Extracts individual image frames from .vol or DICOM files.

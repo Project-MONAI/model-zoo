@@ -13,12 +13,12 @@
 
 
 import math
-from typing import Sequence, Tuple, Union
+from collections.abc import Sequence
 
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 from monai.utils import optional_import
+from torch import nn
 
 Rearrange, _ = optional_import("einops.layers.torch", name="Rearrange")
 
@@ -32,8 +32,8 @@ class PatchEmbeddingBlock(nn.Module):
     def __init__(
         self,
         in_channels: int,
-        img_size: Tuple[int, int, int],
-        patch_size: Tuple[int, int, int],
+        img_size: tuple[int, int, int],
+        patch_size: tuple[int, int, int],
         hidden_size: int,
         num_heads: int,
         pos_embed: str,
@@ -76,7 +76,7 @@ class PatchEmbeddingBlock(nn.Module):
         self.patch_dim = in_channels * patch_size[0] * patch_size[1] * patch_size[2]
 
         self.pos_embed = pos_embed
-        self.patch_embeddings: Union[nn.Conv3d, nn.Sequential]
+        self.patch_embeddings: nn.Conv3d | nn.Sequential
         if self.pos_embed == "conv":
             self.patch_embeddings = nn.Conv3d(
                 in_channels=in_channels, out_channels=hidden_size, kernel_size=patch_size, stride=patch_size

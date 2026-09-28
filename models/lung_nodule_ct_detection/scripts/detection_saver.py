@@ -12,7 +12,8 @@
 import json
 import os
 import warnings
-from typing import TYPE_CHECKING, Callable, Optional
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 from monai.handlers.classification_saver import ClassificationSaver
 from monai.utils import IgniteInfo, evenly_divisible_all_gather, min_version, optional_import, string_list_all_gather
@@ -41,7 +42,7 @@ class DetectionSaver(ClassificationSaver):
         overwrite: bool = True,
         batch_transform: Callable = lambda x: x,
         output_transform: Callable = lambda x: x,
-        name: Optional[str] = None,
+        name: str | None = None,
         save_rank: int = 0,
         pred_box_key: str = "box",
         pred_label_key: str = "label",

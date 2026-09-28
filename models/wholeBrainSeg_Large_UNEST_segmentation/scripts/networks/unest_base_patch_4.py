@@ -16,14 +16,15 @@ Interpretable Visual Understanding
 https://arxiv.org/pdf/2105.12723.pdf
 
 """
-from typing import Sequence, Tuple, Union
+
+from collections.abc import Sequence
 
 import torch
-import torch.nn as nn
 from monai.networks.blocks import Convolution
 from monai.networks.blocks.dynunet_block import UnetOutBlock
 from scripts.networks.nest_transformer_3D import NestTransformer3D
 from scripts.networks.unest_block import UNesTBlock, UNesTConvBlock, UNestUpBlock
+from torch import nn
 
 
 class UNesT(nn.Module):
@@ -42,7 +43,7 @@ class UNesT(nn.Module):
         num_heads: Sequence[int] = (3, 6, 12, 24),
         embed_dim: Sequence[int] = (128, 256, 512),
         window_size: Sequence[int] = (7, 7, 7),
-        norm_name: Union[Tuple, str] = "instance",
+        norm_name: tuple | str = "instance",
         conv_block: bool = False,
         res_block: bool = True,
         dropout_rate: float = 0.0,

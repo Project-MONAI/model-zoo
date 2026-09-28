@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-from typing import Sequence, Tuple, Union
+from collections.abc import Sequence
 
 import torch
-import torch.nn as nn
 from monai.networks.blocks.dynunet_block import UnetBasicBlock, UnetResBlock, get_conv_layer
+from torch import nn
 
 
 class UNesTBlock(nn.Module):
@@ -15,10 +15,10 @@ class UNesTBlock(nn.Module):
         spatial_dims: int,
         in_channels: int,
         out_channels: int,  # type: ignore
-        kernel_size: Union[Sequence[int], int],
-        stride: Union[Sequence[int], int],
-        upsample_kernel_size: Union[Sequence[int], int],
-        norm_name: Union[Tuple, str],
+        kernel_size: Sequence[int] | int,
+        stride: Sequence[int] | int,
+        upsample_kernel_size: Sequence[int] | int,
+        norm_name: tuple | str,
         res_block: bool = False,
     ) -> None:
         """
@@ -34,7 +34,7 @@ class UNesTBlock(nn.Module):
 
         """
 
-        super(UNesTBlock, self).__init__()
+        super().__init__()
         upsample_stride = upsample_kernel_size
         self.transp_conv = get_conv_layer(
             spatial_dims,
@@ -84,10 +84,10 @@ class UNestUpBlock(nn.Module):
         in_channels: int,
         out_channels: int,
         num_layer: int,
-        kernel_size: Union[Sequence[int], int],
-        stride: Union[Sequence[int], int],
-        upsample_kernel_size: Union[Sequence[int], int],
-        norm_name: Union[Tuple, str],
+        kernel_size: Sequence[int] | int,
+        stride: Sequence[int] | int,
+        upsample_kernel_size: Sequence[int] | int,
+        norm_name: tuple | str,
         conv_block: bool = False,
         res_block: bool = False,
     ) -> None:
@@ -202,9 +202,9 @@ class UNesTConvBlock(nn.Module):
         spatial_dims: int,
         in_channels: int,
         out_channels: int,
-        kernel_size: Union[Sequence[int], int],
-        stride: Union[Sequence[int], int],
-        norm_name: Union[Tuple, str],
+        kernel_size: Sequence[int] | int,
+        stride: Sequence[int] | int,
+        norm_name: tuple | str,
         res_block: bool = False,
     ) -> None:
         """

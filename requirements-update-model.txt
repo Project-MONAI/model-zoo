@@ -1,5 +1,5 @@
-monai>=1.0.1
-gdown>=4.5.4
+-r requirements.txt
+gdown>=4.5.4,<6.0.0
 PyGithub
 pyyaml
 huggingface_hub==0.29.3
