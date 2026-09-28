@@ -15,7 +15,7 @@
         "pynrrd": "1.1.3",
         "scipy": "1.15.3",
         "simpleitk": "2.5.2",
-        "scikit-image": "0.25.2",
+        "scikit-image": "0.25.2"
     },
     "task": "Coronary artery ct segmentation",
     "description": "Coronsegmentator is an automated pipeline that performs coronary artery segmentation on cardiac CT images, focusing on coronary artery structures. Use a custom nnU-Net model for detailed coronary artery segmentation.",
