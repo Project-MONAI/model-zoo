@@ -144,6 +144,36 @@ python -m monai.bundle trt_export --net_id network_def \
 python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_trt.json']"
 ```
 
+#### Execute inference on AMD GPUs (ROCm):
+
+`configs/inference_rocm.json` is an optional overlay for AMD GPUs. It keeps the network in the
+`channels_last_3d` memory format, runs autocast in `bfloat16`, and enables `torch.compile` through
+the evaluator's `compile` option.
+
+A bundle config cannot set environment variables. Export the following before the run:
+
+```bash
+export PYTORCH_MIOPEN_SUGGEST_NHWC=1
+export MIOPEN_FIND_MODE=1      # benchmark all convolution solvers
+export MIOPEN_FIND_ENFORCE=4   # exhaustive search, write the result to the user perf-db
+export TORCHINDUCTOR_MAX_AUTOTUNE=1
+export TORCHINDUCTOR_MAX_AUTOTUNE_GEMM=1
+export TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1
+export TORCHINDUCTOR_EPILOGUE_FUSION=1
+export TORCHINDUCTOR_MAX_AUTOTUNE_CONV_BACKENDS=ATEN,TRITON
+export MIOPEN_USER_DB_PATH=/tmp/miopen_cache_${USER}
+export MIOPEN_CUSTOM_CACHE_DIR=$MIOPEN_USER_DB_PATH
+mkdir -p "$MIOPEN_USER_DB_PATH"
+```
+
+The first run is considerably slower than the ones after it: MIOpen searches for a convolution
+solver and Inductor compiles and autotunes the kernels. Both results are cached under
+`$MIOPEN_USER_DB_PATH` and Inductor's cache, so keep them for later runs.
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_rocm.json']"
+```
+
 # References
 [1] Diaz-Pinto, Andres, et al. DeepEdit: Deep Editable Learning for Interactive Segmentation of 3D Medical Images. MICCAI Workshop on Data Augmentation, Labelling, and Imperfections. MICCAI 2022.
 
