@@ -170,6 +170,11 @@ The first run is considerably slower than the ones after it: MIOpen searches for
 solver and Inductor compiles and autotunes the kernels. Both results are cached under
 `$MIOPEN_USER_DB_PATH` and Inductor's cache, so keep them for later runs.
 
+The two `MIOPEN_FIND_*` lines are only needed for that first run. `MIOPEN_FIND_ENFORCE=4`
+repeats the search on every call, so once the perf-db is populated,
+`unset MIOPEN_FIND_MODE MIOPEN_FIND_ENFORCE`. Keep the rest of the block exported,
+including the same `MIOPEN_USER_DB_PATH`, so the tuned entries are reused.
+
 ```
 python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_rocm.json']"
 ```
