@@ -44,6 +44,41 @@ python -m monai.bundle run --config_file "['configs/inference.json', 'configs/in
 ```
 For more details, please refer to [this](inference.md).
 
+## Execute inference on AMD GPUs (ROCm):
+
+`configs/inference_rocm.json` is an optional overlay for AMD GPUs. It keeps the network in the
+`channels_last_3d` memory format, runs autocast in `bfloat16`, and enables `torch.compile` by
+replacing the evaluator's network with a compiled version after weights are loaded.
+
+A bundle config cannot set environment variables. Export the following before the run:
+
+```bash
+export PYTORCH_MIOPEN_SUGGEST_NHWC=1
+export MIOPEN_FIND_MODE=1      # benchmark all convolution solvers
+export MIOPEN_FIND_ENFORCE=4   # exhaustive search, write the result to the user perf-db
+export TORCHINDUCTOR_MAX_AUTOTUNE=1
+export TORCHINDUCTOR_MAX_AUTOTUNE_GEMM=1
+export TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1
+export TORCHINDUCTOR_EPILOGUE_FUSION=1
+export TORCHINDUCTOR_MAX_AUTOTUNE_CONV_BACKENDS=ATEN,TRITON
+export MIOPEN_USER_DB_PATH=/tmp/miopen_cache_${USER}
+export MIOPEN_CUSTOM_CACHE_DIR=$MIOPEN_USER_DB_PATH
+mkdir -p "$MIOPEN_USER_DB_PATH"
+```
+
+The first run is considerably slower than the ones after it: MIOpen searches for a convolution
+solver and Inductor compiles and autotunes the kernels. Both results are cached under
+`$MIOPEN_USER_DB_PATH` and Inductor's cache, so keep them for later runs.
+
+The two `MIOPEN_FIND_*` lines are only needed for that first run. `MIOPEN_FIND_ENFORCE=4`
+repeats the search on every call, so once the perf-db is populated,
+`unset MIOPEN_FIND_MODE MIOPEN_FIND_ENFORCE`. Keep the rest of the block exported,
+including the same `MIOPEN_USER_DB_PATH`, so the tuned entries are reused.
+
+```
+python -m monai.bundle run --config_file "['configs/inference.json', 'configs/inference_rocm.json']"
+```
+
 
 # Continual learning / Finetuning
 
