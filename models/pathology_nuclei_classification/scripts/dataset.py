@@ -78,7 +78,7 @@ def consep_nuclei_dataset(datalist, output_dir, crop_size, min_area=80, min_dist
 
         for nuclei_id, (class_id, (y, x)) in enumerate(zip(m["inst_type"], m["inst_centroid"]), start=1):
             x, y = (int(x), int(y))
-            class_id = int(class_id)
+            class_id = int(class_id.item())
             class_id = 3 if class_id in (3, 4) else 4 if class_id in (5, 6, 7) else class_id  # override
 
             if 0 < limit <= len(dataset_json):

@@ -1,0 +1,78 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "initialize the model package structure"
+    },
+    "monai_version": "1.6.0",
+    "pytorch_version": "2.14.0",
+    "numpy_version": "2.2.6",
+    "required_packages_version": {
+        "nibabel": "5.4.2",
+        "scipy": "1.15.3",
+        "pytorch-ignite": "0.5.2"
+    },
+    "supported_apps": {},
+    "name": "MindGrab Skull Stripping",
+    "task": "Skull stripping (brain extraction) in any imaging modality",
+    "description": "A dilated 3D CNN (MeshNet-style) that removes non-brain tissue from a 3D medical image, ported from the mindgrab model in the brainchopC project so it runs as a standard MONAI bundle. The bundle reproduces brainchopC's full inference pipeline: intensity-clip and reslice the input onto a 256x256x256, 1mm, LIA-oriented conform grid, quantile-normalize it, run the network, keep only the largest connected foreground component, reslice the prediction back onto the input's native grid, and floor non-brain voxels of the original image to the image's own minimum intensity.",
+    "authors": "Fani, Doan, Le, Fedorov, Hoffmann, Rorden, Plis (original MindGrab model); ported to MONAI bundle format by the MONAI Model Zoo community",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "Not documented by this port; see the upstream brainchopC project for the original mindgrab training details.",
+    "data_type": "nibabel",
+    "image_classes": "single channel data, any modality, any input size/orientation (internally resampled to a 256x256x256, 1mm conform grid)",
+    "label_classes": "not applicable: output is a skull-stripped copy of the input image, not a label map",
+    "pred_classes": "2 channels, channel 0 is background, channel 1 is brain (conform-space network logits, before this bundle's postprocessing reslices and applies the mask)",
+    "eval_metrics": {},
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "Fani, A., Doan, M., Le, I., Fedorov, A., Hoffmann, M., Rorden, C., Plis, S. 'MindGrab: A spectrally-motivated architecture for accessible deep learning in neuroimaging.' NeuroImage 338 (2026): 122074. https://doi.org/10.1016/j.neuroimage.2026.122074",
+        "brainchopC, the C reference implementation this bundle ports (private repository)"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "any modality",
+                "modality": "any",
+                "num_channels": 1,
+                "spatial_shape": [
+                    256,
+                    256,
+                    256
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    0,
+                    1
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 2,
+                "spatial_shape": [
+                    256,
+                    256,
+                    256
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    -100,
+                    100
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "background",
+                    "1": "brain"
+                }
+            }
+        }
+    }
+}
