@@ -1,0 +1,8 @@
+# hash_val must match configs/inference.json's "checkpoint_sha256": that
+# config re-verifies the file's digest at every `monai.bundle run`, not just
+# at this download step, so the two need to be updated together.
+large_files:
+  - path: "models/model.pt"
+    url: "https://raw.githubusercontent.com/neuroneural/brainchop-models/49d6de76befd804c6e5a10affbef79349cd8c7f4/meshnet/mindgrab/model.pth"
+    hash_val: "31f1bda17b8d3eee17a54cf3f199899763a6615a049f05ab2a05f18eb98ec23a"
+    hash_type: "sha256"

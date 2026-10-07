@@ -54,6 +54,7 @@ exclude_verify_torchscript_list = [
     "brain_image_synthesis_latent_diffusion_model",
     "retinalOCT_RPD_segmentation",
     "mindmap",
+    "mindgrab",
 ]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested after downloading
