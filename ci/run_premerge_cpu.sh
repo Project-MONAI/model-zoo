@@ -48,14 +48,14 @@ init_venv() {
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
         pip install --upgrade setuptools
-        pip install jsonschema gdown pyyaml parameterized fire
+        pip install jsonschema gdown\<6.0.0 pyyaml parameterized fire
         export PYTHONPATH=$PWD
     else
         echo "Virtual environment model_zoo_venv already exists. Activating..."
         source model_zoo_venv/bin/activate
         pip install --upgrade pip wheel
         pip install --upgrade setuptools
-        pip install jsonschema gdown pyyaml parameterized fire
+        pip install jsonschema gdown\<6.0.0 pyyaml parameterized fire
         export PYTHONPATH=$PWD
     fi
 }
@@ -79,7 +79,7 @@ verify_bundle() {
     echo 'Run verify bundle...'
     pip install -r requirements.txt
     # install extra dependencies for get changed bundle
-    pip install jsonschema gdown pyyaml
+    pip install jsonschema gdown\<6.0.0 pyyaml
     head_ref=$(git rev-parse HEAD)
     git fetch origin dev $head_ref
     # achieve all changed files in 'models'

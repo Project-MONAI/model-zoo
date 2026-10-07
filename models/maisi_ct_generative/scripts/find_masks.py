@@ -12,7 +12,7 @@
 
 import json
 import os
-from typing import Sequence
+from collections.abc import Sequence
 
 from monai.apps.utils import extractall
 from monai.utils import ensure_tuple_rep
@@ -94,7 +94,7 @@ def find_masks(
 
     if not os.path.isfile(database_filepath):
         raise ValueError(f"Please download {database_filepath} following the instruction in ./datasets/README.md.")
-    with open(database_filepath, "r") as f:
+    with open(database_filepath) as f:
         db = json.load(f)
 
     # select candidate_masks

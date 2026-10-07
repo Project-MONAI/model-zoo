@@ -83,7 +83,7 @@ def update_model_info(
     model_info_path = os.path.join(models_path, model_info_file)
     model_info = get_json_dict(model_info_path)
 
-    if bundle_name_with_version not in model_info.keys():
+    if bundle_name_with_version not in model_info:
         model_info[bundle_name_with_version] = {"checksum": "", "source": ""}
 
     model_info[bundle_name_with_version]["checksum"] = checksum

@@ -164,7 +164,7 @@ def verify_version_changes(models_path: str, bundle_name: str):
 
     # version number should be in changelog
     latest_version = metadata["version"]
-    if latest_version not in metadata["changelog"].keys():
+    if latest_version not in metadata["changelog"]:
         raise ValueError(
             f"version number: {latest_version} is missing in 'changelog' in configs/metadata.json of bundle: {bundle_name}."
         )
@@ -173,7 +173,7 @@ def verify_version_changes(models_path: str, bundle_name: str):
     model_info_path = os.path.join(models_path, "model_info.json")
     model_info = get_json_dict(model_info_path)
     bundle_name_with_version = f"{bundle_name}_v{latest_version}"
-    if bundle_name_with_version in model_info.keys():
+    if bundle_name_with_version in model_info:
         raise ValueError(
             f"version number: {latest_version} is already used of bundle: {bundle_name}. Please change it."
         )
@@ -241,8 +241,7 @@ def get_app_properties(app: str, version: str):
         if "bundle_properties.py" in files and os.path.isfile(os.path.join(root, "bundle_properties.py")):
             print(root)
             return os.path.join(root, "bundle_properties.py")
-    else:
-        return None
+    return None
 
 
 def check_properties(**kwargs):

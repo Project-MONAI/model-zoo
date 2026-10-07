@@ -47,16 +47,17 @@ def download_files(url_dict, directory):
             file_path = os.path.join(base_dir, filename)
 
             # Write the content to a file in the specified directory with progress
-            with open(file_path, "wb") as file, tqdm(
-                desc=filename, total=total_size, unit="iB", unit_scale=True, unit_divisor=1024
-            ) as bar:
+            with (
+                open(file_path, "wb") as file,
+                tqdm(desc=filename, total=total_size, unit="iB", unit_scale=True, unit_divisor=1024) as bar,
+            ):
                 for data in response.iter_content(chunk_size=1024):
                     size = file.write(data)
                     bar.update(size)
 
             print(f"Saved to {file_path}")
         except Exception as e:
-            print(f"Failed to download from {key} ({url}). Reason: {str(e)}")
+            print(f"Failed to download from {key} ({url}). Reason: {e!s}")
 
 
 def main():

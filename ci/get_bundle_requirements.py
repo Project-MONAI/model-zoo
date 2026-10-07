@@ -63,7 +63,7 @@ def get_requirements(bundle, models_path, requirements_file):
     if os.path.exists(meta_file_path):
         metadata = get_json_dict(meta_file_path)
         libs = []
-        if "monai_version" in metadata.keys():
+        if "monai_version" in metadata:
             monai_version = metadata["monai_version"]
             if not ALLOW_MONAI_RC:
                 lib_monai_req = f"monai=={monai_version}"
@@ -71,30 +71,38 @@ def get_requirements(bundle, models_path, requirements_file):
                 lib_monai_req = f"monai>={monai_version}rc1,<{increment_version(monai_version)}"
                 print(f"ALLOW_MONAI_RC is set to true, the version range is {lib_monai_req}", file=sys.stderr)
             libs.append(lib_monai_req)
-        if "pytorch_version" in metadata.keys():
+        if "pytorch_version" in metadata:
             pytorch_version = metadata["pytorch_version"]
             libs.append(f"torch=={pytorch_version}")
-        if "numpy_version" in metadata.keys():
+        if "numpy_version" in metadata:
             numpy_version = metadata["numpy_version"]
             libs.append(f"numpy=={numpy_version}")
+
         for package_key in ["optional_packages_version", "required_packages_version"]:
-            if package_key in metadata.keys():
-                optional_dict = metadata[package_key]
-                for name, version in optional_dict.items():
-                    if name in special_dependencies_list:
-                        continue
-                    libs.append(f"{name}=={version}")
+            for name, version in metadata.get(package_key, {}).items():
+                if name in special_dependencies_list:
+                    continue
+
+                version = version.strip()
+
+                if not version:  # blank version, just add name without version specification
+                    version_line = str(name)
+                elif version[0] in {"<", ">", "=", "!", "~"}:  # operator included in version, don't add ==
+                    version_line = f"{name}{version}"
+                else:
+                    version_line = f"{name}=={version}"  # assume exact version specification
+
+                libs.append(version_line)
 
         if len(libs) > 0:
             with open(requirements_file, "w") as f:
-                for line in libs:
-                    f.write(f"{line}\n")
+                f.writelines(f"{line}\n" for line in libs)
 
 
 def get_install_script(bundle):
     # install extra dependencies if needed
     script_path = ""
-    if bundle in install_dependency_dict.keys():
+    if bundle in install_dependency_dict:
         script_path = install_dependency_dict[bundle]
     print(script_path)
 

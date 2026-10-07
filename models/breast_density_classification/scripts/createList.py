@@ -4,7 +4,7 @@ import json
 class CreateImageLabelList:
     def __init__(self, filename):
         self.filename = filename
-        fid = open(self.filename, "r")
+        fid = open(self.filename)
         self.json_dict = json.load(fid)
 
     def create_dataset(self, grp):

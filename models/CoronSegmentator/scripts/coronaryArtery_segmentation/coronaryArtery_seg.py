@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 File  : coronaryArtery_seg.py
 Author: John Y. Ke, MC. Chen, TY. Lin, YC. Chan
@@ -173,7 +172,7 @@ class STLSplitter:
         if len(vertices_b) > 10000:
             # Process in larger chunks for very large datasets
             for i in range(0, len(vertices_b), batch_size * 5):
-                batch = vertices_b[i : i + batch_size * 5]  # noqa: E203
+                batch = vertices_b[i : i + batch_size * 5]
                 # Use query_ball_point with r=threshold and return_length=True
                 # for early termination
                 indices = tree.query_ball_point(batch, threshold, return_length=True)
@@ -183,7 +182,7 @@ class STLSplitter:
             # For smaller datasets, process point by point
             # for early termination
             for i in range(0, len(vertices_b), batch_size):
-                batch = vertices_b[i : i + batch_size]  # noqa: E203
+                batch = vertices_b[i : i + batch_size]
                 for point in batch:
                     # Early termination: return True as soon as
                     # we find any nearby point

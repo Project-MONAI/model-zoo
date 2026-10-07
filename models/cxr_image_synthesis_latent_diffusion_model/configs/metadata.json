@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "changelog": {
+        "1.0.3": "modernize sampler imports without changing behavior",
         "1.0.2": "enhanced metadata with improved descriptions and task specification",
         "1.0.1": "update to huggingface hosting",
         "1.0.0": "Initial release"
