@@ -1,0 +1,95 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "version": "0.1.0",
+    "changelog": {
+        "0.1.0": "initialize the model package structure"
+    },
+    "monai_version": "1.6.0",
+    "pytorch_version": "2.14.0",
+    "numpy_version": "2.2.6",
+    "required_packages_version": {
+        "nibabel": "5.4.2",
+        "scipy": "1.15.3",
+        "pytorch-ignite": "0.5.2",
+        "safetensors": "0.8.0"
+    },
+    "supported_apps": {},
+    "name": "MindMap Brain Segmentation",
+    "task": "18-class whole-brain segmentation (gray/white matter and subcortical structures) in any imaging modality",
+    "description": "A 24-channel, 13-layer dilated 3D CNN (MeshNet-style; this is model24chan18cls, which shares model16chan18cls's exact topology at 24 instead of 16 channels) that segments a 3D medical image into 18 FreeSurfer-style brain regions, ported from the mindmap model (published as model24chan18cls_gdice_prio in neuroneural/brainchop-test) so it runs as a standard MONAI bundle. The bundle reproduces the upstream reference implementation's full inference pipeline: intensity-clip and reslice the input onto a 256x256x256, 1mm, LIA-oriented conform grid, quantile-normalize it, run the network, keep only the single largest 26-connected foreground component (across all classes jointly), and reslice the label map back onto the input's native grid.",
+    "authors": "Sergey Plis and the neuroneural / brainchop-models team (original model16chan18cls/model24chan18cls training); ported to MONAI bundle format by the MONAI Model Zoo community",
+    "copyright": "Copyright (c) MONAI Consortium",
+    "data_source": "Trained on SynthSeg-style synthetic data (synth18 / label18); not otherwise documented by this port. See the upstream brainchop-models project for the original training details.",
+    "data_type": "nibabel",
+    "image_classes": "single channel data, any modality, any input size/orientation (internally resampled to a 256x256x256, 1mm conform grid)",
+    "label_classes": "18 FreeSurfer-style whole-brain classes: Unknown/background, Cerebral-White-Matter, Cerebral-Cortex, Lateral-Ventricle, Inferior-Lateral-Ventricle, Cerebellum-White-Matter, Cerebellum-Cortex, Thalamus, Caudate, Putamen, Pallidum, 3rd-Ventricle, 4th-Ventricle, Brain-Stem, Hippocampus, Amygdala, Accumbens-area, VentralDC",
+    "pred_classes": "18 channels, conform-space network logits (channel 0 is background/Unknown), before this bundle's postprocessing argmaxes, cleans up, and reslices them into a single-channel label map",
+    "eval_metrics": {},
+    "intended_use": "This is an example, not to be used for diagnostic purposes",
+    "references": [
+        "brainchop-models, the upstream training/checkpoint repository this bundle's weights are pulled from: https://github.com/neuroneural/brainchop-models/tree/f53f7b93d725416c2705a9e4f79765d1739badb9/meshnet/model24chan18cls",
+        "neuroneural/brainchop-test, which publishes this model's weights/config publicly as model24chan18cls_gdice_prio: https://github.com/neuroneural/brainchop-test/tree/webgpu/public/models/model24chan18cls_gdice_prio"
+    ],
+    "network_data_format": {
+        "inputs": {
+            "image": {
+                "type": "image",
+                "format": "any modality",
+                "modality": "any",
+                "num_channels": 1,
+                "spatial_shape": [
+                    256,
+                    256,
+                    256
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    -1,
+                    2
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "image"
+                }
+            }
+        },
+        "outputs": {
+            "pred": {
+                "type": "image",
+                "format": "segmentation",
+                "num_channels": 18,
+                "spatial_shape": [
+                    256,
+                    256,
+                    256
+                ],
+                "dtype": "float32",
+                "value_range": [
+                    -100,
+                    100
+                ],
+                "is_patch_data": false,
+                "channel_def": {
+                    "0": "Unknown",
+                    "1": "Cerebral-White-Matter",
+                    "2": "Cerebral-Cortex",
+                    "3": "Lateral-Ventricle",
+                    "4": "Inferior-Lateral-Ventricle",
+                    "5": "Cerebellum-White-Matter",
+                    "6": "Cerebellum-Cortex",
+                    "7": "Thalamus",
+                    "8": "Caudate",
+                    "9": "Putamen",
+                    "10": "Pallidum",
+                    "11": "3rd-Ventricle",
+                    "12": "4th-Ventricle",
+                    "13": "Brain-Stem",
+                    "14": "Hippocampus",
+                    "15": "Amygdala",
+                    "16": "Accumbens-area",
+                    "17": "VentralDC"
+                }
+            }
+        }
+    }
+}

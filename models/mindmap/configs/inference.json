@@ -1,0 +1,102 @@
+{
+    "imports": [
+        "$import glob",
+        "$import numpy",
+        "$import os",
+        "$import scripts.checkpoint as checkpoint"
+    ],
+    "bundle_root": ".",
+    "image_key": "image",
+    "output_dir": "$@bundle_root + '/eval'",
+    "output_ext": ".nii.gz",
+    "output_dtype": "$numpy.uint8",
+    "output_postfix": "mindmap",
+    "separate_folder": true,
+    "load_pretrain": true,
+    "save_conform": false,
+    "dataset_dir": "/workspace/data/mindmap",
+    "datalist": "$list(sorted(glob.glob(@dataset_dir + '/*.nii') + glob.glob(@dataset_dir + '/*.nii.gz')))",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "network_def": {
+        "_target_": "scripts.network.MindMapNet"
+    },
+    "network": "$@network_def.to(@device)",
+    "preprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "LoadImaged",
+                "keys": "@image_key",
+                "ensure_channel_first": true,
+                "image_only": true
+            },
+            {
+                "_target_": "scripts.transforms.MindMapPreprocessd",
+                "keys": "@image_key"
+            },
+            {
+                "_target_": "EnsureTyped",
+                "keys": "@image_key",
+                "dtype": "$torch.float32"
+            }
+        ]
+    },
+    "dataset": {
+        "_target_": "Dataset",
+        "data": "$[{'image': i} for i in @datalist]",
+        "transform": "@preprocessing"
+    },
+    "dataloader": {
+        "_target_": "DataLoader",
+        "dataset": "@dataset",
+        "batch_size": 1,
+        "shuffle": false,
+        "num_workers": 0
+    },
+    "inferer": {
+        "_target_": "SimpleInferer"
+    },
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "scripts.transforms.MindMapPostprocessd",
+                "keys": "pred",
+                "save_conform": "@save_conform"
+            },
+            {
+                "_target_": "SaveImaged",
+                "keys": "pred",
+                "output_dir": "@output_dir",
+                "output_ext": "@output_ext",
+                "output_dtype": "@output_dtype",
+                "output_postfix": "@output_postfix",
+                "separate_folder": "@separate_folder"
+            }
+        ]
+    },
+    "handlers": [
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false
+        }
+    ],
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "device": "@device",
+        "val_data_loader": "@dataloader",
+        "network": "@network",
+        "inferer": "@inferer",
+        "postprocessing": "@postprocessing",
+        "val_handlers": "@handlers",
+        "amp": false
+    },
+    "checkpoint_sha256": "b87a1646ef21848f4df17c63e3f1ab1087e50d4e859d2e4ab0da9677d234f80e",
+    "initialize": [
+        "$monai.utils.set_determinism(seed=123)",
+        "$checkpoint.load_meshnet_gn_checkpoint(@network, @bundle_root + '/models/model.pt', @checkpoint_sha256) if @load_pretrain else None"
+    ],
+    "run": [
+        "$@evaluator.run()"
+    ]
+}
