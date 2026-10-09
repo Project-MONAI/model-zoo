@@ -2,7 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
     "version": "0.0.7",
     "changelog": {
-        "0.0.7": "load search code with torch.as_tensor/numpy.asarray and save it as tensors for torch.load(weights_only=True) compatibility",
+        "0.0.7": "ship search code in the bundle as a tensor checkpoint loadable with torch.load(weights_only=True); load it on CPU via numpy.asarray/torch.as_tensor; search.py saves tensors",
         "0.0.6": "enhance metadata with improved descriptions",
         "0.0.5": "update to huggingface hosting",
         "0.0.4": "Set image_only to False",
