@@ -458,10 +458,12 @@ def run(config_file: str | Sequence[str]):  # ruff: ignore[C901]  FIXME: too com
                     node_a_d, arch_code_a_d, arch_code_c_d, arch_code_a_max_d = dints_space.decode()
                     torch.save(
                         {
-                            "node_a": node_a_d,
-                            "arch_code_a": arch_code_a_d,
-                            "arch_code_a_max": arch_code_a_max_d,
-                            "arch_code_c": arch_code_c_d,
+                            # save as tensors (not numpy arrays) so the file can be read with
+                            # torch.load(weights_only=True), the default since PyTorch 2.6
+                            "node_a": torch.as_tensor(node_a_d),
+                            "arch_code_a": torch.as_tensor(arch_code_a_d),
+                            "arch_code_a_max": torch.as_tensor(arch_code_a_max_d),
+                            "arch_code_c": torch.as_tensor(arch_code_c_d),
                             "iter_num": idx_iter,
                             "epochs": epoch + 1,
                             "best_dsc": best_metric,
