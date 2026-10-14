@@ -1,6 +1,5 @@
 ---
 imports:
-- "$import numpy"
 - "$import glob"
 - "$import json"
 - "$import os"
@@ -9,7 +8,7 @@ imports:
 input_channels: 1
 output_classes: 8
 arch_ckpt_path: "$@bundle_root + '/models/search_code_18590.pt'"
-arch_ckpt: "$torch.load(@arch_ckpt_path, map_location='cpu')"
+arch_ckpt: "$torch.load(@arch_ckpt_path, map_location=@device)"
 bundle_root: "."
 ckpt_dir: "$@bundle_root + '/models'"
 output_dir: "$@bundle_root + '/eval'"
@@ -27,9 +26,9 @@ dints_space:
   num_depths: 4
   use_downsample: true
   arch_code:
-  - "$numpy.asarray(@arch_ckpt['arch_code_a'])"
-  - "$numpy.asarray(@arch_ckpt['arch_code_c'])"
-  device: "$torch.device('cuda')"
+  - "$@arch_ckpt['arch_code_a'].cpu().numpy()"
+  - "$@arch_ckpt['arch_code_c'].cpu().numpy()"
+  device: "@device"
 network_def:
   _target_: monai.networks.nets.DiNTS
   dints_space: "@dints_space"
