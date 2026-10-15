@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.5.9",
+    "version": "0.6.0",
     "changelog": {
+        "0.6.0": "remove img_size from SwinUNETR network_def (arg removed in MONAI 1.5)",
         "0.5.9": "add an optional ROCm inference config for AMD GPUs",
         "0.5.8": "enhance metadata with improved descriptions",
         "0.5.7": "update to huggingface hosting",
