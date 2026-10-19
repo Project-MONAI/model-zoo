@@ -2,7 +2,7 @@
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
     "version": "0.6.0",
     "changelog": {
-        "0.6.0": "remove img_size from SwinUNETR network_def (arg removed in MONAI 1.5)",
+        "0.6.0": "remove img_size from SwinUNETR network_def and require MONAI 1.5 (img_size was required before 1.5 and removed in 1.5)",
         "0.5.9": "add an optional ROCm inference config for AMD GPUs",
         "0.5.8": "enhance metadata with improved descriptions",
         "0.5.7": "update to huggingface hosting",
@@ -37,9 +37,9 @@
         "0.1.0": "complete the model package",
         "0.0.1": "initialize the model package structure"
     },
-    "monai_version": "1.4.0",
-    "pytorch_version": "2.4.0",
-    "numpy_version": "1.24.4",
+    "monai_version": "1.5.0",
+    "pytorch_version": "2.6.0",
+    "numpy_version": "1.26.4",
     "required_packages_version": {
         "itk": "5.4.0",
         "nibabel": "5.2.1",
