@@ -27,7 +27,6 @@ labels:
   pancreas: 3
 network_def:
   _target_: monai.networks.nets.SwinUNETR
-  img_size: "@spatial_size"
   in_channels: "@input_channels"
   out_channels: "@output_channels"
   feature_size: 48

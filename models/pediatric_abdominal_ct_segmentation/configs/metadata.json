@@ -1,15 +1,16 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20220324.json",
-    "version": "0.4.7",
+    "version": "0.4.8",
     "changelog": {
+        "0.4.8": "remove img_size from SwinUNETR network_def and require MONAI 1.5 (img_size was required before 1.5 and removed in 1.5)",
         "0.4.7": "modernize type annotations, superclass calls, and formatting without changing behavior",
         "0.4.6": "enhance metadata with improved descriptions",
         "0.4.5": "update to huggingface hosting",
         "0.4.4": "initial bundle assemblage."
     },
-    "monai_version": "1.3.0",
-    "pytorch_version": "2.1.0",
-    "numpy_version": "1.22.2",
+    "monai_version": "1.5.0",
+    "pytorch_version": "2.6.0",
+    "numpy_version": "1.26.4",
     "optional_packages_version": {
         "fire": "0.4.0",
         "nibabel": "4.0.1",
