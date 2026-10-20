@@ -108,6 +108,7 @@
                 ],
                 "source_key": "image",
                 "margin": 10,
+                "allow_smaller": true,
                 "k_divisible": [
                     96,
                     96,
@@ -291,6 +292,7 @@
                     ],
                     "source_key": "image",
                     "margin": 10,
+                    "allow_smaller": true,
                     "k_divisible": [
                         96,
                         96,
