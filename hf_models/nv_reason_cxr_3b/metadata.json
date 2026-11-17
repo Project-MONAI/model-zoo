@@ -1,0 +1,32 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hf_20250321.json",
+    "version": "1.0.0",
+    "changelog": {
+        "1.0.0": "initial release of NV-Reason-CXR-3B"
+    },
+    "monai_version": "1.5.1",
+    "pytorch_version": "2.7.1",
+    "numpy_version": "1.26.4",
+    "required_packages_version": {
+        "torch": "2.7.1",
+        "torchvision": "0.22.1",
+        "transformers": "4.56.1"
+    },
+    "name": "NV-Reason-CXR-3B",
+    "task": "Chest X-ray Vision-Language Reasoning and Report Generation",
+    "description": "NV-Reason-CXR-3B is a reasoning vision-language model for chest X-ray interpretation. Fine-tuned from Qwen2.5-VL-3B with radiologist-style supervised fine-tuning followed by GRPO reinforcement learning, it produces step-by-step chain-of-thought analyses, abnormality findings, differential diagnoses, and structured reports, and supports multi-turn follow-up questions.",
+    "authors": "Andriy Myronenko, Dong Yang, Baris Turkbey, et al. from NVIDIA and collaborators",
+    "copyright": "NVIDIA",
+    "data_source": "MIMIC-CXR, ChestX-ray14, CheXpert, and radiologist reasoning annotations",
+    "data_type": "2D chest X-ray images (JPEG, PNG) and text",
+    "image_classes": "Frontal chest X-ray images",
+    "huggingface_model_id": "nvidia/NV-Reason-CXR-3B",
+    "huggingface_url": "https://huggingface.co/nvidia/NV-Reason-CXR-3B",
+    "github_url": "https://github.com/NVIDIA-Medtech/NV-Reason-CXR",
+    "demo_url": "https://huggingface.co/spaces/nvidia/nv-reason-cxr",
+    "license": "NVIDIA OneWay Noncommercial License",
+    "intended_use": "Research and education only; not for clinical diagnosis or treatment decisions",
+    "references": [
+        "Myronenko, Andriy, et al. 'Reasoning Visual Language Model for Chest X-Ray Analysis.' arXiv preprint arXiv:2510.23968 (2025)."
+    ]
+}
