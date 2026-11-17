@@ -1,0 +1,34 @@
+{
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_hf_20250321.json",
+    "version": "1.0.0",
+    "changelog": {
+        "1.0.0": "initial release of NV-Reason-CT"
+    },
+    "monai_version": "1.5.1",
+    "pytorch_version": "2.9.0",
+    "numpy_version": "1.26.4",
+    "required_packages_version": {
+        "torch": "2.9.0",
+        "transformers": "5.6.2",
+        "monai": "1.5.1",
+        "nibabel": "5.3.3",
+        "dynamic-network-architectures": "0.4.3"
+    },
+    "name": "NV-Reason-CT",
+    "task": "3D CT Vision-Language Reasoning, Report Generation, and Question Answering",
+    "description": "NV-Reason-CT is a native 3D vision-language model for chest and abdominal CT. A Primus 3D ViT encoder (initialized from COLIPRI) passes all 13,824 visual tokens to a Qwen3.5-4B language model with 3D MRoPE, enabling structured report generation, abnormality classification, visual question answering, and step-by-step reasoning directly from NIfTI volumes.",
+    "authors": "NVIDIA, in collaboration with the NIH National Cancer Institute and the University of Zurich",
+    "copyright": "NVIDIA",
+    "data_source": "CT-RATE, CancerVerse, and an internal NIH dataset (~550,000 QA examples from 70,111 CT volumes)",
+    "data_type": "3D CT volumes (NIfTI, Hounsfield units) and text",
+    "image_classes": "One-channel chest or abdominal CT, resampled to 2 mm isotropic and cropped to 192x192x192 voxels",
+    "huggingface_model_id": "nvidia/NV-Reason-CT",
+    "huggingface_url": "https://huggingface.co/nvidia/NV-Reason-CT",
+    "github_url": "https://github.com/NVIDIA-Medtech/NV-Reason-CT",
+    "demo_url": "https://huggingface.co/spaces/nvidia/nv-reason-ct",
+    "license": "OpenMDW-1.1",
+    "intended_use": "Research and education only; not a medical device and not for clinical diagnosis or treatment decisions",
+    "references": [
+        "NV-Reason-CT: 3D Visual Language Model for CT Analysis. arXiv preprint arXiv:2609.27511 (2026)."
+    ]
+}
