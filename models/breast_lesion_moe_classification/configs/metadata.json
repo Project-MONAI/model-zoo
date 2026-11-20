@@ -1,0 +1,132 @@
+{
+    "authors": "Ilyass Emssaad",
+    "changelog": {
+        "0.1.0": "initial release of the bundle"
+    },
+    "copyright": "Copyright (c) 2026 The Authors",
+    "data_source": "BRACS (BReAst Carcinoma Subtyping)",
+    "data_type": "npy",
+    "description": "Uncertainty-aware mixture-of-experts (MoE) classifier for breast lesions in H&E histopathology. A learned soft top-2 router mixes three pathology foundation-model experts (UNI, Virchow2, domain-adapted Phikon-v2) into a shared 512-d representation, classified as benign / atypical / malignant. Unlike image-input bundles, this bundle takes pre-computed foundation-model embeddings as input (one float32 vector per expert per tile/ROI); the foundation models themselves are gated on Hugging Face and are not distributed here, and the images are not redistributed. The shipped weights are the single-seed (seed 0) MoE head trained on the BRACS official train split. The metrics below are the paper's headline 5-seed ensemble results on the BRACS official test split (570 ROIs); the shipped single-seed checkpoint's own test metrics are to be confirmed (see docs/README.md). Research use only, not for diagnostic purposes.",
+    "eval_metrics": {
+        "accuracy": 0.8596,
+        "macro_auroc": 0.9578,
+        "weighted_f1": 0.859
+    },
+    "image_classes": "Pre-computed pathology foundation-model embeddings, float32, one vector per H&E tile/ROI: UNI 1024-d (CLS token), Virchow2 2560-d (CLS + mean patch token), domain-adapted Phikon-v2 1024-d (CLS token). Raw (unnormalised) embedding components; observed UNI components on BRACS train fall in [-0.19, 0.19].",
+    "intended_use": "Research use only. This is an example, not to be used for diagnostic purposes. Noncommercial use under the PolyForm Noncommercial License 1.0.0 (see LICENSE).",
+    "label_classes": "three classes: benign, atypical, malignant, as indices 0, 1, 2 (one-hot [1, 0, 0], [0, 1, 0], [0, 0, 1]).",
+    "monai_version": "1.4.0",
+    "name": "Breast lesion MoE classification",
+    "network_data_format": {
+        "inputs": {
+            "phikon_v2_ft": {
+                "channel_def": {
+                    "0": "domain-adapted Phikon-v2 embedding"
+                },
+                "dtype": "float32",
+                "format": "feature_vector",
+                "is_patch_data": false,
+                "num_channels": 1,
+                "spatial_shape": [
+                    1024
+                ],
+                "type": "embedding",
+                "value_range": [
+                    -1.0,
+                    1.0
+                ]
+            },
+            "uni": {
+                "channel_def": {
+                    "0": "UNI embedding"
+                },
+                "dtype": "float32",
+                "format": "feature_vector",
+                "is_patch_data": false,
+                "num_channels": 1,
+                "spatial_shape": [
+                    1024
+                ],
+                "type": "embedding",
+                "value_range": [
+                    -1.0,
+                    1.0
+                ]
+            },
+            "virchow2": {
+                "channel_def": {
+                    "0": "Virchow2 embedding"
+                },
+                "dtype": "float32",
+                "format": "feature_vector",
+                "is_patch_data": false,
+                "num_channels": 1,
+                "spatial_shape": [
+                    2560
+                ],
+                "type": "embedding",
+                "value_range": [
+                    -1.0,
+                    1.0
+                ]
+            }
+        },
+        "outputs": {
+            "pred": {
+                "channel_def": {
+                    "0": "benign",
+                    "1": "atypical",
+                    "2": "malignant"
+                },
+                "dtype": "float32",
+                "format": "classification",
+                "is_patch_data": false,
+                "num_channels": 3,
+                "spatial_shape": [
+                    1,
+                    3
+                ],
+                "type": "probability",
+                "value_range": [
+                    0,
+                    1
+                ]
+            }
+        },
+        "post_processed_outputs": {
+            "pred": {
+                "channel_def": {
+                    "0": "benign",
+                    "1": "atypical",
+                    "2": "malignant"
+                },
+                "dtype": "float32",
+                "format": "classification",
+                "is_patch_data": false,
+                "num_channels": 3,
+                "spatial_shape": [
+                    1,
+                    3
+                ],
+                "type": "probability",
+                "value_range": [
+                    0,
+                    1
+                ]
+            }
+        }
+    },
+    "numpy_version": "1.26.4",
+    "pred_classes": "One-hot class probabilities (softmax over 3 classes).",
+    "pytorch_version": "2.5.1",
+    "references": [
+        "Toward reliable early breast lesion detection: a state-of-the-art, uncertainty-aware diagnostic engine with agentic decision support in H&E histopathology (under review). Code, weights and results: https://github.com/eliem08/paper_code",
+        "BRACS dataset: https://www.bracs.icar.cnr.it",
+        "Foundation-model experts: UNI, Virchow2 and Phikon-v2 (gated on Hugging Face; see docs/data_license.txt)"
+    ],
+    "required_packages_version": {},
+    "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
+    "supported_apps": {},
+    "task": "Breast lesion classification in H&E histopathology (BRACS 3-class)",
+    "version": "0.1.0"
+}

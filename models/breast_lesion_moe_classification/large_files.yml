@@ -1,0 +1,5 @@
+large_files:
+  - path: "models/model.pt"
+    url: "https://raw.githubusercontent.com/eliem08/paper_code/1d32f6586926a6a420053fc594c6f5074820e99d/artifacts/agent/moe_bracs_3class.pt"
+    hash_val: "3d5e20a82b240dd6c905663bfbef1b64"
+    hash_type: "md5"

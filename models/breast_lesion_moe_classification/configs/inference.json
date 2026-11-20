@@ -1,0 +1,90 @@
+{
+    "bundle_root": ".",
+    "data_root": "@bundle_root",
+    "datalist": {
+        "_target_": "scripts.embedding_dataset.load_datalist",
+        "datalist_file": "@datalist_file"
+    },
+    "datalist_file": "$os.path.join(@bundle_root, 'configs/sample_datalist.json')",
+    "dataloader": {
+        "_target_": "DataLoader",
+        "batch_size": 32,
+        "dataset": "@dataset",
+        "num_workers": 0,
+        "shuffle": false
+    },
+    "dataset": {
+        "_target_": "scripts.embedding_dataset.EmbeddingListDataset",
+        "data": "@datalist",
+        "data_root": "@data_root"
+    },
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "evaluator": {
+        "_target_": "SupervisedEvaluator",
+        "amp": false,
+        "device": "@device",
+        "inferer": "@inferer",
+        "network": "@network",
+        "postprocessing": "@postprocessing",
+        "prepare_batch": "$emb_ds.prepare_embedding_batch",
+        "val_data_loader": "@dataloader",
+        "val_handlers": "@handlers"
+    },
+    "handlers": [
+        {
+            "_target_": "CheckpointLoader",
+            "load_dict": {
+                "model": "@network"
+            },
+            "load_path": "$@model_dir + '/model.pt'",
+            "map_location": "@device"
+        },
+        {
+            "_target_": "StatsHandler",
+            "iteration_log": false,
+            "output_transform": "$lambda x: None"
+        },
+        {
+            "_target_": "ClassificationSaver",
+            "batch_transform": "$lambda x: {'filename_or_obj': [s['image_id'] for s in x]}",
+            "output_dir": "@output_dir",
+            "output_transform": "$monai.handlers.from_engine(['pred'])"
+        }
+    ],
+    "imports": [
+        "$import os",
+        "$import scripts.embedding_dataset as emb_ds"
+    ],
+    "inferer": {
+        "_target_": "SimpleInferer"
+    },
+    "model_dir": "$@bundle_root + '/models'",
+    "network": "$@network_def.to(@device)",
+    "network_def": {
+        "_target_": "scripts.moe_network.BundleMoEClassifier",
+        "expert_dims": {
+            "phikon_v2_ft": 1024,
+            "uni": 1024,
+            "virchow2": 2560
+        },
+        "num_classes": 3,
+        "routing": "soft_topk",
+        "shared_dim": 512,
+        "top_k": 2
+    },
+    "output_dir": "$@bundle_root + '/output'",
+    "postprocessing": {
+        "_target_": "Compose",
+        "transforms": [
+            {
+                "_target_": "Activationsd",
+                "keys": "pred",
+                "softmax": true
+            }
+        ]
+    },
+    "dataset_dir": "@bundle_root",
+    "run": [
+        "$@evaluator.run()"
+    ]
+}

@@ -24,6 +24,8 @@ exclude_verify_shape_list = [
     "cxr_image_synthesis_latent_diffusion_model",
     "brain_image_synthesis_latent_diffusion_model",
     "retinalOCT_RPD_segmentation",
+    # embedding-input network (dict of FM vectors, not an image): verify_net_in_out does not apply
+    "breast_lesion_moe_classification",
 ]
 
 # This list is used for our CI tests to determine whether a bundle contains the preferred files.
@@ -55,6 +57,8 @@ exclude_verify_torchscript_list = [
     "retinalOCT_RPD_segmentation",
     "mindmap",
     "mindgrab",
+    # dict-of-embeddings forward (with optional magnifications) does not TorchScript-trace
+    "breast_lesion_moe_classification",
 ]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested after downloading
@@ -81,7 +85,10 @@ include_verify_tensorrt_dict = {
     "wholeBody_ct_segmentation": {"use_trace": True},
     "pancreas_ct_dints_segmentation": {
         "use_trace": True,
-        "converter_kwargs": {"truncate_long_and_double": True, "torch_executed_ops": ["aten::upsample_trilinear3d"]},
+        "converter_kwargs": {
+            "truncate_long_and_double": True,
+            "torch_executed_ops": ["aten::upsample_trilinear3d"],
+        },
     },
 }
 
@@ -94,7 +101,14 @@ include_verify_onnx_tensorrt_dict = {
     "spleen_ct_segmentation": {},
     "lung_nodule_ct_detection": {
         "input_shape": [1, 1, 512, 512, 192],
-        "onnx_output_names": ["output_0", "output_1", "output_2", "output_3", "output_4", "output_5"],
+        "onnx_output_names": [
+            "output_0",
+            "output_1",
+            "output_2",
+            "output_3",
+            "output_4",
+            "output_5",
+        ],
         "network_def#use_list_output": True,
     },
 }
