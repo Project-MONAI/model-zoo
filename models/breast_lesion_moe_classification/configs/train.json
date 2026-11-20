@@ -18,9 +18,9 @@
     "network_def": {
         "_target_": "scripts.moe_network.BundleMoEClassifier",
         "expert_dims": {
-            "phikon_v2_ft": 1024,
             "uni": 1024,
-            "virchow2": 2560
+            "virchow2": 2560,
+            "phikon_v2_ft": 1024
         },
         "num_classes": 3,
         "routing": "soft_topk",

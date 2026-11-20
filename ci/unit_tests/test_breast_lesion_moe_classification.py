@@ -11,6 +11,7 @@
 
 import os
 import shutil
+import sys
 import tempfile
 import unittest
 
@@ -20,9 +21,13 @@ from parameterized import parameterized
 from utils import check_workflow
 
 # The bundle ships synthetic embeddings (seeded standard-normal vectors) in
-# sample_data/; the "inference" case runs the shipped weights on them, the
-# "train" case runs one epoch from random init. Both only prove the pipeline
-# runs end to end -- predictions on synthetic embeddings are meaningless.
+# sample_data/. The "train" case runs one epoch from random init and the
+# offline "inference" case runs with random weights (CheckpointLoader
+# disabled), so both only prove the pipeline runs end to end -- predictions
+# on synthetic embeddings are meaningless. The checkpoint-enabled inference
+# case additionally loads the delivered models/model.pt (large_files.yml)
+# to check checkpoint/network compatibility; it is skipped when the
+# checkpoint has not been downloaded.
 TEST_CASE_1 = [  # train, evaluate
     {
         "bundle_root": "models/breast_lesion_moe_classification",
@@ -42,6 +47,24 @@ TEST_CASE_2 = [  # inference
     }
 ]
 
+# Delivered checkpoint (large_files.yml): models/model.pt under the bundle
+# root. Absent from a plain repo checkout, so the checkpoint-enabled case
+# below skips unless it has been downloaded.
+CHECKPOINT_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    "models",
+    "breast_lesion_moe_classification",
+    "models",
+    "model.pt",
+)
+
+TEST_CASE_3 = [  # inference with the delivered checkpoint
+    {
+        "bundle_root": "models/breast_lesion_moe_classification",
+        "dataloader#num_workers": 0,
+    }
+]
+
 
 def test_order(test_name1, test_name2):
     def get_order(name):
@@ -58,6 +81,11 @@ def test_order(test_name1, test_name2):
 
 class TestBreastLesionMoEClassification(unittest.TestCase):
     def setUp(self):
+        # Make the bundle's `scripts` package importable, as in other bundle
+        # tests -- the repo's test runner does not set PYTHONPATH.
+        bundle_root = "models/breast_lesion_moe_classification"
+        if bundle_root not in sys.path:
+            sys.path.insert(0, bundle_root)
         self.dataset_dir = tempfile.mkdtemp()
         dataset_size = 8
         rng = np.random.default_rng(0)
@@ -102,6 +130,22 @@ class TestBreastLesionMoEClassification(unittest.TestCase):
 
     @parameterized.expand([TEST_CASE_2])
     def test_infer_config(self, override):
+        bundle_root = override["bundle_root"]
+
+        inferrer = ConfigWorkflow(
+            workflow_type="infer",
+            config_file=os.path.join(bundle_root, "configs/inference.json"),
+            logging_file=os.path.join(bundle_root, "configs/logging.conf"),
+            meta_file=os.path.join(bundle_root, "configs/metadata.json"),
+            **override,
+        )
+        check_workflow(inferrer, check_properties=True)
+
+    @parameterized.expand([TEST_CASE_3])
+    @unittest.skipUnless(os.path.exists(CHECKPOINT_PATH), "delivered checkpoint (models/model.pt) not downloaded")
+    def test_infer_config_with_checkpoint(self, override):
+        # keep predictions out of the bundle directory
+        override["output_dir"] = os.path.join(self.dataset_dir, "infer_ckpt")
         bundle_root = override["bundle_root"]
 
         inferrer = ConfigWorkflow(

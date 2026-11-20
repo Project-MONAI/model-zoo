@@ -93,10 +93,10 @@ class MoEOutput:
 #   unknown / other -> uniform fallback
 # Weights are normalised in HardMagRoutingMoE; raw values just need to be >= 0.
 DEFAULT_MAG_ROUTING: dict[str, dict[str, float]] = {
-    "40X": {"uni": 0.20, "virchow2": 0.60, "phikon_v2": 0.20},
-    "100X": {"uni": 0.35, "virchow2": 0.45, "phikon_v2": 0.20},
-    "200X": {"uni": 0.40, "virchow2": 0.30, "phikon_v2": 0.30},
-    "400X": {"uni": 0.50, "virchow2": 0.20, "phikon_v2": 0.30},
+    "40X": {"uni": 0.20, "virchow2": 0.60, "phikon_v2_ft": 0.20},
+    "100X": {"uni": 0.35, "virchow2": 0.45, "phikon_v2_ft": 0.20},
+    "200X": {"uni": 0.40, "virchow2": 0.30, "phikon_v2_ft": 0.30},
+    "400X": {"uni": 0.50, "virchow2": 0.20, "phikon_v2_ft": 0.30},
 }
 UNKNOWN_MAGNIFICATION_KEY = "unknown"
 
@@ -326,7 +326,7 @@ def build_moe(expert_dims: Mapping[str, int], config: MoEConfig) -> MoEHead:
     ----------
     expert_dims
         Mapping ``{fm_name: embedding_dim}``, e.g.
-        ``{"uni": 1024, "virchow2": 2560, "phikon_v2": 1024}``. The key order
+        ``{"uni": 1024, "virchow2": 2560, "phikon_v2_ft": 1024}``. The key order
         defines the canonical expert index.
     config
         Routing strategy + hyperparameters.

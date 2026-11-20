@@ -26,9 +26,11 @@ import os
 from collections import defaultdict
 
 try:  # imported as `scripts.create_datalist` by MONAI bundle configs
-    from scripts.moe_network import EXPERT_ORDER, LABEL_TO_INDEX
+    from scripts.embedding_dataset import LABEL_TO_INDEX
+    from scripts.moe_network import EXPERT_ORDER
 except ImportError:  # run directly from inside `scripts/`
-    from moe_network import EXPERT_ORDER, LABEL_TO_INDEX
+    from embedding_dataset import LABEL_TO_INDEX
+    from moe_network import EXPERT_ORDER
 
 
 def build_datalist(embeddings_dir: str, labels_csv: str | None = None) -> list[dict]:

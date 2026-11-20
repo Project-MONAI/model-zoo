@@ -86,10 +86,10 @@
                     1,
                     3
                 ],
-                "type": "probability",
+                "type": "logits",
                 "value_range": [
-                    0,
-                    1
+                    -100,
+                    100
                 ]
             }
         },
@@ -117,7 +117,7 @@
         }
     },
     "numpy_version": "1.26.4",
-    "pred_classes": "One-hot class probabilities (softmax over 3 classes).",
+    "pred_classes": "Unnormalised 3-class logits (benign, atypical, malignant), before this bundle's postprocessing applies softmax to produce class probabilities.",
     "pytorch_version": "2.5.1",
     "references": [
         "Toward reliable early breast lesion detection: a state-of-the-art, uncertainty-aware diagnostic engine with agentic decision support in H&E histopathology (under review). Code, weights and results: https://github.com/eliem08/paper_code",

@@ -126,7 +126,7 @@ Execute inference (point `datalist_file` at your own datalist with the
 
 ```
 python -m monai.bundle run run --meta_file configs/metadata.json \
-    --config_file configs/inference.json configs/logging.conf
+    --config_file configs/inference.json --logging_file configs/logging.conf
 ```
 
 Predictions are written to `output/predictions.csv` with one row per case
@@ -139,7 +139,7 @@ Retrain the MoE head from cached embeddings with `configs/train.json`
 
 ```
 python -m monai.bundle run run --meta_file configs/metadata.json \
-    --config_file configs/train.json configs/logging.conf
+    --config_file configs/train.json --logging_file configs/logging.conf
 ```
 
 Set `dataset_dir` in `train.json` to the directory holding
