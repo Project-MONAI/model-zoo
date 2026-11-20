@@ -36,13 +36,13 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Literal, Mapping
+from typing import Literal
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 
 RoutingKind = Literal["hard_mag", "soft_topk", "stacking"]
 
@@ -119,22 +119,14 @@ class MoEConfig:
 class ExpertProjector(nn.Module):
     """Per-FM linear projection to a shared embedding dim, with optional LayerNorm."""
 
-    def __init__(
-        self,
-        expert_dims: Mapping[str, int],
-        shared_dim: int,
-        layer_norm: bool = True,
-    ) -> None:
+    def __init__(self, expert_dims: Mapping[str, int], shared_dim: int, layer_norm: bool = True) -> None:
         super().__init__()
         if not expert_dims:
             raise ValueError("expert_dims must contain at least one expert")
         self.expert_names: tuple[str, ...] = tuple(expert_dims.keys())
         self.shared_dim = int(shared_dim)
         self.projectors = nn.ModuleDict(
-            {
-                name: nn.Linear(int(dim), self.shared_dim)
-                for name, dim in expert_dims.items()
-            }
+            {name: nn.Linear(int(dim), self.shared_dim) for name, dim in expert_dims.items()}
         )
         self.norm = nn.LayerNorm(self.shared_dim) if layer_norm else nn.Identity()
 
@@ -143,10 +135,7 @@ class ExpertProjector(nn.Module):
         missing = [n for n in self.expert_names if n not in expert_embeddings]
         if missing:
             raise KeyError(f"expert_embeddings missing keys: {missing}")
-        projected = [
-            self.norm(self.projectors[name](expert_embeddings[name]))
-            for name in self.expert_names
-        ]
+        projected = [self.norm(self.projectors[name](expert_embeddings[name])) for name in self.expert_names]
         return torch.stack(projected, dim=1)
 
 
@@ -159,9 +148,7 @@ class MoEHead(nn.Module):
     projector: ExpertProjector
 
     def forward(
-        self,
-        expert_embeddings: Mapping[str, torch.Tensor],
-        magnifications: list[str] | None = None,
+        self, expert_embeddings: Mapping[str, torch.Tensor], magnifications: list[str] | None = None
     ) -> MoEOutput:  # pragma: no cover - subclassed
         raise NotImplementedError
 
@@ -187,16 +174,11 @@ class HardMagRoutingMoE(MoEHead):
         self.num_experts = len(self.expert_names)
         self.shared_dim = int(shared_dim)
         self.projector = ExpertProjector(expert_dims, shared_dim, layer_norm=layer_norm)
-        self.magnification_to_weights = dict(
-            magnification_to_weights or DEFAULT_MAG_ROUTING
-        )
+        self.magnification_to_weights = dict(magnification_to_weights or DEFAULT_MAG_ROUTING)
 
     def _row_for_magnification(self, mag: str) -> torch.Tensor:
         if mag in self.magnification_to_weights:
-            row = [
-                float(self.magnification_to_weights[mag].get(name, 0.0))
-                for name in self.expert_names
-            ]
+            row = [float(self.magnification_to_weights[mag].get(name, 0.0)) for name in self.expert_names]
         else:
             row = [1.0 / self.num_experts] * self.num_experts
         tensor = torch.tensor(row, dtype=torch.float32)
@@ -206,21 +188,15 @@ class HardMagRoutingMoE(MoEHead):
         return tensor / total
 
     def forward(
-        self,
-        expert_embeddings: Mapping[str, torch.Tensor],
-        magnifications: list[str] | None = None,
+        self, expert_embeddings: Mapping[str, torch.Tensor], magnifications: list[str] | None = None
     ) -> MoEOutput:
         projected = self.projector(expert_embeddings)  # (B, E, D)
         batch_size = projected.shape[0]
         if magnifications is None:
             magnifications = [UNKNOWN_MAGNIFICATION_KEY] * batch_size
         if len(magnifications) != batch_size:
-            raise ValueError(
-                f"magnifications has {len(magnifications)} entries, expected {batch_size}"
-            )
-        rows = torch.stack(
-            [self._row_for_magnification(m) for m in magnifications], dim=0
-        )
+            raise ValueError(f"magnifications has {len(magnifications)} entries, expected {batch_size}")
+        rows = torch.stack([self._row_for_magnification(m) for m in magnifications], dim=0)
         rows = rows.to(projected.device, dtype=projected.dtype)
         routed = (rows.unsqueeze(-1) * projected).sum(dim=1)
         return MoEOutput(
@@ -268,19 +244,11 @@ class SoftTopKRoutingMoE(MoEHead):
         self.projector = ExpertProjector(expert_dims, shared_dim, layer_norm=layer_norm)
 
         gate_in = self.shared_dim * self.num_experts
-        gate_h = (
-            int(gate_hidden_dim) if gate_hidden_dim else max(self.shared_dim // 2, 64)
-        )
-        self.gate = nn.Sequential(
-            nn.Linear(gate_in, gate_h),
-            nn.GELU(),
-            nn.Linear(gate_h, self.num_experts),
-        )
+        gate_h = int(gate_hidden_dim) if gate_hidden_dim else max(self.shared_dim // 2, 64)
+        self.gate = nn.Sequential(nn.Linear(gate_in, gate_h), nn.GELU(), nn.Linear(gate_h, self.num_experts))
 
     def forward(
-        self,
-        expert_embeddings: Mapping[str, torch.Tensor],
-        magnifications: list[str] | None = None,
+        self, expert_embeddings: Mapping[str, torch.Tensor], magnifications: list[str] | None = None
     ) -> MoEOutput:
         projected = self.projector(expert_embeddings)  # (B, E, D)
         B, E, D = projected.shape
@@ -299,12 +267,7 @@ class SoftTopKRoutingMoE(MoEHead):
         P = gate_probs.mean(dim=0)
         aux_loss = self.num_experts * (f * P).sum() * self.load_balance_weight
 
-        return MoEOutput(
-            routed_embedding=routed,
-            gate_weights=gate_mask,
-            aux_loss=aux_loss,
-            chosen_experts=topk_idx,
-        )
+        return MoEOutput(routed_embedding=routed, gate_weights=gate_mask, aux_loss=aux_loss, chosen_experts=topk_idx)
 
 
 class StackingMoE(MoEHead):
@@ -331,16 +294,12 @@ class StackingMoE(MoEHead):
         self.per_dim_weights = bool(per_dim_weights)
         self.projector = ExpertProjector(expert_dims, shared_dim, layer_norm=layer_norm)
         if self.per_dim_weights:
-            self.weight_logits = nn.Parameter(
-                torch.zeros(self.num_experts, self.shared_dim)
-            )
+            self.weight_logits = nn.Parameter(torch.zeros(self.num_experts, self.shared_dim))
         else:
             self.weight_logits = nn.Parameter(torch.zeros(self.num_experts))
 
     def forward(
-        self,
-        expert_embeddings: Mapping[str, torch.Tensor],
-        magnifications: list[str] | None = None,
+        self, expert_embeddings: Mapping[str, torch.Tensor], magnifications: list[str] | None = None
     ) -> MoEOutput:
         projected = self.projector(expert_embeddings)  # (B, E, D)
         B = projected.shape[0]
@@ -407,11 +366,7 @@ class MoEClassifier(nn.Module):
     """
 
     def __init__(
-        self,
-        expert_dims: Mapping[str, int],
-        num_classes: int,
-        config: MoEConfig,
-        dropout: float = 0.0,
+        self, expert_dims: Mapping[str, int], num_classes: int, config: MoEConfig, dropout: float = 0.0
     ) -> None:
         super().__init__()
         self.moe = build_moe(expert_dims, config)
@@ -419,9 +374,7 @@ class MoEClassifier(nn.Module):
         self.classifier = nn.Linear(self.moe.shared_dim, int(num_classes))
 
     def forward(
-        self,
-        expert_embeddings: Mapping[str, torch.Tensor],
-        magnifications: list[str] | None = None,
+        self, expert_embeddings: Mapping[str, torch.Tensor], magnifications: list[str] | None = None
     ) -> tuple[torch.Tensor, MoEOutput]:
         out = self.moe(expert_embeddings, magnifications=magnifications)
         logits = self.classifier(self.dropout(out.routed_embedding))
@@ -468,15 +421,11 @@ class BundleMoEClassifier(MoEClassifier):
             load_balance_weight=load_balance_weight,
             layer_norm=layer_norm,
         )
-        super().__init__(
-            expert_dims=dims, num_classes=num_classes, config=config, dropout=dropout
-        )
+        super().__init__(expert_dims=dims, num_classes=num_classes, config=config, dropout=dropout)
         self.expert_dims = dims
 
     def forward(
-        self,
-        image: Mapping[str, torch.Tensor] | torch.Tensor,
-        magnifications: list[str] | None = None,
+        self, image: Mapping[str, torch.Tensor] | torch.Tensor, magnifications: list[str] | None = None
     ) -> torch.Tensor:
         if isinstance(image, torch.Tensor):
             if image.dim() != 2 or image.shape[1] != sum(self.expert_dims.values()):

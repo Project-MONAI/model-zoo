@@ -37,9 +37,7 @@ def build_datalist(embeddings_dir: str, labels_csv: str | None = None) -> list[d
         with open(labels_csv, newline="") as f:
             for row in csv.DictReader(f):
                 raw = str(row["label"]).strip()
-                labels[str(row["image_id"]).strip()] = (
-                    LABEL_TO_INDEX[raw] if raw in LABEL_TO_INDEX else int(raw)
-                )
+                labels[str(row["image_id"]).strip()] = LABEL_TO_INDEX[raw] if raw in LABEL_TO_INDEX else int(raw)
 
     grouped: dict[str, dict[str, str]] = defaultdict(dict)
     for fname in sorted(os.listdir(embeddings_dir)):
@@ -55,10 +53,7 @@ def build_datalist(embeddings_dir: str, labels_csv: str | None = None) -> list[d
         missing = [name for name in EXPERT_ORDER if name not in grouped[image_id]]
         if missing:
             raise ValueError(f"{image_id} is missing embeddings for: {missing}")
-        entry: dict = {
-            "image_id": image_id,
-            **{name: grouped[image_id][name] for name in EXPERT_ORDER},
-        }
+        entry: dict = {"image_id": image_id, **{name: grouped[image_id][name] for name in EXPERT_ORDER}}
         if image_id in labels:
             entry["label"] = labels[image_id]
         datalist.append(entry)

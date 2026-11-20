@@ -66,15 +66,9 @@ class TestBreastLesionMoEClassification(unittest.TestCase):
         for split, entries in (("train", train_entries), ("val", val_entries)):
             for s in range(dataset_size):
                 entry = {"image_id": f"{split}_{s:03d}", "label": int(s % 3)}
-                for expert, dim in (
-                    ("uni", 1024),
-                    ("virchow2", 2560),
-                    ("phikon_v2_ft", 1024),
-                ):
+                for expert, dim in (("uni", 1024), ("virchow2", 2560), ("phikon_v2_ft", 1024)):
                     arr = rng.normal(0.0, 0.03, size=(dim,)).astype(np.float32)
-                    fname = os.path.join(
-                        self.dataset_dir, f"{split}_{s:03d}__{expert}.npy"
-                    )
+                    fname = os.path.join(self.dataset_dir, f"{split}_{s:03d}__{expert}.npy")
                     np.save(fname, arr)
                     entry[expert] = fname
                 entries.append(entry)

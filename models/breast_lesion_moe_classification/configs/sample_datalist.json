@@ -1,30 +1,30 @@
 [
-  {
-    "image_id": "SYNTH_001",
-    "uni": "sample_data/embeddings/SYNTH_001__uni.json",
-    "virchow2": "sample_data/embeddings/SYNTH_001__virchow2.json",
-    "phikon_v2_ft": "sample_data/embeddings/SYNTH_001__phikon_v2_ft.json",
-    "label": 0
-  },
-  {
-    "image_id": "SYNTH_002",
-    "uni": "sample_data/embeddings/SYNTH_002__uni.json",
-    "virchow2": "sample_data/embeddings/SYNTH_002__virchow2.json",
-    "phikon_v2_ft": "sample_data/embeddings/SYNTH_002__phikon_v2_ft.json",
-    "label": 1
-  },
-  {
-    "image_id": "SYNTH_003",
-    "uni": "sample_data/embeddings/SYNTH_003__uni.json",
-    "virchow2": "sample_data/embeddings/SYNTH_003__virchow2.json",
-    "phikon_v2_ft": "sample_data/embeddings/SYNTH_003__phikon_v2_ft.json",
-    "label": 2
-  },
-  {
-    "image_id": "SYNTH_004",
-    "uni": "sample_data/embeddings/SYNTH_004__uni.json",
-    "virchow2": "sample_data/embeddings/SYNTH_004__virchow2.json",
-    "phikon_v2_ft": "sample_data/embeddings/SYNTH_004__phikon_v2_ft.json",
-    "label": 0
-  }
+    {
+        "image_id": "SYNTH_001",
+        "uni": "sample_data/embeddings/SYNTH_001__uni.json",
+        "virchow2": "sample_data/embeddings/SYNTH_001__virchow2.json",
+        "phikon_v2_ft": "sample_data/embeddings/SYNTH_001__phikon_v2_ft.json",
+        "label": 0
+    },
+    {
+        "image_id": "SYNTH_002",
+        "uni": "sample_data/embeddings/SYNTH_002__uni.json",
+        "virchow2": "sample_data/embeddings/SYNTH_002__virchow2.json",
+        "phikon_v2_ft": "sample_data/embeddings/SYNTH_002__phikon_v2_ft.json",
+        "label": 1
+    },
+    {
+        "image_id": "SYNTH_003",
+        "uni": "sample_data/embeddings/SYNTH_003__uni.json",
+        "virchow2": "sample_data/embeddings/SYNTH_003__virchow2.json",
+        "phikon_v2_ft": "sample_data/embeddings/SYNTH_003__phikon_v2_ft.json",
+        "label": 2
+    },
+    {
+        "image_id": "SYNTH_004",
+        "uni": "sample_data/embeddings/SYNTH_004__uni.json",
+        "virchow2": "sample_data/embeddings/SYNTH_004__virchow2.json",
+        "phikon_v2_ft": "sample_data/embeddings/SYNTH_004__phikon_v2_ft.json",
+        "label": 0
+    }
 ]

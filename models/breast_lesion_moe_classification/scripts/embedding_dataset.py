@@ -69,17 +69,12 @@ def _load_vector(path: str) -> torch.Tensor:
     elif path.endswith(".csv"):
         arr = np.loadtxt(path, delimiter=",", dtype=np.float32)
     else:
-        raise ValueError(
-            f"unsupported embedding file (expected .npy, .pt, .json or .csv): {path}"
-        )
+        raise ValueError(f"unsupported embedding file (expected .npy, .pt, .json or .csv): {path}")
     return torch.as_tensor(np.asarray(arr, dtype=np.float32)).reshape(-1)
 
 
 def prepare_embedding_batch(
-    batchdata: dict[str, Any],
-    device: str | torch.device | None = None,
-    non_blocking: bool = False,
-    **kwargs: Any,
+    batchdata: dict[str, Any], device: str | torch.device | None = None, non_blocking: bool = False, **kwargs: Any
 ) -> tuple[Any, torch.Tensor | None]:
     """``prepare_batch`` for dict-of-embedding batches.
 
@@ -90,10 +85,7 @@ def prepare_embedding_batch(
     """
     image = batchdata["image"]
     if isinstance(image, dict):
-        image = {
-            k: v.to(device=device, non_blocking=non_blocking, **kwargs)
-            for k, v in image.items()
-        }
+        image = {k: v.to(device=device, non_blocking=non_blocking, **kwargs) for k, v in image.items()}
     else:
         image = image.to(device=device, non_blocking=non_blocking, **kwargs)
     label = batchdata.get("label")
@@ -111,9 +103,7 @@ class EmbeddingListDataset(Dataset):
 
     def __init__(self, data: list[dict[str, Any]] | str, data_root: str = ".") -> None:
         self.data_root = data_root
-        self.entries: list[dict[str, Any]] = (
-            load_datalist(data) if isinstance(data, str) else list(data)
-        )
+        self.entries: list[dict[str, Any]] = load_datalist(data) if isinstance(data, str) else list(data)
         if not self.entries:
             raise ValueError("no entries found in datalist")
 
@@ -126,14 +116,8 @@ class EmbeddingListDataset(Dataset):
         for name in EXPERT_ORDER:
             rel_path = entry.get(name)
             if rel_path is None:
-                raise KeyError(
-                    f"datalist entry {entry.get('image_id')} is missing embedding for {name!r}"
-                )
-            path = (
-                rel_path
-                if os.path.isabs(rel_path)
-                else os.path.join(self.data_root, rel_path)
-            )
+                raise KeyError(f"datalist entry {entry.get('image_id')} is missing embedding for {name!r}")
+            path = rel_path if os.path.isabs(rel_path) else os.path.join(self.data_root, rel_path)
             vec = _load_vector(path)
             expected = EXPERT_DIMS[name]
             if vec.shape[0] != expected:
