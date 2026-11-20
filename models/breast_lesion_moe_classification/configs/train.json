@@ -1,0 +1,165 @@
+{
+    "bundle_root": ".",
+    "ckpt_dir": "$os.path.join(@bundle_root, 'models')",
+    "dataset_dir": "/workspace/data/bracs_embeddings",
+    "device": "$torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')",
+    "imports": [
+        "$import os",
+        "$import scripts.embedding_dataset as emb_ds"
+    ],
+    "initialize": [
+        "$monai.utils.set_determinism(seed=0)"
+    ],
+    "loss": {
+        "_target_": "torch.nn.CrossEntropyLoss"
+    },
+    "lr": 0.001,
+    "network": "$@network_def.to(@device)",
+    "network_def": {
+        "_target_": "scripts.moe_network.BundleMoEClassifier",
+        "expert_dims": {
+            "uni": 1024,
+            "virchow2": 2560,
+            "phikon_v2_ft": 1024
+        },
+        "num_classes": 3,
+        "routing": "soft_topk",
+        "shared_dim": 512,
+        "top_k": 2
+    },
+    "num_epochs": 120,
+    "optimizer": {
+        "_target_": "torch.optim.AdamW",
+        "lr": "@lr",
+        "params": "$@network.parameters()"
+    },
+    "output_dir": "$os.path.join(@bundle_root, 'log')",
+    "run": [
+        "$@train#trainer.run()"
+    ],
+    "train": {
+        "datalist": {
+            "_target_": "scripts.embedding_dataset.load_datalist",
+            "datalist_file": "@train_datalist_file"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "batch_size": 128,
+            "dataset": "@train#dataset",
+            "num_workers": 4,
+            "pin_memory": false,
+            "shuffle": true
+        },
+        "dataset": {
+            "_target_": "scripts.embedding_dataset.EmbeddingListDataset",
+            "data": "@train#datalist",
+            "data_root": "@dataset_dir"
+        },
+        "handlers": [
+            {
+                "_target_": "ValidationHandler",
+                "epoch_level": true,
+                "interval": "@val_interval",
+                "validator": "@validate#evaluator"
+            },
+            {
+                "_target_": "StatsHandler",
+                "output_transform": "$monai.handlers.from_engine(['loss'], first=True)",
+                "tag_name": "train_loss"
+            }
+        ],
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "key_metric": {
+            "train_acc": {
+                "_target_": "ignite.metrics.Accuracy",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "postprocessing": {
+            "_target_": "Compose",
+            "transforms": [
+                {
+                    "_target_": "Activationsd",
+                    "keys": "pred",
+                    "softmax": true
+                }
+            ]
+        },
+        "trainer": {
+            "_target_": "SupervisedTrainer",
+            "amp": true,
+            "device": "@device",
+            "inferer": "@train#inferer",
+            "key_train_metric": "@train#key_metric",
+            "loss_function": "@loss",
+            "max_epochs": "@num_epochs",
+            "network": "@network",
+            "optimizer": "@optimizer",
+            "postprocessing": "@train#postprocessing",
+            "train_data_loader": "@train#dataloader",
+            "train_handlers": "@train#handlers",
+            "prepare_batch": "$emb_ds.prepare_embedding_batch"
+        }
+    },
+    "train_datalist_file": "$os.path.join(@dataset_dir, 'train_datalist.json')",
+    "val_datalist_file": "$os.path.join(@dataset_dir, 'val_datalist.json')",
+    "val_interval": 5,
+    "validate": {
+        "datalist": {
+            "_target_": "scripts.embedding_dataset.load_datalist",
+            "datalist_file": "@val_datalist_file"
+        },
+        "dataloader": {
+            "_target_": "DataLoader",
+            "batch_size": 128,
+            "dataset": "@validate#dataset",
+            "num_workers": 4,
+            "pin_memory": false,
+            "shuffle": false
+        },
+        "dataset": {
+            "_target_": "scripts.embedding_dataset.EmbeddingListDataset",
+            "data": "@validate#datalist",
+            "data_root": "@dataset_dir"
+        },
+        "evaluator": {
+            "_target_": "SupervisedEvaluator",
+            "amp": true,
+            "device": "@device",
+            "inferer": "@validate#inferer",
+            "key_val_metric": "@validate#key_metric",
+            "network": "@network",
+            "postprocessing": "@validate#postprocessing",
+            "val_data_loader": "@validate#dataloader",
+            "val_handlers": "@validate#handlers",
+            "prepare_batch": "$emb_ds.prepare_embedding_batch"
+        },
+        "handlers": [
+            {
+                "_target_": "StatsHandler",
+                "iteration_log": false
+            },
+            {
+                "_target_": "CheckpointSaver",
+                "key_metric_filename": "model.pt",
+                "save_dict": {
+                    "model": "@network"
+                },
+                "save_dir": "@ckpt_dir",
+                "save_key_metric": true
+            }
+        ],
+        "inferer": {
+            "_target_": "SimpleInferer"
+        },
+        "key_metric": {
+            "valid_acc": {
+                "_target_": "ignite.metrics.Accuracy",
+                "output_transform": "$monai.handlers.from_engine(['pred', 'label'])"
+            }
+        },
+        "postprocessing": "%train#postprocessing"
+    }
+}
