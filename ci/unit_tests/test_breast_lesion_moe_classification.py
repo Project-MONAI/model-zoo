@@ -59,10 +59,7 @@ CHECKPOINT_PATH = os.path.join(
 )
 
 TEST_CASE_3 = [  # inference with the delivered checkpoint
-    {
-        "bundle_root": "models/breast_lesion_moe_classification",
-        "dataloader#num_workers": 0,
-    }
+    {"bundle_root": "models/breast_lesion_moe_classification", "dataloader#num_workers": 0}
 ]
 
 
