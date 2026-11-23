@@ -1,7 +1,8 @@
 {
     "schema": "https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/meta_schema_20240725.json",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "changelog": {
+        "0.6.2": "add an optional ROCm inference config for AMD GPUs",
         "0.6.1": "enhance metadata with improved descriptions",
         "0.6.0": "update to huggingface hosting",
         "0.5.9": "use monai 1.4 and update large files",
