@@ -1,0 +1,7 @@
+{
+    "network": "$@network_def.to(@device).to(memory_format=torch.channels_last_3d)",
+    "evaluator#amp_kwargs": {
+        "dtype": "$torch.bfloat16"
+    },
+    "evaluator#compile": true
+}

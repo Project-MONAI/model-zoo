@@ -1,0 +1,7 @@
+{
+    "evaluator#amp": true,
+    "evaluator#amp_kwargs": {
+        "dtype": "$torch.bfloat16"
+    },
+    "evaluator#compile": true
+}
