@@ -24,6 +24,8 @@ exclude_verify_shape_list = [
     "cxr_image_synthesis_latent_diffusion_model",
     "brain_image_synthesis_latent_diffusion_model",
     "retinalOCT_RPD_segmentation",
+    # embedding-input network (dict of FM vectors, not an image): verify_net_in_out does not apply
+    "breast_lesion_moe_classification",
 ]
 
 # This list is used for our CI tests to determine whether a bundle contains the preferred files.
@@ -55,6 +57,8 @@ exclude_verify_torchscript_list = [
     "retinalOCT_RPD_segmentation",
     "mindmap",
     "mindgrab",
+    # dict-of-embeddings forward (with optional magnifications) does not TorchScript-trace
+    "breast_lesion_moe_classification",
 ]
 
 # This list is used for our CI tests to determine whether a bundle needs to be tested after downloading

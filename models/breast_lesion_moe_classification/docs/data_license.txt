@@ -1,0 +1,33 @@
+Data and third-party model terms for the breast_lesion_moe_classification bundle.
+No images and no datasets are redistributed in this bundle.
+
+BRACS (BReAst Carcinoma Subtyping) -- training and test data
+------------------------------------------------------------
+Source: https://www.bracs.icar.cnr.it
+BRACS is a public dataset provided by its maintainers for research use.
+Obtain it from the maintainers and place it under `data/` as described in
+https://github.com/eliem08/paper_code (README, "Data" section). The official
+patient-disjoint train/val/test split is used; case lists are in that
+repository's `artifacts/manifests/`.
+
+BACH (ICIAR 2018 Grand Challenge) and BreaKHis -- evaluation cohorts
+---------------------------------------------------------------------
+Used in the paper for cross-cohort / out-of-distribution evaluation only.
+Obtain them from their maintainers; they are not included here.
+
+Pathology foundation models (UNI, Virchow2, Phikon-v2) -- NOT distributed
+--------------------------------------------------------------------------
+The embeddings this bundle consumes are produced by third-party foundation
+models that are gated on Hugging Face: accept their terms and set `HF_TOKEN`
+in your environment (see https://github.com/eliem08/paper_code, README,
+"Data" section). Those models are subject to their providers' terms and are
+not distributed with this bundle. The domain-adapted (fine-tuned) Phikon-v2
+expert weights are not currently public.
+
+Bundle code, weights and documentation
+--------------------------------------
+PolyForm Noncommercial License 1.0.0 (see LICENSE in the bundle root).
+Noncommercial use (research, teaching, peer review) is permitted; commercial
+use requires a separate written license from the authors.
+Required Notice: Copyright (c) 2026 The Authors. All rights reserved except
+as granted under the PolyForm Noncommercial License 1.0.0.
