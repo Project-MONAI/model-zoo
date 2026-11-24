@@ -45,10 +45,10 @@ def build_datalist(embeddings_dir: str, labels_csv: str | None = None) -> list[d
     for fname in sorted(os.listdir(embeddings_dir)):
         if "__" not in fname:
             continue
-        image_id, rest = fname.split("__", 1)
+        image_id, rest = fname.rsplit("__", 1)
         expert, _ext = os.path.splitext(rest)
         if expert in EXPERT_ORDER:
-            grouped[image_id][expert] = os.path.join(embeddings_dir, fname)
+            grouped[image_id][expert] = os.path.abspath(os.path.join(embeddings_dir, fname))
 
     datalist: list[dict] = []
     for image_id in sorted(grouped):
